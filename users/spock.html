@@ -107,6 +107,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#moving-motors">Moving motors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#counting">Counting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#scanning">Scanning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accessing-macro-data">Accessing macro data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#editing-macros">Editing macros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debugging-problems">Debugging problems</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-spock-as-a-python-console">Using spock as a Python console</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-spock-as-a-tango-console">Using spock as a Tango console</a></li>
 </ul>
@@ -425,7 +428,7 @@ is marked with an asterisk (*):</p>
 <p>to switch active measurement groups type
 <a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.senv" title="sardana.macroserver.macros.env.senv"><code class="xref py py-class docutils literal"><span class="pre">senv</span></code></a> <strong>ActiveMntGrp</strong> <em>mg_name</em>.</p>
 <p>You can also create, modify and select measurement groups using the
-<code class="xref py py-class docutils literal"><span class="pre">expconf</span></code> command</p>
+<a class="reference internal" href="taurus/experimentconfiguration.html#expconf-ui"><span class="std std-ref">expconf</span></a> command</p>
 </div>
 <div class="section" id="scanning">
 <h2>Scanning<a class="headerlink" href="#scanning" title="Permalink to this headline">¶</a></h2>
@@ -527,6 +530,60 @@ data for the given scan number.</p>
 </div>
 </div>
 </div>
+<div class="section" id="accessing-macro-data">
+<h2>Accessing macro data<a class="headerlink" href="#accessing-macro-data" title="Permalink to this headline">¶</a></h2>
+<p>The command <code class="xref py py-class docutils literal"><span class="pre">macrodata</span></code>  allows to retrieve the data of the last macro run in spock.
+If this macro does not provide any data an error message is thrown.
+Example accesing scan data:</p>
+<div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">Door_1 [9]: </span><span class="n">ascan</span> <span class="n">mot17</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">2</span> <span class="mi">1</span>
+<span class="go">ScanDir is not defined. This operation will not be stored persistently. Use &quot;expconf&quot; (or &quot;senv ScanDir &lt;abs directory&gt;&quot;) to enable it</span>
+<span class="go">Scan #2 started at Tue Feb 13 11:16:18 2018. It will take at least 0:00:05.048528</span>
+<span class="go">0         1         1         3         4      0.865325</span>
+<span class="go">1        5.5        1         3         4      2.51148</span>
+<span class="go">2         10        1         3         4      4.16662</span>
+<span class="go">Scan #2 ended at Tue Feb 13 11:16:24 2018, taking 0:00:05.201949. Dead time 42.3% (motion dead time 40.5%)</span>
+<span class="c">#Pt No    mot17      ct17      ct19      ct20       dt</span>
+<span class="gp">Door_1 [10]: </span><span class="n">r</span> <span class="o">=</span> <span class="o">%</span><span class="n">macrodata</span>
+<span class="gp">Door_1 [11]: </span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="go">Result [11]:</span>
+<span class="go">[&#39;point_nb&#39;,</span>
+<span class="go">&#39;timestamp&#39;,</span>
+<span class="go">&#39;mot17&#39;,</span>
+<span class="go">&#39;haso111n:10000/expchan/ctctrl05/4&#39;,</span>
+<span class="go">&#39;haso111n:10000/expchan/ctctrl05/1&#39;,</span>
+<span class="go">&#39;haso111n:10000/expchan/ctctrl05/3&#39;]</span>
+<span class="gp">Door_1 [12]: </span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;point_nb&#39;</span><span class="p">]</span>
+<span class="gp">Result [12]: </span><span class="mi">0</span>
+<span class="gp">Door_1 [13]: </span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mot17&#39;</span><span class="p">]</span>
+<span class="gp">Result [13]: </span><span class="mf">1.0</span>
+<span class="gp">Door_1 [16]: </span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;haso111n:10000/expchan/ctctrl05/1&#39;</span><span class="p">]</span>
+<span class="gp">Result [16]: </span><span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="editing-macros">
+<h2>Editing macros<a class="headerlink" href="#editing-macros" title="Permalink to this headline">¶</a></h2>
+<p>The command <code class="xref py py-class docutils literal"><span class="pre">edmac</span></code> allows to edit the macros
+directly from spock. See <a class="reference internal" href="../devel/howto_macros/macros_general.html#sardana-macros-howto"><span class="std std-ref">Writing macros</span></a> section.</p>
+</div>
+<div class="section" id="debugging-problems">
+<h2>Debugging problems<a class="headerlink" href="#debugging-problems" title="Permalink to this headline">¶</a></h2>
+<p>Spock provides some commands that help to debug or recognize the errors in
+case a macro fails when being executed.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="xref py py-class docutils literal"><span class="pre">www</span></code> prints the error message from the
+last macro execution</li>
+<li><code class="xref py py-class docutils literal"><span class="pre">debug</span></code> used with <code class="docutils literal"><span class="pre">on</span></code> as parameter
+activates the print out of the debug messages during macro execution.
+Set it to <code class="docutils literal"><span class="pre">off</span></code> to deactivate it.</li>
+<li><code class="xref py py-class docutils literal"><span class="pre">post_mortem</span></code> prints the current logger
+messages. If no argument is specified it reads the <code class="docutils literal"><span class="pre">debug</span></code> stream.
+Valid values are <code class="docutils literal"><span class="pre">output</span></code>, <code class="docutils literal"><span class="pre">critical</span></code>, <code class="docutils literal"><span class="pre">error</span></code>, <code class="docutils literal"><span class="pre">warning</span></code>,
+<code class="docutils literal"><span class="pre">info</span></code>, <code class="docutils literal"><span class="pre">debug</span></code> and <code class="docutils literal"><span class="pre">result</span></code>.</li>
+</ul>
+</div></blockquote>
+</div>
 <div class="section" id="using-spock-as-a-python-console">
 <h2>Using spock as a <a class="reference external" href="http://www.python.org/">Python</a> console<a class="headerlink" href="#using-spock-as-a-python-console" title="Permalink to this headline">¶</a></h2>
 <p>You can write any <a class="reference external" href="http://www.python.org/">Python</a> code inside a spock console since spock uses <a class="reference external" href="http://ipython.org/">IPython</a>
@@ -559,7 +616,7 @@ console:</p>
 <table class="docutils footnote" frame="void" id="id1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>The <a class="reference external" href="http://packages.python.org/PyTango/">PyTango</a> ipython documentation can be found <span class="xref std std-ref">here</span></td></tr>
+<tr><td class="label">[1]</td><td>The <a class="reference external" href="http://packages.python.org/PyTango/">PyTango</a> ipython documentation can be found here: <a class="reference external" href="https://pythonhosted.org/itango/">ITango</a></td></tr>
 </tbody>
 </table>
 </div>
