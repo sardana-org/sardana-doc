@@ -107,12 +107,19 @@
 <li class="toctree-l4"><a class="reference internal" href="#moving-motors">Moving motors</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#counting">Counting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#scanning">Scanning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accessing-macro-data">Accessing macro data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#editing-macros">Editing macros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debugging-problems">Debugging problems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spock-syntax-and-advanced-spock-syntax"><em>Spock syntax</em> and <em>Advanced spock syntax</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-spock-as-a-python-console">Using spock as a Python console</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-spock-as-a-tango-console">Using spock as a Tango console</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="taurus/index.html">Sardana-Taurus Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scan.html">Scans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="diffractometer.html">Diffractometer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="adding_elements.html">Adding real elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="macro_hooks.html">Macro Hooks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="standard_macro_catalog.html">Standard macro catalog</a></li>
 <li class="toctree-l3"><a class="reference internal" href="screenshots.html">Screenshots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="faq.html">FAQ</a></li>
@@ -124,6 +131,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../other_versions.html">Docs for other Sardana versions</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
 </ul>
 
             
@@ -269,7 +277,7 @@ For comodity we summarize some of the most interesting <a class="reference exter
 very simple to execute a macro: just type the macro name followed by a space
 separated list of parameters (if the macro has any parameters). For example,
 one of the most used macros is the
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.wa" title="sardana.macroserver.macros.standard.wa"><code class="xref py py-class docutils literal"><span class="pre">wa</span></code></a> (stands for &#8220;where all&#8221;) that
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.wa" title="sardana.macroserver.macros.standard.wa"><code class="xref py py-class docutils literal"><span class="pre">wa</span></code></a> (stands for &#8220;where all&#8221;) that
 shows all current motor positions. To execute it just type:</p>
 <div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">LAB-01-D01 [1]: </span><span class="n">wa</span>
 
@@ -283,7 +291,7 @@ shows all current motor positions. To execute it just type:</p>
 <p>(<a class="reference internal" href="../glossary.html#term-user"><span class="xref std std-term">user</span></a> for <a class="reference internal" href="../glossary.html#term-user-position"><span class="xref std std-term">user position</span></a> (number above); <a class="reference internal" href="../glossary.html#term-dial"><span class="xref std std-term">dial</span></a> for
 <a class="reference internal" href="../glossary.html#term-dial-position"><span class="xref std std-term">dial position</span></a> (number below).)</p>
 <p>A similar macro exists that only shows the desired motor positions
-(<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.wm" title="sardana.macroserver.macros.standard.wm"><code class="xref py py-class docutils literal"><span class="pre">wm</span></code></a>):</p>
+(<a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.wm" title="sardana.macroserver.macros.standard.wm"><code class="xref py py-class docutils literal"><span class="pre">wm</span></code></a>):</p>
 <div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">LAB-01-D01 [1]: </span><span class="n">wm</span> <span class="n">gap</span> <span class="n">offset</span>
 <span class="go">                Gap     Offset</span>
 <span class="go">User</span>
@@ -320,15 +328,15 @@ shows all current motor positions. To execute it just type:</p>
 <h3>Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.lists.lsm" title="sardana.macroserver.macros.lists.lsm"><code class="xref py py-class docutils literal"><span class="pre">lsm</span></code></a> shows the list of
+<li><a class="reference internal" href="../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsm" title="sardana.macroserver.macros.lists.lsm"><code class="xref py py-class docutils literal"><span class="pre">lsm</span></code></a> shows the list of
 motors.</li>
-<li><a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.lists.lsct" title="sardana.macroserver.macros.lists.lsct"><code class="xref py py-class docutils literal"><span class="pre">lsct</span></code></a> shows the list of
+<li><a class="reference internal" href="../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsct" title="sardana.macroserver.macros.lists.lsct"><code class="xref py py-class docutils literal"><span class="pre">lsct</span></code></a> shows the list of
 counters.</li>
-<li><a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.lists.lsmeas" title="sardana.macroserver.macros.lists.lsmeas"><code class="xref py py-class docutils literal"><span class="pre">lsmeas</span></code></a> shows the list of
+<li><a class="reference internal" href="../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsmeas" title="sardana.macroserver.macros.lists.lsmeas"><code class="xref py py-class docutils literal"><span class="pre">lsmeas</span></code></a> shows the list of
 measurement groups</li>
-<li><a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.lists.lsctrl" title="sardana.macroserver.macros.lists.lsctrl"><code class="xref py py-class docutils literal"><span class="pre">lsctrl</span></code></a> shows the list of
+<li><a class="reference internal" href="../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsctrl" title="sardana.macroserver.macros.lists.lsctrl"><code class="xref py py-class docutils literal"><span class="pre">lsctrl</span></code></a> shows the list of
 controllers</li>
-<li><a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.expert.sar_info" title="sardana.macroserver.macros.expert.sar_info"><code class="xref py py-class docutils literal"><span class="pre">sar_info</span></code></a> <em>object</em>
+<li><a class="reference internal" href="../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.sar_info" title="sardana.macroserver.macros.expert.sar_info"><code class="xref py py-class docutils literal"><span class="pre">sar_info</span></code></a> <em>object</em>
 displays detailed information about an element</li>
 </ul>
 </div></blockquote>
@@ -375,7 +383,7 @@ type the macro name directly followed by a question mark(&#8216;?&#8217;):</p>
 <div class="section" id="moving-motors">
 <h2>Moving motors<a class="headerlink" href="#moving-motors" title="Permalink to this headline">¶</a></h2>
 <p>A single motor may be moved using the
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.mv" title="sardana.macroserver.macros.standard.mv"><code class="xref py py-class docutils literal"><span class="pre">mv</span></code></a> <em>motor</em> <em>position</em> macro.
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.mv" title="sardana.macroserver.macros.standard.mv"><code class="xref py py-class docutils literal"><span class="pre">mv</span></code></a> <em>motor</em> <em>position</em> macro.
 Example:</p>
 <div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">LAB-01-D01 [1]: </span><span class="n">mv</span> <span class="n">gap</span> <span class="mi">50</span>
 </pre></div>
@@ -383,10 +391,10 @@ Example:</p>
 <p>will move the <em>gap</em> motor to 50. The prompt only comes back after the motion as
 finished.</p>
 <p>Alternatively, you can have the motor position displayed on the screen as it is
-moving by using the <a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.umv" title="sardana.macroserver.macros.standard.umv"><code class="xref py py-class docutils literal"><span class="pre">umv</span></code></a> macro
+moving by using the <a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.umv" title="sardana.macroserver.macros.standard.umv"><code class="xref py py-class docutils literal"><span class="pre">umv</span></code></a> macro
 instead. To stop the motor(s) before they have finished moving, type
 <code class="kbd docutils literal"><span class="pre">Control+c</span></code>.</p>
-<p>You can use the <a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.mvr" title="sardana.macroserver.macros.standard.mvr"><code class="xref py py-class docutils literal"><span class="pre">mvr</span></code></a> <em>motor</em>
+<p>You can use the <a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.mvr" title="sardana.macroserver.macros.standard.mvr"><code class="xref py py-class docutils literal"><span class="pre">mvr</span></code></a> <em>motor</em>
 <em>relative_position</em> macro to move a motor relative to its current position:</p>
 <div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">LAB-01-D01 [1]: </span><span class="n">mvr</span> <span class="n">gap</span> <span class="mi">2</span>
 </pre></div>
@@ -395,7 +403,7 @@ instead. To stop the motor(s) before they have finished moving, type
 </div>
 <div class="section" id="counting">
 <h2>Counting<a class="headerlink" href="#counting" title="Permalink to this headline">¶</a></h2>
-<p>You can count using the <a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.ct" title="sardana.macroserver.macros.standard.ct"><code class="xref py py-class docutils literal"><span class="pre">ct</span></code></a> <em>value</em>
+<p>You can count using the <a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.ct" title="sardana.macroserver.macros.standard.ct"><code class="xref py py-class docutils literal"><span class="pre">ct</span></code></a> <em>value</em>
 macro. Without arguments, this macro counts for one second using the active
 measurement group set by the environment variable <em>ActiveMntGrp</em>.</p>
 <div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">Door_lab-01_1 [1]: </span><span class="n">ct</span> <span class="mf">1.6</span>
@@ -409,7 +417,7 @@ measurement group set by the environment variable <em>ActiveMntGrp</em>.</p>
 </pre></div>
 </div>
 <p>To see the list of available measurement groups type
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.lists.lsmeas" title="sardana.macroserver.macros.lists.lsmeas"><code class="xref py py-class docutils literal"><span class="pre">lsmeas</span></code></a>. The active measuremnt group
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsmeas" title="sardana.macroserver.macros.lists.lsmeas"><code class="xref py py-class docutils literal"><span class="pre">lsmeas</span></code></a>. The active measuremnt group
 is marked with an asterisk (*):</p>
 <div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">Door_lab-01_1 [1]: </span><span class="n">lsmeas</span>
 
@@ -421,36 +429,36 @@ is marked with an asterisk (*):</p>
 </pre></div>
 </div>
 <p>to switch active measurement groups type
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.env.senv" title="sardana.macroserver.macros.env.senv"><code class="xref py py-class docutils literal"><span class="pre">senv</span></code></a> <strong>ActiveMntGrp</strong> <em>mg_name</em>.</p>
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.senv" title="sardana.macroserver.macros.env.senv"><code class="xref py py-class docutils literal"><span class="pre">senv</span></code></a> <strong>ActiveMntGrp</strong> <em>mg_name</em>.</p>
 <p>You can also create, modify and select measurement groups using the
-<code class="xref py py-class docutils literal"><span class="pre">expconf</span></code> command</p>
+<a class="reference internal" href="taurus/experimentconfiguration.html#expconf-ui"><span class="std std-ref">expconf</span></a> command</p>
 </div>
 <div class="section" id="scanning">
 <h2>Scanning<a class="headerlink" href="#scanning" title="Permalink to this headline">¶</a></h2>
 <p>Sardana provides a catalog of different standard scan macros. Absolute-position
-motor scans such as <a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.ascan" title="sardana.macroserver.macros.scan.ascan"><code class="xref py py-class docutils literal"><span class="pre">ascan</span></code></a>,
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.a2scan" title="sardana.macroserver.macros.scan.a2scan"><code class="xref py py-class docutils literal"><span class="pre">a2scan</span></code></a> and
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.a3scan" title="sardana.macroserver.macros.scan.a3scan"><code class="xref py py-class docutils literal"><span class="pre">a3scan</span></code></a> move one, two or three motors
+motor scans such as <a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.ascan" title="sardana.macroserver.macros.scan.ascan"><code class="xref py py-class docutils literal"><span class="pre">ascan</span></code></a>,
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.a2scan" title="sardana.macroserver.macros.scan.a2scan"><code class="xref py py-class docutils literal"><span class="pre">a2scan</span></code></a> and
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.a3scan" title="sardana.macroserver.macros.scan.a3scan"><code class="xref py py-class docutils literal"><span class="pre">a3scan</span></code></a> move one, two or three motors
 at a time. Relative-position motor scans are
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.dscan" title="sardana.macroserver.macros.scan.dscan"><code class="xref py py-class docutils literal"><span class="pre">dscan</span></code></a>,
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.d2scan" title="sardana.macroserver.macros.scan.d2scan"><code class="xref py py-class docutils literal"><span class="pre">d2scan</span></code></a> and
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.d3scan" title="sardana.macroserver.macros.scan.d3scan"><code class="xref py py-class docutils literal"><span class="pre">d3scan</span></code></a>. The relative-position scans
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.dscan" title="sardana.macroserver.macros.scan.dscan"><code class="xref py py-class docutils literal"><span class="pre">dscan</span></code></a>,
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.d2scan" title="sardana.macroserver.macros.scan.d2scan"><code class="xref py py-class docutils literal"><span class="pre">d2scan</span></code></a> and
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.d3scan" title="sardana.macroserver.macros.scan.d3scan"><code class="xref py py-class docutils literal"><span class="pre">d3scan</span></code></a>. The relative-position scans
 all return the motors to their starting positions after the last point. Two
 motors can be scanned over a grid of points using the
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.mesh" title="sardana.macroserver.macros.scan.mesh"><code class="xref py py-class docutils literal"><span class="pre">mesh</span></code></a> scan.</p>
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.mesh" title="sardana.macroserver.macros.scan.mesh"><code class="xref py py-class docutils literal"><span class="pre">mesh</span></code></a> scan.</p>
 <p><em>Continuous</em> versions exist of many of the standard scan macros (e.g.
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.ascanc" title="sardana.macroserver.macros.scan.ascanc"><code class="xref py py-class docutils literal"><span class="pre">ascanc</span></code></a>,
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.d3scanc" title="sardana.macroserver.macros.scan.d3scanc"><code class="xref py py-class docutils literal"><span class="pre">d3scanc</span></code></a>,
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.meshc" title="sardana.macroserver.macros.scan.meshc"><code class="xref py py-class docutils literal"><span class="pre">meshc</span></code></a>,...). The continuous scans
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.ascanc" title="sardana.macroserver.macros.scan.ascanc"><code class="xref py py-class docutils literal"><span class="pre">ascanc</span></code></a>,
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.d3scanc" title="sardana.macroserver.macros.scan.d3scanc"><code class="xref py py-class docutils literal"><span class="pre">d3scanc</span></code></a>,
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.meshc" title="sardana.macroserver.macros.scan.meshc"><code class="xref py py-class docutils literal"><span class="pre">meshc</span></code></a>,...). The continuous scans
 differ from their standard counterparts (also known as <em>step</em> scans) in that
 the data acquisition is done without stopping the motors. Continuous scans are
 generally faster but less precise than step scans, and some details must be
 considered (see <a class="reference internal" href="scan.html#sardana-users-scan"><span class="std std-ref">Scans</span></a>).</p>
-<p>As it happens with <a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.ct" title="sardana.macroserver.macros.standard.ct"><code class="xref py py-class docutils literal"><span class="pre">ct</span></code></a>, the scan
+<p>As it happens with <a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.ct" title="sardana.macroserver.macros.standard.ct"><code class="xref py py-class docutils literal"><span class="pre">ct</span></code></a>, the scan
 macros will also use the active measurement group to decide which experiment
 channels will be involved in the operation.</p>
 <p>Here is the output of performing an
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.ascan" title="sardana.macroserver.macros.scan.ascan"><code class="xref py py-class docutils literal"><span class="pre">ascan</span></code></a> of the gap in a slit:</p>
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.ascan" title="sardana.macroserver.macros.scan.ascan"><code class="xref py py-class docutils literal"><span class="pre">ascan</span></code></a> of the gap in a slit:</p>
 <div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">LAB-01-D01 [1]: </span><span class="n">ascan</span> <span class="n">gap</span> <span class="mf">0.9</span> <span class="mf">1.1</span> <span class="mi">20</span> <span class="mi">1</span>
 <span class="go">ScanDir is not defined. This operation will not be stored persistently. Use &quot;senv ScanDir &lt;abs directory&gt;&quot; to enable it</span>
 <span class="go">Scan #4 started at Wed Jul 11 12:56:47 2012. It will take at least 0:00:21</span>
@@ -513,7 +521,7 @@ will show you the result of the last scan in a <a class="reference internal" hre
 <p><code class="xref py py-class docutils literal"><span class="pre">showscan</span></code> <em>scan_number</em> will display
 data for the given scan number.</p>
 <p>The history of scans is available through the
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros.html#sardana.macroserver.macros.scan.scanhist" title="sardana.macroserver.macros.scan.scanhist"><code class="xref py py-class docutils literal"><span class="pre">scanhist</span></code></a> macro:</p>
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.scanhist" title="sardana.macroserver.macros.scan.scanhist"><code class="xref py py-class docutils literal"><span class="pre">scanhist</span></code></a> macro:</p>
 <div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">LAB-01-D01 [1]: </span><span class="n">scanhist</span>
 <span class="go">   #                           Title            Start time              End time        Stored</span>
 <span class="go"> --- ------------------------------- --------------------- --------------------- -------------</span>
@@ -524,6 +532,79 @@ data for the given scan number.</p>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="accessing-macro-data">
+<h2>Accessing macro data<a class="headerlink" href="#accessing-macro-data" title="Permalink to this headline">¶</a></h2>
+<p>The command <code class="xref py py-class docutils literal"><span class="pre">macrodata</span></code>  allows to retrieve the data of the last macro run in spock.
+If this macro does not provide any data an error message is thrown.
+Example accesing scan data:</p>
+<div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">Door_1 [9]: </span><span class="n">ascan</span> <span class="n">mot17</span> <span class="mi">1</span> <span class="mi">10</span> <span class="mi">2</span> <span class="mi">1</span>
+<span class="go">ScanDir is not defined. This operation will not be stored persistently. Use &quot;expconf&quot; (or &quot;senv ScanDir &lt;abs directory&gt;&quot;) to enable it</span>
+<span class="go">Scan #2 started at Tue Feb 13 11:16:18 2018. It will take at least 0:00:05.048528</span>
+<span class="go">0         1         1         3         4      0.865325</span>
+<span class="go">1        5.5        1         3         4      2.51148</span>
+<span class="go">2         10        1         3         4      4.16662</span>
+<span class="go">Scan #2 ended at Tue Feb 13 11:16:24 2018, taking 0:00:05.201949. Dead time 42.3% (motion dead time 40.5%)</span>
+<span class="c">#Pt No    mot17      ct17      ct19      ct20       dt</span>
+<span class="gp">Door_1 [10]: </span><span class="n">r</span> <span class="o">=</span> <span class="o">%</span><span class="n">macrodata</span>
+<span class="gp">Door_1 [11]: </span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="go">Result [11]:</span>
+<span class="go">[&#39;point_nb&#39;,</span>
+<span class="go">&#39;timestamp&#39;,</span>
+<span class="go">&#39;mot17&#39;,</span>
+<span class="go">&#39;haso111n:10000/expchan/ctctrl05/4&#39;,</span>
+<span class="go">&#39;haso111n:10000/expchan/ctctrl05/1&#39;,</span>
+<span class="go">&#39;haso111n:10000/expchan/ctctrl05/3&#39;]</span>
+<span class="gp">Door_1 [12]: </span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;point_nb&#39;</span><span class="p">]</span>
+<span class="gp">Result [12]: </span><span class="mi">0</span>
+<span class="gp">Door_1 [13]: </span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;mot17&#39;</span><span class="p">]</span>
+<span class="gp">Result [13]: </span><span class="mf">1.0</span>
+<span class="gp">Door_1 [16]: </span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;haso111n:10000/expchan/ctctrl05/1&#39;</span><span class="p">]</span>
+<span class="gp">Result [16]: </span><span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="editing-macros">
+<h2>Editing macros<a class="headerlink" href="#editing-macros" title="Permalink to this headline">¶</a></h2>
+<p>The command <code class="xref py py-class docutils literal"><span class="pre">edmac</span></code> allows to edit the macros
+directly from spock. See <a class="reference internal" href="../devel/howto_macros/macros_general.html#sardana-macros-howto"><span class="std std-ref">Writing macros</span></a> section.</p>
+</div>
+<div class="section" id="debugging-problems">
+<h2>Debugging problems<a class="headerlink" href="#debugging-problems" title="Permalink to this headline">¶</a></h2>
+<p>Spock provides some commands that help to debug or recognize the errors in
+case a macro fails when being executed.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="xref py py-class docutils literal"><span class="pre">www</span></code> prints the error message from the
+last macro execution</li>
+<li><code class="xref py py-class docutils literal"><span class="pre">debug</span></code> used with <code class="docutils literal"><span class="pre">on</span></code> as parameter
+activates the print out of the debug messages during macro execution.
+Set it to <code class="docutils literal"><span class="pre">off</span></code> to deactivate it.</li>
+<li><code class="xref py py-class docutils literal"><span class="pre">post_mortem</span></code> prints the current logger
+messages. If no argument is specified it reads the <code class="docutils literal"><span class="pre">debug</span></code> stream.
+Valid values are <code class="docutils literal"><span class="pre">output</span></code>, <code class="docutils literal"><span class="pre">critical</span></code>, <code class="docutils literal"><span class="pre">error</span></code>, <code class="docutils literal"><span class="pre">warning</span></code>,
+<code class="docutils literal"><span class="pre">info</span></code>, <code class="docutils literal"><span class="pre">debug</span></code> and <code class="docutils literal"><span class="pre">result</span></code>.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="spock-syntax-and-advanced-spock-syntax">
+<h2><em>Spock syntax</em> and <em>Advanced spock syntax</em><a class="headerlink" href="#spock-syntax-and-advanced-spock-syntax" title="Permalink to this headline">¶</a></h2>
+<p><em>Spock syntax</em> is based on space separated list of parameter values. Not all macros
+are allowed to be used with the spock syntax. Restrictions appear for those macros
+using <a class="reference internal" href="../devel/howto_macros/macros_general.html#sardana-macro-repeat-parameters"><span class="std std-ref">repeat parameters</span></a> as argument. The
+<em>Spock syntax</em> would not allow:</p>
+<ol class="arabic simple">
+<li>macros defining more than one repeat parameter</li>
+<li>macros defining repeat parameter which is not at the end of the parameters definition</li>
+<li>macros defining nested repeat parameters</li>
+</ol>
+<p>To overcome these restrictions an <em>Advanced spock syntax</em> was developed, this syntax introduces the
+use of square brackets to group the repeat parameters and its repetitions.
+The <em>Spock Syntax</em> was extended for the cases 1 and 2 in case only one repetion of the repeat
+parameter is needed, this extension assumes that the parameter values passed by the user are a single
+repetition of the repeat parameter.
+A set of macro examples using both syntaxes can be found in <a class="reference internal" href="../devel/examples/macro_parameter_examples.html#sardana-devel-macro-parameter-examples"><span class="std std-ref">Macro parameter examples</span></a>.
+You can see the invocation example for each of these macros in its docstring.</p>
 </div>
 <div class="section" id="using-spock-as-a-python-console">
 <h2>Using spock as a <a class="reference external" href="http://www.python.org/">Python</a> console<a class="headerlink" href="#using-spock-as-a-python-console" title="Permalink to this headline">¶</a></h2>
@@ -557,7 +638,7 @@ console:</p>
 <table class="docutils footnote" frame="void" id="id1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label">[1]</td><td>The <a class="reference external" href="http://packages.python.org/PyTango/">PyTango</a> ipython documentation can be found <span class="xref std std-ref">here</span></td></tr>
+<tr><td class="label">[1]</td><td>The <a class="reference external" href="http://packages.python.org/PyTango/">PyTango</a> ipython documentation can be found here: <a class="reference external" href="https://pythonhosted.org/itango/">ITango</a></td></tr>
 </tbody>
 </table>
 </div>
