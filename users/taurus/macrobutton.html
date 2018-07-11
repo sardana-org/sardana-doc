@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sardana Editor’s interface &mdash; sardana 2.4.1-alpha documentation</title>
+  <title>MacroButton User’s Interface &mdash; sardana 2.4.1-alpha documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="sardana 2.4.1-alpha documentation" href="../../index.html"/>
         <link rel="up" title="Sardana Taurus Extension widgets" href="index.html"/>
-        <link rel="next" title="Scans" href="../scan.html"/>
-        <link rel="prev" title="MacroButton User’s Interface" href="macrobutton.html"/> 
+        <link rel="next" title="Sardana Editor’s interface" href="sardanaeditor.html"/>
+        <link rel="prev" title="Experiment Configuration user interface" href="experimentconfiguration.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -101,8 +101,8 @@
 <li class="toctree-l4"><a class="reference internal" href="macroexecutor.html">MacroExecutor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="sequencer.html">Sequencer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="experimentconfiguration.html">Experiment Configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="macrobutton.html">MacroButton</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Sardana Editor</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">MacroButton</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sardanaeditor.html">Sardana Editor</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../scan.html">Scans</a></li>
@@ -158,11 +158,11 @@
       
           <li><a href="index.html">Sardana Taurus Extension widgets</a> &raquo;</li>
       
-    <li>Sardana Editor&#8217;s interface</li>
+    <li>MacroButton User’s Interface</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/users/taurus/sardanaeditor.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/users/taurus/macrobutton.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -172,18 +172,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sardana-editor-s-interface">
-<span id="sardanaeditor-ui"></span><h1><a class="toc-backref" href="#id1">Sardana Editor&#8217;s interface</a><a class="headerlink" href="#sardana-editor-s-interface" title="Permalink to this headline">¶</a></h1>
-<div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
-<ul class="simple">
-<li><a class="reference internal" href="#sardana-editor-s-interface" id="id1">Sardana Editor&#8217;s interface</a></li>
-</ul>
-</div>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Sardana Editor documentation to be written</p>
-</div>
+  <div class="section" id="macrobutton-users-interface">
+<h1>MacroButton User’s Interface<a class="headerlink" href="#macrobutton-users-interface" title="Permalink to this headline">¶</a></h1>
+<p>Sardana provides a button widget to operate a macro execution.
+As all Taurus widget it needs a model, in that case the model points to a Door device.
+This widget also needs the set the macro macro and its parameters in case it has.</p>
+<p>The <code class="xref py py-class docutils literal"><span class="pre">MacroButton</span></code>
+can execute/pause/abort the configured macro.</p>
+<p>Once you clicking in the button, if it is possible the macro will be run.
+On the bottom of the widget there is a progress bar that shows an
+estimated progress of a macro (in %)</p>
+<img alt="../../_images/macrobutton.png" class="align-center" src="../../_images/macrobutton.png" />
+<p>If you click again on the button, when a macro is still running a dialog box
+will be showed to allow you to choose to abort the current macro.
+If the executed macro implements pause points the macro will be paused utill you
+take the decision (resume or abort).</p>
+<img alt="../../_images/macrobutton_abort.png" class="align-center" src="../../_images/macrobutton_abort.png" />
 </div>
 
 
@@ -193,10 +197,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../scan.html" class="btn btn-neutral float-right" title="Scans" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="sardanaeditor.html" class="btn btn-neutral float-right" title="Sardana Editor’s interface" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="macrobutton.html" class="btn btn-neutral" title="MacroButton User’s Interface" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="experimentconfiguration.html" class="btn btn-neutral" title="Experiment Configuration user interface" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
