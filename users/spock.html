@@ -110,6 +110,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#accessing-macro-data">Accessing macro data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#editing-macros">Editing macros</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#debugging-problems">Debugging problems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spock-syntax-and-advanced-spock-syntax"><em>Spock syntax</em> and <em>Advanced spock syntax</em></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-spock-as-a-python-console">Using spock as a Python console</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-spock-as-a-tango-console">Using spock as a Tango console</a></li>
 </ul>
@@ -585,6 +586,25 @@ Valid values are <code class="docutils literal"><span class="pre">output</span><
 <code class="docutils literal"><span class="pre">info</span></code>, <code class="docutils literal"><span class="pre">debug</span></code> and <code class="docutils literal"><span class="pre">result</span></code>.</li>
 </ul>
 </div></blockquote>
+</div>
+<div class="section" id="spock-syntax-and-advanced-spock-syntax">
+<h2><em>Spock syntax</em> and <em>Advanced spock syntax</em><a class="headerlink" href="#spock-syntax-and-advanced-spock-syntax" title="Permalink to this headline">¶</a></h2>
+<p><em>Spock syntax</em> is based on space separated list of parameter values. Not all macros
+are allowed to be used with the spock syntax. Restrictions appear for those macros
+using <a class="reference internal" href="../devel/howto_macros/macros_general.html#sardana-macro-repeat-parameters"><span class="std std-ref">repeat parameters</span></a> as argument. The
+<em>Spock syntax</em> would not allow:</p>
+<ol class="arabic simple">
+<li>macros defining more than one repeat parameter</li>
+<li>macros defining repeat parameter which is not at the end of the parameters definition</li>
+<li>macros defining nested repeat parameters</li>
+</ol>
+<p>To overcome these restrictions an <em>Advanced spock syntax</em> was developed, this syntax introduces the
+use of square brackets to group the repeat parameters and its repetitions.
+The <em>Spock Syntax</em> was extended for the cases 1 and 2 in case only one repetion of the repeat
+parameter is needed, this extension assumes that the parameter values passed by the user are a single
+repetition of the repeat parameter.
+A set of macro examples using both syntaxes can be found in <a class="reference internal" href="../devel/examples/macro_parameter_examples.html#sardana-devel-macro-parameter-examples"><span class="std std-ref">Macro parameter examples</span></a>.
+You can see the invocation example for each of these macros in its docstring.</p>
 </div>
 <div class="section" id="using-spock-as-a-python-console">
 <h2>Using spock as a <a class="reference external" href="http://www.python.org/">Python</a> console<a class="headerlink" href="#using-spock-as-a-python-console" title="Permalink to this headline">¶</a></h2>
