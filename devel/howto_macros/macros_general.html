@@ -214,7 +214,7 @@ fit the class paradigm that object-oriented languages offer. If you are
 writing a sequencial procedure to run an experiment then you are probably
 better of writing a python function which does the job plain and simple.</p>
 <p>One reason to write a macro as a class is if, for example, you want to extend
-the behaviour of the <a class="reference internal" href="../api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.mv" title="sardana.macroserver.macros.standard.mv"><code class="xref py py-class docutils literal"><span class="pre">mv</span></code></a> macro. In
+the behaviour of the <a class="reference internal" href="../api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.mv" title="sardana.macroserver.macros.standard.mv"><code class="xref py py-class docutils literal"><span class="pre">mv</span></code></a> macro. In
 this case, probably you would want to <em>extend</em> the existing macro by writing
 your own macro class which <em>inherits</em> from the original macro and this way
 benefit from most of the functionallity already existing in the original macro.</p>
@@ -603,8 +603,8 @@ macro will <em>know</em> about all other macros on the system even if they have 
 written in other files.</p>
 <p>Lets recreate the two previous macros (<em>where_moveable</em> and <em>move</em>) to execute
 two of the macros that exist in the standard macro catalog
-(<a class="reference internal" href="../api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.wm" title="sardana.macroserver.macros.standard.wm"><code class="xref py py-class docutils literal"><span class="pre">wm</span></code></a> and
-<a class="reference internal" href="../api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.mv" title="sardana.macroserver.macros.standard.mv"><code class="xref py py-class docutils literal"><span class="pre">mv</span></code></a>)</p>
+(<a class="reference internal" href="../api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.wm" title="sardana.macroserver.macros.standard.wm"><code class="xref py py-class docutils literal"><span class="pre">wm</span></code></a> and
+<a class="reference internal" href="../api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.mv" title="sardana.macroserver.macros.standard.mv"><code class="xref py py-class docutils literal"><span class="pre">mv</span></code></a>)</p>
 <p>Here is the new version of <em>where_moveable</em></p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@macro</span><span class="p">([[</span><span class="s2">&quot;moveable&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;moveable to get position&quot;</span><span class="p">]])</span>
 <span class="k">def</span> <span class="nf">where_moveable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">moveable</span><span class="p">):</span>
@@ -628,8 +628,8 @@ two of the macros that exist in the standard macro catalog
 </td></tr></table></div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Both <a class="reference internal" href="../api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.wm" title="sardana.macroserver.macros.standard.wm"><code class="xref py py-class docutils literal"><span class="pre">wm</span></code></a> and
-<a class="reference internal" href="../api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.mv" title="sardana.macroserver.macros.standard.mv"><code class="xref py py-class docutils literal"><span class="pre">mv</span></code></a>
+<p class="last">Both <a class="reference internal" href="../api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.wm" title="sardana.macroserver.macros.standard.wm"><code class="xref py py-class docutils literal"><span class="pre">wm</span></code></a> and
+<a class="reference internal" href="../api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.mv" title="sardana.macroserver.macros.standard.mv"><code class="xref py py-class docutils literal"><span class="pre">mv</span></code></a>
 use <a class="reference internal" href="#sardana-macro-repeat-parameters"><span class="std std-ref">repeat parameters</span></a>.
 From Sardana 2.0 the repeat parameter values must be passed as lists of
 items. An item of a repeat parameter containing more than one member is a
@@ -783,7 +783,7 @@ parameters with different <em>flavors</em>:</p>
 </div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Macro <a class="reference internal" href="../api/sardana/macroserver/macros.html#sardana.macroserver.macros.standard.mv" title="sardana.macroserver.macros.standard.mv"><code class="xref py py-class docutils literal"><span class="pre">mv</span></code></a>
+<p class="last">Macro <a class="reference internal" href="../api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.mv" title="sardana.macroserver.macros.standard.mv"><code class="xref py py-class docutils literal"><span class="pre">mv</span></code></a>
 use <a class="reference internal" href="#sardana-macro-repeat-parameters"><span class="std std-ref">repeat parameters</span></a>.
 From Sardana 2.0 the repeat parameter values must be passed as lists of
 items. An item of a repeat parameter containing more than one member is a
@@ -964,7 +964,7 @@ or <code class="docutils literal"><span class="pre">:</span></code>).</li>
 </ul>
 </div></blockquote>
 <p>The external libraries can be reloaded at Sardana/MacroServer server
-runtime using the <a class="reference internal" href="../api/sardana/macroserver/macros.html#sardana.macroserver.macros.expert.rellib" title="sardana.macroserver.macros.expert.rellib"><code class="xref py py-class docutils literal"><span class="pre">rellib</span></code></a> macro.</p>
+runtime using the <a class="reference internal" href="../api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.rellib" title="sardana.macroserver.macros.expert.rellib"><code class="xref py py-class docutils literal"><span class="pre">rellib</span></code></a> macro.</p>
 </div>
 <div class="section" id="plotting">
 <span id="sardana-macro-plotting"></span><h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
