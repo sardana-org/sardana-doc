@@ -567,6 +567,65 @@ each item is an internal list of the members.</p>
 <a class="reference internal" href="../examples/macro_parameter_examples.html#sardana-devel-macro-parameter-examples"><span class="std std-ref">here</span></a>.</p>
 </div>
 </div>
+<div class="section" id="returning-a-macro-result">
+<span id="sardana-macro-result"></span><h2>Returning a macro result<a class="headerlink" href="#returning-a-macro-result" title="Permalink to this headline">¶</a></h2>
+<p>A macro can produce one or more results to be returned.
+The macro <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> enforces to specify certain information about
+these result values.
+Here&#8217;s an example of how to define and return the results:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">twice</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;A macro that returns its input and twice its input.&quot;&quot;&quot;</span>
+
+  <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="s2">&quot;value to be doubled&quot;</span> <span class="p">]</span> <span class="p">]</span>
+  <span class="n">result_def</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="s2">&quot;input_value&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;the input value&quot;</span> <span class="p">],</span>
+  <span class="p">[</span> <span class="s2">&quot;result&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;the double of the given value&quot;</span> <span class="p">]</span> <span class="p">]</span>
+
+  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+      <span class="n">ret</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">n</span>
+      <span class="k">return</span> <span class="n">n</span><span class="p">,</span> <span class="n">ret</span>
+</pre></div>
+</td></tr></table></div>
+<p>If a macro with a result is called from another macro the results can be
+retrieved as shown in this example:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">get_result</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+  <span class="sd">&quot;&quot;&quot;Different ways of getting the result of a macro&quot;&quot;&quot;</span>
+
+  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+      <span class="n">mymacro</span><span class="p">,</span> <span class="n">pars</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">createMacro</span><span class="p">(</span><span class="s2">&quot;twice 1&quot;</span><span class="p">)</span>
+      <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">mymacro</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+      <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s2">&quot;twice 1&quot;</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">getResult</span><span class="p">())</span>
+
+      <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">twice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">getResult</span><span class="p">())</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 <div class="section" id="macro-context">
 <span id="sardana-macro-context"></span><h2>Macro context<a class="headerlink" href="#macro-context" title="Permalink to this headline">¶</a></h2>
 <p>One of the most powerfull features of macros is that the entire context of
