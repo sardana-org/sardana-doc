@@ -107,6 +107,8 @@
 <li class="toctree-l3"><a class="reference internal" href="diffractometer.html">Diffractometer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="adding_elements.html">Adding real elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="macro_hooks.html">Macro Hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="macro_environment.html">Macro Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="environment_variable_catalog.html">Environment Variable Catalog</a></li>
 <li class="toctree-l3"><a class="reference internal" href="standard_macro_catalog.html">Standard macro catalog</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuration/index.html">Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="screenshots.html">Screenshots</a></li>
@@ -320,88 +322,11 @@ the affected scan macros) if deemed necessary by the core developers.</p>
 <p>Scans are highly configurable using the environment variables
 (on how to use environment variables see environment related macros in
 <a class="reference internal" href="standard_macro_catalog.html#sardana-standard-macro-catalog"><span class="std std-ref">Standard macro catalog</span></a>).</p>
-<p>Following variables are supported:</p>
-<dl class="docutils">
-<dt><strong>ApplyExtrapolation</strong></dt>
-<dd><p class="first">Enable/disable the extrapolation method to fill the missing parts of the
-very first scan records in case the software synchronized acquisition could
-not follow the pace. Can be used only with the continuous acquisition
-macros e.g. <em>ct</em> type of continuous scans or timescan. Its value is of
-boolean type.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The ApplyExtrapolation environment variable has been included in
-Sardana on a provisional basis. Backwards incompatible changes
-(up to and including removal of this variable) may occur if deemed
-necessary by the core developers.</p>
-</div>
-</dd>
-<dt><strong>ApplyInterpolation</strong></dt>
-<dd><p class="first">Enable/disable the <a class="reference external" href="https://en.wikipedia.org/wiki/Zero-order_hold">zero order hold</a> a.k.a. &#8220;constant interpolation&#8221;
-method to fill the missing parts of the scan records in case the software
-synchronized acquisition could not follow the pace. Can be used only
-with the continuous acquisition macros <em>ct</em> type of continuous scans or
-timescan. Its value is of boolean type.</p>
-<div class="last admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The ApplyInterpolation environment variable has been included in
-Sardana on a provisional basis with <a class="reference external" href="http://www.sardana-controls.org/sep/?SEP6.md">SEP6</a>. Backwards incompatible
-changes (up to and including removal of this variable) may occur if
-deemed necessary by the core developers.</p>
-</div>
-</dd>
-<dt><strong>DirectoryMap</strong></dt>
-<dd><p class="first">In case that the server and the client do not run on the same host, the scan
-data may be easily shared between them using the NFS. Since some of the
-tools e.g. showscan rely on the scan data file the DirectoryMap may help in
-overcoming the shared directory naming issues between the hosts.</p>
-<p class="last">Its value is a dictionary with keys pointing to the server side directory
-and values to the client side directory/ies (string or list of strings).</p>
-</dd>
-<dt><strong>ScanDir</strong></dt>
-<dd>Its value is of string type and indicates an absolute path to the directory
-where scan data will be stored.</dd>
-<dt><strong>ScanFile</strong></dt>
-<dd>Its value may be either of type string or of list of strings. In the second
-case data will be duplicated in multiple files (different file formats may
-be used). Recorder class is implicitly selected based on the file extension.
-For example &#8220;myexperiment.spec&#8221; will by default store data in SPEC
-compatible format (see more about the extension to recorder map in
-<a class="reference internal" href="../devel/howto_recorders.html#sardana-writing-recorders"><span class="std std-ref">Writing recorders</span></a>).</dd>
-<dt><strong>ScanRecorder</strong></dt>
-<dd><p class="first">Its value may be either of type string or of list of strings. If
-ScanRecorder variable is defined, it explicitly indicates which recorder
-class should be used and for which file defined by ScanFile (based on the
-order).</p>
-<p>Example 1:</p>
-<blockquote>
-<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ScanFile</span> <span class="o">=</span> <span class="n">myexperiment</span><span class="o">.</span><span class="n">spec</span>
-<span class="n">ScanRecorder</span> <span class="o">=</span> <span class="n">FIO_FileRecorder</span>
-</pre></div>
-</div>
-<p>FIO_FileRecorder will write myexperiment.spec file.</p>
-</div></blockquote>
-<p>Example 2:</p>
-<blockquote class="last">
-<div><div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ScanFile</span> <span class="o">=</span> <span class="n">myexperiment</span><span class="o">.</span><span class="n">spec</span><span class="p">,</span> <span class="n">myexperiment</span><span class="o">.</span><span class="n">h5</span>
-<span class="n">ScanRecorder</span> <span class="o">=</span> <span class="n">FIO_FileRecorder</span>
-</pre></div>
-</div>
-<p>FIO_FileRecorder will write myexperiment.spec file and
-NXscan_FileRecorder will write the myexpriment.h5. The selection of the
-second recorder is based on the extension.</p>
-</div></blockquote>
-</dd>
-<dt><strong>SharedMemory</strong></dt>
-<dd>Its value is of string type and it indicates which shared memory recorder should
-be used during the scan e.g. &#8220;sps&#8221; will use SPSRecorder (sps Python module
-must be installed on the PC where the MacroServer runs).</dd>
-</dl>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last">For more information about the implementation details of the scan
-macros in Sardana, see
-<a class="reference internal" href="../devel/howto_macros/scan_framework.html#sardana-macros-scanframework"><span class="std std-ref">scan framework</span></a></p>
+<p class="last">For further information about the available Sardana Environment
+Variables, check the
+<a class="reference internal" href="environment_variable_catalog.html#environment-variable-catalog"><span class="std std-ref">Environment Variable Catalog</span></a></p>
 </div>
 </div>
 </div>
