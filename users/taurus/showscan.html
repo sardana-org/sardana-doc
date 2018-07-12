@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sardana Taurus Extension widgets &mdash; sardana 2.4.1-alpha documentation</title>
+  <title>Showscan &mdash; sardana 2.4.1-alpha documentation</title>
   
 
   
@@ -34,9 +34,9 @@
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="sardana 2.4.1-alpha documentation" href="../../index.html"/>
-        <link rel="up" title="User’s Guide" href="../index.html"/>
-        <link rel="next" title="MacroExecutor User’s Interface" href="macroexecutor.html"/>
-        <link rel="prev" title="Spock" href="../spock.html"/> 
+        <link rel="up" title="Sardana Taurus Extension widgets" href="index.html"/>
+        <link rel="next" title="Scans" href="../scan.html"/>
+        <link rel="prev" title="Sardana Editor’s interface" href="sardanaeditor.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -97,13 +97,13 @@
 <li class="toctree-l3"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../getting_started/index.html">Getting started</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../spock.html">Spock</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Sardana-Taurus Widgets</a><ul>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Sardana-Taurus Widgets</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="macroexecutor.html">MacroExecutor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="sequencer.html">Sequencer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="experimentconfiguration.html">Experiment Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="macrobutton.html">MacroButton</a></li>
 <li class="toctree-l4"><a class="reference internal" href="sardanaeditor.html">Sardana Editor</a></li>
-<li class="toctree-l4"><a class="reference internal" href="showscan.html">Showscan</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Showscan</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../scan.html">Scans</a></li>
@@ -159,11 +159,13 @@
       
           <li><a href="../index.html">User&#8217;s Guide</a> &raquo;</li>
       
-    <li>Sardana Taurus Extension widgets</li>
+          <li><a href="index.html">Sardana Taurus Extension widgets</a> &raquo;</li>
+      
+    <li>Showscan</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/users/taurus/index.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/users/taurus/showscan.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -173,41 +175,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sardana-taurus-extension-widgets">
-<span id="sardana-taurus"></span><h1>Sardana Taurus Extension widgets<a class="headerlink" href="#sardana-taurus-extension-widgets" title="Permalink to this headline">¶</a></h1>
-<p>Sardana provides several <a class="reference external" href="http://taurus-scada.org/devel/api/taurus.html#module-taurus" title="(in taurus v4.3)"><code class="xref py py-mod docutils literal"><span class="pre">taurus</span></code></a>-based widgets for being used in GUIs</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="macroexecutor.html">MacroExecutor</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="macroexecutor.html#macroexecutor-as-a-stand-alone-application">MacroExecutor as a stand-alone application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="macroexecutor.html#editing-macro-parameters">Editing macro parameters</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="macroexecutor.html#using-standard-editor">Using standard editor</a></li>
-<li class="toctree-l3"><a class="reference internal" href="macroexecutor.html#using-custom-editors">Using custom editors</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="macroexecutor.html#editing-favourites-list">Editing favourites list</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sequencer.html">Sequencer</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sequencer.html#sequencer-as-a-stand-alone-application">Sequencer as a stand-alone application</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequencer.html#editing-sequence">Editing sequence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sequencer.html#editing-macro-parameters">Editing macro parameters</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="experimentconfiguration.html">Experiment Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="experimentconfiguration.html#measurement-group-configuration">Measurement group configuration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="experimentconfiguration.html#experimental-channel-configuration">Experimental channel configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="experimentconfiguration.html#show-hide-current-scan-plot-s">Show / Hide current scan plot(s)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="experimentconfiguration.html#snapshot-group">Snapshot group</a></li>
-<li class="toctree-l3"><a class="reference internal" href="experimentconfiguration.html#storage">Storage</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="macrobutton.html">MacroButton</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sardanaeditor.html">Sardana Editor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="showscan.html">Showscan</a></li>
-</ul>
+  <div class="section" id="showscan">
+<span id="showscan-ui"></span><h1>Showscan<a class="headerlink" href="#showscan" title="Permalink to this headline">¶</a></h1>
+<p>Showscan is basically a simple HDF5 viewer application. It can be launched from
+Spock using the <code class="xref py py-class docutils literal"><span class="pre">showscan</span></code> command. Without arguments,
+it will show you the result of the last scan in a <a class="reference internal" href="../../glossary.html#term-gui"><span class="xref std std-term">GUI</span></a>:</p>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="../../_images/spock_snapshot02.png"><img alt="../../_images/spock_snapshot02.png" src="../../_images/spock_snapshot02.png" style="height: 600px;" /></a>
+<p class="caption"><span class="caption-text">Scan data viewer in action</span></p>
+</div>
+<p><code class="xref py py-class docutils literal"><span class="pre">showscan</span></code> <em>scan_number</em> will display
+data for the given scan number.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="xref py py-class docutils literal"><span class="pre">showscan</span></code> application can only read scans
+saved in the HDF5 format. Moreover, it opens the first file defined in
+<a class="reference internal" href="../environment_variable_catalog.html#scanfile"><span class="std std-ref">ScanFile</span></a> environment variable, so if you use multiple files, make sure
+the HDF5 format one is the first one on list.</p>
+</div>
+<p>The scan files are saved on the Sardana server machine, however
+<code class="xref py py-class docutils literal"><span class="pre">showscan</span></code> is running on the client one. If it&#8217;s not
+the same machine, you will need to share the scan files between machines, for
+example with NFS.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the path to the file on the server is different than on the client, you
+should use <a class="reference internal" href="../environment_variable_catalog.html#directorymap"><span class="std std-ref">DirectoryMap</span></a> environment variable to map server paths to
+client paths.</p>
 </div>
 </div>
 
@@ -218,10 +212,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="macroexecutor.html" class="btn btn-neutral float-right" title="MacroExecutor User’s Interface" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../scan.html" class="btn btn-neutral float-right" title="Scans" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../spock.html" class="btn btn-neutral" title="Spock" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="sardanaeditor.html" class="btn btn-neutral" title="Sardana Editor’s interface" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

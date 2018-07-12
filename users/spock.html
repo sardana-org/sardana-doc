@@ -522,15 +522,10 @@ of files:</p>
 <h3>Viewing scan data<a class="headerlink" href="#viewing-scan-data" title="Permalink to this headline">¶</a></h3>
 <p>You can show plots for the current scan (i.e. plotting the scan <em>online</em>) by
 using the <a class="reference internal" href="taurus/experimentconfiguration.html#expconf-ui-showplots"><span class="std std-ref">show/hide button from the expconf widget</span></a></p>
-<p>Sardana provides a scan data viewer for scans which were stored in a <a class="reference external" href="http://www.nexusformat.org/">NeXus</a>
-file. Without arguments, <code class="xref py py-class docutils literal"><span class="pre">showscan</span></code>
-will show you the result of the last scan in a <a class="reference internal" href="../glossary.html#term-gui"><span class="xref std std-term">GUI</span></a>:</p>
-<div class="figure" id="id3">
-<a class="reference internal image-reference" href="../_images/spock_snapshot02.png"><img alt="../_images/spock_snapshot02.png" src="../_images/spock_snapshot02.png" style="height: 600px;" /></a>
-<p class="caption"><span class="caption-text">Scan data viewer in action</span></p>
-</div>
-<p><code class="xref py py-class docutils literal"><span class="pre">showscan</span></code> <em>scan_number</em> will display
-data for the given scan number.</p>
+<p>Sardana provides also a scan data viewer for scans which were stored in a <a class="reference external" href="http://www.nexusformat.org/">NeXus</a>
+file: <a class="reference internal" href="taurus/showscan.html#showscan-ui"><span class="std std-ref">Showscan</span></a>. It can be launched using <code class="xref py py-class docutils literal"><span class="pre">showscan</span></code>
+spock command. It accepts scan number as an argument, and will show the last scan
+when invoked without arguments.</p>
 <p>The history of scans is available through the
 <a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.scanhist" title="sardana.macroserver.macros.scan.scanhist"><code class="xref py py-class docutils literal"><span class="pre">scanhist</span></code></a> macro:</p>
 <div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">LAB-01-D01 [1]: </span><span class="n">scanhist</span>
