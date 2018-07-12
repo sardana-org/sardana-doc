@@ -314,7 +314,7 @@
     <span class="c1"># Environment DB related methods</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
 
-    <span class="k">def</span> <span class="nf">set_environment_db</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environment_db</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.set_environment_db"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.set_environment_db">[docs]</a>    <span class="k">def</span> <span class="nf">set_environment_db</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environment_db</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the environment database.</span>
 
 <span class="sd">        :param env_db:</span>
@@ -322,7 +322,7 @@
 <span class="sd">        :type env_db:</span>
 <span class="sd">            str</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">environment_manager</span><span class="o">.</span><span class="n">setEnvironmentDb</span><span class="p">(</span><span class="n">environment_db</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">environment_manager</span><span class="o">.</span><span class="n">setEnvironmentDb</span><span class="p">(</span><span class="n">environment_db</span><span class="p">)</span></div>
 
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="c1"># Python related methods</span>
@@ -338,7 +338,7 @@
     <span class="c1"># Macro path related methods</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
 
-    <span class="k">def</span> <span class="nf">set_macro_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_path</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.set_macro_path"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.set_macro_path">[docs]</a>    <span class="k">def</span> <span class="nf">set_macro_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the macro path.</span>
 
 <span class="sd">        :param macro_path:</span>
@@ -346,13 +346,13 @@
 <span class="sd">        :type macro_path:</span>
 <span class="sd">            seq&lt;str&gt;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">setMacroPath</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">macro_path</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">setMacroPath</span><span class="p">([</span><span class="n">p</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">macro_path</span><span class="p">])</span></div>
 
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="c1"># Recorder path related methods</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
 
-    <span class="k">def</span> <span class="nf">set_recorder_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recorder_path</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.set_recorder_path"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.set_recorder_path">[docs]</a>    <span class="k">def</span> <span class="nf">set_recorder_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recorder_path</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the recorder path.</span>
 
 <span class="sd">        :param recorder_path:</span>
@@ -360,7 +360,7 @@
 <span class="sd">        :type recorder_path:</span>
 <span class="sd">            seq&lt;str&gt;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">recorder_manager</span><span class="o">.</span><span class="n">setRecorderPath</span><span class="p">(</span><span class="n">recorder_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recorder_manager</span><span class="o">.</span><span class="n">setRecorderPath</span><span class="p">(</span><span class="n">recorder_path</span><span class="p">)</span></div>
 
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="c1"># Report related methods</span>
@@ -402,7 +402,7 @@
 
     <span class="n">report_logger</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_report_logger</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.report"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Record a log message in the sardana report (if enabled) with default</span>
 <span class="sd">        level **INFO**. The msg is the message format string, and the args are</span>
@@ -422,13 +422,13 @@
 <span class="sd">        :param args: list of arguments</span>
 <span class="sd">        :param kwargs: list of keyword arguments&quot;&quot;&quot;</span>
         <span class="n">level</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;level&#39;</span><span class="p">,</span> <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">report_logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="c1"># Pool related methods</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
 
-    <span class="k">def</span> <span class="nf">set_pool_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pool_names</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.set_pool_names"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.set_pool_names">[docs]</a>    <span class="k">def</span> <span class="nf">set_pool_names</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pool_names</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Registers a new list of device pools in this manager</span>
 
 <span class="sd">        :param pool_names: sequence of pool names</span>
@@ -445,9 +445,9 @@
                 <span class="k">continue</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_pools</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool</span>
             <span class="n">elements_attr</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&quot;Elements&quot;</span><span class="p">)</span>
-            <span class="n">elements_attr</span><span class="o">.</span><span class="n">addListener</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_pool_elements_changed</span><span class="p">)</span>
+            <span class="n">elements_attr</span><span class="o">.</span><span class="n">addListener</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_pool_elements_changed</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">get_pool_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.get_pool_names"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.get_pool_names">[docs]</a>    <span class="k">def</span> <span class="nf">get_pool_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the list of names of the pools this macro server is connected</span>
 <span class="sd">        to.</span>
 
@@ -455,23 +455,23 @@
 <span class="sd">            the list of names of the pools this macro server is connected to</span>
 <span class="sd">        :rtype:</span>
 <span class="sd">            seq&lt;str&gt;&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pools</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pools</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
 
-    <span class="k">def</span> <span class="nf">get_pool</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pool_name</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.get_pool"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.get_pool">[docs]</a>    <span class="k">def</span> <span class="nf">get_pool</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pool_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the device pool object corresponding to the given device name</span>
 <span class="sd">        or None if no match is found.</span>
 
 <span class="sd">        :param pool_name: device pool name</span>
 <span class="sd">        :type pool_name: str</span>
 <span class="sd">        :return: Pool object or None if no match is found&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pools</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pool_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pools</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pool_name</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">get_pools</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.get_pools"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.get_pools">[docs]</a>    <span class="k">def</span> <span class="nf">get_pools</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the list of pools this macro server is connected to.</span>
 
 <span class="sd">        :return: the list of pools this macro server is connected to</span>
 <span class="sd">        :rtype: seq&lt;Pool&gt;&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pools</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pools</span><span class="o">.</span><span class="n">values</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">on_pool_elements_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt_src</span><span class="p">,</span> <span class="n">evt_type</span><span class="p">,</span> <span class="n">evt_value</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">evt_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CHANGE_EVT_TYPES</span><span class="p">:</span>
@@ -576,7 +576,7 @@
     <span class="k">def</span> <span class="nf">reload_lib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">reloadLib</span><span class="p">(</span><span class="n">lib_name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">reload_macro_lib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.reload_macro_lib"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.reload_macro_lib">[docs]</a>    <span class="k">def</span> <span class="nf">reload_macro_lib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">):</span>
         <span class="n">manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -611,7 +611,7 @@
         <span class="n">evt</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;new&quot;</span><span class="p">:</span> <span class="n">new_elements</span><span class="p">,</span> <span class="s2">&quot;change&quot;</span><span class="p">:</span> <span class="n">changed_elements</span><span class="p">,</span>
                <span class="s2">&quot;del&quot;</span><span class="p">:</span> <span class="n">deleted_elements</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;ElementsChanged&quot;</span><span class="p">),</span> <span class="n">evt</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">new_lib</span>
+        <span class="k">return</span> <span class="n">new_lib</span></div>
 
     <span class="n">reload_macro_lib</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">MacroManager</span><span class="o">.</span><span class="n">reloadMacroLib</span><span class="o">.</span><span class="vm">__doc__</span>
 
@@ -647,20 +647,20 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">getMacro</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="n">get_macro</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">MacroManager</span><span class="o">.</span><span class="n">getMacro</span><span class="o">.</span><span class="vm">__doc__</span>
 
-    <span class="k">def</span> <span class="nf">get_macros</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">getMacros</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
+<div class="viewcode-block" id="MacroServer.get_macros"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.get_macros">[docs]</a>    <span class="k">def</span> <span class="nf">get_macros</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">getMacros</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span></div>
     <span class="n">get_macros</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">MacroManager</span><span class="o">.</span><span class="n">getMacros</span><span class="o">.</span><span class="vm">__doc__</span>
 
     <span class="k">def</span> <span class="nf">get_macro_names</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">getMacroNames</span><span class="p">()</span>
     <span class="n">get_macro_names</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">MacroManager</span><span class="o">.</span><span class="n">getMacroNames</span><span class="o">.</span><span class="vm">__doc__</span>
 
-    <span class="k">def</span> <span class="nf">get_macro_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">getMacroClasses</span><span class="p">()</span>
+<div class="viewcode-block" id="MacroServer.get_macro_classes"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.get_macro_classes">[docs]</a>    <span class="k">def</span> <span class="nf">get_macro_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">getMacroClasses</span><span class="p">()</span></div>
     <span class="n">get_macro_classes</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">MacroManager</span><span class="o">.</span><span class="n">getMacroClasses</span><span class="o">.</span><span class="vm">__doc__</span>
 
-    <span class="k">def</span> <span class="nf">get_macro_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">getMacroFunctions</span><span class="p">()</span>
+<div class="viewcode-block" id="MacroServer.get_macro_functions"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.get_macro_functions">[docs]</a>    <span class="k">def</span> <span class="nf">get_macro_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">getMacroFunctions</span><span class="p">()</span></div>
     <span class="n">get_macro_functions</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">MacroManager</span><span class="o">.</span><span class="n">getMacroFunctions</span><span class="o">.</span><span class="vm">__doc__</span>
 
     <span class="k">def</span> <span class="nf">get_macro_libs_summary_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -679,7 +679,7 @@
             <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span>
 
-    <span class="k">def</span> <span class="nf">get_or_create_macro_lib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.get_or_create_macro_lib"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.get_or_create_macro_lib">[docs]</a>    <span class="k">def</span> <span class="nf">get_or_create_macro_lib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gets the exiting macro lib or creates a new macro lib file. If</span>
 <span class="sd">        name is not None, a macro template code for the given macro name is</span>
 <span class="sd">        appended to the end of the file.</span>
@@ -699,7 +699,7 @@
 <span class="sd">            the given macro name.</span>
 <span class="sd">        :rtype: seq&lt;str, str, int&gt;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">getOrCreateMacroLib</span><span class="p">(</span><span class="n">lib_name</span><span class="p">,</span>
-                                                      <span class="n">macro_name</span><span class="o">=</span><span class="n">macro_name</span><span class="p">)</span>
+                                                      <span class="n">macro_name</span><span class="o">=</span><span class="n">macro_name</span><span class="p">)</span></div>
     <span class="n">get_or_create_macro_lib</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">MacroManager</span><span class="o">.</span><span class="n">getOrCreateMacroLib</span><span class="o">.</span><span class="vm">__doc__</span>
 
     <span class="k">def</span> <span class="nf">set_macro_lib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">,</span> <span class="n">code</span><span class="p">,</span> <span class="n">auto_reload</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
@@ -744,7 +744,7 @@
     <span class="c1"># Environment access methods</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
 
-    <span class="k">def</span> <span class="nf">get_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.get_env"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.get_env">[docs]</a>    <span class="k">def</span> <span class="nf">get_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gets the environment matching the given parameters:</span>
 
 <span class="sd">               - door_name and macro_name define the context where to look for</span>
@@ -771,9 +771,9 @@
 
 <span class="sd">        :raises: UnknownEnv&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">environment_manager</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="n">macro_name</span><span class="p">,</span>
-                                               <span class="n">door_name</span><span class="o">=</span><span class="n">door_name</span><span class="p">)</span>
+                                               <span class="n">door_name</span><span class="o">=</span><span class="n">door_name</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">set_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.set_env"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.set_env">[docs]</a>    <span class="k">def</span> <span class="nf">set_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the environment key to the new value and stores it persistently.</span>
 
 <span class="sd">        :param key: the key for the environment</span>
@@ -790,9 +790,9 @@
 
         <span class="n">evt</span> <span class="o">=</span> <span class="p">{</span><span class="n">evt_type</span><span class="p">:</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span><span class="p">}}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;EnvironmentChanged&quot;</span><span class="p">),</span> <span class="n">evt</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span>
+        <span class="k">return</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span></div>
 
-    <span class="k">def</span> <span class="nf">set_env_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.set_env_obj"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.set_env_obj">[docs]</a>    <span class="k">def</span> <span class="nf">set_env_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the environment key to the new value and stores it persistently.</span>
 
 <span class="sd">        :param key: the key for the environment</span>
@@ -812,7 +812,7 @@
 
         <span class="n">evt</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">new</span><span class="o">=</span><span class="n">new</span><span class="p">,</span> <span class="n">change</span><span class="o">=</span><span class="n">change</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;EnvironmentChanged&quot;</span><span class="p">),</span> <span class="n">evt</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
 
     <span class="k">def</span> <span class="nf">change_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="n">env_man</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">environment_manager</span>
@@ -834,7 +834,7 @@
         <span class="n">evt</span><span class="p">[</span><span class="s1">&#39;del&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">del_keys</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;EnvironmentChanged&quot;</span><span class="p">),</span> <span class="n">evt</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">unset_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<div class="viewcode-block" id="MacroServer.unset_env"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macroserver.html#sardana.macroserver.macroserver.MacroServer.unset_env">[docs]</a>    <span class="k">def</span> <span class="nf">unset_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Unsets the environment for the given key.</span>
 
 <span class="sd">        :param key: the key for the environment to be unset&quot;&quot;&quot;</span>
@@ -844,7 +844,7 @@
             <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
         <span class="n">evt</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;del&#39;</span><span class="p">:</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="kc">None</span><span class="p">}}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;EnvironmentChanged&quot;</span><span class="p">),</span> <span class="n">evt</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
 
     <span class="k">def</span> <span class="nf">has_env</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">environment_manager</span><span class="o">.</span><span class="n">hasEnv</span><span class="p">(</span><span class="n">key</span><span class="p">,</span>
