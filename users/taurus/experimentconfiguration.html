@@ -172,13 +172,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="experiment-configuration-user-interface">
-<span id="expconf-ui"></span><h1><a class="toc-backref" href="#id2">Experiment Configuration user interface</a><a class="headerlink" href="#experiment-configuration-user-interface" title="Permalink to this headline">¶</a></h1>
+<span id="expconf-ui"></span><h1><a class="toc-backref" href="#id3">Experiment Configuration user interface</a><a class="headerlink" href="#experiment-configuration-user-interface" title="Permalink to this headline">¶</a></h1>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#experiment-configuration-user-interface" id="id2">Experiment Configuration user interface</a><ul>
-<li><a class="reference internal" href="#measurement-group-configuration" id="id3">Measurement group configuration</a><ul>
-<li><a class="reference internal" href="#experimental-channel-configuration" id="id4">Experimental channel configuration</a></li>
+<li><a class="reference internal" href="#experiment-configuration-user-interface" id="id3">Experiment Configuration user interface</a><ul>
+<li><a class="reference internal" href="#measurement-group-configuration" id="id4">Measurement group configuration</a><ul>
+<li><a class="reference internal" href="#experimental-channel-configuration" id="id5">Experimental channel configuration</a></li>
+<li><a class="reference internal" href="#show-hide-current-scan-plot-s" id="id6">Show / Hide current scan plot(s)</a></li>
 </ul>
 </li>
 </ul>
@@ -186,7 +187,7 @@
 </ul>
 </div>
 <p>Experiment Configuration widget a.k.a. expconf is a complete interface to
-define all the experiment configuration. It consists of three main groups of
+define the experiment configuration. It consists of three main groups of
 parameters organized in tabs:</p>
 <ul class="simple">
 <li>Measurement group</li>
@@ -196,8 +197,10 @@ parameters organized in tabs:</p>
 <p>The parameters may be modified in an arbitrary order, at any of the tabs, and
 will be maintained as pending to apply until either applied or reset by the
 user.</p>
+<p>This widget is usually present in sardana-aware Taurus GUIs and is also invoked
+by the <cite>expconf</cite> command in <a class="reference internal" href="../spock.html#sardana-spock"><span class="std std-ref">Spock</span></a></p>
 <div class="section" id="measurement-group-configuration">
-<span id="expconf-ui-measurementgroup"></span><h2><a class="toc-backref" href="#id3">Measurement group configuration</a><a class="headerlink" href="#measurement-group-configuration" title="Permalink to this headline">¶</a></h2>
+<span id="expconf-ui-measurementgroup"></span><h2><a class="toc-backref" href="#id4">Measurement group configuration</a><a class="headerlink" href="#measurement-group-configuration" title="Permalink to this headline">¶</a></h2>
 <p>In the measurement group tab the user can:</p>
 <ul class="simple">
 <li>create or remove a measurement group</li>
@@ -206,13 +209,14 @@ user.</p>
 <li>reorganize the order of the channels in the measurement group</li>
 <li>change configuration of a particular channel (or its controller) in the
 selected measurement group</li>
+<li>show/hide online plots for the current scan.</li>
 </ul>
 <div class="figure align-center" id="id1" style="width: 100%">
 <a class="reference internal image-reference" href="../../_images/expconf01.png"><img alt="../../_images/expconf01.png" src="../../_images/expconf01.png" style="width: 100%;" /></a>
 <p class="caption"><span class="caption-text">Measurement group tab of the expconf widget with the <cite>mntgrp</cite> configuration.</span></p>
 </div>
 <div class="section" id="experimental-channel-configuration">
-<span id="expconf-ui-measurementgroup-channel"></span><h3><a class="toc-backref" href="#id4">Experimental channel configuration</a><a class="headerlink" href="#experimental-channel-configuration" title="Permalink to this headline">¶</a></h3>
+<span id="expconf-ui-measurementgroup-channel"></span><h3><a class="toc-backref" href="#id5">Experimental channel configuration</a><a class="headerlink" href="#experimental-channel-configuration" title="Permalink to this headline">¶</a></h3>
 <p>In the measurement group table the user can modify the following parameters of
 a given channel or its controller:</p>
 <ul class="simple">
@@ -245,6 +249,23 @@ Configurable only for the timerable controllers. Applies on the controller level
 <li>normalization - normalization mode for the data</li>
 <li>nexus path - location of the data of this channel withing the NeXus tree</li>
 </ul>
+</div>
+<div class="section" id="show-hide-current-scan-plot-s">
+<span id="expconf-ui-showplots"></span><h3><a class="toc-backref" href="#id6">Show / Hide current scan plot(s)</a><a class="headerlink" href="#show-hide-current-scan-plot-s" title="Permalink to this headline">¶</a></h3>
+<p>The Experiment Configuration widget provides a button to show/hide plots of the
+current scan. When this button is checked, the values of <cite>plot type</cite> and
+<cite>plot axes</cite> <a class="reference internal" href="#expconf-ui-measurementgroup-channel"><span class="std std-ref">in the channel configuration</span></a>
+determine how many plot widgets will be spawned to show the channels involved
+in a scan when the scan is run.</p>
+<div class="figure align-center" id="id2" style="width: 100%">
+<a class="reference internal image-reference" href="../../_images/expconf-showplot.png"><img alt="../../_images/expconf-showplot.png" src="../../_images/expconf-showplot.png" style="width: 100%;" /></a>
+<p class="caption"><span class="caption-text">Button for enabling/disabling plots of the current scan.</span></p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This button may in some contexts be disabled (e.g. by default on
+sardana-aware TaurusGUIs)</p>
+</div>
 </div>
 </div>
 </div>
