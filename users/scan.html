@@ -102,6 +102,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#step-scans">Step scans</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#continuous-scans">Continuous scans</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scan-snapshots">Scan snapshots</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="diffractometer.html">Diffractometer</a></li>
@@ -328,6 +329,20 @@ the affected scan macros) if deemed necessary by the core developers.</p>
 Variables, check the
 <a class="reference internal" href="environment_variable_catalog.html#environment-variable-catalog"><span class="std std-ref">Environment Variable Catalog</span></a></p>
 </div>
+</div>
+<div class="section" id="scan-snapshots">
+<span id="sardana-users-scan-snapshot"></span><h2>Scan snapshots<a class="headerlink" href="#scan-snapshots" title="Permalink to this headline">¶</a></h2>
+<p>Snapshots are used for saving data (or metadata) from elements and devices not
+necessarily related to the scan itself. A scan saves only the values of the involved
+elements, that is positions of motors being moved, and values read from experiment
+channels in the active measurement group. If you want your scans to include
+something more you can use the snapshot.</p>
+<p>Snapshot group can be configured via <a class="reference internal" href="taurus/experimentconfiguration.html#expconf-ui-snapshot-group"><span class="std std-ref">Experiment Configuration widget</span></a>
+and <a class="reference internal" href="environment_variable_catalog.html#prescansnapshot"><span class="std std-ref">PreScanSnapshot</span></a> environment variable. It can include both Sardana
+elements as well as external (Tango) data sources.</p>
+<p>The snapshot is saved only once during a scan, on the very beginning. The exact
+way the snapshot data is saved depends on the <a class="reference internal" href="../devel/howto_recorders.html#sardana-writing-recorders"><span class="std std-ref">recorder</span></a>
+and scan file format being used.</p>
 </div>
 </div>
 
