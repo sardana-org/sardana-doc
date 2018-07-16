@@ -402,19 +402,31 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">types</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dict_extra</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="mi">1</span>
-
         <span class="n">klass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">klass</span>
         <span class="c1"># Generic controller information</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_features</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">klass</span><span class="o">.</span><span class="n">ctrl_features</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties</span> <span class="o">=</span> <span class="n">props</span> <span class="o">=</span> <span class="n">CaselessDict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dep_msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Defining the controller property description using a &quot;</span>
+                   <span class="o">+</span> <span class="s2">&quot;string is deprecated, use &quot;</span>
+                   <span class="o">+</span> <span class="s2">&quot;sardana.pool.controller.Description constant instead.&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">klass</span><span class="o">.</span><span class="n">class_prop</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>  <span class="c1"># old member</span>
             <span class="n">props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">DataInfo</span><span class="o">.</span><span class="n">toDataInfo</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">])</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">Description</span><span class="p">])</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">dep_msg</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">])</span>
+
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">klass</span><span class="o">.</span><span class="n">ctrl_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">DataInfo</span><span class="o">.</span><span class="n">toDataInfo</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;description&#39;</span><span class="p">])</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">Description</span><span class="p">])</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">dep_msg</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">])</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">dict_extra</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">klass</span><span class="o">.</span><span class="n">ctrl_properties</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dict_extra</span><span class="p">[</span><span class="s1">&#39;properties_desc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span>
 
