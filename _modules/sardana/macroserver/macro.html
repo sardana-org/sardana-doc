@@ -1389,7 +1389,7 @@
 <span class="sd">            return macro</span>
 
 <span class="sd">        :param name: name of the macro to be prepared</span>
-<span class="sd">        :type name: str</span>
+<span class="sd">        :type name: :obj:`str`</span>
 <span class="sd">        :param args: list of parameter objects</span>
 <span class="sd">        :param kwargs: list of keyword parameters</span>
 
@@ -1508,7 +1508,7 @@
 <div class="viewcode-block" id="Macro.outputBlock"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.outputBlock">[docs]</a>    <span class="k">def</span> <span class="nf">outputBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Sends an line tagged as a block to the output</span>
 
-<span class="sd">        :param str line: line to be sent&quot;&quot;&quot;</span>
+<span class="sd">        :param :obj:`str` line: line to be sent&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
             <span class="n">o</span> <span class="o">=</span> <span class="n">line</span>
         <span class="k">elif</span> <span class="n">operator</span><span class="o">.</span><span class="n">isSequenceType</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
@@ -1553,7 +1553,8 @@
 <span class="sd">        executed the stop method of the given object will be called.</span>
 
 <span class="sd">        :param obj_list: list of objects to be controlled</span>
-<span class="sd">        :type obj_list: sequence&quot;&quot;&quot;</span>
+<span class="sd">        :type obj_list: :obj:`collections.Sequence`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">obj_list</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">addObj</span><span class="p">(</span><span class="n">o</span><span class="p">)</span></div>
 
@@ -1708,7 +1709,7 @@
 
 <span class="sd">        :param lib_name:</span>
 <span class="sd">            library name</span>
-<span class="sd">        :type lib_name: str</span>
+<span class="sd">        :type lib_name: :obj:`str`</span>
 <span class="sd">        :return:</span>
 <span class="sd">            a macro library :class:`~sardana.macroserver.msmetamacro.MacroLibrary`</span>
 <span class="sd">        :rtype: :class:`~sardana.macroserver.msmetamacro.MacroLibrary`&quot;&quot;&quot;</span>
@@ -1900,15 +1901,15 @@
 
 <span class="sd">        :param key:</span>
 <span class="sd">            environment variable name [default: None, meaning all environment]</span>
-<span class="sd">        :type key: str</span>
+<span class="sd">        :type key: :obj:`str`</span>
 <span class="sd">        :param door_name:</span>
 <span class="sd">            local context for a given door [default: None, meaning no door</span>
 <span class="sd">            context is used]</span>
-<span class="sd">        :type door_name: str</span>
+<span class="sd">        :type door_name: :obj:`str`</span>
 <span class="sd">        :param macro_name:</span>
 <span class="sd">            local context for a given macro [default: None, meaning no macro</span>
 <span class="sd">            context is used]</span>
-<span class="sd">        :type macro_name: str</span>
+<span class="sd">        :type macro_name: :obj:`str`</span>
 
 <span class="sd">        :return: a :obj:`dict` containing the environment</span>
 <span class="sd">        :rtype: :obj:`dict`&quot;&quot;&quot;</span>
@@ -2173,7 +2174,7 @@
         <span class="sd">&quot;&quot;&quot;**Unofficial Macro API**.</span>
 <span class="sd">        Sends a line tagged as a block to the output</span>
 
-<span class="sd">        :param str line: line to be sent&quot;&quot;&quot;</span>
+<span class="sd">        :param :obj:`str` line: line to be sent&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
             <span class="n">o</span> <span class="o">=</span> <span class="n">line</span>
         <span class="k">elif</span> <span class="n">operator</span><span class="o">.</span><span class="n">isSequenceType</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>

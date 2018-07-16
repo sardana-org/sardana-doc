@@ -235,7 +235,7 @@
         <span class="sd">&quot;&quot;&quot;initialize the device once in the object lifetime. Override when</span>
 <span class="sd">        necessary but **always** call the method from your super class</span>
 
-<span class="sd">        :param str name: device name&quot;&quot;&quot;</span>
+<span class="sd">        :param :obj:`str` name: device name&quot;&quot;&quot;</span>
 
         <span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_database</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">db</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -252,7 +252,7 @@
         <span class="sd">&quot;&quot;&quot;Returns this device alias name</span>
 
 <span class="sd">        :return: this device alias</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alias</span></div>
 
     <span class="n">alias</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_alias</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;the device alias name&quot;</span><span class="p">)</span>
@@ -269,7 +269,7 @@
 <span class="sd">        always FQDN.</span>
 
 <span class="sd">        :return: this device full name</span>
-<span class="sd">        :rtype: str</span>
+<span class="sd">        :rtype: :obj:`str`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_database</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">db</span><span class="o">.</span><span class="n">get_from_env_var</span><span class="p">():</span>
@@ -368,7 +368,7 @@
         <span class="sd">&quot;&quot;&quot;Gets the attribute for the given name.</span>
 
 <span class="sd">        :param attr_name: attribute name</span>
-<span class="sd">        :type attr_name: str</span>
+<span class="sd">        :type attr_name: :obj:`str`</span>
 <span class="sd">        :return: the attribute object</span>
 <span class="sd">        :rtype: :class:`~PyTango.Attribute`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_device_attr</span><span class="p">()</span><span class="o">.</span><span class="n">get_attr_by_name</span><span class="p">(</span><span class="n">attr_name</span><span class="p">)</span></div>
@@ -377,7 +377,7 @@
         <span class="sd">&quot;&quot;&quot;Gets the writable attribute for the given name.</span>
 
 <span class="sd">        :param attr_name: attribute name</span>
-<span class="sd">        :type attr_name: str</span>
+<span class="sd">        :type attr_name: :obj:`str`</span>
 <span class="sd">        :return: the attribute object</span>
 <span class="sd">        :rtype: :class:`~PyTango.WAttribute`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_device_attr</span><span class="p">()</span><span class="o">.</span><span class="n">get_w_attr_by_name</span><span class="p">(</span><span class="n">attr_name</span><span class="p">)</span></div>
@@ -589,14 +589,17 @@
         <span class="k">return</span> <span class="n">state</span></div>
 
 <div class="viewcode-block" id="SardanaDevice.calculate_tango_status"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/core/SardanaDevice.html#sardana.tango.core.SardanaDevice.SardanaDevice.calculate_tango_status">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_tango_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrl_status</span><span class="p">,</span> <span class="n">update</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculate tango status based on the controller status.</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate tango status based on the controller status.</span>
 
-<span class="sd">        :param str ctrl_status: the status returned by the controller</span>
-<span class="sd">        :param bool update:</span>
-<span class="sd">            if True, set the state of this device with the calculated tango</span>
-<span class="sd">            state [default: False:</span>
+<span class="sd">        :param ctrl_status: the status returned by the controller</span>
+<span class="sd">        :type ctrl_status: :obj:`str`</span>
+<span class="sd">        :param bool update: if True, set the state of this device with the</span>
+<span class="sd">                            calculated tango state (by default is False)</span>
+
 <span class="sd">        :return: the corresponding tango state</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="n">status</span> <span class="o">=</span> <span class="n">ctrl_status</span>
         <span class="k">if</span> <span class="n">update</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_status</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>

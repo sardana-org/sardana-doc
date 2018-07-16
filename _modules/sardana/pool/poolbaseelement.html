@@ -328,7 +328,8 @@
         <span class="sd">&quot;&quot;&quot;Looks at the current cached value of status</span>
 
 <span class="sd">        :return: the current object status</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span></div>
 
 <div class="viewcode-block" id="PoolBaseElement.get_status"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolBaseElement.get_status">[docs]</a>    <span class="k">def</span> <span class="nf">get_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -347,7 +348,8 @@
 <span class="sd">            [default: 1]</span>
 <span class="sd">        :type propagate: int</span>
 <span class="sd">        :return: the current object status</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cache</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">state_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_state_info</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_set_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="n">propagate</span><span class="p">)</span>

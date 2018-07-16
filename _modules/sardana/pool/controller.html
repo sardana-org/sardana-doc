@@ -235,13 +235,16 @@
 
 
 <div class="viewcode-block" id="Controller"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller">[docs]</a><span class="k">class</span> <span class="nc">Controller</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base controller class. Do **NOT** inherit from this class directly</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Base controller class. Do **NOT** inherit from this class directly</span>
 
-<span class="sd">    :param str inst: controller instance name</span>
-<span class="sd">    :param dict props: a dictionary containning pairs of property name,</span>
-<span class="sd">                       property value</span>
+<span class="sd">    :param :obj:`str` inst: controller instance name</span>
+<span class="sd">    :param dict props: a dictionary containing pairs of property name,</span>
+<span class="sd">    property value</span>
+
 <span class="sd">    :arg args:</span>
-<span class="sd">    :keyword kwargs:&quot;&quot;&quot;</span>
+<span class="sd">    :keyword kwargs:</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1">#: .. deprecated:: 1.0</span>
     <span class="c1">#:     use :attr:`~Controller.ctrl_properties` instead</span>
@@ -485,7 +488,7 @@
         <span class="sd">&quot;&quot;&quot;**Controller API**. The controller instance name.</span>
 
 <span class="sd">        :return: the controller instance name</span>
-<span class="sd">        :rtype: str</span>
+<span class="sd">        :rtype: :obj:`str`</span>
 
 <span class="sd">        .. versionadded:: 1.0&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst_name</span></div>
@@ -494,7 +497,7 @@
         <span class="sd">&quot;&quot;&quot;**Controller API**. The axis name.</span>
 
 <span class="sd">        :return: the axis name</span>
-<span class="sd">        :rtype: str</span>
+<span class="sd">        :rtype: :obj:`str`</span>
 
 <span class="sd">        .. versionadded:: 1.0&quot;&quot;&quot;</span>
         <span class="n">ctrl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getPoolController</span><span class="p">()</span>
@@ -640,9 +643,9 @@
 <span class="sd">        Sends a string to the controller.</span>
 <span class="sd">        Default implementation raises :exc:`NotImplementedError`.</span>
 
-<span class="sd">        :param str stream: stream to be sent</span>
+<span class="sd">        :param :obj:`str` stream: stream to be sent</span>
 <span class="sd">        :return: any relevant information e.g. response of the controller</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;SendToCtrl not implemented&quot;</span><span class="p">)</span></div></div>
 
 

@@ -319,8 +319,7 @@
 
 <span class="sd">        :param env_db:</span>
 <span class="sd">            environment database name</span>
-<span class="sd">        :type env_db:</span>
-<span class="sd">            str</span>
+<span class="sd">        :type env_db: :obj:`str`</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">environment_manager</span><span class="o">.</span><span class="n">setEnvironmentDb</span><span class="p">(</span><span class="n">environment_db</span><span class="p">)</span></div>
 
@@ -462,7 +461,7 @@
 <span class="sd">        or None if no match is found.</span>
 
 <span class="sd">        :param pool_name: device pool name</span>
-<span class="sd">        :type pool_name: str</span>
+<span class="sd">        :type pool_name: :obj:`str`</span>
 <span class="sd">        :return: Pool object or None if no match is found&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pools</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pool_name</span><span class="p">)</span></div>
 
@@ -686,12 +685,12 @@
 
 <span class="sd">        :param lib_name:</span>
 <span class="sd">            module name, python file name, or full file name (with path)</span>
-<span class="sd">        :type lib_name: str</span>
+<span class="sd">        :type lib_name: :obj:`str`</span>
 <span class="sd">        :param macro_name:</span>
 <span class="sd">            an optional macro name. If given a macro template code is appended</span>
 <span class="sd">            to the end of the file (default is None meaning no macro code is</span>
 <span class="sd">            added)</span>
-<span class="sd">        :type macro_name: str</span>
+<span class="sd">        :type macro_name: :obj:`str`</span>
 
 <span class="sd">        :return:</span>
 <span class="sd">            a sequence with three items: full_filename, code, line number is 0</span>
@@ -756,15 +755,15 @@
 
 <span class="sd">        :param key:</span>
 <span class="sd">            environment variable name [default: None, meaning all environment]</span>
-<span class="sd">        :type key: str</span>
+<span class="sd">        :type key: :obj:`str`</span>
 <span class="sd">        :param door_name:</span>
 <span class="sd">            local context for a given door [default: None, meaning no door</span>
 <span class="sd">            context is used]</span>
-<span class="sd">        :type door_name: str</span>
+<span class="sd">        :type door_name: :obj:`str`</span>
 <span class="sd">        :param macro_name:</span>
 <span class="sd">            local context for a given macro [default: None, meaning no macro</span>
 <span class="sd">            context is used]</span>
-<span class="sd">        :type macro_name: str</span>
+<span class="sd">        :type macro_name: :obj:`str`</span>
 
 <span class="sd">        :return: a :obj:`dict` containing the environment</span>
 <span class="sd">        :rtype: :obj:`dict`</span>

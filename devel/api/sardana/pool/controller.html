@@ -115,8 +115,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api_measurementgroup.html">Measurement group API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_macroserver.html">MacroServer API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_pool.html">Pool API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../tango_device_pool.html">Pool tango API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../tango_macroserver.html">Macro server tango API</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../sardana.html">Library</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_test.html">Test API</a></li>
 </ul>
@@ -737,14 +735,14 @@ Default implementation raises <a class="reference external" href="https://docs.p
 <em class="property">class </em><code class="descname">Controller</code><span class="sig-paren">(</span><em>inst</em>, <em>props</em>, <em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/dev/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <p>Base controller class. Do <strong>NOT</strong> inherit from this class directly</p>
+<p>:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> inst: controller instance name
+:param dict props: a dictionary containing pairs of property name,
+property value</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>inst</strong> (<a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; controller instance name</li>
-<li><strong>props</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a>) &#8211; a dictionary containning pairs of property name,
-property value</li>
 <li><strong>args</strong> &#8211; </li>
 <li><strong>kwargs</strong> &#8211; </li>
 </ul>
@@ -1077,7 +1075,7 @@ does nothing.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the controller instance name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1096,7 +1094,7 @@ does nothing.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the axis name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1285,18 +1283,9 @@ attributes plus the <a class="reference internal" href="#sardana.pool.controller
 <dd><p><strong>Controller API</strong>. Override if necessary.
 Sends a string to the controller.
 Default implementation raises <a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal"><span class="pre">NotImplementedError</span></code></a>.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>stream</strong> (<a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; stream to be sent</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">any relevant information e.g. response of the controller</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
-</tr>
-</tbody>
-</table>
+<p>:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> stream: stream to be sent
+:return: any relevant information e.g. response of the controller
+:rtype: <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></p>
 </dd></dl>
 
 </dd></dl>

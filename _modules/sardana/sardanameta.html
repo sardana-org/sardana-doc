@@ -280,7 +280,7 @@
         <span class="sd">&quot;&quot;&quot;Returns the module name for this library.</span>
 
 <span class="sd">        :return: the module name</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
 
     <span class="nd">@property</span>
@@ -308,7 +308,7 @@
 <span class="sd">        library.</span>
 
 <span class="sd">        :param meta_class_name: the meta class name</span>
-<span class="sd">        :type meta_class_name: str</span>
+<span class="sd">        :type meta_class_name: :obj:`str`</span>
 <span class="sd">        :return: a meta class or None</span>
 <span class="sd">        :rtype: :class:~`sardana.sardanameta.SardanaClass`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_classes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">meta_class_name</span><span class="p">)</span></div>
@@ -325,7 +325,7 @@
 <span class="sd">        or False otherwise.</span>
 
 <span class="sd">        :param meta_class_name: the meta class name</span>
-<span class="sd">        :type meta_class_name: str</span>
+<span class="sd">        :type meta_class_name: :obj:`str`</span>
 
 <span class="sd">        :return: True if the given meta class name belongs to this library</span>
 <span class="sd">                 or False otherwise</span>
@@ -346,7 +346,7 @@
 <span class="sd">        this library.</span>
 
 <span class="sd">        :param meta_function_name: the meta function name</span>
-<span class="sd">        :type meta_function_name: str</span>
+<span class="sd">        :type meta_function_name: :obj:`str`</span>
 <span class="sd">        :return: a meta function or None</span>
 <span class="sd">        :rtype: :class:~`sardana.sardanameta.SardanaFunction`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_functions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">meta_function_name</span><span class="p">)</span></div>
@@ -363,7 +363,7 @@
 <span class="sd">        or False otherwise.</span>
 
 <span class="sd">        :param meta_function_name: the meta function name</span>
-<span class="sd">        :type meta_function_name: str</span>
+<span class="sd">        :type meta_function_name: :obj:`str`</span>
 
 <span class="sd">        :return: True if the given meta function name belongs to this library</span>
 <span class="sd">                 or False otherwise</span>
@@ -375,7 +375,7 @@
 <span class="sd">        given meta name or None if the meta does not exist in this library.</span>
 
 <span class="sd">        :param meta_name: the meta name (class, function)</span>
-<span class="sd">        :type meta_name: str</span>
+<span class="sd">        :type meta_name: :obj:`str`</span>
 <span class="sd">        :return: a meta or None</span>
 <span class="sd">        :rtype: :class:~`sardana.sardanameta.SardanaCode`&quot;&quot;&quot;</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_meta_class</span><span class="p">(</span><span class="n">meta_name</span><span class="p">)</span>
@@ -388,7 +388,7 @@
 <span class="sd">        or False otherwise.</span>
 
 <span class="sd">        :param meta_name: the meta name</span>
-<span class="sd">        :type meta_name: str</span>
+<span class="sd">        :type meta_name: :obj:`str`</span>
 
 <span class="sd">        :return:</span>
 <span class="sd">            True if the given meta (class or function) name belongs to this</span>
@@ -426,7 +426,7 @@
 <span class="sd">        :meth:~sardana.sardanameta.SardanaLibrary.get_module_name).</span>
 
 <span class="sd">        :return: the module name</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
 
 <div class="viewcode-block" id="SardanaLibrary.get_module_name"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_module_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_module_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -434,7 +434,7 @@
 <span class="sd">        :meth:~sardana.sardanameta.SardanaLibrary.get_name).</span>
 
 <span class="sd">        :return: the module name</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_name</span></div>
 
 <div class="viewcode-block" id="SardanaLibrary.get_module"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_module">[docs]</a>    <span class="k">def</span> <span class="nf">get_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -449,7 +449,7 @@
 <span class="sd">        documentation exists.</span>
 
 <span class="sd">        :return: this library documentation or None</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span></div>
 
 <div class="viewcode-block" id="SardanaLibrary.get_code"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_code">[docs]</a>    <span class="k">def</span> <span class="nf">get_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -464,7 +464,7 @@
 <span class="sd">        like: /abs/path/filename.py</span>
 
 <span class="sd">        :return: this library file path</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.pyc&#39;</span><span class="p">):</span>
@@ -476,7 +476,7 @@
 <span class="sd">        like: filename.py</span>
 
 <span class="sd">        :return: this library file name</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_name</span></div>
 
 <div class="viewcode-block" id="SardanaLibrary.has_errors"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.has_errors">[docs]</a>    <span class="k">def</span> <span class="nf">has_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -575,7 +575,7 @@
         <span class="sd">&quot;&quot;&quot;Returns the module name for this class.</span>
 
 <span class="sd">        :return: the module name</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">get_module_name</span><span class="p">()</span>
 
     <span class="nd">@property</span>
@@ -584,7 +584,7 @@
 <span class="sd">        posix systems is something like: /abs/path/filename.py</span>
 
 <span class="sd">        :return: the file path for for the library where this class is</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">file_path</span>
 
     <span class="nd">@property</span>
@@ -593,7 +593,7 @@
 <span class="sd">        systems is something like: filename.py</span>
 
 <span class="sd">        :return: the file name for the library where this class is</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">file_name</span>
 
     <span class="nd">@property</span>
@@ -602,7 +602,7 @@
 <span class="sd">        posix systems is something like: /abs/path</span>
 
 <span class="sd">        :return: the absolute path for the library where this class is</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">path</span>
 
     <span class="nd">@property</span>

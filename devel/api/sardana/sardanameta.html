@@ -115,8 +115,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../api_measurementgroup.html">Measurement group API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_macroserver.html">MacroServer API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_pool.html">Pool API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../tango_device_pool.html">Pool tango API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../tango_macroserver.html">Macro server tango API</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="sardana.html">Library</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_test.html">Test API</a></li>
 </ul>
@@ -249,7 +247,7 @@ Public members:</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the module name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -296,7 +294,7 @@ library.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_class_name</strong> (<a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; the meta class name</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_class_name</strong> (<a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; the meta class name</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a meta class or None</td>
 </tr>
@@ -331,7 +329,7 @@ or False otherwise.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_class_name</strong> (<a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; the meta class name</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_class_name</strong> (<a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; the meta class name</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if the given meta class name belongs to this library
 or False otherwise</td>
@@ -367,7 +365,7 @@ this library.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_function_name</strong> (<a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; the meta function name</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_function_name</strong> (<a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; the meta function name</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a meta function or None</td>
 </tr>
@@ -402,7 +400,7 @@ or False otherwise.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_function_name</strong> (<a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; the meta function name</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_function_name</strong> (<a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; the meta function name</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if the given meta function name belongs to this library
 or False otherwise</td>
@@ -422,7 +420,7 @@ given meta name or None if the meta does not exist in this library.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_name</strong> (<a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; the meta name (class, function)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_name</strong> (<a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; the meta name (class, function)</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a meta or None</td>
 </tr>
@@ -441,7 +439,7 @@ or False otherwise.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_name</strong> (<a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; the meta name</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>meta_name</strong> (<a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; the meta name</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True if the given meta (class or function) name belongs to this
 library or False otherwise</td>
@@ -498,7 +496,7 @@ this library.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the module name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -515,7 +513,7 @@ this library.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the module name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -548,7 +546,7 @@ documentation exists.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this library documentation or None</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -581,7 +579,7 @@ like: /abs/path/filename.py</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this library file path</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -598,7 +596,7 @@ like: filename.py</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this library file name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1175,7 +1173,7 @@ registered</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this sardana object full name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1272,7 +1270,7 @@ object.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this objects parent</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1486,7 +1484,7 @@ method directly in your code</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">sardana object name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">str</td>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1973,7 +1971,7 @@ systems is something like: filename.py</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the file name for the library where this class is</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -1990,7 +1988,7 @@ posix systems is something like: /abs/path/filename.py</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the file path for for the library where this class is</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -2186,7 +2184,7 @@ registered</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this sardana object full name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -2267,7 +2265,7 @@ object.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this sardana object name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -2299,7 +2297,7 @@ object.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">this objects parent</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -2442,7 +2440,7 @@ for this class.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the module name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -2465,7 +2463,7 @@ posix systems is something like: /abs/path</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the absolute path for the library where this class is</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -2601,7 +2599,7 @@ posix systems is something like: /abs/path</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Param:</th><td class="field-body">sardana object name</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body">str</td>
+<tr class="field-even field"><th class="field-name">Type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>

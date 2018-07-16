@@ -209,7 +209,7 @@
         <span class="sd">&quot;&quot;&quot;initialize the device once in the object lifetime. Override when</span>
 <span class="sd">        necessary but **always** call the method from your super class</span>
 
-<span class="sd">        :param str name: device name&quot;&quot;&quot;</span>
+<span class="sd">        :param :obj:`str` name: device name&quot;&quot;&quot;</span>
         <span class="n">SardanaDevice</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">util</span> <span class="o">=</span> <span class="n">Util</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pool_device</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_device_list_by_class</span><span class="p">(</span><span class="s2">&quot;Pool&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -423,7 +423,7 @@
                               <span class="n">write</span><span class="p">,</span> <span class="n">is_allowed</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds a single dynamic attribute</span>
 
-<span class="sd">        :param str attr_name: the attribute name</span>
+<span class="sd">        :param :obj:`str` attr_name: the attribute name</span>
 <span class="sd">        :param data_info: tango attribute information</span>
 <span class="sd">        :type data_info: seq&lt; :class:`~PyTango.CmdArgType`, :class:`~PyTango.AttrDataFormat`, :class:`~PyTango.AttrWriteType` &gt;</span>
 <span class="sd">        :param attr_info: attribute information</span>
@@ -460,7 +460,7 @@
                                <span class="n">write</span><span class="p">,</span> <span class="n">is_allowed</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds a single standard dynamic attribute</span>
 
-<span class="sd">        :param str attr_name: the attribute name</span>
+<span class="sd">        :param :obj:`str` attr_name: the attribute name</span>
 <span class="sd">        :param data_info: tango attribute information</span>
 <span class="sd">        :type data_info: seq&lt; :class:`~PyTango.CmdArgType`, :class:`~PyTango.AttrDataFormat`, :class:`~PyTango.AttrWriteType` &gt;</span>
 <span class="sd">        :param attr_info: attribute information</span>
@@ -556,11 +556,13 @@
             <span class="k">return</span> <span class="n">DevState</span><span class="o">.</span><span class="n">FAULT</span></div>
 
 <div class="viewcode-block" id="PoolDevice.dev_status"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/PoolDevice.html#sardana.tango.pool.PoolDevice.PoolDevice.dev_status">[docs]</a>    <span class="k">def</span> <span class="nf">dev_status</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Calculates and returns the device status. Called by Tango on a read</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculates and returns the device status. Called by Tango on a read</span>
 <span class="sd">        status request.</span>
 
 <span class="sd">        :return: the device status</span>
-<span class="sd">        :rtype: str&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: :obj:`str`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">element</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">use_cache</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">is_in_operation</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">Force_HW_Read</span>
@@ -893,7 +895,7 @@
 <div class="viewcode-block" id="PoolElementDeviceClass.get_standard_attr_info"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/PoolDevice.html#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.get_standard_attr_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_standard_attr_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns information about the standard attribute</span>
 
-<span class="sd">        :param str attr: attribute name</span>
+<span class="sd">        :param :obj:`str` attr: attribute name</span>
 <span class="sd">        :return: a sequence of tango data_type, data format&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">standard_attr_list</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span></div>
 

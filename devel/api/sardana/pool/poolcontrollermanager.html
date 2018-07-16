@@ -115,8 +115,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../api_measurementgroup.html">Measurement group API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_macroserver.html">MacroServer API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_pool.html">Pool API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../tango_device_pool.html">Pool tango API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../tango_macroserver.html">Macro server tango API</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../sardana.html">Library</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../api_test.html">Test API</a></li>
 </ul>
@@ -288,29 +286,25 @@ controllers.</p>
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getOrCreateControllerLib">
 <code class="descname">getOrCreateControllerLib</code><span class="sig-paren">(</span><em>lib_name</em>, <em>controller_name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getOrCreateControllerLib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getOrCreateControllerLib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the exiting controller lib or creates a new controller lib file.
-If name is not None, a controller template code for the given controller
-name is appended to the end of the file.</p>
+If name is not None, a controller template code for the given
+controller name is appended to the end of the file.</p>
+<dl class="docutils">
+<dt>:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> lib_name: module name, python file name, or full file</dt>
+<dd>name (with path)</dd>
+<dt>:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> controller_name: an optional controller name. If</dt>
+<dd>given a controller template code is appended to the
+end of the file [default: None, meaning no controller
+code is added)</dd>
+</dl>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>lib_name</strong> (<a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; module name, python file name, or full file name
-(with path)</li>
-<li><strong>controller_name</strong> (<a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; an optional controller name. If given a
-controller template code is appended to the
-end of the file [default: None, meaning no
-controller code is added)</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">a sequence with three items: full_filename, code, line number
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a sequence with three items: full_filename, code, line number
 line number is 0 if no controller is created or n representing
-the first line of code for the given controller name.</p>
-</td>
+the first line of code for the given controller name.</td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple&lt;str, str, int&gt;</p>
-</td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">tuple&lt;str, str, int&gt;</td>
 </tr>
 </tbody>
 </table>
@@ -321,18 +315,8 @@ the first line of code for the given controller name.</p>
 <code class="descname">setControllerLib</code><span class="sig-paren">(</span><em>lib_name</em>, <em>code</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.setControllerLib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.setControllerLib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new controller library file with the given name and code.
 The new module is imported and becomes imediately available.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>lib_name</strong> (<a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; name of the new library</li>
-<li><strong>code</strong> (<a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; python code of the new library</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<p>:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> lib_name: name of the new library
+:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> code: python code of the new library</p>
 </dd></dl>
 
 <dl class="method">
@@ -361,7 +345,7 @@ the reload process is not successfull</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>controller_name</strong> (<a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; controller class name</li>
+<li><strong>controller_name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; controller class name</li>
 <li><strong>path</strong> (<em>seq&lt;str&gt;</em>) &#8211; a list of absolute path to search for libraries
 [default: None, meaning the current ControllerPath
 will be used]</li>
@@ -436,7 +420,7 @@ the reload process is not successful</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>module_name</strong> (<a class="reference internal" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; controller library name (=python module name)</li>
+<li><strong>module_name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; controller library name (=python module name)</li>
 <li><strong>path</strong> (<em>seq&lt;str&gt;</em>) &#8211; a list of absolute path to search for libraries
 [default: None, meaning the current ControllerPath
 will be used]</li>

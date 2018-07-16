@@ -115,8 +115,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../api_measurementgroup.html">Measurement group API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api_macroserver.html">MacroServer API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api_pool.html">Pool API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../tango_device_pool.html">Pool tango API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../tango_macroserver.html">Macro server tango API</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../../sardana.html">Library</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../api_test.html">Test API</a></li>
 </ul>
@@ -241,14 +239,7 @@
 <code class="descname">init</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.init" title="Permalink to this definition">¶</a></dt>
 <dd><p>initialize the device once in the object lifetime. Override when
 necessary but <strong>always</strong> call the method from your super class</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<a class="reference internal" href="../../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; device name</td>
-</tr>
-</tbody>
-</table>
+<p>:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> name: device name</p>
 </dd></dl>
 
 <dl class="attribute">
@@ -410,44 +401,26 @@ attribute information</li>
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.add_dynamic_attribute">
 <code class="descname">add_dynamic_attribute</code><span class="sig-paren">(</span><em>attr_name</em>, <em>data_info</em>, <em>attr_info</em>, <em>read</em>, <em>write</em>, <em>is_allowed</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.add_dynamic_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.add_dynamic_attribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a single dynamic attribute</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>attr_name</strong> (<a class="reference internal" href="../../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; the attribute name</li>
-<li><strong>data_info</strong> (seq&lt; <code class="xref py py-class docutils literal"><span class="pre">CmdArgType</span></code>, <code class="xref py py-class docutils literal"><span class="pre">AttrDataFormat</span></code>, <code class="xref py py-class docutils literal"><span class="pre">AttrWriteType</span></code> &gt;) &#8211; tango attribute information</li>
-<li><strong>attr_info</strong> &#8211; attribute information</li>
-<li><strong>read</strong> &#8211; read method for the attribute</li>
-<li><strong>write</strong> &#8211; write method for the attribute</li>
-<li><strong>is_allowed</strong> &#8211; is allowed method</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<p>:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> attr_name: the attribute name
+:param data_info: tango attribute information
+:type data_info: seq&lt; <code class="xref py py-class docutils literal"><span class="pre">CmdArgType</span></code>, <code class="xref py py-class docutils literal"><span class="pre">AttrDataFormat</span></code>, <code class="xref py py-class docutils literal"><span class="pre">AttrWriteType</span></code> &gt;
+:param attr_info: attribute information
+:param read: read method for the attribute
+:param write: write method for the attribute
+:param is_allowed: is allowed method</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.add_standard_attribute">
 <code class="descname">add_standard_attribute</code><span class="sig-paren">(</span><em>attr_name</em>, <em>data_info</em>, <em>attr_info</em>, <em>read</em>, <em>write</em>, <em>is_allowed</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.add_standard_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.add_standard_attribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a single standard dynamic attribute</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>attr_name</strong> (<a class="reference internal" href="../../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; the attribute name</li>
-<li><strong>data_info</strong> (seq&lt; <code class="xref py py-class docutils literal"><span class="pre">CmdArgType</span></code>, <code class="xref py py-class docutils literal"><span class="pre">AttrDataFormat</span></code>, <code class="xref py py-class docutils literal"><span class="pre">AttrWriteType</span></code> &gt;) &#8211; tango attribute information</li>
-<li><strong>attr_info</strong> &#8211; attribute information</li>
-<li><strong>read</strong> &#8211; read method for the attribute</li>
-<li><strong>write</strong> &#8211; write method for the attribute</li>
-<li><strong>is_allowed</strong> &#8211; is allowed method</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+<p>:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> attr_name: the attribute name
+:param data_info: tango attribute information
+:type data_info: seq&lt; <code class="xref py py-class docutils literal"><span class="pre">CmdArgType</span></code>, <code class="xref py py-class docutils literal"><span class="pre">AttrDataFormat</span></code>, <code class="xref py py-class docutils literal"><span class="pre">AttrWriteType</span></code> &gt;
+:param attr_info: attribute information
+:param read: read method for the attribute
+:param write: write method for the attribute
+:param is_allowed: is allowed method</p>
 </dd></dl>
 
 <dl class="method">
@@ -527,7 +500,7 @@ status request.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the device status</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str">str</a></td>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
 </tr>
 </tbody>
 </table>
@@ -592,7 +565,7 @@ stored in the database</p>
 <dd><p>Sardana device class properties definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><span class="xref std std-ref">server</span></p>
+<p class="last"><a class="reference external" href="http://pytango.readthedocs.io/en/stable/howto.html#server" title="(in PyTango v9.2)"><span>Write a server (original API)</span></a></p>
 </div>
 </dd></dl>
 
@@ -602,7 +575,7 @@ stored in the database</p>
 <dd><p>Sardana device properties definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><span class="xref std std-ref">server</span></p>
+<p class="last"><a class="reference external" href="http://pytango.readthedocs.io/en/stable/howto.html#server" title="(in PyTango v9.2)"><span>Write a server (original API)</span></a></p>
 </div>
 </dd></dl>
 
@@ -612,7 +585,7 @@ stored in the database</p>
 <dd><p>Sardana device command definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><span class="xref std std-ref">server</span></p>
+<p class="last"><a class="reference external" href="http://pytango.readthedocs.io/en/stable/howto.html#server" title="(in PyTango v9.2)"><span>Write a server (original API)</span></a></p>
 </div>
 </dd></dl>
 
@@ -622,7 +595,7 @@ stored in the database</p>
 <dd><p>Sardana device attribute definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><span class="xref std std-ref">server</span></p>
+<p class="last"><a class="reference external" href="http://pytango.readthedocs.io/en/stable/howto.html#server" title="(in PyTango v9.2)"><span>Write a server (original API)</span></a></p>
 </div>
 </dd></dl>
 
@@ -802,7 +775,7 @@ element to get the dynamic attribute value</p>
 <dd><p>Sardana device properties definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><span class="xref std std-ref">server</span></p>
+<p class="last"><a class="reference external" href="http://pytango.readthedocs.io/en/stable/howto.html#server" title="(in PyTango v9.2)"><span>Write a server (original API)</span></a></p>
 </div>
 </dd></dl>
 
@@ -812,7 +785,7 @@ element to get the dynamic attribute value</p>
 <dd><p>Sardana device attribute definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><span class="xref std std-ref">server</span></p>
+<p class="last"><a class="reference external" href="http://pytango.readthedocs.io/en/stable/howto.html#server" title="(in PyTango v9.2)"><span>Write a server (original API)</span></a></p>
 </div>
 </dd></dl>
 
@@ -825,16 +798,8 @@ element to get the dynamic attribute value</p>
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDeviceClass.get_standard_attr_info">
 <code class="descname">get_standard_attr_info</code><span class="sig-paren">(</span><em>attr</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDeviceClass.get_standard_attr_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.get_standard_attr_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns information about the standard attribute</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>attr</strong> (<a class="reference internal" href="../../sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; attribute name</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a sequence of tango data_type, data format</td>
-</tr>
-</tbody>
-</table>
+<p>:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> attr: attribute name
+:return: a sequence of tango data_type, data format</p>
 </dd></dl>
 
 </dd></dl>
@@ -910,7 +875,7 @@ element to get the dynamic attribute value</p>
 <dd><p>Sardana device properties definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><span class="xref std std-ref">server</span></p>
+<p class="last"><a class="reference external" href="http://pytango.readthedocs.io/en/stable/howto.html#server" title="(in PyTango v9.2)"><span>Write a server (original API)</span></a></p>
 </div>
 </dd></dl>
 
@@ -920,7 +885,7 @@ element to get the dynamic attribute value</p>
 <dd><p>Sardana device command definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><span class="xref std std-ref">server</span></p>
+<p class="last"><a class="reference external" href="http://pytango.readthedocs.io/en/stable/howto.html#server" title="(in PyTango v9.2)"><span>Write a server (original API)</span></a></p>
 </div>
 </dd></dl>
 
@@ -930,7 +895,7 @@ element to get the dynamic attribute value</p>
 <dd><p>Sardana device attribute definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><span class="xref std std-ref">server</span></p>
+<p class="last"><a class="reference external" href="http://pytango.readthedocs.io/en/stable/howto.html#server" title="(in PyTango v9.2)"><span>Write a server (original API)</span></a></p>
 </div>
 </dd></dl>
 

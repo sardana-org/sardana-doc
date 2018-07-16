@@ -33,10 +33,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 2.4.1-alpha documentation" href="../../index.html"/>
-        <link rel="up" title="Sardana API" href="api_sardana.html"/>
-        <link rel="next" title="Macro Server" href="tango_macroserver.html"/>
-        <link rel="prev" title="Pool API reference" href="api_pool.html"/> 
+    <link rel="top" title="sardana 2.4.1-alpha documentation" href="../../index.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -88,49 +85,11 @@
           
             
             
-                <ul class="current">
+                <ul>
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../../docs.html">Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User&#8217;s Guide</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer&#8217;s Guide</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../overview/index.html">Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../howto_macros/index.html">Writing macros</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../howto_controllers/index.html">Writing controllers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../howto_recorders.html">Writing recorders</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../howto_test/index.html">Sardana Testing</a></li>
-<li class="toctree-l3 current"><a class="reference internal" href="api_sardana.html">API</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="api_macro.html">Macro API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_controller.html">Controller API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_motor.html">Motor API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_IOR.html">I/O register</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_countertimer.html">Counter/timer API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_0D.html">0D experiment channel API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_1D.html">1D experiment channel API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_2D.html">2D experiment channel API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_triggergate.html">Trigger/gate API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_pseudomotor.html">Pseudo motor API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_pseudocounter.html">Pseudo counter API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_measurementgroup.html">Measurement group API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_macroserver.html">MacroServer API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_pool.html">Pool API</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Pool tango API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tango_macroserver.html">Macro server tango API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="sardana/sardana.html">Library</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_test.html">Test API</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="../guide_migration.html">Migration guide</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../guide_coding.html">Development guidelines</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../../sep/index.html">Sardana Enhancement Proposals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../other_versions.html">Docs for other Sardana versions</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="../../docs.html">Documentation</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
 </ul>
 
@@ -161,12 +120,6 @@
 <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
-          <li><a href="../../docs.html">Sardana 2.4 Documentation</a> &raquo;</li>
-      
-          <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
-      
-          <li><a href="api_sardana.html">Sardana API</a> &raquo;</li>
       
     <li>Device Pool Tango <code class="docutils literal"><span class="pre">API</span></code></li>
       <li class="wy-breadcrumbs-aside">
@@ -2381,11 +2334,9 @@ experiment by means of changing the gap and offset values. Pseudo
 motors gap and offset will provide the necessary interface for
 controlling the experiments gap and offset values respectively.</p>
 <p>The calculations that need to be performed are:</p>
-<div class="math">
-<p><img src="../../_images/math/cb4862f68f596f293079277b7ddf5e81dd0f23ad.png" alt="\[ \left\{ \begin{array}{l} gap=sl2t+sl2b\\ offset=\frac{sl2t-sl2b}{2}\end{array}\right.\]"/></p>
-</div><div class="math">
-<p><img src="../../_images/math/a008896ef4107f0cd38f049efc8fef5fab11f0df.png" alt="\[ \left\{ \begin{array}{l} sl2t=-offset+\frac{gap}{2}\\ sl2b=offset+\frac{gap}{2}\end{array}\right.\]"/></p>
-</div><p>The corresponding python code would be:</p>
+<p>[ left{ begin{array}{l} gap=sl2t+sl2b\ offset=frac{sl2t-sl2b}{2}end{array}right.]</p>
+<p>[ left{ begin{array}{l} sl2t=-offset+frac{gap}{2}\ sl2b=offset+frac{gap}{2}end{array}right.]</p>
+<p>The corresponding python code would be:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">01</span>  <span class="k">class</span> <span class="nc">Slit</span><span class="p">(</span><span class="n">PseudoMotor</span><span class="p">):</span>
 <span class="mi">02</span>      <span class="s2">&quot;&quot;&quot;A Slit system for controlling gap and offset pseudo motors.&quot;&quot;&quot;</span>
 <span class="mi">04</span>
@@ -3659,7 +3610,7 @@ Counters                                   Tango::DevString  Spectrum           
 ZeroDExpChannels                           Tango::DevString  Spectrum               R         No         Ope
 OneDExpChannels                            Tango::DevString  Spectrum               R         No         Ope
 TwoDExpChannels                            Tango::DevString  Spectrum               R         No         Ope
-&lt;channel_name <img class="math" src="../../_images/math/805e6f73802e462941b2f50d3bc3cc60e64484cf.png" alt="_{\text{i}}"/> &gt;_Value  Tango::DevDouble  Scalar/Spectrum/Image  R         No         Ope
+&lt;channel_name _{text{i}} &gt;_Value  Tango::DevDouble Scalar/Spectrum/Image  R         No         Ope
 =========================================  ================  =====================  ========  =========  ==========</p>
 <ul class="simple">
 <li><strong>Integration_time</strong> : The group timer integration time. Setting this value to &gt;0 will set
@@ -3675,7 +3626,7 @@ Integration_time attribute to 0 (zero).</li>
 <li><strong>ZeroDExpChannels</strong> : The list of 0D Experiment channel names in the group</li>
 <li><strong>OneDExpChannels</strong> : The list of 1D Experiment channel names in the group</li>
 <li><strong>TwoDExpChannels</strong> : The list of 2D Experiment channel names in the group</li>
-<li><strong>&lt;channel_name</strong> <img class="math" src="../../_images/math/805e6f73802e462941b2f50d3bc3cc60e64484cf.png" alt="_{\text{i}}"/> <strong>&gt;_Value</strong> : (with <img class="math" src="../../_images/math/021dd89032b750ae91609949e81ce3bda948bf19.png" alt="0\leq i&lt;n"/> ) attributes dynamically created (one for each channel) which will
+<li><strong>&lt;channel_name</strong> _{text{i}} <strong>&gt;_Value</strong> : (with 0leq i&lt;n ) attributes dynamically created (one for each channel) which will
 contain the corresponding channel Value(for Counter/Timer, 1D or
 2DExpChannels), CumulatedValue(for 0DExpChannels). For Counter/Timers
 and 0DExpChannels the data format will be Scalar. For 1DExpChannels it
@@ -3749,7 +3700,7 @@ start acquiring data and when they stop.</p>
 <h4>Reading the measurement group channel values<a class="headerlink" href="#reading-the-measurement-group-channel-values" title="Permalink to this headline">¶</a></h4>
 <p>For each measurement group there is a set of key dynamic attributes
 representing the value of each channel in the group. They are named
-&lt;channel_name <img class="math" src="../../_images/math/805e6f73802e462941b2f50d3bc3cc60e64484cf.png" alt="_{\text{i}}"/> &gt;_Value. Special care has been taken on the management of these
+&lt;channel_name _{text{i}} &gt;_Value. Special care has been taken on the management of these
 attributes with distinct behavior depending on the type of channel the
 attribute represents (Counter/Timer, 0D, 1D or 2D channel).</p>
 </div>
@@ -3799,7 +3750,7 @@ XXX: Unknown inset LatexCommand ref{par:Reading-the-ZeroDExpChannel}:
 <p>Measurement group devices can often contain many channels. Client
 applications often request channel values for the set (or subset) of
 channels in a group. Read requests for these channel values through
-the &lt;channel_name <img class="math" src="../../_images/math/805e6f73802e462941b2f50d3bc3cc60e64484cf.png" alt="_{\text{i}}"/> &gt;_Value attributes of a measurement group should be done by clients in
+the &lt;channel_name _{text{i}} &gt;_Value attributes of a measurement group should be done by clients in
 groups as often as possible. This can be achieved by using the client
 <a class="reference external" href="http://www.tango-controls.org/">Tango</a> API call read_attributes on a DeviceProxy object. This will
 ensure maximum performance by minimizing hardware access since the
@@ -5232,15 +5183,6 @@ algorithm.</p>
            </div>
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="tango_macroserver.html" class="btn btn-neutral float-right" title="Macro Server" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="api_pool.html" class="btn btn-neutral" title="Pool API reference" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

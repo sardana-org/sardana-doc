@@ -115,8 +115,6 @@
 <li class="toctree-l4"><a class="reference internal" href="api_measurementgroup.html">Measurement group API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_macroserver.html">MacroServer API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_pool.html">Pool API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tango_device_pool.html">Pool tango API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="tango_macroserver.html">Macro server tango API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="sardana/sardana.html">Library</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_test.html">Test API</a></li>
 </ul>
@@ -288,7 +286,7 @@ executed the stop method of the given object will be called.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj_list</strong> (<a class="reference internal" href="sardana/macroserver/macros/sequence.html#sardana.macroserver.macros.sequence.sequence" title="sardana.macroserver.macros.sequence.sequence"><em>sequence</em></a>) &#8211; list of objects to be controlled</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>obj_list</strong> (<code class="xref py py-obj docutils literal"><span class="pre">collections.Sequence</span></code>) &#8211; list of objects to be controlled</td>
 </tr>
 </tbody>
 </table>
@@ -562,7 +560,7 @@ higher level version of runMacro method. It is the same as:</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>name</strong> (<a class="reference internal" href="sardana/sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; name of the macro to be prepared</li>
+<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; name of the macro to be prepared</li>
 <li><strong>args</strong> &#8211; list of parameter objects</li>
 <li><strong>kwargs</strong> &#8211; list of keyword parameters</li>
 </ul>
@@ -867,10 +865,10 @@ key must be a string containing the environment variable name.</li>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>key</strong> (<a class="reference internal" href="sardana/sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; environment variable name [default: None, meaning all environment]</li>
-<li><strong>door_name</strong> (<a class="reference internal" href="sardana/sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; local context for a given door [default: None, meaning no door
+<li><strong>key</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; environment variable name [default: None, meaning all environment]</li>
+<li><strong>door_name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; local context for a given door [default: None, meaning no door
 context is used]</li>
-<li><strong>macro_name</strong> (<a class="reference internal" href="sardana/sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; local context for a given macro [default: None, meaning no macro
+<li><strong>macro_name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; local context for a given macro [default: None, meaning no macro
 context is used]</li>
 </ul>
 </td>
@@ -999,7 +997,7 @@ given library name.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lib_name</strong> (<a class="reference internal" href="sardana/sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; library name</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lib_name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; library name</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a macro library <a class="reference internal" href="sardana/macroserver/msmetamacro.html#sardana.macroserver.msmetamacro.MacroLibrary" title="sardana.macroserver.msmetamacro.MacroLibrary"><code class="xref py py-class docutils literal"><span class="pre">MacroLibrary</span></code></a></td>
 </tr>
@@ -1041,7 +1039,7 @@ given library name.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lib_name</strong> (<a class="reference internal" href="sardana/sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; library name</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>lib_name</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; library name</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a macro library <a class="reference internal" href="sardana/macroserver/msmetamacro.html#sardana.macroserver.msmetamacro.MacroLibrary" title="sardana.macroserver.msmetamacro.MacroLibrary"><code class="xref py py-class docutils literal"><span class="pre">MacroLibrary</span></code></a></td>
 </tr>
@@ -1713,14 +1711,7 @@ Example:</p>
 <dt id="sardana.macroserver.macro.Macro.outputBlock">
 <code class="descname">outputBlock</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macro.html#Macro.outputBlock"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macro.Macro.outputBlock" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Sends an line tagged as a block to the output</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>line</strong> (<a class="reference internal" href="sardana/sardanabase.html#sardana.sardanabase.SardanaBaseObject.str" title="sardana.sardanabase.SardanaBaseObject.str"><em>str</em></a>) &#8211; line to be sent</td>
-</tr>
-</tbody>
-</table>
+<p>:param <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> line: line to be sent</p>
 </dd></dl>
 
 <dl class="method">
