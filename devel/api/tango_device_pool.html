@@ -2382,9 +2382,9 @@ motors gap and offset will provide the necessary interface for
 controlling the experiments gap and offset values respectively.</p>
 <p>The calculations that need to be performed are:</p>
 <div class="math">
-<p><span class="math">\[ \left\{ \begin{array}{l} gap=sl2t+sl2b\\ offset=\frac{sl2t-sl2b}{2}\end{array}\right.\]</span></p>
+<p><img src="../../_images/math/cb4862f68f596f293079277b7ddf5e81dd0f23ad.png" alt="\[ \left\{ \begin{array}{l} gap=sl2t+sl2b\\ offset=\frac{sl2t-sl2b}{2}\end{array}\right.\]"/></p>
 </div><div class="math">
-<p><span class="math">\[ \left\{ \begin{array}{l} sl2t=-offset+\frac{gap}{2}\\ sl2b=offset+\frac{gap}{2}\end{array}\right.\]</span></p>
+<p><img src="../../_images/math/a008896ef4107f0cd38f049efc8fef5fab11f0df.png" alt="\[ \left\{ \begin{array}{l} sl2t=-offset+\frac{gap}{2}\\ sl2b=offset+\frac{gap}{2}\end{array}\right.\]"/></p>
 </div><p>The corresponding python code would be:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">01</span>  <span class="k">class</span> <span class="nc">Slit</span><span class="p">(</span><span class="n">PseudoMotor</span><span class="p">):</span>
 <span class="mi">02</span>      <span class="s2">&quot;&quot;&quot;A Slit system for controlling gap and offset pseudo motors.&quot;&quot;&quot;</span>
@@ -3659,7 +3659,7 @@ Counters                                   Tango::DevString  Spectrum           
 ZeroDExpChannels                           Tango::DevString  Spectrum               R         No         Ope
 OneDExpChannels                            Tango::DevString  Spectrum               R         No         Ope
 TwoDExpChannels                            Tango::DevString  Spectrum               R         No         Ope
-&lt;channel_name <span class="math">_{\text{i}}</span> &gt;_Value  Tango::DevDouble  Scalar/Spectrum/Image  R         No         Ope
+&lt;channel_name <img class="math" src="../../_images/math/805e6f73802e462941b2f50d3bc3cc60e64484cf.png" alt="_{\text{i}}"/> &gt;_Value  Tango::DevDouble  Scalar/Spectrum/Image  R         No         Ope
 =========================================  ================  =====================  ========  =========  ==========</p>
 <ul class="simple">
 <li><strong>Integration_time</strong> : The group timer integration time. Setting this value to &gt;0 will set
@@ -3675,7 +3675,7 @@ Integration_time attribute to 0 (zero).</li>
 <li><strong>ZeroDExpChannels</strong> : The list of 0D Experiment channel names in the group</li>
 <li><strong>OneDExpChannels</strong> : The list of 1D Experiment channel names in the group</li>
 <li><strong>TwoDExpChannels</strong> : The list of 2D Experiment channel names in the group</li>
-<li><strong>&lt;channel_name</strong> <span class="math">_{\text{i}}</span> <strong>&gt;_Value</strong> : (with <span class="math">0\leq i&lt;n</span> ) attributes dynamically created (one for each channel) which will
+<li><strong>&lt;channel_name</strong> <img class="math" src="../../_images/math/805e6f73802e462941b2f50d3bc3cc60e64484cf.png" alt="_{\text{i}}"/> <strong>&gt;_Value</strong> : (with <img class="math" src="../../_images/math/021dd89032b750ae91609949e81ce3bda948bf19.png" alt="0\leq i&lt;n"/> ) attributes dynamically created (one for each channel) which will
 contain the corresponding channel Value(for Counter/Timer, 1D or
 2DExpChannels), CumulatedValue(for 0DExpChannels). For Counter/Timers
 and 0DExpChannels the data format will be Scalar. For 1DExpChannels it
@@ -3749,7 +3749,7 @@ start acquiring data and when they stop.</p>
 <h4>Reading the measurement group channel values<a class="headerlink" href="#reading-the-measurement-group-channel-values" title="Permalink to this headline">¶</a></h4>
 <p>For each measurement group there is a set of key dynamic attributes
 representing the value of each channel in the group. They are named
-&lt;channel_name <span class="math">_{\text{i}}</span> &gt;_Value. Special care has been taken on the management of these
+&lt;channel_name <img class="math" src="../../_images/math/805e6f73802e462941b2f50d3bc3cc60e64484cf.png" alt="_{\text{i}}"/> &gt;_Value. Special care has been taken on the management of these
 attributes with distinct behavior depending on the type of channel the
 attribute represents (Counter/Timer, 0D, 1D or 2D channel).</p>
 </div>
@@ -3799,7 +3799,7 @@ XXX: Unknown inset LatexCommand ref{par:Reading-the-ZeroDExpChannel}:
 <p>Measurement group devices can often contain many channels. Client
 applications often request channel values for the set (or subset) of
 channels in a group. Read requests for these channel values through
-the &lt;channel_name <span class="math">_{\text{i}}</span> &gt;_Value attributes of a measurement group should be done by clients in
+the &lt;channel_name <img class="math" src="../../_images/math/805e6f73802e462941b2f50d3bc3cc60e64484cf.png" alt="_{\text{i}}"/> &gt;_Value attributes of a measurement group should be done by clients in
 groups as often as possible. This can be achieved by using the client
 <a class="reference external" href="http://www.tango-controls.org/">Tango</a> API call read_attributes on a DeviceProxy object. This will
 ensure maximum performance by minimizing hardware access since the
