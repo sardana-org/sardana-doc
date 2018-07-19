@@ -2346,6 +2346,67 @@ Example:</p>
 </dd></dl>
 
 </div>
+<div class="section" id="hookable-class">
+<h2>Hookable class<a class="headerlink" href="#hookable-class" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="sardana.macroserver.macro.Hookable">
+<em class="property">class </em><code class="descname">Hookable</code><span class="sig-paren">(</span><em>name=''</em>, <em>parent=None</em>, <em>format=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macro.html#Hookable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macro.Hookable" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="sardana.macroserver.macro.Hookable.appendHook">
+<code class="descname">appendHook</code><span class="sig-paren">(</span><em>hook_info</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macro.html#Hookable.appendHook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macro.Hookable.appendHook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a hook according to the hook information</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hook_info</strong> &#8211; sequence of two elements, the first one is the hook
+and its optional parameters/arguments, the second one is the list
+of hints e.g. hook places</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.macroserver.macro.Hookable.getAllowedHookHints">
+<code class="descname">getAllowedHookHints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macro.html#Hookable.getAllowedHookHints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macro.Hookable.getAllowedHookHints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.macroserver.macro.Hookable.getHints">
+<code class="descname">getHints</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macro.html#Hookable.getHints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macro.Hookable.getHints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.macroserver.macro.Hookable.getHooks">
+<code class="descname">getHooks</code><span class="sig-paren">(</span><em>hint=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macro.html#Hookable.getHooks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macro.Hookable.getHooks" title="Permalink to this definition">¶</a></dt>
+<dd><p>This will return a list of hooks that have the given hint. Two reserved
+hints are always valid:</p>
+<ul class="simple">
+<li>&#8220;_ALL_&#8221;: which contains all the hooks</li>
+<li>&#8220;_NOHINTS_&#8221;: which contains the hooks that don&#8217;t provide any hint</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>hint</strong> &#8211; (str) a hint. If None is passed, it returns a list of
+(hook,hints) tuples</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">(list) an ordered list of hooks that have the given hint</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.macroserver.macro.Hookable.hooks">
+<code class="descname">hooks</code><a class="headerlink" href="#sardana.macroserver.macro.Hookable.hooks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="imacro-class">
 <h2>iMacro class<a class="headerlink" href="#imacro-class" title="Permalink to this headline">¶</a></h2>
 <dl class="class">

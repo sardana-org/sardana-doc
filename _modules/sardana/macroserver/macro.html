@@ -301,7 +301,7 @@
         <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_event</span><span class="o">.</span><span class="n">isSet</span><span class="p">()</span>
 
 
-<span class="k">class</span> <span class="nc">Hookable</span><span class="p">(</span><span class="n">Logger</span><span class="p">):</span>
+<div class="viewcode-block" id="Hookable"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Hookable">[docs]</a><span class="k">class</span> <span class="nc">Hookable</span><span class="p">(</span><span class="n">Logger</span><span class="p">):</span>
 
     <span class="c1"># avoid creating an __init__</span>
 
@@ -319,29 +319,30 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;_ALL_&#39;</span><span class="p">:</span> <span class="p">[],</span> <span class="s1">&#39;_NOHINTS_&#39;</span><span class="p">:</span> <span class="p">[]}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span>
 
-    <span class="k">def</span> <span class="nf">getAllowedHookHints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">hints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;allowsHooks&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="Hookable.getAllowedHookHints"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Hookable.getAllowedHookHints">[docs]</a>    <span class="k">def</span> <span class="nf">getAllowedHookHints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">hints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;allowsHooks&#39;</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">getHints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getHookHintsDict</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<div class="viewcode-block" id="Hookable.getHints"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Hookable.getHints">[docs]</a>    <span class="k">def</span> <span class="nf">getHints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getHookHintsDict</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span></div>
 
-    <span class="k">def</span> <span class="nf">getHooks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;This will return a list of hooks that have the given hint. Two reserved</span>
+<div class="viewcode-block" id="Hookable.getHooks"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Hookable.getHooks">[docs]</a>    <span class="k">def</span> <span class="nf">getHooks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hint</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This will return a list of hooks that have the given hint. Two reserved</span>
 <span class="sd">        hints are always valid:</span>
-<span class="sd">          - &quot;_ALL_&quot;: which contains all the hooks</span>
-<span class="sd">          - &quot;_NOHINTS_&quot;: which contains the hooks that don&#39;t provide any hint</span>
+
+<span class="sd">        - &quot;_ALL_&quot;: which contains all the hooks</span>
+<span class="sd">        - &quot;_NOHINTS_&quot;: which contains the hooks that don&#39;t provide any hint</span>
 
 <span class="sd">        :param hint: (str) a hint. If None is passed, it returns a list of</span>
 <span class="sd">                     (hook,hints) tuples</span>
 
 <span class="sd">        :return: (list) an ordered list of hooks that have the given hint</span>
-<span class="sd">        &#39;&#39;&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">hint</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getHooks</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getHookHintsDict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hint</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getHookHintsDict</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">hint</span><span class="p">,</span> <span class="p">[])</span></div>
 
-    <span class="k">def</span> <span class="nf">appendHook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook_info</span><span class="p">):</span>
+<div class="viewcode-block" id="Hookable.appendHook"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Hookable.appendHook">[docs]</a>    <span class="k">def</span> <span class="nf">appendHook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook_info</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Append a hook according to the hook information</span>
 
 <span class="sd">        :param hook_info: sequence of two elements, the first one is the hook</span>
@@ -365,7 +366,7 @@
                 <span class="k">try</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="n">hint</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="n">hint</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">hook</span><span class="p">]</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="n">hint</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">hook</span><span class="p">]</span></div>
 
     <span class="nd">@propertx</span>
     <span class="k">def</span> <span class="nf">hooks</span><span class="p">():</span>
@@ -417,7 +418,7 @@
                             <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="n">hint</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
                         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="n">hint</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">hook</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">get</span><span class="p">,</span> <span class="nb">set</span>
+        <span class="k">return</span> <span class="n">get</span><span class="p">,</span> <span class="nb">set</span></div>
 
 
 <span class="k">class</span> <span class="nc">ExecMacroHook</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>

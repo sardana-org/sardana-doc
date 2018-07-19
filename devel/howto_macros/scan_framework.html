@@ -175,34 +175,33 @@ acquires data along the path of the motor(s). See the
 level API (the <em>scan framework</em>) that greatly simplifies the development of
 scan macros by taking care of the details about synchronization of motors and
 of acquisitions.</p>
-<p>The scan framework is implemented in the <code class="xref py py-mod docutils literal"><span class="pre">scan</span></code>
-module, which provides the <code class="xref py py-class docutils literal"><span class="pre">GScan</span></code> base class
-and its specialized derived classes <code class="xref py py-class docutils literal"><span class="pre">SScan</span></code>
-and <code class="xref py py-class docutils literal"><span class="pre">CScan</span></code> for step  and continuous scans,
+<p>The scan framework is implemented in the <a class="reference internal" href="../api/sardana/macroserver/scan.html#module-sardana.macroserver.scan" title="sardana.macroserver.scan"><code class="xref py py-mod docutils literal"><span class="pre">scan</span></code></a>
+module, which provides the <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan" title="sardana.macroserver.scan.GScan"><code class="xref py py-class docutils literal"><span class="pre">GScan</span></code></a> base class
+and its specialized derived classes <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.SScan" title="sardana.macroserver.scan.SScan"><code class="xref py py-class docutils literal"><span class="pre">SScan</span></code></a>
+and <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.CScan" title="sardana.macroserver.scan.CScan"><code class="xref py py-class docutils literal"><span class="pre">CScan</span></code></a> for step  and continuous scans,
 respectively.</p>
 <p>Creating a scan macro consists in writing a generic macro (see
 <a class="reference internal" href="macros_general.html#sardana-macros-howto"><span class="std std-ref">the generic macro writing instructions</span></a>) in
-which an instance of <code class="xref py py-class docutils literal"><span class="pre">GScan</span></code> is created
+which an instance of <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan" title="sardana.macroserver.scan.GScan"><code class="xref py py-class docutils literal"><span class="pre">GScan</span></code></a> is created
 (typically in the <a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.prepare" title="sardana.macroserver.macro.Macro.prepare"><code class="xref py py-meth docutils literal"><span class="pre">prepare()</span></code></a> method) which is then invoked in the
 <a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.run" title="sardana.macroserver.macro.Macro.run"><code class="xref py py-meth docutils literal"><span class="pre">run()</span></code></a> method.</p>
 <p>Central to the scan framework is the
-<code class="xref py py-meth docutils literal"><span class="pre">generator()</span></code> function, which
+<a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan.generator" title="sardana.macroserver.scan.GScan.generator"><code class="xref py py-attr docutils literal"><span class="pre">generator</span></code></a> function, which
 must be passed to the GScan constructor. This generator is a function that
 allows to construct the path of the scan (see
-<code class="xref py py-class docutils literal"><span class="pre">GScan</span></code> for detailed information on the
+<a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan" title="sardana.macroserver.scan.GScan"><code class="xref py py-class docutils literal"><span class="pre">GScan</span></code></a> for detailed information on the
 generator).</p>
 <div class="section" id="a-basic-example-on-writing-a-step-scan">
 <h2>A basic example on writing a step scan<a class="headerlink" href="#a-basic-example-on-writing-a-step-scan" title="Permalink to this headline">¶</a></h2>
 <p>Step scans are built using an instance of the
-<code class="xref py py-class docutils literal"><span class="pre">SScan</span></code> class, which requires a step generator
+<a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.SScan" title="sardana.macroserver.scan.SScan"><code class="xref py py-class docutils literal"><span class="pre">SScan</span></code></a> class, which requires a step generator
 that defines the path for the motion. Since in a step scan the data is acquired
 at each step, the generator controls both the motion and the acquisition.</p>
 <p>Note that in general, the generator does not need to generate a determinate (or
 even finite) number of steps. Also note that it is possible to write generators
 that vary their current step based on the acquired values (e.g., changing step
 sizes as a function of some counter reading).</p>
-<p>The <code class="xref py py-class docutils literal"><span class="pre">ascan_demo</span></code> macro illustrates
-the most basic features of a step scan:</p>
+<p>The <code class="docutils literal"><span class="pre">ascan_demo</span></code> macro illustrates the most basic features of a step scan:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ascan_demo</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This is a basic reimplementation of the ascan` macro for demonstration</span>
@@ -257,13 +256,15 @@ the most basic features of a step scan:</p>
 <p>The <code class="xref py py-class docutils literal"><span class="pre">ascan_demo</span></code> shows only basic
 features of the scan framework, but it already shows that writing a step scan
 macro is mostly just a matter of writing a generator function.</p>
-<p>It also shows that the <code class="xref py py-meth docutils literal"><span class="pre">scan.gscan.GScan.data()</span></code> method can be used to
-provide the needed return value of <a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.data" title="sardana.macroserver.macro.Macro.data"><code class="xref py py-meth docutils literal"><span class="pre">data()</span></code></a></p>
+<p>It also shows that the <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan" title="sardana.macroserver.scan.GScan"><code class="xref py py-class docutils literal"><span class="pre">GScan</span></code></a>&#8216;s
+<a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan.data" title="sardana.macroserver.scan.GScan.data"><code class="xref py py-attr docutils literal"><span class="pre">data</span></code></a> property
+can be used to provide the needed return value of the <a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro" title="sardana.macroserver.macro.Macro"><code class="xref py py-class docutils literal"><span class="pre">Macro</span></code></a>&#8216;s
+<a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.data" title="sardana.macroserver.macro.Macro.data"><code class="xref py py-attr docutils literal"><span class="pre">data</span></code></a>.</p>
 </div>
 <div class="section" id="a-basic-example-on-writing-a-continuous-scan">
 <h2>A basic example on writing a continuous scan<a class="headerlink" href="#a-basic-example-on-writing-a-continuous-scan" title="Permalink to this headline">¶</a></h2>
 <p>Continuous scans are built using an instance of the
-<code class="xref py py-class docutils literal"><span class="pre">CScan</span></code> class. Since in the continuous scans
+<a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.CScan" title="sardana.macroserver.scan.CScan"><code class="xref py py-class docutils literal"><span class="pre">CScan</span></code></a> class. Since in the continuous scans
 the acquisition and motion are decoupled, CScan requires two independent
 generators:</p>
 <ul class="simple">
@@ -272,7 +273,7 @@ similar way as the step generator does for a step scan. The steps
 generated by this generator are also called &#8220;waypoints&#8221;.</li>
 <li>a <em>period generator</em> which controls the data acquisition steps.</li>
 </ul>
-<p>Essentially, <code class="xref py py-class docutils literal"><span class="pre">CScan</span></code> implements the continuous
+<p>Essentially, <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.CScan" title="sardana.macroserver.scan.CScan"><code class="xref py py-class docutils literal"><span class="pre">CScan</span></code></a> implements the continuous
 scan as an acquisition loop (controlled by the period generator) nested within
 a motion loop (controlled by the waypoint generator). Note that each loop is
 run on an independent thread, and only limited communication occurs between the
@@ -343,20 +344,22 @@ the most basic features of a continuous scan::</p>
 <div class="section" id="hooks-support-in-scans">
 <h2>Hooks support in scans<a class="headerlink" href="#hooks-support-in-scans" title="Permalink to this headline">¶</a></h2>
 <p>In general, the Hooks API provided by the
-<code class="xref py py-class docutils literal"><span class="pre">Hookable</span></code> base class allows a macro to run
-other code (the hook callable) at certain points of its execution. The hooks
-use a &#8220;hints&#8221; mechanism to pass the receiving macro some extra information on
-how/when they should be executed. The hints are strings, and its content is not
-fixed by the API, being up to each macro to identify, use and/or ignore them.</p>
-<p>You can find some examples of the use of hooks in the
-<code class="xref py py-mod docutils literal"><span class="pre">hooks</span></code> module.</p>
-<p>In the case of the scan macros, the hooks can be either registered directly via
-the Hooks API or passed as key:values of the &#8220;step&#8221; dictionary returned by the
-scan <code class="xref py py-meth docutils literal"><span class="pre">generator()</span></code> (see
-<code class="xref py py-class docutils literal"><span class="pre">GScan</span></code> for more details).</p>
-<p>The hints for a given hook are used by the scan framework to select the moment
-of the scan execution that the given hook is run. The following is a list of
-hint strings that scan macros support (other hints are ignored):</p>
+<a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Hookable" title="sardana.macroserver.macro.Hookable"><code class="xref py py-class docutils literal"><span class="pre">Hookable</span></code></a> base class allows a macro to run
+other code (the hook callable) at certain points of its execution. When
+registering, hooks are identified by <em>hook places</em> so the macro knows
+how/when they should be executed. The <em>hook places</em> are just arbitrary strings
+and are not fixed by the API, being up to each macro to identify, use and/or
+ignore them.</p>
+<p>You can find some examples of the use of hooks in
+<a class="reference internal" href="../examples/macro_hooks_examples.html#sardana-devel-macro-hooks-examples"><span class="std std-ref">Macro hooks examples</span></a> chapter.</p>
+<p>In the case of the scan macros, the hooks can be registered not only via
+the Hooks API but also passed as <code class="docutils literal"><span class="pre">key:value</span></code> pairs, where key is a hook place
+value is a list of callable hooks, of the &#8220;step&#8221; dictionary returned by the
+scan <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan.generator" title="sardana.macroserver.scan.GScan.generator"><code class="xref py py-attr docutils literal"><span class="pre">generator</span></code></a>
+(see <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan" title="sardana.macroserver.scan.GScan"><code class="xref py py-class docutils literal"><span class="pre">GScan</span></code></a> for more details and
+<a class="reference internal" href="../api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.aNscan" title="sardana.macroserver.macros.scan.aNscan"><code class="xref py py-class docutils literal"><span class="pre">aNscan</span></code></a> as a use case).</p>
+<p>The following is a list of hint strings that scan macros support (other
+hints are ignored):</p>
 <ul class="simple">
 <li>&#8216;pre-scan-hooks&#8217; : before starting the scan.</li>
 <li>&#8216;pre-move-hooks&#8217; : for steps: before starting to move.</li>
@@ -365,24 +368,26 @@ hint strings that scan macros support (other hints are ignored):</p>
 <li>&#8216;post-acq-hooks&#8217; : for steps: after finishing acquisition but before
 recording the step.</li>
 <li>&#8216;post-step-hooks&#8217; : for steps: after finishing recording the step.</li>
-<li>&#8216;post-scan-hooks&#8217; : after finishing the scan</li>
+<li>&#8216;post-scan-hooks&#8217; : after finishing the scan.</li>
 </ul>
-<p>See the code of <code class="xref py py-class docutils literal"><span class="pre">hooked_scan</span></code>
-for a macro that demonstrates the use of the hook points of a scan.</p>
-<p>Other examples of the <code class="xref py py-mod docutils literal"><span class="pre">hooks</span></code> module
-can be illustrative.</p>
+<p>The standard scan macros, see module <a class="reference internal" href="../api/sardana/macroserver/macros/scan.html#module-sardana.macroserver.macros.scan" title="sardana.macroserver.macros.scan"><code class="xref py py-mod docutils literal"><span class="pre">scan</span></code></a>,
+support the above hints name suppressing the end <strong>_hooks</strong>, ex. &#8216;pre-scan&#8217;,
+&#8216;pre-move&#8217;, ...</p>
+<p>See the code of the <code class="docutils literal"><span class="pre">hooked_scan</span></code> macro in
+<a class="reference internal" href="../examples/macro_hooks_examples.html#sardana-devel-macro-hooks-examples"><span class="std std-ref">Macro hooks examples</span></a> that demonstrates the use of the
+hook points of a scan. Other examples of the same chapter can be illustrative.</p>
 <p>Also, note that the Taurus MacroExecutor widget allows the user to dynamically
 add hooks to existing macros before execution.</p>
 </div>
 <div class="section" id="more-examples">
 <h2>More examples<a class="headerlink" href="#more-examples" title="Permalink to this headline">¶</a></h2>
-<p>Other macros in the <code class="xref py py-mod docutils literal"><span class="pre">examples</span></code> module
-illustrate more features of the scan framework.</p>
+<p>Other macros in <a class="reference internal" href="../examples/macro_scans_examples.html#sardana-devel-macro-scans-examples"><span class="std std-ref">Macro scans examples</span></a> illustrate more
+features of the scan framework.</p>
 <p>See also the code of the standard scan macros in the
 <a class="reference internal" href="../api/sardana/macroserver/macros/scan.html#module-sardana.macroserver.macros.scan" title="sardana.macroserver.macros.scan"><code class="xref py py-mod docutils literal"><span class="pre">scan</span></code></a> module.</p>
-<p>Finally, the documentation and code of <code class="xref py py-class docutils literal"><span class="pre">GScan</span></code>,
-<code class="xref py py-class docutils literal"><span class="pre">SScan</span></code> and
-<code class="xref py py-class docutils literal"><span class="pre">CScan</span></code> may be helpful.</p>
+<p>Finally, the documentation and code of <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan" title="sardana.macroserver.scan.GScan"><code class="xref py py-mod docutils literal"><span class="pre">GScan</span></code></a>,
+<a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.SScan" title="sardana.macroserver.scan.SScan"><code class="xref py py-class docutils literal"><span class="pre">SScan</span></code></a> and
+<a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.CScan" title="sardana.macroserver.scan.CScan"><code class="xref py py-class docutils literal"><span class="pre">CScan</span></code></a> may be helpful.</p>
 </div>
 </div>
 
