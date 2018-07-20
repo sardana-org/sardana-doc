@@ -108,6 +108,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#counting">Counting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#scanning">Scanning</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#accessing-macro-data">Accessing macro data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-appearance-with-view-options">Changing appearance with View Options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#editing-macros">Editing macros</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#debugging-problems">Debugging problems</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#spock-syntax-and-advanced-spock-syntax"><em>Spock syntax</em> and <em>Advanced spock syntax</em></a></li>
@@ -569,6 +570,27 @@ Example accesing scan data:</p>
 <span class="gp">Result [16]: </span><span class="mf">1.0</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="changing-appearance-with-view-options">
+<h2>Changing appearance with View Options<a class="headerlink" href="#changing-appearance-with-view-options" title="Permalink to this headline">¶</a></h2>
+<p>The <em>View Options</em> allow the users to customize the output displayed by certain
+macros. They are set by the macro <a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.setvo" title="sardana.macroserver.macros.env.setvo"><code class="xref py py-class docutils literal"><span class="pre">setvo</span></code></a>.
+The macro <a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.usetvo" title="sardana.macroserver.macros.env.usetvo"><code class="xref py py-class docutils literal"><span class="pre">usetvo</span></code></a> returns the
+<em>View Options</em> to the default value. And the macro
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.lsvo" title="sardana.macroserver.macros.env.lsvo"><code class="xref py py-class docutils literal"><span class="pre">lsvo</span></code></a> lists the current values.</p>
+<p>Available <em>View Options</em>:</p>
+<ul class="simple">
+<li><strong>ShowDial</strong>: Select if the <a class="reference internal" href="../glossary.html#term-dial"><span class="xref std std-term">dial</span></a> information of the motor should be
+displayed. <br> Default value <code class="docutils literal"><span class="pre">False</span></code> (no <a class="reference internal" href="../glossary.html#term-dial"><span class="xref std std-term">dial</span></a> but only
+<a class="reference internal" href="../glossary.html#term-user"><span class="xref std std-term">user</span></a> information).</li>
+<li><strong>ShowCtrlAxis</strong>: Select if the name of the controller the motor belongs to
+should be displayed. Default value <code class="docutils literal"><span class="pre">False</span></code> (no controller name).</li>
+<li><strong>PosFormat</strong>: Set the number of decimal digits displayed in the motor
+position/limits. <br> Default value <code class="docutils literal"><span class="pre">-1</span></code> (all digits).</li>
+<li><strong>OutputBlock</strong>: Set if the line information during scans is appended to the
+output or updated. <br> Default value <code class="docutils literal"><span class="pre">False</span></code> (lines are appended to the
+displayed output during the scan).</li>
+</ul>
 </div>
 <div class="section" id="editing-macros">
 <h2>Editing macros<a class="headerlink" href="#editing-macros" title="Permalink to this headline">¶</a></h2>
