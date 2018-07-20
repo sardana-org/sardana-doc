@@ -350,16 +350,19 @@ registering, hooks are identified by <em>hook places</em> so the macro knows
 how/when they should be executed. The <em>hook places</em> are just arbitrary strings
 and are not fixed by the API, being up to each macro to identify, use and/or
 ignore them.</p>
-<p>You can find some examples of the use of hooks in
-<a class="reference internal" href="../examples/macro_hooks_examples.html#sardana-devel-macro-hooks-examples"><span class="std std-ref">Macro hooks examples</span></a> chapter.</p>
+<p>See the code of the <code class="docutils literal"><span class="pre">hooked_scan</span></code> macro in
+<a class="reference internal" href="../examples/macro_hooks_examples.html#sardana-devel-macro-hooks-examples"><span class="std std-ref">Macro hooks examples</span></a> that demonstrates how to use the
+Hooks API in scans. Other examples of the same chapter can be illustrative.</p>
+<p>Also, note that the Sardana-Taurus widget Sequencer widget allows the user
+to dynamically add hooks to existing macros before execution.</p>
 <p>In the case of the scan macros, the hooks can be registered not only via
-the Hooks API but also passed as <code class="docutils literal"><span class="pre">key:value</span></code> pairs, where key is a hook place
-value is a list of callable hooks, of the &#8220;step&#8221; dictionary returned by the
+the Hooks API but also passed as <code class="docutils literal"><span class="pre">key:value</span></code> pairs, where key is a
+concatenation of a <em>hook place</em> and the <strong>-hooks</strong> string e.g. pre-scan-hooks
+and value is a list of callable hooks, of the &#8220;step&#8221; dictionary returned by the
 scan <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan.generator" title="sardana.macroserver.scan.GScan.generator"><code class="xref py py-attr docutils literal"><span class="pre">generator</span></code></a>
 (see <a class="reference internal" href="../api/sardana/macroserver/scan.html#sardana.macroserver.scan.GScan" title="sardana.macroserver.scan.GScan"><code class="xref py py-class docutils literal"><span class="pre">GScan</span></code></a> for more details and
 <a class="reference internal" href="../api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.aNscan" title="sardana.macroserver.macros.scan.aNscan"><code class="xref py py-class docutils literal"><span class="pre">aNscan</span></code></a> as a use case).</p>
-<p>The following is a list of hint strings that scan macros support (other
-hints are ignored):</p>
+<p>The following is a list of the supported keys:</p>
 <ul class="simple">
 <li>&#8216;pre-scan-hooks&#8217; : before starting the scan.</li>
 <li>&#8216;pre-move-hooks&#8217; : for steps: before starting to move.</li>
@@ -370,14 +373,6 @@ recording the step.</li>
 <li>&#8216;post-step-hooks&#8217; : for steps: after finishing recording the step.</li>
 <li>&#8216;post-scan-hooks&#8217; : after finishing the scan.</li>
 </ul>
-<p>The standard scan macros, see module <a class="reference internal" href="../api/sardana/macroserver/macros/scan.html#module-sardana.macroserver.macros.scan" title="sardana.macroserver.macros.scan"><code class="xref py py-mod docutils literal"><span class="pre">scan</span></code></a>,
-support the above hints name suppressing the end <strong>_hooks</strong>, ex. &#8216;pre-scan&#8217;,
-&#8216;pre-move&#8217;, ...</p>
-<p>See the code of the <code class="docutils literal"><span class="pre">hooked_scan</span></code> macro in
-<a class="reference internal" href="../examples/macro_hooks_examples.html#sardana-devel-macro-hooks-examples"><span class="std std-ref">Macro hooks examples</span></a> that demonstrates the use of the
-hook points of a scan. Other examples of the same chapter can be illustrative.</p>
-<p>Also, note that the Taurus MacroExecutor widget allows the user to dynamically
-add hooks to existing macros before execution.</p>
 </div>
 <div class="section" id="more-examples">
 <h2>More examples<a class="headerlink" href="#more-examples" title="Permalink to this headline">¶</a></h2>
