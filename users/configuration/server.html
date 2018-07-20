@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Pool &mdash; sardana 2.4.1-alpha documentation</title>
+  <title>Sardana server configuration &mdash; sardana 2.4.1-alpha documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="sardana 2.4.1-alpha documentation" href="../../index.html"/>
         <link rel="up" title="Sardana configuration" href="index.html"/>
-        <link rel="next" title="Sardana custom settings" href="sardanacustomsettings.html"/>
-        <link rel="prev" title="MacroServer" href="macroserver.html"/> 
+        <link rel="next" title="MacroServer" href="macroserver.html"/>
+        <link rel="prev" title="Spock" href="spock.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -107,9 +107,9 @@
 <li class="toctree-l3"><a class="reference internal" href="../standard_macro_catalog.html">Standard macro catalog</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Configuration</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="spock.html">Spock configuration</a></li>
-<li class="toctree-l4"><a class="reference internal" href="server.html">Server configuration</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Server configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="macroserver.html">MacroServer configuration</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Device Pool configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pool.html">Device Pool configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="sardanacustomsettings.html">Sardana Custom Settings</a></li>
 </ul>
 </li>
@@ -160,11 +160,11 @@
       
           <li><a href="index.html">Sardana configuration</a> &raquo;</li>
       
-    <li>Pool</li>
+    <li>Sardana server configuration</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/users/configuration/pool.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/users/configuration/server.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -174,27 +174,43 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="pool">
-<span id="sardana-configuration-pool"></span><h1>Pool<a class="headerlink" href="#pool" title="Permalink to this headline">¶</a></h1>
-<p>Device Pool is easily extendable by means of controller plugins. Device Pool
-discovers them in directories configurable via
-<a class="reference internal" href="../../devel/api/api_pool.html#sardana-pool-api-poolpath"><span class="std std-ref">pool path</span></a> attribute. In case Sardana is used with
-Tango this configuration is accessible via the <code class="docutils literal"><span class="pre">PoolPath</span></code>
-<a class="reference internal" href="../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool" title="sardana.tango.pool.Pool.Pool"><code class="xref py py-class docutils literal"><span class="pre">Pool</span></code></a> device property.</p>
-<p>Your controller plugins may need to access to third party Python modules. One
-can configure the directory where to look for them via
-<a class="reference internal" href="../../devel/api/api_pool.html#sardana-pool-api-pythonpath"><span class="std std-ref">python path</span></a> attribute. In case Sardana is
-used with Tango this configuration is accessible via the <code class="docutils literal"><span class="pre">PythonPath</span></code>
-<a class="reference internal" href="../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool" title="sardana.tango.pool.Pool.Pool"><code class="xref py py-class docutils literal"><span class="pre">Pool</span></code></a> device property.</p>
-<p>Device Pool integrates natively with the
-<a class="reference external" href="http://www.elastic.co">Elastic Stack</a> and may send logs to the a Logstash
-instance. In case Sardana is used with Tango this configuration is
-accessible via the <code class="docutils literal"><span class="pre">LogstashHost</span></code> and <code class="docutils literal"><span class="pre">LogstashPort</span></code>
-<a class="reference internal" href="../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool" title="sardana.tango.pool.Pool.Pool"><code class="xref py py-class docutils literal"><span class="pre">Pool</span></code></a> device properties.</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Document RemoteLog, MotionLoop_SleepTime, MotionLoop_StatesPerPosition,
-AcqLoop_SleepTime, AcqLoop_StatesPerValue, DriftCorrection, InstrumentList</p>
+  <div class="section" id="sardana-server-configuration">
+<span id="sardana-configuration-server"></span><h1>Sardana server configuration<a class="headerlink" href="#sardana-server-configuration" title="Permalink to this headline">¶</a></h1>
+<p>Sardana system can
+<a class="reference internal" href="../getting_started/running_server.html#sardana-getting-started-running-server"><span class="std std-ref">run as one or many Tango device servers</span></a>.
+Tango device servers listens on a TCP port for the CORBA requests. Usually
+it is fine to use the randomly assigned port (default behavior) but sometimes
+it may be necessary to use a fixed port number. For example, when the server
+needs to be accessed from another isolated network and we want to open
+connections only for the given ports.</p>
+<p>There are three possibilities to assign the port explicitly (the order
+indicates the precedence):</p>
+<ul class="simple">
+<li>using OS environment variable <code class="docutils literal"><span class="pre">ORBendPoint</span></code> e.g.</li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">ORBendPoint</span><span class="o">=</span><span class="m">28366</span>
+$ Pool demo1 -ORBendPoint <span class="m">28366</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>using Tango device server command line argument <code class="docutils literal"><span class="pre">-ORBendPoint</span></code></li>
+</ul>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ Pool demo1 -ORBendPoint <span class="m">28366</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>using Tango DB free property with object name: <code class="docutils literal"><span class="pre">ORBendPoint</span></code> and property
+name: <code class="docutils literal"><span class="pre">&lt;server_name&gt;/&lt;instance_name&gt;</span></code>)</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tango</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">tango</span><span class="o">.</span><span class="n">Database</span><span class="p">()</span>
+<span class="n">db</span><span class="o">.</span><span class="n">put_property</span><span class="p">(</span><span class="s2">&quot;ORBendPoint&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Pool/demo1&quot;</span><span class="p">:</span> <span class="mi">28366</span><span class="p">})</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Due to a bug, when Sardana is used with Tango versions prior to 8.0.5,
+the command line arguments takes precedence over the environment variables.</p>
 </div>
 </div>
 
@@ -205,10 +221,10 @@ AcqLoop_SleepTime, AcqLoop_StatesPerValue, DriftCorrection, InstrumentList</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="sardanacustomsettings.html" class="btn btn-neutral float-right" title="Sardana custom settings" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="macroserver.html" class="btn btn-neutral float-right" title="MacroServer" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="macroserver.html" class="btn btn-neutral" title="MacroServer" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="spock.html" class="btn btn-neutral" title="Spock" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
