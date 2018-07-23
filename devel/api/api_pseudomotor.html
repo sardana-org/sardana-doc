@@ -189,33 +189,43 @@ pseudo motor. So, if one of the motors is in moving or alarm state, the whole
 pseudo motor will be in that state. The position, indicates the current
 position.</p>
 <p>The other pseudo motor&#8217;s attributes are:</p>
-<dl class="docutils">
-<dt>drift correction</dt>
-<dd><p class="first">Flag to enable/disable drift correction while calculating physical
+<div class="section" id="drift-correction">
+<span id="sardana-pseudomotor-api-driftcorrection"></span><h2>drift correction<a class="headerlink" href="#drift-correction" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Flag to enable/disable drift correction while calculating physical
 motor(s) position(s). When enabled, the write sibling(s) position(s) will
 be used, when disabled, the read sibiling(s) position(s) will be
 used instead. By default drift correction is enabled. For more details,
 see <a class="reference internal" href="#drift-section"><span class="std std-ref">Drift Correction</span></a>.</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolpseudomotor.html#sardana.pool.poolpseudomotor.PoolPseudoMotor.drift_correction" title="sardana.pool.poolpseudomotor.PoolPseudoMotor.drift_correction"><code class="xref py py-attr docutils literal"><span class="pre">drift_correction</span></code></a></p>
-</dd>
-<dt>siblings</dt>
-<dd><p class="first">List of other psuedo motor objects that belongs to the same controller.</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolpseudomotor.html#sardana.pool.poolpseudomotor.PoolPseudoMotor.siblings" title="sardana.pool.poolpseudomotor.PoolPseudoMotor.siblings"><code class="xref py py-attr docutils literal"><span class="pre">siblings</span></code></a></p>
-</dd>
-</dl>
+<p><a class="reference internal" href="sardana/pool/poolpseudomotor.html#sardana.pool.poolpseudomotor.PoolPseudoMotor.drift_correction" title="sardana.pool.poolpseudomotor.PoolPseudoMotor.drift_correction"><code class="xref py py-attr docutils literal"><span class="pre">drift_correction</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="siblings">
+<h2>siblings<a class="headerlink" href="#siblings" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>List of other pseudo motor objects that belongs to the same controller.</p>
+<p><a class="reference internal" href="sardana/pool/poolpseudomotor.html#sardana.pool.poolpseudomotor.PoolPseudoMotor.siblings" title="sardana.pool.poolpseudomotor.PoolPseudoMotor.siblings"><code class="xref py py-attr docutils literal"><span class="pre">siblings</span></code></a></p>
+</div></blockquote>
 <p>The available operations are:</p>
-<dl class="docutils">
-<dt>start move absolute</dt>
-<dd><p class="first">Starts to move the pseudo motor to the given absolute position.</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolpseudomotor.html#sardana.pool.poolpseudomotor.PoolPseudoMotor.start_move" title="sardana.pool.poolpseudomotor.PoolPseudoMotor.start_move"><code class="xref py py-meth docutils literal"><span class="pre">start_move()</span></code></a></p>
-</dd>
-<dt>stop</dt>
-<dd>Stops the pseudo motor motion, by stopping all the physical motors, in an
-orderly fashion.</dd>
-<dt>abort</dt>
-<dd>Stops the pseudo motor motion, by stopping all the physical motors, as
-fast as possible (possibly without deceleration time and loss of position).</dd>
-</dl>
+</div>
+<div class="section" id="start-move-absolute">
+<h2>start move absolute<a class="headerlink" href="#start-move-absolute" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Starts to move the pseudo motor to the given absolute position.</p>
+<p><a class="reference internal" href="sardana/pool/poolpseudomotor.html#sardana.pool.poolpseudomotor.PoolPseudoMotor.start_move" title="sardana.pool.poolpseudomotor.PoolPseudoMotor.start_move"><code class="xref py py-meth docutils literal"><span class="pre">start_move()</span></code></a></p>
+</div></blockquote>
+</div>
+<div class="section" id="stop">
+<h2>stop<a class="headerlink" href="#stop" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>Stops the pseudo motor motion, by stopping all the physical motors, in an
+orderly fashion.</div></blockquote>
+</div>
+<div class="section" id="abort">
+<h2>abort<a class="headerlink" href="#abort" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>Stops the pseudo motor motion, by stopping all the physical motors, as
+fast as possible (possibly without deceleration time and loss of position).</div></blockquote>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <dl class="last docutils">
@@ -225,8 +235,33 @@ fast as possible (possibly without deceleration time and loss of position).</dd>
 <dd>the pseudo-motor tango device <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
 </dl>
 </div>
-<div class="section" id="drift-correction">
-<span id="drift-section"></span><h2>Drift correction<a class="headerlink" href="#drift-correction" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="pseudomotor-position">
+<span id="sardana-pseudomotor-api-position"></span><h2>PseudoMotor position<a class="headerlink" href="#pseudomotor-position" title="Permalink to this headline">¶</a></h2>
+<p>The pseudomotor&#8217;s current position can be obtained by reading the
+position attribute. The diagram shows the internal sequence of calls.
+As it is shown on this picture this process is divided into two parts. First
+the physical <a class="reference internal" href="api_motor.html#sardana-motor-api-position"><span class="std std-ref">motor positions are read</span></a>
+from the hardware. Later these motor positions are used to calculate the
+pseudo position.</p>
+<a class="reference internal image-reference" href="../../_images/sardana_server_internal_pseudomotor_read_position_flow.png"><img alt="../../_images/sardana_server_internal_pseudomotor_read_position_flow.png" class="align-center" src="../../_images/sardana_server_internal_pseudomotor_read_position_flow.png" style="width: 680px;" /></a>
+</div>
+<div class="section" id="motion">
+<h2>Motion<a class="headerlink" href="#motion" title="Permalink to this headline">¶</a></h2>
+<p>The most useful thing to do with a pseudo motor is, of course, to move it. To
+move a pseudo motor to another absolute position you have to write the value
+into the position attribute.</p>
+<a class="reference internal image-reference" href="../../_images/sardana_server_internal_pseudomotor_write_position_flow.png"><img alt="../../_images/sardana_server_internal_pseudomotor_write_position_flow.png" class="align-center" src="../../_images/sardana_server_internal_pseudomotor_write_position_flow.png" style="width: 680px;" /></a>
+<p>Please refer to
+<a class="reference internal" href="sardana/pool/poolpseudomotor.html#sardana.pool.poolpseudomotor.PoolPseudoMotor.get_siblings_positions" title="sardana.pool.poolpseudomotor.PoolPseudoMotor.get_siblings_positions"><code class="xref py py-meth docutils literal"><span class="pre">get_siblings_positions()</span></code></a>
+for more details about <code class="docutils literal"><span class="pre">use</span></code> and <code class="docutils literal"><span class="pre">write_pos</span></code> arguments. The value of the
+last one corresponds to the <a class="reference internal" href="#sardana-pseudomotor-api-driftcorrection"><span class="std std-ref">drift correction</span></a>
+attribute value.</p>
+<p>After all calculations are done, the pseudo motor will deploy a motion <em>job</em>
+into the sardana kernel engine which will trigger a series of calls to the
+underlying motor(s) controller.</p>
+<div class="section" id="drift-section">
+<span id="id1"></span><h3>Drift correction<a class="headerlink" href="#drift-section" title="Permalink to this headline">¶</a></h3>
 <p>Pseudomotors which have siblings and are based on physical motors with an
 inaccurate or a finite precision positioning system could be affected by the
 drift effect.</p>
@@ -362,7 +397,7 @@ read discrepancy of 0.002 causes that the gap reached only 2.998 and that
 the offset drifted by 0.001 and the total accumulated drift is 0.003.</p>
 </li>
 </ol>
-<div class="figure align-center" id="id1">
+<div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../../_images/drift_correction_disabled.png"><img alt="../../_images/drift_correction_disabled.png" src="../../_images/drift_correction_disabled.png" style="width: 680px;" /></a>
 <p class="caption"><span class="caption-text">This sketch demonstrates the above example where offset drifted by 0.003.</span></p>
 </div>
@@ -453,10 +488,11 @@ the offset drifted again by 0.001 but thanks to the drift correction is
 maintained at this value.</p>
 </li>
 </ol>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../../_images/drift_correction_enabled.png"><img alt="../../_images/drift_correction_enabled.png" src="../../_images/drift_correction_enabled.png" style="width: 680px;" /></a>
 <p class="caption"><span class="caption-text">This sketch demonstrates the above example where offset&#8217;s drift was
 corrected.</span></p>
+</div>
 </div>
 </div>
 </div>
