@@ -103,6 +103,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../adding_elements.html">Adding real elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../macro_hooks.html">Macro Hooks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../macro_environment.html">Macro Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../macro_logging_and_reports.html">Macro Logging and Reports</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../environment_variable_catalog.html">Environment Variable Catalog</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../standard_macro_catalog.html">Standard macro catalog</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Configuration</a><ul class="current">
@@ -207,15 +208,18 @@ UNITTEST_DOOR_NAME Must be defined for running sardana unittests.</p>
 <dt id="sardana.sardanacustomsettings.LOG_FILES_SIZE">
 <code class="descname">LOG_FILES_SIZE</code><em class="property"> = 10000000.0</em><a class="headerlink" href="#sardana.sardanacustomsettings.LOG_FILES_SIZE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Size and number of rotating backups of the log files.
-The Pool and MacroServer Device servers will use these values for their logs.</p>
+The Pool and MacroServer Device servers will use these values for their
+logs.</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="sardana.sardanacustomsettings.SPOCK_INPUT_HANDLER">
 <code class="descname">SPOCK_INPUT_HANDLER</code><em class="property"> = 'CLI'</em><a class="headerlink" href="#sardana.sardanacustomsettings.SPOCK_INPUT_HANDLER" title="Permalink to this definition">¶</a></dt>
-<dd><p>Input handler for spock interactive macros. Accepted values are:
-- &#8220;CLI&#8221;: Input via spock command line. This is the default.
-- &#8220;Qt&#8221;: Input via Qt dialogs</p>
+<dd><p>Input handler for spock interactive macros. Accepted values are:</p>
+<ul class="simple">
+<li>&#8220;CLI&#8221;: Input via spock command line. This is the default.</li>
+<li>&#8220;Qt&#8221;: Input via Qt dialogs</li>
+</ul>
 </dd></dl>
 
 <dl class="data">
@@ -233,6 +237,13 @@ value - recorder name</p>
 <code class="descname">LOG_MACRO_FILTER</code><em class="property"> = 'sardana.macroserver.msmacromanager.LogMacroFilter'</em><a class="headerlink" href="#sardana.sardanacustomsettings.LOG_MACRO_FILTER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter for macro logging: name of the class to be used as filter
 for the macro logging</p>
+<ul class="simple">
+<li>if LOG_MACRO_FILTER is not defined no filter will be used</li>
+<li>if LOG_MACRO_FILTER is wrongly defined a user warning will be issued and
+no filter will be used</li>
+<li>if LOG_MACRO_FILTER is correctly defined but macro filter can not be
+initialized a user warning will be issued and no filter will be used</li>
+</ul>
 </dd></dl>
 
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Macro Hooks &mdash; sardana 2.4.1-alpha documentation</title>
+  <title>Macro Logging and Reports &mdash; sardana 2.4.1-alpha documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="sardana 2.4.1-alpha documentation" href="../index.html"/>
         <link rel="up" title="User’s Guide" href="index.html"/>
-        <link rel="next" title="Macro Environment" href="macro_environment.html"/>
-        <link rel="prev" title="Adding real elements" href="adding_elements.html"/> 
+        <link rel="next" title="Environment Variable Catalog" href="environment_variable_catalog.html"/>
+        <link rel="prev" title="Macro Environment" href="macro_environment.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -101,12 +101,9 @@
 <li class="toctree-l3"><a class="reference internal" href="scan.html">Scans</a></li>
 <li class="toctree-l3"><a class="reference internal" href="diffractometer.html">Diffractometer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="adding_elements.html">Adding real elements</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Macro Hooks</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#general-hooks">General Hooks</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="macro_hooks.html">Macro Hooks</a></li>
 <li class="toctree-l3"><a class="reference internal" href="macro_environment.html">Macro Environment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="macro_logging_and_reports.html">Macro Logging and Reports</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Macro Logging and Reports</a></li>
 <li class="toctree-l3"><a class="reference internal" href="environment_variable_catalog.html">Environment Variable Catalog</a></li>
 <li class="toctree-l3"><a class="reference internal" href="standard_macro_catalog.html">Standard macro catalog</a></li>
 <li class="toctree-l3"><a class="reference internal" href="configuration/index.html">Configuration</a></li>
@@ -155,11 +152,11 @@
       
           <li><a href="index.html">User&#8217;s Guide</a> &raquo;</li>
       
-    <li>Macro Hooks</li>
+    <li>Macro Logging and Reports</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../_sources/users/macro_hooks.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/users/macro_logging_and_reports.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -169,40 +166,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="macro-hooks">
-<span id="sardana-macros-hooks"></span><h1>Macro Hooks<a class="headerlink" href="#macro-hooks" title="Permalink to this headline">¶</a></h1>
-<p>A hook is an extra code that can be run at certain points of a macro execution.
-These points are predefined for each hookable macro and passed via a &#8220;hints&#8221; mechanism.
-The hint tells the macro how and when to run the attached hook.
-Hooks allow the customization of already existing macros and can be added using
-three different ways:</p>
-<ul class="simple">
-<li>General Hooks</li>
-<li><a class="reference internal" href="taurus/sequencer.html#sequencer-ui"><span class="std std-ref">Sequencer Hooks</span></a></li>
-<li><a class="reference internal" href="../devel/howto_macros/scan_framework.html#sardana-macros-scanframework"><span class="std std-ref">Programmatic Hooks</span></a></li>
-</ul>
-<p>All available macros can be used as a hook.</p>
-<div class="section" id="general-hooks">
-<h2>General Hooks<a class="headerlink" href="#general-hooks" title="Permalink to this headline">¶</a></h2>
-<p>The general hooks were implemented in Sardana after the programmatic hooks.
-The motivation for this implementation was to allow the customization
-of the scan macros without having to redefine them.
-The general hooks apply to all hookable macros and allow the definition
-of new hints.
-They can be controlled using dedicated macros: <a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.lsgh" title="sardana.macroserver.macros.env.lsgh"><code class="xref py py-class docutils literal"><span class="pre">lsgh</span></code></a>,
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.defgh" title="sardana.macroserver.macros.env.defgh"><code class="xref py py-class docutils literal"><span class="pre">defgh</span></code></a> and <a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.udefgh" title="sardana.macroserver.macros.env.udefgh"><code class="xref py py-class docutils literal"><span class="pre">udefgh</span></code></a>.
-For each hook position, hint, several hooks can be run, they will be run in the
-order they were added. The same hook can be run several times in the same position
-if it&#8217;s added several times.</p>
-<p>Examples:</p>
-<ul class="simple">
-<li>Check motor limits in step scans (pre-scan)</li>
-<li>Prepare 2D detectors: create directories, set save directory, file name,
-file index (pre-scan)</li>
-<li>Set attenuators, set undulator, check shutter, check current (pre-scan)</li>
-<li>Restore changes (post-scan)</li>
-</ul>
-</div>
+  <div class="section" id="macro-logging-and-reports">
+<span id="sardana-macros-logging-and-reports"></span><h1>Macro Logging and Reports<a class="headerlink" href="#macro-logging-and-reports" title="Permalink to this headline">¶</a></h1>
+<p>The MacroServer allows to write into a log file
+<a class="reference internal" href="../devel/howto_macros/macros_general.html#sardana-macro-logging"><span class="std std-ref">log messages</span></a> from the macros
+as well as additional log entries that enclose each macro
+execution, e.g. when it starts and when it ends.</p>
+<p>This log feature is controlled via
+<a class="reference internal" href="environment_variable_catalog.html#macro-logging-env-vars"><span class="std std-ref">environment variables</span></a>,
+allowing the activation/deactivation and the setting of
+the number of backup files, log directory and file names
+and output format.</p>
+<p>Additional filters to this log messages can be applied with
+<a class="reference internal" href="configuration/sardanacustomsettings.html#sardana.sardanacustomsettings.LOG_MACRO_FILTER" title="sardana.sardanacustomsettings.LOG_MACRO_FILTER"><code class="xref py py-data docutils literal"><span class="pre">LOG_MACRO_FILTER</span></code></a>.</p>
+<p>The macro <a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.logmacro" title="sardana.macroserver.macros.standard.logmacro"><code class="xref py py-class docutils literal"><span class="pre">logmacro</span></code></a> activate/deactivate the macro logging.</p>
+<p><a class="reference internal" href="../devel/howto_macros/macros_general.html#sardana-macro-reporting"><span class="std std-ref">Report messages</span></a> can be sent by the macros to a report file.
+This report feature is controlled by the <a class="reference internal" href="configuration/macroserver.html#sardana-configuration-macroserver"><span class="std std-ref">MacroServer configuration</span></a>.</p>
 </div>
 
 
@@ -212,10 +191,10 @@ file index (pre-scan)</li>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="macro_environment.html" class="btn btn-neutral float-right" title="Macro Environment" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="environment_variable_catalog.html" class="btn btn-neutral float-right" title="Environment Variable Catalog" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="adding_elements.html" class="btn btn-neutral" title="Adding real elements" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="macro_environment.html" class="btn btn-neutral" title="Macro Environment" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
