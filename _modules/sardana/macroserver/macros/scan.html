@@ -390,6 +390,9 @@
         <span class="n">post_move_hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span>
             <span class="s1">&#39;post-move&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_fill_missing_records</span><span class="p">]</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-move-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">post_move_hooks</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;pre-acq-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-acq&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-acq-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-acq&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span>
+            <span class="s1">&#39;_NOHINTS_&#39;</span><span class="p">)</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;active_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">+</span>
                                                 <span class="bp">self</span><span class="o">.</span><span class="n">latency_time</span><span class="p">)</span>
@@ -1561,6 +1564,8 @@
     <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;ascanct&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-configuration&#39;</span><span class="p">,</span>
                                                 <span class="s1">&#39;post-configuration&#39;</span><span class="p">,</span>
                                                 <span class="s1">&#39;pre-start&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
+                                                <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span>
                                                 <span class="s1">&#39;pre-cleanup&#39;</span><span class="p">,</span>
                                                 <span class="s1">&#39;post-cleanup&#39;</span><span class="p">)}</span>
 
@@ -1589,6 +1594,8 @@
     <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;a2scanct&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-configuration&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;post-configuration&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;pre-start&#39;</span><span class="p">,</span>
+                                                 <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
+                                                 <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;pre-cleanup&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;post-cleanup&#39;</span><span class="p">)}</span>
 
@@ -1621,6 +1628,8 @@
     <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;a2scanct&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-configuration&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;post-configuration&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;pre-start&#39;</span><span class="p">,</span>
+                                                 <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
+                                                 <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;pre-cleanup&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;post-cleanup&#39;</span><span class="p">)}</span>
 
@@ -1656,6 +1665,8 @@
     <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;a2scanct&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-configuration&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;post-configuration&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;pre-start&#39;</span><span class="p">,</span>
+                                                 <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
+                                                 <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;pre-cleanup&#39;</span><span class="p">,</span>
                                                  <span class="s1">&#39;post-cleanup&#39;</span><span class="p">)}</span>
 

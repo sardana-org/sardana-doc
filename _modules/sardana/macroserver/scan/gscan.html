@@ -2432,7 +2432,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">initial_data</span> <span class="o">=</span> <span class="n">initial_data</span>
 
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
-                <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-start&#39;</span><span class="p">):</span>
+                <span class="n">pre_acq_hooks</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-start&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pre_acq_hooks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;pre-start hook place is deprecated,&quot;</span>
+                                       <span class="s2">&quot;use pre-acq instead&quot;</span><span class="p">)</span>
+                <span class="n">pre_acq_hooks</span> <span class="o">+=</span> <span class="n">waypoint</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pre-acq-hooks&#39;</span><span class="p">,</span> <span class="p">[])</span>
+
+                <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">pre_acq_hooks</span><span class="p">:</span>
                     <span class="n">hook</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">checkPoint</span><span class="p">()</span>
 
@@ -2444,12 +2450,18 @@
 
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">timestamp_to_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">delta_start</span>
-
+                <span class="n">end_move</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="c1"># move to waypoint end position</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span>
                     <span class="s2">&quot;Moving to waypoint position: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">repr</span><span class="p">(</span><span class="n">final_pos</span><span class="p">))</span>
                 <span class="n">motion</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">final_pos</span><span class="p">)</span>
-            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">end_move</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">measurement_group</span><span class="o">.</span><span class="n">waitFinish</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">mg_id</span><span class="p">)</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Motion did not start properly.</span><span class="se">\n</span><span class="si">{0}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">ScanException</span><span class="p">(</span><span class="s2">&quot;move to final position failed&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># wait extra 15 s to for the acquisition to finish</span>
                 <span class="c1"># if it does not finish, abort the measurement group</span>
                 <span class="c1"># (this could be due to missed hardware triggers or</span>
@@ -2457,17 +2469,22 @@
                 <span class="c1"># TODO: allow parametrizing timeout</span>
                 <span class="n">timeout</span> <span class="o">=</span> <span class="mi">15</span>
                 <span class="n">measurement_group</span><span class="o">.</span><span class="n">waitFinish</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">mg_id</span><span class="p">)</span>
+            <span class="k">finally</span><span class="p">:</span>
                 <span class="c1"># TODO: For Taurus 4 / Taurus 3 compatibility</span>
                 <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">measurement_group</span><span class="p">,</span> <span class="s2">&quot;stateObj&quot;</span><span class="p">):</span>
                     <span class="n">state</span> <span class="o">=</span> <span class="n">measurement_group</span><span class="o">.</span><span class="n">stateObj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">state</span> <span class="o">=</span> <span class="n">measurement_group</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">MOVING</span><span class="p">:</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Measurement did not finish acquisition within &quot;</span>\
-                          <span class="s2">&quot;timeout. Stopping it...&quot;</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                     <span class="n">measurement_group</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
-                    <span class="k">raise</span> <span class="n">ScanException</span><span class="p">(</span><span class="s2">&quot;acquisition timeout reached&quot;</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">end_move</span><span class="p">:</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Measurement did not finish acquisition within &quot;</span>\
+                              <span class="s2">&quot;timeout. Stopping it...&quot;</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                        <span class="k">raise</span> <span class="n">ScanException</span><span class="p">(</span><span class="s2">&quot;acquisition timeout reached&quot;</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">waypoint</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;post-acq-hooks&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+                <span class="n">hook</span><span class="p">()</span>
 
             <span class="k">if</span> <span class="n">macro</span><span class="o">.</span><span class="n">isStopped</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">on_waypoints_end</span><span class="p">()</span>
