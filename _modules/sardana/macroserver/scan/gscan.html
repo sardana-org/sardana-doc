@@ -937,39 +937,55 @@
         <span class="n">max_iter</span> <span class="o">=</span> <span class="n">max_iter</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">MAX_ITER</span>
         <span class="n">iterator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generator</span><span class="p">()</span>
         <span class="n">total_time</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="n">interval_nb</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">point_nb</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">interval_nb</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">with_time</span><span class="p">:</span>
-                <span class="n">start_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">readPosition</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-                <span class="n">v_motors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_virtual_motors</span><span class="p">()</span>
-                <span class="n">motion_time</span><span class="p">,</span> <span class="n">acq_time</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
-                <span class="k">while</span> <span class="n">interval_nb</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
-                    <span class="n">step</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-                    <span class="n">end_pos</span> <span class="o">=</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span>
-                    <span class="n">max_path_duration</span> <span class="o">=</span> <span class="mf">0.0</span>
-                    <span class="k">for</span> <span class="n">v_motor</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v_motors</span><span class="p">,</span>
-                                                    <span class="n">start_pos</span><span class="p">,</span>
-                                                    <span class="n">end_pos</span><span class="p">):</span>
-                        <span class="n">path</span> <span class="o">=</span> <span class="n">MotionPath</span><span class="p">(</span><span class="n">v_motor</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">)</span>
-                        <span class="n">max_path_duration</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
-                            <span class="n">max_path_duration</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">duration</span><span class="p">)</span>
-                    <span class="n">integ_time</span> <span class="o">=</span> <span class="n">step</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;integ_time&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
-                    <span class="n">acq_time</span> <span class="o">+=</span> <span class="n">integ_time</span>
-                    <span class="n">motion_time</span> <span class="o">+=</span> <span class="n">max_path_duration</span>
-                    <span class="n">total_time</span> <span class="o">+=</span> <span class="n">integ_time</span> <span class="o">+</span> <span class="n">max_path_duration</span>
-                    <span class="n">interval_nb</span> <span class="o">+=</span> <span class="mi">1</span>
-                    <span class="n">start_pos</span> <span class="o">=</span> <span class="n">end_pos</span>
-                <span class="k">if</span> <span class="n">with_interval</span><span class="p">:</span>
-                    <span class="n">interval_nb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">getIntervalEstimation</span><span class="p">()</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">start_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">motion</span><span class="o">.</span><span class="n">readPosition</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="n">v_motors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_virtual_motors</span><span class="p">()</span>
+                    <span class="n">motion_time</span><span class="p">,</span> <span class="n">acq_time</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
+                    <span class="k">while</span> <span class="n">point_nb</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
+                        <span class="n">step</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                        <span class="n">end_pos</span> <span class="o">=</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span>
+                        <span class="n">max_path_duration</span> <span class="o">=</span> <span class="mf">0.0</span>
+                        <span class="k">for</span> <span class="n">v_motor</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v_motors</span><span class="p">,</span>
+                                                        <span class="n">start_pos</span><span class="p">,</span>
+                                                        <span class="n">end_pos</span><span class="p">):</span>
+                            <span class="n">path</span> <span class="o">=</span> <span class="n">MotionPath</span><span class="p">(</span><span class="n">v_motor</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">)</span>
+                            <span class="n">max_path_duration</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span>
+                                <span class="n">max_path_duration</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">duration</span><span class="p">)</span>
+                        <span class="n">integ_time</span> <span class="o">=</span> <span class="n">step</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;integ_time&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+                        <span class="n">acq_time</span> <span class="o">+=</span> <span class="n">integ_time</span>
+                        <span class="n">motion_time</span> <span class="o">+=</span> <span class="n">max_path_duration</span>
+                        <span class="n">total_time</span> <span class="o">+=</span> <span class="n">integ_time</span> <span class="o">+</span> <span class="n">max_path_duration</span>
+                        <span class="n">point_nb</span> <span class="o">+=</span> <span class="mi">1</span>
+                        <span class="n">start_pos</span> <span class="o">=</span> <span class="n">end_pos</span>
+                <span class="k">finally</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">with_interval</span><span class="p">:</span>
+                        <span class="n">interval_nb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">getIntervalEstimation</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">while</span> <span class="n">interval_nb</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
-                    <span class="n">step</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
-                    <span class="n">interval_nb</span> <span class="o">+=</span> <span class="mi">1</span>
-                <span class="n">total_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">getTimeEstimation</span><span class="p">()</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">while</span> <span class="n">point_nb</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
+                        <span class="n">step</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                        <span class="n">point_nb</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">finally</span><span class="p">:</span>
+                    <span class="n">total_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">getTimeEstimation</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">interval_nb</span>
-        <span class="c1"># max iteration reached.</span>
-        <span class="k">return</span> <span class="o">-</span><span class="n">total_time</span><span class="p">,</span> <span class="o">-</span><span class="n">interval_nb</span>
+            <span class="k">pass</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># max iteration reached.</span>
+            <span class="n">total_time</span> <span class="o">=</span> <span class="o">-</span><span class="n">total_time</span>
+            <span class="n">point_nb</span> <span class="o">=</span> <span class="o">-</span><span class="n">point_nb</span>
+        <span class="k">if</span> <span class="n">interval_nb</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">point_nb</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">interval_nb</span> <span class="o">=</span> <span class="n">point_nb</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">point_nb</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">interval_nb</span> <span class="o">=</span> <span class="n">point_nb</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">interval_nb</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Estimation of intervals have not succeeded&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">interval_nb</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
