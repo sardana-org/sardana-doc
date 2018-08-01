@@ -274,6 +274,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_dirty</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_moveable</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_moveable_obj</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># by default software synchronizer initial domain is set to Position</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sw_synch_initial_domain</span> <span class="o">=</span> <span class="n">SynchDomain</span><span class="o">.</span><span class="n">Position</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># dict with channel and its acquisition synchronization</span>
         <span class="c1"># key: PoolBaseChannel; value: AcqSynch</span>
@@ -821,6 +824,19 @@
                             <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;latency time between two consecutive &quot;</span>
                                 <span class="s2">&quot;acquisitions&quot;</span><span class="p">)</span>
 
+<div class="viewcode-block" id="PoolMeasurementGroup.get_sw_synch_initial_domain"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.get_sw_synch_initial_domain">[docs]</a>    <span class="k">def</span> <span class="nf">get_sw_synch_initial_domain</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_synch_initial_domain</span></div>
+
+<div class="viewcode-block" id="PoolMeasurementGroup.set_sw_synch_initial_domain"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_sw_synch_initial_domain">[docs]</a>    <span class="k">def</span> <span class="nf">set_sw_synch_initial_domain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">domain</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sw_synch_initial_domain</span> <span class="o">=</span> <span class="n">domain</span></div>
+
+    <span class="n">sw_synch_initial_domain</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span>
+        <span class="n">get_sw_synch_initial_domain</span><span class="p">,</span>
+        <span class="n">set_sw_synch_initial_domain</span><span class="p">,</span>
+        <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;software synchronizer initial domain (SynchDomain.Time &quot;</span>
+            <span class="s2">&quot;or SynchDomain.Position)&quot;</span>
+    <span class="p">)</span>
+
     <span class="c1"># -------------------------------------------------------------------------</span>
     <span class="c1"># acquisition</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
@@ -839,6 +855,7 @@
                 <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;monitor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;synchronization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span>
             <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;moveable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_moveable_obj</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;sw_synch_initial_domain&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_synch_initial_domain</span>
             <span class="c1"># start acquisition</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 

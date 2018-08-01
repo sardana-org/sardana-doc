@@ -214,7 +214,8 @@
         <span class="c1"># state and status are already set by the super class</span>
         <span class="n">detect_evts</span> <span class="o">=</span> <span class="s2">&quot;latencytime&quot;</span><span class="p">,</span> <span class="s2">&quot;moveable&quot;</span><span class="p">,</span> <span class="s2">&quot;synchronization&quot;</span>
         <span class="n">non_detect_evts</span> <span class="o">=</span> <span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;integrationtime&quot;</span><span class="p">,</span> <span class="s2">&quot;monitorcount&quot;</span><span class="p">,</span> \
-                          <span class="s2">&quot;acquisitionmode&quot;</span><span class="p">,</span> <span class="s2">&quot;elementlist&quot;</span><span class="p">,</span> <span class="s2">&quot;repetitions&quot;</span>
+                          <span class="s2">&quot;acquisitionmode&quot;</span><span class="p">,</span> <span class="s2">&quot;elementlist&quot;</span><span class="p">,</span> <span class="s2">&quot;repetitions&quot;</span><span class="p">,</span> \
+                          <span class="s2">&quot;softwaresynchronizerinitialdomain&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_change_events</span><span class="p">(</span><span class="n">detect_evts</span><span class="p">,</span> <span class="n">non_detect_evts</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">Elements</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Elements</span><span class="p">)</span>
@@ -229,15 +230,17 @@
             <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alias</span> <span class="ow">or</span> <span class="n">full_name</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span> <span class="o">=</span> <span class="n">mg</span> <span class="o">=</span> \
                 <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">create_measurement_group</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-                                                   <span class="n">full_name</span><span class="o">=</span><span class="n">full_name</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Id</span><span class="p">,</span>
+                                                   <span class="n">full_name</span><span class="o">=</span><span class="n">full_name</span><span class="p">,</span>
+                                                   <span class="nb">id</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Id</span><span class="p">,</span>
                                                    <span class="n">user_elements</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Elements</span><span class="p">)</span>
         <span class="n">mg</span><span class="o">.</span><span class="n">add_listener</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_measurement_group_changed</span><span class="p">)</span>
 
         <span class="c1"># force a state read to initialize the state attribute</span>
-        <span class="c1">#state = self.measurement_group.state</span>
+        <span class="c1"># state = self.measurement_group.state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">DevState</span><span class="o">.</span><span class="n">ON</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MeasurementGroup.on_measurement_group_changed"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.on_measurement_group_changed">[docs]</a>    <span class="k">def</span> <span class="nf">on_measurement_group_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_source</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">event_value</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementGroup.on_measurement_group_changed"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.on_measurement_group_changed">[docs]</a>    <span class="k">def</span> <span class="nf">on_measurement_group_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_source</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span>
+                                     <span class="n">event_value</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_on_measurement_group_changed</span><span class="p">(</span>
                 <span class="n">event_source</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">event_value</span><span class="p">)</span>
@@ -248,7 +251,8 @@
                        <span class="n">exception_str</span><span class="p">(</span><span class="o">*</span><span class="n">exc_info</span><span class="p">[:</span><span class="mi">2</span><span class="p">]))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Details&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">exc_info</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">_on_measurement_group_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_source</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span> <span class="n">event_value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_on_measurement_group_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event_source</span><span class="p">,</span> <span class="n">event_type</span><span class="p">,</span>
+                                      <span class="n">event_value</span><span class="p">):</span>
         <span class="c1"># during server startup and shutdown avoid processing element</span>
         <span class="c1"># creation events</span>
         <span class="k">if</span> <span class="n">SardanaServer</span><span class="o">.</span><span class="n">server_state</span> <span class="o">!=</span> <span class="n">State</span><span class="o">.</span><span class="n">Running</span><span class="p">:</span>
@@ -307,7 +311,7 @@
 
 <div class="viewcode-block" id="MeasurementGroup.always_executed_hook"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.always_executed_hook">[docs]</a>    <span class="k">def</span> <span class="nf">always_executed_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span></div>
-        <span class="c1">#state = to_tango_state(self.motor_group.get_state(cache=False))</span>
+        <span class="c1"># state = to_tango_state(self.motor_group.get_state(cache=False))</span>
 
 <div class="viewcode-block" id="MeasurementGroup.read_attr_hardware"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.read_attr_hardware">[docs]</a>    <span class="k">def</span> <span class="nf">read_attr_hardware</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="k">pass</span></div>
@@ -391,6 +395,19 @@
         <span class="n">latency_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">latency_time</span>
         <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">latency_time</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="MeasurementGroup.read_SoftwareSynchronizerInitialDomain"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.read_SoftwareSynchronizerInitialDomain">[docs]</a>    <span class="k">def</span> <span class="nf">read_SoftwareSynchronizerInitialDomain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">sw_synch_initial_domain</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">SynchDomain</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">d</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MeasurementGroup.write_SoftwareSynchronizerInitialDomain"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.write_SoftwareSynchronizerInitialDomain">[docs]</a>    <span class="k">def</span> <span class="nf">write_SoftwareSynchronizerInitialDomain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="n">SynchDomain</span><span class="p">[</span><span class="n">data</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Invalid domain (can be either Position or Time)&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">sw_synch_initial_domain</span> <span class="o">=</span> <span class="n">domain</span></div>
+
 <div class="viewcode-block" id="MeasurementGroup.Start"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.Start">[docs]</a>    <span class="k">def</span> <span class="nf">Start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">wait_for_operation</span><span class="p">()</span>
@@ -452,6 +469,11 @@
                              <span class="s1">&#39;Display level&#39;</span><span class="p">:</span> <span class="n">DispLevel</span><span class="o">.</span><span class="n">EXPERT</span><span class="p">}],</span>
         <span class="s1">&#39;LatencyTime&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevDouble</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ</span><span class="p">],</span>
                         <span class="p">{</span><span class="s1">&#39;Display level&#39;</span><span class="p">:</span> <span class="n">DispLevel</span><span class="o">.</span><span class="n">EXPERT</span><span class="p">}],</span>
+        <span class="s1">&#39;SoftwareSynchronizerInitialDomain&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevString</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">],</span>
+                                              <span class="p">{</span><span class="s1">&#39;Memorized&#39;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
+                                               <span class="s1">&#39;Display level&#39;</span><span class="p">:</span>
+                                               <span class="n">DispLevel</span><span class="o">.</span><span class="n">OPERATOR</span><span class="p">}],</span>
+
     <span class="p">}</span>
     <span class="n">attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolGroupDeviceClass</span><span class="o">.</span><span class="n">attr_list</span><span class="p">)</span>
 

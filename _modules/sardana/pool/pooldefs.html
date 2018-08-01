@@ -207,7 +207,8 @@
 
 <span class="sd">    - Time - describes the synchronization in time domain</span>
 <span class="sd">    - Position - describes the synchronization in position domain</span>
-<span class="sd">    - Monitor - not used at the moment but foreseen for synchronization on monitor</span>
+<span class="sd">    - Monitor - not used at the moment but foreseen for synchronization on</span>
+<span class="sd">      monitor</span>
 
 <span class="sd">    .. note::</span>
 <span class="sd">        The SynchDomain class has been included in Sardana</span>
@@ -219,8 +220,10 @@
     <span class="n">Position</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">Monitor</span> <span class="o">=</span> <span class="mi">2</span></div>
 <span class="c1">#     - Default - the controller selects the most appropriate domain:</span>
-<span class="c1">#       for active events the precedence should be first Position and then Time</span>
-<span class="c1">#       for passive events the precedence should be first Time and then Position</span>
+<span class="c1">#       for active events the precedence should be first Position and then</span>
+<span class="c1">#       Time</span>
+<span class="c1">#       for passive events the precedence should be first Time and then</span>
+<span class="c1">#       Position</span>
 <span class="c1">#    Default = 3</span>
 
 
@@ -252,6 +255,7 @@
 <span class="c1">#</span>
 <span class="c1">#     Trigger = 0</span>
 <span class="c1">#     Gate = 1</span>
+
 
 <span class="n">AcqSynchType</span> <span class="o">=</span> <span class="n">Enumeration</span><span class="p">(</span><span class="s2">&quot;AcqSynchType&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Trigger&quot;</span><span class="p">,</span> <span class="s2">&quot;Gate&quot;</span><span class="p">])</span>
 
