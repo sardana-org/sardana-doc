@@ -2778,6 +2778,10 @@
             <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-scan&#39;</span><span class="p">):</span>
                 <span class="n">hook</span><span class="p">()</span>
 
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-acq&#39;</span><span class="p">):</span>
+                <span class="n">hook</span><span class="p">()</span>
+
         <span class="k">yield</span> <span class="mi">0</span>
         <span class="n">measurement_group</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">synchronization</span><span class="p">,</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="n">value_buffer_changed</span><span class="p">)</span>
@@ -2786,6 +2790,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">join_thread_pool</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_fill_missing_records</span><span class="p">()</span>
         <span class="k">yield</span> <span class="mi">100</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-acq&#39;</span><span class="p">):</span>
+                <span class="n">hook</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-scan&#39;</span><span class="p">):</span>
