@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>0D channel overview &mdash; sardana 2.4.1-alpha documentation</title>
+  <title>Instrument overview &mdash; sardana 2.4.1-alpha documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="sardana 2.4.1-alpha documentation" href="../../index.html"/>
         <link rel="up" title="Overview" href="index.html"/>
-        <link rel="next" title="1D channel overview" href="overview_1D.html"/>
-        <link rel="prev" title="Counter/timer overview" href="overview_countertimer.html"/> 
+        <link rel="next" title="Writing macros" href="../howto_macros/index.html"/>
+        <link rel="prev" title="Measurement group overview" href="overview_measurementgroup.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -105,12 +105,12 @@
 <li class="toctree-l4"><a class="reference internal" href="overview_IOR.html">IO register</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_triggergate.html">Trigger/gate</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_countertimer.html">Counter/timer</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">0D experiment channel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_0D.html">0D experiment channel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_1D.html">1D experiment channel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_2D.html">2D experiment channel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_pseudocounter.html">Pseudo counter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_measurementgroup.html">Measurement Group</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview_instrument.html">Instrument</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Instrument</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../howto_macros/index.html">Writing macros</a></li>
@@ -165,11 +165,11 @@
       
           <li><a href="index.html">Overview</a> &raquo;</li>
       
-    <li>0D channel overview</li>
+    <li>Instrument overview</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/devel/overview/overview_0D.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/devel/overview/overview_instrument.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -179,27 +179,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="d-channel-overview">
-<span id="sardana-0d-overview"></span><h1>0D channel overview<a class="headerlink" href="#d-channel-overview" title="Permalink to this headline">¶</a></h1>
-<p>The 0D experimental channel is used to access any kind of device which returns
-a scalar value and which are not counter/timer. Very often (but not always),
-this is a commercial measurement equipment connected to a GPIB bus.</p>
-<p>In order to have as precise as possible measurement, a dedicated acquisition
-operation is implemented for 0D channels. This operation will simply read the
-data from the hardware as fast as it can (only &#8220;sleeping&#8221; 10 mS between each
-reading) and a computation is done on the resulting data set to return only
-one value. Three types of computation are foreseen. The user selects which one
-he needs with an attribute.</p>
-<p>The time during which this acquisition loop will get data is controlled by the
-counters/timers present in the measurement group - when all of them finish
-acquiring the 0D acquisition operation will also stop.</p>
+  <div class="section" id="instrument-overview">
+<span id="sardana-instrument-overview"></span><h1>Instrument overview<a class="headerlink" href="#instrument-overview" title="Permalink to this headline">¶</a></h1>
+<p>An instrument in sardana is a group of sardana elements e.g. motors, counters.
+Its general role is to group elements that are somehow related,
+this relation reflects in most of the cases the element association
+to a laboratory instrument.</p>
+<p>Two features uses this information: nexus data storage and the
+TaurusGUI panel population.</p>
+<p>Instruments are created in the Pool and populated from the elements that want
+to be added to it. Example how to configure Instruments from Spock:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Pool_demo1_1</span><span class="o">.</span><span class="n">CreateInstrument</span><span class="p">([</span><span class="s1">&#39;/slit&#39;</span><span class="p">,</span><span class="s1">&#39;NXcollimator&#39;</span><span class="p">])</span>
+<span class="n">mot01</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="s1">&#39;/slit&#39;</span>
+<span class="n">mot02</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="s1">&#39;/slit&#39;</span>
+<span class="n">gap01</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="s1">&#39;/slit&#39;</span>
+<span class="n">offset01</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="s1">&#39;/slit&#39;</span>
+<span class="n">Pool_demo1_1</span><span class="o">.</span><span class="n">CreateInstrument</span><span class="p">([</span><span class="s1">&#39;/mirror&#39;</span><span class="p">,</span><span class="s1">&#39;NXmirror&#39;</span><span class="p">])</span>
+<span class="n">mot03</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="s1">&#39;/mirror&#39;</span>
+<span class="n">mot04</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="s1">&#39;/mirror&#39;</span>
+<span class="n">Pool_demo1_1</span><span class="o">.</span><span class="n">CreateInstrument</span><span class="p">([</span><span class="s1">&#39;/monitor&#39;</span><span class="p">,</span><span class="s1">&#39;NXmonitor&#39;</span><span class="p">])</span>
+<span class="n">ct01</span><span class="o">.</span><span class="n">instrument</span> <span class="o">=</span> <span class="s1">&#39;/monitor&#39;</span>
+</pre></div>
+</div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <dl class="last docutils">
-<dt><a class="reference internal" href="../api/api_0D.html#sardana-0d-api"><span class="std std-ref">0D channel API reference</span></a></dt>
-<dd>the 0D experiment channel <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
-<dt><a class="reference internal" href="../api/sardana/tango/pool/ZeroDExpChannel.html#sardana.tango.pool.ZeroDExpChannel.ZeroDExpChannel" title="sardana.tango.pool.ZeroDExpChannel.ZeroDExpChannel"><code class="xref py py-class docutils literal"><span class="pre">ZeroDExpChannel</span></code></a></dt>
-<dd>the 0D experiment channel tango device <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
+<dt><a class="reference internal" href="../api/sardana/pool/poolinstrument.html#sardana.pool.poolinstrument.PoolInstrument" title="sardana.pool.poolinstrument.PoolInstrument"><code class="xref py py-class docutils literal"><span class="pre">PoolInstrument</span></code></a></dt>
+<dd>the instrument class <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
 </dl>
 </div>
 </div>
@@ -211,10 +217,10 @@ acquiring the 0D acquisition operation will also stop.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview_1D.html" class="btn btn-neutral float-right" title="1D channel overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../howto_macros/index.html" class="btn btn-neutral float-right" title="Writing macros" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview_countertimer.html" class="btn btn-neutral" title="Counter/timer overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview_measurementgroup.html" class="btn btn-neutral" title="Measurement group overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
