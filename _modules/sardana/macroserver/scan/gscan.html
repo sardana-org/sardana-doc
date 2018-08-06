@@ -2247,6 +2247,32 @@
                                   <span class="n">decel_time</span><span class="o">=</span><span class="n">dec_time</span><span class="p">,</span>
                                   <span class="n">min_vel</span><span class="o">=</span><span class="n">base_vel</span><span class="p">)</span>
             <span class="n">ideal_path</span> <span class="o">=</span> <span class="n">MotionPath</span><span class="p">(</span><span class="n">ideal_vmotor</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">active_time</span><span class="p">)</span>
+
+            <span class="c1"># check if calculated ideal velocity is accepted by hardware</span>
+            <span class="n">backup_vel</span> <span class="o">=</span> <span class="n">moveable</span><span class="o">.</span><span class="n">getVelocity</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">ideal_max_vel</span> <span class="o">=</span> <span class="n">try_vel</span> <span class="o">=</span> <span class="n">ideal_path</span><span class="o">.</span><span class="n">max_vel</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+                    <span class="n">moveable</span><span class="o">.</span><span class="n">setVelocity</span><span class="p">(</span><span class="n">try_vel</span><span class="p">)</span>
+                    <span class="n">get_vel</span> <span class="o">=</span> <span class="n">moveable</span><span class="o">.</span><span class="n">getVelocity</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">get_vel</span> <span class="o">&lt;</span> <span class="n">ideal_max_vel</span><span class="p">:</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Ideal scan velocity </span><span class="si">{0}</span><span class="s1"> of motor </span><span class="si">{1}</span><span class="s1"> cannot &#39;</span> \
+                              <span class="s1">&#39;be reached, </span><span class="si">{2}</span><span class="s1"> will be used instead&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                  <span class="n">ideal_max_vel</span><span class="p">,</span> <span class="n">moveable</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">get_vel</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                        <span class="n">ideal_path</span><span class="o">.</span><span class="n">max_vel</span> <span class="o">=</span> <span class="n">get_vel</span>
+                        <span class="k">break</span>
+                    <span class="k">elif</span> <span class="n">get_vel</span> <span class="o">&gt;</span> <span class="n">ideal_max_vel</span><span class="p">:</span>
+                        <span class="n">try_vel</span> <span class="o">-=</span> <span class="p">(</span><span class="n">get_vel</span> <span class="o">-</span> <span class="n">try_vel</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">break</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Unknown error when trying if hardware &quot;</span>
+                                 <span class="s2">&quot;accepts ideal scan velocity&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">ideal_path</span><span class="o">.</span><span class="n">max_vel</span> <span class="o">=</span> <span class="n">ideal_max_vel</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="n">moveable</span><span class="o">.</span><span class="n">setVelocity</span><span class="p">(</span><span class="n">backup_vel</span><span class="p">)</span>
+
             <span class="n">ideal_path</span><span class="o">.</span><span class="n">moveable</span> <span class="o">=</span> <span class="n">moveable</span>
             <span class="n">ideal_path</span><span class="o">.</span><span class="n">apply_correction</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">ideal_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ideal_path</span><span class="p">)</span>
