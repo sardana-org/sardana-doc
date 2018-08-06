@@ -284,6 +284,8 @@
         <span class="c1"># dict with controller and its acquisition synchronization</span>
         <span class="c1"># key: PoolController; value: AcqSynch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_to_acq_synch</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># list of controller with channels enabled.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_ctrls</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;elem_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">MeasurementGroup</span>
         <span class="n">PoolGroupElement</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">configuration</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">)</span>
@@ -424,6 +426,7 @@
         <span class="n">config</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">controllers</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="n">external_user_elements</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_ctrls</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">user_elements</span><span class="p">):</span>
             <span class="n">elem_type</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">elem_type</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">External</span><span class="p">:</span>
@@ -432,7 +435,8 @@
 
             <span class="n">ctrl</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">controller</span>
             <span class="n">ctrl_data</span> <span class="o">=</span> <span class="n">controllers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
-
+            <span class="c1"># include all controller in the enabled list</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">ctrl_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">controllers</span><span class="p">[</span><span class="n">ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctrl_data</span> <span class="o">=</span> <span class="p">{}</span>
                 <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">channels</span> <span class="o">=</span> <span class="p">{}</span>
@@ -470,6 +474,7 @@
         <span class="k">return</span> <span class="n">config</span>
 
 <div class="viewcode-block" id="PoolMeasurementGroup.set_configuration"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">set_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">to_fqdn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_ctrls</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_configuration</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
@@ -485,6 +490,7 @@
                 <span class="c1"># only timerable elements are configured with acq_synch</span>
                 <span class="n">acq_synch</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="n">ctrl_enabled</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">ctrl_to_acq_synch</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">external</span> <span class="ow">and</span> <span class="n">c</span><span class="o">.</span><span class="n">is_timerable</span><span class="p">():</span>
                     <span class="n">acq_synch</span> <span class="o">=</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">from_synch_type</span><span class="p">(</span>
                         <span class="n">software</span><span class="p">,</span> <span class="n">acq_synch_type</span><span class="p">)</span>
@@ -501,14 +507,19 @@
                     <span class="n">channel_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_channel_defaults</span><span class="p">(</span>
                         <span class="n">channel_data</span><span class="p">,</span> <span class="n">element</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">channel_data</span><span class="p">[</span><span class="s2">&quot;enabled&quot;</span><span class="p">]:</span>
+                        <span class="n">ctrl_enabled</span> <span class="o">=</span> <span class="kc">True</span>
                         <span class="k">if</span> <span class="n">acq_synch</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                            <span class="n">ctrl_enabled</span> <span class="o">=</span> <span class="kc">True</span>
+                            <span class="n">ctrl_to_acq_synch</span> <span class="o">=</span> <span class="kc">True</span>
                             <span class="bp">self</span><span class="o">.</span><span class="n">_channel_to_acq_synch</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">acq_synch</span>
                             <span class="k">if</span> <span class="ow">not</span> <span class="n">software</span><span class="p">:</span>
                                 <span class="n">tg_elem_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">synchronizer</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
                         <span class="n">user_elem_ids</span><span class="p">[</span><span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">_id</span>
-                <span class="k">if</span> <span class="n">ctrl_enabled</span><span class="p">:</span>
+
+                <span class="k">if</span> <span class="n">ctrl_to_acq_synch</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_to_acq_synch</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">acq_synch</span>
+                <span class="k">if</span> <span class="n">ctrl_enabled</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
             <span class="c1"># sorted ids may not be consecutive (if a channel is disabled)</span>
             <span class="n">indexes</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">user_elem_ids</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
             <span class="n">user_elem_ids_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">user_elem_ids</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">indexes</span><span class="p">]</span>
@@ -673,12 +684,13 @@
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_configuration</span><span class="p">()</span>
         <span class="c1"># g_timer, g_monitor = cfg[&#39;timer&#39;], cfg[&#39;monitor&#39;]</span>
         <span class="k">for</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">ctrl_data</span> <span class="ow">in</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="c1"># skip external channels</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>  <span class="c1"># skip external channels</span>
                 <span class="k">continue</span>
-            <span class="c1"># telling controller in which acquisition mode it will participate</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">is_online</span><span class="p">():</span>
                 <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">ctrl</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_enabled_ctrls</span><span class="p">:</span>
+                <span class="k">continue</span>
+
             <span class="n">ctrl</span><span class="o">.</span><span class="n">set_ctrl_par</span><span class="p">(</span><span class="s1">&#39;acquisition_mode&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">acquisition_mode</span><span class="p">)</span>
             <span class="c1"># @TODO: fix optimization and enable it again</span>
             <span class="k">if</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">operator</span> <span class="o">==</span> <span class="bp">self</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">force</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config_dirty</span><span class="p">:</span>
