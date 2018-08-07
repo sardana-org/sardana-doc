@@ -1852,6 +1852,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bidirectional_mode</span> <span class="o">=</span> <span class="n">bidirectional</span>
 
+        <span class="c1"># Prepare the waypoints</span>
+        <span class="n">m1start</span><span class="p">,</span> <span class="n">m2start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span>
+        <span class="n">m1end</span><span class="p">,</span> <span class="n">m2end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">finals</span>
+        <span class="n">points1</span><span class="p">,</span> <span class="n">points2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_intervs</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="n">m2_space</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">m2start</span><span class="p">,</span> <span class="n">m2end</span><span class="p">,</span> <span class="n">points2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">waypoints</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">starts_points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m2pos</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">m2_space</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">starts_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">m1start</span><span class="p">,</span> <span class="n">m2pos</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">waypoints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">m1end</span><span class="p">,</span> <span class="n">m2pos</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">))</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bidirectional_mode</span><span class="p">:</span>
+                <span class="n">m1start</span><span class="p">,</span> <span class="n">m1end</span> <span class="o">=</span> <span class="n">m1end</span><span class="p">,</span> <span class="n">m1start</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;meshct&#39;</span><span class="p">)</span>
 
         <span class="n">moveables</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1900,23 +1914,11 @@
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;active_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">+</span>
                                                 <span class="bp">self</span><span class="o">.</span><span class="n">latency_time</span><span class="p">)</span>
 
-        <span class="n">m1start</span><span class="p">,</span> <span class="n">m2start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span>
-        <span class="n">m1end</span><span class="p">,</span> <span class="n">m2end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">finals</span>
-        <span class="n">points1</span><span class="p">,</span> <span class="n">points2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_intervs</span> <span class="o">+</span> <span class="mi">1</span>
-
-        <span class="n">m2_space</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">m2start</span><span class="p">,</span> <span class="n">m2end</span><span class="p">,</span> <span class="n">points2</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">waypoints</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">starts_points</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">m2pos</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">m2_space</span><span class="p">):</span>
-            <span class="n">starts_points</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">m1start</span><span class="p">,</span> <span class="n">m2pos</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">waypoints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">m1end</span><span class="p">,</span> <span class="n">m2pos</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">))</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bidirectional_mode</span><span class="p">:</span>
-                <span class="n">m1start</span><span class="p">,</span> <span class="n">m1end</span> <span class="o">=</span> <span class="n">m1end</span><span class="p">,</span> <span class="n">m1start</span>
-
+        <span class="n">points1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_intervs</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">waypoint</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">waypoints</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">point_id</span> <span class="o">=</span> <span class="n">points1</span> <span class="o">*</span> <span class="n">i</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;waypoint_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">starts</span> <span class="o">=</span> <span class="n">starts_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts_points</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">finals</span> <span class="o">=</span> <span class="n">waypoint</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;start_positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1939,7 +1941,7 @@
         <span class="k">return</span> <span class="mf">0.0</span>
 
     <span class="k">def</span> <span class="nf">getIntervalEstimation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_intervs</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">waypoints</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_fill_missing_records</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># fill record list with dummy records for the final padding</span>
