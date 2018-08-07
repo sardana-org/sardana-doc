@@ -961,30 +961,46 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;LogMacro&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
 
-
 <div class="viewcode-block" id="repeat"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.repeat">[docs]</a><span class="k">class</span> <span class="nc">repeat</span><span class="p">(</span><span class="n">Hookable</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This macro executes as many repetitions of it&#39;s body hook macros as</span>
-<span class="sd">    specified by nr parameter. If nr parameter has negative value,</span>
-<span class="sd">    repetitions will be executed until you stop repeat macro.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;This macro executes as many repetitions of a set of macros as</span>
+<span class="sd">    specified by nr parameter. The macros to be repeated can be</span>
+<span class="sd">    given as parameters or as body hooks.</span>
+<span class="sd">    If both are given first will be executed the ones given as</span>
+<span class="sd">    parameters and then the ones given as body hooks.</span>
+<span class="sd">    If nr has negative value, repetitions will be executed until you</span>
+<span class="sd">    stop repeat macro.</span>
 
-    <span class="c1"># hints = { &#39;allowsHooks&#39;: (&#39;body&#39;, &#39;break&#39;, &#39;continue&#39;) }</span>
+<span class="sd">    .. note::</span>
+<span class="sd">        The repeat macro has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including removal of the macro) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.&quot;&quot;&quot;</span>
+
     <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;body&#39;</span><span class="p">,)}</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="s1">&#39;nr&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Nr of iterations&#39;</span><span class="p">]</span>
+        <span class="p">[</span><span class="s1">&#39;nr&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Nr of iterations&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;macro_name_params&#39;</span><span class="p">,</span> <span class="p">[</span>
+                <span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span>
+                 <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Macro name and parameters (if any)&#39;</span><span class="p">],</span>
+                <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>
+            <span class="p">],</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;List with macro name and parameters (if any)&quot;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nr</span><span class="p">):</span>
-        <span class="c1"># self.breakHooks = self.getHooks(&quot;break&quot;)</span>
-        <span class="c1"># self.continueHooks = self.getHooks(&quot;continue&quot;)</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nr</span><span class="p">,</span> <span class="n">macro_name_params</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bodyHooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">macro_name_params</span> <span class="o">=</span> <span class="n">macro_name_params</span>
 
     <span class="k">def</span> <span class="nf">__loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">checkPoint</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro_name_params</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">macro_cmd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_name_params</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="n">macro_cmd</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">bodyHook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bodyHooks</span><span class="p">:</span>
             <span class="n">bodyHook</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nr</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nr</span><span class="p">,</span> <span class="n">macro_name_params</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">nr</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">__loop</span><span class="p">()</span>
