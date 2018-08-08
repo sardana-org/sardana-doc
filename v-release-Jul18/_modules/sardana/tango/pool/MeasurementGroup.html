@@ -212,10 +212,10 @@
 <div class="viewcode-block" id="MeasurementGroup.init_device"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.init_device">[docs]</a>    <span class="k">def</span> <span class="nf">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">PoolGroupDevice</span><span class="o">.</span><span class="n">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="c1"># state and status are already set by the super class</span>
-        <span class="n">detect_evts</span> <span class="o">=</span> <span class="s2">&quot;latencytime&quot;</span><span class="p">,</span> <span class="s2">&quot;moveable&quot;</span><span class="p">,</span> <span class="s2">&quot;synchronization&quot;</span>
+        <span class="n">detect_evts</span> <span class="o">=</span> <span class="s2">&quot;latencytime&quot;</span><span class="p">,</span> <span class="s2">&quot;moveable&quot;</span><span class="p">,</span> <span class="s2">&quot;synchronization&quot;</span><span class="p">,</span> \
+                      <span class="s2">&quot;softwaresynchronizerinitialdomain&quot;</span>
         <span class="n">non_detect_evts</span> <span class="o">=</span> <span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;integrationtime&quot;</span><span class="p">,</span> <span class="s2">&quot;monitorcount&quot;</span><span class="p">,</span> \
-                          <span class="s2">&quot;acquisitionmode&quot;</span><span class="p">,</span> <span class="s2">&quot;elementlist&quot;</span><span class="p">,</span> <span class="s2">&quot;repetitions&quot;</span><span class="p">,</span> \
-                          <span class="s2">&quot;softwaresynchronizerinitialdomain&quot;</span>
+                          <span class="s2">&quot;acquisitionmode&quot;</span><span class="p">,</span> <span class="s2">&quot;elementlist&quot;</span><span class="p">,</span> <span class="s2">&quot;repetitions&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_change_events</span><span class="p">(</span><span class="n">detect_evts</span><span class="p">,</span> <span class="n">non_detect_evts</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">Elements</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Elements</span><span class="p">)</span>
