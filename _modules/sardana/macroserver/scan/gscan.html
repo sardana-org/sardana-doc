@@ -1083,6 +1083,10 @@
             <span class="k">pass</span>
 
     <span class="k">def</span> <span class="nf">step_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-scan&#39;</span><span class="p">):</span>
+                <span class="n">hook</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">scan_loop</span><span class="p">():</span>
@@ -1099,7 +1103,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="p">[</span><span class="s2">&quot;endstatus&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">endstatus</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">do_restore</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">endstatus</span> <span class="o">!=</span> <span class="n">ScanEndStatus</span><span class="o">.</span><span class="n">Normal</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">endstatus</span> <span class="o">==</span> <span class="n">ScanEndStatus</span><span class="o">.</span><span class="n">Normal</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-scan&#39;</span><span class="p">):</span>
+                        <span class="n">hook</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span>
 
     <span class="k">def</span> <span class="nf">scan_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1143,10 +1151,6 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">yield</span> <span class="mf">0.0</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-scan&#39;</span><span class="p">):</span>
-                <span class="n">hook</span><span class="p">()</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">_sum_motion_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sum_acq_time</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1157,10 +1161,6 @@
             <span class="n">lstep</span> <span class="o">=</span> <span class="n">step</span>
             <span class="k">if</span> <span class="n">scream</span><span class="p">:</span>
                 <span class="k">yield</span> <span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_points</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.0</span>
-
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-scan&#39;</span><span class="p">):</span>
-                <span class="n">hook</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">scream</span><span class="p">:</span>
             <span class="k">yield</span> <span class="mf">100.0</span>
@@ -1894,10 +1894,6 @@
         <span class="n">point_nb</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span>
         <span class="c1"># data = self.data</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-scan&#39;</span><span class="p">):</span>
-                <span class="n">hook</span><span class="p">()</span>
-
         <span class="c1"># start move &amp; acquisition as close as possible</span>
         <span class="c1"># from this point on synchronization becomes critical</span>
         <span class="n">manager</span><span class="o">.</span><span class="n">add_job</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">go_through_waypoints</span><span class="p">)</span>
@@ -2010,10 +2006,6 @@
                 <span class="n">sum_delay</span> <span class="o">+=</span> <span class="p">(</span><span class="n">curr_time</span> <span class="o">-</span> <span class="n">old_curr_time</span><span class="p">)</span> <span class="o">-</span> <span class="n">integ_time</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">motion_end_event</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-scan&#39;</span><span class="p">):</span>
-                <span class="n">hook</span><span class="p">()</span>
 
         <span class="n">env</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_env</span>
         <span class="n">env</span><span class="p">[</span><span class="s1">&#39;acqtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum_integ_time</span>
@@ -2591,15 +2583,7 @@
         <span class="c1"># point_nb, step = -1, None</span>
         <span class="c1"># data = self.data</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-scan&#39;</span><span class="p">):</span>
-                <span class="n">hook</span><span class="p">()</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">go_through_waypoints</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-scan&#39;</span><span class="p">):</span>
-                <span class="n">hook</span><span class="p">()</span>
 
         <span class="n">env</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_env</span>
         <span class="n">env</span><span class="p">[</span><span class="s1">&#39;acqtime&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum_integ_time</span>
@@ -2808,10 +2792,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-scan&#39;</span><span class="p">):</span>
-                <span class="n">hook</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-acq&#39;</span><span class="p">):</span>
                 <span class="n">hook</span><span class="p">()</span>
 
@@ -2826,10 +2806,6 @@
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-acq&#39;</span><span class="p">):</span>
-                <span class="n">hook</span><span class="p">()</span>
-
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
-            <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-scan&#39;</span><span class="p">):</span>
                 <span class="n">hook</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_fill_missing_records</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
