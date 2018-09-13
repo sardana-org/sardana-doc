@@ -172,28 +172,29 @@
   <div class="section" id="macro-hooks">
 <span id="sardana-macros-hooks"></span><h1>Macro Hooks<a class="headerlink" href="#macro-hooks" title="Permalink to this headline">¶</a></h1>
 <p>A hook is an extra code that can be run at certain points of a macro execution.
-These points are predefined for each hookable macro and passed via a &#8220;hints&#8221; mechanism.
-The hint tells the macro how and when to run the attached hook.
-Hooks allow the customization of already existing macros and can be added using
-three different ways:</p>
+These points, called <em>hook places</em> are predefined for each <em>hookable</em> macro.
+The hook place tells the macro how and when to run the attached hook.
+Hooks allow the customization of already existing macros and can be added
+using three different ways:</p>
 <ul class="simple">
-<li>General Hooks</li>
+<li><a class="reference internal" href="#sardana-macros-hooks-general"><span class="std std-ref">General Hooks</span></a></li>
 <li><a class="reference internal" href="taurus/sequencer.html#sequencer-ui"><span class="std std-ref">Sequencer Hooks</span></a></li>
-<li><a class="reference internal" href="../devel/howto_macros/scan_framework.html#sardana-macros-scanframework"><span class="std std-ref">Programmatic Hooks</span></a></li>
+<li><a class="reference internal" href="../devel/howto_macros/macros_general.html#sardana-macro-adding-hooks-support"><span class="std std-ref">Programmatic Hooks</span></a></li>
 </ul>
 <p>All available macros can be used as a hook.</p>
 <div class="section" id="general-hooks">
-<h2>General Hooks<a class="headerlink" href="#general-hooks" title="Permalink to this headline">¶</a></h2>
+<span id="sardana-macros-hooks-general"></span><h2>General Hooks<a class="headerlink" href="#general-hooks" title="Permalink to this headline">¶</a></h2>
 <p>The general hooks were implemented in Sardana after the programmatic hooks.
 The motivation for this implementation was to allow the customization
-of the scan macros without having to redefine them.
-The general hooks apply to all hookable macros and allow the definition
-of new hints.
-They can be controlled using dedicated macros: <a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.lsgh" title="sardana.macroserver.macros.env.lsgh"><code class="xref py py-class docutils literal"><span class="pre">lsgh</span></code></a>,
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.defgh" title="sardana.macroserver.macros.env.defgh"><code class="xref py py-class docutils literal"><span class="pre">defgh</span></code></a> and <a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.udefgh" title="sardana.macroserver.macros.env.udefgh"><code class="xref py py-class docutils literal"><span class="pre">udefgh</span></code></a>.
-For each hook position, hint, several hooks can be run, they will be run in the
-order they were added. The same hook can be run several times in the same position
-if it&#8217;s added several times.</p>
+of the scan macros without having to redefine them. The general hooks apply
+to all hookable macros.</p>
+<p>They can be controlled using dedicated macros:
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.lsgh" title="sardana.macroserver.macros.env.lsgh"><code class="xref py py-class docutils literal"><span class="pre">lsgh</span></code></a>,
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.defgh" title="sardana.macroserver.macros.env.defgh"><code class="xref py py-class docutils literal"><span class="pre">defgh</span></code></a> and
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/env.html#sardana.macroserver.macros.env.udefgh" title="sardana.macroserver.macros.env.udefgh"><code class="xref py py-class docutils literal"><span class="pre">udefgh</span></code></a>.
+For each hook place, several hooks can be attached, they will be run in the
+order they were added. The same hook can be run several times in the same
+place if it was added several times.</p>
 <p>Examples:</p>
 <ul class="simple">
 <li>Check motor limits in step scans (pre-scan)</li>
