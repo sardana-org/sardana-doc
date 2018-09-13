@@ -479,7 +479,16 @@ being a composed of four elements:</p>
 <div><ul class="simple">
 <li>parameter name</li>
 <li>parameter type</li>
-<li>parameter default value (None means no default value)</li>
+<li><dl class="first docutils">
+<dt>parameter default value:</dt>
+<dd><ul class="first last">
+<li><code class="docutils literal"><span class="pre">None</span></code> means no default value</li>
+<li><code class="docutils literal"><span class="pre">Optional</span></code> means that
+<a class="reference internal" href="#sardana-macro-optional-parameters"><span class="std std-ref">the parameter value is optional</span></a></li>
+</ul>
+</dd>
+</dl>
+</li>
 <li>parameter description</li>
 </ul>
 </div></blockquote>
@@ -504,6 +513,55 @@ pseudo-counter, ...)</li>
 <p>The complete list of types distributed with sardana is made up by these five
 simple types: <code class="docutils literal"><span class="pre">Integer</span></code>, <code class="docutils literal"><span class="pre">Float</span></code>, <code class="docutils literal"><span class="pre">Boolean</span></code>, <code class="docutils literal"><span class="pre">String</span></code>, <code class="docutils literal"><span class="pre">Any</span></code>, plus
 all available sardana interfaces (<a class="reference internal" href="../api/sardana/sardanadefs.html#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">Interface</span></code></a>)</p>
+<div class="section" id="optional-parameters">
+<span id="sardana-macro-optional-parameters"></span><h3>Optional parameters<a class="headerlink" href="#optional-parameters" title="Permalink to this headline">¶</a></h3>
+<p>A special parameter default value is the <code class="docutils literal"><span class="pre">Optional</span></code>. It allows to
+execute a macro even the given parameter value is not specified by the user.</p>
+<p>So, here is an example how to define and use the optional parameter:</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="k">class</span> <span class="nc">count</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;itime&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;integration time&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;mntgrp&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="s1">&#39;MntGrp to use&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">itime</span><span class="p">,</span> <span class="n">mntgrp</span><span class="p">):</span>
+        <span class="n">bkp_active_mntgrp</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">mntgrp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">bkp_active_mntgrp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
+                <span class="n">mntgrp_name</span> <span class="o">=</span> <span class="n">mntgrp</span><span class="o">.</span><span class="n">name</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">,</span> <span class="n">mntgrp_name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Use &quot;{0}&quot; measurement group&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mntgrp_name</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ct</span><span class="p">(</span><span class="n">itime</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">bkp_active_mntgrp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">,</span> <span class="n">bkp_active_mntgrp</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
 <div class="section" id="repeat-parameters">
 <span id="sardana-macro-repeat-parameters"></span><h3>Repeat parameters<a class="headerlink" href="#repeat-parameters" title="Permalink to this headline">¶</a></h3>
 <p>A special parameter type is the repeat parameter (a.k.a. <em>ParamRepeat</em>,

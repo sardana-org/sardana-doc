@@ -175,13 +175,34 @@
 
 <span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
 <span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">etree</span>
-
 <span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
 
 <span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">INTERFACES_EXPANDED</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msbase</span> <span class="k">import</span> <span class="n">MSBaseObject</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">MacroServerException</span><span class="p">,</span> \
     <span class="n">UnknownMacro</span><span class="p">,</span> <span class="n">UnknownMacroLibrary</span>
+
+
+<span class="k">class</span> <span class="nc">OptionalParamClass</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">OptionalParamClass</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+        <span class="n">attributes</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">attributes</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;__setattr__&#39;</span><span class="p">,</span> <span class="s1">&#39;__repr__&#39;</span><span class="p">,</span> <span class="s1">&#39;raise_error&#39;</span><span class="p">,</span> <span class="s1">&#39;__class__&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;__dict__&#39;</span><span class="p">,</span> <span class="s1">&#39;__weakref__&#39;</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">raise_error</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raise_error</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;Optional&#39;</span>
+
+    <span class="k">def</span> <span class="nf">raise_error</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;can not be accessed&#39;</span><span class="p">)</span>
+
+
+<span class="n">Optional</span> <span class="o">=</span> <span class="n">OptionalParamClass</span><span class="p">({</span><span class="s1">&#39;___optional_parameter__&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
 
 
 <span class="k">class</span> <span class="nc">WrongParam</span><span class="p">(</span><span class="n">MacroServerException</span><span class="p">):</span>
@@ -525,6 +546,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">param_type</span> <span class="o">=</span> <span class="n">param_def</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">param_def</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+        <span class="n">optional_param</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">param_type</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">param</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decodeRepeat</span><span class="p">(</span><span class="n">raw_param</span><span class="p">,</span> <span class="n">param_def</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -536,22 +558,26 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">value</span> <span class="o">=</span> <span class="n">raw_param</span>
                 <span class="c1"># None or [] indicates default value</span>
-                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span>
+                                     <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
                     <span class="n">value</span> <span class="o">=</span> <span class="n">param_def</span><span class="p">[</span><span class="s1">&#39;default_value&#39;</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="k">raise</span> <span class="n">MissingParam</span><span class="p">,</span> <span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; not specified&quot;</span> <span class="o">%</span> <span class="n">name</span>
+                    <span class="k">raise</span> <span class="n">MissingParam</span><span class="p">(</span><span class="s2">&quot;&#39;</span><span class="si">%s</span><span class="s2">&#39; not specified&quot;</span> <span class="o">%</span> <span class="n">name</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">value</span> <span class="ow">is</span> <span class="n">Optional</span><span class="p">:</span>
+                    <span class="n">param</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">optional_param</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="c1"># cast to sting to fulfill with ParamType API</span>
-                    <span class="n">value</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-                <span class="n">param</span> <span class="o">=</span> <span class="n">param_type</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">WrongParamType</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span>
-            <span class="k">except</span> <span class="n">UnknownParamObj</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">WrongParam</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span>
-            <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">param</span> <span class="o">=</span> <span class="n">param_type</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+            <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">WrongParamType</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">UnknownParamObj</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">WrongParam</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">optional_param</span><span class="p">:</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Could not create </span><span class="si">%s</span><span class="s1"> parameter &quot;</span><span class="si">%s</span><span class="s1">&quot; for &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> \
                       <span class="p">(</span><span class="n">param_type</span><span class="o">.</span><span class="n">getName</span><span class="p">(),</span> <span class="n">name</span><span class="p">,</span> <span class="n">raw_param</span><span class="p">)</span>
-                <span class="k">raise</span> <span class="n">WrongParam</span><span class="p">,</span> <span class="n">msg</span>
+                <span class="k">raise</span> <span class="n">WrongParam</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">param</span>
 
     <span class="k">def</span> <span class="nf">decodeRepeat</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">raw_param_repeat</span><span class="p">,</span> <span class="n">param_repeat_def</span><span class="p">):</span>
