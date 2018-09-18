@@ -1554,20 +1554,25 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_motion</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">originalPositions</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="ascanct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.ascanct">[docs]</a><span class="k">class</span> <span class="nc">ascanct</span><span class="p">(</span><span class="n">aNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">aNscanct</span><span class="p">(</span><span class="n">aNscan</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;N-dimensional continuous scan. This is **not** meant to be called by</span>
+<span class="sd">    the user, but as a generic base to construct ascanct, a2scanct, a3scanct,</span>
+<span class="sd">    ...&quot;&quot;&quot;</span>
+
+    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;scan&quot;</span><span class="p">:</span> <span class="s2">&quot;aNscanct&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;allowsHooks&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;pre-scan&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-configuration&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-move&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-move&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-acq&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-start&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-acq&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-cleanup&quot;</span><span class="p">,</span> <span class="s2">&quot;post-cleanup&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-scan&quot;</span><span class="p">)}</span>
+
+
+<div class="viewcode-block" id="ascanct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.ascanct">[docs]</a><span class="k">class</span> <span class="nc">ascanct</span><span class="p">(</span><span class="n">aNscanct</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Do an absolute continuous scan of the specified motor.</span>
 <span class="sd">    ascanct scans one motor, as specified by motor. The motor starts before the</span>
 <span class="sd">    position given by start_pos in order to reach the constant velocity at the</span>
 <span class="sd">    start_pos and finishes at the position after the final_pos in order to</span>
 <span class="sd">    maintain the constant velocity until the final_pos.&quot;&quot;&quot;</span>
-
-    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;ascanct&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-configuration&#39;</span><span class="p">,</span>
-                                                <span class="s1">&#39;post-configuration&#39;</span><span class="p">,</span>
-                                                <span class="s1">&#39;pre-start&#39;</span><span class="p">,</span>
-                                                <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
-                                                <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span>
-                                                <span class="s1">&#39;pre-cleanup&#39;</span><span class="p">,</span>
-                                                <span class="s1">&#39;post-cleanup&#39;</span><span class="p">)}</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Moveable name&#39;</span><span class="p">],</span>
                  <span class="p">[</span><span class="s1">&#39;start_pos&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Scan start position&#39;</span><span class="p">],</span>
@@ -1583,21 +1588,13 @@
                       <span class="n">latency_time</span><span class="o">=</span><span class="n">latency_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="a2scanct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.a2scanct">[docs]</a><span class="k">class</span> <span class="nc">a2scanct</span><span class="p">(</span><span class="n">aNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
+<div class="viewcode-block" id="a2scanct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.a2scanct">[docs]</a><span class="k">class</span> <span class="nc">a2scanct</span><span class="p">(</span><span class="n">aNscanct</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Two-motor continuous scan.</span>
 <span class="sd">    a2scanct scans two motors, as specified by motor1 and motor2. Each motor</span>
 <span class="sd">    starts before the position given by its start_pos in order to reach the</span>
 <span class="sd">    constant velocity at its start_pos and finishes at the position after</span>
 <span class="sd">    its final_pos in order to maintain the constant velocity until its</span>
 <span class="sd">    final_pos.&quot;&quot;&quot;</span>
-
-    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;a2scanct&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-configuration&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;post-configuration&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;pre-start&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;pre-cleanup&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;post-cleanup&#39;</span><span class="p">)}</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="s1">&#39;motor1&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Moveable 1 to move&#39;</span><span class="p">],</span>
@@ -1617,21 +1614,13 @@
                       <span class="n">latency_time</span><span class="o">=</span><span class="n">latency_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="a3scanct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.a3scanct">[docs]</a><span class="k">class</span> <span class="nc">a3scanct</span><span class="p">(</span><span class="n">aNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
+<div class="viewcode-block" id="a3scanct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.a3scanct">[docs]</a><span class="k">class</span> <span class="nc">a3scanct</span><span class="p">(</span><span class="n">aNscanct</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Three-motor continuous scan.</span>
 <span class="sd">    a2scanct scans three motors, as specified by motor1, motor2 and motor3.</span>
 <span class="sd">    Each motor starts before the position given by its start_pos in order to</span>
 <span class="sd">    reach the constant velocity at its start_pos and finishes at the position</span>
 <span class="sd">    after its final_pos in order to maintain the constant velocity until its</span>
 <span class="sd">    final_pos.&quot;&quot;&quot;</span>
-
-    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;a2scanct&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-configuration&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;post-configuration&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;pre-start&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;pre-cleanup&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;post-cleanup&#39;</span><span class="p">)}</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="s1">&#39;motor1&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Moveable 1 to move&#39;</span><span class="p">],</span>
@@ -1662,14 +1651,6 @@
 <span class="sd">    position after its final_pos in order to maintain the constant velocity</span>
 <span class="sd">    until its final_pos.&quot;&quot;&quot;</span>
 
-    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;a2scanct&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-configuration&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;post-configuration&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;pre-start&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;pre-cleanup&#39;</span><span class="p">,</span>
-                                                 <span class="s1">&#39;post-cleanup&#39;</span><span class="p">)}</span>
-
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="s1">&#39;motor1&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Moveable 1 to move&#39;</span><span class="p">],</span>
         <span class="p">[</span><span class="s1">&#39;start_pos1&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Scan start position 1&#39;</span><span class="p">],</span>
@@ -1694,7 +1675,20 @@
                       <span class="n">latency_time</span><span class="o">=</span><span class="n">latency_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span></div>
 
 
-<span class="k">class</span> <span class="nc">dscanct</span><span class="p">(</span><span class="n">dNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">dNscanct</span><span class="p">(</span><span class="n">dNscan</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;N-dimensional continuous scan. This is **not** meant to be called by</span>
+<span class="sd">    the user, but as a generic base to construct ascanct, a2scanct, a3scanct,</span>
+<span class="sd">    ...&quot;&quot;&quot;</span>
+
+    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;scan&quot;</span><span class="p">:</span> <span class="s2">&quot;dNscanct&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;allowsHooks&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;pre-scan&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-configuration&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-move&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-move&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-acq&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-start&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-acq&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-cleanup&quot;</span><span class="p">,</span> <span class="s2">&quot;post-cleanup&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-scan&quot;</span><span class="p">)}</span>
+
+
+<span class="k">class</span> <span class="nc">dscanct</span><span class="p">(</span><span class="n">dNscanct</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Do an a relative continuous motor scan,</span>
 <span class="sd">    dscanct scans a motor, as specified by motor1.</span>
 <span class="sd">    The Motor starts before the position given by its start_pos in order to</span>
@@ -1716,7 +1710,7 @@
                       <span class="n">latency_time</span><span class="o">=</span><span class="n">latency_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">d2scanct</span><span class="p">(</span><span class="n">dNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">d2scanct</span><span class="p">(</span><span class="n">dNscanct</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;continuous two-motor scan relative to the starting positions,</span>
 <span class="sd">    d2scanct scans three motors, as specified by motor1 and motor2.</span>
 <span class="sd">    Each motor starts before the position given by its start_pos in order to</span>
@@ -1740,7 +1734,7 @@
                       <span class="n">mode</span><span class="o">=</span><span class="n">ContinuousHwTimeMode</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">d3scanct</span><span class="p">(</span><span class="n">dNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">d3scanct</span><span class="p">(</span><span class="n">dNscanct</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;continuous three-motor scan relative to the starting positions,</span>
 <span class="sd">    d3scanct scans three motors, as specified by motor1, motor2 and motor3.</span>
 <span class="sd">    Each motor starts before the position given by its start_pos in order to</span>
@@ -1768,7 +1762,7 @@
                       <span class="n">integ_time</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="n">ContinuousHwTimeMode</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">d4scanct</span><span class="p">(</span><span class="n">dNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">d4scanct</span><span class="p">(</span><span class="n">dNscanct</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;continuous four-motor scan relative to the starting positions,</span>
 <span class="sd">    d4scanct scans three motors, as specified by motor1, motor2, motor3 and</span>
 <span class="sd">    motor4.</span>
@@ -1811,10 +1805,12 @@
 <span class="sd">    first motor scan is nested within the second motor scan.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;meshct&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-scan&#39;</span><span class="p">,</span> <span class="s1">&#39;pre-move&#39;</span><span class="p">,</span>
-                                               <span class="s1">&#39;post-move&#39;</span><span class="p">,</span> <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
-                                               <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span> <span class="s1">&#39;post-step&#39;</span><span class="p">,</span>
-                                               <span class="s1">&#39;post-scan&#39;</span><span class="p">)}</span>
+    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;scan&quot;</span><span class="p">:</span> <span class="s2">&quot;meshct&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;allowsHooks&quot;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;pre-scan&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-configuration&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-move&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-move&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-acq&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-start&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-acq&quot;</span><span class="p">,</span> <span class="s2">&quot;pre-cleanup&quot;</span><span class="p">,</span> <span class="s2">&quot;post-cleanup&quot;</span><span class="p">,</span>
+                             <span class="s2">&quot;post-scan&quot;</span><span class="p">)}</span>
     <span class="n">env</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">,)</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
