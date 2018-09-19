@@ -180,6 +180,8 @@
     <span class="n">ViewOption</span><span class="p">,</span> <span class="n">iMacro</span><span class="p">,</span> <span class="n">Hookable</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">StopException</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.scan.scandata</span> <span class="k">import</span> <span class="n">Record</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Optional</span>
+
 <span class="c1">##########################################################################</span>
 <span class="c1">#</span>
 <span class="c1"># Motion related macros</span>
@@ -787,17 +789,25 @@
     <span class="n">env</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">,)</span>
     <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span> <span class="s1">&#39;post-acq&#39;</span><span class="p">)}</span>
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">]</span>
+        <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;mnt_grp&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="s1">&#39;Measurement Group to &#39;</span>
+                                                     <span class="s1">&#39;use&#39;</span><span class="p">]</span>
+
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
-        <span class="n">mnt_grp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span>
-            <span class="n">mnt_grp_name</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">mnt_grp</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">mnt_grp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span><span class="p">,</span>
+                                       <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span> <span class="o">=</span> <span class="n">mnt_grp</span><span class="o">.</span><span class="n">name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="n">mnt_grp</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">mnt_grp</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp is not defined or has invalid value&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;The MntGrp </span><span class="si">{}</span><span class="s1"> is not defined or has invalid &#39;</span>
+                       <span class="s1">&#39;value&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span><span class="p">))</span>
             <span class="k">return</span>
         <span class="c1"># integration time has to be accessible from with in the hooks</span>
         <span class="c1"># so declare it also instance attribute</span>
@@ -838,16 +848,23 @@
     <span class="n">env</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">,)</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">]</span>
+        <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;mnt_grp&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="s1">&#39;Measurement Group to &#39;</span>
+                                                     <span class="s1">&#39;use&#39;</span><span class="p">]</span>
+
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">mnt_grp</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_value</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="n">mnt_grp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span>
-            <span class="n">mnt_grp_name</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">mnt_grp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span><span class="p">,</span>
+                                       <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span> <span class="o">=</span> <span class="n">mnt_grp</span><span class="o">.</span><span class="n">name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="n">mnt_grp</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
@@ -865,9 +882,10 @@
             <span class="n">valueObj</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">getValueObj_</span><span class="p">()</span>
             <span class="n">valueObj</span><span class="o">.</span><span class="n">subscribeEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counterChanged</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">mnt_grp</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp is not defined or has invalid value&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;The MntGrp </span><span class="si">{}</span><span class="s1"> is not defined or has invalid &#39;</span>
+                       <span class="s1">&#39;value&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span><span class="p">))</span>
             <span class="k">return</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_value</span> <span class="o">=</span> <span class="kc">True</span>
@@ -960,6 +978,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;LogMacro&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;LogMacro&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="repeat"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.repeat">[docs]</a><span class="k">class</span> <span class="nc">repeat</span><span class="p">(</span><span class="n">Hookable</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This macro executes as many repetitions of a set of macros as</span>
