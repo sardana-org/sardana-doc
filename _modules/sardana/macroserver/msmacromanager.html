@@ -623,13 +623,6 @@
 <span class="sd">            means the current MacroPath will be used]</span>
 <span class="sd">        :return: the MacroLibrary object for the reloaded macro library&quot;&quot;&quot;</span>
         <span class="n">path</span> <span class="o">=</span> <span class="n">path</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMacroPath</span><span class="p">()</span>
-        <span class="c1"># reverse the path order:</span>
-        <span class="c1"># more priority elements last. This way if there are repeated elements</span>
-        <span class="c1"># they first ones (lower priority) will be overwritten by the last ones</span>
-        <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
-            <span class="n">path</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-            <span class="n">path</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-
         <span class="n">mod_manager</span> <span class="o">=</span> <span class="n">ModuleManager</span><span class="p">()</span>
         <span class="n">m</span><span class="p">,</span> <span class="n">exc_info</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
         <span class="n">valid</span><span class="p">,</span> <span class="n">exc_info</span> <span class="o">=</span> <span class="n">mod_manager</span><span class="o">.</span><span class="n">isValidModule</span><span class="p">(</span><span class="n">module_name</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
