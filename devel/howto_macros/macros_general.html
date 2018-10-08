@@ -515,8 +515,13 @@ simple types: <code class="docutils literal"><span class="pre">Integer</span></c
 all available sardana interfaces (<a class="reference internal" href="../api/sardana/sardanadefs.html#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">Interface</span></code></a>)</p>
 <div class="section" id="optional-parameters">
 <span id="sardana-macro-optional-parameters"></span><h3>Optional parameters<a class="headerlink" href="#optional-parameters" title="Permalink to this headline">¶</a></h3>
-<p>A special parameter default value is the <code class="docutils literal"><span class="pre">Optional</span></code>. It allows to
-execute a macro even if the given parameter value is not specified by the user.</p>
+<p>A special parameter default value is the <code class="docutils literal"><span class="pre">Optional</span></code> keyword. A parameter
+whose default value is set to <code class="docutils literal"><span class="pre">Optional</span></code> behaves just as one with a default
+value, except that if the user does not provide a value explicitly, the
+handling of its value is deferred to the run method (which gets <code class="docutils literal"><span class="pre">None</span></code> as
+the parameter value). This allows for more complex handling of the value
+(e.g. interactive prompting to the user, system introspection, reading from
+files, etc.)</p>
 <p>So, here is an example how to define and use the optional parameter:</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
