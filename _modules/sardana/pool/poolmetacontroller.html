@@ -413,17 +413,17 @@
                    <span class="o">+</span> <span class="s2">&quot;sardana.pool.controller.Description constant instead.&quot;</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">klass</span><span class="o">.</span><span class="n">class_prop</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>  <span class="c1"># old member</span>
             <span class="n">props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">DataInfo</span><span class="o">.</span><span class="n">toDataInfo</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">Description</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">Description</span><span class="p">])</span>
-            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="s1">&#39;Description&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">dep_msg</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">])</span>
 
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">klass</span><span class="o">.</span><span class="n">ctrl_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">DataInfo</span><span class="o">.</span><span class="n">toDataInfo</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">Description</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">Description</span><span class="p">])</span>
-            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">elif</span> <span class="s1">&#39;Description&#39;</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">dep_msg</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">ctrl_properties_descriptions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">])</span>
 
