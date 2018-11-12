@@ -178,6 +178,7 @@
 <span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
 
 <span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">INTERFACES_EXPANDED</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">is_non_str_seq</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msbase</span> <span class="k">import</span> <span class="n">MSBaseObject</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">MacroServerException</span><span class="p">,</span> \
     <span class="n">UnknownMacro</span><span class="p">,</span> <span class="n">UnknownMacroLibrary</span>
@@ -608,7 +609,14 @@
         <span class="k">if</span> <span class="n">max_rep</span> <span class="ow">and</span> <span class="n">len_rep</span> <span class="o">&gt;</span> <span class="n">max_rep</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Found </span><span class="si">%d</span><span class="s1"> repetitions of param </span><span class="si">%s</span><span class="s1">, max is </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> \
                   <span class="p">(</span><span class="n">len_rep</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">max_rep</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="n">SupernumeraryRepeat</span><span class="p">,</span> <span class="n">msg</span>
+            <span class="k">raise</span> <span class="n">SupernumeraryRepeat</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="c1"># repeat params with only one member and only one repetition value are</span>
+        <span class="c1"># allowed - encapsulate it in list and try to decode anyway;</span>
+        <span class="c1"># for the moment this only works for non XML decoding but could be</span>
+        <span class="c1"># extended in the future to support XML as well</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_non_str_seq</span><span class="p">(</span><span class="n">raw_param_repeat</span><span class="p">)</span>\
+                <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_param_repeat</span><span class="p">,</span> <span class="n">etree</span><span class="o">.</span><span class="n">_Element</span><span class="p">):</span>
+            <span class="n">raw_param_repeat</span> <span class="o">=</span> <span class="p">[</span><span class="n">raw_param_repeat</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">raw_repeat</span> <span class="ow">in</span> <span class="n">raw_param_repeat</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">param_type</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">repeat</span> <span class="o">=</span> <span class="p">[]</span>

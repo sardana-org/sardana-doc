@@ -111,7 +111,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#changing-appearance-with-view-options">Changing appearance with View Options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#editing-macros">Editing macros</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#debugging-problems">Debugging problems</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#spock-syntax-and-advanced-spock-syntax"><em>Spock syntax</em> and <em>Advanced spock syntax</em></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#spock-syntax">Spock syntax</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-spock-as-a-python-console">Using spock as a Python console</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#using-spock-as-a-tango-console">Using spock as a Tango console</a></li>
 </ul>
@@ -616,24 +616,111 @@ Valid values are <code class="docutils literal"><span class="pre">output</span><
 </ul>
 </div></blockquote>
 </div>
-<div class="section" id="spock-syntax-and-advanced-spock-syntax">
-<h2><em>Spock syntax</em> and <em>Advanced spock syntax</em><a class="headerlink" href="#spock-syntax-and-advanced-spock-syntax" title="Permalink to this headline">¶</a></h2>
-<p><em>Spock syntax</em> is based on space separated list of parameter values. Not all macros
-are allowed to be used with the spock syntax. Restrictions appear for those macros
-using <a class="reference internal" href="../devel/howto_macros/macros_general.html#sardana-macro-repeat-parameters"><span class="std std-ref">repeat parameters</span></a> as argument. The
-<em>Spock syntax</em> would not allow:</p>
-<ol class="arabic simple">
-<li>macros defining more than one repeat parameter</li>
-<li>macros defining repeat parameter which is not at the end of the parameters definition</li>
-<li>macros defining nested repeat parameters</li>
-</ol>
-<p>To overcome these restrictions an <em>Advanced spock syntax</em> was developed, this syntax introduces the
-use of square brackets to group the repeat parameters and its repetitions.
-The <em>Spock Syntax</em> was extended for the cases 1 and 2 in case only one repetion of the repeat
-parameter is needed, this extension assumes that the parameter values passed by the user are a single
-repetition of the repeat parameter.
-A set of macro examples using both syntaxes can be found in <a class="reference internal" href="../devel/examples/macro_parameter_examples.html#sardana-devel-macro-parameter-examples"><span class="std std-ref">Macro parameter examples</span></a>.
+<div class="section" id="spock-syntax">
+<h2>Spock syntax<a class="headerlink" href="#spock-syntax" title="Permalink to this headline">¶</a></h2>
+<p><em>Spock syntax</em> is used to execute macros. It is based on space
+separated list of parameter values. If the string parameter values contain
+spaces itself these <strong>must</strong> be enclosed in quotes, either single quotes
+<code class="docutils literal"><span class="pre">''</span></code> or double quotes <code class="docutils literal"><span class="pre">&quot;&quot;</span></code>.</p>
+<p>The spock syntax was extended with the use of square brackets <code class="docutils literal"><span class="pre">[]</span></code> for
+macros which define
+<a class="reference internal" href="../devel/howto_macros/macros_general.html#sardana-macro-repeat-parameters"><span class="std std-ref">repeat parameters</span></a> as arguments.
+Repeat parameter values must be enclosed in square brackets. If the repeat
+parameter is composed from more than one internal parameter its every
+repetition must be enclosed in another square brackets as well.</p>
+<p>For example, the <code class="docutils literal"><span class="pre">move_with_timeout</span></code> macro:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">move_with_timeout</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Execute move with a timeout&quot;&quot;&quot;</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;m_p_pair&#39;</span><span class="p">,</span>
+         <span class="p">[[</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Motor to move&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Position to move to&#39;</span><span class="p">]],</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of motor/position pairs&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;timeout&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Timeout value&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Must use the square brackets for the <code class="docutils literal"><span class="pre">m_p_pair</span></code> parameter and its
+repeats:</p>
+<div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">Door_1 [1]: </span><span class="n">move_with_timeout</span> <span class="p">[[</span><span class="n">th</span> <span class="mf">8.4</span><span class="p">]</span> <span class="p">[</span><span class="n">tth</span> <span class="mf">16.8</span><span class="p">]]</span> <span class="mi">50</span>
+</pre></div>
+</div>
+<p>However for the commodity reasons the square brackets may be skipped. The
+following examples explain in which cases.</p>
+<div class="section" id="repeat-parameter-is-the-last-one">
+<h3>Repeat parameter is the last one<a class="headerlink" href="#repeat-parameter-is-the-last-one" title="Permalink to this headline">¶</a></h3>
+<p>When the repeat parameter is the last one in the parameters definition
+both square brackets (for the repeat parameter and for the repetition) may
+be skipped.</p>
+<p>For example, the <code class="docutils literal"><span class="pre">move</span></code> macro:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">move</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Execute move&quot;&quot;&quot;</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;m_p_pair&#39;</span><span class="p">,</span>
+         <span class="p">[[</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Motor to move&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Position to move to&#39;</span><span class="p">]],</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of motor/position pairs&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>May skip the square brackets for the <code class="docutils literal"><span class="pre">m_p_pair</span></code> parameter and its
+repeats:</p>
+<div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">Door_1 [1]: </span><span class="n">move</span> <span class="n">th</span> <span class="mf">8.4</span> <span class="n">tth</span> <span class="mf">16.8</span>
+</pre></div>
+</div>
+<p>This is equivalent to:</p>
+<div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">Door_1 [1]: </span><span class="n">move</span> <span class="p">[[</span><span class="n">th</span> <span class="mf">8.4</span><span class="p">]</span> <span class="p">[</span><span class="n">tth</span> <span class="mf">16.8</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="repeat-parameter-has-only-one-internal-parameter">
+<h3>Repeat parameter has only one internal parameter<a class="headerlink" href="#repeat-parameter-has-only-one-internal-parameter" title="Permalink to this headline">¶</a></h3>
+<p>When the repeat parameter contains only one internal parameter the square
+brackets for the repetition <strong>must</strong> be skipped.</p>
+<p>For example, the <code class="docutils literal"><span class="pre">power_motor</span></code> macro:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">power_motor</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Power on/off motor(s)&quot;&quot;&quot;</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;motor_list&#39;</span><span class="p">,</span> <span class="p">[[</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;motor name&#39;</span><span class="p">]],</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of motors&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;power_on&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Boolean</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;motor power state&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">pass</span>
+</pre></div>
+</div>
+<p>Must use the square brackets for the <code class="docutils literal"><span class="pre">motor_list</span></code> parameter but not for
+its repeats:</p>
+<div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">Door_1 [1]: </span><span class="n">power_motor</span> <span class="p">[</span><span class="n">th</span> <span class="n">tth</span><span class="p">]</span> <span class="bp">True</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="repeat-parameter-has-only-one-internal-parameter-and-only-one-repetition-value">
+<h3>Repeat parameter has only one internal parameter and only one repetition value<a class="headerlink" href="#repeat-parameter-has-only-one-internal-parameter-and-only-one-repetition-value" title="Permalink to this headline">¶</a></h3>
+<p>When the repeat parameter contains only one internal parameter and you
+would like to pass only one repetition value then the square brackets for
+the repeat parameter may be skipped as well resulting in no square brackets
+being used.</p>
+<p>This assumes the <code class="docutils literal"><span class="pre">power_motor</span></code> macro from the previous example.
+The following two macro executions are equivalent:</p>
+<div class="highlight-spock"><div class="highlight"><pre><span></span><span class="gp">Door_1 [1]: </span><span class="n">power_motor</span> <span class="n">th</span> <span class="bp">True</span>
+<span class="gp">Door_1 [2]: </span><span class="n">power_motor</span> <span class="p">[</span><span class="n">th</span><span class="p">]</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<p>A set of macro examples defining complex repeat parameters can be found in
+<a class="reference internal" href="../devel/examples/macro_parameter_examples.html#sardana-devel-macro-parameter-examples"><span class="std std-ref">Macro parameter examples</span></a>.
 You can see the invocation example for each of these macros in its docstring.</p>
+</div>
 </div>
 <div class="section" id="using-spock-as-a-python-console">
 <h2>Using spock as a <a class="reference external" href="http://www.python.org/">Python</a> console<a class="headerlink" href="#using-spock-as-a-python-console" title="Permalink to this headline">¶</a></h2>

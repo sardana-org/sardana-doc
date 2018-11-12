@@ -209,7 +209,7 @@
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">UnknownMacroLibrary</span><span class="p">,</span> \
     <span class="n">LibraryError</span><span class="p">,</span> <span class="n">UnknownMacro</span><span class="p">,</span> <span class="n">MissingEnv</span><span class="p">,</span> <span class="n">AbortException</span><span class="p">,</span> <span class="n">StopException</span><span class="p">,</span> \
     <span class="n">MacroServerException</span><span class="p">,</span> <span class="n">UnknownEnv</span>
-<span class="kn">from</span> <span class="nn">sardana.spock.parser</span> <span class="k">import</span> <span class="n">ParamParser</span>
+<span class="kn">from</span> <span class="nn">sardana.util.parser</span> <span class="k">import</span> <span class="n">ParamParser</span>
 
 <span class="c1"># These classes are imported from the &quot;client&quot; part of sardana, if finally</span>
 <span class="c1"># both the client and the server side needs them, place them in some</span>
@@ -851,18 +851,23 @@
             <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json_codec</span><span class="o">.</span><span class="n">encode</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">macro_meta</span><span class="o">.</span><span class="n">serialize</span><span class="p">()))[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">ret</span>
 
-    <span class="k">def</span> <span class="nf">_createMacroNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">,</span> <span class="n">macro_params</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_createMacroNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">,</span> <span class="n">macro_params_raw</span><span class="p">):</span>
         <span class="n">macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMacro</span><span class="p">(</span><span class="n">macro_name</span><span class="p">)</span>
         <span class="n">params_def</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">()</span>
+        <span class="c1"># merge params to a single, space separated, string (spock like)</span>
+        <span class="n">macro_params_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">macro_params_raw</span><span class="p">)</span>
+        <span class="n">param_parser</span> <span class="o">=</span> <span class="n">ParamParser</span><span class="p">(</span><span class="n">params_def</span><span class="p">)</span>
+        <span class="c1"># parse string with macro params to the correct list representation</span>
+        <span class="n">macro_params</span> <span class="o">=</span> <span class="n">param_parser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">macro_params_str</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">createMacroNode</span><span class="p">(</span><span class="n">macro_name</span><span class="p">,</span> <span class="n">params_def</span><span class="p">,</span> <span class="n">macro_params</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">decodeMacroParameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">,</span> <span class="n">raw_params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Decode macro parameters</span>
 
 <span class="sd">        :param door: (sardana.macroserver.msdoor.MSDoor) door object</span>
-<span class="sd">        :param raw_params: (lxml.etree._Element or list) xml element representing</span>
-<span class="sd">                          macro with subelements representing parameters or list</span>
-<span class="sd">                          with macro name followed by parameter values</span>
+<span class="sd">        :param raw_params: (lxml.etree._Element or list) xml element</span>
+<span class="sd">            representing macro with subelements representing parameters or</span>
+<span class="sd">            list with macro name followed by parameter values</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_params</span><span class="p">,</span> <span class="n">etree</span><span class="o">.</span><span class="n">_Element</span><span class="p">):</span>
             <span class="n">macro_name</span> <span class="o">=</span> <span class="n">raw_params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">)</span>
