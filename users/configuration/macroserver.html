@@ -217,9 +217,24 @@ and <code class="docutils literal"><span class="pre">LogReportFormat</span></cod
 instance. In case Sardana is used with Tango this configuration is
 accessible via the <code class="docutils literal"><span class="pre">LogstashHost</span></code> and <code class="docutils literal"><span class="pre">LogstashPort</span></code>
 <a class="reference internal" href="../../devel/api/sardana/tango/macroserver/MacroServer.html#sardana.tango.macroserver.MacroServer.MacroServer" title="sardana.tango.macroserver.MacroServer.MacroServer"><code class="xref py py-class docutils literal"><span class="pre">MacroServer</span></code></a> device properties.</p>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Document RConsolePort</p>
+<p>You can debug the MacroServer at runtime using the Python remote
+console - <code class="docutils literal"><span class="pre">rconsole</span></code> (part of the <a class="reference external" href="https://pypi.org/project/rfoo/">rfoo</a>
+project). First, you need to specify at which port the MacroServer will
+accept connections. For that, simply set the <code class="docutils literal"><span class="pre">RConsolePort</span></code>
+<a class="reference internal" href="../../devel/api/sardana/tango/macroserver/MacroServer.html#sardana.tango.macroserver.MacroServer.MacroServer" title="sardana.tango.macroserver.MacroServer.MacroServer"><code class="xref py py-class docutils literal"><span class="pre">MacroServer</span></code></a> property.
+Second, in order to open a connection to a MacroServer just type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$&gt; rconsole -p &lt;port&gt;
+</pre></div>
+</div>
+<p>The most convenient way to debug the MacroServer internals is to use the
+<a class="reference external" href="https://pytango.readthedocs.io/en/stable/server_api/util.html#util">Tango Util</a> singleton object. It is used to store Tango device server
+process data and to provide the user with a set of utility methods.
+For example, to access the MacroServer Sardana core object, in the rconsole
+session, just type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">tango</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">util</span> <span class="o">=</span> <span class="n">tango</span><span class="o">.</span><span class="n">Util</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ms</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_device_by_name</span><span class="p">(</span><span class="s2">&quot;&lt;ms_device_name&gt;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">macro_server</span>
+</pre></div>
 </div>
 </div>
 
