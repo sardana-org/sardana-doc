@@ -580,6 +580,26 @@ spock), sardana assignes the default value
 has no default value, if it is not specified by the user, sardana will complain
 and fail to create and instance of SpringfieldMotorController.</p>
 </div>
+<div class="section" id="changing-default-interface">
+<span id="sardana-controller-howto-change-default-interface"></span><h3>Changing default interface<a class="headerlink" href="#changing-default-interface" title="Permalink to this headline">¶</a></h3>
+<p>Elements instantiated from your controller will have a default interface
+corresponding to the controller&#8217;s type. For example a moveable will have a
+<em>position</em> attribute or an experimental channel will have a <em>value</em>
+attribute. However this default interface can be changed if necessary.</p>
+<p>For example, the default type of a moveable&#8217;s <em>position</em> attribute <code class="docutils literal"><span class="pre">float</span></code>
+can be changed to <code class="docutils literal"><span class="pre">long</span></code> if the given axis only allows discrete positions.
+To do that simple override the
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisAttributes" title="sardana.pool.controller.Controller.GetAxisAttributes"><code class="xref py py-class docutils literal"><span class="pre">GetAxisAttributes</span></code></a> where you can
+apply the necessary changes.</p>
+<p>Here is an example of how to change motor&#8217;s <em>position</em> attribute to <code class="docutils literal"><span class="pre">long</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">GetAxisAttributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+    <span class="n">axis_attrs</span> <span class="o">=</span> <span class="n">MotorController</span><span class="o">.</span><span class="n">GetAxisAttributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+    <span class="n">axis_attrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">axis_attrs</span><span class="p">)</span>
+    <span class="n">axis_attrs</span><span class="p">[</span><span class="s1">&#39;Position&#39;</span><span class="p">][</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span>
+    <span class="k">return</span> <span class="n">axis_attrs</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="error-handling">
 <span id="sardana-controller-howto-error-handling"></span><h3>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h3>
 <p>When you write a controller it is important to properly handle errors

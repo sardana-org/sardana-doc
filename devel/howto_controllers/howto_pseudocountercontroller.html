@@ -235,6 +235,27 @@ negative. The value close to the zero indicates the beam centered in the middle.
 Similarly behaves the horizontal pseudo counter. The total pseudo counter is
 the mean value of all the four sensors and indicates the beam intensity.</p>
 </div>
+<div class="section" id="changing-default-interface">
+<h2>Changing default interface<a class="headerlink" href="#changing-default-interface" title="Permalink to this headline">¶</a></h2>
+<p>Pseudo counters instantiated from your controller will have a default
+interface, which among others, comprises the <em>value</em> attribute. This attribute
+is feed with the result of the
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.calc" title="sardana.pool.controller.PseudoCounterController.calc"><code class="xref py py-meth docutils literal"><span class="pre">calc()</span></code></a> method and by
+default it expects values of <code class="docutils literal"><span class="pre">float</span></code> type and scalar shape. You can easily
+<a class="reference internal" href="howto_controller.html#sardana-controller-howto-change-default-interface"><span class="std std-ref">change the default interface</span></a>.
+This way you could program a pseudo counter to obtain an image <a class="reference internal" href="../../glossary.html#term-roi"><span class="xref std std-term">ROI</span></a>
+of a <a class="reference internal" href="../overview/overview_2D.html#sardana-2d-overview"><span class="std std-ref">2D experimental channel</span></a>.</p>
+<p>Here is an example of how to change <em>value</em> attribute&#8217;s shape to an image
+and specify its maximum dimension of 1024 x 1024 pixels:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">GetAxisAttributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+<span class="n">axis_attrs</span> <span class="o">=</span> <span class="n">PseudoCounterController</span><span class="o">.</span><span class="n">GetAxisAttributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+<span class="n">axis_attrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">axis_attrs</span><span class="p">)</span>
+<span class="n">axis_attrs</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">][</span><span class="n">Type</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="nb">float</span><span class="p">,</span> <span class="p">),</span> <span class="p">)</span>
+<span class="n">axis_attrs</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">][</span><span class="n">MaxDimSize</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+<span class="k">return</span> <span class="n">axis_attrs</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="including-external-variables-in-the-calculation">
 <h2>Including external variables in the calculation<a class="headerlink" href="#including-external-variables-in-the-calculation" title="Permalink to this headline">¶</a></h2>
 <p>The pseudo counter calculation may require an arbitrary variable which is not
