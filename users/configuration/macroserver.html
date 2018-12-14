@@ -216,7 +216,10 @@ and <code class="docutils literal"><span class="pre">LogReportFormat</span></cod
 <a class="reference external" href="http://www.elastic.co">Elastic Stack</a> and may send logs to the a Logstash
 instance. In case Sardana is used with Tango this configuration is
 accessible via the <code class="docutils literal"><span class="pre">LogstashHost</span></code> and <code class="docutils literal"><span class="pre">LogstashPort</span></code>
-<a class="reference internal" href="../../devel/api/sardana/tango/macroserver/MacroServer.html#sardana.tango.macroserver.MacroServer.MacroServer" title="sardana.tango.macroserver.MacroServer.MacroServer"><code class="xref py py-class docutils literal"><span class="pre">MacroServer</span></code></a> device properties.</p>
+<a class="reference internal" href="../../devel/api/sardana/tango/macroserver/MacroServer.html#sardana.tango.macroserver.MacroServer.MacroServer" title="sardana.tango.macroserver.MacroServer.MacroServer"><code class="xref py py-class docutils literal"><span class="pre">MacroServer</span></code></a> device properties.
+You can use the intermediate SQLite cache database configured with
+<code class="docutils literal"><span class="pre">LogstashCacheDbPath</span></code> property, however this is discouraged due to logging
+performance problems.</p>
 <p>You can debug the MacroServer at runtime using the Python remote
 console - <code class="docutils literal"><span class="pre">rconsole</span></code> (part of the <a class="reference external" href="https://pypi.org/project/rfoo/">rfoo</a>
 project). First, you need to specify at which port the MacroServer will

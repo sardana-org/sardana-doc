@@ -1516,7 +1516,17 @@
              <span class="kc">None</span><span class="p">],</span>
         <span class="s1">&#39;LogstashPort&#39;</span><span class="p">:</span>
             <span class="p">[</span><span class="n">PyTango</span><span class="o">.</span><span class="n">DevLong</span><span class="p">,</span>
-             <span class="s2">&quot;Port on which Logstash will listen on events. &quot;</span>
+             <span class="s2">&quot;Port on which Logstash will listen on events [default: 12345]. &quot;</span>
+             <span class="s2">&quot;This property has been included in Sardana on a provisional &quot;</span>
+             <span class="s2">&quot;basis. Backwards incompatible changes (up to and including &quot;</span>
+             <span class="s2">&quot;its removal) may occur if deemed necessary by the &quot;</span>
+             <span class="s2">&quot;core developers.&quot;</span><span class="p">,</span>
+             <span class="mi">12345</span><span class="p">],</span>
+        <span class="s1">&#39;LogstashCacheDbPath&#39;</span><span class="p">:</span>
+            <span class="p">[</span><span class="n">PyTango</span><span class="o">.</span><span class="n">DevString</span><span class="p">,</span>
+             <span class="s2">&quot;Path to the Logstash cache database [default: None]. &quot;</span>
+             <span class="s2">&quot;It is advised not to use the database cache, as it may &quot;</span>
+             <span class="s2">&quot;have negative effects on logging performance. See #895. &quot;</span>
              <span class="s2">&quot;This property has been included in Sardana on a provisional &quot;</span>
              <span class="s2">&quot;basis. Backwards incompatible changes (up to and including &quot;</span>
              <span class="s2">&quot;its removal) may occur if deemed necessary by the &quot;</span>
