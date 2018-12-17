@@ -898,6 +898,9 @@
             <span class="n">slaves</span> <span class="o">=</span> <span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_slaves</span> <span class="o">=</span> <span class="n">slaves</span>
 
+    <span class="k">def</span> <span class="nf">get_read_value_loop_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span>
+
     <span class="nd">@DebugIt</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Prepares everything for acquisition and starts it.</span>
@@ -921,7 +924,6 @@
         <span class="n">states</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
             <span class="n">states</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">values</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">nap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span>
         <span class="n">nb_states_per_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span>
@@ -951,7 +953,7 @@
 
         <span class="k">with</span> <span class="n">ActionContext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_state_info</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">states</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_loop</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="n">states</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="c1"># first update the element state so that value calculation</span>
