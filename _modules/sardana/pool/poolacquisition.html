@@ -162,15 +162,18 @@
 <span class="c1">##</span>
 <span class="c1">##############################################################################</span>
 
-<span class="sd">&quot;&quot;&quot;This module is part of the Python Pool libray. It defines the class for an</span>
+<span class="sd">&quot;&quot;&quot;This module is part of the Python Pool library. It defines the class for an</span>
 <span class="sd">acquisition&quot;&quot;&quot;</span>
 
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;AcquisitionState&quot;</span><span class="p">,</span> <span class="s2">&quot;AcquisitionMap&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolCTAcquisition&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;Pool0DAcquisition&quot;</span><span class="p">,</span> <span class="s2">&quot;Channel&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolIORAcquisition&quot;</span><span class="p">]</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;get_acq_ctrls&quot;</span><span class="p">,</span> <span class="s2">&quot;AcquisitionState&quot;</span><span class="p">,</span> <span class="s2">&quot;AcquisitionMap&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;PoolCTAcquisition&quot;</span><span class="p">,</span> <span class="s2">&quot;Pool0DAcquisition&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolIORAcquisition&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;PoolAcquisitionHardware&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolAcquisitionSoftware&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;PoolAcquisitionSoftwareStart&quot;</span><span class="p">]</span>
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
 <span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">weakref</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
 
 <span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">DebugIt</span>
@@ -178,8 +181,8 @@
 
 <span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">SardanaValue</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_TIMERABLE_ELEMENTS</span>
 <span class="kn">from</span> <span class="nn">sardana.sardanathreadpool</span> <span class="k">import</span> <span class="n">get_thread_pool</span>
-<span class="kn">from</span> <span class="nn">sardana.pool</span> <span class="k">import</span> <span class="n">SynchParam</span><span class="p">,</span> <span class="n">SynchDomain</span><span class="p">,</span> <span class="n">AcqSynch</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolaction</span> <span class="k">import</span> <span class="n">ActionContext</span><span class="p">,</span> <span class="n">PoolActionItem</span><span class="p">,</span> <span class="n">PoolAction</span>
+<span class="kn">from</span> <span class="nn">sardana.pool</span> <span class="k">import</span> <span class="n">AcqSynch</span><span class="p">,</span> <span class="n">AcqMode</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolaction</span> <span class="k">import</span> <span class="n">ActionContext</span><span class="p">,</span> <span class="n">PoolAction</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolsynchronization</span> <span class="k">import</span> <span class="n">PoolSynchronization</span>
 
 <span class="c1">#: enumeration representing possible motion states</span>
@@ -201,194 +204,261 @@
 <span class="p">}</span>
 
 
-<span class="k">def</span> <span class="nf">split_MGConfigurations</span><span class="p">(</span><span class="n">mg_cfg_in</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Split MeasurementGroup configuration with channels</span>
-<span class="sd">    triggered by SW Trigger and channels triggered by HW trigger</span>
-
-<span class="sd">    TODO: (technical debt) All the MeasurementGroup configuration</span>
-<span class="sd">    logic should be encapsulate in a dedicated class instead of</span>
-<span class="sd">    using a basic data structures like dict or lists...</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">ctrls_in</span> <span class="o">=</span> <span class="n">mg_cfg_in</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]</span>
-    <span class="n">mg_sw_cfg_out</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">mg_0d_cfg_out</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">mg_hw_cfg_out</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">mg_sw_cfg_out</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctrls_sw_out</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">mg_0d_cfg_out</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctrls_0d_out</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">mg_hw_cfg_out</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctrls_hw_out</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">ctrl_info</span> <span class="ow">in</span> <span class="n">ctrls_in</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="n">external</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)</span>
-        <span class="c1"># skipping external controllers e.g. Tango attributes</span>
-        <span class="k">if</span> <span class="n">external</span><span class="p">:</span>
-            <span class="k">continue</span>
-        <span class="c1"># splitting ZeroD based on the type</span>
-        <span class="k">if</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_ctrl_types</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">:</span>
-            <span class="n">ctrls_0d_out</span><span class="p">[</span><span class="n">ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctrl_info</span>
-        <span class="c1"># ignoring PseudoCounter</span>
-        <span class="k">elif</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_ctrl_types</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">:</span>
-            <span class="k">pass</span>
-        <span class="c1"># splitting rest of the channels based on the assigned trigger</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">synchronizer</span> <span class="o">=</span> <span class="n">ctrl_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">synchronizer</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">synchronizer</span> <span class="o">==</span> <span class="s1">&#39;software&#39;</span><span class="p">:</span>
-                <span class="n">ctrls_sw_out</span><span class="p">[</span><span class="n">ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctrl_info</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">ctrls_hw_out</span><span class="p">[</span><span class="n">ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctrl_info</span>
-
-    <span class="k">def</span> <span class="nf">find_master</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">role</span><span class="p">):</span>
-        <span class="n">master_idx</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;+inf&quot;</span><span class="p">)</span>
-        <span class="n">master</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">for</span> <span class="n">ctrl_info</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
-            <span class="n">element</span> <span class="o">=</span> <span class="n">ctrl_info</span><span class="p">[</span><span class="n">role</span><span class="p">]</span>
-            <span class="n">element_idx</span> <span class="o">=</span> <span class="n">ctrl_info</span><span class="p">[</span><span class="s2">&quot;channels&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">]</span>
-            <span class="n">element_enabled</span> <span class="o">=</span> <span class="n">ctrl_info</span><span class="p">[</span><span class="s2">&quot;channels&quot;</span><span class="p">][</span><span class="n">element</span><span class="p">][</span><span class="s2">&quot;enabled&quot;</span><span class="p">]</span>
-            <span class="c1"># Find master only if is enabled</span>
-            <span class="k">if</span> <span class="n">element_idx</span> <span class="o">&lt;</span> <span class="n">master_idx</span> <span class="ow">and</span> <span class="n">element_enabled</span><span class="p">:</span>
-                <span class="n">master</span> <span class="o">=</span> <span class="n">element</span>
-                <span class="n">master_idx</span> <span class="o">=</span> <span class="n">element_idx</span>
-        <span class="k">return</span> <span class="n">master</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ctrls_sw_out</span><span class="p">):</span>
-        <span class="n">mg_sw_cfg_out</span><span class="p">[</span><span class="s2">&quot;timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_master</span><span class="p">(</span><span class="n">ctrls_sw_out</span><span class="p">,</span> <span class="s2">&quot;timer&quot;</span><span class="p">)</span>
-        <span class="n">mg_sw_cfg_out</span><span class="p">[</span><span class="s2">&quot;monitor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_master</span><span class="p">(</span><span class="n">ctrls_sw_out</span><span class="p">,</span> <span class="s2">&quot;monitor&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ctrls_hw_out</span><span class="p">):</span>
-        <span class="n">mg_hw_cfg_out</span><span class="p">[</span><span class="s2">&quot;timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_master</span><span class="p">(</span><span class="n">ctrls_hw_out</span><span class="p">,</span> <span class="s2">&quot;timer&quot;</span><span class="p">)</span>
-        <span class="n">mg_hw_cfg_out</span><span class="p">[</span><span class="s2">&quot;monitor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">find_master</span><span class="p">(</span><span class="n">ctrls_hw_out</span><span class="p">,</span> <span class="s2">&quot;monitor&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">mg_hw_cfg_out</span><span class="p">,</span> <span class="n">mg_sw_cfg_out</span><span class="p">,</span> <span class="n">mg_0d_cfg_out</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">getTGConfiguration</span><span class="p">(</span><span class="n">MGcfg</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Build TG configuration from complete MG configuration.</span>
-
-<span class="sd">    TODO: (technical debt) All the MeasurementGroup configuration</span>
-<span class="sd">    logic should be encapsulate in a dedicated class instead of</span>
-<span class="sd">    using a basic data structures like dict or lists...</span>
-
-<span class="sd">    :param MGcfg: configuration dictionary of the whole Measurement Group.</span>
-<span class="sd">    :type MGcfg: dict&lt;&gt;</span>
-<span class="sd">    :return: a configuration dictionary of TG elements organized by controller</span>
-<span class="sd">    :rtype: dict&lt;&gt;</span>
-<span class="sd">    &#39;&#39;&#39;</span>
-
-    <span class="c1"># Create list with not repeated elements</span>
-    <span class="n">_tg_element_list</span> <span class="o">=</span> <span class="p">[]</span>
-
-    <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">MGcfg</span><span class="p">[</span><span class="s2">&quot;controllers&quot;</span><span class="p">]:</span>
-        <span class="n">tg_element</span> <span class="o">=</span> <span class="n">MGcfg</span><span class="p">[</span><span class="s2">&quot;controllers&quot;</span><span class="p">][</span><span class="n">ctrl</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">tg_element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span>
-                <span class="n">tg_element</span> <span class="o">!=</span> <span class="s2">&quot;software&quot;</span> <span class="ow">and</span>
-                <span class="n">tg_element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_tg_element_list</span><span class="p">):</span>
-            <span class="n">_tg_element_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tg_element</span><span class="p">)</span>
-
-    <span class="c1"># Intermediate dictionary to organize each ctrl with its elements.</span>
-    <span class="n">ctrl_tgelem_dict</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="k">for</span> <span class="n">tgelem</span> <span class="ow">in</span> <span class="n">_tg_element_list</span><span class="p">:</span>
-        <span class="n">tg_ctrl</span> <span class="o">=</span> <span class="n">tgelem</span><span class="o">.</span><span class="n">get_controller</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">tg_ctrl</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ctrl_tgelem_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="n">ctrl_tgelem_dict</span><span class="p">[</span><span class="n">tg_ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">tgelem</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ctrl_tgelem_dict</span><span class="p">[</span><span class="n">tg_ctrl</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tgelem</span><span class="p">)</span>
-
-    <span class="c1"># Build TG configuration dictionary.</span>
-    <span class="n">TGcfg</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">TGcfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-
-    <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrl_tgelem_dict</span><span class="p">:</span>
-        <span class="n">TGcfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">][</span><span class="n">ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">ctrls</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">ctrls</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">tg_elem</span> <span class="ow">in</span> <span class="n">ctrl_tgelem_dict</span><span class="p">[</span><span class="n">ctrl</span><span class="p">]:</span>
-            <span class="n">ch</span> <span class="o">=</span> <span class="n">ctrls</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">][</span><span class="n">tg_elem</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="n">ch</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">tg_elem</span><span class="o">.</span><span class="n">full_name</span>
-    <span class="c1"># TODO: temporary returning tg_elements</span>
-    <span class="k">return</span> <span class="n">TGcfg</span><span class="p">,</span> <span class="n">_tg_element_list</span>
-
-
-<span class="k">def</span> <span class="nf">extract_integ_time</span><span class="p">(</span><span class="n">synchronization</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Extract integration time(s) from synchronization dict. If there is only</span>
-<span class="sd">    one group in the synchronization than returns float with the integration</span>
-<span class="sd">    time. Otherwise a list of floats with different integration times.</span>
-
-<span class="sd">    TODO: (technical debt) All the MeasurementGroup synchronization</span>
-<span class="sd">    logic should be encapsulate in a dedicated class instead of</span>
-<span class="sd">    using a basic data structures like dict or lists...</span>
-
-<span class="sd">    :param synchronization: group(s) where each group is described by</span>
-<span class="sd">        SynchParam(s)</span>
-<span class="sd">    :type synchronization: list(dict)</span>
-<span class="sd">    :return list(float) or float</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">synchronization</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">integ_time</span> <span class="o">=</span> <span class="n">synchronization</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">SynchParam</span><span class="o">.</span><span class="n">Active</span><span class="p">][</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">integ_time</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">synchronization</span><span class="p">:</span>
-            <span class="n">active_time</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">SynchParam</span><span class="o">.</span><span class="n">Active</span><span class="p">][</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">]</span>
-            <span class="n">repeats</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">SynchParam</span><span class="o">.</span><span class="n">Repeats</span><span class="p">]</span>
-            <span class="n">integ_time</span> <span class="o">+=</span> <span class="p">[</span><span class="n">active_time</span><span class="p">]</span> <span class="o">*</span> <span class="n">repeats</span>
-    <span class="k">return</span> <span class="n">integ_time</span>
-
-
-<span class="k">def</span> <span class="nf">extract_repetitions</span><span class="p">(</span><span class="n">synchronization</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Extract repetitions from synchronization dict.</span>
-
-<span class="sd">    TODO: (technical debt) All the MeasurementGroup synchronization</span>
-<span class="sd">    logic should be encapsulate in a dedicated class instead of</span>
-<span class="sd">    using a basic data structures like dict or lists...</span>
-
-<span class="sd">    :param synchronization: group(s) where each group is described by</span>
-<span class="sd">        SynchParam(s)</span>
-<span class="sd">    :type synchronization: list(dict)</span>
-<span class="sd">    :return: number of repetitions</span>
-<span class="sd">    :rtype: int</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">repetitions</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">synchronization</span><span class="p">:</span>
-        <span class="n">repetitions</span> <span class="o">+=</span> <span class="n">group</span><span class="p">[</span><span class="n">SynchParam</span><span class="o">.</span><span class="n">Repeats</span><span class="p">]</span>
-    <span class="k">return</span> <span class="n">repetitions</span>
-
-
 <span class="k">def</span> <span class="nf">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">SardanaValue</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">True</span>
     <span class="k">return</span> <span class="kc">False</span>
 
 
+<span class="k">def</span> <span class="nf">get_acq_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Converts configuration controllers into acquisition controllers.</span>
+
+<span class="sd">    Takes care about converting their internals as well.</span>
+
+<span class="sd">    :param ctrls: sequence of configuration controllers objects</span>
+<span class="sd">    :type ctrls: sardana.pool.poolmeasurementgroup.ControllerConfiguration</span>
+<span class="sd">    :return: sequence of acquisition controllers</span>
+<span class="sd">    :rtype: :class:`~sardana.pool.poolacquisition.AcqController`</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The get_acq_ctrls function has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including removal of the class) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">action_ctrls</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+        <span class="n">action_ctrl</span> <span class="o">=</span> <span class="n">AcqController</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
+        <span class="n">action_ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action_ctrl</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">action_ctrls</span>
+
+
+<span class="k">def</span> <span class="nf">get_timerable_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">acq_mode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Converts timerable configuration controllers into acquisition</span>
+<span class="sd">    controllers.</span>
+
+<span class="sd">    Take care about converting their internals as well.</span>
+<span class="sd">    Take care about assigning master according to acq_mode.</span>
+
+<span class="sd">    :param ctrls: sequence of configuration controllers objects</span>
+<span class="sd">    :type ctrls: sardana.pool.poolmeasurementgroup.ControllerConfiguration</span>
+<span class="sd">    :param acq_mode: acquisition mode (timer/monitor)</span>
+<span class="sd">    :type acq_mode: :class:`sardana.pool.AcqMode`</span>
+<span class="sd">    :return: sequence of acquisition controllers</span>
+<span class="sd">    :rtype: :class:`~sardana.pool.poolacquisition.AcqController`</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The get_timerable_ctrls function has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including removal of the class) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">action_ctrls</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">acq_mode</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">master</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">acq_mode</span> <span class="ow">is</span> <span class="n">AcqMode</span><span class="o">.</span><span class="n">Timer</span><span class="p">:</span>
+                <span class="n">master</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">timer</span>
+            <span class="k">elif</span> <span class="n">acq_mode</span> <span class="ow">is</span> <span class="n">AcqMode</span><span class="o">.</span><span class="n">Monitor</span><span class="p">:</span>
+                <span class="n">master</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">monitor</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;master&#39;</span><span class="p">:</span> <span class="n">master</span><span class="p">}</span>
+        <span class="n">action_ctrl</span> <span class="o">=</span> <span class="n">AcqController</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+        <span class="n">action_ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action_ctrl</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">action_ctrls</span>
+
+
+<span class="k">def</span> <span class="nf">get_timerable_items</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">acq_mode</span><span class="o">=</span><span class="n">AcqMode</span><span class="o">.</span><span class="n">Timer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Converts timerable configuration items into acquisition items.</span>
+
+<span class="sd">    The timerable items are controllers and master. Convert these into</span>
+<span class="sd">    the corresponding acquisition items.</span>
+
+<span class="sd">    Take care about converting their internals as well.</span>
+<span class="sd">    Take care about assigning master according to acq_mode.</span>
+
+<span class="sd">    :param ctrls: sequence of configuration controllers objects</span>
+<span class="sd">    :type ctrls: :obj:list&lt;:class:`~sardana.pool.poolmeasurementgroup.ControllerConfiguration`&gt;  # noqa</span>
+<span class="sd">    :param master: master configuration object</span>
+<span class="sd">    :type master: :class:`~sardana.pool.poolmeasurementgroup.ChannelConfiguration`  # noqa</span>
+<span class="sd">    :param acq_mode: acquisition mode (timer/monitor)</span>
+<span class="sd">    :type acq_mode: :class:`sardana.pool.AcqMode`</span>
+<span class="sd">    :return: sequence of acquisition controllers</span>
+<span class="sd">    :rtype: :class:`~sardana.pool.poolacquisition.AcqController`</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The get_timerable_ctrls function has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including removal of the class) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ctrls</span> <span class="o">=</span> <span class="n">get_timerable_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">acq_mode</span><span class="p">)</span>
+    <span class="c1"># Search master AcqConfigurationItem obj</span>
+    <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_channels</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">channel</span><span class="o">.</span><span class="n">configuration</span> <span class="o">==</span> <span class="n">master</span><span class="p">:</span>
+                <span class="n">master</span> <span class="o">=</span> <span class="n">channel</span>
+                <span class="k">break</span>
+    <span class="k">return</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">master</span>
+
+
+<span class="k">class</span> <span class="nc">ActionArgs</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="k">if</span> <span class="n">kwargs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
+
+
+<span class="k">class</span> <span class="nc">AcqConfigurationItem</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wrapper for configuration item that will be used in an action.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The AcqConfigurationItem function has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including removal of the class) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructs action item from a configuration item.</span>
+
+<span class="sd">        Eventually it can be enriched with attrs.</span>
+
+<span class="sd">        :param configuration: item configuration object</span>
+<span class="sd">        :type configuration:</span>
+<span class="sd">            :class:`sardana.pool.poolmeasurementgroup.ConfigurationItem`</span>
+<span class="sd">        :param attrs: extra attributes to be inserted</span>
+<span class="sd">        :type attrs: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">attrs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the element associated with this item&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">set_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets the element for this item&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span>
+
+    <span class="n">configuration</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_configuration</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">AcqController</span><span class="p">(</span><span class="n">AcqConfigurationItem</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wrapper for controller configuration that will be used in an action.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The AcqController function has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including removal of the class) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Constructs action controller from a configuration controller.</span>
+
+<span class="sd">        Eventually it can be enriched with attrs.</span>
+
+<span class="sd">        :param configuration: controller configuration object</span>
+<span class="sd">        :type configuration:</span>
+<span class="sd">            :class:`sardana.pool.poolmeasurementgroup.ControllerConfiguration`</span>
+<span class="sd">        :param attrs: extra attributes to be inserted</span>
+<span class="sd">        :type attrs: dict</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">master</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">attrs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">master</span> <span class="o">=</span> <span class="n">attrs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;master&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channels_enabled</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channels_disabled</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ch_attrs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;controller&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">conf_channel</span> <span class="ow">in</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get_channels</span><span class="p">():</span>
+            <span class="n">action_channel</span> <span class="o">=</span> <span class="n">AcqConfigurationItem</span><span class="p">(</span><span class="n">conf_channel</span><span class="p">,</span> <span class="n">ch_attrs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action_channel</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">conf_channel</span> <span class="ow">in</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get_channels</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_channels_enabled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action_channel</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">conf_channel</span> <span class="ow">in</span> <span class="n">configuration</span><span class="o">.</span><span class="n">get_channels</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_channels_disabled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">action_channel</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">master</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">master</span> <span class="o">==</span> <span class="n">conf_channel</span><span class="p">:</span>
+                <span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;master&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">action_channel</span>
+                <span class="n">master</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">AcqConfigurationItem</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">enabled</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">enabled</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels_enabled</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels_disabled</span><span class="p">)</span>
+
+
 <span class="k">class</span> <span class="nc">PoolAcquisition</span><span class="p">(</span><span class="n">PoolAction</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Acquisition action which is internally composed for sub-actions.</span>
+
+<span class="sd">    Handle acquisition of experimental channels of the following types:</span>
+<span class="sd">    * timerable (C/T, 1D and 2D) synchronized by software or hardware</span>
+<span class="sd">    trigger/gate/start</span>
+<span class="sd">    * 0D</span>
+
+<span class="sd">    Synchronized by T/G elements or sofware synchronizer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Acquisition&quot;</span><span class="p">):</span>
         <span class="n">PoolAction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">zerodname</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.0DAcquisition&quot;</span>
         <span class="n">hwname</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.HardwareAcquisition&quot;</span>
         <span class="n">swname</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.SoftwareAcquisition&quot;</span>
+        <span class="n">sw_start_name</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.SoftwareStartAcquisition&quot;</span>
         <span class="n">synchname</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.Synchronization&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_config</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_0d_config</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span> <span class="o">=</span> <span class="n">Pool0DAcquisition</span><span class="p">(</span><span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">zerodname</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepared</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span> <span class="o">=</span> <span class="n">PoolAcquisitionSoftware</span><span class="p">(</span><span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">swname</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span> <span class="o">=</span> <span class="n">PoolAcquisitionSoftwareStart</span><span class="p">(</span>
+            <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">sw_start_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span> <span class="o">=</span> <span class="n">Pool0DAcquisition</span><span class="p">(</span><span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">zerodname</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span> <span class="o">=</span> <span class="n">PoolAcquisitionHardware</span><span class="p">(</span><span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">hwname</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span> <span class="o">=</span> <span class="n">PoolSynchronization</span><span class="p">(</span><span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">synchname</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">set_sw_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_config</span> <span class="o">=</span> <span class="n">config</span>
-
-    <span class="k">def</span> <span class="nf">set_0d_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_0d_config</span> <span class="o">=</span> <span class="n">config</span>
-
     <span class="k">def</span> <span class="nf">event_received</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Callback executed on event of software synchronizer.</span>
+
+<span class="sd">        Reacts on start, active, passive or end type of events</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">type_</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">args</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">type_</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">args</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">type_</span><span class="o">.</span><span class="n">name</span>
         <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="n">t_fmt</span> <span class="o">=</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S.</span><span class="si">%f</span><span class="s1">&#39;</span>
         <span class="n">t_str</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">timestamp</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">t_fmt</span><span class="p">)</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> event with id: </span><span class="si">%d</span><span class="s1"> received at: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">t_str</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> event with id: </span><span class="si">%d</span><span class="s1"> received at: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">t_str</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;active&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;start&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Executing software start acquisition.&#39;</span><span class="p">)</span>
+                <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                                      <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+                                      <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;active&quot;</span><span class="p">:</span>
             <span class="c1"># this code is not thread safe, but for the moment we assume that</span>
             <span class="c1"># only one EventGenerator will work at the same time</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_config</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
                     <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Skipping trigger: software acquisition is still&#39;</span>
                            <span class="s1">&#39; in progress.&#39;</span><span class="p">)</span>
@@ -396,13 +466,12 @@
                     <span class="k">return</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Executing software acquisition.&#39;</span><span class="p">)</span>
-                    <span class="n">args</span> <span class="o">=</span> <span class="p">()</span>
-                    <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_config</span>
-                    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;synch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">index</span><span class="p">})</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_config</span><span class="p">:</span>
+                    <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                                          <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+                                          <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
                     <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Skipping trigger: ZeroD acquisition is still in&#39;</span>
                            <span class="s1">&#39; progress.&#39;</span><span class="p">)</span>
@@ -410,27 +479,39 @@
                     <span class="k">return</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Executing ZeroD acquisition.&#39;</span><span class="p">)</span>
-                    <span class="n">args</span> <span class="o">=</span> <span class="p">()</span>
-                    <span class="n">kwargs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_config</span>
-                    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;synch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;idx&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">index</span><span class="p">})</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
-                    <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                    <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                                          <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+                                          <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;passive&quot;</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_config</span> <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()</span> <span class="ow">or</span>
-                                    <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">()):</span>
+            <span class="c1"># TODO: _0d_acq_args comparison may not be necessary</span>
+            <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                    <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()</span>
+                         <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">())):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Stopping ZeroD acquisition.&#39;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">stop_action</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span> <span class="ow">or</span>\
-            <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span> <span class="ow">or</span>\
-            <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span> <span class="ow">or</span>\
-            <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">acq_mode</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">synchronization</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">moveable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sw_synch_initial_domain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">nb_starts</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepare measurement process.</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="sd">        Organize sub-action arguments and loads configuration parameters to</span>
+<span class="sd">        the hardware controllers.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepared</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">ctrls_hw</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ctrls_sw</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ctrls_sw_start</span> <span class="o">=</span> <span class="p">[]</span>
+
         <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">():</span>
             <span class="n">elem</span><span class="o">.</span><span class="n">put_state</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
             <span class="c1"># TODO: temporarily clear value buffers at the beginning of the</span>
@@ -445,54 +526,162 @@
             <span class="c1"># participate directly in the acquisition</span>
             <span class="k">for</span> <span class="n">pseudo_elem</span> <span class="ow">in</span> <span class="n">elem</span><span class="o">.</span><span class="n">get_pseudo_elements</span><span class="p">():</span>
                 <span class="n">pseudo_elem</span><span class="o">.</span><span class="n">clear_value_buffer</span><span class="p">()</span>
-        <span class="n">config</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span>
-        <span class="n">synchronization</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;synchronization&quot;</span><span class="p">]</span>
-        <span class="n">integ_time</span> <span class="o">=</span> <span class="n">extract_integ_time</span><span class="p">(</span><span class="n">synchronization</span><span class="p">)</span>
-        <span class="n">repetitions</span> <span class="o">=</span> <span class="n">extract_repetitions</span><span class="p">(</span><span class="n">synchronization</span><span class="p">)</span>
-        <span class="c1"># TODO: this code splits the global mg configuration into</span>
-        <span class="c1"># experimental channels triggered by hw and experimental channels</span>
-        <span class="c1"># triggered by sw. Refactor it!!!!</span>
-        <span class="p">(</span><span class="n">hw_acq_cfg</span><span class="p">,</span> <span class="n">sw_acq_cfg</span><span class="p">,</span> <span class="n">zerod_acq_cfg</span><span class="p">)</span> <span class="o">=</span> <span class="n">split_MGConfigurations</span><span class="p">(</span>
-            <span class="n">config</span><span class="p">)</span>
-        <span class="n">synch_cfg</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">getTGConfiguration</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
-        <span class="c1"># starting continuous acquisition only if there are any controllers</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hw_acq_cfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]):</span>
-            <span class="n">cont_acq_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-            <span class="n">cont_acq_kwargs</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">hw_acq_cfg</span>
-            <span class="n">cont_acq_kwargs</span><span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">integ_time</span>
-            <span class="n">cont_acq_kwargs</span><span class="p">[</span><span class="s1">&#39;repetitions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">repetitions</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">cont_acq_kwargs</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sw_acq_cfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">])</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">zerod_acq_cfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]):</span>
+
+        <span class="n">repetitions</span> <span class="o">=</span> <span class="n">synchronization</span><span class="o">.</span><span class="n">repetitions</span>
+        <span class="n">latency</span> <span class="o">=</span> <span class="n">synchronization</span><span class="o">.</span><span class="n">passive_time</span>
+        <span class="c1"># Prepare controllers synchronized by hardware</span>
+        <span class="n">acq_sync_hw</span> <span class="o">=</span> <span class="p">[</span><span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareTrigger</span><span class="p">,</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareStart</span><span class="p">,</span>
+                       <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareGate</span><span class="p">]</span>
+        <span class="n">ctrls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_timerable_ctrls</span><span class="p">(</span><span class="n">acq_synch</span><span class="o">=</span><span class="n">acq_sync_hw</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ctrls</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ctrls_hw</span> <span class="o">=</span> <span class="n">get_timerable_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">acq_mode</span><span class="p">)</span>
+            <span class="n">hw_args</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctrls_hw</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">)</span>
+            <span class="n">hw_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">hw_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span> <span class="o">=</span> <span class="n">ActionArgs</span><span class="p">(</span><span class="n">hw_args</span><span class="p">,</span> <span class="n">hw_kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Prepare controllers synchronized by software Trigger and Gate</span>
+        <span class="n">acq_sync_sw</span> <span class="o">=</span> <span class="p">[</span><span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareGate</span><span class="p">,</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span><span class="p">]</span>
+        <span class="n">ctrls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_timerable_ctrls</span><span class="p">(</span><span class="n">acq_synch</span><span class="o">=</span><span class="n">acq_sync_sw</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ctrls</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">acq_mode</span> <span class="ow">is</span> <span class="n">AcqMode</span><span class="o">.</span><span class="n">Timer</span><span class="p">:</span>
+                <span class="n">master</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_master_timer_software</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">acq_mode</span> <span class="ow">is</span> <span class="n">AcqMode</span><span class="o">.</span><span class="n">Monitor</span><span class="p">:</span>
+                <span class="n">master</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_master_monitor_software</span><span class="p">()</span>
+
+            <span class="n">ctrls_sw</span><span class="p">,</span> <span class="n">master_sw</span> <span class="o">=</span> <span class="n">get_timerable_items</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">acq_mode</span><span class="p">)</span>
+
+            <span class="n">sw_args</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctrls_sw</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master_sw</span><span class="p">)</span>
+            <span class="n">sw_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;synch&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+            <span class="n">sw_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span> <span class="o">=</span> <span class="n">ActionArgs</span><span class="p">(</span><span class="n">sw_args</span><span class="p">,</span> <span class="n">sw_kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Prepare controllers synchronized by software Start</span>
+        <span class="n">ctrls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_timerable_ctrls</span><span class="p">(</span><span class="n">acq_synch</span><span class="o">=</span><span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareStart</span><span class="p">,</span>
+                                           <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ctrls</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">acq_mode</span> <span class="ow">is</span> <span class="n">AcqMode</span><span class="o">.</span><span class="n">Timer</span><span class="p">:</span>
+                <span class="n">master</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_master_timer_software_start</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">acq_mode</span> <span class="ow">is</span> <span class="n">AcqMode</span><span class="o">.</span><span class="n">Monitor</span><span class="p">:</span>
+                <span class="n">master</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_master_monitor_software_start</span><span class="p">()</span>
+
+            <span class="n">ctrls_sw_start</span><span class="p">,</span> <span class="n">master_sw_start</span> <span class="o">=</span> <span class="n">get_timerable_items</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span>
+                                                                  <span class="n">master</span><span class="p">,</span>
+                                                                  <span class="n">acq_mode</span><span class="p">)</span>
+            <span class="n">sw_start_args</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctrls_sw_start</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master_sw_start</span><span class="p">,</span>
+                             <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">)</span>
+            <span class="n">sw_start_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;synch&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+            <span class="n">sw_start_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span> <span class="o">=</span> <span class="n">ActionArgs</span><span class="p">(</span><span class="n">sw_start_args</span><span class="p">,</span>
+                                                 <span class="n">sw_start_kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Prepare 0D controllers</span>
+        <span class="n">ctrls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_zerod_ctrls</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ctrls</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ctrls_acq_0d</span> <span class="o">=</span> <span class="n">get_acq_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">)</span>
+            <span class="n">zerod_args</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctrls_acq_0d</span><span class="p">,)</span>
+            <span class="n">zerod_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;synch&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+            <span class="n">zerod_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span> <span class="o">=</span> <span class="n">ActionArgs</span><span class="p">(</span><span class="n">zerod_args</span><span class="p">,</span> <span class="n">zerod_kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Prepare synchronizer controllers</span>
+        <span class="n">ctrls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_synch_ctrls</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">ctrls_synch</span> <span class="o">=</span> <span class="n">get_acq_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">)</span>
+        <span class="n">synch_args</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctrls_synch</span><span class="p">,</span> <span class="n">synchronization</span><span class="p">)</span>
+        <span class="n">synch_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;moveable&#39;</span><span class="p">:</span> <span class="n">moveable</span><span class="p">,</span>
+                        <span class="s1">&#39;sw_synch_initial_domain&#39;</span><span class="p">:</span> <span class="n">sw_synch_initial_domain</span><span class="p">}</span>
+        <span class="n">synch_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span> <span class="o">=</span> <span class="n">ActionArgs</span><span class="p">(</span><span class="n">synch_args</span><span class="p">,</span> <span class="n">synch_kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Load the configuration to the timerable controllers if it changed:</span>
+        <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">changed</span><span class="p">:</span>
+            <span class="n">ctrls</span> <span class="o">=</span> <span class="n">ctrls_hw</span> <span class="o">+</span> <span class="n">ctrls_sw_start</span> <span class="o">+</span> <span class="n">ctrls_sw</span>
+
+            <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+                <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">is_online</span><span class="p">():</span>
+                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;The controller </span><span class="si">{0}</span><span class="s1"> is &#39;</span>
+                                       <span class="s1">&#39;offline&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pool_ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+                <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">set_ctrl_par</span><span class="p">(</span><span class="s1">&#39;acquisition_mode&#39;</span><span class="p">,</span> <span class="n">acq_mode</span><span class="p">)</span>
+                <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">operator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_element</span>
+                <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">set_ctrl_par</span><span class="p">(</span><span class="s1">&#39;timer&#39;</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">axis</span><span class="p">)</span>
+                <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">set_ctrl_par</span><span class="p">(</span><span class="s1">&#39;monitor&#39;</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">monitor</span><span class="o">.</span><span class="n">axis</span><span class="p">)</span>
+                <span class="n">synch</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_acq_synch_by_controller</span><span class="p">(</span><span class="n">pool_ctrl</span><span class="p">)</span>
+                <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">set_ctrl_par</span><span class="p">(</span><span class="s1">&#39;synchronization&#39;</span><span class="p">,</span> <span class="n">synch</span><span class="p">)</span>
+            <span class="n">config</span><span class="o">.</span><span class="n">changed</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Call hardware and software start controllers prepare method</span>
+        <span class="n">ctrls</span> <span class="o">=</span> <span class="n">ctrls_hw</span> <span class="o">+</span> <span class="n">ctrls_sw_start</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
+                            <span class="n">nb_starts</span><span class="p">)</span>
+
+        <span class="c1"># Call software controllers prepare method</span>
+        <span class="n">nb_starts</span> <span class="o">=</span> <span class="n">repetitions</span>
+        <span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_ctrls</span><span class="p">(</span><span class="n">ctrls_sw</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
+                            <span class="n">nb_starts</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepared</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_prepare_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="n">nb_starts</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+            <span class="n">axis</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">master</span><span class="o">.</span><span class="n">axis</span>
+            <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
+            <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">PrepareOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
+                                      <span class="n">nb_starts</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks if acquisition is running.</span>
+
+<span class="sd">        Acquisition is runnin if any of its sub-actions is running.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span>\
+            <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span>\
+            <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span>\
+            <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span>\
+            <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">is_running</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Runs acquisition according to previous preparation.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepared</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;You must call first &quot;prepare&quot; method.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+                             <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>\
+                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>\
+                <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">add_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sw_acq_cfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]):</span>
-                <span class="n">sw_acq_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-                <span class="n">sw_acq_kwargs</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sw_acq_cfg</span>
-                <span class="n">sw_acq_kwargs</span><span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">integ_time</span>
-                <span class="n">sw_acq_kwargs</span><span class="p">[</span><span class="s1">&#39;repetitions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">set_sw_config</span><span class="p">(</span><span class="n">sw_acq_kwargs</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">zerod_acq_cfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]):</span>
-                <span class="n">zerod_acq_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-                <span class="n">zerod_acq_kwargs</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">zerod_acq_cfg</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">set_0d_config</span><span class="p">(</span><span class="n">zerod_acq_kwargs</span><span class="p">)</span>
-        <span class="n">synch_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">synch_kwargs</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">synch_cfg</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">synch_kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
+                            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepared</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">_get_action_for_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">elem_type</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">elem_type</span> <span class="ow">in</span> <span class="n">TYPE_TIMERABLE_ELEMENTS</span><span class="p">:</span>
-            <span class="n">main_element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_element</span>
-            <span class="n">channel_to_acq_synch</span> <span class="o">=</span> <span class="n">main_element</span><span class="o">.</span><span class="n">_channel_to_acq_synch</span>
-            <span class="n">acq_synch</span> <span class="o">=</span> <span class="n">channel_to_acq_synch</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+            <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">main_element</span><span class="o">.</span><span class="n">configuration</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">acq_synch</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_acq_synch_by_channel</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+            <span class="c1"># when configuration was not yet set and one sets the</span>
+            <span class="c1"># measurement group&#39;s integration time (this may happen on Tango</span>
+            <span class="c1"># device initialization when memorized attributes are set we</span>
+            <span class="c1"># fallback to software acquisition</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">acq_synch</span> <span class="o">=</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span>
             <span class="k">if</span> <span class="n">acq_synch</span> <span class="ow">in</span> <span class="p">(</span><span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span><span class="p">,</span>
                              <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareGate</span><span class="p">):</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span>
+            <span class="k">elif</span> <span class="n">acq_synch</span> <span class="o">==</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareStart</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span>
             <span class="k">elif</span> <span class="n">acq_synch</span> <span class="ow">in</span> <span class="p">(</span><span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareTrigger</span><span class="p">,</span>
-                               <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareGate</span><span class="p">):</span>
+                               <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareGate</span><span class="p">,</span>
+                               <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareStart</span><span class="p">):</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="c1"># by default software synchronization is in use</span>
-                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span>
         <span class="k">elif</span> <span class="n">elem_type</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span>
         <span class="k">elif</span> <span class="n">elem_type</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">TriggerGate</span><span class="p">:</span>
@@ -551,6 +740,7 @@
         <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">get_pool_controllers</span><span class="p">())</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">get_pool_controllers</span><span class="p">())</span>
+        <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span><span class="o">.</span><span class="n">get_pool_controllers</span><span class="p">())</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">get_pool_controllers</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">ret</span>
 
@@ -573,17 +763,6 @@
         <span class="k">return</span> <span class="n">ret</span>
 
 
-<span class="k">class</span> <span class="nc">Channel</span><span class="p">(</span><span class="n">PoolActionItem</span><span class="p">):</span>
-
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">PoolActionItem</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acquirable</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">info</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-
-
 <span class="k">class</span> <span class="nc">PoolAcquisitionBase</span><span class="p">(</span><span class="n">PoolAction</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for acquisitions with a generic start_action method.</span>
 
@@ -596,7 +775,12 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">PoolAction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span> <span class="o">=</span> <span class="kc">None</span>
+
         <span class="c1"># TODO: for the moment we can not clear value buffers at the end of</span>
         <span class="c1"># the acquisition. This is because of the pseudo counters that are</span>
         <span class="c1"># based on channels synchronized by hardware and software.</span>
@@ -623,192 +807,172 @@
                 <span class="k">return</span> <span class="kc">True</span>
 
     <span class="nd">@DebugIt</span><span class="p">()</span>
-    <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares everything for acquisition and starts it.</span>
-<span class="sd">        :param acq_sleep_time: sleep time between state queries</span>
-<span class="sd">        :param nb_states_per_value: how many state queries between readouts</span>
-<span class="sd">        :param integ_time: integration time(s)</span>
-<span class="sd">        :type integ_time: float or seq&lt;float&gt;</span>
+    <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
+                     <span class="n">index</span><span class="p">,</span> <span class="n">acq_sleep_time</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="p">,</span>
+                     <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prepares everything for acquisition and starts it</span>
+<span class="sd">        :param ctrls: List of enabled pool acquisition controllers</span>
+<span class="sd">        :type ctrls: list</span>
+<span class="sd">        :param value: integration time/monitor counts</span>
+<span class="sd">        :type value: float/int or seq&lt;float/int&gt;</span>
 <span class="sd">        :param repetitions: repetitions</span>
 <span class="sd">        :type repetitions: int</span>
-<span class="sd">        :param config: configuration dictionary (with information about</span>
-<span class="sd">            involved controllers and channels)</span>
+<span class="sd">        :param latency:</span>
+<span class="sd">        :type latency: float</span>
+<span class="sd">        :param master: master channel is the last one to start</span>
+<span class="sd">        :type master: Channel</span>
+<span class="sd">        :param index:</span>
+<span class="sd">        :type index: int</span>
+<span class="sd">        :param acq_sleep_time: sleep time between state queries</span>
+<span class="sd">        :type acq_sleep_time: float</span>
+<span class="sd">        :param nb_states_per_value: how many state queries between readouts</span>
+<span class="sd">        :type nb_states_per_value: int</span>
+<span class="sd">        :param args:</span>
+<span class="sd">        :param kwargs:</span>
+<span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span>
 
+        <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;acq_sleep_time&quot;</span><span class="p">,</span>
-                                          <span class="n">pool</span><span class="o">.</span><span class="n">acq_loop_sleep_time</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;nb_states_per_value&quot;</span><span class="p">,</span>
-                                               <span class="n">pool</span><span class="o">.</span><span class="n">acq_loop_states_per_value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="n">index</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_integ_time</span> <span class="o">=</span> <span class="n">integ_time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;integ_time&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_mon_count</span> <span class="o">=</span> <span class="n">mon_count</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;monitor_count&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_repetitions</span> <span class="o">=</span> <span class="n">repetitions</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;repetitions&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">integ_time</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">mon_count</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;must give integration time or monitor counts&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">integ_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">mon_count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;must give either integration time or monitor counts &quot;</span>
-                   <span class="s2">&quot;(not both)&quot;</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="o">=</span> <span class="n">acq_sleep_time</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">acq_loop_sleep_time</span>
 
-        <span class="n">_</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;items&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">())</span>
-        <span class="n">cfg</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span>
-        <span class="c1"># determine which is the controller which holds the master channel</span>
-
-        <span class="k">if</span> <span class="n">integ_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">master_key</span> <span class="o">=</span> <span class="s1">&#39;timer&#39;</span>
-            <span class="n">master_value</span> <span class="o">=</span> <span class="n">integ_time</span>
-        <span class="k">if</span> <span class="n">mon_count</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">master_key</span> <span class="o">=</span> <span class="s1">&#39;monitor&#39;</span>
-            <span class="n">master_value</span> <span class="o">=</span> <span class="o">-</span><span class="n">mon_count</span>
-        <span class="n">master</span> <span class="o">=</span> <span class="n">cfg</span><span class="p">[</span><span class="n">master_key</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">master</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">main_element</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Fault</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;master </span><span class="si">{0}</span><span class="s2"> is unknown (probably disabled)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
-                <span class="n">master_key</span><span class="p">)</span>
-            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="n">master_ctrl</span> <span class="o">=</span> <span class="n">master</span><span class="o">.</span><span class="n">controller</span>
-
-        <span class="n">pool_ctrls_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">])</span>
-        <span class="n">pool_ctrls_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;__tango__&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-
-        <span class="c1"># controllers to be started (only enabled) in the right order</span>
-        <span class="n">pool_ctrls</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="c1"># controllers that will be read at the end of the action</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span> <span class="o">=</span> <span class="n">_pool_ctrl_dict_loop</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="c1"># channels that are acquired (only enabled)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="n">channels</span> <span class="o">=</span> <span class="p">{}</span>
-
-        <span class="c1"># select only suitable e.g. enabled, timerable controllers &amp; channels</span>
-        <span class="k">for</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">pool_ctrl_data</span> <span class="ow">in</span> <span class="n">pool_ctrls_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="c1"># skip not timerable controllers e.g. 0D</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">is_timerable</span><span class="p">():</span>
-                <span class="k">continue</span>
-            <span class="n">ctrl_enabled</span> <span class="o">=</span> <span class="kc">False</span>
-            <span class="n">elements</span> <span class="o">=</span> <span class="n">pool_ctrl_data</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">element_info</span> <span class="ow">in</span> <span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="c1"># skip disabled elements</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">element_info</span><span class="p">[</span><span class="s1">&#39;enabled&#39;</span><span class="p">]:</span>
-                    <span class="k">continue</span>
-                <span class="c1"># Add only the enabled channels</span>
-                <span class="n">channel</span> <span class="o">=</span> <span class="n">Channel</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="n">element_info</span><span class="p">)</span>
-                <span class="n">channels</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel</span>
-                <span class="n">ctrl_enabled</span> <span class="o">=</span> <span class="kc">True</span>
-            <span class="c1"># check if the ctrl has enabled channels</span>
-            <span class="k">if</span> <span class="n">ctrl_enabled</span><span class="p">:</span>
-                <span class="c1"># enabled controller can no be offline</span>
-                <span class="k">if</span> <span class="ow">not</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">is_online</span><span class="p">():</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">main_element</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Fault</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;controller </span><span class="si">{0}</span><span class="s2"> is offline&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                <span class="n">pool_ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
-                <span class="c1"># only CT will be read in the loop, 1D and 2D not</span>
-                <span class="k">if</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">CTExpChannel</span> <span class="ow">in</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_ctrl_types</span><span class="p">():</span>
-                    <span class="n">_pool_ctrl_dict_loop</span><span class="p">[</span><span class="n">ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool_ctrl_data</span>
-
-        <span class="c1"># timer/monitor channels can not be disabled</span>
-        <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="n">pool_ctrls</span><span class="p">:</span>
-            <span class="n">ctrl</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span>
-            <span class="n">pool_ctrl_data</span> <span class="o">=</span> <span class="n">pool_ctrls_dict</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]</span>
-            <span class="n">timer_monitor</span> <span class="o">=</span> <span class="n">pool_ctrl_data</span><span class="p">[</span><span class="n">master_key</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">timer_monitor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">main_element</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Fault</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;timer/monitor (</span><span class="si">{0}</span><span class="s2">) of </span><span class="si">{1}</span><span class="s2"> controller is &quot;</span>\
-                      <span class="s2">&quot;disabled)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">timer_monitor</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="o">=</span> <span class="n">nb_states_per_value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">acq_loop_states_per_value</span>
 
         <span class="c1"># make sure the controller which has the master channel is the last to</span>
         <span class="c1"># be called</span>
-        <span class="n">pool_ctrls</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">master_ctrl</span><span class="p">)</span>
-        <span class="n">pool_ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">master_ctrl</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">master</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ctrls</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">master</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
+            <span class="n">ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">master</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
+
+        <span class="c1"># controllers that will be read at during the action</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_pool_ctrl_dict_loop</span><span class="p">(</span><span class="n">ctrls</span><span class="p">)</span>
+
+        <span class="c1"># channels that are acquired (only enabled)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">def</span> <span class="nf">load</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+            <span class="n">axis</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">axis</span>
+            <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">controller</span>
+            <span class="n">ctrl</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span>
+            <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadAll</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span>
+                                      <span class="n">latency</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">res</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;PreLoadOne(axis, value, repetitions) is &quot;</span>
+                           <span class="s2">&quot;deprecated since version Jan19. Use PreLoadOne(&quot;</span>
+                           <span class="s2">&quot;axis, value, repetitions, latency_time) instead.&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="n">res</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;PreLoadOne(axis, value) is deprecated since &quot;</span>
+                           <span class="s2">&quot;version 2.3.0. Use PreLoadOne(axis, value, &quot;</span>
+                           <span class="s2">&quot;repetitions, latency_time) instead.&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.PreLoadOne(</span><span class="si">%d</span><span class="s2">) returned False&quot;</span> <span class="o">%</span>
+                       <span class="p">(</span><span class="n">pool_ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="p">))</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;LoadOne(axis, value, repetitions) is deprecated &quot;</span>
+                           <span class="s2">&quot;since version Jan18. Use LoadOne(axis, value, &quot;</span>
+                           <span class="s2">&quot;repetitions, latency_time) instead.&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+                    <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;LoadOne(axis, value) is deprecated since &quot;</span>
+                           <span class="s2">&quot;version 2.3.0. Use LoadOne(axis, value, &quot;</span>
+                           <span class="s2">&quot;repetitions) instead.&quot;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadAll</span><span class="p">()</span>
 
         <span class="k">with</span> <span class="n">ActionContext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="c1"># PreLoadAll, PreLoadOne, LoadOne and LoadAll</span>
-            <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="n">pool_ctrls</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="n">ctrl</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span>
-                    <span class="n">pool_ctrl_data</span> <span class="o">=</span> <span class="n">pool_ctrls_dict</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]</span>
-                    <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadAll</span><span class="p">()</span>
-                    <span class="n">master</span> <span class="o">=</span> <span class="n">pool_ctrl_data</span><span class="p">[</span><span class="n">master_key</span><span class="p">]</span>
-                    <span class="n">axis</span> <span class="o">=</span> <span class="n">master</span><span class="o">.</span><span class="n">axis</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">res</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">master_value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">)</span>
-                    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;PreLoadOne(axis, value) is deprecated since &quot;</span>
-                               <span class="s2">&quot;version 2.3.0. Use PreLoadOne(axis, value, &quot;</span>
-                               <span class="s2">&quot;repetitions) instead.&quot;</span><span class="p">)</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                        <span class="n">res</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">master_value</span><span class="p">)</span>
-                    <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
-                        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.PreLoadOne(</span><span class="si">%d</span><span class="s2">) returned False&quot;</span> <span class="o">%</span>
-                               <span class="p">(</span><span class="n">pool_ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="p">))</span>
-                        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">master_value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">)</span>
-                    <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;LoadOne(axis, value) is deprecated since &quot;</span>
-                               <span class="s2">&quot;version 2.3.0. Use LoadOne(axis, value, &quot;</span>
-                               <span class="s2">&quot;repetitions) instead.&quot;</span><span class="p">)</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                        <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">master_value</span><span class="p">)</span>
-                    <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadAll</span><span class="p">()</span>
-                <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-                    <span class="n">master</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Fault</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Load sequence of </span><span class="si">%s</span><span class="s2"> failed&quot;</span> <span class="o">%</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+                <span class="c1"># TODO find solution for master now sardana only use timer</span>
+                <span class="n">load</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">timer</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">)</span>
+
+            <span class="c1"># TODO: remove when the action allows to use tango attributes</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">ctrls</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;__tango__&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
 
             <span class="c1"># PreStartAll on all enabled controllers</span>
-            <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="n">pool_ctrls</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+                <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
                 <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">PreStartAll</span><span class="p">()</span>
 
             <span class="c1"># PreStartOne &amp; StartOne on all enabled elements</span>
-            <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="n">pool_ctrls</span><span class="p">:</span>
-                <span class="n">ctrl</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span>
-                <span class="n">pool_ctrl_data</span> <span class="o">=</span> <span class="n">pool_ctrls_dict</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]</span>
-                <span class="n">elements</span> <span class="o">=</span> <span class="n">pool_ctrl_data</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-                <span class="n">timer_monitor</span> <span class="o">=</span> <span class="n">pool_ctrl_data</span><span class="p">[</span><span class="n">master_key</span><span class="p">]</span>
-                <span class="c1"># make sure that the timer/monitor is started as the last one</span>
-                <span class="n">elements</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">timer_monitor</span><span class="p">)</span>
-                <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">timer_monitor</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">channel</span> <span class="o">=</span> <span class="n">channels</span><span class="p">[</span><span class="n">element</span><span class="p">]</span>
-                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                        <span class="k">continue</span>
-                    <span class="n">axis</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">axis</span>
-                    <span class="n">ret</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">PreStartOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">master_value</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+                <span class="n">channels</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_channels</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+                <span class="c1"># make sure that the master timer/monitor is started as the</span>
+                <span class="c1"># last one</span>
+                <span class="n">channels</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">master</span><span class="p">)</span>
+                <span class="n">channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">master</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">:</span>
+                    <span class="n">axis</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">axis</span>
+                    <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
+                    <span class="n">ret</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">PreStartOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="p">:</span>
                         <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.PreStartOne(</span><span class="si">%d</span><span class="s2">) returns False&quot;</span> <span class="o">%</span>
-                               <span class="p">(</span><span class="n">pool_ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="p">))</span>
+                               <span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="p">))</span>
                         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                     <span class="k">try</span><span class="p">:</span>
-                        <span class="n">ctrl</span><span class="o">.</span><span class="n">StartOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">master_value</span><span class="p">)</span>
-                    <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
+                        <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">StartOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-                        <span class="n">element</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Fault</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                        <span class="n">channel</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Fault</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
                         <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.StartOne(</span><span class="si">%d</span><span class="s2">) failed&quot;</span> <span class="o">%</span>
-                               <span class="p">(</span><span class="n">pool_ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="p">))</span>
+                               <span class="p">(</span><span class="n">ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="p">))</span>
                         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+
             <span class="c1"># set the state of all elements to  and inform their listeners</span>
-            <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
                 <span class="n">channel</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Moving</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
             <span class="c1"># StartAll on all enabled controllers</span>
-            <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="n">pool_ctrls</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
+                    <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
                     <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">StartAll</span><span class="p">()</span>
-                <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">channels</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_channels</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-                    <span class="n">elements</span> <span class="o">=</span> <span class="n">pool_ctrl_data</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
-                    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
-                        <span class="n">element</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Fault</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.StartAll() failed&quot;</span> <span class="o">%</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">:</span>
+                        <span class="n">channel</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Fault</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.StartAll() failed&quot;</span> <span class="o">%</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
                     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_pool_ctrl_dict_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">):</span>
+        <span class="n">ctrl_channels</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+            <span class="n">pool_channels</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
+            <span class="c1"># TODO: filter 1D and 2D for software synchronize acquisition</span>
+            <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_channels</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                <span class="n">pool_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
+            <span class="n">ctrl_channels</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool_channels</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span> <span class="o">=</span> <span class="n">ctrl_channels</span>
 
     <span class="k">def</span> <span class="nf">clear_value_buffers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
@@ -823,17 +987,29 @@
 <span class="sd">        on a provisional basis. Backwards incompatible changes</span>
 <span class="sd">        (up to and including removal of the module) may occur if</span>
 <span class="sd">        deemed necessary by the core developers.</span>
+
+<span class="sd">    .. todo:: Try to move the action loop logic to base class it is</span>
+<span class="sd">    basically the same as in PoolAcquisitionSoftwareStart.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;AcquisitionHardware&quot;</span><span class="p">):</span>
         <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
+                     <span class="n">acq_sleep_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                                         <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                                         <span class="n">acq_sleep_time</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="p">,</span>
+                                         <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="nd">@DebugIt</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">action_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="n">states</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">element</span>
             <span class="n">states</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">values</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
@@ -901,28 +1077,17 @@
     <span class="k">def</span> <span class="nf">get_read_value_loop_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span>
 
-    <span class="nd">@DebugIt</span><span class="p">()</span>
-    <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Prepares everything for acquisition and starts it.</span>
-<span class="sd">        :param acq_sleep_time: sleep time between state queries</span>
-<span class="sd">        :param nb_states_per_value: how many state queries between readouts</span>
-<span class="sd">        :param integ_time: integration time(s)</span>
-<span class="sd">        :type integ_time: float or seq&lt;float&gt;</span>
-<span class="sd">        :param repetitions: repetitions</span>
-<span class="sd">        :type repetitions: int</span>
-<span class="sd">        :param config: configuration dictionary (with information about</span>
-<span class="sd">            involved controllers and channels)</span>
-<span class="sd">        :param index: trigger index that will be assigned to the acquired value</span>
-<span class="sd">        :type index: int</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-
-        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;idx&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">acq_sleep_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">nb_states_per_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                                         <span class="n">index</span><span class="p">,</span> <span class="n">acq_sleep_time</span><span class="p">,</span>
+                                         <span class="n">nb_states_per_value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="nd">@DebugIt</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">action_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">states</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">element</span>
             <span class="n">states</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">nap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span>
@@ -964,7 +1129,85 @@
                 <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop final read value error for: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                <span class="n">acquirable</span><span class="o">.</span><span class="n">append_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+                <span class="n">acquirable</span><span class="o">.</span><span class="n">append_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">acquirable</span><span class="p">:</span>
+                <span class="n">acquirable</span><span class="o">.</span><span class="n">clear_operation</span><span class="p">()</span>
+                <span class="n">state_info</span> <span class="o">=</span> <span class="n">acquirable</span><span class="o">.</span><span class="n">_from_ctrl_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">)</span>
+                <span class="n">acquirable</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">PoolAcquisitionSoftwareStart</span><span class="p">(</span><span class="n">PoolAcquisitionBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Acquisition action for controllers synchronized by software start</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The PoolAcquisitionSoftwareStart class has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including removal of the module) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+
+<span class="sd">    .. todo:: Try to move the action loop logic to base class it is</span>
+<span class="sd">    basically the same as in PoolAcquisitionHardware.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;AcquisitionSoftwareStart&quot;</span><span class="p">):</span>
+        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
+                     <span class="n">acq_sleep_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span>
+                                         <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                                         <span class="n">acq_sleep_time</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="p">,</span>
+                                         <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@DebugIt</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">action_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">states</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">element</span>
+            <span class="n">states</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">values</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">nap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span>
+        <span class="n">nb_states_per_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span>
+
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">read_state_info</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">states</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">in_acquisition</span><span class="p">(</span><span class="n">states</span><span class="p">):</span>
+                <span class="k">break</span>
+
+            <span class="c1"># read value every n times</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="o">%</span> <span class="n">nb_states_per_value</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">read_value_loop</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop read value error for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                                   <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                        <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">nap</span><span class="p">)</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+        <span class="k">with</span> <span class="n">ActionContext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_state_info</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">states</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_loop</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="n">states</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="c1"># first update the element state so that value calculation</span>
+            <span class="c1"># that is done after takes the updated state into account</span>
+            <span class="n">acquirable</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">acquirable</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">acquirable</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop final read value error for: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                               <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">acquirable</span><span class="p">:</span>
                 <span class="n">acquirable</span><span class="o">.</span><span class="n">clear_operation</span><span class="p">()</span>
                 <span class="n">state_info</span> <span class="o">=</span> <span class="n">acquirable</span><span class="o">.</span><span class="n">_from_ctrl_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">)</span>
@@ -1061,58 +1304,42 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;0DAcquisition&quot;</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">PoolAction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conf_ctrls</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">acq_sleep_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                     <span class="n">nb_states_per_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Prepares everything for acquisition and starts it.</span>
 
 <span class="sd">           :param: config&quot;&quot;&quot;</span>
 
         <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;idx&quot;</span><span class="p">)</span>
-
-        <span class="c1"># prepare data structures</span>
         <span class="c1"># TODO: rollback this change when a proper synchronization between</span>
         <span class="c1"># acquisition actions will be develop.</span>
         <span class="c1"># Now the meta acquisition action is resettung them to 0.</span>
-<span class="c1">#         self._aborted = False</span>
-<span class="c1">#         self._stopped = False</span>
+        <span class="c1"># self._aborted = False</span>
+        <span class="c1"># self._stopped = False</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;acq_sleep_time&quot;</span><span class="p">,</span>
-                                          <span class="n">pool</span><span class="o">.</span><span class="n">acq_loop_sleep_time</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="o">=</span> \
-            <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;nb_states_per_value&quot;</span><span class="p">,</span>
-                       <span class="n">pool</span><span class="o">.</span><span class="n">acq_loop_states_per_value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="n">index</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="o">=</span> <span class="n">acq_sleep_time</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">acq_loop_sleep_time</span>
 
-        <span class="n">items</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;items&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">items</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">()</span>
-        <span class="n">cfg</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;config&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="o">=</span> <span class="n">nb_states_per_value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">acq_loop_states_per_value</span>
 
-        <span class="n">pool_ctrls_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">])</span>
-        <span class="n">pool_ctrls_dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;__tango__&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">pool_ctrls</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">pool_ctrls_dict</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">ZeroDExpChannel</span> <span class="ow">in</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_ctrl_types</span><span class="p">():</span>
-                <span class="n">pool_ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
-
-        <span class="c1"># Determine which channels are active</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="n">channels</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="n">pool_ctrls</span><span class="p">:</span>
-            <span class="n">ctrl</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span>
-            <span class="n">pool_ctrl_data</span> <span class="o">=</span> <span class="n">pool_ctrls_dict</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]</span>
-            <span class="n">elements</span> <span class="o">=</span> <span class="n">pool_ctrl_data</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span>
-
-            <span class="k">for</span> <span class="n">element</span><span class="p">,</span> <span class="n">element_info</span> <span class="ow">in</span> <span class="n">elements</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-                <span class="n">channel</span> <span class="o">=</span> <span class="n">Channel</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">info</span><span class="o">=</span><span class="n">element_info</span><span class="p">)</span>
-                <span class="n">channels</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel</span>
+        <span class="c1"># channels that are acquired (only enabled)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">with</span> <span class="n">ActionContext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="c1"># set the state of all elements to  and inform their listeners</span>
-            <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">:</span>
-                <span class="n">channel</span><span class="o">.</span><span class="n">clear_buffer</span><span class="p">()</span>
-                <span class="n">channel</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Moving</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">conf_ctrl</span> <span class="ow">in</span> <span class="n">conf_ctrls</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">conf_channel</span> <span class="ow">in</span> <span class="n">conf_ctrl</span><span class="o">.</span><span class="n">get_channels</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                    <span class="n">conf_channel</span><span class="o">.</span><span class="n">clear_buffer</span><span class="p">()</span>
+                    <span class="n">conf_channel</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">Moving</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conf_channel</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">in_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines if we are in acquisition or if the acquisition has ended</span>
@@ -1131,7 +1358,8 @@
 
     <span class="k">def</span> <span class="nf">action_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">states</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">conf_channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="n">conf_channel</span><span class="o">.</span><span class="n">element</span>
             <span class="n">states</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">values</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 

@@ -579,6 +579,30 @@ Default implementation does nothing.</p>
 <p>A Loadable interface. A controller for which it&#8217;s axis are &#8216;loadable&#8217;
 (like a counter, 1D or 2D for example) should implement this interface</p>
 <dl class="method">
+<dt id="sardana.pool.controller.Loadable.PrepareOne">
+<code class="descname">PrepareOne</code><span class="sig-paren">(</span><em>axis</em>, <em>value</em>, <em>repetitions</em>, <em>latency</em>, <em>nb_starts</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Loadable.PrepareOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Loadable.PrepareOne" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Controller API</strong>. Override if necessary.
+Called to prepare the master channel axis with the measurement
+parameters.
+Default implementation does nothing.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) &#8211; axis number</li>
+<li><strong>repetitions</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) &#8211; number of repetitions</li>
+<li><strong>value</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) &#8211; integration time / monitor count</li>
+<li><strong>latency</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) &#8211; latency time</li>
+<li><strong>nb_starts</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) &#8211; number of starts</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="sardana.pool.controller.Loadable.PreLoadAll">
 <code class="descname">PreLoadAll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Loadable.PreLoadAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Loadable.PreLoadAll" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override if necessary.
@@ -588,10 +612,10 @@ Default implementation does nothing.</p>
 
 <dl class="method">
 <dt id="sardana.pool.controller.Loadable.PreLoadOne">
-<code class="descname">PreLoadOne</code><span class="sig-paren">(</span><em>axis</em>, <em>value</em>, <em>repetitions</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Loadable.PreLoadOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Loadable.PreLoadOne" title="Permalink to this definition">¶</a></dt>
+<code class="descname">PreLoadOne</code><span class="sig-paren">(</span><em>axis</em>, <em>value</em>, <em>repetitions</em>, <em>latency</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Loadable.PreLoadOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Loadable.PreLoadOne" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override if necessary.
-Called to prepare loading the master channel axis with the integration
-time / monitor value.
+Called to prepare loading the master channel axis with the
+acquisition parameters.
 Default implementation returns True.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -601,10 +625,11 @@ Default implementation returns True.</p>
 <li><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) &#8211; axis number</li>
 <li><strong>value</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) &#8211; integration time /monitor value</li>
 <li><strong>repetitions</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) &#8211; number of repetitions</li>
+<li><strong>latency</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) &#8211; latency time</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True means a successfull PreLoadOne or False for a failure</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True means a successful PreLoadOne or False for a failure</p>
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
@@ -624,7 +649,7 @@ Default implementation does nothing.</p>
 
 <dl class="method">
 <dt id="sardana.pool.controller.Loadable.LoadOne">
-<code class="descname">LoadOne</code><span class="sig-paren">(</span><em>axis</em>, <em>value</em>, <em>repetitions</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Loadable.LoadOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Loadable.LoadOne" title="Permalink to this definition">¶</a></dt>
+<code class="descname">LoadOne</code><span class="sig-paren">(</span><em>axis</em>, <em>value</em>, <em>repetitions</em>, <em>latency</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Loadable.LoadOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Loadable.LoadOne" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY!
 Called to load the integration time / monitor value.
 Default implementation raises <a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal"><span class="pre">NotImplementedError</span></code></a>.</p>
@@ -636,6 +661,7 @@ Default implementation raises <a class="reference external" href="https://docs.p
 <li><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) &#8211; axis number</li>
 <li><strong>value</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) &#8211; integration time /monitor value</li>
 <li><strong>repetitions</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) &#8211; number of repetitions</li>
+<li><strong>latency</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) &#8211; latency time</li>
 <li><strong>value</strong> &#8211; integration time /monitor value</li>
 </ul>
 </td>

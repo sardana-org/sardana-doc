@@ -1809,6 +1809,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">getSynchronizationObj</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_integ_time</span> <span class="o">=</span> <span class="kc">None</span></div>
 
+    <span class="c1"># NbStarts Methods</span>
+<div class="viewcode-block" id="MeasurementGroup.getNbStartsObj"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getNbStartsObj">[docs]</a>    <span class="k">def</span> <span class="nf">getNbStartsObj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getAttrEG</span><span class="p">(</span><span class="s1">&#39;NbStarts&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MeasurementGroup.setNbStarts"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setNbStarts">[docs]</a>    <span class="k">def</span> <span class="nf">setNbStarts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">starts</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getNbStartsObj</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MeasurementGroup.getNbStarts"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getNbStarts">[docs]</a>    <span class="k">def</span> <span class="nf">getNbStarts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getAttrValue</span><span class="p">(</span><span class="s1">&#39;NbStarts&#39;</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="MeasurementGroup.getMoveableObj"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getMoveableObj">[docs]</a>    <span class="k">def</span> <span class="nf">getMoveableObj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getAttrEG</span><span class="p">(</span><span class="s1">&#39;Moveable&#39;</span><span class="p">)</span></div>
 
@@ -1934,17 +1944,21 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;stopped&quot;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">e</span>
 
+<div class="viewcode-block" id="MeasurementGroup.prepare"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s2">&quot;Prepare&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.go"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.go">[docs]</a>    <span class="k">def</span> <span class="nf">go</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getConfiguration</span><span class="p">()</span>
         <span class="n">cfg</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
-        <span class="n">duration</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">duration</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">duration</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">integration_time</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">integration_time</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">integration_time</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getStateEG</span><span class="p">()</span><span class="o">.</span><span class="n">readValue</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">getValues</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">putIntegrationTime</span><span class="p">(</span><span class="n">duration</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">putIntegrationTime</span><span class="p">(</span><span class="n">integration_time</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setMoveable</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-        <span class="n">PoolElement</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setNbStarts</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getStateEG</span><span class="p">()</span><span class="o">.</span><span class="n">readValue</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">Fault</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Measurement group ended acquisition with Fault state&quot;</span>
@@ -1954,7 +1968,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_total_go_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="MeasurementGroup.measure"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.measure">[docs]</a>    <span class="k">def</span> <span class="nf">measure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synchronization</span><span class="p">,</span> <span class="n">value_buffer_cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementGroup.count_continuous"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count_continuous">[docs]</a>    <span class="k">def</span> <span class="nf">count_continuous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synchronization</span><span class="p">,</span> <span class="n">value_buffer_cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute measurement process according to the given synchronization</span>
 <span class="sd">        description.</span>
 
@@ -1977,7 +1991,7 @@
         <span class="n">cfg</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setSynchronization</span><span class="p">(</span><span class="n">synchronization</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">subscribeValueBuffer</span><span class="p">(</span><span class="n">value_buffer_cb</span><span class="p">)</span>
-        <span class="n">PoolElement</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">count_raw</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unsubscribeValueBuffer</span><span class="p">(</span><span class="n">value_buffer_cb</span><span class="p">)</span>
         <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getStateEG</span><span class="p">()</span><span class="o">.</span><span class="n">readValue</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">Fault</span><span class="p">:</span>
@@ -1994,6 +2008,7 @@
     <span class="n">startCount</span> <span class="o">=</span> <span class="n">PoolElement</span><span class="o">.</span><span class="n">start</span>
     <span class="n">waitCount</span> <span class="o">=</span> <span class="n">PoolElement</span><span class="o">.</span><span class="n">waitFinish</span>
     <span class="n">count</span> <span class="o">=</span> <span class="n">go</span>
+    <span class="n">count_raw</span> <span class="o">=</span> <span class="n">PoolElement</span><span class="o">.</span><span class="n">go</span>
     <span class="n">stopCount</span> <span class="o">=</span> <span class="n">PoolElement</span><span class="o">.</span><span class="n">abort</span>
     <span class="n">stop</span> <span class="o">=</span> <span class="n">PoolElement</span><span class="o">.</span><span class="n">stop</span></div>
 

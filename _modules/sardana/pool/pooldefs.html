@@ -249,25 +249,48 @@
     <span class="n">Repeats</span> <span class="o">=</span> <span class="mi">3</span>
     <span class="n">Initial</span> <span class="o">=</span> <span class="mi">4</span></div>
 
-<span class="c1"># TODO: convert to to python enums, but having in ming problems with</span>
-<span class="c1"># JSON serialization: https://bugs.python.org/issue18264</span>
-<span class="c1"># class AcqSynchType(Enumeration):</span>
-<span class="c1">#</span>
-<span class="c1">#     Trigger = 0</span>
-<span class="c1">#     Gate = 1</span>
+
+<div class="viewcode-block" id="AcqSynchType"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynchType">[docs]</a><span class="k">class</span> <span class="nc">AcqSynchType</span><span class="p">(</span><span class="n">Enumeration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Enumeration of synchronization types.</span>
+
+<span class="sd">    .. todo:: convert to python enums, but having in mind problems with</span>
+<span class="sd">             JSON serialization: https://bugs.python.org/issue18264</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#: Start each acquisition (experimental channel will decide on</span>
+    <span class="c1">#: itself when to end - based on integration time / monitor count)</span>
+    <span class="n">Trigger</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1">#: Start and end each acquisition</span>
+    <span class="n">Gate</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="c1">#: Start only the first acquisition (experimental channel will drive</span>
+    <span class="c1">#: the acquisition based on integration time / monitor count, latency</span>
+    <span class="c1">#: time and number of repetitions)</span>
+    <span class="n">Start</span> <span class="o">=</span> <span class="mi">2</span></div>
 
 
-<span class="n">AcqSynchType</span> <span class="o">=</span> <span class="n">Enumeration</span><span class="p">(</span><span class="s2">&quot;AcqSynchType&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Trigger&quot;</span><span class="p">,</span> <span class="s2">&quot;Gate&quot;</span><span class="p">])</span>
-
-
-<span class="c1"># TODO: convert to to python enums, but having in ming problems with</span>
-<span class="c1"># JSON serialization: https://bugs.python.org/issue18264</span>
 <div class="viewcode-block" id="AcqSynch"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch">[docs]</a><span class="k">class</span> <span class="nc">AcqSynch</span><span class="p">(</span><span class="n">Enumeration</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Enumeration of synchronization options.</span>
 
+<span class="sd">    Uses software/hardware naming to refer to internal (software</span>
+<span class="sd">    synchronizer) or external (hardware synchronization device)</span>
+<span class="sd">    synchronization modes. See :class:`~sardana.pool.pooldefs.AcqSynchType`</span>
+<span class="sd">    to get more details about the synchronization type e.g. trigger, gate or</span>
+<span class="sd">    start.</span>
+
+<span class="sd">    .. todo:: convert to python enums, but having in mind problems with</span>
+<span class="sd">             JSON serialization: https://bugs.python.org/issue18264</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#: Internal (software) trigger</span>
     <span class="n">SoftwareTrigger</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1">#: External (hardware) trigger</span>
     <span class="n">HardwareTrigger</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="c1">#: Internal (software) gate</span>
     <span class="n">SoftwareGate</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="c1">#: External (hardware) gate</span>
     <span class="n">HardwareGate</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="c1">#: Internal (software) start (triggers just the first acquisition)</span>
+    <span class="n">SoftwareStart</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="c1">#: External (hardware) start (triggers just the first acquisition)</span>
+    <span class="n">HardwareStart</span> <span class="o">=</span> <span class="mi">5</span>
 
     <span class="nd">@classmethod</span>
 <div class="viewcode-block" id="AcqSynch.from_synch_type"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.from_synch_type">[docs]</a>    <span class="k">def</span> <span class="nf">from_synch_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">software</span><span class="p">,</span> <span class="n">synch_type</span><span class="p">):</span>
@@ -284,6 +307,11 @@
                 <span class="k">return</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareGate</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareGate</span>
+        <span class="k">elif</span> <span class="n">synch_type</span> <span class="ow">is</span> <span class="n">AcqSynchType</span><span class="o">.</span><span class="n">Start</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">software</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareStart</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareStart</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unable to determine AcqSynch from </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                              <span class="n">synch_type</span><span class="p">)</span></div></div>

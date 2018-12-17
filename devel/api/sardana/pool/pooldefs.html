@@ -197,6 +197,7 @@
 <p class="rubric">Classes</p>
 <table class="hlist"><tr><td><ul class="simple">
 <li><a class="reference internal" href="#sardana.pool.pooldefs.AcqSynch" title="sardana.pool.pooldefs.AcqSynch"><code class="xref py py-class docutils literal"><span class="pre">AcqSynch</span></code></a></li>
+<li><a class="reference internal" href="#sardana.pool.pooldefs.AcqSynchType" title="sardana.pool.pooldefs.AcqSynchType"><code class="xref py py-class docutils literal"><span class="pre">AcqSynchType</span></code></a></li>
 </ul>
 </td><td><ul class="simple">
 <li><a class="reference internal" href="#sardana.pool.pooldefs.SynchParam" title="sardana.pool.pooldefs.SynchParam"><code class="xref py py-class docutils literal"><span class="pre">SynchParam</span></code></a></li>
@@ -207,9 +208,9 @@
 </td></tr></table>
 <div class="section" id="acqsynch">
 <h2>AcqSynch<a class="headerlink" href="#acqsynch" title="Permalink to this headline">¶</a></h2>
-<img src="../../../../_images/inheritance-12da5998da19626d00dca068f856ced6a7283a52.png" alt="Inheritance diagram of AcqSynch" usemap="#inheritancec4d33a589c" class="inheritance"/>
+<img src="../../../../_images/inheritance-f32b4bb1bc8fdb1e82f7879608f21225a12e4fc0.png" alt="Inheritance diagram of AcqSynch" usemap="#inheritancec4d33a589c" class="inheritance"/>
 <map id="inheritancec4d33a589c" name="inheritancec4d33a589c">
-<area shape="rect" id="node1" href="#sardana.pool.pooldefs.AcqSynch" target="_top" title="AcqSynch" alt="" coords="15,179,100,217"/>
+<area shape="rect" id="node1" href="#sardana.pool.pooldefs.AcqSynch" target="_top" title="Enumeration of synchronization options." alt="" coords="15,179,100,217"/>
 <area shape="rect" id="node2" title="Enumeration class intended to provide the &#39;enum&#39; feature present in many" alt="" coords="5,92,109,131"/>
 <area shape="rect" id="node3" title="A magical object class that provides Python 2 compatibility methods::" alt="" coords="14,5,101,44"/>
 </map>
@@ -217,31 +218,100 @@
 <dt id="sardana.pool.pooldefs.AcqSynch">
 <em class="property">class </em><code class="descname">AcqSynch</code><span class="sig-paren">(</span><em>name</em>, <em>enumList</em>, <em>flaggable=False</em>, <em>no_doc=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pooldefs.html#AcqSynch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynch" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">taurus.core.util.enumeration.Enumeration</span></code></p>
+<p>Enumeration of synchronization options.</p>
+<p>Uses software/hardware naming to refer to internal (software
+synchronizer) or external (hardware synchronization device)
+synchronization modes. See <a class="reference internal" href="#sardana.pool.pooldefs.AcqSynchType" title="sardana.pool.pooldefs.AcqSynchType"><code class="xref py py-class docutils literal"><span class="pre">AcqSynchType</span></code></a>
+to get more details about the synchronization type e.g. trigger, gate or
+start.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">convert to python enums, but having in mind problems with
+JSON serialization: <a class="reference external" href="https://bugs.python.org/issue18264">https://bugs.python.org/issue18264</a></p>
+</div>
 <dl class="attribute">
 <dt id="sardana.pool.pooldefs.AcqSynch.SoftwareTrigger">
 <code class="descname">SoftwareTrigger</code><em class="property"> = 0</em><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynch.SoftwareTrigger" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Internal (software) trigger</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="sardana.pool.pooldefs.AcqSynch.HardwareTrigger">
 <code class="descname">HardwareTrigger</code><em class="property"> = 1</em><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynch.HardwareTrigger" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>External (hardware) trigger</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="sardana.pool.pooldefs.AcqSynch.SoftwareGate">
 <code class="descname">SoftwareGate</code><em class="property"> = 2</em><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynch.SoftwareGate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Internal (software) gate</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="sardana.pool.pooldefs.AcqSynch.HardwareGate">
 <code class="descname">HardwareGate</code><em class="property"> = 3</em><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynch.HardwareGate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>External (hardware) gate</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.pool.pooldefs.AcqSynch.SoftwareStart">
+<code class="descname">SoftwareStart</code><em class="property"> = 4</em><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynch.SoftwareStart" title="Permalink to this definition">¶</a></dt>
+<dd><p>Internal (software) start (triggers just the first acquisition)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.pool.pooldefs.AcqSynch.HardwareStart">
+<code class="descname">HardwareStart</code><em class="property"> = 5</em><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynch.HardwareStart" title="Permalink to this definition">¶</a></dt>
+<dd><p>External (hardware) start (triggers just the first acquisition)</p>
+</dd></dl>
 
 <dl class="classmethod">
 <dt id="sardana.pool.pooldefs.AcqSynch.from_synch_type">
 <em class="property">classmethod </em><code class="descname">from_synch_type</code><span class="sig-paren">(</span><em>software</em>, <em>synch_type</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pooldefs.html#AcqSynch.from_synch_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynch.from_synch_type" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper obtain AcqSynch from information about software/hardware
 nature of synchronization element and AcqSynchType</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="acqsynchtype">
+<h2>AcqSynchType<a class="headerlink" href="#acqsynchtype" title="Permalink to this headline">¶</a></h2>
+<img src="../../../../_images/inheritance-1ed649c3d1195dab227a91d85537d74280ed6b28.png" alt="Inheritance diagram of AcqSynchType" usemap="#inheritanceaf0bee7ade" class="inheritance"/>
+<map id="inheritanceaf0bee7ade" name="inheritanceaf0bee7ade">
+<area shape="rect" id="node1" href="#sardana.pool.pooldefs.AcqSynchType" target="_top" title="Enumeration of synchronization types." alt="" coords="5,179,119,217"/>
+<area shape="rect" id="node2" title="Enumeration class intended to provide the &#39;enum&#39; feature present in many" alt="" coords="10,92,114,131"/>
+<area shape="rect" id="node3" title="A magical object class that provides Python 2 compatibility methods::" alt="" coords="19,5,105,44"/>
+</map>
+<dl class="class">
+<dt id="sardana.pool.pooldefs.AcqSynchType">
+<em class="property">class </em><code class="descname">AcqSynchType</code><span class="sig-paren">(</span><em>name</em>, <em>enumList</em>, <em>flaggable=False</em>, <em>no_doc=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pooldefs.html#AcqSynchType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynchType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">taurus.core.util.enumeration.Enumeration</span></code></p>
+<p>Enumeration of synchronization types.</p>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">convert to python enums, but having in mind problems with
+JSON serialization: <a class="reference external" href="https://bugs.python.org/issue18264">https://bugs.python.org/issue18264</a></p>
+</div>
+<dl class="attribute">
+<dt id="sardana.pool.pooldefs.AcqSynchType.Trigger">
+<code class="descname">Trigger</code><em class="property"> = 0</em><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynchType.Trigger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start each acquisition (experimental channel will decide on
+itself when to end - based on integration time / monitor count)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.pool.pooldefs.AcqSynchType.Gate">
+<code class="descname">Gate</code><em class="property"> = 1</em><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynchType.Gate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start and end each acquisition</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.pool.pooldefs.AcqSynchType.Start">
+<code class="descname">Start</code><em class="property"> = 2</em><a class="headerlink" href="#sardana.pool.pooldefs.AcqSynchType.Start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start only the first acquisition (experimental channel will drive
+the acquisition based on integration time / monitor count, latency
+time and number of repetitions)</p>
 </dd></dl>
 
 </dd></dl>

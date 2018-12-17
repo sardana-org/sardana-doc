@@ -1147,6 +1147,11 @@
 
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nr_points&quot;</span><span class="p">):</span>
             <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">macro</span><span class="o">.</span><span class="n">nr_points</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;integ_time&quot;</span><span class="p">):</span>
+                <span class="n">integ_time</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">integ_time</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">putIntegrationTime</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">setNbStarts</span><span class="p">(</span><span class="n">nr_points</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
             <span class="n">scream</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">yield</span> <span class="mf">0.0</span>
@@ -2808,8 +2813,8 @@
                 <span class="n">hook</span><span class="p">()</span>
 
         <span class="k">yield</span> <span class="mi">0</span>
-        <span class="n">measurement_group</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="n">synchronization</span><span class="p">,</span>
-                                  <span class="bp">self</span><span class="o">.</span><span class="n">value_buffer_changed</span><span class="p">)</span>
+        <span class="n">measurement_group</span><span class="o">.</span><span class="n">count_continuous</span><span class="p">(</span><span class="n">synchronization</span><span class="p">,</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">value_buffer_changed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Waiting for value buffer events to be processed&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait_value_buffer</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">join_thread_pool</span><span class="p">()</span>

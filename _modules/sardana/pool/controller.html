@@ -800,22 +800,37 @@
 
 <span class="sd">    .. note: Do not inherit directly from Loadable.&quot;&quot;&quot;</span>
 
+<div class="viewcode-block" id="Loadable.PrepareOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Loadable.PrepareOne">[docs]</a>    <span class="k">def</span> <span class="nf">PrepareOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="n">nb_starts</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
+<span class="sd">        Called to prepare the master channel axis with the measurement</span>
+<span class="sd">        parameters.</span>
+<span class="sd">        Default implementation does nothing.</span>
+
+<span class="sd">        :param int axis: axis number</span>
+<span class="sd">        :param int repetitions: number of repetitions</span>
+<span class="sd">        :param float value: integration time / monitor count</span>
+<span class="sd">        :param float latency: latency time</span>
+<span class="sd">        :param int nb_starts: number of starts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div>
+
 <div class="viewcode-block" id="Loadable.PreLoadAll"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Loadable.PreLoadAll">[docs]</a>    <span class="k">def</span> <span class="nf">PreLoadAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
 <span class="sd">        Called to prepare loading the integration time / monitor value.</span>
 <span class="sd">        Default implementation does nothing.&quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Loadable.PreLoadOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Loadable.PreLoadOne">[docs]</a>    <span class="k">def</span> <span class="nf">PreLoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+<div class="viewcode-block" id="Loadable.PreLoadOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Loadable.PreLoadOne">[docs]</a>    <span class="k">def</span> <span class="nf">PreLoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
-<span class="sd">        Called to prepare loading the master channel axis with the integration</span>
-<span class="sd">        time / monitor value.</span>
+<span class="sd">        Called to prepare loading the master channel axis with the</span>
+<span class="sd">        acquisition parameters.</span>
 <span class="sd">        Default implementation returns True.</span>
 
 <span class="sd">        :param int axis: axis number</span>
 <span class="sd">        :param float value: integration time /monitor value</span>
 <span class="sd">        :param int repetitions: number of repetitions</span>
-<span class="sd">        :return: True means a successfull PreLoadOne or False for a failure</span>
+<span class="sd">        :param float latency: latency time</span>
+<span class="sd">        :return: True means a successful PreLoadOne or False for a failure</span>
 <span class="sd">        :rtype: bool&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">True</span></div>
 
@@ -825,7 +840,7 @@
 <span class="sd">        Default implementation does nothing.&quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="Loadable.LoadOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Loadable.LoadOne">[docs]</a>    <span class="k">def</span> <span class="nf">LoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+<div class="viewcode-block" id="Loadable.LoadOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Loadable.LoadOne">[docs]</a>    <span class="k">def</span> <span class="nf">LoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override is MANDATORY!</span>
 <span class="sd">        Called to load the integration time / monitor value.</span>
 <span class="sd">        Default implementation raises :exc:`NotImplementedError`.</span>
@@ -833,6 +848,7 @@
 <span class="sd">        :param int axis: axis number</span>
 <span class="sd">        :param float value: integration time /monitor value</span>
 <span class="sd">        :param int repetitions: number of repetitions</span>
+<span class="sd">        :param float latency: latency time</span>
 <span class="sd">        :param float value: integration time /monitor value&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;LoadOne must be defined in the controller&quot;</span><span class="p">)</span></div></div>
 
@@ -1008,7 +1024,8 @@
         <span class="k">pass</span></div></div>
 
 
-<div class="viewcode-block" id="CounterTimerController"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController">[docs]</a><span class="k">class</span> <span class="nc">CounterTimerController</span><span class="p">(</span><span class="n">Controller</span><span class="p">,</span> <span class="n">Readable</span><span class="p">,</span> <span class="n">Startable</span><span class="p">,</span> <span class="n">Stopable</span><span class="p">,</span> <span class="n">Loadable</span><span class="p">):</span>
+<div class="viewcode-block" id="CounterTimerController"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController">[docs]</a><span class="k">class</span> <span class="nc">CounterTimerController</span><span class="p">(</span><span class="n">Controller</span><span class="p">,</span> <span class="n">Readable</span><span class="p">,</span> <span class="n">Startable</span><span class="p">,</span> <span class="n">Stopable</span><span class="p">,</span>
+                             <span class="n">Loadable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for a counter/timer controller. Inherit from this class to</span>
 <span class="sd">    implement your own counter/timer controller for the device pool.</span>
 
