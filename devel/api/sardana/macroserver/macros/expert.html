@@ -193,6 +193,14 @@
 <dt id="sardana.macroserver.macros.expert.addctrllib">
 <em class="property">class </em><code class="descname">addctrllib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#addctrllib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.addctrllib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the given controller library code to the pool server filesystem.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently this macro does not report eventual errors,
+for example Python syntax errors, in the controller plugin
+module. So if it silently exits but the controller library is
+not correctly loaded please check the server logs for more
+information.</p>
+</div>
 </dd></dl>
 
 <dl class="class">

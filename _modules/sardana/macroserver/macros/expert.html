@@ -164,12 +164,12 @@
 
 <span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
 
-<span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
-
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;addctrllib&quot;</span><span class="p">,</span> <span class="s2">&quot;addmaclib&quot;</span><span class="p">,</span> <span class="s2">&quot;commit_ctrllib&quot;</span><span class="p">,</span> <span class="s2">&quot;defctrl&quot;</span><span class="p">,</span> <span class="s2">&quot;defelem&quot;</span><span class="p">,</span>
            <span class="s2">&quot;defm&quot;</span><span class="p">,</span> <span class="s2">&quot;defmeas&quot;</span><span class="p">,</span> <span class="s2">&quot;edctrlcls&quot;</span><span class="p">,</span> <span class="s2">&quot;edctrllib&quot;</span><span class="p">,</span> <span class="s2">&quot;prdef&quot;</span><span class="p">,</span>
            <span class="s2">&quot;relctrlcls&quot;</span><span class="p">,</span> <span class="s2">&quot;relctrllib&quot;</span><span class="p">,</span> <span class="s2">&quot;rellib&quot;</span><span class="p">,</span> <span class="s2">&quot;relmac&quot;</span><span class="p">,</span> <span class="s2">&quot;relmaclib&quot;</span><span class="p">,</span>
            <span class="s2">&quot;send2ctrl&quot;</span><span class="p">,</span> <span class="s2">&quot;udefctrl&quot;</span><span class="p">,</span> <span class="s2">&quot;udefelem&quot;</span><span class="p">,</span> <span class="s2">&quot;udefmeas&quot;</span><span class="p">,</span> <span class="s2">&quot;sar_info&quot;</span><span class="p">]</span>
+
+<span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
@@ -478,6 +478,12 @@
 
 <div class="viewcode-block" id="addctrllib"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.addctrllib">[docs]</a><span class="k">class</span> <span class="nc">addctrllib</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Adds the given controller library code to the pool server filesystem.</span>
+
+<span class="sd">    .. note:: Currently this macro does not report eventual errors,</span>
+<span class="sd">              for example Python syntax errors, in the controller plugin</span>
+<span class="sd">              module. So if it silently exits but the controller library is</span>
+<span class="sd">              not correctly loaded please check the server logs for more</span>
+<span class="sd">              information.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;ctrl_library_name&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>

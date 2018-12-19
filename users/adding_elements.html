@@ -184,9 +184,19 @@ There&#8217;s a high chance that somebody already wrote the plugin for your hard
 If not, you can <a class="reference internal" href="../devel/howto_controllers/index.html#sardana-controller-howto"><span class="std std-ref">write the plugin yourself</span></a>.</p>
 <div class="section" id="controllers">
 <h2>Controllers<a class="headerlink" href="#controllers" title="Permalink to this headline">¶</a></h2>
-<p>The controller is a Sardana object that handles the communication with the hardware.
-To create the controller you can use <a class="reference internal" href="../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defctrl" title="sardana.macroserver.macros.expert.defctrl"><code class="xref py py-class docutils literal"><span class="pre">defctrl</span></code></a>
-macro:</p>
+<p>The controller is a Sardana object that handles the communication with the
+hardware (physical controller) or provides an abstraction layer (pseudo
+controller).</p>
+<p>Before creating the controller instance you need to load the controller
+plugin class into the Sardana. To check if it is already loaded use the
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsctrl" title="sardana.macroserver.macros.lists.lsctrl"><code class="xref py py-class docutils literal"><span class="pre">lsctrl</span></code></a> macro. If it is not, you will
+need to configure the <a class="reference internal" href="configuration/pool.html#sardana-configuration-pool"><span class="std std-ref">controller plugin discovery path</span></a>
+(<code class="docutils literal"><span class="pre">PoolPath</span></code> property) and either restart the Sardana server or call the
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.addctrllib" title="sardana.macroserver.macros.expert.addctrllib"><code class="xref py py-class docutils literal"><span class="pre">addctrllib</span></code></a> macro. After that
+check again with the list macro if the controller class is present and if
+yes let&#8217;s continue...</p>
+<p>To create a controller instance you can use
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defctrl" title="sardana.macroserver.macros.expert.defctrl"><code class="xref py py-class docutils literal"><span class="pre">defctrl</span></code></a> macro:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">defctrl</span> <span class="o">&lt;</span><span class="n">class</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">roles</span><span class="o">/</span><span class="n">properties</span><span class="o">&gt;</span>
 </pre></div>
 </div>
