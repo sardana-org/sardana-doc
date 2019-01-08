@@ -250,34 +250,32 @@
     <span class="n">Initial</span> <span class="o">=</span> <span class="mi">4</span></div>
 
 
-<div class="viewcode-block" id="AcqSynchType"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynchType">[docs]</a><span class="k">class</span> <span class="nc">AcqSynchType</span><span class="p">(</span><span class="n">Enumeration</span><span class="p">):</span>
+<span class="n">AcqSynchType</span> <span class="o">=</span> <span class="n">Enumeration</span><span class="p">(</span><span class="s2">&quot;AcqSynchType&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Trigger&quot;</span><span class="p">,</span> <span class="s2">&quot;Gate&quot;</span><span class="p">,</span> <span class="s2">&quot;Start&quot;</span><span class="p">])</span>
+<span class="n">AcqSynchType</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> \
     <span class="sd">&quot;&quot;&quot;Enumeration of synchronization types.</span>
+
+<span class="sd">    Options:</span>
+
+<span class="sd">    - Trigger - Start each acquisition (experimental channel will decide on</span>
+<span class="sd">      itself when to end, based on integration time / monitor count)</span>
+<span class="sd">    - Gate - Start and end each acquisition</span>
+<span class="sd">    - Start - Start only the first acquisition (experimental channel will</span>
+<span class="sd">      drive the acquisition based on integration time / monitor count, latency</span>
+<span class="sd">      time and number of repetitions)</span>
 
 <span class="sd">    .. todo:: convert to python enums, but having in mind problems with</span>
 <span class="sd">             JSON serialization: https://bugs.python.org/issue18264</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#: Start each acquisition (experimental channel will decide on</span>
-    <span class="c1">#: itself when to end - based on integration time / monitor count)</span>
-    <span class="n">Trigger</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="c1">#: Start and end each acquisition</span>
-    <span class="n">Gate</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="c1">#: Start only the first acquisition (experimental channel will drive</span>
-    <span class="c1">#: the acquisition based on integration time / monitor count, latency</span>
-    <span class="c1">#: time and number of repetitions)</span>
-    <span class="n">Start</span> <span class="o">=</span> <span class="mi">2</span></div>
 
 
-<div class="viewcode-block" id="AcqSynch"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch">[docs]</a><span class="k">class</span> <span class="nc">AcqSynch</span><span class="p">(</span><span class="n">Enumeration</span><span class="p">):</span>
+<div class="viewcode-block" id="AcqSynch"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch">[docs]</a><span class="k">class</span> <span class="nc">AcqSynch</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Enumeration of synchronization options.</span>
 
 <span class="sd">    Uses software/hardware naming to refer to internal (software</span>
 <span class="sd">    synchronizer) or external (hardware synchronization device)</span>
-<span class="sd">    synchronization modes. See :class:`~sardana.pool.pooldefs.AcqSynchType`</span>
+<span class="sd">    synchronization modes. See :obj:`~sardana.pool.pooldefs.AcqSynchType`</span>
 <span class="sd">    to get more details about the synchronization type e.g. trigger, gate or</span>
 <span class="sd">    start.</span>
-
-<span class="sd">    .. todo:: convert to python enums, but having in mind problems with</span>
-<span class="sd">             JSON serialization: https://bugs.python.org/issue18264</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#: Internal (software) trigger</span>
     <span class="n">SoftwareTrigger</span> <span class="o">=</span> <span class="mi">0</span>
