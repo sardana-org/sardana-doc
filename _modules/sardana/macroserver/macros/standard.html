@@ -297,6 +297,7 @@
         <span class="n">motor_names</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">motor_pos</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">motor_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">motor_list</span><span class="p">)</span>
+        <span class="n">pos_format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getViewOption</span><span class="p">(</span><span class="n">ViewOption</span><span class="o">.</span><span class="n">PosFormat</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">motor</span> <span class="ow">in</span> <span class="n">motor_list</span><span class="p">:</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>
             <span class="n">motor_names</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">name</span><span class="p">])</span>
@@ -307,6 +308,8 @@
             <span class="n">motor_width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">motor_width</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
 
         <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%c</span><span class="s1">*.</span><span class="si">%d</span><span class="s1">f&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">,</span> <span class="n">motor_width</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pos_format</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%c</span><span class="s1">*.</span><span class="si">%d</span><span class="s1">f&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">pos_format</span><span class="p">))</span>
 
         <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">motor_pos</span><span class="p">,</span> <span class="n">elem_fmt</span><span class="o">=</span><span class="p">[</span><span class="n">fmt</span><span class="p">],</span>
                       <span class="n">col_head_str</span><span class="o">=</span><span class="n">motor_names</span><span class="p">,</span> <span class="n">col_head_width</span><span class="o">=</span><span class="n">motor_width</span><span class="p">,</span>
