@@ -510,21 +510,6 @@
         <span class="n">ctrls_sw</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">ctrls_sw_start</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">():</span>
-            <span class="n">elem</span><span class="o">.</span><span class="n">put_state</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-            <span class="c1"># TODO: temporarily clear value buffers at the beginning of the</span>
-            <span class="c1"># acquisition instead of doing it in the finish hook of each</span>
-            <span class="c1"># acquisition sub-actions. See extensive explanation in the</span>
-            <span class="c1"># constructor of PoolAcquisitionBase.</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">elem</span><span class="o">.</span><span class="n">clear_value_buffer</span><span class="p">()</span>
-            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-                <span class="k">continue</span>
-            <span class="c1"># clean also the pseudo counters, even the ones that do not</span>
-            <span class="c1"># participate directly in the acquisition</span>
-            <span class="k">for</span> <span class="n">pseudo_elem</span> <span class="ow">in</span> <span class="n">elem</span><span class="o">.</span><span class="n">get_pseudo_elements</span><span class="p">():</span>
-                <span class="n">pseudo_elem</span><span class="o">.</span><span class="n">clear_value_buffer</span><span class="p">()</span>
-
         <span class="n">repetitions</span> <span class="o">=</span> <span class="n">synchronization</span><span class="o">.</span><span class="n">repetitions</span>
         <span class="n">latency</span> <span class="o">=</span> <span class="n">synchronization</span><span class="o">.</span><span class="n">passive_time</span>
         <span class="c1"># Prepare controllers synchronized by hardware</span>
@@ -640,6 +625,22 @@
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Runs acquisition according to previous preparation.&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">():</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">put_state</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="c1"># TODO: temporarily clear value buffers at the beginning of the</span>
+            <span class="c1"># acquisition instead of doing it in the finish hook of each</span>
+            <span class="c1"># acquisition sub-actions. See extensive explanation in the</span>
+            <span class="c1"># constructor of PoolAcquisitionBase.</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">elem</span><span class="o">.</span><span class="n">clear_value_buffer</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="c1"># clean also the pseudo counters, even the ones that do not</span>
+            <span class="c1"># participate directly in the acquisition</span>
+            <span class="k">for</span> <span class="n">pseudo_elem</span> <span class="ow">in</span> <span class="n">elem</span><span class="o">.</span><span class="n">get_pseudo_elements</span><span class="p">():</span>
+                <span class="n">pseudo_elem</span><span class="o">.</span><span class="n">clear_value_buffer</span><span class="p">()</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
                              <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
