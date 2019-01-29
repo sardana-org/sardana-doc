@@ -1667,6 +1667,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_cb</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="s2">&quot;json&quot;</span><span class="p">)</span>
 
+<div class="viewcode-block" id="MeasurementGroup.cleanUp"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.cleanUp">[docs]</a>    <span class="k">def</span> <span class="nf">cleanUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">PoolElement</span><span class="o">.</span><span class="n">cleanUp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="p">()</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">removeExistingAttribute</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__cfg_attr</span><span class="p">)</span></div>
+
     <span class="k">def</span> <span class="nf">_create_str_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">channel_names</span> <span class="o">=</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getChannelNames</span><span class="p">())</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTimerName</span><span class="p">(),</span> <span class="n">channel_names</span>
