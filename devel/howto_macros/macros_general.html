@@ -1136,6 +1136,16 @@ using the <a class="reference internal" href="../api/api_macro.html#sardana.macr
         <span class="bp">self</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">hookable_macro</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Be aware of the following difference between setting the
+<a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Hookable.hooks" title="sardana.macroserver.macro.Hookable.hooks"><code class="xref py py-attr docutils literal"><span class="pre">hooks</span></code></a> property and using the
+<a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Hookable.appendHook" title="sardana.macroserver.macro.Hookable.appendHook"><code class="xref py py-meth docutils literal"><span class="pre">appendHook()</span></code></a> method.
+Setting the property applies all hooks at once but may override
+<a class="reference internal" href="../../users/macro_hooks.html#sardana-macros-hooks-general"><span class="std std-ref">general hooks</span></a> eventually attached to
+the macro. Using the method appends just one hook but does not affect
+the general hooks eventually attached to the macro.</p>
+</div>
 </div>
 <div class="section" id="using-external-python-libraries">
 <span id="sardana-macro-using-external-libraries"></span><h2>Using external python libraries<a class="headerlink" href="#using-external-python-libraries" title="Permalink to this headline">¶</a></h2>
