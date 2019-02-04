@@ -2402,7 +2402,27 @@ hints are always valid:</p>
 <dl class="attribute">
 <dt id="sardana.macroserver.macro.Hookable.hooks">
 <code class="descname">hooks</code><a class="headerlink" href="#sardana.macroserver.macro.Hookable.hooks" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Hooks (callables) attached to the macro object together with the
+hook places (places where they will be called).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Getter:</th><td class="field-body">Return all hooks attached to the macro object (including
+general hooks).</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Setter:</th><td class="field-body">Set hooks to the object. <strong>This may override eventual
+general hooks.</strong>
+Use <a class="reference internal" href="#sardana.macroserver.macro.Hookable.appendHook" title="sardana.macroserver.macro.Hookable.appendHook"><code class="xref py py-meth docutils literal"><span class="pre">appendHook()</span></code></a>
+if the general hooks want to be kept. For backwards compatibility
+accepts hook in the <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a>&lt;callable&gt; format.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a>&lt;<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>&gt; where each tuple has two
+elements: callable and <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a>&lt;<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>&gt;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 

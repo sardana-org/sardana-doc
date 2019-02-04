@@ -369,57 +369,67 @@
                 <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="n">hint</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">hook</span><span class="p">]</span></div>
 
-    <span class="nd">@propertx</span>
-    <span class="k">def</span> <span class="nf">hooks</span><span class="p">():</span>
-        <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getHooks</span><span class="p">()</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Hooks (callables) attached to the macro object together with the</span>
+<span class="sd">        hook places (places where they will be called).</span>
 
-        <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hooks</span><span class="p">):</span>
-            <span class="sd">&#39;&#39;&#39;hooks must be list&lt;callable,list&lt;str&gt;&gt;. Exceptionally, for</span>
-<span class="sd">            backwards compatibility, list&lt;callable&gt; is also admitted, but may</span>
-<span class="sd">            not be supported in the future.</span>
-<span class="sd">            &quot;two variables are created:</span>
-<span class="sd">                - self._hooks (list&lt;callable,list&lt;str&gt;&gt;) (will be a tuple</span>
-<span class="sd">                              regardless of what was passed)</span>
-<span class="sd">                - self._hookHintsDict (dict&lt;str,list&gt;) a dict of key=hint and</span>
-<span class="sd">                                      value=list of hooks with that hint.</span>
-<span class="sd">                                      self._hookHintsDict also stores two</span>
-<span class="sd">                                      special keys: &quot;_ALL_&quot;: which contains all</span>
-<span class="sd">                                      the hooks &quot;_NOHINTS_&quot;: which contains the</span>
-<span class="sd">                                      hooks that don&#39;t provide hints</span>
-<span class="sd">            &#39;&#39;&#39;</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hooks</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
-                    <span class="s1">&#39;the hooks must be passed as a list&lt;callable,list&lt;str&gt;&gt;&#39;</span><span class="p">)</span>
-                <span class="k">return</span>
+<span class="sd">        :getter: Return all hooks attached to the macro object (including</span>
+<span class="sd">            general hooks).</span>
+<span class="sd">        :setter: Set hooks to the object. **This may override eventual</span>
+<span class="sd">            general hooks.**</span>
+<span class="sd">            Use :meth:`~sardana.macroserver.macro.Hookable.appendHook`</span>
+<span class="sd">            if the general hooks want to be kept. For backwards compatibility</span>
+<span class="sd">            accepts hook in the :obj:`list`\&lt;callable\&gt; format.</span>
+<span class="sd">        :type: :obj:`list`\&lt;:obj:`tuple`\&gt; where each tuple has two</span>
+<span class="sd">            elements: callable and :obj:`list`\&lt;:obj:`str`\&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>  <span class="c1"># noqa</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getHooks</span><span class="p">()</span>
 
-            <span class="c1"># store self._hooks, making sure it is of type:</span>
-            <span class="c1"># list&lt;callable,list&lt;str&gt;&gt;</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hooks</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>  <span class="c1"># we assume that hooks is a list&lt;callable&gt;</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">h</span><span class="p">,</span> <span class="p">[]))</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-                        <span class="s1">&#39;Deprecation warning: hooks should be set with a list of hints. See Hookable API docs&#39;</span><span class="p">)</span>
+    <span class="nd">@hooks</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hooks</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sets hooks. Internally two variables instance members are created:</span>
 
-            <span class="c1"># delete _hookHintsDict to force its recreation on the next access</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_hookHintsDict&#39;</span><span class="p">):</span>
-                <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span>
-            <span class="c1"># create _hookHintsDict</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_getHookHintsDict</span><span class="p">()[</span><span class="s1">&#39;_ALL_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">nohints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="s1">&#39;_NOHINTS_&#39;</span><span class="p">]</span>
-            <span class="k">for</span> <span class="n">hook</span><span class="p">,</span> <span class="n">hints</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hints</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">nohints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="k">for</span> <span class="n">hint</span> <span class="ow">in</span> <span class="n">hints</span><span class="p">:</span>
-                        <span class="k">try</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="n">hint</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
-                        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                            <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="n">hint</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">hook</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">get</span><span class="p">,</span> <span class="nb">set</span></div>
+<span class="sd">        - _hooks (list&lt;callable,list&lt;str&gt;&gt;) (will be a tuple regardless of</span>
+<span class="sd">          what was passed)</span>
+<span class="sd">        - _hookHintsDict (dict&lt;str,list&gt;) a dict of key=hint and value=list</span>
+<span class="sd">          of hooks with that hint. _hookHintsDict also stores two special</span>
+<span class="sd">          keys: &quot;_ALL_&quot;: which contains all the hooks &quot;_NOHINTS_&quot;: which</span>
+<span class="sd">          contains the hooks that don&#39;t provide hints</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">hooks</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
+                <span class="s1">&#39;the hooks must be passed as a list&lt;callable,list&lt;str&gt;&gt;&#39;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="c1"># store self._hooks, making sure it is of type:</span>
+        <span class="c1"># list&lt;callable,list&lt;str&gt;&gt;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">hooks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">))</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># we assume that hooks is a list&lt;callable&gt;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">h</span><span class="p">,</span> <span class="p">[]))</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Deprecation warning: hooks should be set with a&quot;</span>
+                       <span class="s2">&quot; list of hints. See Hookable API docs&quot;</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1"># delete _hookHintsDict to force its recreation on the next access</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_hookHintsDict&#39;</span><span class="p">):</span>
+            <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span>
+        <span class="c1"># create _hookHintsDict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_getHookHintsDict</span><span class="p">()[</span><span class="s1">&#39;_ALL_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">nohints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="s1">&#39;_NOHINTS_&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">hook</span><span class="p">,</span> <span class="n">hints</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hints</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">nohints</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">hint</span> <span class="ow">in</span> <span class="n">hints</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="n">hint</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="n">hint</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">hook</span><span class="p">]</span></div>
 
 
 <span class="k">class</span> <span class="nc">ExecMacroHook</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
