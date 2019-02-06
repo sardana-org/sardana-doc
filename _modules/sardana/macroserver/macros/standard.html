@@ -164,11 +164,12 @@
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ct&quot;</span><span class="p">,</span> <span class="s2">&quot;mstate&quot;</span><span class="p">,</span> <span class="s2">&quot;mv&quot;</span><span class="p">,</span> <span class="s2">&quot;mvr&quot;</span><span class="p">,</span> <span class="s2">&quot;pwa&quot;</span><span class="p">,</span> <span class="s2">&quot;pwm&quot;</span><span class="p">,</span> <span class="s2">&quot;repeat&quot;</span><span class="p">,</span> <span class="s2">&quot;set_lim&quot;</span><span class="p">,</span>
            <span class="s2">&quot;set_lm&quot;</span><span class="p">,</span> <span class="s2">&quot;set_pos&quot;</span><span class="p">,</span> <span class="s2">&quot;settimer&quot;</span><span class="p">,</span> <span class="s2">&quot;uct&quot;</span><span class="p">,</span> <span class="s2">&quot;umv&quot;</span><span class="p">,</span> <span class="s2">&quot;umvr&quot;</span><span class="p">,</span> <span class="s2">&quot;wa&quot;</span><span class="p">,</span> <span class="s2">&quot;wm&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;tw&quot;</span><span class="p">,</span> <span class="s2">&quot;logmacro&quot;</span><span class="p">]</span>
+           <span class="s2">&quot;tw&quot;</span><span class="p">,</span> <span class="s2">&quot;logmacro&quot;</span><span class="p">,</span> <span class="s2">&quot;newfile&quot;</span><span class="p">]</span>
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
 <span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">taurus</span> <span class="k">import</span> <span class="n">Device</span>
@@ -178,7 +179,7 @@
 
 <span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamRepeat</span><span class="p">,</span> \
     <span class="n">ViewOption</span><span class="p">,</span> <span class="n">iMacro</span><span class="p">,</span> <span class="n">Hookable</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">StopException</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">StopException</span><span class="p">,</span> <span class="n">UnknownEnv</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.scan.scandata</span> <span class="k">import</span> <span class="n">Record</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Optional</span>
 
@@ -1031,6 +1032,103 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">__loop</span><span class="p">()</span>
                 <span class="n">progress</span> <span class="o">=</span> <span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">nr</span><span class="p">))</span> <span class="o">*</span> <span class="mi">100</span>
                 <span class="k">yield</span> <span class="n">progress</span></div>
+
+
+<div class="viewcode-block" id="newfile"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.newfile">[docs]</a><span class="k">class</span> <span class="nc">newfile</span><span class="p">(</span><span class="n">Hookable</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Sets the ScanDir and ScanFile as well as ScanID in the environment.</span>
+
+<span class="sd">    If ScanFilePath is only a file name, the ScanDir must be set externally</span>
+<span class="sd">    via `senv ScanDir &lt;PathToScanFile&gt;` or using the %expconf. Otherwise,</span>
+<span class="sd">    the path in ScanFilePath must be absolute and existing on the</span>
+<span class="sd">    MacroServer host.</span>
+
+<span class="sd">    The ScanID should be set to the value before the upcoming scan number.</span>
+<span class="sd">    Default value is 0.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;post-newfile&#39;</span><span class="p">)}</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;ScanFilePath_list&#39;</span><span class="p">,</span>
+         <span class="p">[[</span><span class="s1">&#39;ScanFilePath&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;(ScanDir/)ScanFile&#39;</span><span class="p">]],</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of (ScanDir/)ScanFile&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;ScanID&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Scan ID&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ScanFilePath_list</span><span class="p">,</span> <span class="n">ScanID</span><span class="p">):</span>
+        <span class="n">path_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">fileName_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="c1"># traverse the repeat parameters for the ScanFilePath_list</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ScanFilePath</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ScanFilePath_list</span><span class="p">):</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">ScanFilePath</span><span class="p">)</span>
+            <span class="n">fileName</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">ScanFilePath</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># first entry and no given ScanDir: check if ScanDir exists</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">ScanDir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ScanDir&#39;</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">UnknownEnv</span><span class="p">:</span>
+                    <span class="n">ScanDir</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">ScanDir</span><span class="p">,</span> <span class="n">basestring</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">ScanDir</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Data is not stored until ScanDir is correctly &#39;</span>
+                           <span class="s1">&#39;set! Provide ScanDir with newfile macro: &#39;</span>
+                           <span class="s1">&#39;`newfile [&lt;ScanDir&gt;/&lt;ScanFile&gt;] &lt;ScanID&gt;` &#39;</span>
+                           <span class="s1">&#39;or `senv ScanDir &lt;ScanDir&gt;` or with </span><span class="si">%e</span><span class="s1">xpconf&#39;</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="k">return</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">path</span> <span class="o">=</span> <span class="n">ScanDir</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">path</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># not first entry and no given path: use path of last iteration</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">path_list</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isabs</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="c1"># relative path</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Only absolute path are allowed!&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># absolute path</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normpath</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">path</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">path_list</span><span class="p">):</span>
+                <span class="c1"># check if paths are equal</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Multiple paths to the data files are not allowed&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+                <span class="c1"># check if folder exists</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Path </span><span class="si">%s</span><span class="s1"> does not exists on the host of the &#39;</span>
+                           <span class="s1">&#39;MacroServer and has to be created in &#39;</span>
+                           <span class="s1">&#39;advance.&#39;</span> <span class="o">%</span> <span class="n">path</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Path </span><span class="si">%s</span><span class="s1"> appended.&#39;</span> <span class="o">%</span> <span class="n">path</span><span class="p">)</span>
+                <span class="n">path_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">fileName</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;No filename is given.&#39;</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">elif</span> <span class="n">fileName</span> <span class="ow">in</span> <span class="n">fileName_list</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Duplicate filename </span><span class="si">%s</span><span class="s1"> is not allowed.&#39;</span> <span class="o">%</span> <span class="n">fileName</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Filename is </span><span class="si">%s</span><span class="s1">.&#39;</span> <span class="o">%</span> <span class="n">fileName</span><span class="p">)</span>
+                <span class="n">fileName_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fileName</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ScanID</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ScanID</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;ScanFile&#39;</span><span class="p">,</span> <span class="n">fileName_list</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;ScanDir&#39;</span><span class="p">,</span> <span class="n">path_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;ScanID&#39;</span><span class="p">,</span> <span class="n">ScanID</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s1">&#39;ScanDir is</span><span class="se">\t</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">path_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ScanFile</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fileName_list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s1">&#39;ScanFile set to</span><span class="se">\t</span><span class="s1">: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ScanFile</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\t\t</span><span class="s1">  </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ScanFile</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s1">&#39;Next scan is</span><span class="se">\t</span><span class="s1">: #</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ScanID</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">postNewfileHook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-newfile&#39;</span><span class="p">):</span>
+            <span class="n">postNewfileHook</span><span class="p">()</span></div>
 </pre></div>
 
            </div>
