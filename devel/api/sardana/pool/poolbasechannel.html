@@ -232,7 +232,7 @@ for experiment channels</p>
 <dl class="attribute">
 <dt id="sardana.pool.poolbasechannel.PoolBaseChannel.AcquisitionClass">
 <code class="descname">AcquisitionClass</code><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.AcquisitionClass" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">PoolCTAcquisition</span></code></p>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">PoolAcquisitionSoftware</span></code></p>
 </dd></dl>
 
 <dl class="method">
@@ -480,8 +480,48 @@ the read value.</p>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.get_integration_time">
+<code class="descname">get_integration_time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.get_integration_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.get_integration_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the integration time for this object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the current integration time</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">float</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.set_integration_time">
+<code class="descname">set_integration_time</code><span class="sig-paren">(</span><em>integration_time</em>, <em>propagate=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.set_integration_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.set_integration_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the integration time for this object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>integration_time</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">float</span></code></a>) &#8211; integration time in seconds to set</li>
+<li><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a>) &#8211; 0 for not propagating, 1 to propagate, 2 propagate with priority</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.integration_time">
+<code class="descname">integration_time</code><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.integration_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>channel integration time</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="sardana.pool.poolbasechannel.PoolBaseChannel.start_acquisition">
-<code class="descname">start_acquisition</code><span class="sig-paren">(</span><em>value=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.start_acquisition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.start_acquisition" title="Permalink to this definition">¶</a></dt>
+<code class="descname">start_acquisition</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.start_acquisition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.start_acquisition" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

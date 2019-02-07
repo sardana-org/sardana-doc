@@ -187,10 +187,26 @@ represents an experimental channel which acquisition result is a scalar value.</
 <p>A counter/timer has a <code class="docutils literal"><span class="pre">state</span></code>, and a <code class="docutils literal"><span class="pre">value</span></code> attributes. The state
 indicates at any time if the counter/timer is stopped, in alarm or moving.
 The value, indicates the current counter/timer value.</p>
+<p>The other attributes are:</p>
+<dl class="docutils">
+<dt>timer</dt>
+<dd><p class="first">name of the timer channel (proceeding from the same controller) to be used
+when the channel is acquired independently</p>
+<p>special values:</p>
+<ul class="last simple">
+<li>__default - controller&#8217;s default timer</li>
+<li>__self - the same channel acts like a timer</li>
+<li>None - independent acquisition is disabled</li>
+</ul>
+</dd>
+<dt>integration time</dt>
+<dd>integration time (in seconds) to be used when the channel is acquired
+independently</dd>
+</dl>
 <p>The available operations are:</p>
 <dl class="docutils">
-<dt>start acquisition(integration time)</dt>
-<dd><p class="first">starts to acquire the counter/timer with the given integration time</p>
+<dt>start acquisition</dt>
+<dd><p class="first">starts to acquire the counter/timer</p>
 <p class="last"><code class="xref py py-meth docutils literal"><span class="pre">start_acquisition()</span></code></p>
 </dd>
 <dt>stop</dt>

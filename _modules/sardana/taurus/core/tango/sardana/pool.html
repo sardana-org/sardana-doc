@@ -811,7 +811,23 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;ExpChannel initialization.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_integ_time</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="ExpChannel.getIntegrationTime"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.ExpChannel.getIntegrationTime">[docs]</a>    <span class="k">def</span> <span class="nf">getIntegrationTime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getAttrValue</span><span class="p">(</span><span class="s1">&#39;IntegrationTime&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExpChannel.getIntegrationTimeObj"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.ExpChannel.getIntegrationTimeObj">[docs]</a>    <span class="k">def</span> <span class="nf">getIntegrationTimeObj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getAttrEG</span><span class="p">(</span><span class="s1">&#39;IntegrationTime&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExpChannel.setIntegrationTime"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.ExpChannel.setIntegrationTime">[docs]</a>    <span class="k">def</span> <span class="nf">setIntegrationTime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctime</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getIntegrationTimeObj</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ctime</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="ExpChannel.putIntegrationTime"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.ExpChannel.putIntegrationTime">[docs]</a>    <span class="k">def</span> <span class="nf">putIntegrationTime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctime</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_integ_time</span> <span class="o">==</span> <span class="n">ctime</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_integ_time</span> <span class="o">=</span> <span class="n">ctime</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getIntegrationTimeObj</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ctime</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ExpChannel.getValueObj_"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueObj_">[docs]</a>    <span class="k">def</span> <span class="nf">getValueObj_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Retrurns Value attribute event generator object.</span>
@@ -841,28 +857,63 @@
         <span class="n">indexes</span> <span class="o">=</span> <span class="n">value_buffer</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span>
         <span class="n">values</span> <span class="o">=</span> <span class="n">value_buffer</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indexes</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span></div>
+
+    <span class="k">def</span> <span class="nf">_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Start</span><span class="p">()</span>
+
+<div class="viewcode-block" id="ExpChannel.go"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.ExpChannel.go">[docs]</a>    <span class="k">def</span> <span class="nf">go</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">integration_time</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">integration_time</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">integration_time</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getStateEG</span><span class="p">()</span><span class="o">.</span><span class="n">readValue</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">getValues</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">putIntegrationTime</span><span class="p">(</span><span class="n">integration_time</span><span class="p">)</span>
+        <span class="n">PoolElement</span><span class="o">.</span><span class="n">go</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getStateEG</span><span class="p">()</span><span class="o">.</span><span class="n">readValue</span><span class="p">()</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getValue</span><span class="p">()</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">state</span><span class="p">,</span> <span class="n">values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_total_go_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+    <span class="n">count</span> <span class="o">=</span> <span class="n">go</span></div>
 
 
-<div class="viewcode-block" id="CTExpChannel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.CTExpChannel">[docs]</a><span class="k">class</span> <span class="nc">CTExpChannel</span><span class="p">(</span><span class="n">ExpChannel</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">TimerableExpChannel</span><span class="p">(</span><span class="n">ExpChannel</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">getTimer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getAttrValue</span><span class="p">(</span><span class="s1">&#39;Timer&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getTimerObj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getAttrEG</span><span class="p">(</span><span class="s1">&#39;Timer&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setTimer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getTimerObj</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">timer</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="CTExpChannel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.CTExpChannel">[docs]</a><span class="k">class</span> <span class="nc">CTExpChannel</span><span class="p">(</span><span class="n">TimerableExpChannel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating CTExpChannel functionality.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
+
 
 <div class="viewcode-block" id="ZeroDExpChannel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.ZeroDExpChannel">[docs]</a><span class="k">class</span> <span class="nc">ZeroDExpChannel</span><span class="p">(</span><span class="n">ExpChannel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating ZeroDExpChannel functionality.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="OneDExpChannel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.OneDExpChannel">[docs]</a><span class="k">class</span> <span class="nc">OneDExpChannel</span><span class="p">(</span><span class="n">ExpChannel</span><span class="p">):</span>
+
+<div class="viewcode-block" id="OneDExpChannel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.OneDExpChannel">[docs]</a><span class="k">class</span> <span class="nc">OneDExpChannel</span><span class="p">(</span><span class="n">TimerableExpChannel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating OneDExpChannel functionality.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="TwoDExpChannel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.TwoDExpChannel">[docs]</a><span class="k">class</span> <span class="nc">TwoDExpChannel</span><span class="p">(</span><span class="n">ExpChannel</span><span class="p">):</span>
+
+<div class="viewcode-block" id="TwoDExpChannel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.TwoDExpChannel">[docs]</a><span class="k">class</span> <span class="nc">TwoDExpChannel</span><span class="p">(</span><span class="n">TimerableExpChannel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating TwoDExpChannel functionality.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
+
 
 <div class="viewcode-block" id="PseudoCounter"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.PseudoCounter">[docs]</a><span class="k">class</span> <span class="nc">PseudoCounter</span><span class="p">(</span><span class="n">ExpChannel</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating PseudoCounter functionality.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
+
 
 <div class="viewcode-block" id="TriggerGate"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.TriggerGate">[docs]</a><span class="k">class</span> <span class="nc">TriggerGate</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating TriggerGate functionality.&quot;&quot;&quot;</span>

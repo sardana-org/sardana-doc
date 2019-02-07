@@ -1057,7 +1057,29 @@
     <span class="c1"># START SPECIFIC TO IOR CONTROLLER ---------------------------------------</span>
 
 <div class="viewcode-block" id="PoolController.write_one"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolController.write_one">[docs]</a>    <span class="k">def</span> <span class="nf">write_one</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">WriteOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">WriteOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+    <span class="c1"># END SPECIFIC TO IOR CONTROLLER -----------------------------------------</span>
+
+    <span class="c1"># START SPECIFIC TO TIMERABLE CONTROLLER ---------------------------------</span>
+
+<div class="viewcode-block" id="PoolController.get_default_timer"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolController.get_default_timer">[docs]</a>    <span class="k">def</span> <span class="nf">get_default_timer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get default timer as announced by the controller (plug-in).</span>
+
+<span class="sd">        Only for *Timerable* controllers, e.g.</span>
+<span class="sd">        :class:`~sardana.pool.controller.CounterTimerController`,</span>
+<span class="sd">        :class:`~sardana.pool.controller.OneDController`,</span>
+<span class="sd">        :class:`~sardana.pool.controller.TwoDController`.</span>
+
+<span class="sd">        :return: axis of the default timer or :obj:`None` if not defined</span>
+<span class="sd">        :rtype: :obj:`int` or :obj:`None`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_timerable</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;non-timerable controller&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">default_timer</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div></div>
 
     <span class="c1"># END SPECIFIC TO IOR CONTROLLER -----------------------------------------</span>
 

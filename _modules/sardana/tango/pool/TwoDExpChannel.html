@@ -172,7 +172,7 @@
 <span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevString</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrQuality</span><span class="p">,</span> \
-    <span class="n">Except</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">SCALAR</span>
+    <span class="n">Except</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ_WRITE</span>
 
 <span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">DebugIt</span>
 
@@ -181,17 +181,17 @@
 <span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="k">import</span> <span class="n">TwoDController</span><span class="p">,</span> <span class="n">MaxDimSize</span><span class="p">,</span> <span class="n">Type</span>
 <span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">to_tango_type_format</span><span class="p">,</span> <span class="n">exception_str</span>
 
-<span class="kn">from</span> <span class="nn">sardana.tango.pool.PoolDevice</span> <span class="k">import</span> <span class="n">PoolElementDevice</span><span class="p">,</span> \
-    <span class="n">PoolElementDeviceClass</span>
+<span class="kn">from</span> <span class="nn">sardana.tango.pool.PoolDevice</span> <span class="k">import</span> <span class="n">PoolTimerableDevice</span><span class="p">,</span> \
+    <span class="n">PoolTimerableDeviceClass</span>
 
 
-<div class="viewcode-block" id="TwoDExpChannel"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel">[docs]</a><span class="k">class</span> <span class="nc">TwoDExpChannel</span><span class="p">(</span><span class="n">PoolElementDevice</span><span class="p">):</span>
+<div class="viewcode-block" id="TwoDExpChannel"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel">[docs]</a><span class="k">class</span> <span class="nc">TwoDExpChannel</span><span class="p">(</span><span class="n">PoolTimerableDevice</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="n">PoolElementDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">PoolTimerableDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="TwoDExpChannel.init"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="n">PoolElementDevice</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+        <span class="n">PoolTimerableDevice</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="TwoDExpChannel.get_twod"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.get_twod">[docs]</a>    <span class="k">def</span> <span class="nf">get_twod</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">element</span></div>
@@ -203,14 +203,14 @@
 
     <span class="nd">@DebugIt</span><span class="p">()</span>
 <div class="viewcode-block" id="TwoDExpChannel.delete_device"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.delete_device">[docs]</a>    <span class="k">def</span> <span class="nf">delete_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">PoolElementDevice</span><span class="o">.</span><span class="n">delete_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">PoolTimerableDevice</span><span class="o">.</span><span class="n">delete_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">twod</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">twod</span>
         <span class="k">if</span> <span class="n">twod</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">twod</span><span class="o">.</span><span class="n">remove_listener</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_twod_changed</span><span class="p">)</span></div>
 
     <span class="nd">@DebugIt</span><span class="p">()</span>
 <div class="viewcode-block" id="TwoDExpChannel.init_device"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.init_device">[docs]</a>    <span class="k">def</span> <span class="nf">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">PoolElementDevice</span><span class="o">.</span><span class="n">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">PoolTimerableDevice</span><span class="o">.</span><span class="n">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">twod</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">twod</span>
         <span class="k">if</span> <span class="n">twod</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">full_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_full_name</span><span class="p">()</span>
@@ -245,6 +245,7 @@
 
         <span class="n">timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">event_type</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1"># for integration_time events</span>
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_attribute_by_name</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -266,8 +267,12 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">value</span> <span class="o">=</span> <span class="n">event_value</span><span class="o">.</span><span class="n">value</span>
                 <span class="n">timestamp</span> <span class="o">=</span> <span class="n">event_value</span><span class="o">.</span><span class="n">timestamp</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">event_value</span>
 
-            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;timer&quot;</span> <span class="ow">and</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span>
+            <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span>
                 <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">twod</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="n">Moving</span><span class="p">:</span>
                     <span class="n">quality</span> <span class="o">=</span> <span class="n">AttrQuality</span><span class="o">.</span><span class="n">ATTR_CHANGING</span>
@@ -286,7 +291,7 @@
         <span class="n">cache_built</span> <span class="o">=</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_dynamic_attributes_cache&quot;</span><span class="p">)</span>
 
         <span class="n">std_attrs</span><span class="p">,</span> <span class="n">dyn_attrs</span> <span class="o">=</span> \
-            <span class="n">PoolElementDevice</span><span class="o">.</span><span class="n">get_dynamic_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">PoolTimerableDevice</span><span class="o">.</span><span class="n">get_dynamic_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cache_built</span><span class="p">:</span>
             <span class="c1"># For value attribute, listen to what the controller says for data</span>
@@ -343,7 +348,7 @@
     <span class="n">_DFT_VALUE_INFO</span><span class="p">[</span><span class="n">Type</span><span class="p">],</span> <span class="n">DataFormat</span><span class="o">.</span><span class="n">TwoD</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="TwoDExpChannelClass"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannelClass">[docs]</a><span class="k">class</span> <span class="nc">TwoDExpChannelClass</span><span class="p">(</span><span class="n">PoolElementDeviceClass</span><span class="p">):</span>
+<div class="viewcode-block" id="TwoDExpChannelClass"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannelClass">[docs]</a><span class="k">class</span> <span class="nc">TwoDExpChannelClass</span><span class="p">(</span><span class="n">PoolTimerableDeviceClass</span><span class="p">):</span>
 
     <span class="c1">#    Class Properties</span>
     <span class="n">class_property_list</span> <span class="o">=</span> <span class="p">{</span>
@@ -352,31 +357,31 @@
     <span class="c1">#    Device Properties</span>
     <span class="n">device_property_list</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">}</span>
-    <span class="n">device_property_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolElementDeviceClass</span><span class="o">.</span><span class="n">device_property_list</span><span class="p">)</span>
+    <span class="n">device_property_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolTimerableDeviceClass</span><span class="o">.</span><span class="n">device_property_list</span><span class="p">)</span>
 
     <span class="c1">#    Command definitions</span>
     <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;Start&#39;</span><span class="p">:</span>   <span class="p">[[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]],</span>
     <span class="p">}</span>
-    <span class="n">cmd_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolElementDeviceClass</span><span class="o">.</span><span class="n">cmd_list</span><span class="p">)</span>
+    <span class="n">cmd_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolTimerableDeviceClass</span><span class="o">.</span><span class="n">cmd_list</span><span class="p">)</span>
 
     <span class="c1">#    Attribute definitions</span>
     <span class="n">attr_list</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;DataSource&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevString</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ</span><span class="p">]],</span>
     <span class="p">}</span>
-    <span class="n">attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolElementDeviceClass</span><span class="o">.</span><span class="n">attr_list</span><span class="p">)</span>
+    <span class="n">attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolTimerableDeviceClass</span><span class="o">.</span><span class="n">attr_list</span><span class="p">)</span>
 
     <span class="n">standard_attr_list</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">_DFT_VALUE_TYPE</span><span class="p">,</span> <span class="n">_DFT_VALUE_FORMAT</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span>
                    <span class="n">_DFT_VALUE_MAX_SHAPE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">_DFT_VALUE_MAX_SHAPE</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
                   <span class="p">{</span><span class="s1">&#39;abs_change&#39;</span><span class="p">:</span> <span class="s1">&#39;1.0&#39;</span><span class="p">,</span> <span class="p">}],</span>
     <span class="p">}</span>
-    <span class="n">standard_attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolElementDeviceClass</span><span class="o">.</span><span class="n">standard_attr_list</span><span class="p">)</span>
+    <span class="n">standard_attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolTimerableDeviceClass</span><span class="o">.</span><span class="n">standard_attr_list</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_class_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">PoolElementDeviceClass</span><span class="o">.</span><span class="n">_get_class_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">PoolTimerableDeviceClass</span><span class="o">.</span><span class="n">_get_class_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;Description&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;2D device class&quot;</span>
-        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;InheritedFrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;PoolElementDevice&#39;</span><span class="p">)</span>
+        <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;InheritedFrom&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;PoolTimerableDevice&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 </pre></div>
 

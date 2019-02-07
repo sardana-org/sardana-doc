@@ -800,6 +800,9 @@
 
 <span class="sd">    .. note: Do not inherit directly from Loadable.&quot;&quot;&quot;</span>
 
+    <span class="c1">#: axis of the default timer</span>
+    <span class="n">default_timer</span> <span class="o">=</span> <span class="kc">None</span>
+
 <div class="viewcode-block" id="Loadable.PrepareOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Loadable.PrepareOne">[docs]</a>    <span class="k">def</span> <span class="nf">PrepareOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="n">nb_starts</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
 <span class="sd">        Called to prepare the master channel axis with the measurement</span>
@@ -1038,6 +1041,11 @@
     <span class="c1">#: A :class:`dict` containing the standard attributes present on each axis</span>
     <span class="c1">#: device</span>
     <span class="n">standard_axis_attributes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;IntegrationTime&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Integration time used in &#39;</span>
+                                           <span class="s1">&#39;independent acquisition&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;Timer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                  <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Timer used in independent acquisition&#39;</span><span class="p">},</span>
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="p">},</span>
         <span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1170,6 +1178,9 @@
     <span class="c1">#: A :class:`dict` containing the standard attributes present on each axis</span>
     <span class="c1">#: device</span>
     <span class="n">standard_axis_attributes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;IntegrationTime&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Integration time used in &#39;</span>
+                                           <span class="s1">&#39;independent acquisition&#39;</span><span class="p">},</span>
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="p">},</span>
         <span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -1195,6 +1206,11 @@
 <span class="sd">    .. versionadded:: 1.2&quot;&quot;&quot;</span>
 
     <span class="n">standard_axis_attributes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;IntegrationTime&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Integration time used in &#39;</span>
+                                           <span class="s1">&#39;independent acquisition&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;Timer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                  <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Timer used in independent acquisition&#39;</span><span class="p">},</span>
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">(</span><span class="nb">float</span><span class="p">,),</span>
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;maxdimsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,)},</span>
@@ -1231,6 +1247,11 @@
 <span class="sd">    implement your own 2D controller for the device pool.&quot;&quot;&quot;</span>
 
     <span class="n">standard_axis_attributes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;IntegrationTime&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Integration time used in &#39;</span>
+                                           <span class="s1">&#39;independent acquisition&#39;</span><span class="p">},</span>
+        <span class="s1">&#39;Timer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                  <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Timer used in independent acquisition&#39;</span><span class="p">},</span>
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">((</span><span class="nb">float</span><span class="p">,),),</span>
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;maxdimsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)},</span>
@@ -1539,6 +1560,9 @@
     <span class="c1">#: A :class:`dict` containing the standard attributes present on each axis</span>
     <span class="c1">#: device</span>
     <span class="n">standard_axis_attributes</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;IntegrationTime&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+                            <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Integration time used in &#39;</span>
+                                           <span class="s1">&#39;independent acquisition&#39;</span><span class="p">},</span>
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="p">},</span>
         <span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
