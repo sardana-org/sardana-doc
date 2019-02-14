@@ -578,7 +578,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_master_monitor_sw_start</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_label</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_description</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_user_confg</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_user_config</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel_acq_synch</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_acq_synch</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">changed</span> <span class="o">=</span> <span class="kc">False</span>
@@ -723,7 +723,7 @@
 
 <div class="viewcode-block" id="MeasurementConfiguration.get_configuration_for_user"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.get_configuration_for_user">[docs]</a>    <span class="k">def</span> <span class="nf">get_configuration_for_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return measurement configuration serializable data structure.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user_confg</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user_config</span></div>
 
 <div class="viewcode-block" id="MeasurementConfiguration.set_configuration_from_user"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.set_configuration_from_user">[docs]</a>    <span class="k">def</span> <span class="nf">set_configuration_from_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="n">to_fqdn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load measurement configuration from serializable data structure.&quot;&quot;&quot;</span>
@@ -856,6 +856,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
                         <span class="n">ch_name</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">ch_name</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
+                        <span class="n">ch_data</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch_name</span>
                     <span class="n">channel</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_element_by_full_name</span><span class="p">(</span><span class="n">ch_name</span><span class="p">)</span>
                 <span class="n">ch_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fill_channel_data</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">ch_data</span><span class="p">)</span>
                 <span class="n">user_config_channel</span><span class="p">[</span><span class="n">ch_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch_data</span>
@@ -941,7 +942,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_master_monitor_sw</span> <span class="o">=</span> <span class="n">master_monitor_sw</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_master_timer_sw_start</span> <span class="o">=</span> <span class="n">master_timer_sw_start</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_master_monitor_sw_start</span> <span class="o">=</span> <span class="n">master_monitor_sw_start</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_user_confg</span> <span class="o">=</span> <span class="n">user_config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_user_config</span> <span class="o">=</span> <span class="n">user_config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel_acq_synch</span> <span class="o">=</span> <span class="n">channel_acq_synch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_acq_synch</span> <span class="o">=</span> <span class="n">ctrl_acq_synch</span>
 
