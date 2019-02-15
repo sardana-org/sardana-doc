@@ -875,7 +875,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_total_go_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-    <span class="n">count</span> <span class="o">=</span> <span class="n">go</span></div>
+    <span class="n">startCount</span> <span class="o">=</span> <span class="n">PoolElement</span><span class="o">.</span><span class="n">start</span>
+    <span class="n">waitCount</span> <span class="o">=</span> <span class="n">PoolElement</span><span class="o">.</span><span class="n">waitFinish</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">go</span>
+    <span class="n">stopCount</span> <span class="o">=</span> <span class="n">PoolElement</span><span class="o">.</span><span class="n">abort</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">PoolElement</span><span class="o">.</span><span class="n">stop</span></div>
 
 
 <span class="k">class</span> <span class="nc">TimerableExpChannel</span><span class="p">(</span><span class="n">ExpChannel</span><span class="p">):</span>
