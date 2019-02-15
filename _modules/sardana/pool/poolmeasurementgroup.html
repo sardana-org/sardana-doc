@@ -345,6 +345,16 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_channels_disabled</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_channels_disabled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel_item</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="ControllerConfiguration.remove_channel"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.ControllerConfiguration.remove_channel">[docs]</a>    <span class="k">def</span> <span class="nf">remove_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove a channel configuration item.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">channel_item</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">channel_item</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_channels_enabled</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">channel_item</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels_enabled</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_channels_disabled</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">channel_item</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="ControllerConfiguration.update_state"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.ControllerConfiguration.update_state">[docs]</a>    <span class="k">def</span> <span class="nf">update_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update internal state based on the aggregated channels.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>
