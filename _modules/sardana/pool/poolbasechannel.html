@@ -547,9 +547,21 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_configure_timer</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">set_ctrl_par</span><span class="p">(</span><span class="s2">&quot;synchronization&quot;</span><span class="p">,</span>
                                      <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepare</span><span class="p">()</span>
         <span class="n">ctrls</span><span class="p">,</span> <span class="n">master</span> <span class="o">=</span> <span class="n">get_timerable_items</span><span class="p">(</span>
             <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_conf_ctrl</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf_timer</span><span class="p">,</span> <span class="n">AcqMode</span><span class="o">.</span><span class="n">Timer</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">integration_time</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO: think of implementing the preparation in the software</span>
+        <span class="c1"># acquisition action, similarly as it is done for the global</span>
+        <span class="c1"># acquisition action</span>
+        <span class="n">axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_conf_timer</span><span class="o">.</span><span class="n">axis</span>
+        <span class="n">repetitions</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">latency</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">nb_starts</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">PrepareOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">integration_time</span><span class="p">,</span>
+                                        <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="n">nb_starts</span><span class="p">)</span>
 </pre></div>
 
            </div>
