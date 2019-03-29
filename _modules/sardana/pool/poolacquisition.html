@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.pool.poolacquisition &mdash; sardana 2.7.1-alpha documentation</title>
+  <title>sardana.pool.poolacquisition &mdash; sardana 2.7.2-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.7.1-alpha documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 2.7.2-alpha documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -961,7 +961,9 @@
         <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
             <span class="n">pool_channels</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
-            <span class="c1"># TODO: filter 1D and 2D for software synchronize acquisition</span>
+            <span class="c1"># only CT will be read in the loop, 1D and 2D not</span>
+            <span class="k">if</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">CTExpChannel</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_ctrl_types</span><span class="p">():</span>
+                <span class="k">continue</span>
             <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_channels</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
                 <span class="n">pool_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
             <span class="n">ctrl_channels</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool_channels</span>
@@ -1489,7 +1491,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.7.1-alpha',
+            VERSION:'2.7.2-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
