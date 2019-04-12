@@ -175,6 +175,7 @@
 <span class="kn">import</span> <span class="nn">operator</span>
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">weakref</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">import</span> <span class="nn">PyTango</span>
@@ -191,6 +192,7 @@
 <span class="kn">from</span> <span class="nn">taurus.core.tango</span> <span class="k">import</span> <span class="n">FROM_TANGO_TO_STR_TYPE</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.enumeration</span> <span class="k">import</span> <span class="n">Enumeration</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.threadpool</span> <span class="k">import</span> <span class="n">ThreadPool</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.event</span> <span class="k">import</span> <span class="n">CallableRef</span>
 
 <span class="kn">from</span> <span class="nn">sardana.util.tree</span> <span class="k">import</span> <span class="n">BranchNode</span><span class="p">,</span> <span class="n">LeafNode</span><span class="p">,</span> <span class="n">Tree</span>
 <span class="kn">from</span> <span class="nn">sardana.util.motion</span> <span class="k">import</span> <span class="n">Motor</span> <span class="k">as</span> <span class="n">VMotor</span>
@@ -394,13 +396,15 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span> <span class="n">env</span><span class="o">=</span><span class="p">{},</span>
                  <span class="n">constraints</span><span class="o">=</span><span class="p">[],</span> <span class="n">extrainfodesc</span><span class="o">=</span><span class="p">[]):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_macro</span> <span class="o">=</span> <span class="n">macro</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_macro</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">macro</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">generator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">generator</span> <span class="o">=</span> <span class="n">CallableRef</span><span class="p">(</span><span class="n">generator</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span> <span class="o">=</span> <span class="n">generator</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_extrainfodesc</span> <span class="o">=</span> <span class="n">extrainfodesc</span>
 
-        <span class="c1"># nasty hack to make sure macro has access to gScan as soon as possible</span>
-        <span class="c1"># TODO: CAUTION! this may be causing a circular reference!</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_macro</span><span class="o">.</span><span class="n">_gScan</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="c1"># nasty hack to make sure macro has access to gScan as soon as</span>
+        <span class="c1"># possible</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">_gScan</span> <span class="o">=</span> <span class="bp">self</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rec_manager</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">getMacroServer</span><span class="p">()</span><span class="o">.</span><span class="n">recorder_manager</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_moveables</span><span class="p">,</span> <span class="n">moveable_names</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
@@ -563,7 +567,7 @@
                 <span class="k">try</span><span class="p">:</span>
                     <span class="k">if</span> <span class="s1">&#39;instrument&#39;</span> <span class="ow">in</span> <span class="n">kw</span><span class="p">:</span>
                         <span class="n">type_class</span> <span class="o">=</span> <span class="n">Type</span><span class="o">.</span><span class="n">Instrument</span>
-                        <span class="n">instrument</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="n">kw</span><span class="p">[</span><span class="s1">&#39;instrument&#39;</span><span class="p">],</span>
+                        <span class="n">instrument</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="n">kw</span><span class="p">[</span><span class="s1">&#39;instrument&#39;</span><span class="p">],</span>
                                                         <span class="n">type_class</span><span class="o">=</span><span class="n">type_class</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">instrument</span><span class="p">:</span>
                             <span class="n">kw</span><span class="p">[</span><span class="s1">&#39;instrument&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">instrument</span>
@@ -900,7 +904,7 @@
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">env</span><span class="p">[</span><span class="s1">&#39;ScanDir&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">env</span><span class="p">[</span><span class="s1">&#39;estimatedtime&#39;</span><span class="p">],</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;total_scan_intervals&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_estimate</span><span class="p">()</span>
-        <span class="n">env</span><span class="p">[</span><span class="s1">&#39;instrumentlist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro</span><span class="o">.</span><span class="n">findObjs</span><span class="p">(</span>
+        <span class="n">env</span><span class="p">[</span><span class="s1">&#39;instrumentlist&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">findObjs</span><span class="p">(</span>
             <span class="s1">&#39;.*&#39;</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">Instrument</span><span class="p">)</span>
 
         <span class="c1"># env.update(self._getExperimentConfiguration) #add all the info from</span>
@@ -1044,7 +1048,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">macro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">measurement_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1053,7 +1057,7 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Generator of steps or waypoints used in this scan.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span><span class="p">()</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">motion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
