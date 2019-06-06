@@ -180,8 +180,18 @@
 between the sardana <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> and a specific hardware <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a>. Sardana
 expects a controller to obey a specific <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> in order to be able to
 properly configure and operate with it. The hardware <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> used by the
-controller could be anything, from a pure serial line to shared memory or a
-remote server written in <a class="reference external" href="http://www.tango-controls.org/">Tango</a>, <a class="reference external" href="http://www.esrf.eu/Infrastructure/Computing/TACO/">Taco</a> or even <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a>.</p>
+controller could connect directly to the hardware via specific libraries or
+connect to any standalone server written for example in <a class="reference external" href="http://www.tango-controls.org/">Tango</a>, <a class="reference external" href="http://www.esrf.eu/Infrastructure/Computing/TACO/">Taco</a> or even <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a>. Since Sardana is written in python talking directly to the hardware is
+not possible if the hardware libraries do not have a python interface. For
+the rest of the cases both solutions are usually valid and is up to the
+developers to evaluate and decide which of botho solutions is the most
+convenient one.
+Having a standalone server could be more convenient for debugging or
+testing purporses or for having access to the hardware without the need
+of running sardana, but it requires more work in the implementation, since
+both standalone server and controller have to be developed. This does not
+apply in case the hardware is already integrated or controlled by another
+system.</p>
 <p>Controllers can only be written in <a class="reference external" href="http://www.python.org/">Python</a> (in future also C++ will be
 possible). A controller <strong>must</strong> be a <a class="reference internal" href="../../glossary.html#term-class"><span class="xref std std-term">class</span></a> inheriting from one of the
 existing controller types:</p>
@@ -315,7 +325,7 @@ receives an axis as parameter and should return either:</p>
 <dt>a sequence of two elements:</dt>
 <dd><ul class="first last">
 <li>state (<a class="reference internal" href="../api/sardana/sardanadefs.html#sardana.sardanadefs.State" title="sardana.sardanadefs.State"><code class="xref py py-obj docutils literal"><span class="pre">State</span></code></a>)</li>
-<li>status (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>)</li>
+<li>status (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>)</li>
 </ul>
 </dd>
 </dl>
@@ -384,7 +394,7 @@ is a dictionary describing the folowing properties for each attribute:</p>
 <td>Yes</td>
 <td><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Type" title="sardana.pool.controller.Type"><code class="xref py py-obj docutils literal"><span class="pre">Type</span></code></a></td>
 <td>&#8212;</td>
-<td><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a></td>
+<td><a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a></td>
 </tr>
 <tr class="row-odd"><td>data access</td>
 <td>No</td>
@@ -463,8 +473,8 @@ methods, you can choose not to write the getCloseLoop and setCloseLoop methods.
 This will trigger sardana to call the
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisExtraPar" title="sardana.pool.controller.Controller.GetAxisExtraPar"><code class="xref py py-meth docutils literal"><span class="pre">GetAxisExtraPar()</span></code></a>
 /<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetAxisExtraPar" title="sardana.pool.controller.Controller.SetAxisExtraPar"><code class="xref py py-meth docutils literal"><span class="pre">SetAxisExtraPar()</span></code></a> pair of methods.
-The disadvantage is you will end up with a forest of <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a> ...
-<a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#elif" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">elif</span></code></a> ... <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#else" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">else</span></code></a> statements. Here is the alternative
+The disadvantage is you will end up with a forest of <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a> ...
+<a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#elif" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">elif</span></code></a> ... <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#else" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">else</span></code></a> statements. Here is the alternative
 implementation:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">DataAccess</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="kn">import</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Description</span><span class="p">,</span> <span class="n">DefaultValue</span><span class="p">,</span> <span class="n">Access</span><span class="p">,</span> <span class="n">FGet</span><span class="p">,</span> <span class="n">FSet</span>
@@ -615,8 +625,8 @@ little differently: the state is set to <code class="docutils literal"><span cla
 the exception information.</li>
 <li>When the methods which are supposed to return a value (like
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisPar" title="sardana.pool.controller.Controller.GetAxisPar"><code class="xref py py-meth docutils literal"><span class="pre">GetAxisPar()</span></code></a>) don&#8217;t return a value
-compatible with the expected data type (including <a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) a
-<a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#TypeError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal"><span class="pre">TypeError</span></code></a> exception is thrown.</li>
+compatible with the expected data type (including <a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) a
+<a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#TypeError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal"><span class="pre">TypeError</span></code></a> exception is thrown.</li>
 </ol>
 <p>In every method you should carefully choose how to do handle the possible
 exceptions/errors.</p>
@@ -625,9 +635,9 @@ controller which knows exactly the workings of the hardware. You can
 discriminate errors and decide a proper handle for each. Essencially, this
 technique consists of:</p>
 <ol class="arabic simple">
-<li>catching the error (if an exception: with <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#try" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">try</span></code></a> ... <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#except" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">except</span></code></a>
-clause, if an expected return of a function: with a <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a> ...
-<a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#elif" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">elif</span></code></a> ... <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#else" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">else</span></code></a> statement, etc)</li>
+<li>catching the error (if an exception: with <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#try" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">try</span></code></a> ... <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#except" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">except</span></code></a>
+clause, if an expected return of a function: with a <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a> ...
+<a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#elif" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">elif</span></code></a> ... <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#else" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">else</span></code></a> statement, etc)</li>
 <li>raise a proper exception (could be the same exception that has been catched)
 or, if in <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.StateOne" title="sardana.pool.controller.Controller.StateOne"><code class="xref py py-meth docutils literal"><span class="pre">StateOne()</span></code></a>, return the
 apropriate error state (<code class="docutils literal"><span class="pre">Fault</span></code>, <code class="docutils literal"><span class="pre">Alarm</span></code>) and a descriptive status.</li>

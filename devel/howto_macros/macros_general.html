@@ -378,7 +378,7 @@ Executing a <em>normal print</em> would just print the text in the server.
 Therefore you need to explicitly say you want the text on the computer you
 are working and not the server. The way to do it is using
 <a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.output" title="sardana.macroserver.macro.Macro.output"><code class="xref py py-meth docutils literal"><span class="pre">output()</span></code></a> instead of print.</p>
-<p>If you prefer, you can use the context version of <a class="reference external" href="http://www.python.org/">Python</a> <a class="reference external" href="https://docs.python.org/dev/library/functions.html#print" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">print()</span></code></a>
+<p>If you prefer, you can use the context version of <a class="reference external" href="http://www.python.org/">Python</a> <a class="reference external" href="https://docs.python.org/dev/library/functions.html#print" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">print()</span></code></a>
 function (it is a bit more powerful than
 <a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.output" title="sardana.macroserver.macro.Macro.output"><code class="xref py py-meth docutils literal"><span class="pre">output()</span></code></a>, and has a slightly
 different syntax)</p>
@@ -406,8 +406,8 @@ version <a class="footnote-reference" href="#f2" id="id1">[2]</a>.</p>
 </div>
 <p>Remeber that a macro is, for all purposes, a normal <a class="reference external" href="http://www.python.org/">Python</a> <a class="reference internal" href="../../glossary.html#term-function"><span class="xref std std-term">function</span></a>.
 This means you <strong>CAN</strong> inside a macro write <strong>ANY</strong> valid <a class="reference external" href="http://www.python.org/">Python</a> code. This
-includes <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a> and <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#while" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">while</span></code></a> loops, <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a> ...
-<a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#elif" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">elif</span></code></a> ... <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#else" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">else</span></code></a> conditional execution, etc...</p>
+includes <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a> and <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#while" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">while</span></code></a> loops, <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a> ...
+<a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#elif" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">elif</span></code></a> ... <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#else" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">else</span></code></a> conditional execution, etc...</p>
 <div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
@@ -473,7 +473,7 @@ boxes which gives increased usability and prevents errors</li>
     <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is now at </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">moveable</span><span class="o">.</span><span class="n">getName</span><span class="p">(),</span> <span class="n">moveable</span><span class="o">.</span><span class="n">getPosition</span><span class="p">())</span>
 </pre></div>
 </td></tr></table></div>
-<p>The parameter information is a <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a>s. Each <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a>
+<p>The parameter information is a <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a> of <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a>s. Each <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">list</span></code></a>
 being a composed of four elements:</p>
 <blockquote>
 <div><ul class="simple">
@@ -1331,7 +1331,7 @@ with a proper <em>default value</em>. To make sure your macro can run in
 <p class="last">(read on to see how to meet these requirements)</p>
 </div>
 <p>In pure <a class="reference external" href="http://www.python.org/">Python</a>, to ask for user input you can use the <code class="xref py py-func docutils literal"><span class="pre">raw_input()</span></code> (Python
-2) / <a class="reference external" href="https://docs.python.org/dev/library/functions.html#input" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">input()</span></code></a> (Python 3)</p>
+2) / <a class="reference external" href="https://docs.python.org/dev/library/functions.html#input" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">input()</span></code></a> (Python 3)</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">answer</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s1">&#39;--&gt; &#39;</span><span class="p">)</span>
 <span class="go">--&gt; Monty Python&#39;s Flying Circus</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">answer</span>
@@ -1422,7 +1422,7 @@ transparently declare your macro as interactive:</p>
 user input.</p>
 <div class="section" id="specifying-input-data-type">
 <h3>Specifying input data type<a class="headerlink" href="#specifying-input-data-type" title="Permalink to this headline">¶</a></h3>
-<p>The default return type of <a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.input" title="sardana.macroserver.macro.Macro.input"><code class="xref py py-class docutils literal"><span class="pre">input</span></code></a> is <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> which mimics the
+<p>The default return type of <a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.input" title="sardana.macroserver.macro.Macro.input"><code class="xref py py-class docutils literal"><span class="pre">input</span></code></a> is <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> which mimics the
 pure <a class="reference external" href="http://www.python.org/">Python</a> input function. However, often you want to restrict the user input
 to a specific data type like <code class="docutils literal"><span class="pre">Integer</span></code>, <code class="docutils literal"><span class="pre">Float</span></code> or even complex object like
 <code class="docutils literal"><span class="pre">Moveable</span></code> or to a list of possible options.</p>
@@ -1725,7 +1725,7 @@ to show in a input spin box:</p>
 <p>Some of the macros you write may take a long time to execute. It could be useful
 to provide frequent feedback on the current progress of your macro to prevent
 users from thinking the system is blocked. The way to do this is by
-<a class="reference external" href="https://docs.python.org/dev/reference/simple_stmts.html#yield" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">yield</span></code></a>ing a new progress number in the ode everytime you want to
+<a class="reference external" href="https://docs.python.org/dev/reference/simple_stmts.html#yield" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">yield</span></code></a>ing a new progress number in the ode everytime you want to
 send a progress.</p>
 <p>The following code shows an example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
