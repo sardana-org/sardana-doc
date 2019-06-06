@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Macro Server overview &mdash; sardana 2.7.3-alpha documentation</title>
+  <title>MotorGroup overview &mdash; sardana 2.7.3-alpha documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="sardana 2.7.3-alpha documentation" href="../../index.html"/>
         <link rel="up" title="Overview" href="index.html"/>
-        <link rel="next" title="Pool overview" href="overview_pool.html"/>
-        <link rel="prev" title="Global overview" href="overview.html"/> 
+        <link rel="next" title="I/O register overview" href="overview_IOR.html"/>
+        <link rel="prev" title="Pseudo motor overview" href="overview_pseudomotor.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -97,12 +97,12 @@
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer&#8217;s Guide</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Overview</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="overview.html">Global overview</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Macro Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_macroserver.html">Macro Server</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_pool.html">Pool</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_controller.html">Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_motor.html">Motor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_pseudomotor.html">Pseudo motor</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview_motorgroup.html">MotorGroup</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">MotorGroup</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_IOR.html">IO register</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_triggergate.html">Trigger/gate</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_countertimer.html">Counter/timer</a></li>
@@ -166,11 +166,11 @@
       
           <li><a href="index.html">Overview</a> &raquo;</li>
       
-    <li>Macro Server overview</li>
+    <li>MotorGroup overview</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/devel/overview/overview_macroserver.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/devel/overview/overview_motorgroup.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -180,53 +180,29 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="macro-server-overview">
-<span id="sardana-macroserver-overview"></span><h1>Macro Server overview<a class="headerlink" href="#macro-server-overview" title="Permalink to this headline">¶</a></h1>
-<p>The Macro Server object is the sardana server object which manages all high
-level sardana objects related to macro execution, namely doors, macro libraries
-and macros themselves.</p>
-<p>The main purpose of the Macro Server is to run <em>macros</em>. Macros are just pieces
-of <a class="reference external" href="http://www.python.org/">Python</a> code (functions or classes) which reside in a macro library (<a class="reference external" href="http://www.python.org/">Python</a>
-file). Macros can be written by anyone with knowledge of <a class="reference external" href="http://www.python.org/">Python</a>.</p>
-<p>The Macro Server is exposed on the sardana server as a <a class="reference external" href="http://www.tango-controls.org/">Tango</a> device.
-Through configuration, the Macro Server can be told to connect to a
-Pool device. This is the most common configuration.
-You can, however, tell the Macro Server to connect to more than one Pool device
-or to no Pool devices at all.</p>
-<p>When connected to a Pool device(s), the Macro Server uses the Pool device
-introspection <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> to discover which elements are available. The existing
-macros will be able to access these elements (through parameters passed to the
-macro or using the macro <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a>) and act on them.</p>
-<p>In order to be able to run macros, you must first connect to the Macro Server
-entry point object called <em>Door</em>. A single Macro Server can have many active
-Doors at the same time but a Door can only run one macro at a time.
-Each Door is exposed on the sardana server as a <a class="reference external" href="http://www.tango-controls.org/">Tango</a> device.</p>
-<p>You are not in any way restricted to the standard macros provided by the sardana
-system. You can write as many macros as you need. Writing your own macros is
-easy. The macro equivalent of <a class="reference external" href="http://www.python.org/">Python</a>&#8216;s <em>Hello, World!</em> example:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">macro</span>
-
-<span class="nd">@macro</span><span class="p">()</span>
-<span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
-</pre></div>
+  <div class="section" id="motorgroup-overview">
+<span id="sardana-motorgroup-overview"></span><h1>MotorGroup overview<a class="headerlink" href="#motorgroup-overview" title="Permalink to this headline">¶</a></h1>
+<p>Whenever a move with more than one motor (or moveable element in general) is
+requested, a MotorGroup object containing all elements involved in the movement
+is silently created.</p>
+<p>The motor group will not be removed automatically after the operation finishes.
+This allows reuse of the groups by subsequent operation involving the same set
+of moveables. You can however freely remove them manually with no adverse
+effects.</p>
+<p>The <em>motor group</em> object is also exposed as a <a class="reference external" href="http://www.tango-controls.org/">Tango</a> device, by default using
+the <code class="code docutils literal"><span class="pre">mg/&lt;pool</span> <span class="pre">name&gt;/_mg_ms_&lt;pid&gt;_&lt;num&gt;</span></code> where <code class="code docutils literal"><span class="pre">pool</span> <span class="pre">name</span></code> is the
+alias or instance name of the Pool hosting the MotorGroup, <code class="code docutils literal"><span class="pre">pid</span></code> is a PID
+of the MacroServer that created the MotorGroup, and <code class="code docutils literal"><span class="pre">num</span></code> is just a
+sequential counter.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt><a class="reference internal" href="../api/sardana/tango/pool/MotorGroup.html#sardana.tango.pool.MotorGroup.MotorGroup" title="sardana.tango.pool.MotorGroup.MotorGroup"><code class="xref py py-class docutils literal"><span class="pre">MotorGroup</span></code></a></dt>
+<dd>the motor group tango device <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
+<dt><a class="reference internal" href="../api/sardana/pool/poolmotorgroup.html#sardana.pool.poolmotorgroup.PoolMotorGroup" title="sardana.pool.poolmotorgroup.PoolMotorGroup"><code class="xref py py-class docutils literal"><span class="pre">PoolMotorGroup</span></code></a></dt>
+<dd>the motor group internal class <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
+</dl>
 </div>
-<p>Here is a simple example of a macro to move any moveable element to a certain
-value:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">macro</span><span class="p">,</span> <span class="n">Type</span>
-
-<span class="nd">@macro</span><span class="p">([</span> <span class="p">[</span><span class="s2">&quot;moveable&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;moveable to move&quot;</span><span class="p">],</span>
-         <span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;absolute position&quot;</span><span class="p">]</span> <span class="p">])</span>
-<span class="k">def</span> <span class="nf">my_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">moveable</span><span class="p">,</span> <span class="n">position</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This macro moves a moveable to the specified position&quot;&quot;&quot;</span>
-
-    <span class="n">moveable</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> is now at </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">moveable</span><span class="p">,</span> <span class="n">moveable</span><span class="o">.</span><span class="n">getPosition</span><span class="p">())</span>
-</pre></div>
-</div>
-<p>Information on how to write your own sardana macros can be found
-<a class="reference internal" href="../howto_macros/macros_general.html#sardana-macros-howto"><span class="std std-ref">here</span></a>.</p>
-<p>The complete macro <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> can be found <a class="reference internal" href="../api/api_macro.html#sardana-macro-api"><span class="std std-ref">here</span></a>.</p>
 </div>
 
 
@@ -236,10 +212,10 @@ value:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview_pool.html" class="btn btn-neutral float-right" title="Pool overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview_IOR.html" class="btn btn-neutral float-right" title="I/O register overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview.html" class="btn btn-neutral" title="Global overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview_pseudomotor.html" class="btn btn-neutral" title="Pseudo motor overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
