@@ -1768,6 +1768,90 @@ above macro has been modified to send a progress with a customized range:</p>
 <p>You may notice that this way, the range can be changed dynamically. A progress
 bar in a <a class="reference internal" href="../../glossary.html#term-gui"><span class="xref std std-term">GUI</span></a> is programmed to adjust not only the current progress
 value but also the ranges so it is safe to change them if necessary.</p>
+</div>
+<div class="section" id="simultaneous-actions">
+<h2>Simultaneous actions<a class="headerlink" href="#simultaneous-actions" title="Permalink to this headline">¶</a></h2>
+<p>There is a facility for parallel execution of operations within a macro. For the
+motion and acquisition you can use the asynchronous methods from the
+<code class="code docutils literal"><span class="pre">Motion</span></code> and <code class="code docutils literal"><span class="pre">MeasurementGroup</span></code> objects. For simultaneous execution
+of any other tasks you can use the job manager.</p>
+<p>When using this feature, you should keep a few things in mind:</p>
+<ul class="simple">
+<li>The job execution may not start immediately, as this depends on a worker
+process availability (this is generally true also for the execution of the macro
+itself)</li>
+<li>Exceptions raised in a job will not be catched, and therefore will not stop
+any reserved element; ideally you should implement your own exception handling
+inside a job</li>
+<li>You should pay careful attention to synchronization between the jobs and the
+macro</li>
+</ul>
+<p><strong>Asynchronous motion and acquisition</strong></p>
+<p>You can move the motor asynchronously by using the <code class="code docutils literal"><span class="pre">Motion</span></code> object:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@macro</span><span class="p">([[</span><span class="s2">&quot;mot&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;moveable&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;pos&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;position&quot;</span><span class="p">]])</span>
+<span class="k">def</span> <span class="nf">move_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mot</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+    <span class="n">motion</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMotion</span><span class="p">([</span><span class="n">mot</span><span class="p">])</span>
+<span class="hll">    <span class="n">_id</span> <span class="o">=</span> <span class="n">motion</span><span class="o">.</span><span class="n">startMove</span><span class="p">([</span><span class="n">pos</span><span class="p">])</span>
+</span>    <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The motion is now started.&quot;</span><span class="p">)</span>
+<span class="hll">    <span class="n">motion</span><span class="o">.</span><span class="n">waitMove</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">_id</span><span class="p">)</span>
+</span>    <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The motion has finished.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In above example, the asynchronous movement is started using
+<code class="code docutils literal"><span class="pre">Motion.startMove</span></code> method and then it is synchronized using
+<code class="code docutils literal"><span class="pre">Motion.waitMove</span></code>. In between you can perform other operations, the
+<code class="code docutils literal"><span class="pre">waitMove</span></code> call will wait for the motion to finish or return immediately
+if it&#8217;s already finished. <code class="code docutils literal"><span class="pre">startMove</span></code> will return an identificator, that
+can be later used to wait for the motion.</p>
+<p>The <code class="code docutils literal"><span class="pre">MeasurementGroup</span></code> provides a similar interface for asynchronous
+acquisition:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="nd">@macro</span><span class="p">([[</span><span class="s2">&quot;mg&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;measurement group&quot;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s2">&quot;it&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;integration time&quot;</span><span class="p">]])</span>
+<span class="k">def</span> <span class="nf">acq_async</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mg</span><span class="p">,</span> <span class="n">it</span><span class="p">):</span>
+    <span class="n">mg</span><span class="o">.</span><span class="n">putIntegrationTime</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+    <span class="n">mg</span><span class="o">.</span><span class="n">setNbStarts</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">mg</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+<span class="hll">    <span class="n">id_</span> <span class="o">=</span> <span class="n">mg</span><span class="o">.</span><span class="n">startCount</span><span class="p">()</span>
+</span>    <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The acquisition is now started.&quot;</span><span class="p">)</span>
+<span class="hll">    <span class="n">mg</span><span class="o">.</span><span class="n">waitCount</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">_id</span><span class="p">)</span>
+</span>    <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The acquisition has finished.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the measurement group is configured for acquisition, you can start
+asynchronous acquisition by using <code class="code docutils literal"><span class="pre">MeasurementGroup.startCount</span></code> method. To
+synchronize the acquisition use <code class="code docutils literal"><span class="pre">MeasurementGroup.waitCount</span></code>. The usage is
+analogous to asynchronous motion.</p>
+<p>Take a look at the example macro libraries for some more examples.</p>
+<p><strong>Arbitrary asynchronous operations</strong></p>
+<p>There are two methods for asynchronous execution of arbitrary code. First one is
+to use the MacroServer&#8217;s job manager:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">Event</span>
+
+<span class="k">class</span> <span class="nc">async_attached</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_job</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Doing something...&quot;</span><span class="p">)</span>
+<span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">_event</span> <span class="o">=</span> <span class="n">Event</span><span class="p">()</span>
+</span><span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">getManager</span><span class="p">()</span><span class="o">.</span><span class="n">add_job</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_job</span><span class="p">)</span>
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The job is now running.&quot;</span><span class="p">)</span>
+<span class="hll">        <span class="bp">self</span><span class="o">.</span><span class="n">_event</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;The job has finished (or timeout occured).&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the <code class="code docutils literal"><span class="pre">run</span></code> method, first we create the <code class="code docutils literal"><span class="pre">Event</span></code> object which will
+be used for the synchronization. Then we get the manager object and add a job to
+it. The job begins to run when added. When the job finishes, it sets the
+<code class="code docutils literal"><span class="pre">Event</span></code> to notify the macro. The macro waits for the event to become set.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">If you do not wait for the job to finish, you are running in the
+&#8220;detached mode&#8221;. This is not recommended, as it requires more elaborated
+synchronization methods. Use at your own risk!</p>
+</div>
+<p>The second method is to use standard Python <a class="reference external" href="https://docs.python.org/2/library/threading.html">threading</a> library.</p>
 <p class="rubric">Footnotes</p>
 <table class="docutils footnote" frame="void" id="f1" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
