@@ -1106,14 +1106,13 @@
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="CounterTimerController.StartAllCT"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.StartAllCT">[docs]</a>    <span class="k">def</span> <span class="nf">StartAllCT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Counter/Timer Controller API**. Override is MANDATORY!</span>
-<span class="sd">        Called to start an acquisition of a selected axis.</span>
-<span class="sd">        Default implementation raises :exc:`NotImplementedError`.</span>
+        <span class="sd">&quot;&quot;&quot;**Counter/Timer Controller API**.</span>
+<span class="sd">        Called to start an acquisition of a group of channels.</span>
+<span class="sd">        Default implementation does nothing.</span>
 
 <span class="sd">        .. deprecated:: 1.0</span>
 <span class="sd">            use :meth:`~CounterTimerController.StartAll` instead&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;StartAll must be defined in the &quot;</span>
-                                  <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
+        <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="CounterTimerController.PreStartAll"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.PreStartAll">[docs]</a>    <span class="k">def</span> <span class="nf">PreStartAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
@@ -1152,10 +1151,10 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">StartOneCT</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CounterTimerController.StartAll"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.StartAll">[docs]</a>    <span class="k">def</span> <span class="nf">StartAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**. Override is MANDATORY!</span>
+        <span class="sd">&quot;&quot;&quot;**Controller API**.</span>
 <span class="sd">        Default implementation calls deprecated</span>
-<span class="sd">        :meth:`~CounterTimerController.StartAllCT` which, by default, raises</span>
-<span class="sd">        :exc:`NotImplementedError`.&quot;&quot;&quot;</span>
+<span class="sd">        :meth:`~CounterTimerController.StartAllCT` which, by default, does</span>
+<span class="sd">        nothing.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">StartAllCT</span><span class="p">()</span></div></div>
 
 

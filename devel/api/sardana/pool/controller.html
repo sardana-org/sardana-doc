@@ -1953,9 +1953,9 @@ Default implementation does nothing.</p>
 <dl class="method">
 <dt id="sardana.pool.controller.CounterTimerController.StartAllCT">
 <code class="descname">StartAllCT</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.StartAllCT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.StartAllCT" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Counter/Timer Controller API</strong>. Override is MANDATORY!
-Called to start an acquisition of a selected axis.
-Default implementation raises <a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal"><span class="pre">NotImplementedError</span></code></a>.</p>
+<dd><p><strong>Counter/Timer Controller API</strong>.
+Called to start an acquisition of a group of channels.
+Default implementation does nothing.</p>
 <div class="deprecated">
 <p><span class="versionmodified">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.CounterTimerController.StartAll" title="sardana.pool.controller.CounterTimerController.StartAll"><code class="xref py py-meth docutils literal"><span class="pre">StartAll()</span></code></a> instead</p>
 </div>
@@ -2030,10 +2030,10 @@ nothing.</p>
 <dl class="method">
 <dt id="sardana.pool.controller.CounterTimerController.StartAll">
 <code class="descname">StartAll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.StartAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.StartAll" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Controller API</strong>. Override is MANDATORY!
+<dd><p><strong>Controller API</strong>.
 Default implementation calls deprecated
-<a class="reference internal" href="#sardana.pool.controller.CounterTimerController.StartAllCT" title="sardana.pool.controller.CounterTimerController.StartAllCT"><code class="xref py py-meth docutils literal"><span class="pre">StartAllCT()</span></code></a> which, by default, raises
-<a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal"><span class="pre">NotImplementedError</span></code></a>.</p>
+<a class="reference internal" href="#sardana.pool.controller.CounterTimerController.StartAllCT" title="sardana.pool.controller.CounterTimerController.StartAllCT"><code class="xref py py-meth docutils literal"><span class="pre">StartAllCT()</span></code></a> which, by default, does
+nothing.</p>
 </dd></dl>
 
 </dd></dl>
