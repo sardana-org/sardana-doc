@@ -107,6 +107,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../scan.html">Scans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../motion.html">Motion</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffractometer.html">Diffractometer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../adding_elements.html">Adding real elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../macro_hooks.html">Macro Hooks</a></li>
@@ -198,7 +199,11 @@ Graphical <cite>parameters editor</cite> (standard/custom) provides a clear way 
 Once sequence of macros is in execution phase, <cite>Sequencer</cite> informs user about its state with Door&#8217;s state led and macros progress bars.
 User has full control over sequence, with action buttons: Start, Stop, Pause, Resume.
 If desirable, sequences can be permanently stored into a file and later on restored from there.
-This functionality is provided thanks to action buttons: Save and Open a sequence.</p>
+This functionality is provided thanks to action buttons: Save and Open a sequence.
+The sequence file can use the XML format or the &#8220;Spock format&#8221;. The &#8220;Spock
+format&#8221; is a list of macros, one per line, written exactly the way they would be
+entered into Spock command line. The Sequencer is able to save only the XML
+format file, but it can load both.</p>
 <div class="figure align-center">
 <img alt="../../_images/sequencer01.png" src="../../_images/sequencer01.png" />
 </div>
