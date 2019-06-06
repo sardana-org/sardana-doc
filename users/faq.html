@@ -129,6 +129,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#what-are-the-interfaces-to-the-macro-server-and-the-pool">What are the interfaces to the macro server and the pool?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#what-are-the-data-file-formats-used-in-the-system-and-how-can-i-read-them">What are the data file formats used in the system and how can I read them?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#what-is-the-file-format-of-the-configuration-files">What is the file format of the configuration files?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-access-epics-from-sardana">How to access EPICS from Sardana?</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference external" href="https://github.com/sardana-org/sardana/issues?q=is:issue+is:open+label:doc:knownbug">Known Problems</a></li>
@@ -349,6 +350,15 @@ of tools to read it <strong>&lt;LINK&gt;</strong></li>
 <div class="section" id="what-is-the-file-format-of-the-configuration-files">
 <h2>What is the file format of the configuration files?<a class="headerlink" href="#what-is-the-file-format-of-the-configuration-files" title="Permalink to this headline">¶</a></h2>
 <p>The configuration files for the <a class="reference external" href="http://packages.python.org/taurus/">Taurus</a> GUI are defined here <strong>&lt;LINK&gt;</strong>.</p>
+</div>
+<div class="section" id="how-to-access-epics-from-sardana">
+<h2>How to access EPICS from Sardana?<a class="headerlink" href="#how-to-access-epics-from-sardana" title="Permalink to this headline">¶</a></h2>
+<p>Hardware integrated in <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a> can be directly accessed from Sardana via a
+controller. The controller can talk to the <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a> server using the
+python <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a> interface or the <a class="reference external" href="http://packages.python.org/taurus/">Taurus</a> interface to <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a>.
+The <a class="reference external" href="https://github.com/sardana-org/sardana/blob/develop/src/sardana/pool/poolcontrollers/TaurusController.py">TaurusTimerCounterController</a> class is distributed with sardana and
+allows the connection to any <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a> attribute giving the <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a> address
+as TaurusAttribute.</p>
 </div>
 </div>
 
