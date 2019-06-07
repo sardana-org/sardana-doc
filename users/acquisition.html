@@ -181,6 +181,15 @@ process controlled by sardana there is always involved at least one experimental
 and <a class="reference internal" href="#sardana-acquisition-measgrp"><span class="std std-ref">Measurement group acquisition</span></a>.</p>
 <div class="section" id="experimental-channel-acquisition">
 <span id="sardana-acquisition-expchannel"></span><h2>Experimental channel acquisition<a class="headerlink" href="#experimental-channel-acquisition" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../devel/overview/overview_countertimer.html#sardana-countertimer-overview"><span class="std std-ref">Counter/timer</span></a>, <a class="reference internal" href="../devel/overview/overview_1D.html#sardana-1d-overview"><span class="std std-ref">1D</span></a> and
+<a class="reference internal" href="../devel/overview/overview_2D.html#sardana-2d-overview"><span class="std std-ref">2D</span></a> experimental channels can be directly involved in data acquisition
+without being included in a <a class="reference internal" href="#sardana-acquisition-measgrp"><span class="std std-ref">measurement group acquisition</span></a>.
+This can be useful for simple use cases like a single image capture, testing purposes or
+for implementation of your own measurement procedures.
+The relevant <a class="reference internal" href="../glossary.html#term-api"><span class="xref std std-term">API</span></a> for this feature is documented in the API of each of the elements,
+for example, <a class="reference internal" href="../devel/api/api_countertimer.html#sardana-countertimer-api"><span class="std std-ref">Counter/Timer API reference</span></a>.</p>
+<p>The single acquisition of these channels can be also done with the macro
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.ct" title="sardana.macroserver.macros.standard.ct"><code class="xref py py-class docutils literal"><span class="pre">ct</span></code></a>, giving the name of the channel as last argument.</p>
 </div>
 <div class="section" id="measurement-group-acquisition">
 <span id="sardana-acquisition-measgrp"></span><h2>Measurement group acquisition<a class="headerlink" href="#measurement-group-acquisition" title="Permalink to this headline">¶</a></h2>
