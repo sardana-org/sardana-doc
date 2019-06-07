@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Counter/timer overview &mdash; sardana 2.7.3-alpha documentation</title>
+  <title>Door overview &mdash; sardana 2.7.3-alpha documentation</title>
   
 
   
@@ -35,8 +35,8 @@
         <link rel="search" title="Search" href="../../search.html"/>
     <link rel="top" title="sardana 2.7.3-alpha documentation" href="../../index.html"/>
         <link rel="up" title="Overview" href="index.html"/>
-        <link rel="next" title="0D channel overview" href="overview_0D.html"/>
-        <link rel="prev" title="Trigger/gate overview" href="overview_triggergate.html"/> 
+        <link rel="next" title="Pool overview" href="overview_pool.html"/>
+        <link rel="prev" title="Macro Server overview" href="overview_macroserver.html"/> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -98,7 +98,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Overview</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="overview.html">Global overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_macroserver.html">Macro Server</a></li>
-<li class="toctree-l4"><a class="reference internal" href="overview_door.html">Door</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Door</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_pool.html">Pool</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_controller.html">Controller</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_motor.html">Motor</a></li>
@@ -106,7 +106,7 @@
 <li class="toctree-l4"><a class="reference internal" href="overview_motorgroup.html">MotorGroup</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_IOR.html">IO register</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_triggergate.html">Trigger/gate</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Counter/timer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="overview_countertimer.html">Counter/timer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_0D.html">0D experiment channel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_1D.html">1D experiment channel</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_2D.html">2D experiment channel</a></li>
@@ -167,11 +167,11 @@
       
           <li><a href="index.html">Overview</a> &raquo;</li>
       
-    <li>Counter/timer overview</li>
+    <li>Door overview</li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../_sources/devel/overview/overview_countertimer.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/devel/overview/overview_door.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -181,26 +181,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="counter-timer-overview">
-<span id="sardana-countertimer-overview"></span><h1>Counter/timer overview<a class="headerlink" href="#counter-timer-overview" title="Permalink to this headline">¶</a></h1>
-<p>The counter/timer is one of the most used elements in Sardana. A counter/timer
-represents an experimental channel which acquisition result is a scalar value.
-As indicates its name it is foreseen to interface hardware couters or timers
-but it also fits well with other hardware like <a class="reference internal" href="../../glossary.html#term-adc"><span class="xref std std-term">ADC</span></a> or electrometer.</p>
-<p>The acquisition operation on a counter/timer is executed over the integration
-time specified by the user. Counter/timer can be controlled by either software
-or hardware synchronization (<a class="reference internal" href="overview_triggergate.html#sardana-triggergate-overview"><span class="std std-ref">Trigger/Gate</span></a>)
-and multiple repetitions, also specified by the user are, are possible within
-the same acquisition operation.</p>
-<div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<dl class="last docutils">
-<dt><a class="reference internal" href="../api/api_countertimer.html#sardana-countertimer-api"><span class="std std-ref">Counter/Timer API reference</span></a></dt>
-<dd>the counter/timer <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
-<dt><a class="reference internal" href="../api/sardana/tango/pool/CTExpChannel.html#sardana.tango.pool.CTExpChannel.CTExpChannel" title="sardana.tango.pool.CTExpChannel.CTExpChannel"><code class="xref py py-class docutils literal"><span class="pre">CTExpChannel</span></code></a></dt>
-<dd>the counter/timer tango device <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
-</dl>
-</div>
+  <div class="section" id="door-overview">
+<span id="sardana-door-overview"></span><h1>Door overview<a class="headerlink" href="#door-overview" title="Permalink to this headline">¶</a></h1>
+<p><em>Door</em> is an entry point to the MacroServer. Door exposes an interface
+to run macros and interact with macro currently being run.</p>
+<p>A single Macro Server can have many active Doors at the same time but
+a Door can only run one macro at a time. Each Door is exposed on the
+sardana server as a <a class="reference external" href="http://www.tango-controls.org/">Tango</a> device.</p>
+<p>Exist a possibility to define <a class="reference internal" href="../../users/macro_environment.html#macro-environment"><span class="std std-ref">macro environment</span></a>
+applied at the door level i.e. not visible on other doors.</p>
 </div>
 
 
@@ -210,10 +199,10 @@ the same acquisition operation.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview_0D.html" class="btn btn-neutral float-right" title="0D channel overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview_pool.html" class="btn btn-neutral float-right" title="Pool overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview_triggergate.html" class="btn btn-neutral" title="Trigger/gate overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview_macroserver.html" class="btn btn-neutral" title="Macro Server overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
