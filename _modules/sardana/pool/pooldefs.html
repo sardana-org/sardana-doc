@@ -277,18 +277,35 @@
 <span class="sd">    to get more details about the synchronization type e.g. trigger, gate or</span>
 <span class="sd">    start.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c1">#: Internal (software) trigger</span>
     <span class="n">SoftwareTrigger</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="c1">#: External (hardware) trigger</span>
+    <span class="sd">&quot;&quot;&quot;Internal (software) trigger</span>
+<span class="sd">    </span>
+<span class="sd">    .. image:: /_static/acqsynch_softtrig.png</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">HardwareTrigger</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="c1">#: Internal (software) gate</span>
+    <span class="sd">&quot;&quot;&quot;External (hardware) trigger</span>
+<span class="sd">    </span>
+<span class="sd">    .. image:: /_static/acqsynch_hardtrig.png</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">SoftwareGate</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="c1">#: External (hardware) gate</span>
+    <span class="sd">&quot;&quot;&quot;Internal (software) gate - not implemented</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">HardwareGate</span> <span class="o">=</span> <span class="mi">3</span>
-    <span class="c1">#: Internal (software) start (triggers just the first acquisition)</span>
+    <span class="sd">&quot;&quot;&quot;External (hardware) gate</span>
+<span class="sd">    </span>
+<span class="sd">    .. image:: /_static/acqsynch_hardgate.png</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">SoftwareStart</span> <span class="o">=</span> <span class="mi">4</span>
-    <span class="c1">#: External (hardware) start (triggers just the first acquisition)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Internal (software) start (triggers just the first acquisition)</span>
+<span class="sd">    </span>
+<span class="sd">    .. image:: /_static/acqsynch_softstart.png</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">HardwareStart</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="sd">&quot;&quot;&quot;External (hardware) start (triggers just the first acquisition)</span>
+<span class="sd">    </span>
+<span class="sd">    .. image:: /_static/acqsynch_hardstart.png</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@classmethod</span>
 <div class="viewcode-block" id="AcqSynch.from_synch_type"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.from_synch_type">[docs]</a>    <span class="k">def</span> <span class="nf">from_synch_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">software</span><span class="p">,</span> <span class="n">synch_type</span><span class="p">):</span>
