@@ -178,10 +178,18 @@
 <span id="sardana-ioregistercontroller-howto-basics"></span><h1>How to write an I/O register controller<a class="headerlink" href="#how-to-write-an-i-o-register-controller" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-basics">
 <h2>The basics<a class="headerlink" href="#the-basics" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">document IORegister controller howto</p>
-</div>
+<p>By now you should have read
+<a class="reference internal" href="../api/api_controller.html#sardana-controller-api"><span class="std std-ref">the general controller basics</span></a> chapter.
+You should
+be able to create a IORegisterController:</p>
+<ul class="simple">
+<li>a proper constructor</li>
+<li>add and delete axis methods</li>
+<li>get axis state</li>
+</ul>
+<p>The minimal IORegisterController has to contain a method <code class="docutils literal"><span class="pre">ReadOne</span></code> for
+getting output values. An additional method, <code class="docutils literal"><span class="pre">WriteOne</span></code>, for setting values
+is optional.</p>
 </div>
 </div>
 
