@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>mstypemanager &mdash; sardana 2.7.3-alpha documentation</title>
+  <title>magic &mdash; sardana 2.7.3-alpha documentation</title>
   
 
   
@@ -34,9 +34,9 @@
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
     <link rel="top" title="sardana 2.7.3-alpha documentation" href="../../../../index.html"/>
-        <link rel="up" title="macroserver" href="../macroserver.html"/>
-        <link rel="next" title="spock" href="../spock.html"/>
-        <link rel="prev" title="msparameter" href="msparameter.html"/> 
+        <link rel="up" title="spock" href="../spock.html"/>
+        <link rel="next" title="tango" href="../tango.html"/>
+        <link rel="prev" title="spock" href="../spock.html"/> 
 
   
   <script src="../../../../_static/js/modernizr.min.js"></script>
@@ -168,13 +168,13 @@
       
           <li><a href="../sardana.html"><code class="docutils literal"><span class="pre">sardana</span></code></a> &raquo;</li>
       
-          <li><a href="../macroserver.html"><code class="docutils literal"><span class="pre">macroserver</span></code></a> &raquo;</li>
+          <li><a href="../spock.html"><code class="docutils literal"><span class="pre">spock</span></code></a> &raquo;</li>
       
-    <li><code class="docutils literal"><span class="pre">mstypemanager</span></code></li>
+    <li><code class="docutils literal"><span class="pre">magic</span></code></li>
       <li class="wy-breadcrumbs-aside">
         
           
-            <a href="../../../../_sources/devel/api/sardana/macroserver/mstypemanager.txt" rel="nofollow"> View page source</a>
+            <a href="../../../../_sources/devel/api/sardana/spock/magic.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -184,28 +184,24 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-sardana.macroserver.mstypemanager">
-<span id="mstypemanager"></span><h1><a class="reference internal" href="#module-sardana.macroserver.mstypemanager" title="sardana.macroserver.mstypemanager"><code class="xref py py-mod docutils literal"><span class="pre">mstypemanager</span></code></a><a class="headerlink" href="#module-sardana.macroserver.mstypemanager" title="Permalink to this headline">¶</a></h1>
-<p>This module contains the definition of the macroserver data type manager</p>
+  <div class="section" id="module-sardana.spock.magic">
+<span id="magic"></span><h1><a class="reference internal" href="#module-sardana.spock.magic" title="sardana.spock.magic"><code class="xref py py-mod docutils literal"><span class="pre">magic</span></code></a><a class="headerlink" href="#module-sardana.spock.magic" title="Permalink to this headline">¶</a></h1>
+<p>Initial magic commands and hooks for the spock IPython environment</p>
 <p class="rubric">Functions</p>
-<p class="rubric">Classes</p>
-<table class="hlist"><tr><td><ul class="simple">
-<li><a class="reference internal" href="#sardana.macroserver.mstypemanager.TypeManager" title="sardana.macroserver.mstypemanager.TypeManager"><code class="xref py py-class docutils literal"><span class="pre">TypeManager</span></code></a></li>
+<dl class="function">
+<dt id="sardana.spock.magic.showscan">
+<code class="descname">showscan</code><span class="sig-paren">(</span><em>self</em>, <em>parameter_s=''</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/spock/magic.html#showscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.spock.magic.showscan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows a scan in a GUI.</p>
+<p>Accepts one optional argument:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">online</span></code> - plot scans online</li>
+<li>&lt;ScanID&gt; - plot scan of the given ID offline</li>
+<li>no argument - plot the last scan offline</li>
 </ul>
-</td><td><ul class="simple">
-</ul>
-</td><td><ul class="simple">
-</ul>
-</td></tr></table>
-<div class="section" id="typemanager">
-<h2>TypeManager<a class="headerlink" href="#typemanager" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="sardana.macroserver.mstypemanager.TypeManager">
-<em class="property">class </em><code class="descname">TypeManager</code><span class="sig-paren">(</span><em>macro_server</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/macroserver/mstypemanager.html#TypeManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.mstypemanager.TypeManager" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="msmanager.html#sardana.macroserver.msmanager.MacroServerManager" title="sardana.macroserver.msmanager.MacroServerManager"><code class="xref py py-class docutils literal"><span class="pre">sardana.macroserver.msmanager.MacroServerManager</span></code></a></p>
+<p>Where <em>online</em> means plot the scan as it runs and <em>offline</em> means -
+extract the scan data from the file - works only with HDF5 files.</p>
 </dd></dl>
 
-</div>
 </div>
 
 
@@ -215,10 +211,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../spock.html" class="btn btn-neutral float-right" title="spock" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../tango.html" class="btn btn-neutral float-right" title="tango" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="msparameter.html" class="btn btn-neutral" title="msparameter" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../spock.html" class="btn btn-neutral" title="spock" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
