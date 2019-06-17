@@ -172,15 +172,15 @@
 <span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevString</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrQuality</span><span class="p">,</span> \
-    <span class="n">Except</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ_WRITE</span>
+    <span class="n">Except</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">,</span> <span class="n">DevEncoded</span>
 
 <span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">DebugIt</span>
 
 <span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">DataFormat</span><span class="p">,</span> <span class="n">SardanaServer</span>
 <span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="k">import</span> <span class="n">SardanaAttribute</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="k">import</span> <span class="n">TwoDController</span><span class="p">,</span> <span class="n">MaxDimSize</span><span class="p">,</span> <span class="n">Type</span>
-<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">to_tango_type_format</span><span class="p">,</span> <span class="n">exception_str</span>
-
+<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">to_tango_type_format</span><span class="p">,</span> <span class="n">exception_str</span><span class="p">,</span>\
+    <span class="n">memorize_write_attribute</span>
 <span class="kn">from</span> <span class="nn">sardana.tango.pool.PoolDevice</span> <span class="k">import</span> <span class="n">PoolTimerableDevice</span><span class="p">,</span> \
     <span class="n">PoolTimerableDeviceClass</span>
 
@@ -189,6 +189,8 @@
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">PoolTimerableDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_first_read_cache</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_first_read_ref_cache</span> <span class="o">=</span> <span class="kc">False</span>
 
 <div class="viewcode-block" id="TwoDExpChannel.init"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">PoolTimerableDevice</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
@@ -260,6 +262,12 @@
             <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_tango_state</span><span class="p">(</span><span class="n">event_value</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;status&quot;</span><span class="p">:</span>
             <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_tango_status</span><span class="p">(</span><span class="n">event_value</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;valuebuffer&quot;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encode_value_chunk</span><span class="p">(</span><span class="n">event_value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_first_read_cache</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;valuerefbuffer&quot;</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encode_value_ref_chunk</span><span class="p">(</span><span class="n">event_value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_first_read_ref_cache</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">event_value</span><span class="p">,</span> <span class="n">SardanaAttribute</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">event_value</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
@@ -270,7 +278,8 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">event_value</span>
 
-            <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;timer&quot;</span> <span class="ow">and</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;timer&quot;</span><span class="p">,</span> <span class="s2">&quot;valuereftemplate&quot;</span><span class="p">,</span> <span class="s2">&quot;valuerefenabled&quot;</span><span class="p">)</span>
+                    <span class="ow">and</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span>
             <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;datasource&quot;</span> <span class="ow">and</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">full_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_full_name</span><span class="p">()</span>
@@ -312,6 +321,18 @@
                 <span class="n">data_info</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">std_attrs</span><span class="p">,</span> <span class="n">dyn_attrs</span></div>
 
+<div class="viewcode-block" id="TwoDExpChannel.initialize_dynamic_attributes"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.initialize_dynamic_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_dynamic_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">attrs</span> <span class="o">=</span> <span class="n">PoolTimerableDevice</span><span class="o">.</span><span class="n">initialize_dynamic_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+        <span class="c1"># referable channels</span>
+        <span class="c1"># TODO: not 100% sure if valuereftemplate and valuerefenabled should</span>
+        <span class="c1"># not belong to detect_evts</span>
+        <span class="n">non_detect_evts</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;valuebuffer&quot;</span><span class="p">,</span> <span class="s2">&quot;valueref&quot;</span><span class="p">,</span> <span class="s2">&quot;valuerefbuffer&quot;</span><span class="p">,</span>
+                           <span class="s2">&quot;valuereftemplate&quot;</span><span class="p">,</span> <span class="s2">&quot;valuerefenabled&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">non_detect_evts</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">set_change_event</span><span class="p">(</span><span class="n">attr_name</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="TwoDExpChannel.read_Value"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.read_Value">[docs]</a>    <span class="k">def</span> <span class="nf">read_Value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="n">twod</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">twod</span>
         <span class="c1"># TODO: decide if we force the controller developers to store the</span>
@@ -319,6 +340,15 @@
         <span class="c1"># cache. This is due to the fact that the clients (MS) read the value</span>
         <span class="c1"># after the acquisition had finished.</span>
         <span class="n">use_cache</span> <span class="o">=</span> <span class="n">twod</span><span class="o">.</span><span class="n">is_in_operation</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">Force_HW_Read</span>
+        <span class="c1"># For the moment we just check if we recently receive ValueBuffer.</span>
+        <span class="c1"># event. In this case, we use cache and clean the flag</span>
+        <span class="c1"># so the cached value will be returned only at the first readout</span>
+        <span class="c1"># after the acquisition. This is a workaround for the count executed</span>
+        <span class="c1"># by the MacroServer e.g. step scans or ct which read the value after</span>
+        <span class="c1"># the acquisition.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">use_cache</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_first_read_cache</span><span class="p">:</span>
+            <span class="n">use_cache</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_first_read_cache</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">value</span> <span class="o">=</span> <span class="n">twod</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="n">use_cache</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
             <span class="n">Except</span><span class="o">.</span><span class="n">throw_python_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">)</span>
@@ -333,6 +363,45 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="ow">in</span> <span class="p">[</span><span class="n">DevState</span><span class="o">.</span><span class="n">FAULT</span><span class="p">,</span> <span class="n">DevState</span><span class="o">.</span><span class="n">UNKNOWN</span><span class="p">]:</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="TwoDExpChannel.read_ValueRef"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.read_ValueRef">[docs]</a>    <span class="k">def</span> <span class="nf">read_ValueRef</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="n">twod</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">twod</span>
+        <span class="n">value_ref</span> <span class="o">=</span> <span class="n">twod</span><span class="o">.</span><span class="n">get_value_ref</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">value_ref</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
+            <span class="n">Except</span><span class="o">.</span><span class="n">throw_python_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value_ref</span><span class="o">.</span><span class="n">exc_info</span><span class="p">)</span>
+        <span class="n">use_cache</span> <span class="o">=</span> <span class="n">twod</span><span class="o">.</span><span class="n">is_in_operation</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">Force_HW_Read</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">twod</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="n">use_cache</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">quality</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">State</span><span class="o">.</span><span class="n">Moving</span><span class="p">:</span>
+            <span class="n">quality</span> <span class="o">=</span> <span class="n">AttrQuality</span><span class="o">.</span><span class="n">ATTR_CHANGING</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value_ref</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">quality</span><span class="p">,</span>
+                           <span class="n">timestamp</span><span class="o">=</span><span class="n">value_ref</span><span class="o">.</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TwoDExpChannel.read_ValueRefPattern"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.read_ValueRefPattern">[docs]</a>    <span class="k">def</span> <span class="nf">read_ValueRefPattern</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="n">value_ref_pattern</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">twod</span><span class="o">.</span><span class="n">get_value_ref_pattern</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">value_ref_pattern</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">value_ref_pattern</span> <span class="o">=</span> <span class="s2">&quot;None&quot;</span>
+        <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value_ref_pattern</span><span class="p">)</span></div>
+
+    <span class="nd">@memorize_write_attribute</span>
+<div class="viewcode-block" id="TwoDExpChannel.write_ValueRefPattern"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.write_ValueRefPattern">[docs]</a>    <span class="k">def</span> <span class="nf">write_ValueRefPattern</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="n">value_ref_pattern</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">value_ref_pattern</span> <span class="o">==</span> <span class="s2">&quot;None&quot;</span><span class="p">:</span>
+            <span class="n">value_ref_pattern</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twod</span><span class="o">.</span><span class="n">value_ref_pattern</span> <span class="o">=</span> <span class="n">value_ref_pattern</span></div>
+
+<div class="viewcode-block" id="TwoDExpChannel.read_ValueRefEnabled"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.read_ValueRefEnabled">[docs]</a>    <span class="k">def</span> <span class="nf">read_ValueRefEnabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">twod</span><span class="o">.</span><span class="n">is_value_ref_enabled</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">value_ref_enabled</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;value reference enabled flag is unknown&quot;</span><span class="p">)</span>
+        <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value_ref_enabled</span><span class="p">)</span></div>
+
+    <span class="nd">@memorize_write_attribute</span>
+<div class="viewcode-block" id="TwoDExpChannel.write_ValueRefEnabled"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.write_ValueRefEnabled">[docs]</a>    <span class="k">def</span> <span class="nf">write_ValueRefEnabled</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">value_ref_enabled</span> <span class="o">==</span> <span class="s2">&quot;None&quot;</span><span class="p">:</span>
+            <span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">twod</span><span class="o">.</span><span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="n">value_ref_enabled</span></div>
 
 <div class="viewcode-block" id="TwoDExpChannel.read_DataSource"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/TwoDExpChannel.html#sardana.tango.pool.TwoDExpChannel.TwoDExpChannel.read_DataSource">[docs]</a>    <span class="k">def</span> <span class="nf">read_DataSource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="n">data_source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">twod</span><span class="o">.</span><span class="n">get_data_source</span><span class="p">()</span>
@@ -363,6 +432,7 @@
     <span class="c1">#    Device Properties</span>
     <span class="n">device_property_list</span> <span class="o">=</span> <span class="p">{</span>
     <span class="p">}</span>
+
     <span class="n">device_property_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolTimerableDeviceClass</span><span class="o">.</span><span class="n">device_property_list</span><span class="p">)</span>
 
     <span class="c1">#    Command definitions</span>
@@ -370,6 +440,7 @@
         <span class="s1">&#39;Start&#39;</span><span class="p">:</span>   <span class="p">[[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]],</span>
     <span class="p">}</span>
     <span class="n">cmd_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolTimerableDeviceClass</span><span class="o">.</span><span class="n">cmd_list</span><span class="p">)</span>
+
 
     <span class="c1">#    Attribute definitions</span>
     <span class="n">attr_list</span> <span class="o">=</span> <span class="p">{</span>
@@ -381,6 +452,8 @@
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">_DFT_VALUE_TYPE</span><span class="p">,</span> <span class="n">_DFT_VALUE_FORMAT</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span>
                    <span class="n">_DFT_VALUE_MAX_SHAPE</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">_DFT_VALUE_MAX_SHAPE</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span>
                   <span class="p">{</span><span class="s1">&#39;abs_change&#39;</span><span class="p">:</span> <span class="s1">&#39;1.0&#39;</span><span class="p">,</span> <span class="p">}],</span>
+        <span class="c1"># TODO: here we override type by DevEncoded</span>
+        <span class="s1">&#39;ValueRefBuffer&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevEncoded</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ</span><span class="p">]]</span>
     <span class="p">}</span>
     <span class="n">standard_attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolTimerableDeviceClass</span><span class="o">.</span><span class="n">standard_attr_list</span><span class="p">)</span>
 

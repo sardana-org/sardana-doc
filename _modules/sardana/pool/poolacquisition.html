@@ -175,6 +175,7 @@
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">weakref</span>
 <span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
 
 <span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">DebugIt</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.enumeration</span> <span class="k">import</span> <span class="n">Enumeration</span>
@@ -591,6 +592,18 @@
                 <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">set_ctrl_par</span><span class="p">(</span><span class="s1">&#39;monitor&#39;</span><span class="p">,</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">monitor</span><span class="o">.</span><span class="n">axis</span><span class="p">)</span>
                 <span class="n">synch</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_acq_synch_by_controller</span><span class="p">(</span><span class="n">pool_ctrl</span><span class="p">)</span>
                 <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">set_ctrl_par</span><span class="p">(</span><span class="s1">&#39;synchronization&#39;</span><span class="p">,</span> <span class="n">synch</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">is_referable</span><span class="p">():</span>
+                    <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_channels</span><span class="p">():</span>
+                        <span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">value_ref_enabled</span>
+                        <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">set_axis_par</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">axis</span><span class="p">,</span>
+                                               <span class="s2">&quot;value_ref_enabled&quot;</span><span class="p">,</span>
+                                               <span class="n">value_ref_enabled</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">value_ref_enabled</span><span class="p">:</span>
+                            <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">set_axis_par</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">axis</span><span class="p">,</span>
+                                                   <span class="s2">&quot;value_ref_pattern&quot;</span><span class="p">,</span>
+                                                   <span class="n">channel</span><span class="o">.</span><span class="n">value_ref_pattern</span><span class="p">)</span>
+
             <span class="n">config</span><span class="o">.</span><span class="n">changed</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="c1"># Call hardware and software start controllers prepare method</span>
@@ -625,7 +638,6 @@
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Runs acquisition according to previous preparation.&quot;&quot;&quot;</span>
-
         <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_elements</span><span class="p">():</span>
             <span class="n">elem</span><span class="o">.</span><span class="n">put_state</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
             <span class="c1"># TODO: temporarily clear value buffers at the beginning of the</span>
@@ -634,6 +646,10 @@
             <span class="c1"># constructor of PoolAcquisitionBase.</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">elem</span><span class="o">.</span><span class="n">clear_value_buffer</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">elem</span><span class="o">.</span><span class="n">clear_value_ref_buffer</span><span class="p">()</span>
             <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="c1"># clean also the pseudo counters, even the ones that do not</span>
@@ -714,8 +730,9 @@
 <span class="sd">        :type copy_of: bool</span>
 <span class="sd">        :return: a sequence of all elements involved in this action.</span>
 <span class="sd">        :rtype: seq&lt;sardana.pool.poolelement.PoolElement&gt;&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">get_elements</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">get_elements</span><span class="p">()</span> <span class="o">+</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">get_elements</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">get_elements</span><span class="p">())</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">get_elements</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">get_elements</span><span class="p">()</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span><span class="o">.</span><span class="n">get_elements</span><span class="p">()</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">get_elements</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">get_elements</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="nf">get_pool_controller_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a list of all controller elements involved in this action.</span>
@@ -773,6 +790,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_ref</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_value</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="c1"># TODO: for the moment we can not clear value buffers at the end of</span>
         <span class="c1"># the acquisition. This is because of the pseudo counters that are</span>
@@ -783,6 +802,78 @@
         <span class="c1"># Whenever there will be solution for that, after refactoring of the</span>
         <span class="c1"># acquisition actions, uncomment this line</span>
         <span class="c1"># self.add_finish_hook(self.clear_value_buffers, True)</span>
+
+    <span class="k">def</span> <span class="nf">get_read_value_ref_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_ref</span>
+
+    <span class="k">def</span> <span class="nf">read_value_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">serial</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads value ref information of all elements involved in this action</span>
+
+<span class="sd">        :param ret: output map parameter that should be filled with value</span>
+<span class="sd">                    information. If None is given (default), a new map is</span>
+<span class="sd">                    created an returned</span>
+<span class="sd">        :type ret: dict</span>
+<span class="sd">        :param serial: If False (default) perform controller HW value requests</span>
+<span class="sd">                       in parallel. If True, access is serialized.</span>
+<span class="sd">        :type serial: bool</span>
+<span class="sd">        :return: a map containing value information per element</span>
+<span class="sd">        :rtype: dict&lt;:class:~`sardana.pool.poolelement.PoolElement`,</span>
+<span class="sd">                     (value object, Exception or None)&gt;&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">ActionContext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_ref</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">ret</span><span class="p">,</span> <span class="n">serial</span><span class="o">=</span><span class="n">serial</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">raw_read_value_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">serial</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;**Unsafe**. Reads value ref information of all referable elements</span>
+<span class="sd">        involved in this acquisition</span>
+
+<span class="sd">        :param ret: output map parameter that should be filled with value</span>
+<span class="sd">                    information. If None is given (default), a new map is</span>
+<span class="sd">                    created an returned</span>
+<span class="sd">        :type ret: dict</span>
+<span class="sd">        :param serial: If False (default) perform controller HW value requests</span>
+<span class="sd">                       in parallel. If True, access is serialized.</span>
+<span class="sd">        :type serial: bool</span>
+<span class="sd">        :return: a map containing value information per element</span>
+<span class="sd">        :rtype: dict&lt;:class:~`sardana.pool.poolelement.PoolElement,</span>
+<span class="sd">                :class:`sardana.sardanavalue.SardanaValue`&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">ret</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw_read_value_ref_concurrent</span>
+        <span class="k">if</span> <span class="n">serial</span><span class="p">:</span>
+            <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_raw_read_value_ref_serial</span>
+
+        <span class="n">value_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_info</span>
+
+        <span class="k">with</span> <span class="n">value_info</span><span class="p">:</span>
+            <span class="n">value_info</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_read_value_ref_ctrls</span><span class="p">()))</span>
+            <span class="n">read</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+            <span class="n">value_info</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">def</span> <span class="nf">_raw_read_value_ref_serial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Internal method. Read value ref in a serial mode&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_read_value_ref_ctrls</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_raw_read_ctrl_value_ref</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">pool_ctrl</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">def</span> <span class="nf">_raw_read_value_ref_concurrent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Internal method. Read value ref in a concurrent mode&quot;&quot;&quot;</span>
+        <span class="n">th_pool</span> <span class="o">=</span> <span class="n">get_thread_pool</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_read_value_ref_ctrls</span><span class="p">():</span>
+            <span class="n">th_pool</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw_read_ctrl_value_ref</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">pool_ctrl</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span>
+
+    <span class="k">def</span> <span class="nf">_raw_read_ctrl_value_ref</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">pool_ctrl</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Internal method. Read controller value ref information and store</span>
+<span class="sd">        it in ret parameter&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">axis</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_ref</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]]</span>
+            <span class="n">value_infos</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">raw_read_axis_value_refs</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
+            <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value_infos</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_value_info</span><span class="o">.</span><span class="n">finish_one</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">in_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines if we are in acquisition or if the acquisition has ended</span>
@@ -846,8 +937,11 @@
             <span class="n">ctrls</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">master</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
             <span class="n">ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">master</span><span class="o">.</span><span class="n">controller</span><span class="p">)</span>
 
-        <span class="c1"># controllers that will be read at during the action</span>
+        <span class="c1"># controllers that will be read during the action</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_set_pool_ctrl_dict_loop</span><span class="p">(</span><span class="n">ctrls</span><span class="p">)</span>
+        <span class="c1"># split controllers to read value and value reference</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_split_ctrl</span><span class="p">(</span><span class="n">ctrls</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_finish_hook</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_reset_ctrl_dicts</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
         <span class="c1"># channels that are acquired (only enabled)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="p">[]</span>
@@ -969,6 +1063,40 @@
             <span class="n">ctrl_channels</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool_channels</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span> <span class="o">=</span> <span class="n">ctrl_channels</span>
 
+    <span class="k">def</span> <span class="nf">_split_ctrl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">):</span>
+        <span class="n">ctrl_channels_value</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">ctrl_channels_ref</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">is_referable</span><span class="p">():</span>
+                <span class="n">pool_channels_value</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
+                <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_channels</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                    <span class="n">pool_channels_value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
+                <span class="n">ctrl_channels_value</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool_channels_value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">pool_channels_value</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">pool_channels_ref</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
+                <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_channels</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">channel</span><span class="o">.</span><span class="n">value_ref_enabled</span><span class="p">:</span>
+                        <span class="n">pool_channels_ref</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">channel</span><span class="o">.</span><span class="n">has_pseudo_elements</span><span class="p">():</span>
+                            <span class="n">pool_channels_value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">pool_channels_value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pool_channels_value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">ctrl_channels_value</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool_channels_value</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pool_channels_ref</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">ctrl_channels_ref</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool_channels_ref</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_value</span> <span class="o">=</span> <span class="n">ctrl_channels_value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_ref</span> <span class="o">=</span> <span class="n">ctrl_channels_ref</span>
+
+    <span class="k">def</span> <span class="nf">_reset_ctrl_dicts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_ref</span> <span class="o">=</span> <span class="kc">None</span>
+
     <span class="k">def</span> <span class="nf">clear_value_buffers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
             <span class="n">channel</span><span class="o">.</span><span class="n">clear_value_buffer</span><span class="p">()</span>
@@ -998,15 +1126,17 @@
                                          <span class="n">acq_sleep_time</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="p">,</span>
                                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">get_read_value_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_value</span>
+
     <span class="nd">@DebugIt</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">action_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="n">states</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+        <span class="n">states</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">value_refs</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
             <span class="n">element</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">element</span>
             <span class="n">states</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">values</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">nap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span>
         <span class="n">nb_states_per_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span>
@@ -1018,11 +1148,14 @@
 
             <span class="c1"># read value every n times</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="o">%</span> <span class="n">nb_states_per_value</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">read_value_loop</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">read_value</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                     <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop read value error for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                    <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                            <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                         <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
@@ -1032,7 +1165,8 @@
 
         <span class="k">with</span> <span class="n">ActionContext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_state_info</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">states</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_loop</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_ref</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">value_refs</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="n">states</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="c1"># first update the element state so that value calculation</span>
@@ -1043,9 +1177,21 @@
                 <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop final read value error for: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                     <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">acquirable</span> <span class="ow">in</span> <span class="n">value_refs</span><span class="p">:</span>
+                <span class="n">value_ref</span> <span class="o">=</span> <span class="n">value_refs</span><span class="p">[</span><span class="n">acquirable</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value_ref</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop final read value ref error for: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                               <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value_ref</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_ref_buffer</span><span class="p">(</span><span class="n">value_ref</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">acquirable</span><span class="p">:</span>
                 <span class="n">acquirable</span><span class="o">.</span><span class="n">clear_operation</span><span class="p">()</span>
                 <span class="n">state_info</span> <span class="o">=</span> <span class="n">acquirable</span><span class="o">.</span><span class="n">_from_ctrl_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">)</span>
@@ -1069,6 +1215,22 @@
             <span class="n">slaves</span> <span class="o">=</span> <span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_slaves</span> <span class="o">=</span> <span class="n">slaves</span>
 
+    <span class="k">def</span> <span class="nf">get_read_value_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># technical debt in order to work both in case of meas group and</span>
+        <span class="c1"># single channel</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span>
+
+    <span class="k">def</span> <span class="nf">get_read_value_ref_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># technical debt in order to work both in case of meas group and</span>
+        <span class="c1"># single channel</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_ref</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_ref</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span>
+
     <span class="k">def</span> <span class="nf">get_read_value_loop_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span>
 
@@ -1080,7 +1242,7 @@
 
     <span class="nd">@DebugIt</span><span class="p">()</span>
     <span class="k">def</span> <span class="nf">action_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">states</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+        <span class="n">states</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">value_refs</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
             <span class="n">element</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">element</span>
             <span class="n">states</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1114,6 +1276,7 @@
         <span class="k">with</span> <span class="n">ActionContext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_state_info</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">states</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_ref</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">value_refs</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="n">states</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="c1"># first update the element state so that value calculation</span>
@@ -1124,7 +1287,19 @@
                 <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop final read value error for: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                 <span class="n">acquirable</span><span class="o">.</span><span class="n">append_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">acquirable</span> <span class="ow">in</span> <span class="n">value_refs</span><span class="p">:</span>
+                <span class="n">value_ref</span> <span class="o">=</span> <span class="n">value_refs</span><span class="p">[</span><span class="n">acquirable</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value_ref</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop final read value ref error for: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                               <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value_ref</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">acquirable</span><span class="o">.</span><span class="n">append_value_ref_buffer</span><span class="p">(</span><span class="n">value_ref</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">acquirable</span><span class="p">:</span>
                 <span class="n">acquirable</span><span class="o">.</span><span class="n">clear_operation</span><span class="p">()</span>
                 <span class="n">state_info</span> <span class="o">=</span> <span class="n">acquirable</span><span class="o">.</span><span class="n">_from_ctrl_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">)</span>
@@ -1147,6 +1322,11 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;AcquisitionSoftwareStart&quot;</span><span class="p">):</span>
         <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">get_read_value_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># technical debt in order to work both in case of meas group and</span>
+        <span class="c1"># single channel</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_value</span>
+
     <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
                      <span class="n">acq_sleep_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                      <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1159,11 +1339,10 @@
     <span class="k">def</span> <span class="nf">action_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="n">states</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{}</span>
+        <span class="n">states</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">value_refs</span> <span class="o">=</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="p">:</span>
             <span class="n">element</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">element</span>
             <span class="n">states</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="n">values</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">nap</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span>
         <span class="n">nb_states_per_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span>
@@ -1175,21 +1354,35 @@
 
             <span class="c1"># read value every n times</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="o">%</span> <span class="n">nb_states_per_value</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">read_value_loop</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">read_value</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                     <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop read value error for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                    <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                            <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                         <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-
+                <span class="bp">self</span><span class="o">.</span><span class="n">read_value_ref</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">value_refs</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">value_ref</span> <span class="ow">in</span> <span class="n">value_refs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value_ref</span><span class="p">):</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop read value ref error for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                                   <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                            <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                        <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value_ref</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_ref_buffer</span><span class="p">(</span><span class="n">value_ref</span><span class="p">)</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">nap</span><span class="p">)</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="k">with</span> <span class="n">ActionContext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_state_info</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">states</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_loop</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_ref</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">value_refs</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="n">states</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="c1"># first update the element state so that value calculation</span>
@@ -1200,9 +1393,23 @@
                 <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop final read value error for: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                     <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">acquirable</span> <span class="ow">in</span> <span class="n">value_refs</span><span class="p">:</span>
+                <span class="n">value_ref</span> <span class="o">=</span> <span class="n">value_refs</span><span class="p">[</span><span class="n">acquirable</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value_ref</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop final read value ref error for: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                               <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                        <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value_ref</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value_ref</span><span class="p">(</span><span class="n">value_ref</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_ref_buffer</span><span class="p">(</span><span class="n">value_ref</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">with</span> <span class="n">acquirable</span><span class="p">:</span>
                 <span class="n">acquirable</span><span class="o">.</span><span class="n">clear_operation</span><span class="p">()</span>
                 <span class="n">state_info</span> <span class="o">=</span> <span class="n">acquirable</span><span class="o">.</span><span class="n">_from_ctrl_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">)</span>
@@ -1210,6 +1417,7 @@
 
 
 <div class="viewcode-block" id="PoolCTAcquisition"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolacquisition.html#sardana.pool.poolacquisition.PoolCTAcquisition">[docs]</a><span class="k">class</span> <span class="nc">PoolCTAcquisition</span><span class="p">(</span><span class="n">PoolAcquisitionBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;..todo:: remove it, still used by pseudo counter&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;CTAcquisition&quot;</span><span class="p">,</span> <span class="n">slaves</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="kc">None</span>

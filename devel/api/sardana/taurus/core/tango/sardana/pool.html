@@ -469,6 +469,11 @@ Default is to return &lt;name&gt;, &lt;controller name&gt;, &lt;axis&gt;</p>
 <dd><p>Bases: <a class="reference internal" href="#sardana.taurus.core.tango.sardana.pool.PoolElement" title="sardana.taurus.core.tango.sardana.pool.PoolElement"><code class="xref py py-class docutils literal"><span class="pre">sardana.taurus.core.tango.sardana.pool.PoolElement</span></code></a></p>
 <p>Class encapsulating ExpChannel functionality.</p>
 <dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.isReferable">
+<code class="descname">isReferable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.isReferable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.isReferable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.getIntegrationTime">
 <code class="descname">getIntegrationTime</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.getIntegrationTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.getIntegrationTime" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -480,12 +485,12 @@ Default is to return &lt;name&gt;, &lt;controller name&gt;, &lt;axis&gt;</p>
 
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.setIntegrationTime">
-<code class="descname">setIntegrationTime</code><span class="sig-paren">(</span><em>ctime</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.setIntegrationTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.setIntegrationTime" title="Permalink to this definition">¶</a></dt>
+<code class="descname">setIntegrationTime</code><span class="sig-paren">(</span><em>integ_time</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.setIntegrationTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.setIntegrationTime" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.putIntegrationTime">
-<code class="descname">putIntegrationTime</code><span class="sig-paren">(</span><em>ctime</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.putIntegrationTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.putIntegrationTime" title="Permalink to this definition">¶</a></dt>
+<code class="descname">putIntegrationTime</code><span class="sig-paren">(</span><em>integ_time</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.putIntegrationTime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.putIntegrationTime" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -527,9 +532,104 @@ Taurus 3 TaurusDevice class already uses this name.</p>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefObj">
+<code class="descname">getValueRefObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.getValueRefObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefObj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return ValueRef attribute event generator object.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ValueRef attribute event generator</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">TangoAttributeEG</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRef">
+<code class="descname">getValueRef</code><span class="sig-paren">(</span><em>force=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.getValueRef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRef" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefBufferObj">
+<code class="descname">getValueRefBufferObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.getValueRefBufferObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefBufferObj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefBuffer">
+<code class="descname">getValueRefBuffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.getValueRefBuffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefBuffer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.valueBufferRefChanged">
+<code class="descname">valueBufferRefChanged</code><span class="sig-paren">(</span><em>value_ref_buffer</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.valueBufferRefChanged"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.valueBufferRefChanged" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefPattern">
+<code class="descname">getValueRefPattern</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.getValueRefPattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefPattern" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefPatternObj">
+<code class="descname">getValueRefPatternObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.getValueRefPatternObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefPatternObj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.setValueRefPattern">
+<code class="descname">setValueRefPattern</code><span class="sig-paren">(</span><em>value_ref_pattern</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.setValueRefPattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.setValueRefPattern" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.putValueRefPattern">
+<code class="descname">putValueRefPattern</code><span class="sig-paren">(</span><em>value_ref_pattern</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.putValueRefPattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.putValueRefPattern" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.isValueRefEnabled">
+<code class="descname">isValueRefEnabled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.isValueRefEnabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.isValueRefEnabled" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefEnabledObj">
+<code class="descname">getValueRefEnabledObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.getValueRefEnabledObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.getValueRefEnabledObj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.setValueRefEnabled">
+<code class="descname">setValueRefEnabled</code><span class="sig-paren">(</span><em>value_ref_enabled</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.setValueRefEnabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.setValueRefEnabled" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.putValueRefEnabled">
+<code class="descname">putValueRefEnabled</code><span class="sig-paren">(</span><em>value_ref_enabled</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.putValueRefEnabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.putValueRefEnabled" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.go">
 <code class="descname">go</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#ExpChannel.go"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.go" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Count and report count result.</p>
+<p>Configuration measurement, then start and wait until finish.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The count (go) method API is partially experimental (value
+references may be changed to values whenever possible in the
+future). Backwards incompatible changes may occur if deemed
+necessary by the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">state and value (or value reference - experimental)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.startCount">
@@ -557,7 +657,26 @@ Taurus 3 TaurusDevice class already uses this name.</p>
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.count">
 <code class="descname">count</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel.count" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Count and report count result.</p>
+<p>Configuration measurement, then start and wait until finish.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The count (go) method API is partially experimental (value
+references may be changed to values whenever possible in the
+future). Backwards incompatible changes may occur if deemed
+necessary by the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">state and value (or value reference - experimental)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.ExpChannel.stopCount">
@@ -980,6 +1099,59 @@ default channel&#8217;s callback</td>
 </dd></dl>
 
 <dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.valueRefBufferChanged">
+<code class="descname">valueRefBufferChanged</code><span class="sig-paren">(</span><em>channel</em>, <em>value_ref_buffer</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.valueRefBufferChanged"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.valueRefBufferChanged" title="Permalink to this definition">¶</a></dt>
+<dd><p>Receive value ref buffer updates, pre-process them, and call
+the subscribed callback.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>channel</strong> (<a class="reference internal" href="#sardana.taurus.core.tango.sardana.pool.ExpChannel" title="sardana.taurus.core.tango.sardana.pool.ExpChannel"><em>ExpChannel</em></a>) &#8211; channel that reports value ref buffer update</li>
+<li><strong>value_ref_buffer</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; json encoded value ref buffer update,
+it contains at least value refs and indexes</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.subscribeValueRefBuffer">
+<code class="descname">subscribeValueRefBuffer</code><span class="sig-paren">(</span><em>cb=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.subscribeValueRefBuffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.subscribeValueRefBuffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subscribe to channels&#8217; value ref buffer update events. If no
+callback is passed, the default channel&#8217;s callback is subscribed which
+will store the data in the channel&#8217;s value_buffer attribute.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cb</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#callable" title="(in Python v3.9)"><em>callable</em></a>) &#8211; callback to be subscribed, None means subscribe the default
+channel&#8217;s callback</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.unsubscribeValueRefBuffer">
+<code class="descname">unsubscribeValueRefBuffer</code><span class="sig-paren">(</span><em>cb=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.unsubscribeValueRefBuffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.unsubscribeValueRefBuffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unsubscribe from channels&#8217; value ref buffer events. If no
+callback is passed, unsubscribe the channel&#8217;s default callback.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cb</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#callable" title="(in Python v3.9)"><em>callable</em></a>) &#8211; callback to be unsubscribed, None means unsubscribe the
+default channel&#8217;s callback</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.enableChannels">
 <code class="descname">enableChannels</code><span class="sig-paren">(</span><em>channels</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.enableChannels"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.enableChannels" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enable acquisition of the indicated channels.</p>
@@ -1017,12 +1189,56 @@ channel names</td>
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count_raw">
 <code class="descname">count_raw</code><span class="sig-paren">(</span><em>start_time=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.count_raw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count_raw" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Raw count and report count values.</p>
+<p>Simply start and wait until finish, no configuration nor preparation.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The count_raw method API is partially experimental (value
+references may be changed to values whenever possible in the
+future). Backwards incompatible changes may occur if deemed
+necessary by the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>start_time</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">float</span></code></a>) &#8211; start time of the whole count operation, if not
+passed a current timestamp will be used</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">channel names and values (or value references - experimental)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> where keys are channel full names and values are
+channel values (or value references - experimental)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.go">
 <code class="descname">go</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.go"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.go" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Count and report count values.</p>
+<p>Configuration and prepare for measurement, then start and wait until
+finish.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The count (go) method API is partially experimental (value
+references may be changed to values whenever possible in the
+future). Backwards incompatible changes may occur if deemed
+necessary by the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">channel names and values (or value references - experimental)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> where keys are channel full names and values are
+channel values (or value references - experimental)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count_continuous">
@@ -1086,7 +1302,28 @@ deemed necessary by the core developers.</p>
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count">
 <code class="descname">count</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Count and report count values.</p>
+<p>Configuration and prepare for measurement, then start and wait until
+finish.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The count (go) method API is partially experimental (value
+references may be changed to values whenever possible in the
+future). Backwards incompatible changes may occur if deemed
+necessary by the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">channel names and values (or value references - experimental)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> where keys are channel full names and values are
+channel values (or value references - experimental)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.stopCount">
@@ -1492,6 +1729,11 @@ to prepare, wait for events, etc</p>
 <em class="property">class </em><code class="descname">Pool</code><span class="sig-paren">(</span><em>name</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#Pool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.Pool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">taurus.core.tango.tangodevice.TangoDevice</span></code>, <code class="xref py py-class docutils literal"><span class="pre">sardana.taurus.core.tango.sardana.motion.MoveableSource</span></code></p>
 <p>Class encapsulating device Pool functionality.</p>
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.pool.Pool.cleanUp">
+<code class="descname">cleanUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#Pool.cleanUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.Pool.cleanUp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="method">
 <dt id="sardana.taurus.core.tango.sardana.pool.Pool.getObject">
 <code class="descname">getObject</code><span class="sig-paren">(</span><em>element_info</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#Pool.getObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.Pool.getObject" title="Permalink to this definition">¶</a></dt>

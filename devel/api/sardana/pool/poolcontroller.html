@@ -241,6 +241,11 @@ for</p>
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="sardana.pool.poolcontroller.PoolController.is_referable">
+<code class="descname">is_referable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontroller.html#PoolController.is_referable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontroller.PoolController.is_referable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="sardana.pool.poolcontroller.PoolController.is_pseudo">
 <code class="descname">is_pseudo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontroller.html#PoolController.is_pseudo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontroller.PoolController.is_pseudo" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -443,6 +448,39 @@ value of all active axes.</p>
 all active axis in this controller</td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a map containing the controller value information for each axis</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict&lt;PoolElement, SardanaValue&gt;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolcontroller.PoolController.raw_read_axis_value_refs">
+<code class="descname">raw_read_axis_value_refs</code><span class="sig-paren">(</span><em>axes=None</em>, <em>ctrl_values=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontroller.html#PoolController.raw_read_axis_value_refs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontroller.PoolController.raw_read_axis_value_refs" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Unsafe method</strong>. Reads the value refs for the given axes. If axes
+is None, reads the value of all active axes.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The raw_read_axis_value_refs method has been included in Sardana
+on a provisional basis. Backwards incompatible changes (up to
+and including removal of the class) may occur if deemed
+necessary by the core developers.</p>
+</div>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">This method should be available only on the controllers which
+are <em>referable</em>.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>axes</strong> (<em>seq&lt;int&gt; or None</em>) &#8211; the list of axis to get the value. Default is None
+meaning all active axis in this controller</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a map containing the controller value information for each
+axis</td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">dict&lt;PoolElement, SardanaValue&gt;</td>
 </tr>

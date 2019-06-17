@@ -199,14 +199,14 @@ for experiment channels</p>
 </td></tr></table>
 <div class="section" id="id1">
 <h2>PoolBaseChannel<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<img src="../../../../_images/inheritance-b046ef300bddb77174f07b25243fd9f2df4dc0d0.png" alt="Inheritance diagram of PoolBaseChannel" usemap="#inheritance1e7b556da0" class="inheritance"/>
+<img src="../../../../_images/inheritance-631906062d31ac0f73690078d1613ffc8154ceff.png" alt="Inheritance diagram of PoolBaseChannel" usemap="#inheritance1e7b556da0" class="inheritance"/>
 <map id="inheritance1e7b556da0" name="inheritance1e7b556da0">
 <area shape="rect" id="node1" href="../sardanaevent.html#sardana.sardanaevent.EventGenerator" target="_top" title="A class capable of generating events to their listeners" alt="" coords="5,179,128,217"/>
 <area shape="rect" id="node11" href="../sardanabase.html#sardana.sardanabase.SardanaBaseObject" target="_top" title="The Sardana most abstract object. It contains only two members:" alt="" coords="133,265,283,304"/>
 <area shape="rect" id="node2" href="../sardanaevent.html#sardana.sardanaevent.EventReceiver" target="_top" title="A simple class that implements useful features for a class which is" alt="" coords="153,179,263,217"/>
 <area shape="rect" id="node3" title="The taurus logger class. All taurus pertinent classes should inherit" alt="" coords="288,179,360,217"/>
 <area shape="rect" id="node5" title="A magical object class that provides Python 2 compatibility methods::" alt="" coords="281,5,367,44"/>
-<area shape="rect" id="node6" href="#sardana.pool.poolbasechannel.PoolBaseChannel" target="_top" title="PoolBaseChannel" alt="" coords="216,699,349,737"/>
+<area shape="rect" id="node6" href="#sardana.pool.poolbasechannel.PoolBaseChannel" target="_top" title="Base class for Pool experimental channel" alt="" coords="216,699,349,737"/>
 <area shape="rect" id="node7" href="poolelement.html#sardana.pool.poolelement.PoolElement" target="_top" title="A Pool element is an Pool object which is controlled by a controller." alt="" coords="231,612,334,651"/>
 <area shape="rect" id="node8" title="A Pool object that besides the name, reference to the pool, ID, full_name" alt="" coords="215,525,350,564"/>
 <area shape="rect" id="node9" href="poolobject.html#sardana.pool.poolobject.PoolObject" target="_top" title="A Pool object that besides the name and reference to the pool has:" alt="" coords="237,439,328,477"/>
@@ -217,6 +217,12 @@ for experiment channels</p>
 <dt id="sardana.pool.poolbasechannel.PoolBaseChannel">
 <em class="property">class </em><code class="descname">PoolBaseChannel</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="poolelement.html#sardana.pool.poolelement.PoolElement" title="sardana.pool.poolelement.PoolElement"><code class="xref py py-class docutils literal"><span class="pre">sardana.pool.poolelement.PoolElement</span></code></a></p>
+<p>Base class for Pool experimental channel</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Value ref API should be exposed only on the channels which
+belongs to <em>referable</em> controllers.</p>
+</div>
 <dl class="attribute">
 <dt id="sardana.pool.poolbasechannel.PoolBaseChannel.ValueAttributeClass">
 <code class="descname">ValueAttributeClass</code><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.ValueAttributeClass" title="Permalink to this definition">¶</a></dt>
@@ -227,6 +233,18 @@ for experiment channels</p>
 <dt id="sardana.pool.poolbasechannel.PoolBaseChannel.ValueBufferClass">
 <code class="descname">ValueBufferClass</code><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.ValueBufferClass" title="Permalink to this definition">¶</a></dt>
 <dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ValueBuffer</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.ValueRefAttributeClass">
+<code class="descname">ValueRefAttributeClass</code><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.ValueRefAttributeClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ValueRef</span></code></p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.ValueRefBufferClass">
+<code class="descname">ValueRefBufferClass</code><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.ValueRefBufferClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal"><span class="pre">ValueRefBuffer</span></code></p>
 </dd></dl>
 
 <dl class="attribute">
@@ -325,7 +343,53 @@ belongs to.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the value attribute</td>
 </tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">SardanaBuffer</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.get_value_ref_attribute">
+<code class="descname">get_value_ref_attribute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.get_value_ref_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.get_value_ref_attribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value attribute object for this experiment channel</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The get_value_ref_attribute method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the value attribute</td>
+</tr>
 <tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../sardanaattribute.html#sardana.sardanaattribute.SardanaAttribute" title="sardana.sardanaattribute.SardanaAttribute"><code class="xref py py-class docutils literal"><span class="pre">SardanaAttribute</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.get_value_ref_buffer">
+<code class="descname">get_value_ref_buffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.get_value_ref_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.get_value_ref_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the value attribute object for this experiment channel</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The get_value_ref_buffer method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the value attribute</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">SardanaBuffer</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -478,6 +542,276 @@ the read value.</p>
 <dt id="sardana.pool.poolbasechannel.PoolBaseChannel.clear_value_buffer">
 <code class="descname">clear_value_buffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.clear_value_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.clear_value_buffer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.read_value_ref">
+<code class="descname">read_value_ref</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.read_value_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.read_value_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads the channel value ref from hardware.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The read_value_ref method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">a <em>sardana value</em> containing the channel value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="../sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal"><span class="pre">SardanaValue</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.put_value_ref">
+<code class="descname">put_value_ref</code><span class="sig-paren">(</span><em>value_ref</em>, <em>propagate=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.put_value_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.put_value_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets a value ref.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The put_value_ref method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value_ref</strong> (<a class="reference internal" href="../sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal"><span class="pre">SardanaValue</span></code></a>) &#8211; the new value</li>
+<li><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) &#8211; 0 for not propagating, 1 to propagate, 2 propagate with priority</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.get_value_ref">
+<code class="descname">get_value_ref</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.get_value_ref"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.get_value_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the channel value ref.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The get_value_ref method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the channel value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">SardanaValue</span></code></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.value_ref">
+<code class="descname">value_ref</code><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.value_ref" title="Permalink to this definition">¶</a></dt>
+<dd><p>channel value ref</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.extend_value_ref_buffer">
+<code class="descname">extend_value_ref_buffer</code><span class="sig-paren">(</span><em>value_refs</em>, <em>idx=None</em>, <em>propagate=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.extend_value_ref_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.extend_value_ref_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend value ref buffer with new values assigning them consecutive
+indexes starting with idx. If idx is omitted, then the new values will
+be added right after the last value ref in the buffer. Also update the
+read value ref of the attribute with the last element of values.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The extend_value_ref_buffer method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value_refs</strong> (<a class="reference internal" href="../sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal"><span class="pre">SardanaValue</span></code></a>) &#8211; values to be added to the buffer</li>
+<li><strong>idx</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a>) &#8211; index at which to append the value_refs</li>
+<li><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) &#8211; 0 for not propagating, 1 to propagate, 2 propagate with priority</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.append_value_ref_buffer">
+<code class="descname">append_value_ref_buffer</code><span class="sig-paren">(</span><em>value_ref</em>, <em>idx=None</em>, <em>propagate=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.append_value_ref_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.append_value_ref_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append new value ref to the value ref buffer at the idx position.</p>
+<p>If idx is omitted, then the new value ref will be added right
+after the last value ref in the buffer.
+Also update the read value ref.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The append_value_ref_buffer method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value_ref</strong> (<a class="reference internal" href="../sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal"><span class="pre">SardanaValue</span></code></a>) &#8211; value ref to be added to the buffer</li>
+<li><strong>idx</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a>) &#8211; index at which to append the value_ref</li>
+<li><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) &#8211; 0 for not propagating, 1 to propagate, 2 propagate with priority</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.clear_value_ref_buffer">
+<code class="descname">clear_value_ref_buffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.clear_value_ref_buffer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.clear_value_ref_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear value ref buffer.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The clear_value_ref_buffer method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.get_value_ref_pattern">
+<code class="descname">get_value_ref_pattern</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.get_value_ref_pattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.get_value_ref_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the channel value reference pattern.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The get_value_ref_pattern method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the channel value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.set_value_ref_pattern">
+<code class="descname">set_value_ref_pattern</code><span class="sig-paren">(</span><em>value_ref_pattern</em>, <em>propagate=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.set_value_ref_pattern"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.set_value_ref_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set a value reference pattern in the kernel (not in the hardware).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The set_value_ref_pattern method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value_ref_pattern</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; the new value reference pattern</li>
+<li><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a>) &#8211; 0 for not propagating, 1 to propagate, 2 propagate with priority</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.value_ref_pattern">
+<code class="descname">value_ref_pattern</code><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.value_ref_pattern" title="Permalink to this definition">¶</a></dt>
+<dd><p>channel value reference pattern</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.is_value_ref_enabled">
+<code class="descname">is_value_ref_enabled</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.is_value_ref_enabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.is_value_ref_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if value reference is enabled.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The is_value_ref_enabled method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the channel value</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.set_value_ref_enabled">
+<code class="descname">set_value_ref_enabled</code><span class="sig-paren">(</span><em>value_ref_enabled</em>, <em>propagate=1</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.set_value_ref_enabled"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.set_value_ref_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set value reference enabled flag in the kernel (not in the
+hardware).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The set_value_ref_enabled method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>value_ref_enabled</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a>) &#8211; the new value reference enabled</li>
+<li><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">int</span></code></a>) &#8211; 0 for not propagating, 1 to propagate, 2 propagate with priority</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.value_ref_enabled">
+<code class="descname">value_ref_enabled</code><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.value_ref_enabled" title="Permalink to this definition">¶</a></dt>
+<dd><p>channel value reference enabled</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolbasechannel.PoolBaseChannel.is_referable">
+<code class="descname">is_referable</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolbasechannel.html#PoolBaseChannel.is_referable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolbasechannel.PoolBaseChannel.is_referable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if channel has referable capability.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The is_referable method has been included in Sardana on
+a provisional basis. Backwards incompatible changes (up to and
+including removal of the class) may occur if deemed necessary by
+the core developers.</p>
+</div>
+</dd></dl>
 
 <dl class="method">
 <dt id="sardana.pool.poolbasechannel.PoolBaseChannel.get_integration_time">
