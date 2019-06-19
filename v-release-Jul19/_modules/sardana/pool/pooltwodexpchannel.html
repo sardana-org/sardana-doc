@@ -189,7 +189,7 @@
 
 <div class="viewcode-block" id="Pool2DExpChannel.get_data_source"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pooltwodexpchannel.html#sardana.pool.pooltwodexpchannel.Pool2DExpChannel.get_data_source">[docs]</a>    <span class="k">def</span> <span class="nf">get_data_source</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;data_source is deprecated since &quot;</span>
-               <span class="s2">&quot;version Jul19. Use value_ref instead.&quot;</span><span class="p">)</span>
+               <span class="s2">&quot;version 2.8.0. Use value_ref instead.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">cache</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data_source</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">data_source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_data_source</span><span class="p">()</span>
