@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>How to write a counter/timer controller &mdash; sardana 2.7.2 documentation</title>
+  <title>How to write a counter/timer controller &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../index.html"/>
         <link rel="up" title="Writing controllers" href="index.html"/>
         <link rel="next" title="How to write a 0D controller" href="howto_0dcontroller.html"/>
         <link rel="prev" title="How to write a motor controller" href="howto_motorcontroller.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -154,7 +154,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../../docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="../../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
           <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
       
@@ -186,7 +186,7 @@ information about the additional <a class="reference internal" href="../../gloss
 <h2>The basics<a class="headerlink" href="#the-basics" title="Permalink to this headline">¶</a></h2>
 <p>An example of a hypothetical <em>Springfield</em> counter/timer controller will be build
 incrementally from scratch to aid in the explanation.</p>
-<p>By now you should have read the general controller basics chapter. You should
+<p>By now you should have read <a class="reference internal" href="../api/api_controller.html#sardana-controller-api"><span class="std std-ref">the general controller basics</span></a> chapter. You should
 be able to create a CounterTimerController with:</p>
 <ul class="simple">
 <li>a proper constructor,</li>
@@ -292,7 +292,7 @@ receives an axis as parameter and should return either:</p>
 <dt>a sequence of two elements:</dt>
 <dd><ul class="first last">
 <li>state (<a class="reference internal" href="../api/sardana/sardanadefs.html#sardana.sardanadefs.State" title="sardana.sardanadefs.State"><code class="xref py py-obj docutils literal"><span class="pre">State</span></code></a>)</li>
-<li>status (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>)</li>
+<li>status (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>)</li>
 </ul>
 </dd>
 </dl>
@@ -421,7 +421,7 @@ a timestamp. However this timestamp has a certain delay since the time the
 value was actually read from hardware and the time Tango generates the timestamp.</p>
 <p>To avoid this, sardana supports returning in
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Readable.ReadOne" title="sardana.pool.controller.Readable.ReadOne"><code class="xref py py-meth docutils literal"><span class="pre">ReadOne()</span></code></a> an object that contains both
-the value and the timestamp instead of the usual <a class="reference external" href="https://docs.python.org/dev/library/numbers.html#numbers.Number" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">numbers.Number</span></code></a>.
+the value and the timestamp instead of the usual <a class="reference external" href="https://docs.python.org/dev/library/numbers.html#numbers.Number" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">numbers.Number</span></code></a>.
 The object must be an instance of <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal"><span class="pre">SardanaValue</span></code></a>.</p>
 <p>Here is an example of associating a timestamp in
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Readable.ReadOne" title="sardana.pool.controller.Readable.ReadOne"><code class="xref py py-meth docutils literal"><span class="pre">ReadOne()</span></code></a>:</p>
@@ -482,24 +482,35 @@ hardware controller must somehow support this feature as well.</p>
 implementation of all other start methods is optional and their default
 implementation does nothing (<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Startable.PreStartOne" title="sardana.pool.controller.Startable.PreStartOne"><code class="xref py py-meth docutils literal"><span class="pre">PreStartOne()</span></code></a>
 actually returns <code class="docutils literal"><span class="pre">True</span></code>).</p>
-<p>So, actually, a simplified algorithm for counter acquisition start in sardana is:</p>
+<p>So, actually, the algorithm for counter acquisition start in sardana is:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">FOR</span><span class="o">/</span> <span class="n">Each</span> <span class="n">controller</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">implied</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">acquisition</span>
-     <span class="o">-</span> <span class="n">Call</span> <span class="n">PreStartAll</span><span class="p">()</span>
-<span class="o">/</span><span class="n">END</span> <span class="n">FOR</span><span class="o">/</span>
-
-<span class="o">/</span><span class="n">FOR</span><span class="o">/</span> <span class="n">Each</span> <span class="n">counter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">implied</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">acquisition</span>
-     <span class="o">-</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">PreStartOne</span><span class="p">(</span><span class="n">counter</span> <span class="n">to</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">new</span> <span class="n">position</span><span class="p">)</span>
-     <span class="o">-</span> <span class="o">/</span><span class="n">IF</span><span class="o">/</span> <span class="n">ret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">true</span>
-        <span class="o">/</span><span class="n">RAISE</span><span class="o">/</span> <span class="n">Cannot</span> <span class="n">start</span><span class="o">.</span> <span class="n">Counter</span> <span class="n">PreStartOne</span> <span class="n">returns</span> <span class="kc">False</span>
-     <span class="o">-</span> <span class="o">/</span><span class="n">END</span> <span class="n">IF</span><span class="o">/</span>
-     <span class="o">-</span> <span class="n">Call</span> <span class="n">StartOne</span><span class="p">(</span><span class="n">counter</span> <span class="n">to</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">new</span> <span class="n">position</span><span class="p">)</span>
+    <span class="o">-</span> <span class="n">Call</span> <span class="n">PreStartAll</span><span class="p">()</span>
 <span class="o">/</span><span class="n">END</span> <span class="n">FOR</span><span class="o">/</span>
 
 <span class="o">/</span><span class="n">FOR</span><span class="o">/</span> <span class="n">Each</span> <span class="n">controller</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">implied</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">acquisition</span>
-     <span class="o">-</span> <span class="n">Call</span> <span class="n">StartAll</span><span class="p">()</span>
+    <span class="o">/</span><span class="n">FOR</span><span class="o">/</span> <span class="n">Each</span> <span class="n">counter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">implied</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">acquisition</span>
+        <span class="o">-</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">PreStartOne</span><span class="p">(</span><span class="n">counter</span> <span class="n">to</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">new</span> <span class="n">position</span><span class="p">)</span>
+        <span class="o">-</span> <span class="o">/</span><span class="n">IF</span><span class="o">/</span> <span class="n">ret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">true</span>
+            <span class="o">/</span><span class="n">RAISE</span><span class="o">/</span> <span class="n">Cannot</span> <span class="n">start</span><span class="o">.</span> <span class="n">Counter</span> <span class="n">PreStartOne</span> <span class="n">returns</span> <span class="kc">False</span>
+        <span class="o">-</span> <span class="o">/</span><span class="n">END</span> <span class="n">IF</span><span class="o">/</span>
+        <span class="o">-</span> <span class="n">Call</span> <span class="n">StartOne</span><span class="p">(</span><span class="n">counter</span> <span class="n">to</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">new</span> <span class="n">position</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">END</span> <span class="n">FOR</span><span class="o">/</span>
+<span class="o">/</span><span class="n">END</span> <span class="n">FOR</span><span class="o">/</span>
+
+<span class="o">/</span><span class="n">FOR</span><span class="o">/</span> <span class="n">Each</span> <span class="n">controller</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">implied</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">acquisition</span>
+    <span class="o">-</span> <span class="n">Call</span> <span class="n">StartAll</span><span class="p">()</span>
 <span class="o">/</span><span class="n">END</span> <span class="n">FOR</span><span class="o">/</span>
 </pre></div>
 </div>
+<p>The controllers over which we iterate in the above pseudo code are organized
+so the master timer/monitor controller is the last one to be called. Similar order of
+iteration applies to the counters of a given controller, so the timer/monitor
+is the last one to be called.</p>
+<p>You can assign the master controller role with the order of the controllers
+in the measurement group. There is one master per each of the following
+synchronization modes: <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareTrigger" title="sardana.pool.pooldefs.AcqSynch.SoftwareTrigger"><code class="xref py py-attr docutils literal"><span class="pre">SoftwareTrigger</span></code></a>
+and <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareStart" title="sardana.pool.pooldefs.AcqSynch.SoftwareStart"><code class="xref py py-attr docutils literal"><span class="pre">SoftwareStart</span></code></a>. This order must be
+set within the measurement group <a class="reference internal" href="../overview/overview_measurementgroup.html#sardana-measurementgroup-overview-configuration"><span class="std std-ref">Configuration</span></a>.</p>
 <p>So, for the example above where we acquire two counters, the complete sequence of
 calls to the controller is:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">PreStartAll</span><span class="p">()</span>
@@ -619,10 +630,10 @@ of the selected synchronization but its return values should depend on it and
 can be:</p>
 <blockquote>
 <div><ul class="simple">
-<li>a single counter value: either <a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">float</span></code></a> or <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-obj docutils literal"><span class="pre">SardanaValue</span></code></a>
+<li>a single counter value: either <a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">float</span></code></a> or <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-obj docutils literal"><span class="pre">SardanaValue</span></code></a>
 in case of the <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareTrigger" title="sardana.pool.pooldefs.AcqSynch.SoftwareTrigger"><code class="xref py py-attr docutils literal"><span class="pre">SoftwareTrigger</span></code></a> or
 <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareGate" title="sardana.pool.pooldefs.AcqSynch.SoftwareGate"><code class="xref py py-attr docutils literal"><span class="pre">SoftwareGate</span></code></a> synchronization</li>
-<li>a sequence of counter values: either <a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">float</span></code></a> or <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-obj docutils literal"><span class="pre">SardanaValue</span></code></a>
+<li>a sequence of counter values: either <a class="reference external" href="https://docs.python.org/dev/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">float</span></code></a> or <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-obj docutils literal"><span class="pre">SardanaValue</span></code></a>
 in case of the <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.HardwareTrigger" title="sardana.pool.pooldefs.AcqSynch.HardwareTrigger"><code class="xref py py-attr docutils literal"><span class="pre">HardwareTrigger</span></code></a> or
 <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.HardwareGate" title="sardana.pool.pooldefs.AcqSynch.HardwareGate"><code class="xref py py-attr docutils literal"><span class="pre">HardwareGate</span></code></a> synchronization</li>
 </ul>
@@ -680,7 +691,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

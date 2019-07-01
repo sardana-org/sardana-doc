@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.tango.pool.PoolDevice &mdash; sardana 2.7.2 documentation</title>
+  <title>sardana.tango.pool.PoolDevice &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -172,17 +172,17 @@
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
 <span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">Util</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevLong64</span><span class="p">,</span> <span class="n">DevBoolean</span><span class="p">,</span> <span class="n">DevString</span><span class="p">,</span>\
-    <span class="n">DevDouble</span><span class="p">,</span> <span class="n">DevVarStringArray</span><span class="p">,</span> <span class="n">DispLevel</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">SPECTRUM</span><span class="p">,</span> \
-    <span class="n">IMAGE</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">AttrData</span><span class="p">,</span> <span class="n">CmdArgType</span><span class="p">,</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">seqStr_2_obj</span><span class="p">,</span> \
-    <span class="n">Except</span><span class="p">,</span> <span class="n">ErrSeverity</span>
+    <span class="n">DevDouble</span><span class="p">,</span> <span class="n">DevEncoded</span><span class="p">,</span> <span class="n">DevVarStringArray</span><span class="p">,</span> <span class="n">DispLevel</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> \
+    <span class="n">SPECTRUM</span><span class="p">,</span> <span class="n">IMAGE</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">AttrData</span><span class="p">,</span> <span class="n">CmdArgType</span><span class="p">,</span> <span class="n">DevFailed</span><span class="p">,</span>\
+    <span class="n">seqStr_2_obj</span><span class="p">,</span> <span class="n">Except</span><span class="p">,</span> <span class="n">ErrSeverity</span>
 
 <span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
 
 <span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">InvalidId</span><span class="p">,</span> <span class="n">InvalidAxis</span><span class="p">,</span> <span class="n">ElementType</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">sardanacustomsettings</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolmetacontroller</span> <span class="k">import</span> <span class="n">DataInfo</span>
 <span class="kn">from</span> <span class="nn">sardana.tango.core.SardanaDevice</span> <span class="k">import</span> <span class="n">SardanaDevice</span><span class="p">,</span> <span class="n">SardanaDeviceClass</span>
 <span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">GenericScalarAttr</span><span class="p">,</span> <span class="n">GenericSpectrumAttr</span><span class="p">,</span> \
@@ -979,7 +979,10 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="n">PoolElementDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
+        <span class="n">codec_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sardanacustomsettings</span><span class="p">,</span> <span class="s2">&quot;VALUE_BUFFER_CODEC&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="n">codec_name</span><span class="p">)</span>
+        <span class="n">codec_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sardanacustomsettings</span><span class="p">,</span> <span class="s2">&quot;VALUE_REF_BUFFER_CODEC&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="n">codec_name</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_encode_value_chunk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value_chunk</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Prepare value chunk to be passed via communication channel.</span>
@@ -989,20 +992,31 @@
 
 <span class="sd">        :return: json string representing value chunk</span>
 <span class="sd">        :rtype: str&quot;&quot;&quot;</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sdn_value</span> <span class="ow">in</span> <span class="n">value_chunk</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
             <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">sdn_value</span><span class="o">.</span><span class="n">value</span>
-            <span class="c1"># TODO: Improve it in the future</span>
-            <span class="c1"># In case of big arrays e.g. 10k points and higher there are more</span>
-            <span class="c1"># optimal solutions but they require complex changes on encoding</span>
-            <span class="c1"># and decoding side.</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-                <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">)</span>
-        <span class="n">_</span><span class="p">,</span> <span class="n">encoded_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_codec</span><span class="o">.</span><span class="n">encode</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+            <span class="n">value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sdn_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">encoded_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_codec</span><span class="o">.</span><span class="n">encode</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">encoded_data</span>
+
+    <span class="k">def</span> <span class="nf">_encode_value_ref_chunk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value_ref_chunk</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Prepare value ref chunk to be passed via communication channel.</span>
+
+<span class="sd">        :param value_ref_chunk: value ref chunk</span>
+<span class="sd">        :type value_ref_ chunk: seq&lt;SardanaValue&gt;</span>
+
+<span class="sd">        :return: json string representing value chunk</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">value_ref</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sdn_value</span> <span class="ow">in</span> <span class="n">value_ref_chunk</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+            <span class="n">value_ref</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sdn_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">value_ref</span><span class="o">=</span><span class="n">value_ref</span><span class="p">)</span>
+        <span class="n">encoded_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_codec</span><span class="o">.</span><span class="n">encode</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">encoded_data</span>
 
     <span class="k">def</span> <span class="nf">initialize_dynamic_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1015,12 +1029,22 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">set_change_event</span><span class="p">(</span><span class="n">attr_name</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">attrs</span>
 
-    <span class="k">def</span> <span class="nf">read_Data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;Data attribute is not foreseen for reading. It is used only &quot;</span>\
-               <span class="s2">&quot;as the communication channel for the continuous acquisitions.&quot;</span>
+    <span class="k">def</span> <span class="nf">read_ValueBuffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="s2">&quot;ValueBuffer attribute is not foreseen for reading. It is &quot;</span> \
+               <span class="s2">&quot;used only as the communication channel for the continuous &quot;</span> \
+               <span class="s2">&quot;acquisitions.&quot;</span>
         <span class="n">Except</span><span class="o">.</span><span class="n">throw_exception</span><span class="p">(</span><span class="s2">&quot;UnsupportedFeature&quot;</span><span class="p">,</span>
                                <span class="n">desc</span><span class="p">,</span>
-                               <span class="s2">&quot;PoolExpChannelDevice.read_Data&quot;</span><span class="p">,</span>
+                               <span class="s2">&quot;PoolExpChannelDevice.read_ValueBuffer&quot;</span><span class="p">,</span>
+                               <span class="n">ErrSeverity</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">read_ValueRefBuffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+        <span class="n">desc</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ValueRefBuffer attribute is not foreseen for reading. &quot;</span>
+                <span class="s2">&quot;It is used only as the communication channel for the &quot;</span>
+                <span class="s2">&quot;continuous acquisitions.&quot;</span><span class="p">)</span>
+        <span class="n">Except</span><span class="o">.</span><span class="n">throw_exception</span><span class="p">(</span><span class="s2">&quot;UnsupportedFeature&quot;</span><span class="p">,</span>
+                               <span class="n">desc</span><span class="p">,</span>
+                               <span class="s2">&quot;PoolExpChannelDevice.read_ValueRefBuffer&quot;</span><span class="p">,</span>
                                <span class="n">ErrSeverity</span><span class="o">.</span><span class="n">WARN</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">read_IntegrationTime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
@@ -1051,7 +1075,7 @@
     <span class="n">attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolElementDeviceClass</span><span class="o">.</span><span class="n">attr_list</span><span class="p">)</span>
 
     <span class="n">standard_attr_list</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevString</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ</span><span class="p">]],</span>  <span class="c1"># TODO: think about DevEncoded</span>
+        <span class="s1">&#39;ValueBuffer&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevEncoded</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ</span><span class="p">]]</span>
     <span class="p">}</span>
     <span class="n">standard_attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolElementDeviceClass</span><span class="o">.</span><span class="n">standard_attr_list</span><span class="p">)</span>
 
@@ -1144,7 +1168,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

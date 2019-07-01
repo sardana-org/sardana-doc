@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Overview &mdash; sardana 2.7.2 documentation</title>
+  <title>Overview &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../index.html"/>
         <link rel="up" title="User’s Guide" href="index.html"/>
         <link rel="next" title="Getting started" href="getting_started/index.html"/>
         <link rel="prev" title="User’s Guide" href="index.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -98,7 +98,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#what-do-we-sell-to-our-users">What do we &#8220;sell&#8221; to our users</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#starting-a-procedure">Starting a procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#taurus-as-a-toolkit-for-applications">Taurus as a toolkit for applications</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#configure-dont-program">Configure – don’t program</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#how-to-write-your-own-procedure">How to write your own procedure</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#how-to-adapt-it-to-your-own-hardware">How to adapt it to your own hardware</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#symbolic-sketch">Symbolic Sketch</a></li>
@@ -108,6 +107,8 @@
 <li class="toctree-l3"><a class="reference internal" href="spock.html">Spock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="taurus/index.html">Sardana-Taurus Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scan.html">Scans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="motion.html">Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="acquisition.html">Acquisition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="diffractometer.html">Diffractometer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="adding_elements.html">Adding real elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="macro_hooks.html">Macro Hooks</a></li>
@@ -118,6 +119,7 @@
 <li class="toctree-l3"><a class="reference internal" href="configuration/index.html">Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="screenshots.html">Screenshots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://github.com/sardana-org/sardana/issues?q=is:issue+is:open+label:doc:knownbug">Known Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../devel/index.html">Developer&#8217;s Guide</a></li>
@@ -157,7 +159,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
           <li><a href="index.html">User&#8217;s Guide</a> &raquo;</li>
       
@@ -186,8 +188,8 @@ difficult to share. Inspired by the success of the <a class="reference external"
 decided to start the creation of a generic tool to enlarge the scope of the
 <a class="reference external" href="http://www.tango-controls.org/">Tango</a> project to include a standard client program - or better a standard
 generic user environment. From the beginning our aim has been to involve others
-in this process. At this moment in time the user environment consists of a
-highly configurable standard graphical user interface, a standard command line
+in this process. At this moment in time the user environment consists of a highly
+configurable standard graphical user interface, a standard command line
 interface understanding <a class="reference external" href="http://www.certif.com/">SPEC</a> commands, and a standard way to compose new
 applications either by programming or with a graphical tool. It further
 consists of a standard macro executer, standard set of macros, a standard range
@@ -257,16 +259,6 @@ standard components has been proven to be extremely powerful. In the
 <a class="reference internal" href="screenshots.html#sardana-screenshots-guis"><span class="std std-ref">Graphical user interface screen shots</span></a> chapter you can see some of the graphical user
 interfaces used.</p>
 </div>
-<div class="section" id="configure-dont-program">
-<h2>Configure – don’t program<a class="headerlink" href="#configure-dont-program" title="Permalink to this headline">¶</a></h2>
-<p>The Sardana system comes with a configuration editor to allow non-experts to add
-and configure components. The editor adapts dynamically to the hardware
-controllers present. New hardware controller can be easily written and
-integrated into the system without restarting it.</p>
-<a class="reference internal image-reference" href="../_images/snapshot07.png"><img alt="../_images/snapshot07.png" class="align-center" src="../_images/snapshot07.png" style="width: 500px;" /></a>
-<p>This configuration editor is currently being rewritten to be more wizard based
-and provide better guidance for the end user.</p>
-</div>
 <div class="section" id="how-to-write-your-own-procedure">
 <h2>How to write your own procedure<a class="headerlink" href="#how-to-write-your-own-procedure" title="Permalink to this headline">¶</a></h2>
 <p>Another example I would like to look into is how to write your own procedure.
@@ -315,7 +307,7 @@ institutes, no assumptions of the hardware used could be made. There exists
 therefore a mechanism to adapt the Sardana system to your own hardware. This
 adaptor also has another very important role to play. This is best explained
 with the motor as example. We consider more or less everything which can be
-changed in the system a motor. The term which should have better been used to
+changed in the system as a motor. The term which should have better been used to
 describe this thing should have been therefore <em>movable</em>. A motor can be a
 temperature of a temperature controller which can be changed, a motor from an
 insertion device which needs a highly complicated protocol to be moved, or just
@@ -323,10 +315,9 @@ about anything. Sometimes we also consider calculated value like H,K,L, the
 height of a table, and the gap of a slit to be a motor. All these different
 <em>motors</em> can be scanned with the same generic procedures without having to
 worry about on which elements it is working on. You can add one of these pseudo
-motors with the configuration editor. It is easily possible to add new types of
+motors by means of configuration. It is easily possible to add new types of
 pseudo motors. This has only to be done once and the Sardana system already
 provides a large variety of these types.</p>
-<a class="reference internal image-reference" href="../_images/snapshot09.png"><img alt="../_images/snapshot09.png" class="align-center" src="../_images/snapshot09.png" style="width: 500px;" /></a>
 <p>Please find in the following an example for adding a completely new type in the
 case of a <em>slit</em>.</p>
 <p>The actual information how to create a motor of type <em>slit</em> is kept in the two
@@ -334,7 +325,6 @@ methods calc_physical and calc_pseudo which can be used to do the
 transformation between the different coordinate systems. Or to say it in the
 language of Sardana between the pseudo motors gap and offset and the real
 motors left blade and right blade.</p>
-<a class="reference internal image-reference" href="../_images/snapshot10.png"><img alt="../_images/snapshot10.png" class="align-center" src="../_images/snapshot10.png" style="width: 500px;" /></a>
 <p>Once again the information in the beginning allows the graphical user interface
 to be created automatically once it is loaded into the system.</p>
 </div>
@@ -390,7 +380,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

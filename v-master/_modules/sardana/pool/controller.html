@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.pool.controller &mdash; sardana 2.7.2 documentation</title>
+  <title>sardana.pool.controller &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -168,9 +168,11 @@
            <span class="s2">&quot;DefaultValue&quot;</span><span class="p">,</span> <span class="s2">&quot;FGet&quot;</span><span class="p">,</span> <span class="s2">&quot;FSet&quot;</span><span class="p">,</span>
            <span class="s2">&quot;Memorized&quot;</span><span class="p">,</span> <span class="s2">&quot;MemorizedNoInit&quot;</span><span class="p">,</span> <span class="s2">&quot;NotMemorized&quot;</span><span class="p">,</span> <span class="s2">&quot;MaxDimSize&quot;</span><span class="p">,</span>
            <span class="s2">&quot;Controller&quot;</span><span class="p">,</span> <span class="s2">&quot;Readable&quot;</span><span class="p">,</span> <span class="s2">&quot;Startable&quot;</span><span class="p">,</span> <span class="s2">&quot;Stopable&quot;</span><span class="p">,</span> <span class="s2">&quot;Loadable&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;Referable&quot;</span><span class="p">,</span> <span class="s2">&quot;Synchronizer&quot;</span><span class="p">,</span>
            <span class="s2">&quot;MotorController&quot;</span><span class="p">,</span> <span class="s2">&quot;CounterTimerController&quot;</span><span class="p">,</span> <span class="s2">&quot;ZeroDController&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;OneDController&quot;</span><span class="p">,</span> <span class="s2">&quot;TwoDController&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;PseudoMotorController&quot;</span><span class="p">,</span> <span class="s2">&quot;IORegisterController&quot;</span><span class="p">]</span>
+           <span class="s2">&quot;OneDController&quot;</span><span class="p">,</span> <span class="s2">&quot;TwoDController&quot;</span><span class="p">,</span> <span class="s2">&quot;TriggerGateController&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;PseudoMotorController&quot;</span><span class="p">,</span> <span class="s2">&quot;PseudoCounterController&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;IORegisterController&quot;</span><span class="p">]</span>
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
@@ -856,6 +858,31 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;LoadOne must be defined in the controller&quot;</span><span class="p">)</span></div></div>
 
 
+<span class="k">class</span> <span class="nc">Referable</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A Referable interface. A controller for which it&#39;s axis can</span>
+<span class="sd">    report data references (like a 1D or 2D for example) should implement</span>
+<span class="sd">    this interface</span>
+
+<span class="sd">    .. note: Inherit from Referable together with either OneDController or</span>
+<span class="sd">        TwoDController</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The Referable class has been included in Sardana on a provisional</span>
+<span class="sd">        basis. Backwards incompatible changes (up to and including removal</span>
+<span class="sd">        of the class) may occur if deemed necessary by the core developers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">RefOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;**Controller API**. Override is MANDATORY!</span>
+<span class="sd">        Default implementation raises :exc:`NotImplementedError`</span>
+
+<span class="sd">        :param int axis: axis number</span>
+<span class="sd">        :return: the axis value</span>
+<span class="sd">        :rtype: object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;RefOne must be defined in the controller&quot;</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="Synchronizer"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Synchronizer">[docs]</a><span class="k">class</span> <span class="nc">Synchronizer</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;A Synchronizer interface. A controller for which its axis are &#39;Able to</span>
 <span class="sd">    Synchronize&#39; should implement this interface</span>
@@ -1048,8 +1075,9 @@
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Timer used in independent acquisition&#39;</span><span class="p">},</span>
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="p">},</span>
-        <span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                 <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="p">},</span>
+        <span class="c1"># TODO: in case of Tango ValueBuffer type is overridden by DevEncoded</span>
+        <span class="s1">&#39;ValueBuffer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value buffer&#39;</span><span class="p">,</span> <span class="p">},</span>
     <span class="p">}</span>
     <span class="n">standard_axis_attributes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Controller</span><span class="o">.</span><span class="n">standard_axis_attributes</span><span class="p">)</span>
 
@@ -1106,14 +1134,13 @@
         <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="CounterTimerController.StartAllCT"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.StartAllCT">[docs]</a>    <span class="k">def</span> <span class="nf">StartAllCT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Counter/Timer Controller API**. Override is MANDATORY!</span>
-<span class="sd">        Called to start an acquisition of a selected axis.</span>
-<span class="sd">        Default implementation raises :exc:`NotImplementedError`.</span>
+        <span class="sd">&quot;&quot;&quot;**Counter/Timer Controller API**.</span>
+<span class="sd">        Called to start an acquisition of a group of channels.</span>
+<span class="sd">        Default implementation does nothing.</span>
 
 <span class="sd">        .. deprecated:: 1.0</span>
 <span class="sd">            use :meth:`~CounterTimerController.StartAll` instead&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;StartAll must be defined in the &quot;</span>
-                                  <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
+        <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="CounterTimerController.PreStartAll"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.PreStartAll">[docs]</a>    <span class="k">def</span> <span class="nf">PreStartAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
@@ -1152,10 +1179,10 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">StartOneCT</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="CounterTimerController.StartAll"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.StartAll">[docs]</a>    <span class="k">def</span> <span class="nf">StartAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**. Override is MANDATORY!</span>
+        <span class="sd">&quot;&quot;&quot;**Controller API**.</span>
 <span class="sd">        Default implementation calls deprecated</span>
-<span class="sd">        :meth:`~CounterTimerController.StartAllCT` which, by default, raises</span>
-<span class="sd">        :exc:`NotImplementedError`.&quot;&quot;&quot;</span>
+<span class="sd">        :meth:`~CounterTimerController.StartAllCT` which, by default, does</span>
+<span class="sd">        nothing.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">StartAllCT</span><span class="p">()</span></div></div>
 
 
@@ -1183,8 +1210,9 @@
                                            <span class="s1">&#39;independent acquisition&#39;</span><span class="p">},</span>
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="p">},</span>
-        <span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                 <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="p">},</span>
+        <span class="c1"># TODO: in case of Tango ValueBuffer type is overridden by DevEncoded</span>
+        <span class="s1">&#39;ValueBuffer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value buffer&#39;</span><span class="p">,</span> <span class="p">},</span>
     <span class="p">}</span>
     <span class="n">standard_axis_attributes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Controller</span><span class="o">.</span><span class="n">standard_axis_attributes</span><span class="p">)</span>
 
@@ -1214,8 +1242,9 @@
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">(</span><span class="nb">float</span><span class="p">,),</span>
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;maxdimsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">16</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,)},</span>
-        <span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                 <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="p">},</span>
+        <span class="c1"># TODO: in case of Tango ValueBuffer type is overridden by DevEncoded</span>
+        <span class="s1">&#39;ValueBuffer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value buffer&#39;</span><span class="p">,</span> <span class="p">},</span>
     <span class="p">}</span>
     <span class="n">standard_axis_attributes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Controller</span><span class="o">.</span><span class="n">standard_axis_attributes</span><span class="p">)</span>
 
@@ -1230,9 +1259,12 @@
 <div class="viewcode-block" id="OneDController.GetAxisPar"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.OneDController.GetAxisPar">[docs]</a>    <span class="k">def</span> <span class="nf">GetAxisPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override is MANDATORY.</span>
 <span class="sd">        Called to get a parameter value on the given axis.</span>
-<span class="sd">        If parameter == &#39;data_source&#39;, default implementation returns None,</span>
-<span class="sd">        meaning let sardana decide the proper URI for accessing the axis value.</span>
-<span class="sd">        Otherwise, default implementation calls deprecated</span>
+
+<span class="sd">        ``GetAxisPar`` with &#39;data_source&#39; parameter is deprecated since 2.8.0.</span>
+<span class="sd">        Inherit from :class:`~Referable` class in order to report value</span>
+<span class="sd">        references.</span>
+
+<span class="sd">        Default implementation calls deprecated</span>
 <span class="sd">        :meth:`~Controller.GetPar` which, by default, raises</span>
 <span class="sd">        :exc:`NotImplementedError`.</span>
 
@@ -1255,6 +1287,9 @@
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="p">((</span><span class="nb">float</span><span class="p">,),),</span>
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span>
                   <span class="s1">&#39;maxdimsize&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)},</span>
+        <span class="c1"># TODO: in case of Tango ValueBuffer type is overridden by DevEncoded</span>
+        <span class="s1">&#39;ValueBuffer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value buffer&#39;</span><span class="p">,</span> <span class="p">},</span>
     <span class="p">}</span>
     <span class="n">standard_axis_attributes</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Controller</span><span class="o">.</span><span class="n">standard_axis_attributes</span><span class="p">)</span>
 
@@ -1268,9 +1303,12 @@
 <div class="viewcode-block" id="TwoDController.GetAxisPar"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.TwoDController.GetAxisPar">[docs]</a>    <span class="k">def</span> <span class="nf">GetAxisPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override is MANDATORY.</span>
 <span class="sd">        Called to get a parameter value on the given axis.</span>
-<span class="sd">        If parameter == &#39;data_source&#39;, default implementation returns None,</span>
-<span class="sd">        meaning let sardana decide the proper URI for accessing the axis value.</span>
-<span class="sd">        Otherwise, default implementation calls deprecated</span>
+
+<span class="sd">        ``GetAxisPar`` with &#39;data_source&#39; parameter is deprecated since 2.8.0.</span>
+<span class="sd">        Inherit from :class:`~Referable` class in order to report value</span>
+<span class="sd">        references.</span>
+
+<span class="sd">        Default implementation calls deprecated</span>
 <span class="sd">        :meth:`~Controller.GetPar` which, by default, raises</span>
 <span class="sd">        :exc:`NotImplementedError`.</span>
 
@@ -1565,8 +1603,9 @@
                                            <span class="s1">&#39;independent acquisition&#39;</span><span class="p">},</span>
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="p">},</span>
-        <span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-                 <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="p">},</span>
+        <span class="c1"># TODO: in case of Tango ValueBuffer type is overridden by DevEncoded</span>
+        <span class="s1">&#39;ValueBuffer&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                        <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s1">&#39;Data&#39;</span><span class="p">,</span> <span class="p">},</span>
     <span class="p">}</span>
 
     <span class="c1">#: A :obj:`str` representing the controller gender</span>
@@ -1678,7 +1717,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

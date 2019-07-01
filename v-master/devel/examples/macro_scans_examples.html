@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Macro scans examples &mdash; sardana 2.7.2 documentation</title>
+  <title>Macro scans examples &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../index.html"/>
         <link rel="up" title="Macro examples" href="macro_examples.html"/>
         <link rel="next" title="Macro plotting examples" href="macro_plotting_examples.html"/>
         <link rel="prev" title="Macro hooks examples" href="macro_hooks_examples.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -146,7 +146,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../../docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="../../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
           <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
       
@@ -806,7 +806,46 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
 632
 633
 634
-635</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">##############################################################################</span>
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">##############################################################################</span>
 <span class="c1">##</span>
 <span class="c1"># This file is part of Sardana</span>
 <span class="c1">##</span>
@@ -844,10 +883,9 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
-<span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamRepeat</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.scan</span> <span class="kn">import</span> <span class="o">*</span>
 
 
@@ -1441,6 +1479,46 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="c1"># as a bonus, plot the fit</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">fitted_y</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ascanct_midtrigger</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This macro demonstrates how to add an extra scan column with</span>
+<span class="sd">    the shifted positions of the motor corresponding to the middle of the</span>
+<span class="sd">    space interval. Be aware that the space interval does not</span>
+<span class="sd">    necessarily correspond to the middle of the acquisition interval</span>
+<span class="sd">    (remember about the latency time).</span>
+
+<span class="sd">    This macro does not export all the ascanct features e.g. hooks.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s1">&#39;Moveable name&#39;</span><span class="p">],</span>
+                 <span class="p">[</span><span class="s1">&#39;start_pos&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s1">&#39;Scan start position&#39;</span><span class="p">],</span>
+                 <span class="p">[</span><span class="s1">&#39;final_pos&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s1">&#39;Scan final position&#39;</span><span class="p">],</span>
+                 <span class="p">[</span><span class="s1">&#39;nr_interv&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s1">&#39;Number of scan intervals&#39;</span><span class="p">],</span>
+                 <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
+                 <span class="p">[</span><span class="s1">&#39;latency_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Latency time&#39;</span><span class="p">]]</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">motor</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">scan_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s2">&quot;ascanct&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># we get the datahandler</span>
+        <span class="c1"># TODO: use public api to GScan object whenever</span>
+        <span class="c1"># https://github.com/sardana-org/sardana/issues/784 gets solved</span>
+        <span class="n">dh</span> <span class="o">=</span> <span class="n">scan_macro</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">data_handler</span>
+        <span class="c1"># calculate position corresponding to the middle space interval</span>
+        <span class="n">positions</span> <span class="o">=</span> <span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">motor</span><span class="o">.</span><span class="n">getName</span><span class="p">()]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">scan_macro</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">records</span><span class="p">]</span>
+        <span class="n">first_position</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">second_position</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">positive_direction</span> <span class="o">=</span> <span class="n">second_position</span> <span class="o">&gt;</span> <span class="n">first_position</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">second_position</span> <span class="o">-</span> <span class="n">first_position</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span>
+        <span class="k">if</span> <span class="n">positive_direction</span><span class="p">:</span>
+            <span class="n">mid_positions</span> <span class="o">=</span> <span class="n">positions</span> <span class="o">+</span> <span class="n">shift</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mid_positions</span> <span class="o">=</span> <span class="n">positions</span> <span class="o">-</span> <span class="n">shift</span>
+        <span class="c1"># add custom data column to the measurement HDF5 group with the</span>
+        <span class="c1"># &lt;motor_name&gt;_mid name</span>
+        <span class="n">dh</span><span class="o">.</span><span class="n">addCustomData</span><span class="p">(</span><span class="n">mid_positions</span><span class="p">,</span> <span class="n">motor</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;_mid&#39;</span><span class="p">,</span>
+                         <span class="n">nxpath</span><span class="o">=</span><span class="s1">&#39;measurement:NXcollection&#39;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 </div>
@@ -1487,7 +1565,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

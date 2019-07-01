@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.macros.standard &mdash; sardana 2.7.2 documentation</title>
+  <title>sardana.macroserver.macros.standard &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -787,31 +787,45 @@
 <span class="c1">##########################################################################</span>
 
 
-<div class="viewcode-block" id="ct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.ct">[docs]</a><span class="k">class</span> <span class="nc">ct</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Count for the specified time on the active measurement group&quot;&quot;&quot;</span>
+<span class="k">def</span> <span class="nf">_value_to_repr</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&lt;nodata&gt;&quot;</span>
+    <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">data</span>
 
-    <span class="n">env</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">,)</span>
+
+<div class="viewcode-block" id="ct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.ct">[docs]</a><span class="k">class</span> <span class="nc">ct</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Count for the specified time on the measurement group</span>
+<span class="sd">       or experimental channel given as second argument</span>
+<span class="sd">       (if not given the active measurement group is used)&quot;&quot;&quot;</span>
+
     <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span> <span class="s1">&#39;post-acq&#39;</span><span class="p">)}</span>
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="s1">&#39;mnt_grp&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="s1">&#39;Measurement Group to &#39;</span>
-                                                     <span class="s1">&#39;use&#39;</span><span class="p">]</span>
-
+        <span class="p">[</span><span class="s1">&#39;countable_elem&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Countable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span>
+         <span class="s1">&#39;Countable element e.g. MeasurementGroup or ExpChannel&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">mnt_grp</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">mnt_grp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span><span class="p">,</span>
-                                       <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">countable_elem</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">countable_elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">UnknownEnv</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span> <span class="o">=</span> <span class="n">mnt_grp</span><span class="o">.</span><span class="n">name</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="n">mnt_grp</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span> <span class="o">=</span> <span class="n">countable_elem</span><span class="o">.</span><span class="n">name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="o">=</span> <span class="n">countable_elem</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">mnt_grp</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;The MntGrp </span><span class="si">{}</span><span class="s1"> is not defined or has invalid &#39;</span>
-                       <span class="s1">&#39;value&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">countable_elem</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Unknown countable </span><span class="si">{0}</span><span class="s1"> element. Use macro parameter or&#39;</span>
+                   <span class="s1">&#39;ActiveMntGrp environment variable&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                                    <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="k">return</span>
         <span class="c1"># integration time has to be accessible from with in the hooks</span>
         <span class="c1"># so declare it also instance attribute</span>
@@ -824,21 +838,24 @@
         <span class="k">for</span> <span class="n">preAcqHook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-acq&#39;</span><span class="p">):</span>
             <span class="n">preAcqHook</span><span class="p">()</span>
 
-        <span class="n">state</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
+        <span class="n">state</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">postAcqHook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-acq&#39;</span><span class="p">):</span>
             <span class="n">postAcqHook</span><span class="p">()</span>
 
         <span class="n">names</span><span class="p">,</span> <span class="n">counts</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">ch_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span><span class="o">.</span><span class="n">getChannelsEnabledInfo</span><span class="p">():</span>
-            <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;  </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ch_info</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
-            <span class="n">ch_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ch_info</span><span class="o">.</span><span class="n">full_name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">ch_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;&lt;nodata&gt;&quot;</span><span class="p">)</span>
-            <span class="k">elif</span> <span class="n">ch_info</span><span class="o">.</span><span class="n">shape</span> <span class="o">&gt;</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ch_data</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ch_data</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">:</span>
+            <span class="n">meas_grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span>
+            <span class="k">for</span> <span class="n">ch_info</span> <span class="ow">in</span> <span class="n">meas_grp</span><span class="o">.</span><span class="n">getChannelsEnabledInfo</span><span class="p">():</span>
+                <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;  </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">ch_info</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+                <span class="n">ch_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ch_info</span><span class="o">.</span><span class="n">full_name</span><span class="p">)</span>
+                <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_value_to_repr</span><span class="p">(</span><span class="n">ch_data</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span>
+            <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;  </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">channel</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_value_to_repr</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+            <span class="c1"># to be compatible with measurement group count</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">channel</span><span class="o">.</span><span class="n">full_name</span><span class="p">:</span> <span class="n">data</span><span class="p">}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setData</span><span class="p">(</span><span class="n">Record</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
         <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">([</span><span class="n">counts</span><span class="p">],</span> <span class="n">row_head_str</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">row_head_fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%*s</span><span class="s1">&#39;</span><span class="p">,</span>
                       <span class="n">col_sep</span><span class="o">=</span><span class="s1">&#39;  =  &#39;</span><span class="p">)</span>
@@ -849,52 +866,63 @@
 <div class="viewcode-block" id="uct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.uct">[docs]</a><span class="k">class</span> <span class="nc">uct</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Count on the active measurement group and update&quot;&quot;&quot;</span>
 
-    <span class="n">env</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">,)</span>
-
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="s1">&#39;mnt_grp&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="s1">&#39;Measurement Group to &#39;</span>
-                                                     <span class="s1">&#39;use&#39;</span><span class="p">]</span>
-
+        <span class="p">[</span><span class="s1">&#39;countable_elem&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Countable</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span>
+         <span class="s1">&#39;Countable element e.g. MeasurementGroup or ExpChannel&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">mnt_grp</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">countable_elem</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_value</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="k">if</span> <span class="n">mnt_grp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span><span class="p">,</span>
-                                       <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">countable_elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">UnknownEnv</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span> <span class="o">=</span> <span class="n">mnt_grp</span><span class="o">.</span><span class="n">name</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="n">mnt_grp</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span> <span class="o">=</span> <span class="n">countable_elem</span><span class="o">.</span><span class="n">name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="o">=</span> <span class="n">countable_elem</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
 
-        <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span><span class="o">.</span><span class="n">getChannelLabels</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">channel_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span><span class="o">.</span><span class="n">getChannels</span><span class="p">():</span>
-            <span class="n">full_name</span> <span class="o">=</span> <span class="n">channel_info</span><span class="p">[</span><span class="s2">&quot;full_name&quot;</span><span class="p">]</span>
-            <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">:</span>
+            <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">getChannelLabels</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">channel_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">getChannels</span><span class="p">():</span>
+                <span class="n">full_name</span> <span class="o">=</span> <span class="n">channel_info</span><span class="p">[</span><span class="s2">&quot;full_name&quot;</span><span class="p">]</span>
+                <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">getValue</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">value</span><span class="p">])</span>
+                <span class="n">valueObj</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">getValueObj_</span><span class="p">()</span>
+                <span class="n">valueObj</span><span class="o">.</span><span class="n">subscribeEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counterChanged</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">names</span> <span class="o">=</span> <span class="p">[[</span><span class="n">channel</span><span class="o">.</span><span class="n">getName</span><span class="p">()]]</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">full_name</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
             <span class="n">value</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">getValue</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">value</span><span class="p">])</span>
             <span class="n">valueObj</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">getValueObj_</span><span class="p">()</span>
             <span class="n">valueObj</span><span class="o">.</span><span class="n">subscribeEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">counterChanged</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">mnt_grp</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;The MntGrp </span><span class="si">{}</span><span class="s1"> is not defined or has invalid &#39;</span>
-                       <span class="s1">&#39;value&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp_name</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">countable_elem</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Unknown countable </span><span class="si">{0}</span><span class="s1"> element. Use macro parameter or&#39;</span>
+                   <span class="s1">&#39;ActiveMntGrp environment variable&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                                    <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="k">return</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_value</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setData</span><span class="p">(</span><span class="n">Record</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
@@ -1163,7 +1191,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

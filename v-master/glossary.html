@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Glossary &mdash; sardana 2.7.2 documentation</title>
+  <title>Glossary &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,8 +33,8 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="index.html"/>
-        <link rel="up" title="Sardana 2.7 Documentation" href="docs.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="index.html"/>
+        <link rel="up" title="Sardana 2.8 Documentation" href="docs.html"/>
         <link rel="next" title="Docs for other Sardana versions" href="other_versions.html"/>
         <link rel="prev" title="Sardana Enhancement Proposals" href="sep/index.html"/> 
 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -131,7 +131,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-          <li><a href="docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
     <li>Glossary</li>
       <li class="wy-breadcrumbs-aside">
@@ -255,7 +255,7 @@ an expression is an accumulation of expression elements like literals,
 names, attribute access, operators or function calls which all return a
 value.  In contrast to many other languages, not all language constructs
 are expressions.  There are also <a class="reference internal" href="#term-statement"><span class="xref std std-term">statement</span></a>s which cannot be used
-as expressions, such as <a class="reference external" href="https://docs.python.org/dev/library/functions.html#print" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">print()</span></code></a> or <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a>.  Assignments
+as expressions, such as <a class="reference external" href="https://docs.python.org/dev/library/functions.html#print" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">print()</span></code></a> or <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a>.  Assignments
 are also statements, not expressions.</dd>
 <dt id="term-function">function</dt>
 <dd>A series of statements which returns some value to a caller. It can also
@@ -263,17 +263,17 @@ be passed zero or more arguments which may be used in the execution of
 the body. See also <a class="reference internal" href="#term-argument"><span class="xref std std-term">argument</span></a> and <a class="reference internal" href="#term-method"><span class="xref std std-term">method</span></a>.</dd>
 <dt id="term-generator">generator</dt>
 <dd>A function which returns an iterator.  It looks like a normal function
-except that it contains <a class="reference external" href="https://docs.python.org/dev/reference/simple_stmts.html#yield" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">yield</span></code></a> statements for producing a series
+except that it contains <a class="reference external" href="https://docs.python.org/dev/reference/simple_stmts.html#yield" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">yield</span></code></a> statements for producing a series
 a values usable in a for-loop or that can be retrieved one at a time with
-the <a class="reference external" href="https://docs.python.org/dev/library/functions.html#next" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">next()</span></code></a> function. Each <a class="reference external" href="https://docs.python.org/dev/reference/simple_stmts.html#yield" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">yield</span></code></a> temporarily suspends
+the <a class="reference external" href="https://docs.python.org/dev/library/functions.html#next" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">next()</span></code></a> function. Each <a class="reference external" href="https://docs.python.org/dev/reference/simple_stmts.html#yield" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">yield</span></code></a> temporarily suspends
 processing, remembering the location execution state (including local
 variables and pending try-statements).  When the generator resumes, it
 picks-up where it left-off (in contrast to functions which start fresh on
 every invocation).</dd>
 <dt id="index-0"><span id="term-generator-expression"></span>generator expression</dt>
 <dd><p class="first">An expression that returns an iterator.  It looks like a normal expression
-followed by a <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a> expression defining a loop variable, range,
-and an optional <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a> expression.  The combined expression
+followed by a <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a> expression defining a loop variable, range,
+and an optional <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a> expression.  The combined expression
 generates values for an enclosing function:</p>
 <div class="last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">sum</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>       <span class="c1"># sum of squares 0, 1, 4, ... 81</span>
 <span class="go">285</span>
@@ -291,6 +291,9 @@ visual indicators such as secondary notation, as opposed to text-based
 interfaces (<a class="reference internal" href="#term-cli"><span class="xref std std-term">CLI</span></a>), typed command labels or text navigation.
 The actions are usually performed through direct manipulation of the
 graphical elements.</dd>
+<dt id="term-ide">IDE</dt>
+<dd>Integrated Development Environment is a software application that provides
+comprehensive facilities to computer programmers for software development.</dd>
 <dt id="term-interactive">interactive</dt>
 <dd>Python has an interactive interpreter which means you can enter
 statements and expressions at the interpreter prompt, immediately
@@ -309,50 +312,50 @@ slowly.  See also <a class="reference internal" href="#term-interactive"><span c
 <dt id="term-iterable">iterable</dt>
 <dd>An object capable of returning its members one at a
 time. Examples of iterables include all sequence types (such as
-<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>, and <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></a>) and some non-sequence
-types like <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> and <code class="xref py py-class docutils literal"><span class="pre">file</span></code> and objects of any classes you
+<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>, and <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></a>) and some non-sequence
+types like <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> and <code class="xref py py-class docutils literal"><span class="pre">file</span></code> and objects of any classes you
 define with an <code class="xref py py-meth docutils literal"><span class="pre">__iter__()</span></code> or <code class="xref py py-meth docutils literal"><span class="pre">__getitem__()</span></code> method.  Iterables
-can be used in a <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a> loop and in many other places where a
-sequence is needed (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#zip" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">zip()</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/functions.html#map" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">map()</span></code></a>, ...).  When an iterable
-object is passed as an argument to the built-in function <a class="reference external" href="https://docs.python.org/dev/library/functions.html#iter" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">iter()</span></code></a>, it
+can be used in a <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a> loop and in many other places where a
+sequence is needed (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#zip" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">zip()</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/functions.html#map" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">map()</span></code></a>, ...).  When an iterable
+object is passed as an argument to the built-in function <a class="reference external" href="https://docs.python.org/dev/library/functions.html#iter" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">iter()</span></code></a>, it
 returns an iterator for the object.  This iterator is good for one pass
 over the set of values.  When using iterables, it is usually not necessary
-to call <a class="reference external" href="https://docs.python.org/dev/library/functions.html#iter" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">iter()</span></code></a> or deal with iterator objects yourself.  The <code class="docutils literal"><span class="pre">for</span></code>
+to call <a class="reference external" href="https://docs.python.org/dev/library/functions.html#iter" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">iter()</span></code></a> or deal with iterator objects yourself.  The <code class="docutils literal"><span class="pre">for</span></code>
 statement does that automatically for you, creating a temporary unnamed
 variable to hold the iterator for the duration of the loop.  See also
 <a class="reference internal" href="#term-iterator"><span class="xref std std-term">iterator</span></a>, <a class="reference internal" href="#term-sequence"><span class="xref std std-term">sequence</span></a>, and <a class="reference internal" href="#term-generator"><span class="xref std std-term">generator</span></a>.</dd>
 <dt id="term-iterator">iterator</dt>
 <dd><p class="first">An object representing a stream of data.  Repeated calls to the iterator&#8217;s
 <code class="xref py py-meth docutils literal"><span class="pre">next()</span></code> method return successive items in the stream.  When no more
-data are available a <a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#StopIteration" title="(in Python v3.8)"><code class="xref py py-exc docutils literal"><span class="pre">StopIteration</span></code></a> exception is raised instead.  At
+data are available a <a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#StopIteration" title="(in Python v3.9)"><code class="xref py py-exc docutils literal"><span class="pre">StopIteration</span></code></a> exception is raised instead.  At
 this point, the iterator object is exhausted and any further calls to its
-<code class="xref py py-meth docutils literal"><span class="pre">next()</span></code> method just raise <a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#StopIteration" title="(in Python v3.8)"><code class="xref py py-exc docutils literal"><span class="pre">StopIteration</span></code></a> again.  Iterators are
+<code class="xref py py-meth docutils literal"><span class="pre">next()</span></code> method just raise <a class="reference external" href="https://docs.python.org/dev/library/exceptions.html#StopIteration" title="(in Python v3.9)"><code class="xref py py-exc docutils literal"><span class="pre">StopIteration</span></code></a> again.  Iterators are
 required to have an <code class="xref py py-meth docutils literal"><span class="pre">__iter__()</span></code> method that returns the iterator
 object itself so every iterator is also iterable and may be used in most
 places where other iterables are accepted.  One notable exception is code
 which attempts multiple iteration passes.  A container object (such as a
-<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a>) produces a fresh new iterator each time you pass it to the
-<a class="reference external" href="https://docs.python.org/dev/library/functions.html#iter" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">iter()</span></code></a> function or use it in a <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a> loop.  Attempting this
+<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a>) produces a fresh new iterator each time you pass it to the
+<a class="reference external" href="https://docs.python.org/dev/library/functions.html#iter" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">iter()</span></code></a> function or use it in a <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a> loop.  Attempting this
 with an iterator will just return the same exhausted iterator object used
 in the previous iteration pass, making it appear like an empty container.</p>
-<p class="last">More information can be found in <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#typeiter" title="(in Python v3.8)"><span>Iterator Types</span></a>.</p>
+<p class="last">More information can be found in <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#typeiter" title="(in Python v3.9)"><span>Iterator Types</span></a>.</p>
 </dd>
 <dt id="term-key-function">key function</dt>
 <dd><p class="first">A key function or collation function is a callable that returns a value
-used for sorting or ordering.  For example, <a class="reference external" href="https://docs.python.org/dev/library/locale.html#locale.strxfrm" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">locale.strxfrm()</span></code></a> is
+used for sorting or ordering.  For example, <a class="reference external" href="https://docs.python.org/dev/library/locale.html#locale.strxfrm" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">locale.strxfrm()</span></code></a> is
 used to produce a sort key that is aware of locale specific sort
 conventions.</p>
 <p>A number of tools in Python accept key functions to control how elements
-are ordered or grouped.  They include <a class="reference external" href="https://docs.python.org/dev/library/functions.html#min" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">min()</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/functions.html#max" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">max()</span></code></a>,
-<a class="reference external" href="https://docs.python.org/dev/library/functions.html#sorted" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">sorted()</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list.sort" title="(in Python v3.8)"><code class="xref py py-meth docutils literal"><span class="pre">list.sort()</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/heapq.html#heapq.nsmallest" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">heapq.nsmallest()</span></code></a>,
-<a class="reference external" href="https://docs.python.org/dev/library/heapq.html#heapq.nlargest" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">heapq.nlargest()</span></code></a>, and <a class="reference external" href="https://docs.python.org/dev/library/itertools.html#itertools.groupby" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">itertools.groupby()</span></code></a>.</p>
+are ordered or grouped.  They include <a class="reference external" href="https://docs.python.org/dev/library/functions.html#min" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">min()</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/functions.html#max" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">max()</span></code></a>,
+<a class="reference external" href="https://docs.python.org/dev/library/functions.html#sorted" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">sorted()</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list.sort" title="(in Python v3.9)"><code class="xref py py-meth docutils literal"><span class="pre">list.sort()</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/heapq.html#heapq.nsmallest" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">heapq.nsmallest()</span></code></a>,
+<a class="reference external" href="https://docs.python.org/dev/library/heapq.html#heapq.nlargest" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">heapq.nlargest()</span></code></a>, and <a class="reference external" href="https://docs.python.org/dev/library/itertools.html#itertools.groupby" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">itertools.groupby()</span></code></a>.</p>
 <p class="last">There are several ways to create a key function.  For example. the
-<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str.lower" title="(in Python v3.8)"><code class="xref py py-meth docutils literal"><span class="pre">str.lower()</span></code></a> method can serve as a key function for case insensitive
+<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str.lower" title="(in Python v3.9)"><code class="xref py py-meth docutils literal"><span class="pre">str.lower()</span></code></a> method can serve as a key function for case insensitive
 sorts.  Alternatively, an ad-hoc key function can be built from a
-<a class="reference external" href="https://docs.python.org/dev/reference/expressions.html#lambda" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">lambda</span></code></a> expression such as <code class="docutils literal"><span class="pre">lambda</span> <span class="pre">r:</span> <span class="pre">(r[0],</span> <span class="pre">r[2])</span></code>.  Also,
-the <a class="reference external" href="https://docs.python.org/dev/library/operator.html#module-operator" title="(in Python v3.8)"><code class="xref py py-mod docutils literal"><span class="pre">operator</span></code></a> module provides three key function constructors:
-<a class="reference external" href="https://docs.python.org/dev/library/operator.html#operator.attrgetter" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">attrgetter()</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/operator.html#operator.itemgetter" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">itemgetter()</span></code></a>, and
-<a class="reference external" href="https://docs.python.org/dev/library/operator.html#operator.methodcaller" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">methodcaller()</span></code></a>.  See the <a class="reference external" href="https://docs.python.org/dev/howto/sorting.html#sortinghowto" title="(in Python v3.8)"><span class="xref std std-ref">Sorting HOW TO</span></a> for examples of how to create and use key functions.</p>
+<a class="reference external" href="https://docs.python.org/dev/reference/expressions.html#lambda" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">lambda</span></code></a> expression such as <code class="docutils literal"><span class="pre">lambda</span> <span class="pre">r:</span> <span class="pre">(r[0],</span> <span class="pre">r[2])</span></code>.  Also,
+the <a class="reference external" href="https://docs.python.org/dev/library/operator.html#module-operator" title="(in Python v3.9)"><code class="xref py py-mod docutils literal"><span class="pre">operator</span></code></a> module provides three key function constructors:
+<a class="reference external" href="https://docs.python.org/dev/library/operator.html#operator.attrgetter" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">attrgetter()</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/operator.html#operator.itemgetter" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">itemgetter()</span></code></a>, and
+<a class="reference external" href="https://docs.python.org/dev/library/operator.html#operator.methodcaller" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">methodcaller()</span></code></a>.  See the <a class="reference external" href="https://docs.python.org/dev/howto/sorting.html#sortinghowto" title="(in Python v3.9)"><span class="xref std std-ref">Sorting HOW TO</span></a> for examples of how to create and use key functions.</p>
 </dd>
 <dt id="term-keyword-argument">keyword argument</dt>
 <dd>Arguments which are preceded with a <code class="docutils literal"><span class="pre">variable_name=</span></code> in the call.
@@ -371,7 +374,7 @@ elements are O(1).</dd>
 <dd>A compact way to process all or part of the elements in a sequence and
 return a list with the results.  <code class="docutils literal"><span class="pre">result</span> <span class="pre">=</span> <span class="pre">[&quot;0x%02x&quot;</span> <span class="pre">%</span> <span class="pre">x</span> <span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span>
 <span class="pre">range(256)</span> <span class="pre">if</span> <span class="pre">x</span> <span class="pre">%</span> <span class="pre">2</span> <span class="pre">==</span> <span class="pre">0]</span></code> generates a list of strings containing
-even hex numbers (0x..) in the range from 0 to 255. The <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a>
+even hex numbers (0x..) in the range from 0 to 255. The <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a>
 clause is optional.  If omitted, all elements in <code class="docutils literal"><span class="pre">range(256)</span></code> are
 processed.</dd>
 <dt id="term-mca">MCA</dt>
@@ -386,11 +389,11 @@ See <a class="reference internal" href="#term-function"><span class="xref std st
 dictionaries.  There are the local, global and built-in namespaces as well
 as nested namespaces in objects (in methods).  Namespaces support
 modularity by preventing naming conflicts.  For instance, the functions
-<code class="xref py py-func docutils literal"><span class="pre">__builtin__.open()</span></code> and <a class="reference external" href="https://docs.python.org/dev/library/os.html#os.open" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">os.open()</span></code></a> are distinguished by their
+<code class="xref py py-func docutils literal"><span class="pre">__builtin__.open()</span></code> and <a class="reference external" href="https://docs.python.org/dev/library/os.html#os.open" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">os.open()</span></code></a> are distinguished by their
 namespaces.  Namespaces also aid readability and maintainability by making
 it clear which module implements a function.  For instance, writing
-<a class="reference external" href="https://docs.python.org/dev/library/random.html#random.seed" title="(in Python v3.8)"><code class="xref py py-func docutils literal"><span class="pre">random.seed()</span></code></a> or <code class="xref py py-func docutils literal"><span class="pre">itertools.izip()</span></code> makes it clear that those
-functions are implemented by the <a class="reference external" href="https://docs.python.org/dev/library/random.html#module-random" title="(in Python v3.8)"><code class="xref py py-mod docutils literal"><span class="pre">random</span></code></a> and <a class="reference external" href="https://docs.python.org/dev/library/itertools.html#module-itertools" title="(in Python v3.8)"><code class="xref py py-mod docutils literal"><span class="pre">itertools</span></code></a>
+<a class="reference external" href="https://docs.python.org/dev/library/random.html#random.seed" title="(in Python v3.9)"><code class="xref py py-func docutils literal"><span class="pre">random.seed()</span></code></a> or <code class="xref py py-func docutils literal"><span class="pre">itertools.izip()</span></code> makes it clear that those
+functions are implemented by the <a class="reference external" href="https://docs.python.org/dev/library/random.html#module-random" title="(in Python v3.9)"><code class="xref py py-mod docutils literal"><span class="pre">random</span></code></a> and <a class="reference external" href="https://docs.python.org/dev/library/itertools.html#module-itertools" title="(in Python v3.9)"><code class="xref py py-mod docutils literal"><span class="pre">itertools</span></code></a>
 modules, respectively.</dd>
 <dt id="term-nested-scope">nested scope</dt>
 <dd>The ability to refer to a variable in an enclosing definition.  For
@@ -400,8 +403,8 @@ reference and not for assignment which will always write to the innermost
 scope.  In contrast, local variables both read and write in the innermost
 scope.  Likewise, global variables read and write to the global namespace.</dd>
 <dt id="term-new-style-class">new-style class</dt>
-<dd>Any class which inherits from <a class="reference external" href="https://docs.python.org/dev/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a>.  This includes all built-in
-types like <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a> and <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a>.  Only new-style classes can
+<dd>Any class which inherits from <a class="reference external" href="https://docs.python.org/dev/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a>.  This includes all built-in
+types like <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a> and <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a>.  Only new-style classes can
 use Python&#8217;s newer, versatile features like <code class="xref py py-attr docutils literal"><span class="pre">__slots__</span></code>,
 descriptors, properties, and <code class="xref py py-meth docutils literal"><span class="pre">__getattribute__()</span></code>.</dd>
 <dt id="term-object">object</dt>
@@ -444,7 +447,7 @@ abbreviated &#8220;Py3k&#8221;.</dd>
 <dd><p class="first">An idea or piece of code which closely follows the most common idioms
 of the Python language, rather than implementing code using concepts
 common to other languages.  For example, a common idiom in Python is
-to loop over all elements of an iterable using a <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a>
+to loop over all elements of an iterable using a <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a>
 statement.  Many other languages don&#8217;t have this type of construct, so
 people unfamiliar with Python sometimes use a numerical counter instead:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">food</span><span class="p">)):</span>
@@ -471,8 +474,8 @@ industrial, infrastructure, or facility-based processes.</dd>
 <dd>An <a class="reference internal" href="#term-iterable"><span class="xref std std-term">iterable</span></a> which supports efficient element access using integer
 indices via the <code class="xref py py-meth docutils literal"><span class="pre">__getitem__()</span></code> special method and defines a
 <code class="xref py py-meth docutils literal"><span class="pre">len()</span></code> method that returns the length of the sequence.
-Some built-in sequence types are <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>,
-<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></a>, and <code class="xref py py-class docutils literal"><span class="pre">unicode</span></code>. Note that <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> also
+Some built-in sequence types are <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">list</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">str</span></code></a>,
+<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></a>, and <code class="xref py py-class docutils literal"><span class="pre">unicode</span></code>. Note that <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> also
 supports <code class="xref py py-meth docutils literal"><span class="pre">__getitem__()</span></code> and <code class="xref py py-meth docutils literal"><span class="pre">__len__()</span></code>, but is considered a
 mapping rather than a sequence because the lookups use arbitrary
 <a class="reference external" href="https://docs.scipy.org/doc/numpy/glossary.html#term-immutable" title="(in NumPy v1.16)"><span class="xref std std-term">immutable</span></a> keys rather than integers.</dd>
@@ -480,12 +483,12 @@ mapping rather than a sequence because the lookups use arbitrary
 <dd>An object usually containing a portion of a <a class="reference internal" href="#term-sequence"><span class="xref std std-term">sequence</span></a>.  A slice is
 created using the subscript notation, <code class="docutils literal"><span class="pre">[]</span></code> with colons between numbers
 when several are given, such as in <code class="docutils literal"><span class="pre">variable_name[1:3:5]</span></code>.  The bracket
-(subscript) notation uses <a class="reference external" href="https://docs.python.org/dev/library/functions.html#slice" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">slice</span></code></a> objects internally (or in older
+(subscript) notation uses <a class="reference external" href="https://docs.python.org/dev/library/functions.html#slice" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">slice</span></code></a> objects internally (or in older
 versions, <code class="xref py py-meth docutils literal"><span class="pre">__getslice__()</span></code> and <code class="xref py py-meth docutils literal"><span class="pre">__setslice__()</span></code>).</dd>
 <dt id="term-statement">statement</dt>
 <dd>A statement is part of a suite (a &#8220;block&#8221; of code).  A statement is either
 an <a class="reference internal" href="#term-expression"><span class="xref std std-term">expression</span></a> or a one of several constructs with a keyword, such
-as <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#while" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">while</span></code></a> or <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.8)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a>.</dd>
+as <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#if" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">if</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#while" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">while</span></code></a> or <a class="reference external" href="https://docs.python.org/dev/reference/compound_stmts.html#for" title="(in Python v3.9)"><code class="xref std std-keyword docutils literal"><span class="pre">for</span></code></a>.</dd>
 <dt id="term-stepper">stepper</dt>
 <dd>A stepper motor (or step motor) is a brushless DC electric motor that
 divides a full rotation into a number of equal steps. The motor&#8217;s
@@ -560,7 +563,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

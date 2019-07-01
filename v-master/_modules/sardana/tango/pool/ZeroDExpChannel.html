@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.tango.pool.ZeroDExpChannel &mdash; sardana 2.7.2 documentation</title>
+  <title>sardana.tango.pool.ZeroDExpChannel &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -240,10 +240,6 @@
 
         <span class="n">name</span> <span class="o">=</span> <span class="n">event_type</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="n">attr_name</span> <span class="o">=</span> <span class="n">name</span>
-        <span class="c1"># TODO: remove this condition when Data attribute will be substituted</span>
-        <span class="c1"># by ValueBuffer</span>
-        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;valuebuffer&quot;</span><span class="p">:</span>
-            <span class="n">attr_name</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span>
         <span class="n">attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_device_attr</span><span class="p">()</span><span class="o">.</span><span class="n">get_attr_by_name</span><span class="p">(</span><span class="n">attr_name</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;state&quot;</span><span class="p">:</span>
@@ -304,7 +300,7 @@
         <span class="n">attrs</span> <span class="o">=</span> <span class="n">PoolExpChannelDevice</span><span class="o">.</span><span class="n">initialize_dynamic_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="n">detect_evts</span> <span class="o">=</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span>
-        <span class="n">non_detect_evts</span> <span class="o">=</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span>
+        <span class="n">non_detect_evts</span> <span class="o">=</span> <span class="s2">&quot;valuebuffer&quot;</span><span class="p">,</span>
 
         <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">detect_evts</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
@@ -339,12 +335,6 @@
 <div class="viewcode-block" id="ZeroDExpChannel.Start"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/ZeroDExpChannel.html#sardana.tango.pool.ZeroDExpChannel.ZeroDExpChannel.Start">[docs]</a>    <span class="k">def</span> <span class="nf">Start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">zerod</span><span class="o">.</span><span class="n">start_acquisition</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="ZeroDExpChannel.read_ValueBuffer"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/ZeroDExpChannel.html#sardana.tango.pool.ZeroDExpChannel.ZeroDExpChannel.read_ValueBuffer">[docs]</a>    <span class="k">def</span> <span class="nf">read_ValueBuffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ValueBuffer attribute is deprecated since version 2.3.0. &quot;</span>
-               <span class="s2">&quot;Use AccumulationBuffer attribute instead.&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zerod</span><span class="o">.</span><span class="n">get_accumulation_buffer</span><span class="p">())</span></div>
-
 <div class="viewcode-block" id="ZeroDExpChannel.read_AccumulationBuffer"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/ZeroDExpChannel.html#sardana.tango.pool.ZeroDExpChannel.ZeroDExpChannel.read_AccumulationBuffer">[docs]</a>    <span class="k">def</span> <span class="nf">read_AccumulationBuffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">zerod</span><span class="o">.</span><span class="n">get_accumulation_buffer</span><span class="p">())</span></div>
 
@@ -363,7 +353,6 @@
     <span class="n">is_Value_allowed</span> <span class="o">=</span> <span class="n">_is_allowed</span>
     <span class="n">is_CurrentValue_allowed</span> <span class="o">=</span> <span class="n">_is_allowed</span>
     <span class="n">is_AccumulationType_allowed</span> <span class="o">=</span> <span class="n">_is_allowed</span>
-    <span class="n">is_ValueBuffer_allowed</span> <span class="o">=</span> <span class="n">_is_allowed</span>
     <span class="n">is_AccumulationBuffer_allowed</span> <span class="o">=</span> <span class="n">_is_allowed</span>
     <span class="n">is_TimeBuffer_allowed</span> <span class="o">=</span> <span class="n">_is_allowed</span></div>
 
@@ -392,7 +381,6 @@
 
     <span class="c1">#    Attribute definitions</span>
     <span class="n">attr_list</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;ValueBuffer&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevDouble</span><span class="p">,</span> <span class="n">SPECTRUM</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="mi">16</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">]],</span>  <span class="c1"># deprecated</span>
         <span class="s1">&#39;AccumulationBuffer&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevDouble</span><span class="p">,</span> <span class="n">SPECTRUM</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="mi">16</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">]],</span>
         <span class="s1">&#39;TimeBuffer&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevDouble</span><span class="p">,</span> <span class="n">SPECTRUM</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="mi">16</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">]],</span>
         <span class="s1">&#39;AccumulationType&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevString</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">],</span>
@@ -405,7 +393,6 @@
     <span class="n">standard_attr_list</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;Value&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">_DFT_VALUE_TYPE</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="p">],</span>
                   <span class="p">{</span><span class="s1">&#39;abs_change&#39;</span><span class="p">:</span> <span class="s1">&#39;1.0&#39;</span><span class="p">,</span> <span class="p">}],</span>
-        <span class="s1">&#39;Data&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevString</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ</span><span class="p">]]</span>  <span class="c1"># TODO: think about DevEncoded</span>
     <span class="p">}</span>
     <span class="n">standard_attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolExpChannelDeviceClass</span><span class="o">.</span><span class="n">standard_attr_list</span><span class="p">)</span>
 
@@ -448,7 +435,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

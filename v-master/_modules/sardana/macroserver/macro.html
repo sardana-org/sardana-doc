@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.macro &mdash; sardana 2.7.2 documentation</title>
+  <title>sardana.macroserver.macro &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -403,6 +403,12 @@
                 <span class="s1">&#39;the hooks must be passed as a list&lt;callable,list&lt;str&gt;&gt;&#39;</span><span class="p">)</span>
             <span class="k">return</span>
 
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;This macro defines its own hooks. Previously defined &quot;</span>
+                   <span class="s2">&quot;hooks, including the general ones, would be only called &quot;</span>
+                   <span class="s2">&quot;if these own hooks were added using the appendHook &quot;</span>
+                   <span class="s2">&quot;method or appended to the self.hooks.&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="c1"># store self._hooks, making sure it is of type:</span>
         <span class="c1"># list&lt;callable,list&lt;str&gt;&gt;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2665,7 +2671,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

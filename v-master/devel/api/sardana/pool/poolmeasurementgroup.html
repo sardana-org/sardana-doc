@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>poolmeasurementgroup &mdash; sardana 2.7.2 documentation</title>
+  <title>poolmeasurementgroup &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../../../index.html"/>
         <link rel="up" title="pool" href="../pool.html"/>
         <link rel="next" title="poolmetacontroller" href="poolmetacontroller.html"/>
         <link rel="prev" title="poolioregister" href="poolioregister.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -160,7 +160,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../../../../docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="../../../../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
           <li><a href="../../../index.html">Developer&#8217;s Guide</a> &raquo;</li>
       
@@ -490,7 +490,7 @@ Provide backwards compatibility for starts without previous prepare.</p>
 <dl class="class">
 <dt id="sardana.pool.poolmeasurementgroup.ConfigurationItem">
 <em class="property">class </em><code class="descname">ConfigurationItem</code><span class="sig-paren">(</span><em>element</em>, <em>attrs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#ConfigurationItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.ConfigurationItem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/dev/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/dev/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <p>Container of configuration attributes related to a given element.</p>
 <p>Wrap an element to pretend its API.
 Manage the element&#8217;s configuration.
@@ -551,6 +551,12 @@ deemed necessary by the core developers.</p>
 <dt id="sardana.pool.poolmeasurementgroup.ControllerConfiguration.add_channel">
 <code class="descname">add_channel</code><span class="sig-paren">(</span><em>channel_item</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#ControllerConfiguration.add_channel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.ControllerConfiguration.add_channel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Aggregate a channel configuration item.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.pool.poolmeasurementgroup.ControllerConfiguration.remove_channel">
+<code class="descname">remove_channel</code><span class="sig-paren">(</span><em>channel_item</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#ControllerConfiguration.remove_channel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.ControllerConfiguration.remove_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a channel configuration item.</p>
 </dd></dl>
 
 <dl class="method">
@@ -712,7 +718,7 @@ deemed necessary by the core developers.</p>
 <dl class="class">
 <dt id="sardana.pool.poolmeasurementgroup.MeasurementConfiguration">
 <em class="property">class </em><code class="descname">MeasurementConfiguration</code><span class="sig-paren">(</span><em>parent=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#MeasurementConfiguration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.MeasurementConfiguration" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/dev/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/dev/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
 <p>Configuration of a measurement.</p>
 <p>Accepts import and export from/to a serializable data structure (based on
 dictionaries/lists and strings).
@@ -782,12 +788,12 @@ whether these are enabled/disabled.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>acq_synch</strong> (<a class="reference internal" href="pooldefs.html#sardana.pool.pooldefs.AcqSynch" title="sardana.pool.pooldefs.AcqSynch"><code class="xref py py-class docutils literal"><span class="pre">AcqSynch</span></code></a>) &#8211; (optional) filter controller based on acquisition
 synchronization</li>
-<li><strong>enabled</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a> or <a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) &#8211; <p>(optional) filter controllers whether these are
+<li><strong>enabled</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a> or <a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) &#8211; <p>(optional) filter controllers whether these are
 enabled/disabled:</p>
 <ul>
-<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">True</span></code></a> - enabled only</li>
-<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#False" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> - disabled only</li>
-<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> - all</li>
+<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#True" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">True</span></code></a> - enabled only</li>
+<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#False" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> - disabled only</li>
+<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> - all</li>
 </ul>
 </li>
 </ul>
@@ -812,12 +818,12 @@ enabled/disabled:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>enabled</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a> or <a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) &#8211; <p>(optional) filter controllers whether these are
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>enabled</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a> or <a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) &#8211; <p>(optional) filter controllers whether these are
 enabled/disabled:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">True</span></code></a> - enabled only</li>
-<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#False" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> - disabled only</li>
-<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> - all</li>
+<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#True" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">True</span></code></a> - enabled only</li>
+<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#False" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> - disabled only</li>
+<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> - all</li>
 </ul>
 </td>
 </tr>
@@ -838,12 +844,12 @@ enabled/disabled:</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>enabled</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a> or <a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) &#8211; <p>(optional) filter controllers whether these are
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>enabled</strong> (<a class="reference external" href="https://docs.python.org/dev/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">bool</span></code></a> or <a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a>) &#8211; <p>(optional) filter controllers whether these are
 enabled/disabled:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">True</span></code></a> - enabled only</li>
-<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#False" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> - disabled only</li>
-<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.8)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> - all</li>
+<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#True" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">True</span></code></a> - enabled only</li>
+<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#False" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">False</span></code></a> - disabled only</li>
+<li><a class="reference external" href="https://docs.python.org/dev/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">None</span></code></a> - all</li>
 </ul>
 </td>
 </tr>
@@ -978,7 +984,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

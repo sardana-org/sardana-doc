@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.pool.poolmeasurementgroup &mdash; sardana 2.7.2 documentation</title>
+  <title>sardana.pool.poolmeasurementgroup &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -345,6 +345,16 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_channels_disabled</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_channels_disabled</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel_item</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="ControllerConfiguration.remove_channel"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.ControllerConfiguration.remove_channel">[docs]</a>    <span class="k">def</span> <span class="nf">remove_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_item</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove a channel configuration item.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">channel_item</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">channel_item</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_channels_enabled</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">channel_item</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_channels_enabled</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_channels_disabled</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">channel_item</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="ControllerConfiguration.update_state"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.ControllerConfiguration.update_state">[docs]</a>    <span class="k">def</span> <span class="nf">update_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Update internal state based on the aggregated channels.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>
@@ -583,7 +593,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_master_monitor_sw_start</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_label</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_description</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_user_confg</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_user_config</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel_acq_synch</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_acq_synch</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">changed</span> <span class="o">=</span> <span class="kc">False</span>
@@ -728,7 +738,7 @@
 
 <div class="viewcode-block" id="MeasurementConfiguration.get_configuration_for_user"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.get_configuration_for_user">[docs]</a>    <span class="k">def</span> <span class="nf">get_configuration_for_user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return measurement configuration serializable data structure.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user_confg</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user_config</span></div>
 
 <div class="viewcode-block" id="MeasurementConfiguration.set_configuration_from_user"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.set_configuration_from_user">[docs]</a>    <span class="k">def</span> <span class="nf">set_configuration_from_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="n">to_fqdn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Load measurement configuration from serializable data structure.&quot;&quot;&quot;</span>
@@ -868,6 +878,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
                         <span class="n">ch_name</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">ch_name</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
+                        <span class="n">ch_data</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch_name</span>
                     <span class="n">channel</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_element_by_full_name</span><span class="p">(</span><span class="n">ch_name</span><span class="p">)</span>
                 <span class="n">ch_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fill_channel_data</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">ch_data</span><span class="p">)</span>
                 <span class="n">user_config_channel</span><span class="p">[</span><span class="n">ch_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch_data</span>
@@ -996,7 +1007,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_master_monitor_sw</span> <span class="o">=</span> <span class="n">master_monitor_sw</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_master_timer_sw_start</span> <span class="o">=</span> <span class="n">master_timer_sw_start</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_master_monitor_sw_start</span> <span class="o">=</span> <span class="n">master_monitor_sw_start</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_user_confg</span> <span class="o">=</span> <span class="n">user_config</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_user_config</span> <span class="o">=</span> <span class="n">user_config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel_acq_synch</span> <span class="o">=</span> <span class="n">channel_acq_synch</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_acq_synch</span> <span class="o">=</span> <span class="n">ctrl_acq_synch</span>
 
@@ -1013,10 +1024,10 @@
     <span class="k">def</span> <span class="nf">_fill_channel_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">channel_data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Fill channel default values for the given channel dictionary&quot;&quot;&quot;</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">name</span>
-        <span class="n">full_name</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">full_name</span>
-        <span class="n">source</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">get_source</span><span class="p">()</span>
-        <span class="n">ndim</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">ctype</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span>
+        <span class="n">full_name</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">full_name</span>
+        <span class="c1"># choose ndim</span>
+        <span class="n">ndim</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">ctype</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">:</span>
             <span class="n">ndim</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">elif</span> <span class="n">ctype</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">:</span>
@@ -1034,12 +1045,15 @@
         <span class="k">elif</span> <span class="n">ctype</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">IORegister</span><span class="p">:</span>
             <span class="n">ndim</span> <span class="o">=</span> <span class="mi">0</span>
 
+        <span class="k">if</span> <span class="n">ctype</span> <span class="o">!=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">External</span> <span class="ow">and</span> <span class="n">channel</span><span class="o">.</span><span class="n">is_referable</span><span class="p">():</span>
+            <span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="n">channel_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value_ref_enabled&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;value_ref_enabled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value_ref_enabled</span>
         <span class="c1"># Definitively should be initialized by measurement group</span>
         <span class="c1"># index MUST be here already (asserting this in the following line)</span>
         <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span>
         <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;full_name&#39;</span><span class="p">,</span> <span class="n">full_name</span><span class="p">)</span>
-        <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;source&#39;</span><span class="p">,</span> <span class="n">source</span><span class="p">)</span>
+        <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">get_source</span><span class="p">()</span>
         <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;enabled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;enabled&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
         <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
         <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;ndim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ndim</span>
@@ -1455,7 +1469,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.macros.demo &mdash; sardana 2.7.2 documentation</title>
+  <title>sardana.macroserver.macros.demo &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -311,6 +311,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Creating trigger element&quot;</span><span class="p">,</span> <span class="n">tg_name</span><span class="p">,</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">defelem</span><span class="p">(</span><span class="n">tg_name</span><span class="p">,</span> <span class="n">tg_ctrl_name</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
 
+    <span class="n">ct_ctrl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getController</span><span class="p">(</span><span class="n">ct_ctrl_name</span><span class="p">)</span>
+    <span class="n">ct_ctrl</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&quot;synchronizer&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">tg_name</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Connecting trigger/gate element&quot;</span><span class="p">,</span> <span class="n">tg_name</span><span class="p">,</span>
+               <span class="s2">&quot;with counter/timer controller&quot;</span><span class="p">,</span> <span class="n">ct_ctrl_name</span><span class="p">)</span>
+
     <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Creating IORegister controller&quot;</span><span class="p">,</span> <span class="n">ior_ctrl_name</span><span class="p">,</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">defctrl</span><span class="p">(</span><span class="s2">&quot;DummyIORController&quot;</span><span class="p">,</span> <span class="n">ior_ctrl_name</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">axis</span><span class="p">,</span> <span class="n">ior_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ior_names</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
@@ -474,7 +479,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

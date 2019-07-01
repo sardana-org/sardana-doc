@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User’s Guide &mdash; sardana 2.7.2 documentation</title>
+  <title>User’s Guide &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,10 +33,10 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../index.html"/>
-        <link rel="up" title="Sardana 2.7 Documentation" href="../docs.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../index.html"/>
+        <link rel="up" title="Sardana 2.8 Documentation" href="../docs.html"/>
         <link rel="next" title="Overview" href="overview.html"/>
-        <link rel="prev" title="Sardana 2.7 Documentation" href="../docs.html"/> 
+        <link rel="prev" title="Sardana 2.8 Documentation" href="../docs.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -99,6 +99,8 @@
 <li class="toctree-l3"><a class="reference internal" href="spock.html">Spock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="taurus/index.html">Sardana-Taurus Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scan.html">Scans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="motion.html">Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="acquisition.html">Acquisition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="diffractometer.html">Diffractometer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="adding_elements.html">Adding real elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="macro_hooks.html">Macro Hooks</a></li>
@@ -109,6 +111,7 @@
 <li class="toctree-l3"><a class="reference internal" href="configuration/index.html">Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="screenshots.html">Screenshots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://github.com/sardana-org/sardana/issues?q=is:issue+is:open+label:doc:knownbug">Known Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../devel/index.html">Developer&#8217;s Guide</a></li>
@@ -148,7 +151,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
     <li>User&#8217;s Guide</li>
       <li class="wy-breadcrumbs-aside">
@@ -172,7 +175,6 @@
 <li class="toctree-l2"><a class="reference internal" href="overview.html#what-do-we-sell-to-our-users">What do we &#8220;sell&#8221; to our users</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#starting-a-procedure">Starting a procedure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#taurus-as-a-toolkit-for-applications">Taurus as a toolkit for applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#configure-dont-program">Configure – don’t program</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#how-to-write-your-own-procedure">How to write your own procedure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#how-to-adapt-it-to-your-own-hardware">How to adapt it to your own hardware</a></li>
 <li class="toctree-l2"><a class="reference internal" href="overview.html#symbolic-sketch">Symbolic Sketch</a></li>
@@ -213,6 +215,7 @@
 <li class="toctree-l2"><a class="reference internal" href="taurus/macrobutton.html">MacroButton</a></li>
 <li class="toctree-l2"><a class="reference internal" href="taurus/sardanaeditor.html">Sardana Editor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="taurus/showscan.html">Showscan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="taurus/poolmotortv.html">PoolMotorTV</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scan.html">Scans</a><ul>
@@ -220,6 +223,12 @@
 <li class="toctree-l2"><a class="reference internal" href="scan.html#continuous-scans">Continuous scans</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scan.html#configuration">Configuration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scan.html#scan-snapshots">Scan snapshots</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="motion.html">Motion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acquisition.html">Acquisition</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="acquisition.html#experimental-channel-acquisition">Experimental channel acquisition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acquisition.html#measurement-group-acquisition">Measurement group acquisition</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="diffractometer.html">Diffractometer</a></li>
@@ -295,8 +304,11 @@
 <li class="toctree-l2"><a class="reference internal" href="faq.html#what-are-the-interfaces-to-the-macro-server-and-the-pool">What are the interfaces to the macro server and the pool?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="faq.html#what-are-the-data-file-formats-used-in-the-system-and-how-can-i-read-them">What are the data file formats used in the system and how can I read them?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="faq.html#what-is-the-file-format-of-the-configuration-files">What is the file format of the configuration files?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#how-to-access-epics-from-sardana">How to access EPICS from Sardana?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="faq.html#which-type-of-controller-should-i-choose-for-integrating-hardware-that-do-not-fit-with-any-specific-controller-type">Which type of controller should I choose for integrating hardware that do not fit with any specific controller type?</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana/issues?q=is:issue+is:open+label:doc:knownbug">Known Problems</a></li>
 </ul>
 </div>
 </div>
@@ -311,7 +323,7 @@
         <a href="overview.html" class="btn btn-neutral float-right" title="Overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../docs.html" class="btn btn-neutral" title="Sardana 2.7 Documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../docs.html" class="btn btn-neutral" title="Sardana 2.8 Documentation" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -343,7 +355,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

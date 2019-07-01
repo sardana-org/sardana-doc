@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>FAQ &mdash; sardana 2.7.2 documentation</title>
+  <title>FAQ &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../index.html"/>
         <link rel="up" title="User’s Guide" href="index.html"/>
         <link rel="next" title="Developer’s Guide" href="../devel/index.html"/>
         <link rel="prev" title="Screenshots" href="screenshots.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -99,6 +99,8 @@
 <li class="toctree-l3"><a class="reference internal" href="spock.html">Spock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="taurus/index.html">Sardana-Taurus Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scan.html">Scans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="motion.html">Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="acquisition.html">Acquisition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="diffractometer.html">Diffractometer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="adding_elements.html">Adding real elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="macro_hooks.html">Macro Hooks</a></li>
@@ -129,8 +131,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#what-are-the-interfaces-to-the-macro-server-and-the-pool">What are the interfaces to the macro server and the pool?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#what-are-the-data-file-formats-used-in-the-system-and-how-can-i-read-them">What are the data file formats used in the system and how can I read them?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#what-is-the-file-format-of-the-configuration-files">What is the file format of the configuration files?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-access-epics-from-sardana">How to access EPICS from Sardana?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#which-type-of-controller-should-i-choose-for-integrating-hardware-that-do-not-fit-with-any-specific-controller-type">Which type of controller should I choose for integrating hardware that do not fit with any specific controller type?</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference external" href="https://github.com/sardana-org/sardana/issues?q=is:issue+is:open+label:doc:knownbug">Known Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../devel/index.html">Developer&#8217;s Guide</a></li>
@@ -170,7 +175,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
           <li><a href="index.html">User&#8217;s Guide</a> &raquo;</li>
       
@@ -349,6 +354,35 @@ of tools to read it <strong>&lt;LINK&gt;</strong></li>
 <h2>What is the file format of the configuration files?<a class="headerlink" href="#what-is-the-file-format-of-the-configuration-files" title="Permalink to this headline">¶</a></h2>
 <p>The configuration files for the <a class="reference external" href="http://packages.python.org/taurus/">Taurus</a> GUI are defined here <strong>&lt;LINK&gt;</strong>.</p>
 </div>
+<div class="section" id="how-to-access-epics-from-sardana">
+<h2>How to access EPICS from Sardana?<a class="headerlink" href="#how-to-access-epics-from-sardana" title="Permalink to this headline">¶</a></h2>
+<p>Hardware integrated in <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a> can be directly accessed from Sardana via a
+controller. The controller can talk to the <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a> server using the
+python <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a> interface or the <a class="reference external" href="http://packages.python.org/taurus/">Taurus</a> interface to <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a>.
+The TaurusTimerCounterController class is distributed with sardana and
+allows the connection to any <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a> attribute giving the <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a> address
+as TaurusAttribute.</p>
+</div>
+<div class="section" id="which-type-of-controller-should-i-choose-for-integrating-hardware-that-do-not-fit-with-any-specific-controller-type">
+<h2>Which type of controller should I choose for integrating hardware that do not fit with any specific controller type?<a class="headerlink" href="#which-type-of-controller-should-i-choose-for-integrating-hardware-that-do-not-fit-with-any-specific-controller-type" title="Permalink to this headline">¶</a></h2>
+<p>Sardana controllers can be used for implementing some features that in
+principle do not fit with any kind of controller. In order to choose
+a controller class for the implementation, it is important to take into
+account some differences in the behaviour of the different type of
+controllers during an scan.</p>
+<p>The main differences between CT, ZeroD and OneD/TwoD are:</p>
+<p>1. The ZeroDController class is neither Startable nor Loadable, so the
+exposure time can not be given to the controller and no action can
+be performed at the start of the scan.
+CounterTimerController/OneDController/TwoDController classes are
+Startable and Loadable.</p>
+<p>2. The output value of ZeroD and CT is continuously read during the scan
+(functions PreReadAll/PreReadOne/ReadAll/ReadOne of the controllers classes
+of these types are continuously called). OneD/TwoD read the value only at the
+end of the acquisition time. Slow actions (like readout of images or spectra
+for further calculations) in the readout functions of ZeroD and CT can affect
+considerably the scan performance.</p>
+</div>
 </div>
 
 
@@ -393,7 +427,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

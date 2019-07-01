@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sardana development guidelines &mdash; sardana 2.7.2 documentation</title>
+  <title>Sardana development guidelines &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../index.html"/>
         <link rel="up" title="Developer’s Guide" href="index.html"/>
         <link rel="next" title="Sardana Enhancement Proposals" href="../sep/index.html"/>
         <link rel="prev" title="Controller examples" href="examples/controller_examples.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -105,9 +105,7 @@
 <li class="toctree-l3"><a class="reference internal" href="examples/examples.html">Examples</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Development guidelines</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#how-to-contribute-to-sardana">How to contribute to sardana</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#documentation">Documentation</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#coding-conventions">Coding conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-contribute-to-sardana">How to contribute to Sardana</a></li>
 </ul>
 </li>
 </ul>
@@ -148,7 +146,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
           <li><a href="index.html">Developer&#8217;s Guide</a> &raquo;</li>
       
@@ -170,107 +168,20 @@
 <span id="sardana-coding-guide"></span><h1>Sardana development guidelines<a class="headerlink" href="#sardana-development-guidelines" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>This document describes sardana from the perspective of developers. Most
+<p>This document describes Sardana from the perspective of developers. Most
 importantly, it gives information for people who want to contribute code to the
-development of sardana. So if you want to help out, read on!</p>
+development of Sardana. So if you want to help out, read on!</p>
 </div>
 <div class="section" id="how-to-contribute-to-sardana">
-<h2>How to contribute to sardana<a class="headerlink" href="#how-to-contribute-to-sardana" title="Permalink to this headline">¶</a></h2>
+<h2>How to contribute to Sardana<a class="headerlink" href="#how-to-contribute-to-sardana" title="Permalink to this headline">¶</a></h2>
 <p>Sardana development is managed with the <a class="reference external" href="https://github.com/sardana-org/sardana">Sardana github project</a>.</p>
-<p>Apart from directly contributing code, you can contribute to sardana in many
+<p>Apart from directly contributing code, you can contribute to Sardana in many
 ways, such as reporting bugs or proposing new features. In all cases you will
-probably need a github account and you are strongly encouragedto subscribe to the
+probably need a github account and you are strongly encouraged to subscribe to the
 <a class="reference external" href="https://sourceforge.net/p/sardana/mailman/">sardana-devel and sardana-users mailing lists</a>.</p>
-<p>The rest of this document will focus on how to contribute code.</p>
-</div>
-<div class="section" id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
-<p>All standalone documentation should be written in plain text (<code class="docutils literal"><span class="pre">.rst</span></code>) files
-using <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> for markup and formatting. All such
-documentation should be placed in directory <code class="file docutils literal"><span class="pre">docs/source</span></code> of the sardana
-source tree. The documentation in this location will serve as the main source
-for sardana documentation and all existing documentation should be converted
-to this format.</p>
-</div>
-<div class="section" id="coding-conventions">
-<h2>Coding conventions<a class="headerlink" href="#coding-conventions" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">In general, we try to follow the standard Python style conventions as
-described in
-<a class="reference external" href="http://www.python.org/peps/pep-0008.html">Style Guide for Python Code</a></p>
-</li>
-<li><p class="first">Code <strong>must</strong> be python 2.6 compatible</p>
-</li>
-<li><p class="first">Use 4 spaces for indentation</p>
-</li>
-<li><p class="first">In the same file, different classes should be separated by 2 lines</p>
-</li>
-<li><p class="first">use <code class="docutils literal"><span class="pre">lowercase</span></code> for module names. If possible prefix module names with the
-word <code class="docutils literal"><span class="pre">sardana</span></code> (like <code class="file docutils literal"><span class="pre">sardanautil.py</span></code>) to avoid import mistakes.</p>
-</li>
-<li><p class="first">use <code class="docutils literal"><span class="pre">CamelCase</span></code> for class names</p>
-</li>
-<li><p class="first">python module first line should be:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">python module should contain license information (see template below)</p>
-</li>
-<li><p class="first">avoid poluting namespace by making private definitions private (<code class="docutils literal"><span class="pre">__</span></code> prefix)
-or/and implementing <code class="docutils literal"><span class="pre">__all__</span></code> (see template below)</p>
-</li>
-<li><p class="first">whenever a python module can be executed from the command line, it should
-contain a <code class="docutils literal"><span class="pre">main</span></code> function and a call to it in a <code class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></code>
-like statement (see template below)</p>
-</li>
-<li><p class="first">document all code using <a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a> extension to <a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a></p>
-</li>
-</ul>
-<p>The following code can serve as a template for writing new python modules to
-sardana:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python</span>
-<span class="c1"># -*- coding: utf-8 -*-</span>
-
-<span class="c1">##############################################################################</span>
-<span class="c1">##</span>
-<span class="c1">## This file is part of Sardana</span>
-<span class="c1">##</span>
-<span class="c1">## http://www.tango-controls.org/static/sardana/latest/doc/html/index.html</span>
-<span class="c1">##</span>
-<span class="c1">## Copyright 2011 CELLS / ALBA Synchrotron, Bellaterra, Spain</span>
-<span class="c1">##</span>
-<span class="c1">## Sardana is free software: you can redistribute it and/or modify</span>
-<span class="c1">## it under the terms of the GNU Lesser General Public License as published by</span>
-<span class="c1">## the Free Software Foundation, either version 3 of the License, or</span>
-<span class="c1">## (at your option) any later version.</span>
-<span class="c1">##</span>
-<span class="c1">## Sardana is distributed in the hope that it will be useful,</span>
-<span class="c1">## but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
-<span class="c1">## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
-<span class="c1">## GNU Lesser General Public License for more details.</span>
-<span class="c1">##</span>
-<span class="c1">## You should have received a copy of the GNU Lesser General Public License</span>
-<span class="c1">## along with Sardana.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
-<span class="c1">##</span>
-<span class="c1">##############################################################################</span>
-
-<span class="sd">&quot;&quot;&quot;A :mod:`sardana` module written for template purposes only&quot;&quot;&quot;</span>
-
-<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;SardanaDemo&quot;</span><span class="p">]</span>
-
-<span class="n">__docformat__</span> <span class="o">=</span> <span class="s2">&quot;restructuredtext&quot;</span>
-
-<span class="k">class</span> <span class="nc">SardanaDemo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This class is written for template purposes only&quot;&quot;&quot;</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="nb">print</span> <span class="s2">&quot;SardanaDemo&quot;</span><span class="n">s</span>
-
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-    <span class="n">main</span><span class="p">()</span>
-</pre></div>
-</div>
+<p>We also invite you to join the regular project <a class="reference external" href="https://github.com/sardana-org/sardana-followup">follow-up meetings</a>. These are announced on the previously mentioned mailing list.</p>
+<p>Detailed instructions on how to contribute to code or documentation can be found in
+<a class="reference external" href="https://github.com/sardana-org/sardana/blob/develop/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
 </div>
 </div>
 
@@ -316,7 +227,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

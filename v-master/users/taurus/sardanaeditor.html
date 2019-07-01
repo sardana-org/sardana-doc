@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sardana Editor’s interface &mdash; sardana 2.7.2 documentation</title>
+  <title>Sardana Editor’s interface &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../index.html"/>
         <link rel="up" title="Sardana Taurus Extension widgets" href="index.html"/>
         <link rel="next" title="Showscan" href="showscan.html"/>
         <link rel="prev" title="MacroButton User’s Interface" href="macrobutton.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -104,9 +104,12 @@
 <li class="toctree-l4"><a class="reference internal" href="macrobutton.html">MacroButton</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Sardana Editor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="showscan.html">Showscan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="poolmotortv.html">PoolMotorTV</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../scan.html">Scans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../motion.html">Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../acquisition.html">Acquisition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffractometer.html">Diffractometer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../adding_elements.html">Adding real elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../macro_hooks.html">Macro Hooks</a></li>
@@ -117,6 +120,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../screenshots.html">Screenshots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://github.com/sardana-org/sardana/issues?q=is:issue+is:open+label:doc:knownbug">Known Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../devel/index.html">Developer&#8217;s Guide</a></li>
@@ -156,7 +160,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../../docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="../../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
           <li><a href="../index.html">User&#8217;s Guide</a> &raquo;</li>
       
@@ -184,9 +188,26 @@
 <li><a class="reference internal" href="#sardana-editor-s-interface" id="id1">Sardana Editor&#8217;s interface</a></li>
 </ul>
 </div>
-<div class="admonition-todo admonition" id="index-0">
-<p class="first admonition-title">Todo</p>
-<p class="last">Sardana Editor documentation to be written</p>
+<p>Sardana editor is an <a class="reference internal" href="../../glossary.html#term-ide"><span class="xref std std-term">IDE</span></a> for developing sardana plugins such as
+<a class="reference internal" href="../../devel/howto_macros/index.html#sardana-macro-howto"><span class="std std-ref">macros</span></a> or <a class="reference internal" href="../../devel/howto_controllers/index.html#sardana-controller-howto"><span class="std std-ref">controllers</span></a>.
+It is based on the <a class="reference external" href="https://www.spyder-ide.org/">Spyder</a> project.</p>
+<img alt="../../_images/sardanaeditor.png" src="../../_images/sardanaeditor.png" />
+<p>Some features of the sardana editor are:</p>
+<ul class="simple">
+<li>plugins modules navigation</li>
+<li>reload of the plugin code on the server</li>
+</ul>
+<p>At the time of writing this document there is no script to directly start the editor
+but you can launch it with the following command specifying the door to which you
+want to connect:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">sardana</span><span class="o">.</span><span class="n">taurus</span><span class="o">.</span><span class="n">qt</span><span class="o">.</span><span class="n">qtgui</span><span class="o">.</span><span class="n">extra_sardana</span><span class="o">.</span><span class="n">sardanaeditor</span> <span class="o">&lt;</span><span class="n">door_name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Sardana editor is still under development. If you find a bug please check the
+<a class="reference external" href="www.github.com/sardana-org/sardana/issues">project issues</a> if it was already
+reported and if not report it or directly propose a fix.</p>
 </div>
 </div>
 
@@ -232,7 +253,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

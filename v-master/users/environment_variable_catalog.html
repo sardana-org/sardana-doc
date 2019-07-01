@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Environment Variable Catalog &mdash; sardana 2.7.2 documentation</title>
+  <title>Environment Variable Catalog &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../index.html"/>
         <link rel="up" title="User’s Guide" href="index.html"/>
         <link rel="next" title="Standard macro catalog" href="standard_macro_catalog.html"/>
         <link rel="prev" title="Macro Logging and Reports" href="macro_logging_and_reports.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -99,6 +99,8 @@
 <li class="toctree-l3"><a class="reference internal" href="spock.html">Spock</a></li>
 <li class="toctree-l3"><a class="reference internal" href="taurus/index.html">Sardana-Taurus Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scan.html">Scans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="motion.html">Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="acquisition.html">Acquisition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="diffractometer.html">Diffractometer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="adding_elements.html">Adding real elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="macro_hooks.html">Macro Hooks</a></li>
@@ -116,6 +118,7 @@
 <li class="toctree-l3"><a class="reference internal" href="configuration/index.html">Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="screenshots.html">Screenshots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://github.com/sardana-org/sardana/issues?q=is:issue+is:open+label:doc:knownbug">Known Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../devel/index.html">Developer&#8217;s Guide</a></li>
@@ -155,7 +158,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
           <li><a href="index.html">User&#8217;s Guide</a> &raquo;</li>
       
@@ -174,50 +177,49 @@
            <div itemprop="articleBody">
             
   <div class="section" id="environment-variable-catalog">
-<span id="id1"></span><h1><a class="toc-backref" href="#id25">Environment Variable Catalog</a><a class="headerlink" href="#environment-variable-catalog" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1><a class="toc-backref" href="#id24">Environment Variable Catalog</a><a class="headerlink" href="#environment-variable-catalog" title="Permalink to this headline">¶</a></h1>
 <p>This is the catalog of the available environment variables that can be used in
 Sardana.</p>
 <div class="contents topic" id="contents">
 <p class="topic-title first">Contents</p>
 <ul class="simple">
-<li><a class="reference internal" href="#environment-variable-catalog" id="id25">Environment Variable Catalog</a><ul>
-<li><a class="reference internal" href="#general-environment-variables" id="id26">General Environment Variables</a><ul>
-<li><a class="reference internal" href="#activemntgrp" id="id27">ActiveMntGrp</a></li>
-<li><a class="reference internal" href="#preservemacrodata" id="id28">PreserveMacroData</a></li>
+<li><a class="reference internal" href="#environment-variable-catalog" id="id24">Environment Variable Catalog</a><ul>
+<li><a class="reference internal" href="#general-environment-variables" id="id25">General Environment Variables</a><ul>
+<li><a class="reference internal" href="#activemntgrp" id="id26">ActiveMntGrp</a></li>
+<li><a class="reference internal" href="#preservemacrodata" id="id27">PreserveMacroData</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#diffractometer-environment-variables" id="id29">Diffractometer Environment Variables</a><ul>
-<li><a class="reference internal" href="#diffracdevice" id="id30">DiffracDevice</a></li>
-<li><a class="reference internal" href="#psi" id="id31">Psi</a></li>
-<li><a class="reference internal" href="#q" id="id32">Q</a></li>
+<li><a class="reference internal" href="#diffractometer-environment-variables" id="id28">Diffractometer Environment Variables</a><ul>
+<li><a class="reference internal" href="#diffracdevice" id="id29">DiffracDevice</a></li>
+<li><a class="reference internal" href="#psi" id="id30">Psi</a></li>
+<li><a class="reference internal" href="#q" id="id31">Q</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#macro-logging-environment-variables" id="id33">Macro Logging Environment Variables</a><ul>
-<li><a class="reference internal" href="#logmacro" id="id34">LogMacro</a></li>
-<li><a class="reference internal" href="#logmacrodir" id="id35">LogMacroDir</a></li>
-<li><a class="reference internal" href="#logmacromode" id="id36">LogMacroMode</a></li>
-<li><a class="reference internal" href="#logmacroformat" id="id37">LogMacroFormat</a></li>
+<li><a class="reference internal" href="#macro-logging-environment-variables" id="id32">Macro Logging Environment Variables</a><ul>
+<li><a class="reference internal" href="#logmacro" id="id33">LogMacro</a></li>
+<li><a class="reference internal" href="#logmacrodir" id="id34">LogMacroDir</a></li>
+<li><a class="reference internal" href="#logmacromode" id="id35">LogMacroMode</a></li>
+<li><a class="reference internal" href="#logmacroformat" id="id36">LogMacroFormat</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#motion-environment-variables" id="id38">Motion Environment Variables</a><ul>
-<li><a class="reference internal" href="#motiondecoupled" id="id39">MotionDecoupled</a></li>
+<li><a class="reference internal" href="#motion-environment-variables" id="id37">Motion Environment Variables</a><ul>
+<li><a class="reference internal" href="#motiondecoupled" id="id38">MotionDecoupled</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#scan-environment-variables" id="id40">Scan Environment Variables</a><ul>
-<li><a class="reference internal" href="#applyextrapolation" id="id41">ApplyExtrapolation</a></li>
-<li><a class="reference internal" href="#applyinterpolation" id="id42">ApplyInterpolation</a></li>
-<li><a class="reference internal" href="#datacompressionrank" id="id43">DataCompressionRank</a></li>
-<li><a class="reference internal" href="#directorymap" id="id44">DirectoryMap</a></li>
-<li><a class="reference internal" href="#jsonrecorder" id="id45">JsonRecorder</a></li>
-<li><a class="reference internal" href="#outputblock" id="id46">OutputBlock</a></li>
-<li><a class="reference internal" href="#outputcols" id="id47">OutputCols</a></li>
-<li><a class="reference internal" href="#prescansnapshot" id="id48">PreScanSnapshot</a></li>
-<li><a class="reference internal" href="#sampleinfo" id="id49">SampleInfo</a></li>
-<li><a class="reference internal" href="#scandir" id="id50">ScanDir</a></li>
-<li><a class="reference internal" href="#scanfile" id="id51">ScanFile</a></li>
-<li><a class="reference internal" href="#scanrecorder" id="id52">ScanRecorder</a></li>
-<li><a class="reference internal" href="#sharedmemory" id="id53">SharedMemory</a></li>
-<li><a class="reference internal" href="#sourceinfo" id="id54">SourceInfo</a></li>
+<li><a class="reference internal" href="#scan-environment-variables" id="id39">Scan Environment Variables</a><ul>
+<li><a class="reference internal" href="#applyextrapolation" id="id40">ApplyExtrapolation</a></li>
+<li><a class="reference internal" href="#applyinterpolation" id="id41">ApplyInterpolation</a></li>
+<li><a class="reference internal" href="#datacompressionrank" id="id42">DataCompressionRank</a></li>
+<li><a class="reference internal" href="#directorymap" id="id43">DirectoryMap</a></li>
+<li><a class="reference internal" href="#jsonrecorder" id="id44">JsonRecorder</a></li>
+<li><a class="reference internal" href="#outputcols" id="id45">OutputCols</a></li>
+<li><a class="reference internal" href="#prescansnapshot" id="id46">PreScanSnapshot</a></li>
+<li><a class="reference internal" href="#sampleinfo" id="id47">SampleInfo</a></li>
+<li><a class="reference internal" href="#scandir" id="id48">ScanDir</a></li>
+<li><a class="reference internal" href="#scanfile" id="id49">ScanFile</a></li>
+<li><a class="reference internal" href="#scanrecorder" id="id50">ScanRecorder</a></li>
+<li><a class="reference internal" href="#sharedmemory" id="id51">SharedMemory</a></li>
+<li><a class="reference internal" href="#sourceinfo" id="id52">SourceInfo</a></li>
 </ul>
 </li>
 </ul>
@@ -225,9 +227,9 @@ Sardana.</p>
 </ul>
 </div>
 <div class="section" id="general-environment-variables">
-<span id="general-env-vars"></span><h2><a class="toc-backref" href="#id26">General Environment Variables</a><a class="headerlink" href="#general-environment-variables" title="Permalink to this headline">¶</a></h2>
+<span id="general-env-vars"></span><h2><a class="toc-backref" href="#id25">General Environment Variables</a><a class="headerlink" href="#general-environment-variables" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="activemntgrp">
-<span id="id2"></span><h3><a class="toc-backref" href="#id27">ActiveMntGrp</a><a class="headerlink" href="#activemntgrp" title="Permalink to this headline">¶</a></h3>
+<span id="id2"></span><h3><a class="toc-backref" href="#id26">ActiveMntGrp</a><a class="headerlink" href="#activemntgrp" title="Permalink to this headline">¶</a></h3>
 <p><em>Mandatory, set by user</em></p>
 <p>Environment variable to define the measurement group that will be
 used when running a scan.</p>
@@ -239,14 +241,14 @@ the following document:
 </div>
 </div>
 <div class="section" id="preservemacrodata">
-<span id="id3"></span><h3><a class="toc-backref" href="#id28">PreserveMacroData</a><a class="headerlink" href="#preservemacrodata" title="Permalink to this headline">¶</a></h3>
+<span id="id3"></span><h3><a class="toc-backref" href="#id27">PreserveMacroData</a><a class="headerlink" href="#preservemacrodata" title="Permalink to this headline">¶</a></h3>
 <p>Boolean environment variable used to keep in memory the data generated by a macro.</p>
 </div>
 </div>
 <div class="section" id="diffractometer-environment-variables">
-<span id="diffractometer-env-vars"></span><h2><a class="toc-backref" href="#id29">Diffractometer Environment Variables</a><a class="headerlink" href="#diffractometer-environment-variables" title="Permalink to this headline">¶</a></h2>
+<span id="diffractometer-env-vars"></span><h2><a class="toc-backref" href="#id28">Diffractometer Environment Variables</a><a class="headerlink" href="#diffractometer-environment-variables" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="diffracdevice">
-<span id="id4"></span><h3><a class="toc-backref" href="#id30">DiffracDevice</a><a class="headerlink" href="#diffracdevice" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3><a class="toc-backref" href="#id29">DiffracDevice</a><a class="headerlink" href="#diffracdevice" title="Permalink to this headline">¶</a></h3>
 <p><em>Mandatory, set by user</em></p>
 <p>This environment variable is used to define the name of the diffractometer device.
 At this moment, this name is supporting only Tango device names and it should
@@ -254,14 +256,14 @@ be pointing to the Sardana controller of the class HklPseudoMotorCtrl that will
 be used by the hkl macros.</p>
 </div>
 <div class="section" id="psi">
-<span id="id5"></span><h3><a class="toc-backref" href="#id31">Psi</a><a class="headerlink" href="#psi" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3><a class="toc-backref" href="#id30">Psi</a><a class="headerlink" href="#psi" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user</em></p>
 <p>Environment variable to specify the <em>psi</em> device. This device must be the
 Tango device server corresponding Sardana PseudoMotor steering the movement
 of the azimuthal angle.</p>
 </div>
 <div class="section" id="q">
-<span id="id6"></span><h3><a class="toc-backref" href="#id32">Q</a><a class="headerlink" href="#q" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3><a class="toc-backref" href="#id31">Q</a><a class="headerlink" href="#q" title="Permalink to this headline">¶</a></h3>
 <p><em>Mandatory, set by macro wh</em></p>
 <p>This environment variable is set by the macro <em>wh</em> and it correspond to the
 Q vector.</p>
@@ -273,19 +275,19 @@ Q vector.</p>
 </div>
 </div>
 <div class="section" id="macro-logging-environment-variables">
-<span id="macro-logging-env-vars"></span><h2><a class="toc-backref" href="#id33">Macro Logging Environment Variables</a><a class="headerlink" href="#macro-logging-environment-variables" title="Permalink to this headline">¶</a></h2>
+<span id="macro-logging-env-vars"></span><h2><a class="toc-backref" href="#id32">Macro Logging Environment Variables</a><a class="headerlink" href="#macro-logging-environment-variables" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="logmacro">
-<span id="id7"></span><h3><a class="toc-backref" href="#id34">LogMacro</a><a class="headerlink" href="#logmacro" title="Permalink to this headline">¶</a></h3>
+<span id="id7"></span><h3><a class="toc-backref" href="#id33">LogMacro</a><a class="headerlink" href="#logmacro" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user</em></p>
 <p>Enable and disable the macro logging via this boolean environment variable.</p>
 </div>
 <div class="section" id="logmacrodir">
-<span id="id8"></span><h3><a class="toc-backref" href="#id35">LogMacroDir</a><a class="headerlink" href="#logmacrodir" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3><a class="toc-backref" href="#id34">LogMacroDir</a><a class="headerlink" href="#logmacrodir" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user or to default value: tmp, by macro</em></p>
 <p>Directory where the macro logging file will be save.</p>
 </div>
 <div class="section" id="logmacromode">
-<span id="id9"></span><h3><a class="toc-backref" href="#id36">LogMacroMode</a><a class="headerlink" href="#logmacromode" title="Permalink to this headline">¶</a></h3>
+<span id="id9"></span><h3><a class="toc-backref" href="#id35">LogMacroMode</a><a class="headerlink" href="#logmacromode" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user or to default value: 0, by macro</em></p>
 <p>With this environment variable it&#8217;s possible to specify the number of backup
 files to be saved.</p>
@@ -295,15 +297,15 @@ files to be saved.</p>
 </div>
 </div>
 <div class="section" id="logmacroformat">
-<span id="id10"></span><h3><a class="toc-backref" href="#id37">LogMacroFormat</a><a class="headerlink" href="#logmacroformat" title="Permalink to this headline">¶</a></h3>
+<span id="id10"></span><h3><a class="toc-backref" href="#id36">LogMacroFormat</a><a class="headerlink" href="#logmacroformat" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user or to default value by macro</em></p>
 <p>Definition of the format to be used to save the file.</p>
 </div>
 </div>
 <div class="section" id="motion-environment-variables">
-<span id="motion-env-vars"></span><h2><a class="toc-backref" href="#id38">Motion Environment Variables</a><a class="headerlink" href="#motion-environment-variables" title="Permalink to this headline">¶</a></h2>
+<span id="motion-env-vars"></span><h2><a class="toc-backref" href="#id37">Motion Environment Variables</a><a class="headerlink" href="#motion-environment-variables" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="motiondecoupled">
-<span id="id11"></span><h3><a class="toc-backref" href="#id39">MotionDecoupled</a><a class="headerlink" href="#motiondecoupled" title="Permalink to this headline">¶</a></h3>
+<span id="id11"></span><h3><a class="toc-backref" href="#id38">MotionDecoupled</a><a class="headerlink" href="#motiondecoupled" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user</em></p>
 <p>Enable/disable the decoupled motion for continuous scans.</p>
 <div class="admonition seealso">
@@ -314,9 +316,9 @@ to the <a class="reference internal" href="scan.html#sardana-users-scan-continuo
 </div>
 </div>
 <div class="section" id="scan-environment-variables">
-<span id="scan-env-vars"></span><h2><a class="toc-backref" href="#id40">Scan Environment Variables</a><a class="headerlink" href="#scan-environment-variables" title="Permalink to this headline">¶</a></h2>
+<span id="scan-env-vars"></span><h2><a class="toc-backref" href="#id39">Scan Environment Variables</a><a class="headerlink" href="#scan-environment-variables" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="applyextrapolation">
-<span id="applyextraploation"></span><h3><a class="toc-backref" href="#id41">ApplyExtrapolation</a><a class="headerlink" href="#applyextrapolation" title="Permalink to this headline">¶</a></h3>
+<span id="applyextraploation"></span><h3><a class="toc-backref" href="#id40">ApplyExtrapolation</a><a class="headerlink" href="#applyextrapolation" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user</em></p>
 <p>Enable/disable the extrapolation method to fill the missing parts of the
 very first scan records in case the software synchronized acquisition could
@@ -332,7 +334,7 @@ necessary by the core developers.</p>
 </div>
 </div>
 <div class="section" id="applyinterpolation">
-<span id="id12"></span><h3><a class="toc-backref" href="#id42">ApplyInterpolation</a><a class="headerlink" href="#applyinterpolation" title="Permalink to this headline">¶</a></h3>
+<span id="id12"></span><h3><a class="toc-backref" href="#id41">ApplyInterpolation</a><a class="headerlink" href="#applyinterpolation" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user</em></p>
 <p>Enable/disable the <a class="reference external" href="https://en.wikipedia.org/wiki/Zero-order_hold">zero order hold</a> a.k.a. &#8220;constant interpolation&#8221;
 method to fill the missing parts of the scan records in case the software
@@ -348,7 +350,7 @@ deemed necessary by the core developers.</p>
 </div>
 </div>
 <div class="section" id="datacompressionrank">
-<span id="id13"></span><h3><a class="toc-backref" href="#id43">DataCompressionRank</a><a class="headerlink" href="#datacompressionrank" title="Permalink to this headline">¶</a></h3>
+<span id="id13"></span><h3><a class="toc-backref" href="#id42">DataCompressionRank</a><a class="headerlink" href="#datacompressionrank" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user</em></p>
 <p>Environment variable used to select the data compression rank that will be
 used to save the data into a file.</p>
@@ -364,7 +366,7 @@ dataset will be compressed, e.g. 0 for scalars, 1 for spectrums, 2 for images.</
 </ul>
 </div>
 <div class="section" id="directorymap">
-<span id="id14"></span><h3><a class="toc-backref" href="#id44">DirectoryMap</a><a class="headerlink" href="#directorymap" title="Permalink to this headline">¶</a></h3>
+<span id="id14"></span><h3><a class="toc-backref" href="#id43">DirectoryMap</a><a class="headerlink" href="#directorymap" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user</em></p>
 <p>In case that the server and the client do not run on the same host, the scan
 data may be easily shared between them using the NFS. Since some of the
@@ -378,7 +380,7 @@ and values to the client side directory/ies (string or list of strings).</p>
 </div>
 </div>
 <div class="section" id="jsonrecorder">
-<span id="id15"></span><h3><a class="toc-backref" href="#id45">JsonRecorder</a><a class="headerlink" href="#jsonrecorder" title="Permalink to this headline">¶</a></h3>
+<span id="id15"></span><h3><a class="toc-backref" href="#id44">JsonRecorder</a><a class="headerlink" href="#jsonrecorder" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><em>Not mandatory, set by user</em></div></blockquote>
 <p>Enable/disable the JsonRecorder. This recorder is used to retrieve the data
@@ -389,18 +391,8 @@ An example of usage of this recorder is plotting live scans.</p>
 <p class="last">Add reference to the jsonrecorder documentation when available.</p>
 </div>
 </div>
-<div class="section" id="outputblock">
-<span id="id16"></span><h3><a class="toc-backref" href="#id46">OutputBlock</a><a class="headerlink" href="#outputblock" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><em>Not mandatory, set by user</em></div></blockquote>
-<p>Enable/disable printing the scan output records at the same line instead
-of appending records as new lines a.k.a. block mode. This can save space
-of the console output and facilitate an easy visual access to the scan
-header printed at the beginning of the scan - especially useful for very
-long scans.</p>
-</div>
 <div class="section" id="outputcols">
-<span id="id17"></span><h3><a class="toc-backref" href="#id47">OutputCols</a><a class="headerlink" href="#outputcols" title="Permalink to this headline">¶</a></h3>
+<span id="id16"></span><h3><a class="toc-backref" href="#id45">OutputCols</a><a class="headerlink" href="#outputcols" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><em>Not mandatory, set by user</em></div></blockquote>
 <p>Select a subset of the scan output columns to be printed. Two different ways
@@ -416,7 +408,7 @@ or the scan record metadata identifiers: &#8220;point_nb&#8221;, &#8220;timestam
 </div>
 </div>
 <div class="section" id="prescansnapshot">
-<span id="id18"></span><h3><a class="toc-backref" href="#id48">PreScanSnapshot</a><a class="headerlink" href="#prescansnapshot" title="Permalink to this headline">¶</a></h3>
+<span id="id17"></span><h3><a class="toc-backref" href="#id46">PreScanSnapshot</a><a class="headerlink" href="#prescansnapshot" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><em>Not mandatory, set by user</em></div></blockquote>
 <p>Variable listing the elements that will be collected and saved before a Scan
@@ -438,20 +430,20 @@ i.e. A Tango attribute, you need to add the full URI, up to the attribute name.<
 </div>
 </div>
 <div class="section" id="sampleinfo">
-<span id="id19"></span><h3><a class="toc-backref" href="#id49">SampleInfo</a><a class="headerlink" href="#sampleinfo" title="Permalink to this headline">¶</a></h3>
+<span id="id18"></span><h3><a class="toc-backref" href="#id47">SampleInfo</a><a class="headerlink" href="#sampleinfo" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><em>Not mandatory, set by user</em></div></blockquote>
 <p>Extra information about the sample that could be added as a string.
 This environment variable exist for metadata purposes.</p>
 </div>
 <div class="section" id="scandir">
-<span id="id20"></span><h3><a class="toc-backref" href="#id50">ScanDir</a><a class="headerlink" href="#scandir" title="Permalink to this headline">¶</a></h3>
+<span id="id19"></span><h3><a class="toc-backref" href="#id48">ScanDir</a><a class="headerlink" href="#scandir" title="Permalink to this headline">¶</a></h3>
 <p><em>Mandatory if you want scan file to be saved, set by user</em></p>
 <p>Its value is of string type and indicates an absolute path to the directory
 where scan data will be stored.</p>
 </div>
 <div class="section" id="scanfile">
-<span id="id21"></span><h3><a class="toc-backref" href="#id51">ScanFile</a><a class="headerlink" href="#scanfile" title="Permalink to this headline">¶</a></h3>
+<span id="id20"></span><h3><a class="toc-backref" href="#id49">ScanFile</a><a class="headerlink" href="#scanfile" title="Permalink to this headline">¶</a></h3>
 <p><em>Mandatory if you want scan file to be saved, set by user</em></p>
 <p>Its value may be either of type string or of list of strings. In the second
 case data will be duplicated in multiple files (different file formats may
@@ -460,7 +452,7 @@ For example &#8220;myexperiment.spec&#8221; will by default store data in SPEC
 compatible format.</p>
 </div>
 <div class="section" id="scanrecorder">
-<span id="id22"></span><h3><a class="toc-backref" href="#id52">ScanRecorder</a><a class="headerlink" href="#scanrecorder" title="Permalink to this headline">¶</a></h3>
+<span id="id21"></span><h3><a class="toc-backref" href="#id50">ScanRecorder</a><a class="headerlink" href="#scanrecorder" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user</em></p>
 <p>Its value may be either of type string or of list of strings. If
 ScanRecorder variable is defined, it explicitly indicates which recorder
@@ -489,7 +481,7 @@ order).</p>
 </div>
 </div>
 <div class="section" id="sharedmemory">
-<span id="id23"></span><h3><a class="toc-backref" href="#id53">SharedMemory</a><a class="headerlink" href="#sharedmemory" title="Permalink to this headline">¶</a></h3>
+<span id="id22"></span><h3><a class="toc-backref" href="#id51">SharedMemory</a><a class="headerlink" href="#sharedmemory" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user</em></p>
 <p>Its value is of string type and it indicates which shared memory recorder should
 be used during the scan e.g. &#8220;sps&#8221; will use SPSRecorder (sps Python module
@@ -502,7 +494,7 @@ macros in Sardana, see
 </div>
 </div>
 <div class="section" id="sourceinfo">
-<span id="id24"></span><h3><a class="toc-backref" href="#id54">SourceInfo</a><a class="headerlink" href="#sourceinfo" title="Permalink to this headline">¶</a></h3>
+<span id="id23"></span><h3><a class="toc-backref" href="#id52">SourceInfo</a><a class="headerlink" href="#sourceinfo" title="Permalink to this headline">¶</a></h3>
 <p><em>Not mandatory, set by user</em></p>
 <p>Extra information about the source that could be added as a string.
 This environment variable exist for metadata purposes.</p>
@@ -552,7 +544,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

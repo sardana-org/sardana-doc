@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sequencer User’s Interface &mdash; sardana 2.7.2 documentation</title>
+  <title>Sequencer &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../index.html"/>
         <link rel="up" title="Sardana Taurus Extension widgets" href="index.html"/>
         <link rel="next" title="Experiment Configuration user interface" href="experimentconfiguration.html"/>
         <link rel="prev" title="MacroExecutor User’s Interface" href="macroexecutor.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -104,9 +104,12 @@
 <li class="toctree-l4"><a class="reference internal" href="macrobutton.html">MacroButton</a></li>
 <li class="toctree-l4"><a class="reference internal" href="sardanaeditor.html">Sardana Editor</a></li>
 <li class="toctree-l4"><a class="reference internal" href="showscan.html">Showscan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="poolmotortv.html">PoolMotorTV</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../scan.html">Scans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../motion.html">Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../acquisition.html">Acquisition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../diffractometer.html">Diffractometer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../adding_elements.html">Adding real elements</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../macro_hooks.html">Macro Hooks</a></li>
@@ -117,6 +120,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../screenshots.html">Screenshots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://github.com/sardana-org/sardana/issues?q=is:issue+is:open+label:doc:knownbug">Known Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../devel/index.html">Developer&#8217;s Guide</a></li>
@@ -156,13 +160,13 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../../docs.html">Sardana 2.7 Documentation</a> &raquo;</li>
+          <li><a href="../../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
       
           <li><a href="../index.html">User&#8217;s Guide</a> &raquo;</li>
       
           <li><a href="index.html">Sardana Taurus Extension widgets</a> &raquo;</li>
       
-    <li>Sequencer User&#8217;s Interface</li>
+    <li>Sequencer</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -176,58 +180,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="sequencer-user-s-interface">
-<span id="sequencer-ui"></span><h1><a class="toc-backref" href="#id2">Sequencer User&#8217;s Interface</a><a class="headerlink" href="#sequencer-user-s-interface" title="Permalink to this headline">¶</a></h1>
-<div class="contents topic" id="contents">
-<p class="topic-title first">Contents</p>
+  <div class="section" id="sequencer">
+<span id="sequencer-ui"></span><h1>Sequencer<a class="headerlink" href="#sequencer" title="Permalink to this headline">¶</a></h1>
+<p><em>Sequencer</em> provides an user-friendly interface to compose and execute
+sequences of macros. Sequence of macros allows execution
+of ordered set of macros with just one trigger. Sequencer also allows
+using the concept of <a class="reference internal" href="../macro_hooks.html#sardana-macros-hooks"><span class="std std-ref">hooks</span></a> (macros attached
+and executed in defined places of other macros).</p>
+<p>The widget is divided into 3 main areas:</p>
 <ul class="simple">
-<li><a class="reference internal" href="#sequencer-user-s-interface" id="id2">Sequencer User&#8217;s Interface</a><ul>
-<li><a class="reference internal" href="#sequencer-as-a-stand-alone-application" id="id3">Sequencer as a stand-alone application</a></li>
-<li><a class="reference internal" href="#editing-sequence" id="id4">Editing sequence</a></li>
-<li><a class="reference internal" href="#editing-macro-parameters" id="id5">Editing macro parameters</a></li>
+<li>actions bar</li>
+<li>sequence editor</li>
+<li>parameters editor</li>
 </ul>
-</li>
-</ul>
-</div>
-<p><cite>Sequencer</cite> provides an user-friendly interface to compose and execute sequences of macros. Sequence of macros allows execution
-of ordered set of macros with just one trigger. It also allows using a concept of hooks (macros attached and executed in defined places of other macros).
-It is divided into 3 main areas: <cite>actions bar</cite>, <cite>sequence editor</cite> and <cite>parameters editor</cite>.
-<cite>Sequence editor</cite> allows you modifying sequences in many ways: appending new macros, changing macros locations and removing macros.
-Graphical <cite>parameters editor</cite> (standard/custom) provides a clear way to set/modify macro execution settings(parameters).
-Once sequence of macros is in execution phase, <cite>Sequencer</cite> informs user about its state with Door&#8217;s state led and macros progress bars.
-User has full control over sequence, with action buttons: Start, Stop, Pause, Resume.
-If desirable, sequences can be permanently stored into a file and later on restored from there.
-This functionality is provided thanks to action buttons: Save and Open a sequence.</p>
+<p><cite>Sequence editor</cite> allows you modify sequences in many ways: appending new
+macros, changing macros locations and removing macros.</p>
+<p>Graphical <cite>parameters editor</cite> (standard/custom) provides a clear way to
+set/modify macro execution settings(parameters).</p>
+<p>The <cite>actions bar</cite> provides many features. Once sequence of macros is in
+being executed, <cite>Sequencer</cite> informs you about the progress with Door&#8217;s state
+led and macros progress bars. User has full control over the sequence, with
+action buttons: Start, Stop, Pause, Resume.</p>
+<p>If desirable, sequences can be permanently stored into a file and later on restored from there.
+This functionality is provided thanks to the Save and Open a sequence action buttons.
+The sequence file can use the XML format or the <a class="reference internal" href="../spock.html#sardana-spock-syntax"><span class="std std-ref">spock syntax</span></a>.
+The later one is basically a text file that lists macros, one per line,
+written exactly the way they would be entered into Spock CLI.
+The Sequencer is able to save only the XML format file, but it can load both.</p>
 <div class="figure align-center">
 <img alt="../../_images/sequencer01.png" src="../../_images/sequencer01.png" />
 </div>
 <div class="section" id="sequencer-as-a-stand-alone-application">
-<span id="sequencer-stand-alone"></span><h2><a class="toc-backref" href="#id3">Sequencer as a stand-alone application</a><a class="headerlink" href="#sequencer-as-a-stand-alone-application" title="Permalink to this headline">¶</a></h2>
+<span id="sequencer-stand-alone"></span><h2>Sequencer as a stand-alone application<a class="headerlink" href="#sequencer-as-a-stand-alone-application" title="Permalink to this headline">¶</a></h2>
 <p>You may also use <em>Sequencer</em> as a stand-alone application. In this case it appears embedded
 in window and some extra functionalities are provided.
 You can launch the stand-alone <em>Sequencer</em> with the following command:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sequencer</span> <span class="p">[</span><span class="n">options</span><span class="p">]</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">macro_executor_dev_name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">door_dev_name</span><span class="o">&gt;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Options:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">taurus</span><span class="o">-</span><span class="n">log</span><span class="o">-</span><span class="n">level</span><span class="o">=</span><span class="n">LEVEL</span>
-                      <span class="n">taurus</span> <span class="n">log</span> <span class="n">level</span><span class="o">.</span> <span class="n">Allowed</span> <span class="n">values</span> <span class="n">are</span> <span class="p">(</span><span class="n">case</span>
-                      <span class="n">insensitive</span><span class="p">):</span> <span class="n">critical</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">warning</span><span class="o">/</span><span class="n">warn</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span>
-                      <span class="n">debug</span><span class="p">,</span> <span class="n">trace</span>
-
-<span class="o">--</span><span class="n">taurus</span><span class="o">-</span><span class="n">polling</span><span class="o">-</span><span class="n">period</span><span class="o">=</span><span class="n">MILLISEC</span>
-                      <span class="n">taurus</span> <span class="k">global</span> <span class="n">polling</span> <span class="n">period</span> <span class="ow">in</span> <span class="n">milliseconds</span>
-
-<span class="o">--</span><span class="n">taurus</span><span class="o">-</span><span class="n">serialization</span><span class="o">-</span><span class="n">mode</span><span class="o">=</span><span class="n">SERIAL</span>
-                      <span class="n">taurus</span> <span class="n">serialization</span> <span class="n">mode</span><span class="o">.</span> <span class="n">Allowed</span> <span class="n">values</span> <span class="n">are</span> <span class="p">(</span><span class="n">case</span>
-                      <span class="n">insensitive</span><span class="p">):</span> <span class="n">serial</span><span class="p">,</span> <span class="n">concurrent</span> <span class="p">(</span><span class="n">default</span><span class="p">)</span>
-
-<span class="o">--</span><span class="n">tango</span><span class="o">-</span><span class="n">host</span><span class="o">=</span><span class="n">TANGO_HOST</span>
-                      <span class="n">Tango</span> <span class="n">host</span> <span class="n">name</span>
-</pre></div>
-</div>
 <p>The model list is optional and is a space-separated list of two device names: macro server and door.
 If not provided at the application startup, device names can be later on selected from Macro Configuration Dialog.</p>
+<p>To get the full list of options type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sequencer</span> <span class="o">-</span><span class="n">h</span>
+</pre></div>
+</div>
 <p>Extra functionalities:</p>
 <ul class="simple">
 <li>MacroConfigurationDialog</li>
@@ -245,7 +241,7 @@ If not provided at the application startup, device names can be later on selecte
 </div>
 </div>
 <div class="section" id="editing-sequence">
-<span id="id1"></span><h2><a class="toc-backref" href="#id4">Editing sequence</a><a class="headerlink" href="#editing-sequence" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2>Editing sequence<a class="headerlink" href="#editing-sequence" title="Permalink to this headline">¶</a></h2>
 <p>Sequence is represented as a flat list of ordered macros, in this view each macro is represented as a new line with 4 columns:
 Macro (macro name), Parameters (comma separated parameter values), Progress (macro progress bar) and Pause
 (pause point before macro execution - not implemented yet). Macros which contain hooks, expand with branched macros.
@@ -293,7 +289,7 @@ Then using right mouse button open context menu, go to &#8216;Hook places&#8217;
 </div>
 </div>
 <div class="section" id="editing-macro-parameters">
-<h2><a class="toc-backref" href="#id5">Editing macro parameters</a><a class="headerlink" href="#editing-macro-parameters" title="Permalink to this headline">¶</a></h2>
+<h2>Editing macro parameters<a class="headerlink" href="#editing-macro-parameters" title="Permalink to this headline">¶</a></h2>
 <p>To obtain information about editing macro parameters, please refer to the following link <a class="reference internal" href="macroexecutor.html#editing-macro-parameters"><span class="std std-ref">Editing macro parameters</span></a></p>
 </div>
 </div>
@@ -340,7 +336,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

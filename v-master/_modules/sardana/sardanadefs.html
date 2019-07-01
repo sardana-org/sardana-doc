@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.sardanadefs &mdash; sardana 2.7.2 documentation</title>
+  <title>sardana.sardanadefs &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../index.html"/>
         <link rel="up" title="Module code" href="../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -474,6 +474,11 @@
                                 <span class="n">ET</span><span class="o">.</span><span class="n">ComChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">IORegister</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">PseudoMotor</span><span class="p">,</span>
                                 <span class="n">ET</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">))</span>
 
+<span class="c1">#: a set containing the possible measure-able elements.</span>
+<span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
+<span class="n">TYPE_COUNTABLE_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span>
+                               <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">))</span>
+
 <span class="c1">#: a set containing the possible types of experimental channel elements.</span>
 <span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
 <span class="n">TYPE_EXP_CHANNEL_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">,</span>
@@ -540,20 +545,25 @@
     <span class="s2">&quot;Controller&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A controller&quot;</span><span class="p">),</span>
     <span class="s2">&quot;Moveable&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A moveable element&quot;</span><span class="p">),</span>
     <span class="s2">&quot;Acquirable&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;An acquirable element&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Countable&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A countable element&quot;</span><span class="p">),</span>
     <span class="s2">&quot;Instrument&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;An instrument&quot;</span><span class="p">),</span>
     <span class="s2">&quot;Motor&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Moveable&quot;</span><span class="p">,</span> <span class="s2">&quot;Acquirable&quot;</span><span class="p">)),</span> <span class="s2">&quot;a motor&quot;</span><span class="p">),</span>
     <span class="s2">&quot;PseudoMotor&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Moveable&quot;</span><span class="p">,</span> <span class="s2">&quot;Acquirable&quot;</span><span class="p">)),</span> <span class="s2">&quot;A pseudo motor&quot;</span><span class="p">),</span>
     <span class="s2">&quot;IORegister&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Acquirable&quot;</span><span class="p">,)),</span> <span class="s2">&quot;An IO register&quot;</span><span class="p">),</span>
     <span class="s2">&quot;ExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Acquirable&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A generic experimental channel&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;CTExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A counter/timer experimental channel&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;CTExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">)),</span>
+                     <span class="s2">&quot;A counter/timer experimental channel&quot;</span><span class="p">),</span>
     <span class="s2">&quot;ZeroDExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A 0D experimental channel&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;OneDExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A 1D experimental channel&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;TwoDExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A 2D experimental channel&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;OneDExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">)),</span>
+                       <span class="s2">&quot;A 1D experimental channel&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;TwoDExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">)),</span>
+                       <span class="s2">&quot;A 2D experimental channel&quot;</span><span class="p">),</span>
     <span class="s2">&quot;TriggerGate&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A trigger/gate&quot;</span><span class="p">),</span>
     <span class="s2">&quot;PseudoCounter&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A pseudo counter&quot;</span><span class="p">),</span>
     <span class="s2">&quot;ComChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A communication channel&quot;</span><span class="p">),</span>
     <span class="s2">&quot;MotorGroup&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,),),</span> <span class="s2">&quot;A motor group&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MeasurementGroup&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,),),</span> <span class="s2">&quot;A measurement group&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;MeasurementGroup&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">)),</span>
+                         <span class="s2">&quot;A measurement group&quot;</span><span class="p">),</span>
     <span class="s2">&quot;ControllerLibrary&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Library&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolObject&quot;</span><span class="p">)),</span> <span class="s2">&quot;A controller library&quot;</span><span class="p">),</span>
     <span class="s2">&quot;ControllerClass&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolObject&quot;</span><span class="p">)),</span> <span class="s2">&quot;A controller class&quot;</span><span class="p">),</span>
     <span class="s2">&quot;Constraint&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolObject&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A constraint&quot;</span><span class="p">),</span>
@@ -693,7 +703,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

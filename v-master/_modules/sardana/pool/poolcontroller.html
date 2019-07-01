@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.pool.poolcontroller &mdash; sardana 2.7.2 documentation</title>
+  <title>sardana.pool.poolcontroller &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.7.2 documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -186,6 +186,8 @@
 
 <span class="kn">from</span> <span class="nn">sardana.pool.poolextension</span> <span class="k">import</span> <span class="n">translate_ctrl_value</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolbaseelement</span> <span class="k">import</span> <span class="n">PoolBaseElement</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="k">import</span> <span class="n">Referable</span><span class="p">,</span> <span class="n">Access</span><span class="p">,</span> <span class="n">DataAccess</span><span class="p">,</span>\
+    <span class="n">Description</span><span class="p">,</span> <span class="n">Type</span>
 
 
 <span class="k">class</span> <span class="nc">PoolBaseController</span><span class="p">(</span><span class="n">PoolBaseElement</span><span class="p">):</span>
@@ -539,6 +541,9 @@
                 <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
+<div class="viewcode-block" id="PoolController.is_referable"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolController.is_referable">[docs]</a>    <span class="k">def</span> <span class="nf">is_referable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="p">,</span> <span class="n">Referable</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="PoolController.is_pseudo"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolController.is_pseudo">[docs]</a>    <span class="k">def</span> <span class="nf">is_pseudo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_info</span><span class="o">.</span><span class="n">types</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">TYPE_PSEUDO_ELEMENTS</span><span class="p">:</span>
@@ -596,7 +601,26 @@
 
     <span class="nd">@check_ctrl</span>
 <div class="viewcode-block" id="PoolController.get_axis_attributes"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolController.get_axis_attributes">[docs]</a>    <span class="k">def</span> <span class="nf">get_axis_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">GetAxisAttributes</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span></div>
+        <span class="n">axis_attrs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">GetAxisAttributes</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_referable</span><span class="p">():</span>
+            <span class="n">referable_axis_attrs</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;ValueRef&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">Type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                             <span class="n">Access</span><span class="p">:</span> <span class="n">DataAccess</span><span class="o">.</span><span class="n">ReadOnly</span><span class="p">,</span>
+                             <span class="n">Description</span><span class="p">:</span> <span class="s2">&quot;Value reference&quot;</span><span class="p">,</span> <span class="p">},</span>
+                <span class="c1"># TODO: in case of Tango ValueBuffer type is overridden</span>
+                <span class="c1"># by DevEncoded</span>
+                <span class="s2">&quot;ValueRefBuffer&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">Type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                                   <span class="n">Access</span><span class="p">:</span> <span class="n">DataAccess</span><span class="o">.</span><span class="n">ReadOnly</span><span class="p">,</span>
+                                   <span class="n">Description</span><span class="p">:</span> <span class="s2">&quot;Value reference buffer&quot;</span><span class="p">,</span> <span class="p">},</span>
+                <span class="s2">&quot;ValueRefPattern&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">Type</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                                    <span class="n">Access</span><span class="p">:</span> <span class="n">DataAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span>
+                                    <span class="n">Description</span><span class="p">:</span> <span class="s2">&quot;Value reference template&quot;</span><span class="p">},</span>
+                <span class="s2">&quot;ValueRefEnabled&quot;</span><span class="p">:</span> <span class="p">{</span><span class="n">Type</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+                                    <span class="n">Access</span><span class="p">:</span> <span class="n">DataAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span>
+                                    <span class="n">Description</span><span class="p">:</span> <span class="s2">&quot;Value reference enabled&quot;</span><span class="p">}</span>
+                <span class="p">}</span>
+            <span class="n">axis_attrs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">referable_axis_attrs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">axis_attrs</span></div>
 
     <span class="nd">@check_ctrl</span>
 <div class="viewcode-block" id="PoolController.get_ctrl_attr"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolController.get_ctrl_attr">[docs]</a>    <span class="k">def</span> <span class="nf">get_ctrl_attr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
@@ -733,17 +757,19 @@
 
     <span class="k">def</span> <span class="nf">_read_axis_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
 
-        <span class="k">def</span> <span class="nf">is_chunk</span><span class="p">(</span><span class="n">type_</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">type_</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">CTExpChannel</span> <span class="ow">and</span> <span class="n">is_non_str_seq</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">is_chunk</span><span class="p">(</span><span class="n">type_</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">is_non_str_seq</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">type_</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">:</span>
                 <span class="k">return</span> <span class="kc">True</span>
-            <span class="k">elif</span> <span class="p">(</span><span class="n">type_</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">OneDExpChannel</span> <span class="ow">and</span>
-                  <span class="n">is_non_str_seq</span><span class="p">(</span><span class="n">value</span><span class="p">)):</span>
+            <span class="k">elif</span> <span class="n">type_</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">:</span>
                 <span class="c1"># empty list is also considered as chunk</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">is_number</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">is_number</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
                     <span class="k">return</span> <span class="kc">True</span>
-            <span class="k">elif</span> <span class="p">(</span><span class="n">type_</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">TwoDExpChannel</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
-                  <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_number</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])):</span>
-                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">elif</span> <span class="n">type_</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">:</span>
+                <span class="c1"># empty list is also considered as chunk</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">is_number</span><span class="p">(</span><span class="n">obj</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]):</span>
+                    <span class="k">return</span> <span class="kc">True</span>
             <span class="k">return</span> <span class="kc">False</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -806,8 +832,66 @@
 <span class="sd">                       all active axis in this controller</span>
 <span class="sd">        :type axes: seq&lt;int&gt; or None</span>
 <span class="sd">        :return: a map containing the controller value information for each axis</span>
-<span class="sd">        :rtype: dict&lt;PoolElement, SardanaValue&gt;&quot;&quot;&quot;</span>
+<span class="sd">        :rtype: dict&lt;PoolElement, SardanaValue&gt;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_axis_values</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="n">axes</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_read_axis_value_refs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">is_chunk</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">is_non_str_seq</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">True</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">axis</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">get_axis</span><span class="p">()</span>
+            <span class="n">ctrl_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">RefOne</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ctrl_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">.RefOne(</span><span class="si">%s</span><span class="s1">[</span><span class="si">%d</span><span class="s1">]) return error: Expected value &#39;</span>
+                       <span class="s1">&#39;ref(s), got None instead&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                                     <span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="p">))</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">is_chunk</span><span class="p">(</span><span class="n">ctrl_value</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="p">[</span><span class="n">translate_ctrl_value</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">ctrl_value</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">translate_ctrl_value</span><span class="p">(</span><span class="n">ctrl_value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">SardanaValue</span><span class="p">(</span><span class="n">exc_info</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">value</span>
+
+<div class="viewcode-block" id="PoolController.raw_read_axis_value_refs"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolController.raw_read_axis_value_refs">[docs]</a>    <span class="k">def</span> <span class="nf">raw_read_axis_value_refs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axes</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ctrl_values</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;**Unsafe method**. Reads the value refs for the given axes. If axes</span>
+<span class="sd">        is None, reads the value of all active axes.</span>
+
+<span class="sd">        .. note::</span>
+<span class="sd">            The raw_read_axis_value_refs method has been included in Sardana</span>
+<span class="sd">            on a provisional basis. Backwards incompatible changes (up to</span>
+<span class="sd">            and including removal of the class) may occur if deemed</span>
+<span class="sd">            necessary by the core developers.</span>
+
+<span class="sd">        .. todo::</span>
+<span class="sd">            This method should be available only on the controllers which</span>
+<span class="sd">            are *referable*.</span>
+
+<span class="sd">        :param axes: the list of axis to get the value. Default is None</span>
+<span class="sd">            meaning all active axis in this controller</span>
+<span class="sd">        :type axes: seq&lt;int&gt; or None</span>
+<span class="sd">        :return: a map containing the controller value information for each</span>
+<span class="sd">            axis</span>
+<span class="sd">        :rtype: dict&lt;PoolElement, SardanaValue&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">axes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">axes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_element_axis</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">ctrl_values</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ctrl_values</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">:</span>
+            <span class="n">element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+            <span class="n">ctrl_values</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_read_axis_value_refs</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">ctrl_values</span></div>
 
 <div class="viewcode-block" id="PoolController.stop_axes"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolController.stop_axes">[docs]</a>    <span class="k">def</span> <span class="nf">stop_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axes</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stops the given axes.</span>
@@ -1248,7 +1332,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.7.2',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
