@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.msmacromanager &mdash; sardana 2.7.3-alpha documentation</title>
+  <title>sardana.macroserver.msmacromanager &mdash; sardana 2.8.0 documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.7.3-alpha documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 2.8.0 documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.7
+                2.8
               </div>
             
           
@@ -333,6 +333,11 @@
         <span class="c1"># elements are absolute paths</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_path</span> <span class="o">=</span> <span class="p">[]</span>
 
+        <span class="c1"># list&lt;str&gt;</span>
+        <span class="c1"># overwritten macros (macros with the same name defined in</span>
+        <span class="c1"># different modules)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_overwritten_macros</span> <span class="o">=</span> <span class="p">[]</span>
+
         <span class="c1"># dict&lt;Door, &lt;MacroExecutor&gt;</span>
         <span class="c1"># key   - door</span>
         <span class="c1"># value - MacroExecutor object for the door</span>
@@ -350,6 +355,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_path</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_modules</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_overwritten_macros</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">MacroServerManager</span><span class="o">.</span><span class="n">cleanUp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -668,7 +674,21 @@
                                           <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">macro</span> <span class="ow">in</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmembers</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">_is_macro</span><span class="p">):</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">addMacro</span><span class="p">(</span><span class="n">macro_lib</span><span class="p">,</span> <span class="n">macro</span><span class="p">)</span>
+                    <span class="n">isoverwritten</span> <span class="o">=</span> <span class="kc">False</span>
+                    <span class="n">macro_name</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="k">if</span> <span class="n">macro_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_overwritten_macros</span><span class="p">:</span>
+                        <span class="n">isoverwritten</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">elif</span> <span class="p">(</span><span class="n">macro_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+                            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="p">[</span><span class="n">macro_name</span><span class="p">]</span><span class="o">.</span><span class="n">lib</span> <span class="o">!=</span> <span class="n">macro_lib</span><span class="p">):</span>
+                        <span class="n">isoverwritten</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Macro &quot;</span><span class="si">{}</span><span class="s1">&quot; defined in &quot;</span><span class="si">{}</span><span class="s1">&quot; macro library&#39;</span>
+                               <span class="o">+</span> <span class="s1">&#39; has been overwritten by &quot;</span><span class="si">{}</span><span class="s1">&quot; macro library&#39;</span><span class="p">)</span>
+                        <span class="n">old_lib_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="p">[</span><span class="n">macro_name</span><span class="p">]</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">name</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">macro_name</span><span class="p">,</span> <span class="n">old_lib_name</span><span class="p">,</span>
+                                              <span class="n">macro_lib</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_overwritten_macros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">macro_name</span><span class="p">)</span>
+
+                    <span class="bp">self</span><span class="o">.</span><span class="n">addMacro</span><span class="p">(</span><span class="n">macro_lib</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">isoverwritten</span><span class="p">)</span>
                     <span class="n">count_correct_macros</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                     <span class="n">count_incorrect_macros</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -700,30 +720,30 @@
                     <span class="n">msg</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Use relmaclib to reload the corrected macro(s)</span><span class="se">\n</span><span class="s2">&quot;</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">addMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_lib</span><span class="p">,</span> <span class="n">macro</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">addMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_lib</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">isoverwritten</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">add</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">addMacroFunction</span>
         <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">macro</span><span class="p">):</span>
             <span class="n">add</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">addMacroClass</span>
-        <span class="k">return</span> <span class="n">add</span><span class="p">(</span><span class="n">macro_lib</span><span class="p">,</span> <span class="n">macro</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">add</span><span class="p">(</span><span class="n">macro_lib</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">isoverwritten</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">addMacroClass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_lib</span><span class="p">,</span> <span class="n">klass</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">addMacroClass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_lib</span><span class="p">,</span> <span class="n">klass</span><span class="p">,</span> <span class="n">isoverwritten</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">macro_name</span> <span class="o">=</span> <span class="n">klass</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="n">action</span> <span class="o">=</span> <span class="p">(</span><span class="n">macro_lib</span><span class="o">.</span><span class="n">has_macro</span><span class="p">(</span><span class="n">macro_name</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;Updating&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;Adding&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> macro class </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">))</span>
 
         <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">macro_server</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="p">,</span> <span class="n">lib</span><span class="o">=</span><span class="n">macro_lib</span><span class="p">,</span>
-                      <span class="n">klass</span><span class="o">=</span><span class="n">klass</span><span class="p">)</span>
+                      <span class="n">klass</span><span class="o">=</span><span class="n">klass</span><span class="p">,</span> <span class="n">isoverwritten</span><span class="o">=</span><span class="n">isoverwritten</span><span class="p">)</span>
         <span class="n">macro_class</span> <span class="o">=</span> <span class="n">MacroClass</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="n">macro_lib</span><span class="o">.</span><span class="n">add_macro_class</span><span class="p">(</span><span class="n">macro_class</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="p">[</span><span class="n">macro_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_class</span>
 
-    <span class="k">def</span> <span class="nf">addMacroFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_lib</span><span class="p">,</span> <span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">addMacroFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_lib</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">isoverwritten</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="n">macro_name</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">func_name</span>
         <span class="n">action</span> <span class="o">=</span> <span class="p">(</span><span class="n">macro_lib</span><span class="o">.</span><span class="n">has_macro</span><span class="p">(</span><span class="n">macro_name</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;Updating&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;Adding&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> macro function </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">))</span>
 
         <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">macro_server</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="p">,</span> <span class="n">lib</span><span class="o">=</span><span class="n">macro_lib</span><span class="p">,</span>
-                      <span class="n">function</span><span class="o">=</span><span class="n">func</span><span class="p">)</span>
+                      <span class="n">function</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">isoverwritten</span><span class="o">=</span><span class="n">isoverwritten</span><span class="p">)</span>
         <span class="n">macro_function</span> <span class="o">=</span> <span class="n">MacroFunction</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
         <span class="n">macro_lib</span><span class="o">.</span><span class="n">add_macro_function</span><span class="p">(</span><span class="n">macro_function</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="p">[</span><span class="n">macro_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_function</span>
@@ -1938,7 +1958,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.7.3-alpha',
+            VERSION:'2.8.0',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
