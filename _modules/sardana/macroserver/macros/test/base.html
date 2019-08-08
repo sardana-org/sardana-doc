@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.macros.test.base &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.macroserver.macros.test.base &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -317,7 +317,7 @@
 <div class="viewcode-block" id="RunMacroTestCase.assertFinished"><a class="viewcode-back" href="../../../../../devel/api/api_test.html#sardana.macroserver.macros.test.RunMacroTestCase.assertFinished">[docs]</a>    <span class="k">def</span> <span class="nf">assertFinished</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Asserts that macro has finished.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">finishStates</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;finish&#39;</span><span class="p">]</span>
+        <span class="n">finishStates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;finish&#39;</span><span class="p">]</span>
         <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_executor</span><span class="o">.</span><span class="n">getState</span><span class="p">()</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span> <span class="o">+</span> <span class="s1">&#39;;</span><span class="se">\n</span><span class="s1">State: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">state</span>
         <span class="n">exception_str</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_executor</span><span class="o">.</span><span class="n">getExceptionStr</span><span class="p">()</span>
@@ -334,7 +334,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">macro_executor</span><span class="o">.</span><span class="n">registerAll</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="RunMacroTestCase.macro_runs"><a class="viewcode-back" href="../../../../../devel/api/api_test.html#sardana.macroserver.macros.test.RunMacroTestCase.macro_runs">[docs]</a>    <span class="k">def</span> <span class="nf">macro_runs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                   <span class="n">wait_timeout</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">),</span> <span class="n">data</span><span class="o">=</span><span class="n">_NOT_PASSED</span><span class="p">):</span>
+                   <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">_NOT_PASSED</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A helper method to create tests that check if the macro can be</span>
 <span class="sd">        successfully executed for the given input parameters. It may also</span>
 <span class="sd">        optionally perform checks on the outputs from the execution.</span>
@@ -345,7 +345,8 @@
 <span class="sd">                             If passed, they must be given as a sequence of</span>
 <span class="sd">                             their string representations.</span>
 <span class="sd">        :param wait_timeout: (float) maximum allowed time (in s) for the macro</span>
-<span class="sd">                             to finish. By default infinite timeout is used.</span>
+<span class="sd">                             to finish. By default infinite timeout is</span>
+<span class="sd">                             used (None).</span>
 <span class="sd">        :param data: (obj) Optional. If passed, the macro data after the</span>
 <span class="sd">                     execution is tested to be equal to this.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -366,14 +367,14 @@
         <span class="c1">#      in a similar way to what is done for macro data</span>
 
 <div class="viewcode-block" id="RunMacroTestCase.macro_fails"><a class="viewcode-back" href="../../../../../devel/api/api_test.html#sardana.macroserver.macros.test.RunMacroTestCase.macro_fails">[docs]</a>    <span class="k">def</span> <span class="nf">macro_fails</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                    <span class="n">wait_timeout</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">),</span> <span class="n">exception</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+                    <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exception</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Check that the macro fails to run for the given input parameters</span>
 
 <span class="sd">        :param macro_name: (str) macro name (takes precedence over macro_name</span>
 <span class="sd">                             class member)</span>
 <span class="sd">        :param macro_params: (seq&lt;str&gt;) input parameters for the macro</span>
 <span class="sd">        :param wait_timeout: maximum allowed time for the macro to fail. By</span>
-<span class="sd">                             default infinite timeout is used.</span>
+<span class="sd">                             default infinite timeout (None) is used.</span>
 <span class="sd">        :param exception: (str or Exception) if given, an additional check of</span>
 <span class="sd">                        the type of the exception is done.</span>
 <span class="sd">                        (IMPORTANT: this is just a comparison of str</span>
@@ -405,7 +406,7 @@
 <div class="viewcode-block" id="RunStopMacroTestCase.assertStopped"><a class="viewcode-back" href="../../../../../devel/api/api_test.html#sardana.macroserver.macros.test.RunStopMacroTestCase.assertStopped">[docs]</a>    <span class="k">def</span> <span class="nf">assertStopped</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Asserts that macro was stopped</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">stoppedStates</span> <span class="o">=</span> <span class="p">[</span><span class="sa">u</span><span class="s1">&#39;stop&#39;</span><span class="p">]</span>
+        <span class="n">stoppedStates</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;stop&#39;</span><span class="p">]</span>
         <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_executor</span><span class="o">.</span><span class="n">getState</span><span class="p">()</span>
         <span class="c1"># TODO buffer is just for debugging, attach only the last state</span>
         <span class="n">state_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_executor</span><span class="o">.</span><span class="n">getStateBuffer</span><span class="p">()</span>
@@ -413,7 +414,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">stoppedStates</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="RunStopMacroTestCase.macro_stops"><a class="viewcode-back" href="../../../../../devel/api/api_test.html#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_stops">[docs]</a>    <span class="k">def</span> <span class="nf">macro_stops</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">stop_delay</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
-                    <span class="n">wait_timeout</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)):</span>
+                    <span class="n">wait_timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A helper method to create tests that check if the macro can be</span>
 <span class="sd">        successfully stoped (a.k.a. aborted) after it has been launched.</span>
 
@@ -425,7 +426,8 @@
 <span class="sd">        :param stop_delay: (float) Time (in s) to wait between launching the</span>
 <span class="sd">                           macro and sending the stop command. default=0.1</span>
 <span class="sd">        :param wait_timeout: (float) maximum allowed time (in s) for the macro</span>
-<span class="sd">                             to finish. By default infinite timeout is used.</span>
+<span class="sd">                             to finish. By default infinite timeout (None) is</span>
+<span class="sd">                             used.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">macro_executor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">macro_name</span><span class="o">=</span><span class="n">macro_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_name</span><span class="p">,</span>
                                 <span class="n">macro_params</span><span class="o">=</span><span class="n">macro_params</span><span class="p">,</span>
@@ -498,7 +500,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

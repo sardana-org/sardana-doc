@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.macros.test.macroexecutor &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.macroserver.macros.test.macroexecutor &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -204,7 +204,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_common</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
 <div class="viewcode-block" id="BaseMacroExecutor.run"><a class="viewcode-back" href="../../../../../devel/api/api_test.html#sardana.macroserver.macros.test.BaseMacroExecutor.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">,</span> <span class="n">macro_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sync</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">timeout</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)):</span>
+            <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute macro.</span>
 
 <span class="sd">        :param macro_name: (string) name of macro to be executed</span>
@@ -214,7 +214,8 @@
 <span class="sd">        :param sync: (bool) whether synchronous or asynchronous call</span>
 <span class="sd">                     (default is sync=True)</span>
 <span class="sd">        :param timeout: (float) timeout (in s) that will be passed to the wait</span>
-<span class="sd">                        method, in case of synchronous execution</span>
+<span class="sd">                        method, in case of synchronous execution; None means</span>
+<span class="sd">                        wait infinitely</span>
 
 <span class="sd">            In asyncrhonous execution method :meth:`~wait` has to be explicitly</span>
 <span class="sd">            called.</span>
@@ -240,14 +241,15 @@
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Method _run not implemented in class </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span>
                                   <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
 
-<div class="viewcode-block" id="BaseMacroExecutor.wait"><a class="viewcode-back" href="../../../../../devel/api/api_test.html#sardana.macroserver.macros.test.BaseMacroExecutor.wait">[docs]</a>    <span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)):</span>
+<div class="viewcode-block" id="BaseMacroExecutor.wait"><a class="viewcode-back" href="../../../../../devel/api/api_test.html#sardana.macroserver.macros.test.BaseMacroExecutor.wait">[docs]</a>    <span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Wait until macro is done. Use it in asynchronous executions.</span>
 
-<span class="sd">        :param timeout: (float) waiting timeout (in s)</span>
+<span class="sd">        :param timeout: (float) waiting timeout (in s); None means wait</span>
+<span class="sd">            infinitely</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="n">timeout</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">timeout</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">timeout</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
         <span class="c1"># TODO: workaround: this sleep is necessary to perform multiple tests.</span>
@@ -461,7 +463,7 @@
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">sardanacustomsettings</span>
     <span class="n">door_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sardanacustomsettings</span><span class="p">,</span> <span class="s1">&#39;UNITTEST_DOOR_NAME&#39;</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="n">MacroExecutorFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getMacroExecutor</span><span class="p">(</span><span class="n">door_name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">MacroExecutorFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getMacroExecutor</span><span class="p">(</span><span class="n">door_name</span><span class="p">))</span>
 </pre></div>
 
            </div>
@@ -496,7 +498,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

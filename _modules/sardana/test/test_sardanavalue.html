@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.test.test_sardanavalue &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.test.test_sardanavalue &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -211,7 +211,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sar_val</span><span class="o">.</span><span class="n">error</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span>
                          <span class="s1">&#39;The error attribute should be True.&#39;</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertRegexpMatches</span><span class="p">(</span><span class="n">representation</span><span class="p">,</span> <span class="s2">&quot;.*&lt;Error&gt;.*&quot;</span><span class="p">,</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRegex</span><span class="p">(</span><span class="n">representation</span><span class="p">,</span> <span class="s2">&quot;.*&lt;Error&gt;.*&quot;</span><span class="p">,</span>
                                  <span class="s1">&#39;The SardanaValue representation does not contain &lt;Error&gt;.&#39;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="SardanaValueTestCase.testSardanaValueWithNoExceptionInfo"><a class="viewcode-back" href="../../../devel/howto_test/tests/test_sardanavalue.html#sardana.test.test_sardanavalue.SardanaValueTestCase.testSardanaValueWithNoExceptionInfo">[docs]</a>    <span class="k">def</span> <span class="nf">testSardanaValueWithNoExceptionInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -223,7 +223,7 @@
         <span class="n">sar_val</span> <span class="o">=</span> <span class="n">SardanaValue</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
         <span class="n">returned_string</span> <span class="o">=</span> <span class="n">sar_val</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertRegexpMatches</span><span class="p">(</span><span class="n">returned_string</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">value</span><span class="p">),</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertRegex</span><span class="p">(</span><span class="n">returned_string</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">value</span><span class="p">),</span>
                                  <span class="s1">&#39;The SardanaValue representation does not contain its value&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sar_val</span><span class="o">.</span><span class="n">error</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span>
@@ -262,7 +262,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Macro plotting examples &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>Macro plotting examples &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../index.html"/>
         <link rel="up" title="Macro examples" href="macro_examples.html"/>
         <link rel="next" title="Macro input examples" href="macro_input_examples.html"/>
         <link rel="prev" title="Macro scans examples" href="macro_scans_examples.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -146,7 +146,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
+          <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
       
           <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
       
@@ -236,8 +236,7 @@ from inside a macro.</p>
 60
 61
 62
-63
-64</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+63</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
 <span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">j0</span>
@@ -249,7 +248,7 @@ from inside a macro.</p>
     <span class="sd">&quot;&quot;&quot;Integral form of J_0(x)&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">integrand</span><span class="p">(</span><span class="n">phi</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">phi</span><span class="p">))</span>
-    <span class="k">return</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">quad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">quad</span><span class="p">(</span><span class="n">integrand</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 
 <span class="nd">@macro</span><span class="p">()</span>
@@ -258,7 +257,7 @@ from inside a macro.</p>
     <span class="n">x</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
     <span class="n">y</span> <span class="o">=</span> <span class="n">j0</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[::</span><span class="mi">10</span><span class="p">]</span>
-    <span class="n">y1</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">j0i</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">j0i</span><span class="p">,</span> <span class="n">x1</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$J_0(x)$&#39;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$J_0^{integ}(x)$&#39;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span>
@@ -294,12 +293,11 @@ from inside a macro.</p>
 
     <span class="n">fractal</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span> <span class="o">+</span> <span class="mi">255</span>
 
-    <span class="n">finteractions</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">interactions</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">interactions</span><span class="p">):</span>
         <span class="n">z</span> <span class="o">*=</span> <span class="n">z</span>
         <span class="n">z</span> <span class="o">+=</span> <span class="n">c</span>
         <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">fractal</span> <span class="o">==</span> <span class="mi">255</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
-        <span class="n">fractal</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">254</span> <span class="o">*</span> <span class="n">n</span> <span class="o">/</span> <span class="n">finteractions</span>
+        <span class="n">fractal</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">254</span> <span class="o">*</span> <span class="n">n</span> <span class="o">/</span> <span class="n">interactions</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">fractal</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
@@ -347,7 +345,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

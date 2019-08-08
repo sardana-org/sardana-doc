@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.pool.controller &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.pool.controller &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -447,7 +447,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_args</span> <span class="o">=</span> <span class="n">args</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span> <span class="o">=</span> <span class="n">kwargs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_api_version</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_findAPIVersion</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">prop_value</span> <span class="ow">in</span> <span class="n">props</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">prop_value</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">props</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">prop_value</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Controller._findAPIVersion"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller._findAPIVersion">[docs]</a>    <span class="k">def</span> <span class="nf">_findAPIVersion</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1566,9 +1566,9 @@
         <span class="n">dict_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getPoolController</span><span class="p">()</span><span class="o">.</span><span class="n">get_element_ids</span><span class="p">()</span>
         <span class="n">dict_axis</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getPoolController</span><span class="p">()</span><span class="o">.</span><span class="n">get_element_axis</span><span class="p">()</span>
         <span class="n">pseudo_motor_ids</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">akey</span><span class="p">,</span> <span class="n">aname</span> <span class="ow">in</span> <span class="n">dict_axis</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">akey</span><span class="p">,</span> <span class="n">aname</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">dict_axis</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">pseudo_motor_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="n">dict_ids</span><span class="o">.</span><span class="n">keys</span><span class="p">()[</span><span class="n">dict_ids</span><span class="o">.</span><span class="n">values</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">aname</span><span class="p">)])</span>
+                <span class="nb">list</span><span class="p">(</span><span class="n">dict_ids</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="nb">list</span><span class="p">(</span><span class="n">dict_ids</span><span class="o">.</span><span class="n">values</span><span class="p">())</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">aname</span><span class="p">)])</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getElem</span><span class="p">(</span><span class="n">index_or_role</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pseudo_motor_roles</span><span class="p">,</span>
                              <span class="bp">self</span><span class="o">.</span><span class="n">__pseudo_motor_role_elements</span><span class="p">,</span>
                              <span class="n">pseudo_motor_ids</span><span class="p">)</span></div></div>
@@ -1717,7 +1717,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

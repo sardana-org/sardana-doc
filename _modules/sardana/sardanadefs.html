@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.sardanadefs &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.sardanadefs &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../index.html"/>
         <link rel="up" title="Module code" href="../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -164,7 +164,8 @@
 
 <span class="sd">&quot;&quot;&quot;This module contains the most generic sardana constants and enumerations&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;EpsilonError&quot;</span><span class="p">,</span> <span class="s2">&quot;SardanaServer&quot;</span><span class="p">,</span> <span class="s2">&quot;ServerRunMode&quot;</span><span class="p">,</span> <span class="s2">&quot;State&quot;</span><span class="p">,</span>
            <span class="s2">&quot;DataType&quot;</span><span class="p">,</span> <span class="s2">&quot;DataFormat&quot;</span><span class="p">,</span> <span class="s2">&quot;DataAccess&quot;</span><span class="p">,</span> <span class="s2">&quot;DTYPE_MAP&quot;</span><span class="p">,</span> <span class="s2">&quot;R_DTYPE_MAP&quot;</span><span class="p">,</span>
@@ -263,7 +264,6 @@
     <span class="s1">&#39;int&#39;</span><span class="p">:</span> <span class="n">DataType</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>
     <span class="s1">&#39;integer&#39;</span><span class="p">:</span> <span class="n">DataType</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>
     <span class="nb">int</span><span class="p">:</span> <span class="n">DataType</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>
-    <span class="n">long</span><span class="p">:</span> <span class="n">DataType</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>
     <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="n">DataType</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>
     <span class="n">DataType</span><span class="o">.</span><span class="n">Integer</span><span class="p">:</span> <span class="n">DataType</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>
     <span class="s1">&#39;float&#39;</span><span class="p">:</span> <span class="n">DataType</span><span class="o">.</span><span class="n">Double</span><span class="p">,</span>
@@ -285,7 +285,6 @@
     <span class="s1">&#39;int&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="s1">&#39;integer&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="nb">int</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-    <span class="n">long</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="s1">&#39;long&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">DataType</span><span class="o">.</span><span class="n">Integer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="s1">&#39;float&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -332,7 +331,7 @@
     <span class="n">dformat</span> <span class="o">=</span> <span class="n">DataFormat</span><span class="o">.</span><span class="n">Scalar</span>
     <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">dtype</span> <span class="o">=</span> <span class="s1">&#39;float&#39;</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">dtype</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;pytango.&quot;</span><span class="p">):</span>
             <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;pytango.&quot;</span><span class="p">):]</span>
@@ -354,7 +353,7 @@
 <span class="sd">    :type dtype: :obj:`str`</span>
 <span class="sd">    :return: a simple string for the given access</span>
 <span class="sd">    :rtype: :obj:`str`&quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">access</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">access</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">access</span> <span class="o">=</span> <span class="n">access</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">access</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;pytango.&quot;</span><span class="p">):</span>
             <span class="n">access</span> <span class="o">=</span> <span class="n">access</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="s2">&quot;pytango.&quot;</span><span class="p">):]</span>
@@ -373,16 +372,16 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">import</span> <span class="nn">operator</span>
     <span class="n">dtype</span><span class="p">,</span> <span class="n">dformat</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">DataFormat</span><span class="o">.</span><span class="n">Scalar</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">dtype</span><span class="p">,</span> <span class="n">dformat</span> <span class="o">=</span> <span class="n">from_dtype_str</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">operator</span><span class="o">.</span><span class="n">isSequenceType</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Sequence</span><span class="p">):</span>
         <span class="n">dformat</span> <span class="o">=</span> <span class="n">DataFormat</span><span class="o">.</span><span class="n">OneD</span>
         <span class="n">dtype</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">dtype</span><span class="p">,</span> <span class="n">dformat2</span> <span class="o">=</span> <span class="n">from_dtype_str</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">dformat2</span> <span class="o">==</span> <span class="n">DataFormat</span><span class="o">.</span><span class="n">OneD</span><span class="p">:</span>
                 <span class="n">dformat</span> <span class="o">=</span> <span class="n">DataFormat</span><span class="o">.</span><span class="n">TwoD</span>
-        <span class="k">elif</span> <span class="n">operator</span><span class="o">.</span><span class="n">isSequenceType</span><span class="p">(</span><span class="n">dtype</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Sequence</span><span class="p">):</span>
             <span class="n">dformat</span> <span class="o">=</span> <span class="n">DataFormat</span><span class="o">.</span><span class="n">TwoD</span>
             <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -401,7 +400,7 @@
 <span class="sd">    :rtype: :obj:`DataAccess`&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">daccess</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">daccess</span> <span class="o">=</span> <span class="n">DataAccess</span><span class="o">.</span><span class="n">ReadWrite</span>
-    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">daccess</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">daccess</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">daccess</span> <span class="o">=</span> <span class="n">DACCESS_MAP</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="n">from_access_str</span><span class="p">(</span><span class="n">daccess</span><span class="p">),</span> <span class="n">DataAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">daccess</span></div>
@@ -448,50 +447,51 @@
 
 <span class="c1">#: a set containning all &quot;controllable&quot; element types.</span>
 <span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
-<span class="n">TYPE_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">,</span>
-                     <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TriggerGate</span><span class="p">,</span>
-                     <span class="n">ET</span><span class="o">.</span><span class="n">ComChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">IORegister</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">PseudoMotor</span><span class="p">,</span>
-                     <span class="n">ET</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">Constraint</span><span class="p">))</span>
+<span class="n">TYPE_ELEMENTS</span> <span class="o">=</span> <span class="p">{</span><span class="n">ET</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">,</span>
+                 <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TriggerGate</span><span class="p">,</span>
+                 <span class="n">ET</span><span class="o">.</span><span class="n">ComChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">IORegister</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">PseudoMotor</span><span class="p">,</span>
+                 <span class="n">ET</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">Constraint</span><span class="p">}</span>
 
 <span class="c1">#: a set containing all group element types.</span>
 <span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
-<span class="n">TYPE_GROUP_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">MotorGroup</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">))</span>
+<span class="n">TYPE_GROUP_ELEMENTS</span> <span class="o">=</span> <span class="p">{</span><span class="n">ET</span><span class="o">.</span><span class="n">MotorGroup</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">}</span>
 
 <span class="c1">#: a set containing the type of elements which are moveable.</span>
 <span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
-<span class="n">TYPE_MOVEABLE_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">PseudoMotor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">MotorGroup</span><span class="p">))</span>
+<span class="n">TYPE_MOVEABLE_ELEMENTS</span> <span class="o">=</span> <span class="p">{</span><span class="n">ET</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">PseudoMotor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">MotorGroup</span><span class="p">}</span>
 
 <span class="c1">#: a set containing the possible types of physical elements.</span>
 <span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
-<span class="n">TYPE_PHYSICAL_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">,</span>
-                              <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TriggerGate</span><span class="p">,</span>
-                              <span class="n">ET</span><span class="o">.</span><span class="n">ComChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">IORegister</span><span class="p">))</span>
+<span class="n">TYPE_PHYSICAL_ELEMENTS</span> <span class="o">=</span> <span class="p">{</span><span class="n">ET</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">,</span>
+                          <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TriggerGate</span><span class="p">,</span>
+                          <span class="n">ET</span><span class="o">.</span><span class="n">ComChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">IORegister</span><span class="p">}</span>
 
 <span class="c1">#: a set containing the possible types of acquirable elements.</span>
 <span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
-<span class="n">TYPE_ACQUIRABLE_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">,</span>
-                                <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span>
-                                <span class="n">ET</span><span class="o">.</span><span class="n">ComChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">IORegister</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">PseudoMotor</span><span class="p">,</span>
-                                <span class="n">ET</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">))</span>
+<span class="n">TYPE_ACQUIRABLE_ELEMENTS</span> <span class="o">=</span> <span class="p">{</span><span class="n">ET</span><span class="o">.</span><span class="n">Motor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">,</span>
+                            <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span>
+                            <span class="n">ET</span><span class="o">.</span><span class="n">ComChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">IORegister</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">PseudoMotor</span><span class="p">,</span>
+                            <span class="n">ET</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">}</span>
 
 <span class="c1">#: a set containing the possible measure-able elements.</span>
 <span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
-<span class="n">TYPE_COUNTABLE_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span>
-                               <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">))</span>
+<span class="n">TYPE_COUNTABLE_ELEMENTS</span> <span class="o">=</span> <span class="p">{</span><span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span>
+                           <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">}</span>
 
 <span class="c1">#: a set containing the possible types of experimental channel elements.</span>
 <span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
-<span class="n">TYPE_EXP_CHANNEL_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">,</span>
-                                 <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">))</span>
+<span class="n">TYPE_EXP_CHANNEL_ELEMENTS</span> <span class="o">=</span> <span class="p">{</span><span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">ZeroDExpChannel</span><span class="p">,</span>
+                             <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">,</span>
+                             <span class="n">ET</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">}</span>
 
 <span class="c1">#: a set containing the possible timer-able elements.</span>
 <span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
-<span class="n">TYPE_TIMERABLE_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span>
-                               <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">))</span>
+<span class="n">TYPE_TIMERABLE_ELEMENTS</span> <span class="o">=</span> <span class="p">{</span><span class="n">ET</span><span class="o">.</span><span class="n">CTExpChannel</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">OneDExpChannel</span><span class="p">,</span>
+                           <span class="n">ET</span><span class="o">.</span><span class="n">TwoDExpChannel</span><span class="p">}</span>
 
 <span class="c1">#: a set containing the possible types of pseudo elements.</span>
 <span class="c1">#: Constant values belong to :class:`~sardana.sardanadefs.ElementType`</span>
-<span class="n">TYPE_PSEUDO_ELEMENTS</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="n">ET</span><span class="o">.</span><span class="n">PseudoMotor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">))</span>
+<span class="n">TYPE_PSEUDO_ELEMENTS</span> <span class="o">=</span> <span class="p">{</span><span class="n">ET</span><span class="o">.</span><span class="n">PseudoMotor</span><span class="p">,</span> <span class="n">ET</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">}</span>
 
 <span class="c1"># : An enumeration describing the all possible sardana interfaces</span>
 <span class="c1"># SardanaInterface = Enumeration(&quot;SardanaInterface&quot;, ( \</span>
@@ -535,51 +535,54 @@
 <span class="n">INTERFACES</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;Meta&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">(),</span> <span class="s2">&quot;A generic sardana meta object&quot;</span><span class="p">),</span>
     <span class="s2">&quot;Object&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">(),</span> <span class="s2">&quot;A generic sardana object&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Element&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Object&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A generic sardana element&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Class&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Object&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A generic sardana class&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Function&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Object&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A generic sardana function&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Library&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Object&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A generic sardana library&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;PoolObject&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Object&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A Pool object&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;PoolElement&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Element&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolObject&quot;</span><span class="p">)),</span> <span class="s2">&quot;A Pool element&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Pool&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A Pool&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Controller&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A controller&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Moveable&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A moveable element&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Acquirable&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;An acquirable element&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Countable&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A countable element&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Instrument&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;An instrument&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Motor&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Moveable&quot;</span><span class="p">,</span> <span class="s2">&quot;Acquirable&quot;</span><span class="p">)),</span> <span class="s2">&quot;a motor&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;PseudoMotor&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Moveable&quot;</span><span class="p">,</span> <span class="s2">&quot;Acquirable&quot;</span><span class="p">)),</span> <span class="s2">&quot;A pseudo motor&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;IORegister&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Acquirable&quot;</span><span class="p">,)),</span> <span class="s2">&quot;An IO register&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;ExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Acquirable&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A generic experimental channel&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;CTExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">)),</span>
+    <span class="s2">&quot;Element&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Object&quot;</span><span class="p">},</span> <span class="s2">&quot;A generic sardana element&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Class&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Object&quot;</span><span class="p">},</span> <span class="s2">&quot;A generic sardana class&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Function&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Object&quot;</span><span class="p">},</span> <span class="s2">&quot;A generic sardana function&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Library&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Object&quot;</span><span class="p">},</span> <span class="s2">&quot;A generic sardana library&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;PoolObject&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Object&quot;</span><span class="p">},</span> <span class="s2">&quot;A Pool object&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;PoolElement&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Element&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolObject&quot;</span><span class="p">},</span> <span class="s2">&quot;A Pool element&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Pool&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">},</span> <span class="s2">&quot;A Pool&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Controller&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">},</span> <span class="s2">&quot;A controller&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Moveable&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">},</span> <span class="s2">&quot;A moveable element&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Acquirable&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">},</span> <span class="s2">&quot;An acquirable element&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Countable&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">},</span> <span class="s2">&quot;A countable element&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Instrument&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">},</span> <span class="s2">&quot;An instrument&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Motor&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Moveable&quot;</span><span class="p">,</span> <span class="s2">&quot;Acquirable&quot;</span><span class="p">},</span> <span class="s2">&quot;a motor&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;PseudoMotor&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Moveable&quot;</span><span class="p">,</span> <span class="s2">&quot;Acquirable&quot;</span><span class="p">},</span> <span class="s2">&quot;A pseudo motor&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;IORegister&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Acquirable&quot;</span><span class="p">},</span> <span class="s2">&quot;An IO register&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;ExpChannel&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Acquirable&quot;</span><span class="p">},</span> <span class="s2">&quot;A generic experimental channel&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;CTExpChannel&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">},</span>
                      <span class="s2">&quot;A counter/timer experimental channel&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;ZeroDExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A 0D experimental channel&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;OneDExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">)),</span>
+    <span class="s2">&quot;ZeroDExpChannel&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">},</span> <span class="s2">&quot;A 0D experimental channel&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;OneDExpChannel&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">},</span>
                        <span class="s2">&quot;A 1D experimental channel&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;TwoDExpChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">)),</span>
+    <span class="s2">&quot;TwoDExpChannel&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">},</span>
                        <span class="s2">&quot;A 2D experimental channel&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;TriggerGate&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A trigger/gate&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;PseudoCounter&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A pseudo counter&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;ComChannel&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A communication channel&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;TriggerGate&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">},</span> <span class="s2">&quot;A trigger/gate&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;PseudoCounter&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;ExpChannel&quot;</span><span class="p">},</span> <span class="s2">&quot;A pseudo counter&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;ComChannel&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">},</span> <span class="s2">&quot;A communication channel&quot;</span><span class="p">),</span>
     <span class="s2">&quot;MotorGroup&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,),),</span> <span class="s2">&quot;A motor group&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MeasurementGroup&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">)),</span>
+    <span class="s2">&quot;MeasurementGroup&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;PoolElement&quot;</span><span class="p">,</span> <span class="s2">&quot;Countable&quot;</span><span class="p">},</span>
                          <span class="s2">&quot;A measurement group&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;ControllerLibrary&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Library&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolObject&quot;</span><span class="p">)),</span> <span class="s2">&quot;A controller library&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;ControllerClass&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolObject&quot;</span><span class="p">)),</span> <span class="s2">&quot;A controller class&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Constraint&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;PoolObject&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A constraint&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;External&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Object&quot;</span><span class="p">,)),</span> <span class="s2">&quot;An external object&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;ControllerLibrary&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Library&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolObject&quot;</span><span class="p">},</span> <span class="s2">&quot;A controller library&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;ControllerClass&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;PoolObject&quot;</span><span class="p">},</span> <span class="s2">&quot;A controller class&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Constraint&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;PoolObject&quot;</span><span class="p">},</span> <span class="s2">&quot;A constraint&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;External&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Object&quot;</span><span class="p">},</span> <span class="s2">&quot;An external object&quot;</span><span class="p">),</span>
 
-    <span class="s2">&quot;MacroServerObject&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Object&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A generic macro server object&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MacroServerElement&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Element&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroServerObject&quot;</span><span class="p">)),</span> <span class="s2">&quot;A generic macro server element&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MacroServer&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;MacroServerElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A MacroServer&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Door&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;MacroServerElement&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A macro server door&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MacroLibrary&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Library&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroServerObject&quot;</span><span class="p">)),</span> <span class="s2">&quot;A macro server library&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MacroCode&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;MacroServerObject&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A macro server macro code&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MacroClass&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroCode&quot;</span><span class="p">)),</span> <span class="s2">&quot;A macro server macro class&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;MacroFunction&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Function&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroCode&quot;</span><span class="p">)),</span> <span class="s2">&quot;A macro server macro function&quot;</span><span class="p">),</span>
-    <span class="s2">&quot;Macro&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;MacroClass&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroFunction&quot;</span><span class="p">)),</span> <span class="s2">&quot;A macro server macro&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;MacroServerObject&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Object&quot;</span><span class="p">},</span> <span class="s2">&quot;A generic macro server object&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;MacroServerElement&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Element&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroServerObject&quot;</span><span class="p">},</span>
+                           <span class="s2">&quot;A generic macro server element&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;MacroServer&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;MacroServerElement&quot;</span><span class="p">},</span> <span class="s2">&quot;A MacroServer&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Door&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;MacroServerElement&quot;</span><span class="p">},</span> <span class="s2">&quot;A macro server door&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;MacroLibrary&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Library&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroServerObject&quot;</span><span class="p">},</span>
+                     <span class="s2">&quot;A macro server library&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;MacroCode&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;MacroServerObject&quot;</span><span class="p">},</span> <span class="s2">&quot;A macro server macro code&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;MacroClass&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Class&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroCode&quot;</span><span class="p">},</span> <span class="s2">&quot;A macro server macro class&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;MacroFunction&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Function&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroCode&quot;</span><span class="p">},</span>
+                      <span class="s2">&quot;A macro server macro function&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;Macro&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;MacroClass&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroFunction&quot;</span><span class="p">},</span> <span class="s2">&quot;A macro server macro&quot;</span><span class="p">),</span>
 
-    <span class="s2">&quot;ParameterType&quot;</span><span class="p">:</span> <span class="p">(</span><span class="nb">set</span><span class="p">((</span><span class="s2">&quot;Meta&quot;</span><span class="p">,)),</span> <span class="s2">&quot;A generic macro server parameter type&quot;</span><span class="p">),</span>
+    <span class="s2">&quot;ParameterType&quot;</span><span class="p">:</span> <span class="p">({</span><span class="s2">&quot;Meta&quot;</span><span class="p">},</span> <span class="s2">&quot;A generic macro server parameter type&quot;</span><span class="p">),</span>
 <span class="p">}</span>
 
 <span class="c1">#: a dictionary containing the *all* interfaces supported by each type</span>
@@ -589,7 +592,7 @@
 
 <span class="k">def</span> <span class="nf">__expand</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
     <span class="n">direct_expansion</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">INTERFACES</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">direct_expansion</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">direct_expansion</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">direct_expansion</span> <span class="o">=</span> <span class="n">direct_expansion</span><span class="p">,</span>
     <span class="n">exp</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">direct_expansion</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">direct_expansion</span><span class="p">:</span>
@@ -621,7 +624,7 @@
             <span class="n">curr_id</span> <span class="o">=</span> <span class="n">__expand_sardana_interface_data</span><span class="p">(</span>
                 <span class="n">si_map</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="n">curr_id</span><span class="p">)</span>
         <span class="n">d</span> <span class="o">|=</span> <span class="n">si_map</span><span class="p">[</span><span class="n">interface</span><span class="p">]</span>
-    <span class="n">si_map</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">long</span><span class="p">(</span><span class="n">d</span> <span class="o">|</span> <span class="n">curr_id</span><span class="p">)</span>
+    <span class="n">si_map</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">d</span> <span class="o">|</span> <span class="n">curr_id</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">curr_id</span>
 
 
@@ -634,7 +637,7 @@
 
 <span class="c1">#: An enumeration describing the all possible sardana interfaces</span>
 <span class="n">Interface</span> <span class="o">=</span> <span class="n">Enumeration</span><span class="p">(</span><span class="s2">&quot;Interface&quot;</span><span class="p">,</span>
-                        <span class="n">__root_expand_sardana_interface_data</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+                        <span class="nb">list</span><span class="p">(</span><span class="n">__root_expand_sardana_interface_data</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
 
 
 <span class="k">def</span> <span class="nf">__create_sardana_interfaces</span><span class="p">():</span>
@@ -703,7 +706,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

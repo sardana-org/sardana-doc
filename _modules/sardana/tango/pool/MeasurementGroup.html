@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.tango.pool.MeasurementGroup &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.tango.pool.MeasurementGroup &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -293,22 +293,35 @@
                            <span class="n">quality</span><span class="o">=</span><span class="n">quality</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="n">priority</span><span class="p">,</span> <span class="n">error</span><span class="o">=</span><span class="n">error</span><span class="p">,</span>
                            <span class="n">synch</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_synchronization_str2enum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synchronization</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Translates synchronization data structure so it uses SynchDomain</span>
-<span class="sd">        enums as keys instead of strings.</span>
-<span class="sd">        &#39;&#39;&#39;</span>
-        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">synchronization</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">conf</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-                <span class="n">group</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
-                <span class="n">param</span> <span class="o">=</span> <span class="n">SynchParam</span><span class="o">.</span><span class="n">fromStr</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_synchronization_str2enum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synchronization_str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Translates synchronization data structure so it uses</span>
+<span class="sd">        SynchParam and SynchDomain enums as keys instead of strings.</span>
+
+<span class="sd">        .. todo:: At some point remove the backwards compatibility</span>
+<span class="sd">          for memorized values created with Python 2. In Python 2 IntEnum was</span>
+<span class="sd">          serialized to &quot;&lt;class&gt;.&lt;attr&gt;&quot; e.g. &quot;SynchDomain.Time&quot; and we were</span>
+<span class="sd">          using a class method `fromStr` to interpret the enumeration objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">synchronization</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">group_str</span> <span class="ow">in</span> <span class="n">synchronization_str</span><span class="p">:</span>
+            <span class="n">group</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="k">for</span> <span class="n">param_str</span><span class="p">,</span> <span class="n">conf_str</span> <span class="ow">in</span> <span class="n">group_str</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">param</span> <span class="o">=</span> <span class="n">SynchParam</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">param_str</span><span class="p">))</span>
+                <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                    <span class="n">param</span> <span class="o">=</span> <span class="n">SynchParam</span><span class="o">.</span><span class="n">fromStr</span><span class="p">(</span><span class="n">param_str</span><span class="p">)</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">conf_str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="n">conf</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="k">for</span> <span class="n">domain_str</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">conf_str</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="k">try</span><span class="p">:</span>
+                            <span class="n">domain</span> <span class="o">=</span> <span class="n">SynchDomain</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">domain_str</span><span class="p">))</span>
+                        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                            <span class="n">domain</span> <span class="o">=</span> <span class="n">SynchDomain</span><span class="o">.</span><span class="n">fromStr</span><span class="p">(</span><span class="n">domain_str</span><span class="p">)</span>
+                        <span class="n">conf</span><span class="p">[</span><span class="n">domain</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">conf</span> <span class="o">=</span> <span class="n">conf_str</span>
                 <span class="n">group</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">conf</span>
-                <span class="c1"># skip repeats cause its value is just a long number</span>
-                <span class="k">if</span> <span class="n">param</span> <span class="o">==</span> <span class="n">SynchParam</span><span class="o">.</span><span class="n">Repeats</span><span class="p">:</span>
-                    <span class="k">continue</span>
-                <span class="k">for</span> <span class="n">domain</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">conf</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
-                    <span class="n">conf</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
-                    <span class="n">domain</span> <span class="o">=</span> <span class="n">SynchDomain</span><span class="o">.</span><span class="n">fromStr</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span>
-                    <span class="n">conf</span><span class="p">[</span><span class="n">domain</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="n">synchronization</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">synchronization</span>
 
 <div class="viewcode-block" id="MeasurementGroup.always_executed_hook"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.always_executed_hook">[docs]</a>    <span class="k">def</span> <span class="nf">always_executed_hook</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -347,7 +360,7 @@
             <span class="n">acq_mode</span> <span class="o">=</span> <span class="n">AcqMode</span><span class="o">.</span><span class="n">lookup</span><span class="p">[</span><span class="n">acq_mode_str</span><span class="p">]</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Invalid acquisition mode. Must be one of &quot;</span> <span class="o">+</span>
-                            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">AcqMode</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+                            <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">AcqMode</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">acquisition_mode</span> <span class="o">=</span> <span class="n">acq_mode</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.read_Configuration"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.read_Configuration">[docs]</a>    <span class="k">def</span> <span class="nf">read_Configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
@@ -358,7 +371,7 @@
 
 <div class="viewcode-block" id="MeasurementGroup.write_Configuration"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.write_Configuration">[docs]</a>    <span class="k">def</span> <span class="nf">write_Configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span>
-        <span class="n">cfg</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">cfg</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">set_configuration_from_user</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.read_NbStarts"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.read_NbStarts">[docs]</a>    <span class="k">def</span> <span class="nf">read_NbStarts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
@@ -390,8 +403,7 @@
 
 <div class="viewcode-block" id="MeasurementGroup.write_Synchronization"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.write_Synchronization">[docs]</a>    <span class="k">def</span> <span class="nf">write_Synchronization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span>
-        <span class="n">synchronization</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">),</span>
-                                                <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">synchronization</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
         <span class="c1"># translate dictionary keys</span>
         <span class="n">synchronization</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization_str2enum</span><span class="p">(</span><span class="n">synchronization</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">synchronization</span> <span class="o">=</span> <span class="n">synchronization</span></div>
@@ -473,6 +485,7 @@
         <span class="s1">&#39;Moveable&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevString</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">],</span>
                      <span class="p">{</span><span class="s1">&#39;Memorized&#39;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
                       <span class="s1">&#39;Display level&#39;</span><span class="p">:</span> <span class="n">DispLevel</span><span class="o">.</span><span class="n">EXPERT</span><span class="p">}],</span>
+        <span class="c1"># TODO: Does it have sense to memorize Synchronization?</span>
         <span class="s1">&#39;Synchronization&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevString</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">],</span>
                             <span class="p">{</span><span class="s1">&#39;Memorized&#39;</span><span class="p">:</span> <span class="s2">&quot;true&quot;</span><span class="p">,</span>
                              <span class="s1">&#39;Display level&#39;</span><span class="p">:</span> <span class="n">DispLevel</span><span class="o">.</span><span class="n">EXPERT</span><span class="p">}],</span>
@@ -525,7 +538,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

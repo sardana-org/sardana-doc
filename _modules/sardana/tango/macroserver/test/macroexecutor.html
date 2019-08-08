@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.tango.macroserver.test.macroexecutor &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.tango.macroserver.test.macroexecutor &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -229,21 +229,16 @@
         <span class="k">if</span> <span class="n">event_data</span><span class="o">.</span><span class="n">err</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_state_buffer</span> <span class="o">=</span> <span class="n">event_data</span><span class="o">.</span><span class="n">errors</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_tango_macro_executor</span><span class="o">.</span><span class="n">_done_event</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
-        <span class="c1"># make sure we get it as string since PyTango 7.1.4 returns a buffer</span>
-        <span class="c1"># object and json.loads doesn&#39;t support buffer objects (only str)</span>
 
         <span class="n">attr_value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">event_data</span><span class="p">,</span> <span class="s1">&#39;attr_value&#39;</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">attr_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">attr_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">attr_value</span><span class="o">.</span><span class="n">value</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
             <span class="k">return</span>
         <span class="n">fmt</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="n">fmt</span><span class="p">)</span>
 
-        <span class="c1"># make sure we get it as string since PyTango 7.1.4 returns a buffer</span>
-        <span class="c1"># object and json.loads doesn&#39;t support buffer objects (only str)</span>
-        <span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">fmt</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">codec</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">macro_status</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
             <span class="n">state</span> <span class="o">=</span> <span class="n">macro_status</span><span class="p">[</span><span class="s1">&#39;state&#39;</span><span class="p">]</span>
@@ -390,7 +385,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

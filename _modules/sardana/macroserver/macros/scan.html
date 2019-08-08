@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.macros.scan &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.macroserver.macros.scan &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -363,7 +363,7 @@
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-step-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-step&#39;</span><span class="p">)</span>
 
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span> <span class="o">+</span> <span class="n">point_no</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">interv_sizes</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_no</span>
             <span class="k">yield</span> <span class="n">step</span>
@@ -374,7 +374,7 @@
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-move-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-move&#39;</span><span class="p">)</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;slow_down&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slow_down</span>
-        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_waypoints</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_waypoints</span><span class="p">):</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span> <span class="o">+</span> <span class="n">point_no</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">way_lengths</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;waypoint_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_no</span>
             <span class="k">yield</span> <span class="n">step</span>
@@ -441,7 +441,7 @@
             <span class="c1"># calculate motion time</span>
             <span class="n">max_step0_time</span><span class="p">,</span> <span class="n">max_step_time</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
             <span class="c1"># first motion takes longer, all others should be &quot;equal&quot;</span>
-            <span class="n">step0</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+            <span class="n">step0</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">v_motor</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">length</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v_motors</span><span class="p">,</span> <span class="n">curr_pos</span><span class="p">,</span>
                                                     <span class="n">step0</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">],</span>
                                                     <span class="bp">self</span><span class="o">.</span><span class="n">interv_sizes</span><span class="p">):</span>
@@ -1015,8 +1015,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">motors</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">funcstrings</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span>
 
-        <span class="n">globals_lst</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">indepvars</span><span class="p">,</span> <span class="n">values</span><span class="p">))</span>
-                       <span class="k">for</span> <span class="n">values</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">indepvars</span><span class="o">.</span><span class="n">values</span><span class="p">())]</span>
+        <span class="n">globals_lst</span> <span class="o">=</span> <span class="p">[</span><span class="nb">dict</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">indepvars</span><span class="p">,</span> <span class="n">values</span><span class="p">)))</span>
+                       <span class="k">for</span> <span class="n">values</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="nb">list</span><span class="p">(</span><span class="n">indepvars</span><span class="o">.</span><span class="n">values</span><span class="p">()))]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">paths</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SafeEvaluator</span><span class="p">(</span><span class="nb">globals</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span>
             <span class="n">func</span><span class="p">)</span> <span class="k">for</span> <span class="nb">globals</span> <span class="ow">in</span> <span class="n">globals_lst</span><span class="p">]</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcstrings</span><span class="p">]</span>
 
@@ -1085,7 +1085,7 @@
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-step-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-step&#39;</span><span class="p">)</span>
 
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;integ_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
@@ -1132,7 +1132,7 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">hist</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s2">&quot;ScanHistory&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">UnknownEnv</span><span class="p">:</span>
-            <span class="nb">print</span> <span class="s2">&quot;No scan recorded in history&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No scan recorded in history&quot;</span><span class="p">)</span>
             <span class="k">return</span>
         <span class="k">if</span> <span class="n">scan_number</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">show_all</span><span class="p">(</span><span class="n">hist</span><span class="p">)</span>
@@ -2022,7 +2022,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

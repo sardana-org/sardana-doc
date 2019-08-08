@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Macro scans examples &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>Macro scans examples &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../index.html"/>
         <link rel="up" title="Macro examples" href="macro_examples.html"/>
         <link rel="next" title="Macro plotting examples" href="macro_plotting_examples.html"/>
         <link rel="prev" title="Macro hooks examples" href="macro_hooks_examples.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -146,7 +146,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
+          <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
       
           <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
       
@@ -931,7 +931,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="n">step</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="c1"># integ_time is the same for all steps</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;integ_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span>
-        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="n">point_no</span> <span class="o">*</span> \
                 <span class="bp">self</span><span class="o">.</span><span class="n">interv_size</span>  <span class="c1"># note that this is a numpy array</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_no</span>
@@ -1007,10 +1007,10 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">extrainfo</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;repetition&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># !!!</span>
         <span class="n">step</span><span class="p">[</span><span class="s1">&#39;extrainfo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">extrainfo</span>  <span class="c1"># !!!</span>
-        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span> <span class="o">+</span> <span class="n">point_no</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">interv_sizes</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_no</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">repeat</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">repeat</span><span class="p">):</span>
                 <span class="n">extrainfo</span><span class="p">[</span><span class="s2">&quot;repetition&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>  <span class="c1"># !!!</span>
                 <span class="k">yield</span> <span class="n">step</span>
 
@@ -1092,18 +1092,18 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">extrainfo</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;cycle&quot;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;interval&quot;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;sample&quot;</span><span class="p">:</span> <span class="bp">None</span><span class="p">,</span> <span class="p">}</span>
         <span class="n">step</span><span class="p">[</span><span class="s1">&#39;extrainfo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">extrainfo</span>
-        <span class="n">halfcycle1</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">halfcycle1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
         <span class="n">halfcycle2</span> <span class="o">=</span> <span class="n">halfcycle1</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">halfcycle2</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
         <span class="n">intervallist</span> <span class="o">=</span> <span class="n">halfcycle1</span> <span class="o">+</span> <span class="n">halfcycle2</span>
         <span class="n">point_no</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">cycle</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_cycles</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">cycle</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_cycles</span><span class="p">):</span>
             <span class="n">extrainfo</span><span class="p">[</span><span class="s2">&quot;cycle&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycle</span>
             <span class="k">for</span> <span class="n">interval</span> <span class="ow">in</span> <span class="n">intervallist</span><span class="p">:</span>
                 <span class="n">extrainfo</span><span class="p">[</span><span class="s2">&quot;interval&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">interval</span>
                 <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
                     <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">+</span> <span class="p">(</span><span class="n">interval</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">interv_size</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_samples</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_samples</span><span class="p">):</span>
                     <span class="n">extrainfo</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample</span>
                     <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_no</span>
                     <span class="k">yield</span> <span class="n">step</span>
@@ -1112,7 +1112,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="c1"># last step for closing the loop</span>
         <span class="n">extrainfo</span><span class="p">[</span><span class="s2">&quot;interval&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_samples</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">sample</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_samples</span><span class="p">):</span>
             <span class="n">extrainfo</span><span class="p">[</span><span class="s2">&quot;sample&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_no</span>
             <span class="k">yield</span> <span class="n">step</span>
@@ -1151,7 +1151,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">=</span> <span class="n">start_pos</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">regions</span> <span class="o">=</span> <span class="n">regions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">regions_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regions_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
 
         <span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span>
         <span class="n">moveables</span> <span class="o">=</span> <span class="p">[</span><span class="n">motor</span><span class="p">]</span>
@@ -1212,7 +1212,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">=</span> <span class="n">start_pos</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">regions</span> <span class="o">=</span> <span class="n">regions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">regions_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regions_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
 
         <span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span>
         <span class="n">moveables</span> <span class="o">=</span> <span class="p">[</span><span class="n">motor1</span><span class="p">,</span> <span class="n">motor2</span><span class="p">]</span>
@@ -1277,7 +1277,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">=</span> <span class="n">start_pos</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">regions</span> <span class="o">=</span> <span class="n">regions</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">regions_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regions_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
 
         <span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span>
         <span class="n">moveables</span> <span class="o">=</span> <span class="p">[</span><span class="n">motor1</span><span class="p">,</span> <span class="n">motor2</span><span class="p">,</span> <span class="n">motor3</span><span class="p">]</span>
@@ -1364,11 +1364,11 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="n">positions_m2</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start2</span><span class="p">,</span> <span class="n">end2</span><span class="p">,</span> <span class="n">interv2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">interv1</span> <span class="o">&gt;</span> <span class="n">interv2</span><span class="p">:</span>
-            <span class="n">positions_m2</span> <span class="o">=</span> <span class="n">start2</span> <span class="o">+</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">end2</span> <span class="o">-</span> <span class="n">start2</span><span class="p">)</span> <span class="o">/</span> <span class="n">interv2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
-                <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">interv1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">interv1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">interv2</span><span class="p">)))</span>
+            <span class="n">positions_m2</span> <span class="o">=</span> <span class="n">start2</span> <span class="o">+</span> <span class="p">((</span><span class="n">end2</span> <span class="o">-</span> <span class="n">start2</span><span class="p">)</span> <span class="o">/</span> <span class="n">interv2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">interv1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="n">interv1</span> <span class="o">/</span> <span class="n">interv2</span><span class="p">))</span>
         <span class="k">elif</span> <span class="n">interv2</span> <span class="o">&gt;</span> <span class="n">interv1</span><span class="p">:</span>
-            <span class="n">positions_m1</span> <span class="o">=</span> <span class="n">start1</span> <span class="o">+</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">end1</span> <span class="o">-</span> <span class="n">start1</span><span class="p">)</span> <span class="o">/</span> <span class="n">interv1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
-                <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">interv2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">interv2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">interv1</span><span class="p">)))</span>
+            <span class="n">positions_m1</span> <span class="o">=</span> <span class="n">start1</span> <span class="o">+</span> <span class="p">((</span><span class="n">end1</span> <span class="o">-</span> <span class="n">start1</span><span class="p">)</span> <span class="o">/</span> <span class="n">interv1</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="n">numpy</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">interv2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="p">(</span><span class="n">interv2</span> <span class="o">/</span> <span class="n">interv1</span><span class="p">))</span>
 
         <span class="n">point_id</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">pos1</span><span class="p">,</span> <span class="n">pos2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">positions_m1</span><span class="p">,</span> <span class="n">positions_m2</span><span class="p">):</span>
@@ -1463,7 +1463,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="c1"># &quot;/&lt;currententry&gt;/custom_data&quot;) if none given</span>
         <span class="n">dh</span><span class="o">.</span><span class="n">addCustomData</span><span class="p">(</span><span class="s1">&#39;Hello world1&#39;</span><span class="p">,</span> <span class="s1">&#39;dummyChar1&#39;</span><span class="p">)</span>
         <span class="c1"># you can pass arrays (but not all recorders will handle them)</span>
-        <span class="n">dh</span><span class="o">.</span><span class="n">addCustomData</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="s1">&#39;dummyArray1&#39;</span><span class="p">)</span>
+        <span class="n">dh</span><span class="o">.</span><span class="n">addCustomData</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)),</span> <span class="s1">&#39;dummyArray1&#39;</span><span class="p">)</span>
         <span class="c1"># you can pass a custom nxpath *relative* to the current entry</span>
         <span class="n">dh</span><span class="o">.</span><span class="n">addCustomData</span><span class="p">(</span><span class="s1">&#39;Hello world2&#39;</span><span class="p">,</span> <span class="s1">&#39;dummyChar2&#39;</span><span class="p">,</span>
                          <span class="n">nxpath</span><span class="o">=</span><span class="s1">&#39;sample:NXsample&#39;</span><span class="p">)</span>
@@ -1510,7 +1510,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="n">first_position</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">second_position</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">positive_direction</span> <span class="o">=</span> <span class="n">second_position</span> <span class="o">&gt;</span> <span class="n">first_position</span>
-        <span class="n">shift</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">second_position</span> <span class="o">-</span> <span class="n">first_position</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.</span>
+        <span class="n">shift</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">second_position</span> <span class="o">-</span> <span class="n">first_position</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="k">if</span> <span class="n">positive_direction</span><span class="p">:</span>
             <span class="n">mid_positions</span> <span class="o">=</span> <span class="n">positions</span> <span class="o">+</span> <span class="n">shift</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1565,7 +1565,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

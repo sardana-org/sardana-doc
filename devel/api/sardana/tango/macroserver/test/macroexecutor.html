@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>macroexecutor &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>macroexecutor &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../../../index.html"/>
         <link rel="up" title="macroserver" href="../../macroserver.html"/>
         <link rel="next" title="taurus" href="../../../taurus.html"/>
         <link rel="prev" title="MacroServer" href="../MacroServer.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -160,7 +160,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../../../../../../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
+          <li><a href="../../../../../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
       
           <li><a href="../../../../../index.html">Developer&#8217;s Guide</a> &raquo;</li>
       
@@ -441,7 +441,7 @@ is not exception).</p>
 
 <dl class="method">
 <dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.run">
-<code class="descname">run</code><span class="sig-paren">(</span><em>macro_name</em>, <em>macro_params=None</em>, <em>sync=True</em>, <em>timeout=inf</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.run" title="Permalink to this definition">¶</a></dt>
+<code class="descname">run</code><span class="sig-paren">(</span><em>macro_name</em>, <em>macro_params=None</em>, <em>sync=True</em>, <em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute macro.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -456,7 +456,8 @@ parameters or with the default values)</li>
 (default is sync=True)</li>
 <li><strong>timeout</strong> &#8211; <dl class="docutils">
 <dt>(float) timeout (in s) that will be passed to the wait</dt>
-<dd>method, in case of synchronous execution</dd>
+<dd>method, in case of synchronous execution; None means
+wait infinitely</dd>
 </dl>
 <p>In asyncrhonous execution method <a class="reference internal" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.wait" title="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.wait"><code class="xref py py-meth docutils literal"><span class="pre">wait()</span></code></a> has to be explicitly
 called.</p>
@@ -511,13 +512,14 @@ this method.</p>
 
 <dl class="method">
 <dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.wait">
-<code class="descname">wait</code><span class="sig-paren">(</span><em>timeout=inf</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.wait" title="Permalink to this definition">¶</a></dt>
+<code class="descname">wait</code><span class="sig-paren">(</span><em>timeout=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.wait" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wait until macro is done. Use it in asynchronous executions.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>timeout</strong> &#8211; (float) waiting timeout (in s)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>timeout</strong> &#8211; (float) waiting timeout (in s); None means wait
+infinitely</td>
 </tr>
 </tbody>
 </table>
@@ -570,7 +572,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.tango.pool.PseudoCounter &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.tango.pool.PseudoCounter &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -215,7 +215,7 @@
 <div class="viewcode-block" id="PseudoCounter.init_device"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/PseudoCounter.html#sardana.tango.pool.PseudoCounter.PseudoCounter.init_device">[docs]</a>    <span class="k">def</span> <span class="nf">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">PoolExpChannelDevice</span><span class="o">.</span><span class="n">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">Elements</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Elements</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Elements</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">Elements</span><span class="p">))</span>
         <span class="n">pseudo_counter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pseudo_counter</span>
         <span class="k">if</span> <span class="n">pseudo_counter</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">full_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_full_name</span><span class="p">()</span>
@@ -448,7 +448,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.tango.pool.Pool &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.tango.pool.Pool &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -184,6 +184,7 @@
 <span class="kn">from</span> <span class="nn">sardana.pool.pool</span> <span class="k">import</span> <span class="n">Pool</span> <span class="k">as</span> <span class="n">POOL</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolmetacontroller</span> <span class="k">import</span> <span class="n">TYPE_MAP_OBJ</span>
 <span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">get_tango_version_number</span>
+<span class="kn">import</span> <span class="nn">collections</span>
 
 
 <div class="viewcode-block" id="Pool"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool">[docs]</a><span class="k">class</span> <span class="nc">Pool</span><span class="p">(</span><span class="n">PyTango</span><span class="o">.</span><span class="n">Device_4Impl</span><span class="p">,</span> <span class="n">Logger</span><span class="p">):</span>
@@ -255,10 +256,10 @@
         <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span>
         <span class="n">p</span><span class="o">.</span><span class="n">set_python_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PythonPath</span><span class="p">)</span>
         <span class="n">p</span><span class="o">.</span><span class="n">set_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">PoolPath</span><span class="p">)</span>
-        <span class="n">p</span><span class="o">.</span><span class="n">set_motion_loop_sleep_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MotionLoop_SleepTime</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">set_motion_loop_sleep_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">MotionLoop_SleepTime</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
         <span class="n">p</span><span class="o">.</span><span class="n">set_motion_loop_states_per_position</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">MotionLoop_StatesPerPosition</span><span class="p">)</span>
-        <span class="n">p</span><span class="o">.</span><span class="n">set_acq_loop_sleep_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">AcqLoop_SleepTime</span> <span class="o">/</span> <span class="mf">1000.0</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">set_acq_loop_sleep_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">AcqLoop_SleepTime</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">)</span>
         <span class="n">p</span><span class="o">.</span><span class="n">set_acq_loop_states_per_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">AcqLoop_StatesPerValue</span><span class="p">)</span>
         <span class="n">p</span><span class="o">.</span><span class="n">set_drift_correction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DriftCorrection</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">RemoteLog</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -388,7 +389,7 @@
         <span class="k">if</span> <span class="n">cache</span> <span class="ow">and</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">value</span>
         <span class="n">value</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">new</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">get_elements_info</span><span class="p">())</span>
-        <span class="n">value</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf8_json&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ElementsCache</span> <span class="o">=</span> <span class="n">value</span>
         <span class="k">return</span> <span class="n">value</span></div>
 
@@ -478,7 +479,7 @@
                             <span class="s2">&quot;interface&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">type_str</span><span class="p">))</span>
 
         <span class="c1"># check that necessary property values are set</span>
-        <span class="k">for</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">prop_info</span> <span class="ow">in</span> <span class="n">ctrl_class</span><span class="o">.</span><span class="n">ctrl_properties</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">prop_name</span><span class="p">,</span> <span class="n">prop_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">ctrl_class</span><span class="o">.</span><span class="n">ctrl_properties</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">prop_value</span> <span class="o">=</span> <span class="n">properties</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prop_name</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">prop_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">prop_info</span><span class="o">.</span><span class="n">default_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -522,7 +523,7 @@
                 <span class="n">info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">pm_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">pm_name</span><span class="p">,</span> <span class="n">ctrl_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
                             <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;PseudoMotor&#39;</span><span class="p">,</span> <span class="n">elements</span><span class="o">=</span><span class="n">motor_ids</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">pm_name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">n</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="n">pm_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+                    <span class="n">n</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="n">pm_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
                     <span class="n">info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">fn</span>
                 <span class="n">pseudo_motor_infos</span><span class="p">[</span><span class="n">klass_pseudo_role</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span>
                 <span class="n">pseudo_motor_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pm_id</span><span class="p">)</span>
@@ -562,7 +563,7 @@
                 <span class="n">info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">pc_id</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">pc_name</span><span class="p">,</span> <span class="n">ctrl_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
                             <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;PseudoCounter&#39;</span><span class="p">,</span> <span class="n">elements</span><span class="o">=</span><span class="n">counter_ids</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">pc_name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                    <span class="n">n</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="n">pc_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+                    <span class="n">n</span><span class="p">,</span> <span class="n">fn</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">strip</span><span class="p">,</span> <span class="n">pc_name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
                     <span class="n">info</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span> <span class="n">fn</span>
                 <span class="n">pseudo_counter_infos</span><span class="p">[</span><span class="n">klass_pseudo_role</span><span class="p">]</span> <span class="o">=</span> <span class="n">info</span>
                 <span class="n">pseudo_counter_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pc_id</span><span class="p">)</span>
@@ -589,7 +590,7 @@
         <span class="c1"># Determine which controller writtable attributes have default value</span>
         <span class="c1"># and apply them to the newly created controller</span>
         <span class="n">attrs</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_info</span> <span class="ow">in</span> <span class="n">ctrl_class</span><span class="o">.</span><span class="n">ctrl_attributes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">ctrl_class</span><span class="o">.</span><span class="n">ctrl_attributes</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">default_value</span> <span class="o">=</span> <span class="n">attr_info</span><span class="o">.</span><span class="n">default_value</span>
             <span class="k">if</span> <span class="n">default_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">continue</span>
@@ -605,10 +606,10 @@
         <span class="c1"># for pseudo motor/counter controller also create pseudo</span>
         <span class="c1"># motor(s)/counter(s) automatically</span>
         <span class="k">if</span> <span class="n">elem_type</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">PseudoMotor</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">pseudo_motor_info</span> <span class="ow">in</span> <span class="n">pseudo_motor_infos</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">pseudo_motor_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">pseudo_motor_infos</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_create_single_element</span><span class="p">(</span><span class="n">pseudo_motor_info</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">elem_type</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">PseudoCounter</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">pseudo_counter_info</span> <span class="ow">in</span> <span class="n">pseudo_counter_infos</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">pseudo_counter_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">pseudo_counter_infos</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_create_single_element</span><span class="p">(</span><span class="n">pseudo_counter_info</span><span class="p">)</span></div>
 
     <span class="c1">#@DebugIt()</span>
@@ -760,7 +761,8 @@
         <span class="c1"># them to the newly created element</span>
         <span class="n">ctrl_class_info</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_ctrl_info</span><span class="p">()</span>
         <span class="n">attrs</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_info</span> <span class="ow">in</span> <span class="n">ctrl_class_info</span><span class="o">.</span><span class="n">getAxisAttributes</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_info</span> <span class="ow">in</span> \
+                <span class="nb">list</span><span class="p">(</span><span class="n">ctrl_class_info</span><span class="o">.</span><span class="n">getAxisAttributes</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">default_value</span> <span class="o">=</span> <span class="n">attr_info</span><span class="o">.</span><span class="n">default_value</span>
             <span class="k">if</span> <span class="n">default_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">continue</span>
@@ -901,7 +903,7 @@
                 <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;change&#39;</span>
             <span class="n">json_elem</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">full_name</span><span class="p">)</span>
             <span class="n">value</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">json_elem</span><span class="p">,</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="s1">&#39;utf8_json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">push_change_event</span><span class="p">(</span><span class="s1">&#39;Elements&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">value</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">evt_name</span> <span class="o">==</span> <span class="s2">&quot;elementschanged&quot;</span><span class="p">:</span>
             <span class="c1"># force the element list cache to be rebuild next time someone reads</span>
@@ -920,16 +922,16 @@
                 <span class="n">deleted_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">json_elem</span><span class="p">)</span>
             <span class="n">value</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;new&quot;</span><span class="p">:</span> <span class="n">new_values</span><span class="p">,</span> <span class="s2">&quot;change&quot;</span><span class="p">:</span> <span class="n">changed_values</span><span class="p">,</span>
                      <span class="s2">&quot;del&quot;</span><span class="p">:</span> <span class="n">deleted_values</span><span class="p">}</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="s1">&#39;utf8_json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">((</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">push_change_event</span><span class="p">(</span><span class="s1">&#39;Elements&#39;</span><span class="p">,</span> <span class="o">*</span><span class="n">value</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_format_create_json_arguments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">argin</span><span class="p">):</span>
         <span class="n">elems</span><span class="p">,</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">argin</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">[]</span>
-        <span class="k">if</span> <span class="n">operator</span><span class="o">.</span><span class="n">isMappingType</span><span class="p">(</span><span class="n">elems</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elems</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>
             <span class="n">elems</span> <span class="o">=</span> <span class="p">[</span><span class="n">elems</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elems</span><span class="p">:</span>
             <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">elem</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                 <span class="n">d</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
             <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span>
@@ -953,15 +955,15 @@
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">argin</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_create_json_arguments</span><span class="p">(</span><span class="n">argin</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;type&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Missing key &#39;type&#39;&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;library&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;library&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Missing key &#39;library&#39;&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;klass&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;klass&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Missing key &#39;klass&#39;&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;name&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">KeyError</span><span class="p">(</span><span class="s2">&quot;Missing key &#39;name&#39;&quot;</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">ret</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;properties&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;properties&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ret</span><span class="p">:</span>
                 <span class="n">ret</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">CaselessDict</span><span class="p">()</span>
             <span class="k">return</span> <span class="n">ret</span>
 
@@ -1000,11 +1002,11 @@
                 <span class="n">elems</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">argin</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="k">except</span><span class="p">:</span>
                 <span class="n">elems</span> <span class="o">=</span> <span class="n">argin</span>
-            <span class="k">if</span> <span class="n">operator</span><span class="o">.</span><span class="n">isMappingType</span><span class="p">(</span><span class="n">elems</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elems</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>
                 <span class="n">elems</span> <span class="o">=</span> <span class="p">[</span><span class="n">elems</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elems</span><span class="p">:</span>
                 <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">elem</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                     <span class="n">d</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
                 <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">ret</span>
@@ -1025,11 +1027,11 @@
                 <span class="n">elems</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">argin</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="k">except</span><span class="p">:</span>
                 <span class="n">elems</span> <span class="o">=</span> <span class="n">argin</span>
-            <span class="k">if</span> <span class="n">operator</span><span class="o">.</span><span class="n">isMappingType</span><span class="p">(</span><span class="n">elems</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elems</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Mapping</span><span class="p">):</span>
                 <span class="n">elems</span> <span class="o">=</span> <span class="p">[</span><span class="n">elems</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elems</span><span class="p">:</span>
                 <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
-                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">elem</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                     <span class="n">d</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">)]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
                 <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">ret</span>
@@ -1267,7 +1269,7 @@
 <span class="s2">    </span><span class="si">{1}</span><span class="s2"></span>
 <span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">CREATE_MOTOR_GROUP_PAR_IN_DOC</span><span class="p">,</span> <span class="n">CREATE_MOTOR_GROUP_PAR_OUT_DOC</span><span class="p">)</span>
 
-<span class="n">Pool</span><span class="o">.</span><span class="n">CreateMotorGroup</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_MOTOR_GROUP_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">CreateMotorGroup</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_MOTOR_GROUP_DOC</span>
 
 <span class="n">CREATE_MEASUREMENT_GROUP_PAR_IN_DOC</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
 <span class="s2">Must give either:</span>
@@ -1438,18 +1440,18 @@
 <span class="s2">    </span><span class="si">{1}</span><span class="s2"></span>
 <span class="s2">&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">SEND_TO_CONTROLLER_PAR_IN_DOC</span><span class="p">,</span> <span class="n">SEND_TO_CONTROLLER_PAR_OUT_DOC</span><span class="p">)</span>
 
-<span class="n">Pool</span><span class="o">.</span><span class="n">CreateController</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_CONTROLLER_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">CreateElement</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_ELEMENT_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">CreateInstrument</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_INSTRUMENT_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">CreateMotorGroup</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_MOTOR_GROUP_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">CreateMeasurementGroup</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_MEASUREMENT_GROUP_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">DeleteElement</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">DELETE_ELEMENT_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">GetControllerClassInfo</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GET_CONTROLLER_CLASS_INFO_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">ReloadControllerLib</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">RELOAD_CONTROLLER_LIB_INFO_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">ReloadControllerClass</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">RELOAD_CONTROLLER_CLASS_INFO_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">RenameElement</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">RENAME_ELEMENT_CLASS_INFO_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">Stop</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">STOP_DOC</span>
-<span class="n">Pool</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="vm">__func__</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">ABORT_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">CreateController</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_CONTROLLER_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">CreateElement</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_ELEMENT_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">CreateInstrument</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_INSTRUMENT_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">CreateMotorGroup</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_MOTOR_GROUP_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">CreateMeasurementGroup</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">CREATE_MEASUREMENT_GROUP_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">DeleteElement</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">DELETE_ELEMENT_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">GetControllerClassInfo</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">GET_CONTROLLER_CLASS_INFO_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">ReloadControllerLib</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">RELOAD_CONTROLLER_LIB_INFO_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">ReloadControllerClass</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">RELOAD_CONTROLLER_CLASS_INFO_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">RenameElement</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">RENAME_ELEMENT_CLASS_INFO_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">Stop</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">STOP_DOC</span>
+<span class="n">Pool</span><span class="o">.</span><span class="n">Abort</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">ABORT_DOC</span>
 
 
 <div class="viewcode-block" id="PoolClass"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.PoolClass">[docs]</a><span class="k">class</span> <span class="nc">PoolClass</span><span class="p">(</span><span class="n">PyTango</span><span class="o">.</span><span class="n">DeviceClass</span><span class="p">):</span>
@@ -1755,7 +1757,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

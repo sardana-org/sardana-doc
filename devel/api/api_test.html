@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Sardana test API &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>Sardana test API &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../genindex.html"/>
         <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../index.html"/>
         <link rel="up" title="Sardana API" href="api_sardana.html"/>
         <link rel="next" title="Sardana migration guide" href="../guide_migration.html"/>
         <link rel="prev" title="sardanavalue" href="sardana/sardanavalue.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -160,7 +160,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
+          <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
       
           <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
       
@@ -310,7 +310,7 @@ own macro executor.</p>
 
 <dl class="method">
 <dt id="sardana.macroserver.macros.test.BaseMacroExecutor.run">
-<code class="descname">run</code><span class="sig-paren">(</span><em>macro_name</em>, <em>macro_params=None</em>, <em>sync=True</em>, <em>timeout=inf</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/macroexecutor.html#BaseMacroExecutor.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.BaseMacroExecutor.run" title="Permalink to this definition">¶</a></dt>
+<code class="descname">run</code><span class="sig-paren">(</span><em>macro_name</em>, <em>macro_params=None</em>, <em>sync=True</em>, <em>timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/macroexecutor.html#BaseMacroExecutor.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.BaseMacroExecutor.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute macro.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -325,7 +325,8 @@ parameters or with the default values)</li>
 (default is sync=True)</li>
 <li><strong>timeout</strong> &#8211; <dl class="docutils">
 <dt>(float) timeout (in s) that will be passed to the wait</dt>
-<dd>method, in case of synchronous execution</dd>
+<dd>method, in case of synchronous execution; None means
+wait infinitely</dd>
 </dl>
 <p>In asyncrhonous execution method <a class="reference internal" href="#sardana.macroserver.macros.test.BaseMacroExecutor.wait" title="sardana.macroserver.macros.test.BaseMacroExecutor.wait"><code class="xref py py-meth docutils literal"><span class="pre">wait()</span></code></a> has to be explicitly
 called.</p>
@@ -339,13 +340,14 @@ called.</p>
 
 <dl class="method">
 <dt id="sardana.macroserver.macros.test.BaseMacroExecutor.wait">
-<code class="descname">wait</code><span class="sig-paren">(</span><em>timeout=inf</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/macroexecutor.html#BaseMacroExecutor.wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.BaseMacroExecutor.wait" title="Permalink to this definition">¶</a></dt>
+<code class="descname">wait</code><span class="sig-paren">(</span><em>timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/macroexecutor.html#BaseMacroExecutor.wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.BaseMacroExecutor.wait" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wait until macro is done. Use it in asynchronous executions.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>timeout</strong> &#8211; (float) waiting timeout (in s)</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>timeout</strong> &#8211; (float) waiting timeout (in s); None means wait
+infinitely</td>
 </tr>
 </tbody>
 </table>
@@ -523,11 +525,10 @@ is not exception).</p>
 </div>
 <div class="section" id="macroexecutorfactory">
 <h2>MacroExecutorFactory<a class="headerlink" href="#macroexecutorfactory" title="Permalink to this headline">¶</a></h2>
-<img src="../../_images/inheritance-60b6214b2fe80083772b715da67826332e93e833.png" alt="Inheritance diagram of MacroExecutorFactory" usemap="#inheritance71ca9fc148" class="inheritance"/>
+<img src="../../_images/inheritance-9c2e588abe76eb0f10445e08d976d4d0e55300a2.png" alt="Inheritance diagram of MacroExecutorFactory" usemap="#inheritance71ca9fc148" class="inheritance"/>
 <map id="inheritance71ca9fc148" name="inheritance71ca9fc148">
-<area shape="rect" id="node1" title="A scheme&#45;agnostic factory for MacroExecutor instances" alt="" coords="5,179,168,217"/>
-<area shape="rect" id="node2" title="This class allows Singleton objects" alt="" coords="45,92,128,131"/>
-<area shape="rect" id="node3" title="A magical object class that provides Python 2 compatibility methods::" alt="" coords="43,5,130,44"/>
+<area shape="rect" id="node1" title="A scheme&#45;agnostic factory for MacroExecutor instances" alt="" coords="5,92,168,131"/>
+<area shape="rect" id="node2" title="This class allows Singleton objects" alt="" coords="45,5,128,44"/>
 </map>
 <dl class="class">
 <dt id="sardana.macroserver.macros.test.MacroExecutorFactory">
@@ -549,11 +550,6 @@ is not exception).</p>
 <dl class="method">
 <dt id="sardana.macroserver.macros.test.MacroExecutorFactory.init">
 <code class="descname">init</code><span class="sig-paren">(</span><em>*p</em>, <em>**k</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.MacroExecutorFactory.init" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="sardana.macroserver.macros.test.MacroExecutorFactory.next">
-<code class="descname">next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.MacroExecutorFactory.next" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -646,7 +642,7 @@ See <a class="reference internal" href="#sardana.macroserver.macros.test.BaseMac
 
 <dl class="method">
 <dt id="sardana.macroserver.macros.test.RunMacroTestCase.macro_runs">
-<code class="descname">macro_runs</code><span class="sig-paren">(</span><em>macro_name=None</em>, <em>macro_params=None</em>, <em>wait_timeout=inf</em>, <em>data=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/base.html#RunMacroTestCase.macro_runs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.RunMacroTestCase.macro_runs" title="Permalink to this definition">¶</a></dt>
+<code class="descname">macro_runs</code><span class="sig-paren">(</span><em>macro_name=None</em>, <em>macro_params=None</em>, <em>wait_timeout=None</em>, <em>data=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/base.html#RunMacroTestCase.macro_runs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.RunMacroTestCase.macro_runs" title="Permalink to this definition">¶</a></dt>
 <dd><p>A helper method to create tests that check if the macro can be
 successfully executed for the given input parameters. It may also
 optionally perform checks on the outputs from the execution.</p>
@@ -661,7 +657,8 @@ class member)</li>
 If passed, they must be given as a sequence of
 their string representations.</li>
 <li><strong>wait_timeout</strong> &#8211; (float) maximum allowed time (in s) for the macro
-to finish. By default infinite timeout is used.</li>
+to finish. By default infinite timeout is
+used (None).</li>
 <li><strong>data</strong> &#8211; (obj) Optional. If passed, the macro data after the
 execution is tested to be equal to this.</li>
 </ul>
@@ -673,7 +670,7 @@ execution is tested to be equal to this.</li>
 
 <dl class="method">
 <dt id="sardana.macroserver.macros.test.RunMacroTestCase.macro_fails">
-<code class="descname">macro_fails</code><span class="sig-paren">(</span><em>macro_name=None</em>, <em>macro_params=None</em>, <em>wait_timeout=inf</em>, <em>exception=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/base.html#RunMacroTestCase.macro_fails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.RunMacroTestCase.macro_fails" title="Permalink to this definition">¶</a></dt>
+<code class="descname">macro_fails</code><span class="sig-paren">(</span><em>macro_name=None</em>, <em>macro_params=None</em>, <em>wait_timeout=None</em>, <em>exception=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/base.html#RunMacroTestCase.macro_fails"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.RunMacroTestCase.macro_fails" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that the macro fails to run for the given input parameters</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -684,7 +681,7 @@ execution is tested to be equal to this.</li>
 class member)</li>
 <li><strong>macro_params</strong> &#8211; (seq&lt;str&gt;) input parameters for the macro</li>
 <li><strong>wait_timeout</strong> &#8211; maximum allowed time for the macro to fail. By
-default infinite timeout is used.</li>
+default infinite timeout (None) is used.</li>
 <li><strong>exception</strong> &#8211; (str or Exception) if given, an additional check of
 the type of the exception is done.
 (IMPORTANT: this is just a comparison of str
@@ -738,7 +735,7 @@ macros.</p>
 
 <dl class="method">
 <dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.macro_stops">
-<code class="descname">macro_stops</code><span class="sig-paren">(</span><em>macro_name=None</em>, <em>macro_params=None</em>, <em>stop_delay=0.1</em>, <em>wait_timeout=inf</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/base.html#RunStopMacroTestCase.macro_stops"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_stops" title="Permalink to this definition">¶</a></dt>
+<code class="descname">macro_stops</code><span class="sig-paren">(</span><em>macro_name=None</em>, <em>macro_params=None</em>, <em>stop_delay=0.1</em>, <em>wait_timeout=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/base.html#RunStopMacroTestCase.macro_stops"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_stops" title="Permalink to this definition">¶</a></dt>
 <dd><p>A helper method to create tests that check if the macro can be
 successfully stoped (a.k.a. aborted) after it has been launched.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -754,7 +751,8 @@ their string representations.</li>
 <li><strong>stop_delay</strong> &#8211; (float) Time (in s) to wait between launching the
 macro and sending the stop command. default=0.1</li>
 <li><strong>wait_timeout</strong> &#8211; (float) maximum allowed time (in s) for the macro
-to finish. By default infinite timeout is used.</li>
+to finish. By default infinite timeout (None) is
+used.</li>
 </ul>
 </td>
 </tr>
@@ -775,7 +773,7 @@ to finish. By default infinite timeout is used.</li>
 
 <dl class="method">
 <dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.macro_fails">
-<code class="descname">macro_fails</code><span class="sig-paren">(</span><em>macro_name=None</em>, <em>macro_params=None</em>, <em>wait_timeout=inf</em>, <em>exception=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_fails" title="Permalink to this definition">¶</a></dt>
+<code class="descname">macro_fails</code><span class="sig-paren">(</span><em>macro_name=None</em>, <em>macro_params=None</em>, <em>wait_timeout=None</em>, <em>exception=None</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_fails" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check that the macro fails to run for the given input parameters</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -786,7 +784,7 @@ to finish. By default infinite timeout is used.</li>
 class member)</li>
 <li><strong>macro_params</strong> &#8211; (seq&lt;str&gt;) input parameters for the macro</li>
 <li><strong>wait_timeout</strong> &#8211; maximum allowed time for the macro to fail. By
-default infinite timeout is used.</li>
+default infinite timeout (None) is used.</li>
 <li><strong>exception</strong> &#8211; (str or Exception) if given, an additional check of
 the type of the exception is done.
 (IMPORTANT: this is just a comparison of str
@@ -805,7 +803,7 @@ representations of exception objects)</li>
 
 <dl class="method">
 <dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.macro_runs">
-<code class="descname">macro_runs</code><span class="sig-paren">(</span><em>macro_name=None</em>, <em>macro_params=None</em>, <em>wait_timeout=inf</em>, <em>data=0</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_runs" title="Permalink to this definition">¶</a></dt>
+<code class="descname">macro_runs</code><span class="sig-paren">(</span><em>macro_name=None</em>, <em>macro_params=None</em>, <em>wait_timeout=None</em>, <em>data=0</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_runs" title="Permalink to this definition">¶</a></dt>
 <dd><p>A helper method to create tests that check if the macro can be
 successfully executed for the given input parameters. It may also
 optionally perform checks on the outputs from the execution.</p>
@@ -820,7 +818,8 @@ class member)</li>
 If passed, they must be given as a sequence of
 their string representations.</li>
 <li><strong>wait_timeout</strong> &#8211; (float) maximum allowed time (in s) for the macro
-to finish. By default infinite timeout is used.</li>
+to finish. By default infinite timeout is
+used (None).</li>
 <li><strong>data</strong> &#8211; (obj) Optional. If passed, the macro data after the
 execution is tested to be equal to this.</li>
 </ul>
@@ -849,11 +848,10 @@ execution is tested to be equal to this.</li>
 </div>
 <div class="section" id="sardemoenv">
 <h2>SarDemoEnv<a class="headerlink" href="#sardemoenv" title="Permalink to this headline">¶</a></h2>
-<img src="../../_images/inheritance-f21179766eb13573be7ed0bb6e4129c050862837.png" alt="Inheritance diagram of SarDemoEnv" usemap="#inheritance6a03468580" class="inheritance"/>
+<img src="../../_images/inheritance-2a992bb9efc492ab6d143b6a504f2384a3a24067.png" alt="Inheritance diagram of SarDemoEnv" usemap="#inheritance6a03468580" class="inheritance"/>
 <map id="inheritance6a03468580" name="inheritance6a03468580">
-<area shape="rect" id="node1" title="Class to get _SAR_DEMO environment variable with cross checking with" alt="" coords="5,179,112,217"/>
-<area shape="rect" id="node2" title="This class allows Singleton objects" alt="" coords="17,92,100,131"/>
-<area shape="rect" id="node3" title="A magical object class that provides Python 2 compatibility methods::" alt="" coords="15,5,102,44"/>
+<area shape="rect" id="node1" title="Class to get _SAR_DEMO environment variable with cross checking with" alt="" coords="5,92,112,131"/>
+<area shape="rect" id="node2" title="This class allows Singleton objects" alt="" coords="17,5,100,44"/>
 </map>
 <dl class="class">
 <dt id="sardana.macroserver.macros.test.SarDemoEnv">
@@ -1004,11 +1002,6 @@ the MacroServer (given by <code class="xref py py-attr docutils literal"><span c
 <dd><p>Change the door name and reset all lists</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="sardana.macroserver.macros.test.SarDemoEnv.next">
-<code class="descname">next</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.SarDemoEnv.next" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </div>
@@ -1056,7 +1049,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

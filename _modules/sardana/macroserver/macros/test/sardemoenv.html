@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.macros.test.sardemoenv &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.macroserver.macros.test.sardemoenv &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -327,7 +327,7 @@
         <span class="n">taurus</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;The door </span><span class="si">%s</span><span class="s2"> is not running. &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">door_name</span><span class="p">)</span> <span class="o">+</span>
                        <span class="s2">&quot;Ignore this message if you are building the documentation.&quot;</span><span class="p">)</span>
         <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="n">fallback_name</span><span class="p">]</span> <span class="o">*</span> <span class="n">fallback_elements_len</span>
-    <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">taurus</span>
         <span class="n">taurus</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="n">taurus</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;It was not possible to retrieve the element. &quot;</span> <span class="o">+</span>
@@ -374,17 +374,17 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">s</span> <span class="o">=</span> <span class="n">SarDemoEnv</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">env</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getControllers</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getCTs</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getMotors</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getPseudoMotors</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getZerods</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getOneds</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getTwods</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getElements</span><span class="p">(</span><span class="s1">&#39;Moveable&#39;</span><span class="p">)</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getMoveables</span><span class="p">()</span>
-    <span class="nb">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getElements</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">env</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getControllers</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getCTs</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getMotors</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getPseudoMotors</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getZerods</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getOneds</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getTwods</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getElements</span><span class="p">(</span><span class="s1">&#39;Moveable&#39;</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getMoveables</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">getElements</span><span class="p">())</span>
 </pre></div>
 
            </div>
@@ -419,7 +419,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.taurus.core.tango.sardana.pool &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.taurus.core.tango.sardana.pool &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -165,7 +165,8 @@
 <span class="sd">&quot;&quot;&quot;The device pool submodule.</span>
 <span class="sd">It contains specific part of sardana device pool&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">absolute_import</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;InterruptException&quot;</span><span class="p">,</span> <span class="s2">&quot;StopException&quot;</span><span class="p">,</span> <span class="s2">&quot;AbortException&quot;</span><span class="p">,</span>
            <span class="s2">&quot;BaseElement&quot;</span><span class="p">,</span> <span class="s2">&quot;ControllerClass&quot;</span><span class="p">,</span> <span class="s2">&quot;ControllerLibrary&quot;</span><span class="p">,</span>
@@ -230,6 +231,15 @@
 <span class="p">}</span>
 
 
+<span class="k">def</span> <span class="nf">_is_referable</span><span class="p">(</span><span class="n">channel</span><span class="p">):</span>
+    <span class="c1"># Equivalent to ExpChannel.isReferable.</span>
+    <span class="c1"># Use DeviceProxy instead of taurus to avoid crashes in Py3</span>
+    <span class="c1"># See: tango-controls/pytango#292</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="n">DeviceProxy</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;valueref&quot;</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">channel</span><span class="o">.</span><span class="n">get_attribute_list</span><span class="p">()))</span>
+
+
 <span class="k">class</span> <span class="nc">InterruptException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span>
 
@@ -268,9 +278,8 @@
             <span class="k">return</span> <span class="n">CodecFactory</span><span class="o">.</span><span class="n">encode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialize</span><span class="p">())</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_str_tuple</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span></div>
 
-    <span class="k">def</span> <span class="nf">__cmp__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">cmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getPoolData</span><span class="p">()[</span><span class="s1">&#39;full_name&#39;</span><span class="p">],</span>
-                   <span class="n">o</span><span class="o">.</span><span class="n">getPoolData</span><span class="p">()[</span><span class="s1">&#39;full_name&#39;</span><span class="p">])</span>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPoolData</span><span class="p">()[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">o</span><span class="o">.</span><span class="n">getPoolData</span><span class="p">()[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="BaseElement.getName"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.BaseElement.getName">[docs]</a>    <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPoolData</span><span class="p">()[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span></div>
@@ -321,14 +330,12 @@
 <div class="viewcode-block" id="ControllerClass.getOrganization"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.ControllerClass.getOrganization">[docs]</a>    <span class="k">def</span> <span class="nf">getOrganization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">organization</span></div>
 
-    <span class="k">def</span> <span class="nf">__cmp__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="nb">cmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getType</span><span class="p">(),</span> <span class="n">o</span><span class="o">.</span><span class="n">getType</span><span class="p">())</span>
-        <span class="k">if</span> <span class="n">t</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">t</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="nb">cmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getGender</span><span class="p">(),</span> <span class="n">o</span><span class="o">.</span><span class="n">getGender</span><span class="p">())</span>
-        <span class="k">if</span> <span class="n">t</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">t</span>
-        <span class="k">return</span> <span class="nb">cmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getClassName</span><span class="p">(),</span> <span class="n">o</span><span class="o">.</span><span class="n">getClassName</span><span class="p">())</span></div>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getType</span><span class="p">()</span> <span class="o">!=</span> <span class="n">o</span><span class="o">.</span><span class="n">getType</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getType</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">o</span><span class="o">.</span><span class="n">getType</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getGender</span><span class="p">()</span> <span class="o">!=</span> <span class="n">o</span><span class="o">.</span><span class="n">getGender</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getGender</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">o</span><span class="o">.</span><span class="n">getGender</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getClassName</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">o</span><span class="o">.</span><span class="n">getClassName</span><span class="p">()</span></div>
 
 
 <span class="k">class</span> <span class="nc">ControllerLibrary</span><span class="p">(</span><span class="n">BaseElement</span><span class="p">):</span>
@@ -475,7 +482,7 @@
         <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="p">()</span>
 
         <span class="n">attr_map</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attrEG</span>
-        <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">attr_map</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">attr_map</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
             <span class="n">attrEG</span> <span class="o">=</span> <span class="n">attr_map</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">attr_name</span><span class="p">)</span>
             <span class="n">attr</span> <span class="o">=</span> <span class="n">attrEG</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">()</span>
             <span class="n">attrEG</span> <span class="o">=</span> <span class="kc">None</span>
@@ -623,7 +630,7 @@
         <span class="c1"># Due to taurus-org/taurus #573 we need to divide the timeout</span>
         <span class="c1"># in two intervals</span>
         <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span> <span class="o">/</span> <span class="mf">2.</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">evt_wait</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getEventWait</span><span class="p">()</span>
@@ -754,7 +761,8 @@
 
 <div class="viewcode-block" id="Controller.getElementByAxis"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.Controller.getElementByAxis">[docs]</a>    <span class="k">def</span> <span class="nf">getElementByAxis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">pool</span><span class="o">.</span><span class="n">getElementsOfType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getMainType</span><span class="p">())</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> \
+                <span class="nb">list</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">getElementsOfType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getMainType</span><span class="p">())</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">controller</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFullName</span><span class="p">()</span> <span class="ow">or</span>
                     <span class="n">elem</span><span class="o">.</span><span class="n">getAxis</span><span class="p">()</span> <span class="o">!=</span> <span class="n">axis</span><span class="p">):</span>
                 <span class="k">continue</span>
@@ -762,7 +770,8 @@
 
 <div class="viewcode-block" id="Controller.getElementByName"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.Controller.getElementByName">[docs]</a>    <span class="k">def</span> <span class="nf">getElementByName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">pool</span><span class="o">.</span><span class="n">getElementsOfType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getMainType</span><span class="p">())</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> \
+                <span class="nb">list</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">getElementsOfType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getMainType</span><span class="p">())</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">controller</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFullName</span><span class="p">()</span> <span class="ow">or</span>
                     <span class="n">elem</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">!=</span> <span class="n">name</span><span class="p">):</span>
                 <span class="k">continue</span>
@@ -777,7 +786,8 @@
 
         <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
         <span class="n">axes</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">pool</span><span class="o">.</span><span class="n">getElementsOfType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getMainType</span><span class="p">())</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">elem</span> <span class="ow">in</span> \
+                <span class="nb">list</span><span class="p">(</span><span class="n">pool</span><span class="o">.</span><span class="n">getElementsOfType</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getMainType</span><span class="p">())</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">if</span> <span class="n">elem</span><span class="o">.</span><span class="n">controller</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getFullName</span><span class="p">():</span>
                 <span class="k">continue</span>
             <span class="n">axes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem</span><span class="o">.</span><span class="n">getAxis</span><span class="p">())</span>
@@ -800,8 +810,8 @@
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">used_axes</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">__cmp__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">cmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">(),</span> <span class="n">o</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span></div>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">o</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span></div>
 
 
 <span class="k">class</span> <span class="nc">ComChannel</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">):</span>
@@ -830,7 +840,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="n">codec_name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ExpChannel.isReferable"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.ExpChannel.isReferable">[docs]</a>    <span class="k">def</span> <span class="nf">isReferable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="s2">&quot;valueref&quot;</span> <span class="ow">in</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_attribute_list</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="s2">&quot;valueref&quot;</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_attribute_list</span><span class="p">())):</span>
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
@@ -1121,12 +1131,12 @@
 
     <span class="k">def</span> <span class="nf">_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">new_pos</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">operator</span><span class="o">.</span><span class="n">isSequenceType</span><span class="p">(</span><span class="n">new_pos</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_pos</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Sequence</span><span class="p">):</span>
             <span class="n">new_pos</span> <span class="o">=</span> <span class="n">new_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="n">new_pos</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">df</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s1">&#39;API_AttrNotAllowed&#39;</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is already moving&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -1148,7 +1158,7 @@
 
     <span class="nd">@reservedOperation</span>
 <div class="viewcode-block" id="Motor.iterMove"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.Motor.iterMove">[docs]</a>    <span class="k">def</span> <span class="nf">iterMove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_pos</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">operator</span><span class="o">.</span><span class="n">isSequenceType</span><span class="p">(</span><span class="n">new_pos</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_pos</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Sequence</span><span class="p">):</span>
             <span class="n">new_pos</span> <span class="o">=</span> <span class="n">new_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">state</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&quot;position&quot;</span><span class="p">)</span>
 
@@ -1161,7 +1171,7 @@
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">getPositionObj</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">new_pos</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">err_traceback</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">err_traceback</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">err_traceback</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s1">&#39;API_AttrNotAllowed&#39;</span><span class="p">:</span>
                         <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is already moving&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
@@ -1213,7 +1223,7 @@
             <span class="n">pos</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">position</span><span class="o">.</span><span class="n">quality</span> <span class="o">!=</span> <span class="n">AttrQuality</span><span class="o">.</span><span class="n">ATTR_VALID</span><span class="p">:</span>
                 <span class="n">pos</span> <span class="o">+=</span> <span class="s2">&quot; [&quot;</span> <span class="o">+</span> <span class="n">QUALITY</span><span class="p">[</span><span class="n">position</span><span class="o">.</span><span class="n">quality</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span>
-        <span class="k">except</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
                 <span class="n">pos</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">desc</span>
             <span class="k">else</span><span class="p">:</span>
@@ -1253,12 +1263,12 @@
 
     <span class="k">def</span> <span class="nf">_start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">new_pos</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">operator</span><span class="o">.</span><span class="n">isSequenceType</span><span class="p">(</span><span class="n">new_pos</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_pos</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Sequence</span><span class="p">):</span>
             <span class="n">new_pos</span> <span class="o">=</span> <span class="n">new_pos</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="n">new_pos</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">df</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s1">&#39;API_AttrNotAllowed&#39;</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is already moving&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -1303,7 +1313,7 @@
             <span class="n">pos</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">position</span><span class="o">.</span><span class="n">quality</span> <span class="o">!=</span> <span class="n">AttrQuality</span><span class="o">.</span><span class="n">ATTR_VALID</span><span class="p">:</span>
                 <span class="n">pos</span> <span class="o">+=</span> <span class="s2">&quot; [&quot;</span> <span class="o">+</span> <span class="n">QUALITY</span><span class="p">[</span><span class="n">position</span><span class="o">.</span><span class="n">quality</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span>
-        <span class="k">except</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
                 <span class="n">pos</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">desc</span>
             <span class="k">else</span><span class="p">:</span>
@@ -1332,7 +1342,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPoolData</span><span class="p">()[</span><span class="s1">&#39;elements&#39;</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="MotorGroup.hasMotor"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MotorGroup.hasMotor">[docs]</a>    <span class="k">def</span> <span class="nf">hasMotor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="n">motor_names</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMotorNames</span><span class="p">())</span>
+        <span class="n">motor_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMotorNames</span><span class="p">()))</span>
         <span class="k">return</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">motor_names</span></div>
 
 <div class="viewcode-block" id="MotorGroup.getPosition"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MotorGroup.getPosition">[docs]</a>    <span class="k">def</span> <span class="nf">getPosition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -1349,8 +1359,8 @@
         <span class="n">new_pos</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="n">new_pos</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">df</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s1">&#39;API_AttrNotAllowed&#39;</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is already moving&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -1381,7 +1391,7 @@
 
 <div class="viewcode-block" id="MotorGroup.getIndex"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MotorGroup.getIndex">[docs]</a>    <span class="k">def</span> <span class="nf">getIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">motor_names</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMotorNames</span><span class="p">())</span>
+            <span class="n">motor_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMotorNames</span><span class="p">()))</span>
             <span class="k">return</span> <span class="n">motor_names</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="k">return</span> <span class="o">-</span><span class="mi">1</span></div>
@@ -1397,7 +1407,7 @@
             <span class="n">pos</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">position</span><span class="o">.</span><span class="n">quality</span> <span class="o">!=</span> <span class="n">AttrQuality</span><span class="o">.</span><span class="n">ATTR_VALID</span><span class="p">:</span>
                 <span class="n">pos</span> <span class="o">+=</span> <span class="s2">&quot; [&quot;</span> <span class="o">+</span> <span class="n">QUALITY</span><span class="p">[</span><span class="n">position</span><span class="o">.</span><span class="n">quality</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span>
-        <span class="k">except</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
                 <span class="n">pos</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">desc</span>
             <span class="k">else</span><span class="p">:</span>
@@ -1440,7 +1450,7 @@
             <span class="n">data_type</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">data_type</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">data_type</span> <span class="o">=</span> <span class="n">FROM_TANGO_TO_STR_TYPE</span><span class="p">[</span><span class="n">data_type</span><span class="p">]</span>
-            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="c1"># For backwards compatibility:</span>
                 <span class="c1"># starting from Taurus 4.3.0 DevVoid was added to the dict</span>
                 <span class="k">if</span> <span class="n">data_type</span> <span class="o">==</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevVoid</span><span class="p">:</span>
@@ -1483,9 +1493,9 @@
     <span class="n">chconfigs</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">mgconfig</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">ctrl_name</span><span class="p">,</span> <span class="n">ctrl_data</span> <span class="ow">in</span> <span class="n">mgconfig</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">ctrl_name</span><span class="p">,</span> <span class="n">ctrl_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">mgconfig</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
         <span class="k">if</span> <span class="n">ctrls</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">ctrl_name</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">ch_name</span><span class="p">,</span> <span class="n">ch_data</span> <span class="ow">in</span> <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">ch_name</span><span class="p">,</span> <span class="n">ch_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                 <span class="n">ch_data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;_controller_name&#39;</span><span class="p">:</span> <span class="n">ctrl_name</span><span class="p">})</span>
                 <span class="n">chconfigs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">ch_name</span><span class="p">,</span> <span class="n">ch_data</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">sort</span><span class="p">:</span>
@@ -1501,8 +1511,8 @@
 <span class="k">class</span> <span class="nc">MGConfiguration</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mg</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mg</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">mg</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">),</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">raw_data</span> <span class="o">=</span> <span class="n">data</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
@@ -1511,14 +1521,15 @@
         <span class="c1"># of a dict as receveid by the MG configuration attribute</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="n">channels</span> <span class="o">=</span> <span class="n">CaselessDict</span><span class="p">()</span>
 
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ctrl_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="k">for</span> <span class="n">channel_name</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ctrl_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">controllers</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="k">for</span> <span class="n">channel_name</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> \
+                    <span class="nb">list</span><span class="p">(</span><span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;channels&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                 <span class="n">channels</span><span class="p">[</span><span class="n">channel_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_data</span>
 
         <span class="c1">#####################</span>
         <span class="c1"># @todo: the for-loops above could be replaced by something like:</span>
-        <span class="c1"># self.channels = channels = CaselessDict(getChannelConfigs(data,</span>
-        <span class="c1">#                                                          sort=False))</span>
+        <span class="c1"># self.channels = channels = \</span>
+        <span class="c1">#      CaselessDict(getChannelConfigs(data, sort=False))</span>
         <span class="c1">#####################</span>
 
         <span class="c1"># seq&lt;dict&gt; each element is the channel data in form of a dict as</span>
@@ -1526,7 +1537,7 @@
         <span class="c1"># ordered by channel index in the MG.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">channel_list</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">channels</span><span class="p">)</span> <span class="o">*</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
 
-        <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">channels</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">channels</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">channel_list</span><span class="p">[</span><span class="n">channel</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">channel</span>
 
         <span class="c1"># dict&lt;str, list[DeviceProxy, CaselessDict&lt;str, dict&gt;]&gt;</span>
@@ -1570,7 +1581,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">cache</span> <span class="o">=</span> <span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="n">tg_attr_validator</span> <span class="o">=</span> <span class="n">TangoAttributeNameValidator</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">channel_name</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">channel_name</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">cache</span><span class="p">[</span><span class="n">channel_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">data_source</span> <span class="o">=</span> <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span>
             <span class="n">params</span> <span class="o">=</span> <span class="n">tg_attr_validator</span><span class="o">.</span><span class="n">getParams</span><span class="p">(</span><span class="n">data_source</span><span class="p">)</span>
@@ -1588,12 +1599,15 @@
                 <span class="n">dev_data</span> <span class="o">=</span> <span class="n">tg_dev_chs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dev_name</span><span class="p">)</span>
                 <span class="c1"># technical debt: read Value or ValueRef attribute</span>
                 <span class="c1"># ideally the source configuration should include this info</span>
-                <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">dev_name</span><span class="p">)</span>
-                <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">ExpChannel</span><span class="p">)</span>
-                        <span class="ow">and</span> <span class="n">channel</span><span class="o">.</span><span class="n">isReferable</span><span class="p">()</span>
+                <span class="c1"># Use DeviceProxy instead of taurus to avoid crashes in Py3</span>
+                <span class="c1"># See: tango-controls/pytango#292</span>
+                <span class="c1"># channel = Device(dev_name)</span>
+                <span class="c1"># if (isinstance(channel, ExpChannel)</span>
+                <span class="c1">#         and channel.isReferable()</span>
+                <span class="c1">#         and channel_data.get(&quot;value_ref_enabled&quot;, False)):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">_is_referable</span><span class="p">(</span><span class="n">dev_name</span><span class="p">)</span>
                         <span class="ow">and</span> <span class="n">channel_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value_ref_enabled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)):</span>
                     <span class="n">attr_name</span> <span class="o">+=</span> <span class="s2">&quot;Ref&quot;</span>
-
                 <span class="k">if</span> <span class="n">dev_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="c1"># Build tango device</span>
                     <span class="n">dev</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1634,7 +1648,7 @@
 
         <span class="c1"># prepare missing tango devices</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tango_dev_channels_in_error</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">dev_name</span><span class="p">,</span> <span class="n">dev_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tango_dev_channels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">dev_name</span><span class="p">,</span> <span class="n">dev_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tango_dev_channels</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                 <span class="k">if</span> <span class="n">dev_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">try</span><span class="p">:</span>
                         <span class="n">dev_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">DeviceProxy</span><span class="p">(</span><span class="n">dev_name</span><span class="p">)</span>
@@ -1644,7 +1658,7 @@
 
         <span class="c1"># prepare missing tango attribute configuration</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info_in_error</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">attr_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">attr_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                 <span class="n">dev_name</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_info</span> <span class="o">=</span> <span class="n">attr_data</span>
                 <span class="k">if</span> <span class="n">attr_info</span><span class="o">.</span><span class="n">has_info</span><span class="p">():</span>
                     <span class="k">continue</span>
@@ -1664,9 +1678,10 @@
     <span class="k">def</span> <span class="nf">getChannelInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info</span><span class="p">[</span><span class="n">channel_name</span><span class="p">]</span>
-        <span class="k">except</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">channel_name</span> <span class="o">=</span> <span class="n">channel_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-            <span class="k">for</span> <span class="n">d_name</span><span class="p">,</span> <span class="n">a_name</span><span class="p">,</span> <span class="n">ch_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">d_name</span><span class="p">,</span> <span class="n">a_name</span><span class="p">,</span> <span class="n">ch_info</span> <span class="ow">in</span> \
+                    <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
                 <span class="k">if</span> <span class="n">ch_info</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">channel_name</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">d_name</span><span class="p">,</span> <span class="n">a_name</span><span class="p">,</span> <span class="n">ch_info</span>
 
@@ -1687,7 +1702,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="n">CaselessDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info</span><span class="p">)</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">non_tango_channels</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">ch_name</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">ch_info</span><span class="p">)</span> <span class="ow">in</span> <span class="n">ret</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">ch_name</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">ch_info</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">ret</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">if</span> <span class="n">only_enabled</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">ch_info</span><span class="o">.</span><span class="n">enabled</span><span class="p">:</span>
                 <span class="n">ret</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">ch_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span>
@@ -1703,9 +1718,9 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">channels_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChannelsInfo</span><span class="p">(</span><span class="n">only_enabled</span><span class="o">=</span><span class="n">only_enabled</span><span class="p">)</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">ch_info</span><span class="p">)</span> <span class="ow">in</span> <span class="n">channels_info</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">ch_info</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">channels_info</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ch_info</span><span class="p">)</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">cmp</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span>
 
     <span class="k">def</span> <span class="nf">getCountersInfoList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1735,9 +1750,9 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="n">only_enabled</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tango_dev_channels</span>
         <span class="n">tango_dev_channels</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">dev_name</span><span class="p">,</span> <span class="n">dev_data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">tango_dev_channels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">dev_name</span><span class="p">,</span> <span class="n">dev_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tango_dev_channels</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">dev_proxy</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">dev_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">dev_data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> <span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">channel_data</span><span class="p">[</span><span class="s2">&quot;enabled&quot;</span><span class="p">]:</span>
                     <span class="n">attrs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">attr_name</span><span class="p">)</span>
             <span class="n">tango_dev_channels</span><span class="p">[</span><span class="n">dev_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dev_proxy</span><span class="p">,</span> <span class="n">attrs</span><span class="p">]</span>
@@ -1755,18 +1770,18 @@
 
         <span class="c1"># deposit read requests</span>
         <span class="n">tango_dev_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTangoDevChannels</span><span class="p">(</span><span class="n">only_enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">dev_data</span> <span class="ow">in</span> <span class="n">tango_dev_channels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">dev_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">tango_dev_channels</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">dev</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">dev_data</span>
             <span class="k">if</span> <span class="n">dev</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">dev_replies</span><span class="p">[</span><span class="n">dev</span><span class="p">]</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">read_attributes_asynch</span><span class="p">(</span>
-                    <span class="n">attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span> <span class="n">attrs</span>
-            <span class="k">except</span><span class="p">:</span>
+                    <span class="nb">list</span><span class="p">(</span><span class="n">attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">())),</span> <span class="n">attrs</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="n">dev_replies</span><span class="p">[</span><span class="n">dev</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">attrs</span>
 
         <span class="c1"># gather all replies</span>
-        <span class="k">for</span> <span class="n">dev</span><span class="p">,</span> <span class="n">reply_data</span> <span class="ow">in</span> <span class="n">dev_replies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">dev</span><span class="p">,</span> <span class="n">reply_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">dev_replies</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">reply</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">reply_data</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">data</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">read_attributes_reply</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -1777,8 +1792,8 @@
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">value</span> <span class="o">=</span> <span class="n">data_item</span><span class="o">.</span><span class="n">value</span>
                     <span class="n">ret</span><span class="p">[</span><span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> <span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                     <span class="n">ret</span><span class="p">[</span><span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">return</span> <span class="n">ret</span>
@@ -1787,10 +1802,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="n">CaselessDict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="p">)</span>
         <span class="n">tango_dev_channels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTangoDevChannels</span><span class="p">(</span><span class="n">only_enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">dev_data</span> <span class="ow">in</span> <span class="n">tango_dev_channels</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">dev_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">tango_dev_channels</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">dev</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">dev_data</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">data</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">read_attributes</span><span class="p">(</span><span class="n">attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">dev</span><span class="o">.</span><span class="n">read_attributes</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">attrs</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
                 <span class="k">for</span> <span class="n">data_item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
                     <span class="n">channel_data</span> <span class="o">=</span> <span class="n">attrs</span><span class="p">[</span><span class="n">data_item</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
                     <span class="k">if</span> <span class="n">data_item</span><span class="o">.</span><span class="n">has_failed</span><span class="p">:</span>
@@ -1798,8 +1813,8 @@
                     <span class="k">else</span><span class="p">:</span>
                         <span class="n">value</span> <span class="o">=</span> <span class="n">data_item</span><span class="o">.</span><span class="n">value</span>
                     <span class="n">ret</span><span class="p">[</span><span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> <span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                     <span class="n">ret</span><span class="p">[</span><span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="n">ret</span>
 
@@ -1818,10 +1833,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__cfg_attr</span><span class="o">.</span><span class="n">addListener</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_configuration_changed</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_cb</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_channels</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">codec_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sardanacustomsettings</span><span class="p">,</span> <span class="s2">&quot;VALUE_BUFFER_CODEC&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="n">codec_name</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_cb</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_channels</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">codec_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sardanacustomsettings</span><span class="p">,</span> <span class="s2">&quot;VALUE_REF_BUFFER_CODEC&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="n">codec_name</span><span class="p">)</span>
 
@@ -2014,7 +2031,7 @@
         <span class="n">_</span><span class="p">,</span> <span class="n">value_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_codec</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">value_buffer</span><span class="p">)</span>
         <span class="n">values</span> <span class="o">=</span> <span class="n">value_buffer</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">list</span><span class="p">):</span>
-            <span class="n">np_values</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+            <span class="n">np_values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">,</span> <span class="n">values</span><span class="p">))</span>
             <span class="n">value_buffer</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np_values</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_cb</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">value_buffer</span><span class="p">)</span></div>
 
@@ -2027,12 +2044,15 @@
 <span class="sd">            channel&#39;s callback</span>
 <span class="sd">        :type cb: callable</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_channels</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">channel_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChannels</span><span class="p">():</span>
             <span class="n">full_name</span> <span class="o">=</span> <span class="n">channel_info</span><span class="p">[</span><span class="s2">&quot;full_name&quot;</span><span class="p">]</span>
             <span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="n">channel_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value_ref_enabled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-            <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">channel</span><span class="o">.</span><span class="n">isReferable</span><span class="p">()</span> <span class="ow">and</span> <span class="n">value_ref_enabled</span><span class="p">:</span>
+            <span class="c1"># Use DeviceProxy instead of taurus to avoid crashes in Py3</span>
+            <span class="c1"># See: tango-controls/pytango#292</span>
+            <span class="k">if</span> <span class="n">_is_referable</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value_ref_enabled</span><span class="p">:</span>
                 <span class="k">continue</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
             <span class="n">value_buffer_obj</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">getValueBufferObj</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">cb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_cb</span> <span class="o">=</span> <span class="n">cb</span>
@@ -2040,7 +2060,8 @@
                                                 <span class="n">channel</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">value_buffer_obj</span><span class="o">.</span><span class="n">subscribeEvent</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">valueBufferChanged</span><span class="p">,</span>
-                                                <span class="n">with_first_event</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+                                                <span class="n">with_first_event</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.unsubscribeValueBuffer"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.unsubscribeValueBuffer">[docs]</a>    <span class="k">def</span> <span class="nf">unsubscribeValueBuffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Unsubscribe from channels&#39; value buffer events. If no callback is</span>
@@ -2053,16 +2074,19 @@
         <span class="k">for</span> <span class="n">channel_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChannels</span><span class="p">():</span>
             <span class="n">full_name</span> <span class="o">=</span> <span class="n">channel_info</span><span class="p">[</span><span class="s2">&quot;full_name&quot;</span><span class="p">]</span>
             <span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="n">channel_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value_ref_enabled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-            <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">channel</span><span class="o">.</span><span class="n">isReferable</span><span class="p">()</span> <span class="ow">and</span> <span class="n">value_ref_enabled</span><span class="p">:</span>
+            <span class="c1"># Use DeviceProxy instead of taurus to avoid crashes in Py3</span>
+            <span class="c1"># See: tango-controls/pytango#292</span>
+            <span class="k">if</span> <span class="n">_is_referable</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span> <span class="ow">and</span> <span class="n">value_ref_enabled</span><span class="p">:</span>
                 <span class="k">continue</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
             <span class="n">value_buffer_obj</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">getValueBufferObj</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">cb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">value_buffer_obj</span><span class="o">.</span><span class="n">unsubscribeEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">valueBufferChanged</span><span class="p">,</span>
                                                   <span class="n">channel</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_cb</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">value_buffer_obj</span><span class="o">.</span><span class="n">unsubscribeEvent</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">valueBufferChanged</span><span class="p">)</span></div>
+                <span class="n">value_buffer_obj</span><span class="o">.</span><span class="n">unsubscribeEvent</span><span class="p">(</span><span class="n">channel</span><span class="o">.</span><span class="n">valueBufferChanged</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer_channels</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.valueRefBufferChanged"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.valueRefBufferChanged">[docs]</a>    <span class="k">def</span> <span class="nf">valueRefBufferChanged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">value_ref_buffer</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Receive value ref buffer updates, pre-process them, and call</span>
@@ -2089,14 +2113,17 @@
 <span class="sd">            channel&#39;s callback</span>
 <span class="sd">        :type cb: callable</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_channels</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">channel_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChannels</span><span class="p">():</span>
             <span class="n">full_name</span> <span class="o">=</span> <span class="n">channel_info</span><span class="p">[</span><span class="s2">&quot;full_name&quot;</span><span class="p">]</span>
             <span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="n">channel_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value_ref_enabled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-            <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">channel</span><span class="o">.</span><span class="n">isReferable</span><span class="p">():</span>
+            <span class="c1"># Use DeviceProxy instead of taurus to avoid crashes in Py3</span>
+            <span class="c1"># See: tango-controls/pytango#292</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">_is_referable</span><span class="p">(</span><span class="n">full_name</span><span class="p">):</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">value_ref_enabled</span><span class="p">:</span>
                 <span class="k">continue</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
             <span class="n">value_ref_buffer_obj</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">getValueRefBufferObj</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">cb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_cb</span> <span class="o">=</span> <span class="n">cb</span>
@@ -2104,7 +2131,8 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">valueRefBufferChanged</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">value_ref_buffer_obj</span><span class="o">.</span><span class="n">subscribeEvent</span><span class="p">(</span>
-                    <span class="n">channel</span><span class="o">.</span><span class="n">valueRefBufferChanged</span><span class="p">,</span> <span class="n">with_first_event</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+                    <span class="n">channel</span><span class="o">.</span><span class="n">valueRefBufferChanged</span><span class="p">,</span> <span class="n">with_first_event</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.unsubscribeValueRefBuffer"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.unsubscribeValueRefBuffer">[docs]</a>    <span class="k">def</span> <span class="nf">unsubscribeValueRefBuffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Unsubscribe from channels&#39; value ref buffer events. If no</span>
@@ -2117,11 +2145,13 @@
         <span class="k">for</span> <span class="n">channel_info</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getChannels</span><span class="p">():</span>
             <span class="n">full_name</span> <span class="o">=</span> <span class="n">channel_info</span><span class="p">[</span><span class="s2">&quot;full_name&quot;</span><span class="p">]</span>
             <span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="n">channel_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value_ref_enabled&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
-            <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">channel</span><span class="o">.</span><span class="n">isReferable</span><span class="p">():</span>
+            <span class="c1"># Use DeviceProxy instead of taurus to avoid crashes in Py3</span>
+            <span class="c1"># See: tango-controls/pytango#292</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">_is_referable</span><span class="p">(</span><span class="n">full_name</span><span class="p">):</span>
                 <span class="k">continue</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">value_ref_enabled</span><span class="p">:</span>
                 <span class="k">continue</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
             <span class="n">value_ref_buffer_obj</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">getValueRefBufferObj</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">cb</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">value_ref_buffer_obj</span><span class="o">.</span><span class="n">unsubscribeEvent</span><span class="p">(</span>
@@ -2129,7 +2159,8 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_cb</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">value_ref_buffer_obj</span><span class="o">.</span><span class="n">unsubscribeEvent</span><span class="p">(</span>
-                    <span class="n">channel</span><span class="o">.</span><span class="n">valueRefBufferChanged</span><span class="p">)</span></div>
+                    <span class="n">channel</span><span class="o">.</span><span class="n">valueRefBufferChanged</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_buffer_channels</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.enableChannels"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.enableChannels">[docs]</a>    <span class="k">def</span> <span class="nf">enableChannels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channels</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Enable acquisition of the indicated channels.</span>
@@ -2158,7 +2189,7 @@
                 <span class="n">channel</span><span class="p">[</span><span class="s1">&#39;enabled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span>
                 <span class="n">found</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">wrong_channels</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">ch</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">found</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">ch</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">found</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">if</span> <span class="n">f</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
                 <span class="n">wrong_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ch</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">wrong_channels</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -2173,7 +2204,7 @@
         <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="c1"># TODO: Workaround for CORBA timeout on measurement group start</span>
             <span class="c1"># remove it whenever sardana-org/sardana#93 gets implemented</span>
-            <span class="k">if</span> <span class="n">e</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s2">&quot;API_DeviceTimedOut&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s2">&quot;API_DeviceTimedOut&quot;</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;start timed out, trying to stop&quot;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;stopped&quot;</span><span class="p">)</span>
@@ -2302,7 +2333,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">getValueObj</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">new_value</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">final_val</span> <span class="o">=</span> <span class="n">new_value</span>
         <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">err_traceback</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">err_traceback</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">err</span> <span class="ow">in</span> <span class="n">err_traceback</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s1">&#39;API_AttrNotAllowed&#39;</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is already chaging&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
@@ -2378,7 +2409,7 @@
         <span class="k">if</span> <span class="n">evt_type</span> <span class="o">==</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Error</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="n">evt_value</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">DevFailed</span><span class="p">):</span>
-                <span class="n">d</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">d</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                 <span class="c1"># skip configuration errors</span>
                 <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s2">&quot;API_BadConfigurationProperty&quot;</span><span class="p">:</span>
                     <span class="k">return</span>
@@ -2393,7 +2424,7 @@
         <span class="k">elif</span> <span class="n">evt_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CHANGE_EVT_TYPES</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">elems</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">evt_value</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">elems</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">evt_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Could not decode element info&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;value: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">evt_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
@@ -2453,14 +2484,14 @@
 <div class="viewcode-block" id="Pool.getObj"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.Pool.getObj">[docs]</a>    <span class="k">def</span> <span class="nf">getObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">elem_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">elem_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getElementInfo</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elem_type</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">elem_type</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">elem_types</span> <span class="o">=</span> <span class="n">elem_type</span><span class="p">,</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">elem_types</span> <span class="o">=</span> <span class="n">elem_type</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">e_type</span> <span class="ow">in</span> <span class="n">elem_types</span><span class="p">:</span>
             <span class="n">elems</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getElementsOfType</span><span class="p">(</span><span class="n">e_type</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">elems</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">elems</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
                 <span class="k">if</span> <span class="n">elem</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">elem</span>
             <span class="n">elem</span> <span class="o">=</span> <span class="n">elems</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -2483,7 +2514,7 @@
 <span class="sd">        Returns a moveable object that handles all the moveable items given in</span>
 <span class="sd">        names.&quot;&quot;&quot;</span>
         <span class="c1"># if simple motor just return it (if the pool has it)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">names</span> <span class="o">=</span> <span class="n">names</span><span class="p">,</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
@@ -2501,7 +2532,7 @@
             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
                 <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;_mg_ms_</span><span class="si">{0}</span><span class="s2">_</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pid</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
                 <span class="n">exists</span> <span class="o">=</span> <span class="kc">False</span>
-                <span class="k">for</span> <span class="n">mg</span> <span class="ow">in</span> <span class="n">mgs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">mg</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">mgs</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
                     <span class="k">if</span> <span class="n">mg</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
                         <span class="n">exists</span> <span class="o">=</span> <span class="kc">True</span>
                         <span class="k">break</span>
@@ -2512,10 +2543,10 @@
         <span class="k">return</span> <span class="n">moveable</span></div>
 
     <span class="k">def</span> <span class="nf">__findMotorGroupWithElems</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
-        <span class="n">names_lower</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+        <span class="n">names_lower</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">names</span><span class="p">))</span>
         <span class="n">len_names</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">names</span><span class="p">)</span>
         <span class="n">mgs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getElementsOfType</span><span class="p">(</span><span class="s1">&#39;MotorGroup&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">mg</span> <span class="ow">in</span> <span class="n">mgs</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">mg</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">mgs</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
             <span class="n">mg_elems</span> <span class="o">=</span> <span class="n">mg</span><span class="o">.</span><span class="n">elements</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mg_elems</span><span class="p">)</span> <span class="o">!=</span> <span class="n">len_names</span><span class="p">:</span>
                 <span class="k">continue</span>
@@ -2535,7 +2566,7 @@
         <span class="n">cond</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">nap</span> <span class="o">=</span> <span class="mf">0.01</span>
         <span class="k">if</span> <span class="n">timeout</span><span class="p">:</span>
-            <span class="n">nap</span> <span class="o">=</span> <span class="n">timeout</span> <span class="o">/</span> <span class="mf">10.</span>
+            <span class="n">nap</span> <span class="o">=</span> <span class="n">timeout</span> <span class="o">/</span> <span class="mi">10</span>
         <span class="k">while</span> <span class="n">cond</span><span class="p">:</span>
             <span class="n">elem</span> <span class="o">=</span> <span class="n">container</span><span class="o">.</span><span class="n">getElement</span><span class="p">(</span><span class="n">elem_name</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">contains</span><span class="p">:</span>
@@ -2553,14 +2584,14 @@
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">nap</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Pool.createMotorGroup"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.Pool.createMotorGroup">[docs]</a>    <span class="k">def</span> <span class="nf">createMotorGroup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mg_name</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">mg_name</span><span class="p">,</span> <span class="p">]</span> <span class="o">+</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">elements</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">mg_name</span><span class="p">,</span> <span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">elements</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;trying to create motor group for elements: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s1">&#39;CreateMotorGroup&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
         <span class="n">elements_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getElementsInfo</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_element_in_container</span><span class="p">(</span><span class="n">elements_info</span><span class="p">,</span> <span class="n">mg_name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Pool.createMeasurementGroup"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.Pool.createMeasurementGroup">[docs]</a>    <span class="k">def</span> <span class="nf">createMeasurementGroup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mg_name</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">mg_name</span><span class="p">,</span> <span class="p">]</span> <span class="o">+</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">elements</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">[</span><span class="n">mg_name</span><span class="p">,</span> <span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">elements</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;trying to create measurement group: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s1">&#39;CreateMeasurementGroup&#39;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
         <span class="n">elements_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getElementsInfo</span><span class="p">()</span>
@@ -2605,7 +2636,7 @@
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Controller class </span><span class="si">%s</span><span class="s2"> not found&quot;</span> <span class="o">%</span> <span class="n">class_name</span><span class="p">)</span>
         <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;CreateController&quot;</span>
         <span class="n">pars</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctrl_class</span><span class="o">.</span><span class="n">types</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ctrl_class</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span> <span class="n">class_name</span><span class="p">,</span> <span class="n">name</span><span class="p">]</span>
-        <span class="n">pars</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">props</span><span class="p">))</span>
+        <span class="n">pars</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">props</span><span class="p">)))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">pars</span><span class="p">)</span>
         <span class="n">elements_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getElementsInfo</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_element_in_container</span><span class="p">(</span><span class="n">elements_info</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
@@ -2676,7 +2707,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

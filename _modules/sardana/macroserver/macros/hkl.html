@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.macros.hkl &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.macroserver.macros.hkl &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -186,6 +186,7 @@
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">py2_round</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">iMacro</span><span class="p">,</span> <span class="n">Type</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.macros.scan</span> <span class="k">import</span> <span class="n">aNscan</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">UnknownEnv</span>
@@ -275,7 +276,7 @@
 
     <span class="k">def</span> <span class="nf">check_collinearity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h0</span><span class="p">,</span> <span class="n">k0</span><span class="p">,</span> <span class="n">l0</span><span class="p">,</span> <span class="n">h1</span><span class="p">,</span> <span class="n">k1</span><span class="p">,</span> <span class="n">l1</span><span class="p">):</span>
 
-        <span class="nb">print</span> <span class="n">h0</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">h0</span><span class="p">)</span>
         <span class="n">cpx</span> <span class="o">=</span> <span class="n">k0</span> <span class="o">*</span> <span class="n">l1</span> <span class="o">-</span> <span class="n">l0</span> <span class="o">*</span> <span class="n">k1</span>
         <span class="n">cpy</span> <span class="o">=</span> <span class="n">l0</span> <span class="o">*</span> <span class="n">h1</span> <span class="o">-</span> <span class="n">h0</span> <span class="o">*</span> <span class="n">l1</span>
         <span class="n">cpz</span> <span class="o">=</span> <span class="n">h0</span> <span class="o">*</span> <span class="n">k1</span> <span class="o">-</span> <span class="n">k0</span> <span class="o">*</span> <span class="n">h1</span>
@@ -1690,7 +1691,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;New directory </span><span class="si">%s</span><span class="s2"> not found&quot;</span> <span class="o">%</span> <span class="n">newdir</span><span class="p">)</span>
                 <span class="k">return</span>
 
-        <span class="n">res</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">),</span> <span class="n">files</span><span class="p">)</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">files</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.txt&#39;</span><span class="p">)]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;No crystals available in set directory. Nothing done&quot;</span><span class="p">)</span>
             <span class="k">return</span>
@@ -1744,7 +1745,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Old lattice parameter </span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                 <span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">a0</span><span class="p">))</span>
                     <span class="n">h0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_device</span><span class="o">.</span><span class="n">position</span>
-                    <span class="n">h1</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">h0</span><span class="p">)</span>
+                    <span class="n">h1</span> <span class="o">=</span> <span class="n">py2_round</span><span class="p">(</span><span class="n">h0</span><span class="p">)</span>  <span class="c1"># TODO: check if round would be fine?</span>
                     <span class="n">a1</span> <span class="o">=</span> <span class="n">h1</span> <span class="o">/</span> <span class="n">h0</span> <span class="o">*</span> <span class="n">a0</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;New lattice parameter </span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                 <span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">a1</span><span class="p">))</span>
@@ -1754,7 +1755,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Old lattice parameter </span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                 <span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">a0</span><span class="p">))</span>
                     <span class="n">h0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_device</span><span class="o">.</span><span class="n">position</span>
-                    <span class="n">h1</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">h0</span><span class="p">)</span>
+                    <span class="n">h1</span> <span class="o">=</span> <span class="n">py2_round</span><span class="p">(</span><span class="n">h0</span><span class="p">)</span>  <span class="c1"># TODO: check if round would be fine?</span>
                     <span class="n">a1</span> <span class="o">=</span> <span class="n">h1</span> <span class="o">/</span> <span class="n">h0</span> <span class="o">*</span> <span class="n">a0</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;New lattice parameter </span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                 <span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">a1</span><span class="p">))</span>
@@ -1764,7 +1765,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Old lattice parameter </span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                 <span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">a0</span><span class="p">))</span>
                     <span class="n">h0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">l_device</span><span class="o">.</span><span class="n">position</span>
-                    <span class="n">h1</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">h0</span><span class="p">)</span>
+                    <span class="n">h1</span> <span class="o">=</span> <span class="n">py2_round</span><span class="p">(</span><span class="n">h0</span><span class="p">)</span>  <span class="c1"># TODO: check if round would be fine?</span>
                     <span class="n">a1</span> <span class="o">=</span> <span class="n">h1</span> <span class="o">/</span> <span class="n">h0</span> <span class="o">*</span> <span class="n">a0</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;New lattice parameter </span><span class="si">%s</span><span class="s2"> = </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
                                 <span class="p">(</span><span class="n">parameter</span><span class="p">,</span> <span class="n">a1</span><span class="p">))</span>
@@ -1888,7 +1889,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

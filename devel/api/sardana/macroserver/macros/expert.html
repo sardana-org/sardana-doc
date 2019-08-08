@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>expert &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>expert &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../../index.html"/>
         <link rel="up" title="macros" href="../macros.html"/>
         <link rel="next" title="hkl" href="hkl.html"/>
         <link rel="prev" title="env" href="env.html"/> 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -160,7 +160,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
       
-          <li><a href="../../../../../docs.html">Sardana 2.8 Documentation</a> &raquo;</li>
+          <li><a href="../../../../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
       
           <li><a href="../../../../index.html">Developer&#8217;s Guide</a> &raquo;</li>
       
@@ -190,34 +190,36 @@
 <span id="expert"></span><h1><a class="reference internal" href="#module-sardana.macroserver.macros.expert" title="sardana.macroserver.macros.expert"><code class="xref py py-mod docutils literal"><span class="pre">expert</span></code></a><a class="headerlink" href="#module-sardana.macroserver.macros.expert" title="Permalink to this headline">¶</a></h1>
 <p>Expert macros</p>
 <dl class="class">
-<dt id="sardana.macroserver.macros.expert.addctrllib">
-<em class="property">class </em><code class="descname">addctrllib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#addctrllib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.addctrllib" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds the given controller library code to the pool server filesystem.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Currently this macro does not report eventual errors,
-for example Python syntax errors, in the controller plugin
-module. So if it silently exits but the controller library is
-not correctly loaded please check the server logs for more
-information.</p>
-</div>
+<dt id="sardana.macroserver.macros.expert.defm">
+<em class="property">class </em><code class="descname">defm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#defm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.defm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new motor in the active pool</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="sardana.macroserver.macros.expert.addmaclib">
-<em class="property">class </em><code class="descname">addmaclib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#addmaclib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.addmaclib" title="Permalink to this definition">¶</a></dt>
-<dd><p>Loads a new macro library.</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Keep in mind that macros from the new library can override
-macros already present in the system.</p>
-</div>
+<dt id="sardana.macroserver.macros.expert.defmeas">
+<em class="property">class </em><code class="descname">defmeas</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#defmeas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.defmeas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new measurement group. First channel in channel_list MUST
+be an internal sardana channel. At least one channel MUST be a
+Counter/Timer (by default, the first Counter/Timer in the list will
+become the master).</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="sardana.macroserver.macros.expert.commit_ctrllib">
-<em class="property">class </em><code class="descname">commit_ctrllib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#commit_ctrllib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.commit_ctrllib" title="Permalink to this definition">¶</a></dt>
-<dd><p>Puts the contents of the given data in a file inside the pool</p>
+<dt id="sardana.macroserver.macros.expert.udefmeas">
+<em class="property">class </em><code class="descname">udefmeas</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#udefmeas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.udefmeas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes existing measurement groups</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sardana.macroserver.macros.expert.defelem">
+<em class="property">class </em><code class="descname">defelem</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#defelem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.defelem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an element on a controller with an axis</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sardana.macroserver.macros.expert.udefelem">
+<em class="property">class </em><code class="descname">udefelem</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#udefelem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.udefelem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes existing elements</p>
 </dd></dl>
 
 <dl class="class">
@@ -237,24 +239,15 @@ Offset pseudo motor roles):</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="sardana.macroserver.macros.expert.defelem">
-<em class="property">class </em><code class="descname">defelem</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#defelem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.defelem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates an element on a controller with an axis</p>
+<dt id="sardana.macroserver.macros.expert.udefctrl">
+<em class="property">class </em><code class="descname">udefctrl</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#udefctrl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.udefctrl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes existing controllers</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="sardana.macroserver.macros.expert.defm">
-<em class="property">class </em><code class="descname">defm</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#defm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.defm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new motor in the active pool</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="sardana.macroserver.macros.expert.defmeas">
-<em class="property">class </em><code class="descname">defmeas</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#defmeas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.defmeas" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new measurement group. First channel in channel_list MUST
-be an internal sardana channel. At least one channel MUST be a
-Counter/Timer (by default, the first Counter/Timer in the list will
-become the master).</p>
+<dt id="sardana.macroserver.macros.expert.send2ctrl">
+<em class="property">class </em><code class="descname">send2ctrl</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#send2ctrl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.send2ctrl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends the given data directly to the controller</p>
 </dd></dl>
 
 <dl class="class">
@@ -271,15 +264,15 @@ controller code.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="sardana.macroserver.macros.expert.prdef">
-<em class="property">class </em><code class="descname">prdef</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#prdef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.prdef" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the the macro code for the given macro name.</p>
+<dt id="sardana.macroserver.macros.expert.commit_ctrllib">
+<em class="property">class </em><code class="descname">commit_ctrllib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#commit_ctrllib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.commit_ctrllib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Puts the contents of the given data in a file inside the pool</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="sardana.macroserver.macros.expert.relctrlcls">
-<em class="property">class </em><code class="descname">relctrlcls</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#relctrlcls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.relctrlcls" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reloads the given controller class code from the pool server filesystem.</p>
+<dt id="sardana.macroserver.macros.expert.prdef">
+<em class="property">class </em><code class="descname">prdef</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#prdef"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.prdef" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the the macro code for the given macro name.</p>
 </dd></dl>
 
 <dl class="class">
@@ -287,6 +280,26 @@ controller code.</p>
 <em class="property">class </em><code class="descname">relctrllib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#relctrllib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.relctrllib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reloads the given controller library code from the pool server
 filesystem.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="sardana.macroserver.macros.expert.addctrllib">
+<em class="property">class </em><code class="descname">addctrllib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#addctrllib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.addctrllib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the given controller library code to the pool server filesystem.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Currently this macro does not report eventual errors,
+for example Python syntax errors, in the controller plugin
+module. So if it silently exits but the controller library is
+not correctly loaded please check the server logs for more
+information.</p>
+</div>
+</dd></dl>
+
+<dl class="class">
+<dt id="sardana.macroserver.macros.expert.relctrlcls">
+<em class="property">class </em><code class="descname">relctrlcls</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#relctrlcls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.relctrlcls" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reloads the given controller class code from the pool server filesystem.</p>
 </dd></dl>
 
 <dl class="class">
@@ -322,40 +335,27 @@ the corresponding macros afterward so the changes take effect.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="sardana.macroserver.macros.expert.relmac">
-<em class="property">class </em><code class="descname">relmac</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#relmac"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.relmac" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reloads the given macro code from the macro server filesystem.
-Attention: All macros inside the same file will also be reloaded.</p>
-</dd></dl>
-
-<dl class="class">
 <dt id="sardana.macroserver.macros.expert.relmaclib">
 <em class="property">class </em><code class="descname">relmaclib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#relmaclib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.relmaclib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reloads the given macro library code from the macro server filesystem.</p>
 </dd></dl>
 
 <dl class="class">
-<dt id="sardana.macroserver.macros.expert.send2ctrl">
-<em class="property">class </em><code class="descname">send2ctrl</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#send2ctrl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.send2ctrl" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sends the given data directly to the controller</p>
+<dt id="sardana.macroserver.macros.expert.addmaclib">
+<em class="property">class </em><code class="descname">addmaclib</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#addmaclib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.addmaclib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a new macro library.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Keep in mind that macros from the new library can override
+macros already present in the system.</p>
+</div>
 </dd></dl>
 
 <dl class="class">
-<dt id="sardana.macroserver.macros.expert.udefctrl">
-<em class="property">class </em><code class="descname">udefctrl</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#udefctrl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.udefctrl" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deletes existing controllers</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="sardana.macroserver.macros.expert.udefelem">
-<em class="property">class </em><code class="descname">udefelem</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#udefelem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.udefelem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deletes existing elements</p>
-</dd></dl>
-
-<dl class="class">
-<dt id="sardana.macroserver.macros.expert.udefmeas">
-<em class="property">class </em><code class="descname">udefmeas</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#udefmeas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.udefmeas" title="Permalink to this definition">¶</a></dt>
-<dd><p>Deletes existing measurement groups</p>
+<dt id="sardana.macroserver.macros.expert.relmac">
+<em class="property">class </em><code class="descname">relmac</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expert.html#relmac"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expert.relmac" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reloads the given macro code from the macro server filesystem.
+Attention: All macros inside the same file will also be reloaded.</p>
 </dd></dl>
 
 <dl class="class">
@@ -408,7 +408,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

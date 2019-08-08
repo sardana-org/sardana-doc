@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.msmacromanager &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.macroserver.msmacromanager &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -197,7 +197,7 @@
 <span class="kn">from</span> <span class="nn">sardana.sardanadefs</span> <span class="k">import</span> <span class="n">ElementType</span>
 <span class="kn">from</span> <span class="nn">sardana.sardanamodulemanager</span> <span class="k">import</span> <span class="n">ModuleManager</span>
 <span class="kn">from</span> <span class="nn">sardana.sardanaexception</span> <span class="k">import</span> <span class="n">format_exception_only_str</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">is_pure_str</span><span class="p">,</span> <span class="n">is_non_str_seq</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">is_pure_str</span><span class="p">,</span> <span class="n">is_non_str_seq</span><span class="p">,</span> <span class="n">recur_map</span>
 
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msmanager</span> <span class="k">import</span> <span class="n">MacroServerManager</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msmetamacro</span> <span class="k">import</span> <span class="n">MACRO_TEMPLATE</span><span class="p">,</span> <span class="n">MacroLibrary</span><span class="p">,</span> \
@@ -262,38 +262,22 @@
             <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Could not add macro </span><span class="si">%s</span><span class="s2">: Needs at least one &quot;</span>
                              <span class="s2">&quot;parameter (usually called &#39;self&#39;)&quot;</span><span class="p">,</span>
-                             <span class="n">macro</span><span class="o">.</span><span class="n">func_name</span><span class="p">)</span>
+                             <span class="n">macro</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">keywords</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Could not add macro </span><span class="si">%s</span><span class="s2">: Unsupported keyword &quot;</span>
-                             <span class="s2">&quot;parameters &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">macro</span><span class="o">.</span><span class="n">func_name</span><span class="p">,</span> <span class="n">keywords</span><span class="p">)</span>
+                             <span class="s2">&quot;parameters &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">macro</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">keywords</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">varargs</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">logger</span><span class="p">:</span>
                 <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Could not add macro </span><span class="si">%s</span><span class="s2">: Unsupported giving &quot;</span>
                              <span class="s2">&quot;named parameters &#39;</span><span class="si">%s</span><span class="s2">&#39; and varargs &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span>
-                             <span class="n">macro</span><span class="o">.</span><span class="n">func_name</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">varargs</span><span class="p">)</span>
+                             <span class="n">macro</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">varargs</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">False</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
     <span class="k">return</span> <span class="kc">True</span>
-
-
-<span class="k">def</span> <span class="nf">recur_map</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">keep_none</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Recursive map. Similar to map, but maintains the list objects structure</span>
-
-<span class="sd">    :param fun: &lt;callable&gt; the same purpose as in map function</span>
-<span class="sd">    :param data: &lt;object&gt; the same purpose as in map function</span>
-<span class="sd">    :param keep_none: &lt;bool&gt; keep None elements without applying fun</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">recur_map</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">keep_none</span><span class="p">)</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">data</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">keep_none</span> <span class="ow">is</span> <span class="kc">True</span> <span class="ow">and</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">data</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">fun</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">is_flat_list</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
@@ -380,7 +364,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_path</span> <span class="o">=</span> <span class="n">p</span>
 
         <span class="n">macro_file_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_findMacroLibNames</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">mod_name</span><span class="p">,</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">macro_file_names</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">mod_name</span><span class="p">,</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">macro_file_names</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">dir_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
             <span class="n">path</span> <span class="o">=</span> <span class="p">[</span><span class="n">dir_name</span><span class="p">]</span>
             <span class="k">try</span><span class="p">:</span>
@@ -465,7 +449,7 @@
                 <span class="n">f_name</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">createMacroLib</span><span class="p">(</span><span class="n">lib_name</span><span class="p">),</span> <span class="s1">&#39;&#39;</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">f_name</span> <span class="o">=</span> <span class="n">macro_lib</span><span class="o">.</span><span class="n">file_path</span>
-                <span class="n">f</span> <span class="o">=</span> <span class="n">file</span><span class="p">(</span><span class="n">f_name</span><span class="p">)</span>
+                <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_name</span><span class="p">)</span>
                 <span class="n">code</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
                 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
@@ -480,7 +464,7 @@
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">_</span><span class="p">,</span> <span class="n">line_nb</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">code</span>
                     <span class="n">f_name</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">file_path</span>
-                    <span class="n">f</span> <span class="o">=</span> <span class="n">file</span><span class="p">(</span><span class="n">f_name</span><span class="p">)</span>
+                    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f_name</span><span class="p">)</span>
                     <span class="n">code</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
                     <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
@@ -678,7 +662,7 @@
                     <span class="n">macro_name</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="vm">__name__</span>
                     <span class="k">if</span> <span class="n">macro_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_overwritten_macros</span><span class="p">:</span>
                         <span class="n">isoverwritten</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="k">elif</span> <span class="p">(</span><span class="n">macro_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+                    <span class="k">elif</span> <span class="p">(</span><span class="n">macro_name</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
                             <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="p">[</span><span class="n">macro_name</span><span class="p">]</span><span class="o">.</span><span class="n">lib</span> <span class="o">!=</span> <span class="n">macro_lib</span><span class="p">):</span>
                         <span class="n">isoverwritten</span> <span class="o">=</span> <span class="kc">True</span>
                         <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Macro &quot;</span><span class="si">{}</span><span class="s1">&quot; defined in &quot;</span><span class="si">{}</span><span class="s1">&quot; macro library&#39;</span>
@@ -702,7 +686,7 @@
         <span class="k">finally</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">macro_errors</span><span class="p">:</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">macro_errors</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+                <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">macro_errors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                     <span class="n">msg_part</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;Error adding macro(s): &quot;</span> <span class="o">+</span> <span class="n">key</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
                                 <span class="o">+</span> <span class="s2">&quot;It presents an error: </span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
                     <span class="n">msg</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg_part</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -738,7 +722,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="p">[</span><span class="n">macro_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_class</span>
 
     <span class="k">def</span> <span class="nf">addMacroFunction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_lib</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">isoverwritten</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="n">macro_name</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="n">func_name</span>
+        <span class="n">macro_name</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="n">action</span> <span class="o">=</span> <span class="p">(</span><span class="n">macro_lib</span><span class="o">.</span><span class="n">has_macro</span><span class="p">(</span><span class="n">macro_name</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;Updating&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;Adding&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> macro function </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">action</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">))</span>
 
@@ -756,7 +740,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modules</span>
         <span class="n">expr</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">filter</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">macro_lib</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modules</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">macro_lib</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modules</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="n">ret</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro_lib</span>
@@ -777,7 +761,7 @@
         <span class="n">expr</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="nb">filter</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
 
         <span class="n">ret</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">macro</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">macro</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">expr</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="n">ret</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro</span>
@@ -795,7 +779,7 @@
 <span class="sd">            :obj:`dict`\&lt;:obj:`str`\, :class:`~sardana.macroserver.msmetamacro.MacroClass`\&gt;&quot;&quot;&quot;</span>
         <span class="n">macros</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMacros</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
         <span class="n">macro_classes</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">macro</span> <span class="ow">in</span> <span class="n">macros</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">macro</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">macros</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">if</span> <span class="n">macro</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">MacroClass</span><span class="p">:</span>
                 <span class="n">macro_classes</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro</span>
         <span class="k">return</span> <span class="n">macro_classes</span>
@@ -812,7 +796,7 @@
 <span class="sd">            :obj:`dict`\&lt;:obj:`str`\, :class:`~sardana.macroserver.msmetamacro.MacroFunction`\&gt;&quot;&quot;&quot;</span>
         <span class="n">macros</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMacros</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span>
         <span class="n">macro_classes</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">macro</span> <span class="ow">in</span> <span class="n">macros</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">macro</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">macros</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">if</span> <span class="n">macro</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">MacroFunction</span><span class="p">:</span>
                 <span class="n">macro_classes</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">macro</span>
         <span class="k">return</span> <span class="n">macro_classes</span>
@@ -838,12 +822,12 @@
     <span class="k">def</span> <span class="nf">getMacroLib</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isabs</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
             <span class="n">abs_file_name</span> <span class="o">=</span> <span class="n">name</span>
-            <span class="k">for</span> <span class="n">lib</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modules</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">lib</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_modules</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
                 <span class="k">if</span> <span class="n">lib</span><span class="o">.</span><span class="n">file_path</span> <span class="o">==</span> <span class="n">abs_file_name</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">lib</span>
         <span class="k">elif</span> <span class="n">name</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">extsep</span><span class="p">):</span>
             <span class="n">file_name</span> <span class="o">=</span> <span class="n">name</span>
-            <span class="k">for</span> <span class="n">lib</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_modules</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">lib</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_modules</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
                 <span class="k">if</span> <span class="n">lib</span><span class="o">.</span><span class="n">file_name</span> <span class="o">==</span> <span class="n">file_name</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">lib</span>
         <span class="n">module_name</span> <span class="o">=</span> <span class="n">name</span>
@@ -862,7 +846,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMacroFunction</span><span class="p">(</span><span class="n">macro_name</span><span class="p">)</span><span class="o">.</span><span class="n">function</span>
 
     <span class="k">def</span> <span class="nf">getMacroInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_names</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">macro_names</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">macro_names</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">macro_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">macro_names</span><span class="p">]</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">json_codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="nb">format</span><span class="p">)</span>
@@ -901,7 +885,7 @@
         <span class="n">type_manager</span> <span class="o">=</span> <span class="n">door</span><span class="o">.</span><span class="n">type_manager</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">out_par_list</span> <span class="o">=</span> <span class="n">ParamDecoder</span><span class="p">(</span><span class="n">type_manager</span><span class="p">,</span> <span class="n">params_def</span><span class="p">,</span> <span class="n">raw_params</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">WrongParam</span><span class="p">,</span> <span class="n">out_e</span><span class="p">:</span>
+        <span class="k">except</span> <span class="n">WrongParam</span> <span class="k">as</span> <span class="n">out_e</span><span class="p">:</span>
             <span class="c1"># only if raw params are passed as a list e.g. using macro API</span>
             <span class="c1"># execMacro(&quot;mv&quot;, mot01, 0.0) and parameters definition allows to</span>
             <span class="c1"># decode it from a flat list we give it a try</span>
@@ -911,10 +895,10 @@
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">out_par_list</span> <span class="o">=</span> <span class="n">FlatParamDecoder</span><span class="p">(</span><span class="n">type_manager</span><span class="p">,</span> <span class="n">params_def</span><span class="p">,</span>
                                                     <span class="n">raw_params</span><span class="p">)</span>
-                <span class="k">except</span> <span class="n">WrongParam</span><span class="p">,</span> <span class="n">in_e</span><span class="p">:</span>
+                <span class="k">except</span> <span class="n">WrongParam</span> <span class="k">as</span> <span class="n">in_e</span><span class="p">:</span>
                     <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Either of: </span><span class="si">%s</span><span class="s2"> or </span><span class="si">%s</span><span class="s2"> made it impossible to decode&quot;</span>
-                           <span class="s2">&quot; parameters&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">out_e</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="n">in_e</span><span class="o">.</span><span class="n">message</span><span class="p">))</span>
-                    <span class="k">raise</span> <span class="n">WrongParam</span><span class="p">,</span> <span class="n">msg</span>
+                           <span class="s2">&quot; parameters&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">out_e</span><span class="p">,</span> <span class="n">in_e</span><span class="p">))</span>
+                    <span class="k">raise</span> <span class="n">WrongParam</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="n">out_e</span>
         <span class="k">return</span> <span class="n">macro_meta</span><span class="p">,</span> <span class="n">raw_params</span><span class="p">,</span> <span class="n">out_par_list</span>
@@ -1016,7 +1000,7 @@
     <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
         <span class="n">allow</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">levelname</span> <span class="o">==</span> <span class="s2">&quot;DEBUG&quot;</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">msg</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">msg</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                 <span class="n">allow</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="k">return</span> <span class="n">allow</span>
             <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">msg</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;[START]&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
@@ -1091,7 +1075,7 @@
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
             <span class="k">pass</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">log_macro_filter</span><span class="p">,</span> <span class="n">basestring</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">log_macro_filter</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">module_name</span><span class="p">,</span> <span class="n">filter_name</span> <span class="o">=</span> <span class="n">log_macro_filter</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
                     <span class="nb">__import__</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
@@ -1330,7 +1314,7 @@
         <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">()</span>
         <span class="k">if</span> <span class="n">is_non_str_seq</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">),)</span>
         <span class="k">return</span> <span class="n">result</span>
@@ -1342,7 +1326,7 @@
         <span class="c1"># recursive map to maintain the list objects structure</span>
         <span class="n">params_str_list</span> <span class="o">=</span> <span class="n">recur_map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">macro_params</span><span class="p">)</span>
         <span class="c1"># plain map to be able to perform join (only strings may be joined)</span>
-        <span class="n">params_str_list</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">params_str_list</span><span class="p">)</span>
+        <span class="n">params_str_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">params_str_list</span><span class="p">))</span>
         <span class="n">params_str</span> <span class="o">=</span> <span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">params_str_list</span><span class="p">)</span>
         <span class="n">macro_id</span> <span class="o">=</span> <span class="n">macro_id</span>
         <span class="c1"># create macro_line - string representation of macro, its parameters</span>
@@ -1399,7 +1383,7 @@
 
     <span class="k">def</span> <span class="nf">_createMacroObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name_or_meta</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span> <span class="n">init_opts</span><span class="o">=</span><span class="p">{}):</span>
         <span class="n">macro_meta</span> <span class="o">=</span> <span class="n">macro_name_or_meta</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">macro_meta</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">macro_meta</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">macro_meta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">getMacro</span><span class="p">(</span><span class="n">macro_meta</span><span class="p">)</span>
 
         <span class="n">macro_opts</span> <span class="o">=</span> <span class="p">{</span>
@@ -1407,7 +1391,7 @@
             <span class="s1">&#39;environment&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span>
         <span class="p">}</span>
         <span class="n">macro_opts</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">init_opts</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">macro_opts</span><span class="o">.</span><span class="n">has_key</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;id&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">macro_opts</span><span class="p">:</span>
             <span class="n">macro_opts</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getNewMacroID</span><span class="p">())</span>
 
         <span class="n">macroObj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_manager</span><span class="o">.</span><span class="n">createMacroObjFromMeta</span><span class="p">(</span><span class="n">macro_meta</span><span class="p">,</span> <span class="n">pars</span><span class="p">,</span>
@@ -1528,7 +1512,7 @@
 
     <span class="k">def</span> <span class="nf">__stopObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stops all the reserved objects in the executor&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">objs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">objs</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">obj</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
@@ -1540,7 +1524,7 @@
 
     <span class="k">def</span> <span class="nf">__abortObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Aborts all the reserved objects in the executor&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">objs</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">objs</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">obj</span><span class="o">.</span><span class="n">abort</span><span class="p">()</span>
@@ -1736,12 +1720,12 @@
                 <span class="n">mse</span><span class="o">.</span><span class="n">traceback</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
         <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
             <span class="n">exc_info</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
-            <span class="n">exp_pars</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span>
-                        <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">desc</span><span class="p">,</span>
+            <span class="n">exp_pars</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reason</span><span class="p">,</span>
+                        <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">desc</span><span class="p">,</span>
                         <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
                         <span class="s1">&#39;traceback&#39;</span><span class="p">:</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()}</span>
             <span class="n">macro_exp</span> <span class="o">=</span> <span class="n">MacroServerException</span><span class="p">(</span><span class="n">exp_pars</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="n">exc_info</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
             <span class="n">exp_pars</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">err</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
                         <span class="s1">&#39;msg&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">err</span><span class="p">),</span>
@@ -1958,7 +1942,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

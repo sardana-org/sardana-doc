@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.pool.poolmotor &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.pool.poolmotor &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -176,7 +176,7 @@
 <span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="k">import</span> <span class="n">SardanaAttribute</span><span class="p">,</span> <span class="n">ScalarNumberAttribute</span><span class="p">,</span> \
     <span class="n">SardanaSoftwareAttribute</span>
 <span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="k">import</span> <span class="n">EventType</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">assert_type</span><span class="p">,</span> <span class="n">is_number</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">assert_type</span><span class="p">,</span> <span class="n">is_number</span><span class="p">,</span> <span class="n">py2_round</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolelement</span> <span class="k">import</span> <span class="n">PoolElement</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolmotion</span> <span class="k">import</span> <span class="n">PoolMotion</span><span class="p">,</span> <span class="n">MotionState</span>
 
@@ -306,7 +306,8 @@
 
         <span class="c1"># compute a rounding value if necessary</span>
         <span class="k">if</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">wants_rounding</span><span class="p">():</span>
-            <span class="n">nb_step</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">new_dial</span> <span class="o">*</span> <span class="n">step_per_unit</span><span class="p">)</span>
+            <span class="c1"># TODO: check if round would be fine</span>
+            <span class="n">nb_step</span> <span class="o">=</span> <span class="n">py2_round</span><span class="p">(</span><span class="n">new_dial</span> <span class="o">*</span> <span class="n">step_per_unit</span><span class="p">)</span>
             <span class="n">new_dial</span> <span class="o">=</span> <span class="n">nb_step</span> <span class="o">/</span> <span class="n">step_per_unit</span>
 
         <span class="n">backlash_position</span> <span class="o">=</span> <span class="n">new_dial</span>
@@ -890,7 +891,8 @@
 
         <span class="c1"># compute a rounding value if necessary</span>
         <span class="k">if</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">wants_rounding</span><span class="p">():</span>
-            <span class="n">nb_step</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">new_dial</span> <span class="o">*</span> <span class="n">step_per_unit</span><span class="p">)</span>
+            <span class="c1"># TODO: check if round would be fine</span>
+            <span class="n">nb_step</span> <span class="o">=</span> <span class="n">py2_round</span><span class="p">(</span><span class="n">new_dial</span> <span class="o">*</span> <span class="n">step_per_unit</span><span class="p">)</span>
             <span class="n">new_dial</span> <span class="o">=</span> <span class="n">nb_step</span> <span class="o">/</span> <span class="n">step_per_unit</span>
 
         <span class="n">backlash_position</span> <span class="o">=</span> <span class="n">new_dial</span>
@@ -962,7 +964,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

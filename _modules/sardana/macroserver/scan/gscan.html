@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.scan.gscan &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.macroserver.scan.gscan &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -180,6 +180,7 @@
 
 <span class="kn">import</span> <span class="nn">PyTango</span>
 <span class="kn">import</span> <span class="nn">taurus</span>
+<span class="kn">import</span> <span class="nn">collections</span>
 
 <span class="k">try</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
@@ -440,7 +441,7 @@
             <span class="n">macro</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;ActiveMntGrp not defined. Using </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">mnt_grp</span><span class="p">)</span>
             <span class="n">macro</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">,</span> <span class="n">mnt_grp</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mnt_grp_name</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mnt_grp_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
                 <span class="n">t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">mnt_grp_name</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
                 <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;ActiveMntGrp MUST be string. It is &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">t</span><span class="p">)</span>
 
@@ -574,7 +575,7 @@
                     <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">TangoExtraData</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">))</span>
                 <span class="k">except</span> <span class="n">InterruptException</span><span class="p">:</span>
                     <span class="k">raise</span>
-                <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">colexcept</span><span class="p">:</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">colexcept</span><span class="p">:</span>
                     <span class="n">colname</span> <span class="o">=</span> <span class="n">kw</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Extra column </span><span class="si">%s</span><span class="s2"> is invalid: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
                                        <span class="n">colname</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">colexcept</span><span class="p">))</span>
@@ -630,7 +631,7 @@
                           <span class="s1">&#39;ScanDir &lt;abs directory&gt;&quot;) to enable it&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="p">()</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scan_dir</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scan_dir</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">scan_dir_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">scan_dir</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;ScanDir MUST be string. It is &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">scan_dir_t</span><span class="p">)</span>
 
@@ -652,16 +653,16 @@
         <span class="k">except</span> <span class="n">UnknownEnv</span><span class="p">:</span>
             <span class="k">pass</span>
 
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_names</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_names</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">file_names</span> <span class="o">=</span> <span class="p">(</span><span class="n">file_names</span><span class="p">,)</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">operator</span><span class="o">.</span><span class="n">isSequenceType</span><span class="p">(</span><span class="n">file_names</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_names</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Sequence</span><span class="p">):</span>
             <span class="n">scan_file_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">file_names</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;ScanFile MUST be string or sequence of strings.&quot;</span>
                             <span class="s2">&quot; It is &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">scan_file_t</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scan_recorders</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scan_recorders</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">scan_recorders</span> <span class="o">=</span> <span class="p">(</span><span class="n">scan_recorders</span><span class="p">,)</span>
-        <span class="k">elif</span> <span class="ow">not</span> <span class="n">operator</span><span class="o">.</span><span class="n">isSequenceType</span><span class="p">(</span><span class="n">scan_recorders</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scan_recorders</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">Sequence</span><span class="p">):</span>
             <span class="n">scan_recorders_t</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">scan_recorders</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;ScanRecorder MUST be string or sequence of &quot;</span>
                             <span class="s2">&quot;strings. It is &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="n">scan_recorders_t</span><span class="p">)</span>
@@ -679,7 +680,7 @@
                 <span class="n">file_recorders</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_recorder</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">InterruptException</span><span class="p">:</span>
                 <span class="k">raise</span>
-            <span class="k">except</span> <span class="n">AmbiguousRecorderError</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">except</span> <span class="n">AmbiguousRecorderError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">macro</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Select recorder that you would like to use &#39;</span>
                             <span class="s1">&#39;(i.e. set ScanRecorder environment variable).&#39;</span><span class="p">)</span>
                 <span class="k">raise</span> <span class="n">e</span>
@@ -804,7 +805,10 @@
         <span class="k">for</span> <span class="n">ci</span> <span class="ow">in</span> <span class="n">channels_info</span><span class="p">:</span>
             <span class="n">full_name</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">full_name</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">channel</span> <span class="o">=</span> <span class="n">taurus</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
+                <span class="c1"># Use DeviceProxy instead of taurus to avoid crashes in Py3</span>
+                <span class="c1"># See: tango-controls/pytango#292</span>
+                <span class="c1"># channel = taurus.Device(full_name)</span>
+                <span class="n">channel</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DeviceProxy</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
                 <span class="n">instrument</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">instrument</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="c1"># full_name of external channels is the name of the attribute</span>
@@ -1000,7 +1004,7 @@
                     <span class="n">v_motors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_virtual_motors</span><span class="p">()</span>
                     <span class="n">motion_time</span><span class="p">,</span> <span class="n">acq_time</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span>
                     <span class="k">while</span> <span class="n">point_nb</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
-                        <span class="n">step</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                        <span class="n">step</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
                         <span class="n">end_pos</span> <span class="o">=</span> <span class="n">step</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span>
                         <span class="n">max_path_duration</span> <span class="o">=</span> <span class="mf">0.0</span>
                         <span class="k">for</span> <span class="n">v_motor</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">v_motors</span><span class="p">,</span>
@@ -1021,7 +1025,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="k">while</span> <span class="n">point_nb</span> <span class="o">&lt;</span> <span class="n">max_iter</span><span class="p">:</span>
-                        <span class="n">step</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                        <span class="n">step</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">iterator</span><span class="p">)</span>
                         <span class="n">point_nb</span> <span class="o">+=</span> <span class="mi">1</span>
                 <span class="k">finally</span><span class="p">:</span>
                     <span class="n">total_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">getTimeEstimation</span><span class="p">()</span>
@@ -1109,7 +1113,7 @@
             <span class="n">scan_history</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="n">scan_file</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;ScanFile&#39;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scan_file</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">unicode</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scan_file</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">scan_file</span> <span class="o">=</span> <span class="n">scan_file</span><span class="p">,</span>
 
         <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;datadesc&#39;</span><span class="p">]]</span>
@@ -1142,10 +1146,13 @@
             <span class="n">endstatus</span> <span class="o">=</span> <span class="n">ScanEndStatus</span><span class="o">.</span><span class="n">Normal</span>
         <span class="k">except</span> <span class="n">StopException</span><span class="p">:</span>
             <span class="n">endstatus</span> <span class="o">=</span> <span class="n">ScanEndStatus</span><span class="o">.</span><span class="n">Stop</span>
+            <span class="k">raise</span>
         <span class="k">except</span> <span class="n">AbortException</span><span class="p">:</span>
             <span class="n">endstatus</span> <span class="o">=</span> <span class="n">ScanEndStatus</span><span class="o">.</span><span class="n">Abort</span>
+            <span class="k">raise</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">endstatus</span> <span class="o">=</span> <span class="n">ScanEndStatus</span><span class="o">.</span><span class="n">Exception</span>
+            <span class="k">raise</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_env</span><span class="p">[</span><span class="s2">&quot;endstatus&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">endstatus</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
@@ -1154,8 +1161,6 @@
                 <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s1">&#39;getHooks&#39;</span><span class="p">):</span>
                     <span class="k">for</span> <span class="n">hook</span> <span class="ow">in</span> <span class="n">macro</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-scan&#39;</span><span class="p">):</span>
                         <span class="n">hook</span><span class="p">()</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">raise</span>
 
     <span class="k">def</span> <span class="nf">scan_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s1">&#39;Scan method cannot be called by &#39;</span>
@@ -1214,7 +1219,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">stepUp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">lstep</span><span class="p">)</span>
             <span class="n">lstep</span> <span class="o">=</span> <span class="n">step</span>
             <span class="k">if</span> <span class="n">scream</span><span class="p">:</span>
-                <span class="k">yield</span> <span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_points</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.0</span>
+                <span class="k">yield</span> <span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_points</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">scream</span><span class="p">:</span>
             <span class="k">yield</span> <span class="mf">100.0</span>
@@ -1582,7 +1587,7 @@
                                      <span class="n">deceleration</span><span class="o">=</span><span class="n">motor_backup</span><span class="p">[</span><span class="s2">&quot;deceleration&quot;</span><span class="p">])</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">configure_motor</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span> <span class="n">attributes</span><span class="p">)</span>
-            <span class="k">except</span> <span class="n">ScanException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">except</span> <span class="n">ScanException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Error when restoring motor&#39;s backup (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">e</span>
                 <span class="k">raise</span> <span class="n">ScanException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
@@ -1605,7 +1610,7 @@
                                      <span class="n">deceleration</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_min_dec_time</span><span class="p">(</span><span class="n">motor</span><span class="p">))</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">configure_motor</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span> <span class="n">attributes</span><span class="p">)</span>
-            <span class="k">except</span> <span class="n">ScanException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">except</span> <span class="n">ScanException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Error when setting fast motion (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">e</span>
                 <span class="k">raise</span> <span class="n">ScanException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
@@ -1719,7 +1724,7 @@
 <span class="sd">        :param attributes: (OrderedDict) dictionary with attribute names (keys)</span>
 <span class="sd">            and attribute values (values)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attributes</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">attributes</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">motor</span><span class="o">.</span><span class="n">_getAttrEG</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
@@ -1999,7 +2004,7 @@
                 <span class="n">macro</span><span class="o">.</span><span class="n">checkPoint</span><span class="p">()</span>
 
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">point_nb</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="n">period_steps</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+                    <span class="n">point_nb</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">period_steps</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_all_waypoints_finished</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="k">break</span>
@@ -2071,7 +2076,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">addRecord</span><span class="p">(</span><span class="n">data_line</span><span class="p">)</span>
 
                     <span class="k">if</span> <span class="n">scream</span><span class="p">:</span>
-                        <span class="k">yield</span> <span class="p">((</span><span class="n">point_nb</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_points</span><span class="p">)</span> <span class="o">*</span> <span class="mf">100.0</span>
+                        <span class="k">yield</span> <span class="p">((</span><span class="n">point_nb</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_points</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">break</span>
                 <span class="n">old_curr_time</span> <span class="o">=</span> <span class="n">curr_time</span>
@@ -2173,7 +2178,10 @@
             <span class="n">full_name</span> <span class="o">=</span> <span class="n">channel_info</span><span class="p">[</span><span class="s2">&quot;full_name&quot;</span><span class="p">]</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">channel_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">taurus</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
+                <span class="c1"># Use DeviceProxy instead of taurus to avoid crashes in Py3</span>
+                <span class="c1"># See: tango-controls/pytango#292</span>
+                <span class="c1"># taurus.Device(full_name)</span>
+                <span class="n">PyTango</span><span class="o">.</span><span class="n">DeviceProxy</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="c1"># external channels are attributes so Device constructor fails</span>
                 <span class="n">non_compatible_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -2201,7 +2209,7 @@
         <span class="n">timestamp</span> <span class="o">+=</span> <span class="n">delay</span>
         <span class="n">ret</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">timestamp</span><span class="o">=</span><span class="n">timestamp</span><span class="p">)</span>
         <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">repeats</span><span class="p">):</span>
             <span class="n">timestamp</span> <span class="o">+=</span> <span class="n">total</span>
             <span class="n">ret</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">timestamp</span><span class="o">=</span><span class="n">timestamp</span><span class="p">)</span>
             <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -2221,9 +2229,9 @@
         <span class="n">label</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>
         <span class="n">dtype_spec</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">label</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">))</span>
     <span class="c1"># convert to numpy array for easier handling</span>
-    <span class="n">table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">moveable_positions</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype_spec</span><span class="p">)</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">moveable_positions</span><span class="p">)),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype_spec</span><span class="p">)</span>
     <span class="n">n_rows</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="n">n_rows</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_rows</span><span class="p">):</span>
         <span class="n">row</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">:</span>
             <span class="n">row</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">table</span><span class="p">[</span><span class="n">label</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
@@ -2543,7 +2551,7 @@
                     <span class="k">continue</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">configure_motor</span><span class="p">(</span><span class="n">motor</span><span class="p">,</span> <span class="n">attributes</span><span class="p">)</span>
-                <span class="k">except</span> <span class="n">ScanException</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">except</span> <span class="n">ScanException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
                     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Error when configuring scan motion (</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="n">e</span>
                     <span class="k">raise</span> <span class="n">ScanException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
@@ -2567,7 +2575,7 @@
             <span class="n">theoretical_positions</span> <span class="o">=</span> <span class="n">generate_positions</span><span class="p">(</span><span class="n">motors</span><span class="p">,</span> <span class="n">starts</span><span class="p">,</span> <span class="n">finals</span><span class="p">,</span>
                                                        <span class="n">nr_points</span><span class="p">)</span>
             <span class="n">theoretical_timestamps</span> <span class="o">=</span> <span class="n">generate_timestamps</span><span class="p">(</span><span class="n">synch</span><span class="p">,</span> <span class="n">dt_timestamp</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">theoretical_positions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">theoretical_positions</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                 <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">theoretical_timestamps</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
                 <span class="n">initial_data</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_offset</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
             <span class="c1"># TODO: this changes the initial data on-the-fly - seems like not</span>
@@ -2975,7 +2983,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

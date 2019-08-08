@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.pool.pool &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.pool.pool &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../index.html"/>
         <link rel="up" title="Module code" href="../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -164,8 +164,8 @@
 
 <span class="sd">&quot;&quot;&quot;This module contains the main pool class&quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">with_statement</span>
+
+
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Pool&quot;</span><span class="p">]</span>
 
@@ -293,7 +293,7 @@
         <span class="n">log_file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;controller.log.txt&#39;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
-                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="mi">0777</span><span class="p">)</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="mo">0o777</span><span class="p">)</span>
             <span class="n">f_h</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">RotatingFileHandler</span><span class="p">(</span><span class="n">log_file_name</span><span class="p">,</span>
                                                        <span class="n">maxBytes</span><span class="o">=</span><span class="mf">1E7</span><span class="p">,</span>
                                                        <span class="n">backupCount</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -465,7 +465,7 @@
 
 <div class="viewcode-block" id="Pool.get_elements_str_info"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pool.html#sardana.pool.pool.Pool.get_elements_str_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_elements_str_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">obj_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">objs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_id_map</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+            <span class="n">objs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_element_id_map</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
             <span class="n">objs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_controller_classes</span><span class="p">())</span>
             <span class="n">objs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_controller_libs</span><span class="p">())</span>
         <span class="k">elif</span> <span class="n">obj_type</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">ControllerClass</span><span class="p">:</span>
@@ -479,7 +479,7 @@
 
 <div class="viewcode-block" id="Pool.get_elements_info"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pool.html#sardana.pool.pool.Pool.get_elements_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_elements_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj_type</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">obj_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">objs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_id_map</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+            <span class="n">objs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_element_id_map</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
             <span class="n">objs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_controller_classes</span><span class="p">())</span>
             <span class="n">objs</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_controller_libs</span><span class="p">())</span>
             <span class="n">objs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -494,18 +494,18 @@
 
 <div class="viewcode-block" id="Pool.get_acquisition_elements_info"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pool.html#sardana.pool.pool.Pool.get_acquisition_elements_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_acquisition_elements_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_name_map</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_element_name_map</span><span class="p">()</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">TYPE_ACQUIRABLE_ELEMENTS</span><span class="p">:</span>
                 <span class="k">continue</span>
             <span class="n">acq_channel</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">get_default_acquisition_channel</span><span class="p">()</span>
             <span class="n">full_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">/</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span> <span class="n">acq_channel</span><span class="p">)</span>
             <span class="n">info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">full_name</span><span class="o">=</span><span class="n">full_name</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;local&#39;</span><span class="p">)</span>
             <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
-        <span class="n">ret</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_extra_acquisition_element_names</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">ret</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_extra_acquisition_element_names</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
 <div class="viewcode-block" id="Pool.get_acquisition_elements_str_info"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pool.html#sardana.pool.pool.Pool.get_acquisition_elements_str_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_acquisition_elements_str_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">str_object</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_acquisition_elements_info</span><span class="p">())</span></div>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">str_object</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_acquisition_elements_info</span><span class="p">()))</span></div>
 
 <div class="viewcode-block" id="Pool.create_controller"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pool.html#sardana.pool.pool.Pool.create_controller">[docs]</a>    <span class="k">def</span> <span class="nf">create_controller</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">ctrl_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
@@ -549,7 +549,7 @@
             <span class="n">ctrl_prop_info</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">ctrl_prop_info</span> <span class="o">=</span> <span class="n">ctrl_class_info</span><span class="o">.</span><span class="n">ctrl_properties</span>
-        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;properties&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">info</span> <span class="o">=</span> <span class="n">ctrl_prop_info</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">props</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
@@ -827,8 +827,8 @@
             <span class="n">new_elements</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">new_lib</span><span class="o">.</span><span class="n">get_controllers</span><span class="p">())</span>
             <span class="n">new_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_lib</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">new_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">ctrl</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">new_lib</span><span class="o">.</span><span class="n">get_controllers</span><span class="p">()])</span>
-            <span class="n">old_names</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">ctrl</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">old_lib</span><span class="o">.</span><span class="n">get_controllers</span><span class="p">()])</span>
+            <span class="n">new_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">ctrl</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">new_lib</span><span class="o">.</span><span class="n">get_controllers</span><span class="p">()}</span>
+            <span class="n">old_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">ctrl</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">old_lib</span><span class="o">.</span><span class="n">get_controllers</span><span class="p">()}</span>
             <span class="n">changed_names</span> <span class="o">=</span> <span class="nb">set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">new_names</span><span class="p">,</span> <span class="n">old_names</span><span class="p">)</span>
             <span class="n">deleted_names</span> <span class="o">=</span> <span class="n">old_names</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">new_names</span><span class="p">)</span>
             <span class="n">new_names</span> <span class="o">=</span> <span class="n">new_names</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">old_names</span><span class="p">)</span>
@@ -894,7 +894,7 @@
         <span class="k">for</span> <span class="n">elem_type</span> <span class="ow">in</span> <span class="n">TYPE_MOVEABLE_ELEMENTS</span><span class="p">:</span>
             <span class="n">moveable_elems_map</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">elem_type_map</span><span class="p">[</span><span class="n">elem_type</span><span class="p">])</span>
         <span class="n">graph</span> <span class="o">=</span> <span class="n">Graph</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">moveable</span> <span class="ow">in</span> <span class="n">moveable_elems_map</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">moveable</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">moveable_elems_map</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_build_element_dependencies</span><span class="p">(</span><span class="n">moveable</span><span class="p">,</span> <span class="n">graph</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">graph</span></div></div>
 </pre></div>
@@ -931,7 +931,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.tango.pool.PoolDevice &mdash; sardana 2.8.2-alpha documentation</title>
+  <title>sardana.tango.pool.PoolDevice &mdash; sardana 3.0.0-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 2.8.2-alpha documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                2.8
+                3.0
               </div>
             
           
@@ -333,7 +333,7 @@
             <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_read_DynamicAttribute</span>
             <span class="n">write</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_write_DynamicAttribute</span>
             <span class="n">is_allowed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_is_DynamicAttribute_allowed</span>
-            <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">data_info</span> <span class="ow">in</span> <span class="n">std_attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">data_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">std_attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                 <span class="n">attr_name</span><span class="p">,</span> <span class="n">data_info</span><span class="p">,</span> <span class="n">attr_info</span> <span class="o">=</span> <span class="n">data_info</span>
                 <span class="n">attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_standard_attribute</span><span class="p">(</span><span class="n">attr_name</span><span class="p">,</span> <span class="n">data_info</span><span class="p">,</span>
                                                    <span class="n">attr_info</span><span class="p">,</span> <span class="n">read</span><span class="p">,</span>
@@ -344,7 +344,7 @@
             <span class="n">read</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_read_DynamicAttribute</span>
             <span class="n">write</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_write_DynamicAttribute</span>
             <span class="n">is_allowed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">_is_DynamicAttribute_allowed</span>
-            <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">data_info</span> <span class="ow">in</span> <span class="n">dyn_attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">data_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">dyn_attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                 <span class="n">attr_name</span><span class="p">,</span> <span class="n">data_info</span><span class="p">,</span> <span class="n">attr_info</span> <span class="o">=</span> <span class="n">data_info</span>
                 <span class="n">attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_dynamic_attribute</span><span class="p">(</span><span class="n">attr_name</span><span class="p">,</span> <span class="n">data_info</span><span class="p">,</span>
                                                   <span class="n">attr_info</span><span class="p">,</span> <span class="n">read</span><span class="p">,</span>
@@ -358,7 +358,8 @@
         <span class="n">dev_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_device_class</span><span class="p">()</span>
         <span class="n">multi_attr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_device_attr</span><span class="p">()</span>
         <span class="n">multi_class_attr</span> <span class="o">=</span> <span class="n">dev_class</span><span class="o">.</span><span class="n">get_class_attr</span><span class="p">()</span>
-        <span class="n">static_attr_names</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">dev_class</span><span class="o">.</span><span class="n">attr_list</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">static_attr_names</span> <span class="o">=</span> \
+            <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">dev_class</span><span class="o">.</span><span class="n">attr_list</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
         <span class="n">static_attr_names</span><span class="o">.</span><span class="n">extend</span><span class="p">((</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">))</span>
 
         <span class="n">new_attrs</span> <span class="o">=</span> <span class="n">CaselessDict</span><span class="p">(</span><span class="n">new_std_attrs</span><span class="p">)</span>
@@ -569,7 +570,7 @@
             <span class="n">ctrl_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="n">use_cache</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_tango_status</span><span class="p">(</span><span class="n">ctrl_status</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">status</span>
-        <span class="k">except</span> <span class="ne">Exception</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Exception trying to return status: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Details:&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -809,7 +810,7 @@
 
         <span class="n">std_attrs_lower</span> <span class="o">=</span> <span class="p">[</span><span class="n">attr</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
                            <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">dev_class</span><span class="o">.</span><span class="n">standard_attr_list</span><span class="p">]</span>
-        <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_info</span> <span class="ow">in</span> <span class="n">axis_attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">axis_attrs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">attr_name_lower</span> <span class="o">=</span> <span class="n">attr_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">attr_name_lower</span> <span class="ow">in</span> <span class="n">std_attrs_lower</span><span class="p">:</span>
                 <span class="n">data_info</span> <span class="o">=</span> <span class="n">DataInfo</span><span class="o">.</span><span class="n">toDataInfo</span><span class="p">(</span><span class="n">attr_name</span><span class="p">,</span> <span class="n">attr_info</span><span class="p">)</span>
@@ -994,7 +995,7 @@
 <span class="sd">        :rtype: str&quot;&quot;&quot;</span>
         <span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">value</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sdn_value</span> <span class="ow">in</span> <span class="n">value_chunk</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sdn_value</span> <span class="ow">in</span> <span class="n">value_chunk</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
             <span class="n">value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sdn_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
@@ -1012,7 +1013,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">index</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">value_ref</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sdn_value</span> <span class="ow">in</span> <span class="n">value_ref_chunk</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">sdn_value</span> <span class="ow">in</span> <span class="n">value_ref_chunk</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">index</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
             <span class="n">value_ref</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sdn_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">index</span><span class="p">,</span> <span class="n">value_ref</span><span class="o">=</span><span class="n">value_ref</span><span class="p">)</span>
@@ -1168,7 +1169,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'2.8.2-alpha',
+            VERSION:'3.0.0-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
