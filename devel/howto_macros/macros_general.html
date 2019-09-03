@@ -372,7 +372,7 @@ macros.</dd>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>If you already know a little about <a class="reference external" href="http://www.python.org/">Python</a> your are probably wondering why
-not use <code class="docutils literal"><span class="pre">print</span> <span class="pre">&quot;Hello,</span> <span class="pre">World!&quot;</span></code>?</p>
+not use <code class="docutils literal"><span class="pre">print(&quot;Hello,</span> <span class="pre">World!&quot;)</span></code>?</p>
 <p>Remember that your macro will be executed by a Sardana server which may be
 running in a different computer than the computer you are working on.
 Executing a <em>normal print</em> would just print the text in the server.
@@ -388,13 +388,7 @@ different syntax)</p>
 3
 4
 5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># mandatory first line in your code if you use Python &lt; 3.0</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">macro</span>
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">macro</span>
 
 <span class="nd">@macro</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -767,7 +761,7 @@ plain list of items&#8217; members is allowed.</p>
 <div class="section" id="accessing-environment">
 <span id="sardana-macro-environment"></span><h2>Accessing environment<a class="headerlink" href="#accessing-environment" title="Permalink to this headline">¶</a></h2>
 <p>The sardana server provides a global space to store variables, called
-<em>environment</em>. The <em>environment</em> is a <a class="reference external" href="https://docs.python.org/dev/glossary.html#term-dictionary" title="(in Python v3.9)"><span class="xref std std-term">dictionary</span></a> storing a value for
+<em>environment</em>. The <em>environment</em> is a <a class="reference external" href="https://docs.scipy.org/doc/numpy/glossary.html#term-dictionary" title="(in NumPy v1.17)"><span class="xref std std-term">dictionary</span></a> storing a value for
 each variable. This <em>environment</em> is stored persistently so if the sardana
 server is restarted the environment is properly restored.</p>
 <p>Variables are case sensitive.</p>
@@ -809,7 +803,7 @@ messages with different levels:</p>
 </ul>
 </td></tr></table>
 <p>As you&#8217;ve seen, the special <a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.output" title="sardana.macroserver.macro.Macro.output"><code class="xref py py-meth docutils literal"><span class="pre">output()</span></code></a> function has the same effect
-as a print statement (with slightly different arguments).</p>
+as a print function (with slightly different arguments).</p>
 <p>Log messages may have several destinations depending on how your sardana server
 is configured. At least, one destination of each log message is the client(s)
 (spock, GUI, other) which are connected to the server. Spock, for example,
@@ -942,7 +936,7 @@ using <a class="reference internal" href="../api/api_macro.html#sardana.macroser
 </span><span class="hll">    <span class="c1"># and the result of the Macro.prepare method</span>
 </span>    <span class="n">my_scan</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">ret</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">my_scan</span><span class="p">)</span>
-    <span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_scan</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_scan</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>A set of macro call examples can be found
@@ -976,7 +970,7 @@ macro. So, without further delay, here is the <em>Hello, World!</em> example:</p
     <span class="sd">&quot;&quot;&quot;Hello, World! macro&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s2">&quot;Hello, World!&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
 <p id="sardana-macro-add-parameters">Let&#8217;s say you want to pass an integer parameter to your macro. All you have to
@@ -1025,7 +1019,7 @@ prepare HelloWorld to run only after year 1989:</p>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;HelloWorld can only run after year 1989&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s2">&quot;Hello, World!&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1858,14 +1852,15 @@ synchronization methods. Use at your own risk!</p>
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label">[1]</td><td>To find the absolute path for sardana&#8217;s source code type on the
-command line <code class="docutils literal"><span class="pre">python</span> <span class="pre">-c</span> <span class="pre">&quot;import</span> <span class="pre">sys,</span> <span class="pre">sardana;</span> <span class="pre">sys.stdout.write(str(sardana.__path__))&quot;</span></code></td></tr>
+command line <code class="docutils literal"><span class="pre">python3</span> <span class="pre">-c</span> <span class="pre">&quot;import</span> <span class="pre">sys,</span> <span class="pre">sardana;</span> <span class="pre">sys.stdout.write</span>
+<span class="pre">(str(sardana.__path__))&quot;</span></code></td></tr>
 </tbody>
 </table>
 <table class="docutils footnote" frame="void" id="f2" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[2]</a></td><td>To check which version of <a class="reference external" href="http://www.python.org/">Python</a> you are using type on the command
-line <code class="docutils literal"><span class="pre">python</span> <span class="pre">-c</span> <span class="pre">&quot;import</span> <span class="pre">sys;</span> <span class="pre">sys.stdout.write(sys.version)&quot;</span></code></td></tr>
+line <code class="docutils literal"><span class="pre">python3</span> <span class="pre">-c</span> <span class="pre">&quot;import</span> <span class="pre">sys;</span> <span class="pre">sys.stdout.write(sys.version)&quot;</span></code></td></tr>
 </tbody>
 </table>
 </div>

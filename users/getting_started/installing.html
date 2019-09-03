@@ -185,12 +185,12 @@
 <h2>Installing with pip <a class="footnote-reference" href="#id5" id="id1">[1]</a> (platform-independent)<a class="headerlink" href="#installing-with-pip-1-platform-independent" title="Permalink to this headline">¶</a></h2>
 <p>Sardana can be installed using pip. The following command will
 automatically download and install the latest release of Sardana (see
-pip &#8211;help for options):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sardana</span>
+pip3 &#8211;help for options):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">sardana</span>
 </pre></div>
 </div>
 <p>You can test the installation by running:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print sardana.Release.version&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print(sardana.Release.version)&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -203,13 +203,13 @@ pip &#8211;help for options):</p>
 <li><p class="first">Extract the downloaded source into a temporary directory and change to it</p>
 </li>
 <li><p class="first">run:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
 </pre></div>
 </div>
 </li>
 </ol>
 <p>You can test the installation by running:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print sardana.Release.version&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print(sardana.Release.version)&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -222,7 +222,7 @@ doing (as root):</p>
 </pre></div>
 </div>
 <p>You can test the installation by running:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print sardana.Release.version&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print(sardana.Release.version)&quot;</span>
 </pre></div>
 </div>
 <p>(see more detailed instructions in <a class="reference external" href="https://sourceforge.net/p/sardana/wiki/Howto-Sardana-on-Debian8/">this step-by-step howto</a>)</p>
@@ -235,7 +235,7 @@ doing (as root):</p>
 <li><p class="first">Run the installation executable</p>
 </li>
 <li><p class="first">test the installation:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Python27</span>\<span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print sardana.Release.version&quot;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Python35</span>\<span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print(sardana.Release.version)&quot;</span>
 </pre></div>
 </div>
 </li>
@@ -272,7 +272,7 @@ on each change.</p>
 </pre></div>
 </div>
 <p>Then, to work in editable mode, just do:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">sardana</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">sardana</span>
 </pre></div>
 </div>
 <p>Note that you can also fork the git repository in github to get your own
@@ -285,25 +285,25 @@ into the official repository.</p>
 <span id="id3"></span><h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
 <p>Sardana has dependencies on some python libraries:</p>
 <ul>
-<li><p class="first">Sardana uses Tango as the middleware so you need <a class="reference external" href="http://pytango.readthedocs.io/">PyTango</a> 7 or later
+<li><p class="first">Sardana uses Tango as the middleware so you need <a class="reference external" href="http://pytango.readthedocs.io/">PyTango</a> 9.2.5 or later
 installed. You can check it by doing:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import PyTango; print PyTango.Release.version&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import tango; print(tango.__version__)&#39;</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Sardana clients are developed with Taurus so you need <a class="reference external" href="http://www.taurus-scada.org/">Taurus</a> 3.6.0 or later
+<li><p class="first">Sardana clients are developed with Taurus so you need <a class="reference external" href="http://www.taurus-scada.org/">Taurus</a> 4.5.4 or later
 installed. You can check it by doing:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import taurus; print taurus.Release.version&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import taurus; print(taurus.Release.version)&#39;</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Sardana operate some data in the XML format and requires <a class="reference external" href="http://lxml.de">lxml</a> library 2.1 or
+<li><p class="first">Sardana operate some data in the XML format and requires <a class="reference external" href="http://lxml.de">lxml</a> library 2.3 or
 later. You can check it by doing:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import lxml.etree; print lxml.etree.LXML_VERSION&#39;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import lxml.etree; print(lxml.etree.LXML_VERSION)&#39;</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">spock (Sardana CLI) requires itango 0.0.1 or later <a class="footnote-reference" href="#id7" id="id4">[3]</a>.</p>
+<li><p class="first">spock (Sardana CLI) requires itango 0.1.6 or later <a class="footnote-reference" href="#id7" id="id4">[3]</a>.</p>
 </li>
 </ul>
 <p class="rubric">Footnotes</p>
@@ -312,9 +312,9 @@ later. You can check it by doing:</p>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>This command requires super user previledges on linux systems. If your
 user has them you can usually prefix the command with <em>sudo</em>:
-<code class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip</span> <span class="pre">-U</span> <span class="pre">sardana</span></code>. Alternatively, if you don&#8217;t have
+<code class="docutils literal"><span class="pre">sudo</span> <span class="pre">pip3</span> <span class="pre">-U</span> <span class="pre">sardana</span></code>. Alternatively, if you don&#8217;t have
 administrator previledges, you can install locally in your user
-directory with: <code class="docutils literal"><span class="pre">pip</span> <span class="pre">--user</span> <span class="pre">sardana</span></code>
+directory with: <code class="docutils literal"><span class="pre">pip3</span> <span class="pre">--user</span> <span class="pre">sardana</span></code>
 In this case the executables are located at &lt;HOME_DIR&gt;/.local/bin. Make
 sure the PATH is pointing there or you execute from there.</td></tr>
 </tbody>
@@ -324,9 +324,9 @@ sure the PATH is pointing there or you execute from there.</td></tr>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><em>setup.py install</em> requires user previledges on linux systems. If your
 user has them you can usually prefix the command with <em>sudo</em>:
-<code class="docutils literal"><span class="pre">sudo</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>. Alternatively, if you don&#8217;t have
+<code class="docutils literal"><span class="pre">sudo</span> <span class="pre">python3</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>. Alternatively, if you don&#8217;t have
 administrator previledges, you can install locally in your user directory
-with: <code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span> <span class="pre">--user</span></code>
+with: <code class="docutils literal"><span class="pre">python3</span> <span class="pre">setup.py</span> <span class="pre">install</span> <span class="pre">--user</span></code>
 In this case the executables are located at &lt;HOME_DIR&gt;/.local/bin. Make
 sure the PATH is pointing there or you execute from there.</td></tr>
 </tbody>
