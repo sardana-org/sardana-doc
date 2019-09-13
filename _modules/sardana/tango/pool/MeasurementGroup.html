@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.tango.pool.MeasurementGroup &mdash; sardana 3.0.0-alpha documentation</title>
+  <title>sardana.tango.pool.MeasurementGroup &mdash; sardana 3.0.1-alpha documentation</title>
   
 
   
@@ -33,7 +33,7 @@
         <link rel="index" title="Index"
               href="../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 3.0.0-alpha documentation" href="../../../../index.html"/>
+    <link rel="top" title="sardana 3.0.1-alpha documentation" href="../../../../index.html"/>
         <link rel="up" title="Module code" href="../../../index.html"/> 
 
   
@@ -214,9 +214,13 @@
         <span class="n">PoolGroupDevice</span><span class="o">.</span><span class="n">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="c1"># state and status are already set by the super class</span>
         <span class="n">detect_evts</span> <span class="o">=</span> <span class="s2">&quot;latencytime&quot;</span><span class="p">,</span> <span class="s2">&quot;moveable&quot;</span><span class="p">,</span> <span class="s2">&quot;synchronization&quot;</span><span class="p">,</span> \
-                      <span class="s2">&quot;softwaresynchronizerinitialdomain&quot;</span><span class="p">,</span> <span class="s2">&quot;nbstarts&quot;</span>
+                      <span class="s2">&quot;softwaresynchronizerinitialdomain&quot;</span>
+        <span class="c1"># TODO: nbstarts could be moved to detect events with</span>
+        <span class="c1"># abs_change criteria of 1, but be careful with</span>
+        <span class="c1"># tango-controls/pytango#302</span>
         <span class="n">non_detect_evts</span> <span class="o">=</span> <span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="s2">&quot;integrationtime&quot;</span><span class="p">,</span> <span class="s2">&quot;monitorcount&quot;</span><span class="p">,</span> \
-                          <span class="s2">&quot;acquisitionmode&quot;</span><span class="p">,</span> <span class="s2">&quot;elementlist&quot;</span>
+                          <span class="s2">&quot;acquisitionmode&quot;</span><span class="p">,</span> <span class="s2">&quot;elementlist&quot;</span><span class="p">,</span> <span class="s2">&quot;latencytime&quot;</span><span class="p">,</span> \
+                          <span class="s2">&quot;nbstarts&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_change_events</span><span class="p">(</span><span class="n">detect_evts</span><span class="p">,</span> <span class="n">non_detect_evts</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">Elements</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Elements</span><span class="p">)</span>
@@ -539,7 +543,7 @@ licensed under a Creative Commons Attribution 3.0 License.
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../../../../',
-            VERSION:'3.0.0-alpha',
+            VERSION:'3.0.1-alpha',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true
