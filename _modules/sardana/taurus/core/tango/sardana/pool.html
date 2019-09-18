@@ -594,6 +594,9 @@
         <span class="c1"># instr_name = instr_name[:instr_name.index(&#39;(&#39;)]</span>
         <span class="k">return</span> <span class="n">instr_name</span></div>
 
+<div class="viewcode-block" id="PoolElement.setInstrumentName"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.PoolElement.setInstrumentName">[docs]</a>    <span class="k">def</span> <span class="nf">setInstrumentName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instr_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getInstrumentObj</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">instr_name</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="PoolElement.getInstrument"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.PoolElement.getInstrument">[docs]</a>    <span class="k">def</span> <span class="nf">getInstrument</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">instr_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getInstrumentName</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">instr_name</span><span class="p">:</span>
@@ -2643,7 +2646,12 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_element_in_container</span><span class="p">(</span><span class="n">elements_info</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Pool.deleteController"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.Pool.deleteController">[docs]</a>    <span class="k">def</span> <span class="nf">deleteController</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">deleteElement</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">deleteElement</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Pool.createInstrument"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.Pool.createInstrument">[docs]</a>    <span class="k">def</span> <span class="nf">createInstrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">full_name</span><span class="p">,</span> <span class="n">class_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s2">&quot;CreateInstrument&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">full_name</span><span class="p">,</span> <span class="n">class_name</span><span class="p">])</span>
+        <span class="n">elements_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getElementsInfo</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_element_in_container</span><span class="p">(</span><span class="n">elements_info</span><span class="p">,</span> <span class="n">full_name</span><span class="p">)</span></div></div>
 
 
 <span class="k">def</span> <span class="nf">registerExtensions</span><span class="p">():</span>

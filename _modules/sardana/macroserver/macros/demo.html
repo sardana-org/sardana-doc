@@ -225,6 +225,11 @@
     <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">SAR_DEMO</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;controllers&quot;</span><span class="p">,</span> <span class="p">()):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">udefctrl</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
 
+    <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Removing instruments...&quot;</span><span class="p">)</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPools</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">instrument</span> <span class="ow">in</span> <span class="n">SAR_DEMO</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;instruments&quot;</span><span class="p">,</span> <span class="p">()):</span>
+        <span class="n">pool</span><span class="o">.</span><span class="n">DeleteElement</span><span class="p">(</span><span class="n">instrument</span><span class="p">)</span>
+
     <span class="bp">self</span><span class="o">.</span><span class="n">unsetEnv</span><span class="p">(</span><span class="n">_ENV</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;DONE!&quot;</span><span class="p">)</span></div>
@@ -332,14 +337,29 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Setting </span><span class="si">%s</span><span class="s2"> as ActiveMntGrp&quot;</span> <span class="o">%</span> <span class="n">mg_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s2">&quot;ActiveMntGrp&quot;</span><span class="p">,</span> <span class="n">mg_name</span><span class="p">)</span>
 
+    <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Creating instruments: /slit, /mirror and /monitor ...&quot;</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">createInstrument</span><span class="p">(</span><span class="s1">&#39;/slit&#39;</span><span class="p">,</span> <span class="s1">&#39;NXcollimator&#39;</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">createInstrument</span><span class="p">(</span><span class="s1">&#39;/mirror&#39;</span><span class="p">,</span> <span class="s1">&#39;NXmirror&#39;</span><span class="p">)</span>
+    <span class="n">pool</span><span class="o">.</span><span class="n">createInstrument</span><span class="p">(</span><span class="s1">&#39;/monitor&#39;</span><span class="p">,</span> <span class="s1">&#39;NXmonitor&#39;</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Assigning elements to instruments...&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">getMotor</span><span class="p">(</span><span class="n">motor_names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">setInstrumentName</span><span class="p">(</span><span class="s1">&#39;/slit&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">getMotor</span><span class="p">(</span><span class="n">motor_names</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">setInstrumentName</span><span class="p">(</span><span class="s1">&#39;/slit&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">getPseudoMotor</span><span class="p">(</span><span class="n">gap</span><span class="p">)</span><span class="o">.</span><span class="n">setInstrumentName</span><span class="p">(</span><span class="s1">&#39;/slit&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">getPseudoMotor</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span><span class="o">.</span><span class="n">setInstrumentName</span><span class="p">(</span><span class="s1">&#39;/slit&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">getMotor</span><span class="p">(</span><span class="n">motor_names</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">setInstrumentName</span><span class="p">(</span><span class="s1">&#39;/mirror&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">getMotor</span><span class="p">(</span><span class="n">motor_names</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="o">.</span><span class="n">setInstrumentName</span><span class="p">(</span><span class="s1">&#39;/mirror&#39;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">getCounterTimer</span><span class="p">(</span><span class="n">ct_names</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">setInstrumentName</span><span class="p">(</span><span class="s1">&#39;/monitor&#39;</span><span class="p">)</span>
+
     <span class="n">controllers</span> <span class="o">=</span> <span class="n">pm_ctrl_name</span><span class="p">,</span> <span class="n">mot_ctrl_name</span><span class="p">,</span> <span class="n">ct_ctrl_name</span><span class="p">,</span> \
         <span class="n">zerod_ctrl_name</span><span class="p">,</span> <span class="n">oned_ctrl_name</span><span class="p">,</span> <span class="n">twod_ctrl_name</span><span class="p">,</span> \
         <span class="n">tg_ctrl_name</span><span class="p">,</span> <span class="n">ior_ctrl_name</span>
     <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="n">gap</span><span class="p">,</span> <span class="n">offset</span><span class="p">]</span> <span class="o">+</span> <span class="n">motor_names</span> <span class="o">+</span> <span class="n">ct_names</span> <span class="o">+</span> \
         <span class="n">zerod_names</span> <span class="o">+</span> <span class="n">oned_names</span> <span class="o">+</span> <span class="n">twod_names</span> <span class="o">+</span> <span class="n">tg_names</span> <span class="o">+</span> \
         <span class="n">ior_names</span>
+    <span class="n">instruments</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;/slit&quot;</span><span class="p">,</span> <span class="s2">&quot;/mirror&quot;</span><span class="p">,</span> <span class="s2">&quot;/monitor&quot;</span><span class="p">]</span>
     <span class="n">d</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">controllers</span><span class="o">=</span><span class="n">controllers</span><span class="p">,</span> <span class="n">elements</span><span class="o">=</span><span class="n">elements</span><span class="p">,</span>
-             <span class="n">measurement_groups</span><span class="o">=</span><span class="p">[</span><span class="n">mg_name</span><span class="p">])</span>
+             <span class="n">measurement_groups</span><span class="o">=</span><span class="p">[</span><span class="n">mg_name</span><span class="p">],</span> <span class="n">instruments</span><span class="o">=</span><span class="n">instruments</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="n">_ENV</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
 
