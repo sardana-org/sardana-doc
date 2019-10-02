@@ -1,0 +1,602 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sardanadefs &mdash; sardana 3.0.2-alpha documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../search.html"/>
+    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../../index.html"/>
+        <link rel="up" title="sardana" href="sardana.html"/>
+        <link rel="next" title="sardanabase" href="sardanabase.html"/>
+        <link rel="prev" title="Taurus Extensions" href="taurus/core/tango/sardana/pool.html"/> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> sardana
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../docs.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../users/index.html">User&#8217;s Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">Developer&#8217;s Guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../overview/index.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../howto_macros/index.html">Writing macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../howto_controllers/index.html">Writing controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../howto_recorders.html">Writing recorders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../howto_test/index.html">Sardana Testing</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_sardana.html">API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_macro.html">Macro API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_controller.html">Controller API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_motor.html">Motor API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_IOR.html">I/O register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_countertimer.html">Counter/timer API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_0D.html">0D experiment channel API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_1D.html">1D experiment channel API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_2D.html">2D experiment channel API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_triggergate.html">Trigger/gate API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_pseudomotor.html">Pseudo motor API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_pseudocounter.html">Pseudo counter API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_measurementgroup.html">Measurement group API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_macroserver.html">MacroServer API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_pool.html">Pool API</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="sardana.html">Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_test.html">Test API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../guide_migration.html">Migration guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/examples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../guide_coding.html">Development guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sep/index.html">Sardana Enhancement Proposals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../other_versions.html">Docs for other Sardana versions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana-plugins">Plugins Catalogue</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../index.html">sardana</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
+      
+          <li><a href="../../index.html">Developer&#8217;s Guide</a> &raquo;</li>
+      
+          <li><a href="../api_sardana.html">Sardana API</a> &raquo;</li>
+      
+          <li><a href="sardana.html"><code class="docutils literal"><span class="pre">sardana</span></code></a> &raquo;</li>
+      
+    <li><code class="docutils literal"><span class="pre">sardanadefs</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../_sources/devel/api/sardana/sardanadefs.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-sardana.sardanadefs">
+<span id="sardanadefs"></span><h1><a class="reference internal" href="#module-sardana.sardanadefs" title="sardana.sardanadefs"><code class="xref py py-mod docutils literal"><span class="pre">sardanadefs</span></code></a><a class="headerlink" href="#module-sardana.sardanadefs" title="Permalink to this headline">¶</a></h1>
+<p>This module contains the most generic sardana constants and enumerations</p>
+<p class="rubric">Constants</p>
+<dl class="data">
+<dt id="sardana.sardanadefs.EpsilonError">
+<code class="descname">EpsilonError</code><em class="property"> = 1e-16</em><a class="headerlink" href="#sardana.sardanadefs.EpsilonError" title="Permalink to this definition">¶</a></dt>
+<dd><p>maximum difference between two floats so that they are considered equal</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.InvalidId">
+<code class="descname">InvalidId</code><em class="property"> = 0</em><a class="headerlink" href="#sardana.sardanadefs.InvalidId" title="Permalink to this definition">¶</a></dt>
+<dd><p>A constant representing  an invalid ID</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.InvalidAxis">
+<code class="descname">InvalidAxis</code><em class="property"> = 0</em><a class="headerlink" href="#sardana.sardanadefs.InvalidAxis" title="Permalink to this definition">¶</a></dt>
+<dd><p>A constant representing an invalid axis</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.TYPE_ELEMENTS">
+<code class="descname">TYPE_ELEMENTS</code><em class="property"> = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12}</em><a class="headerlink" href="#sardana.sardanadefs.TYPE_ELEMENTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>a set containning all &#8220;controllable&#8221; element types.
+Constant values belong to <a class="reference internal" href="#sardana.sardanadefs.ElementType" title="sardana.sardanadefs.ElementType"><code class="xref py py-class docutils literal"><span class="pre">ElementType</span></code></a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.TYPE_GROUP_ELEMENTS">
+<code class="descname">TYPE_GROUP_ELEMENTS</code><em class="property"> = {13, 14}</em><a class="headerlink" href="#sardana.sardanadefs.TYPE_GROUP_ELEMENTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>a set containing all group element types.
+Constant values belong to <a class="reference internal" href="#sardana.sardanadefs.ElementType" title="sardana.sardanadefs.ElementType"><code class="xref py py-class docutils literal"><span class="pre">ElementType</span></code></a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.TYPE_MOVEABLE_ELEMENTS">
+<code class="descname">TYPE_MOVEABLE_ELEMENTS</code><em class="property"> = {2, 10, 13}</em><a class="headerlink" href="#sardana.sardanadefs.TYPE_MOVEABLE_ELEMENTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>a set containing the type of elements which are moveable.
+Constant values belong to <a class="reference internal" href="#sardana.sardanadefs.ElementType" title="sardana.sardanadefs.ElementType"><code class="xref py py-class docutils literal"><span class="pre">ElementType</span></code></a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.TYPE_PHYSICAL_ELEMENTS">
+<code class="descname">TYPE_PHYSICAL_ELEMENTS</code><em class="property"> = {2, 3, 4, 5, 6, 7, 8, 9}</em><a class="headerlink" href="#sardana.sardanadefs.TYPE_PHYSICAL_ELEMENTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>a set containing the possible types of physical elements.
+Constant values belong to <a class="reference internal" href="#sardana.sardanadefs.ElementType" title="sardana.sardanadefs.ElementType"><code class="xref py py-class docutils literal"><span class="pre">ElementType</span></code></a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.TYPE_ACQUIRABLE_ELEMENTS">
+<code class="descname">TYPE_ACQUIRABLE_ELEMENTS</code><em class="property"> = {2, 3, 4, 5, 6, 7, 8, 10, 11}</em><a class="headerlink" href="#sardana.sardanadefs.TYPE_ACQUIRABLE_ELEMENTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>a set containing the possible types of acquirable elements.
+Constant values belong to <a class="reference internal" href="#sardana.sardanadefs.ElementType" title="sardana.sardanadefs.ElementType"><code class="xref py py-class docutils literal"><span class="pre">ElementType</span></code></a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.TYPE_PSEUDO_ELEMENTS">
+<code class="descname">TYPE_PSEUDO_ELEMENTS</code><em class="property"> = {10, 11}</em><a class="headerlink" href="#sardana.sardanadefs.TYPE_PSEUDO_ELEMENTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>a set containing the possible types of pseudo elements.
+Constant values belong to <a class="reference internal" href="#sardana.sardanadefs.ElementType" title="sardana.sardanadefs.ElementType"><code class="xref py py-class docutils literal"><span class="pre">ElementType</span></code></a></p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.SardanaServer">
+<code class="descname">SardanaServer</code><em class="property"> = SardanaServer()</em><a class="headerlink" href="#sardana.sardanadefs.SardanaServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>the global object containing the SardanaServer information</p>
+</dd></dl>
+
+<p class="rubric">Enumerations</p>
+<dl class="data">
+<dt id="sardana.sardanadefs.ServerRunMode">
+<code class="descname">ServerRunMode</code><em class="property"> = Enumeration('ServerRunMode', ['SynchPure', 'SynchThread', 'SynchProcess', 'AsynchThread', 'AsynchProcess'])</em><a class="headerlink" href="#sardana.sardanadefs.ServerRunMode" title="Permalink to this definition">¶</a></dt>
+<dd><p>ServerRunMode enumeration. Possible values are:</p>
+<ul class="simple">
+<li>SynchPure (0)</li>
+<li>SynchThread (1)</li>
+<li>SynchProcess (2)</li>
+<li>AsynchThread (3)</li>
+<li>AsynchProcess (4)</li>
+</ul>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.State">
+<code class="descname">State</code><em class="property"> = Enumeration('State', ['On', 'Off', 'Close', 'Open', 'Insert', 'Extract', 'Moving', 'Standby', 'Fault', 'Init', 'Running', 'Alarm', 'Disable', 'Unknown', 'Invalid'])</em><a class="headerlink" href="#sardana.sardanadefs.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>State enumeration. Possible values are:</p>
+<ul class="simple">
+<li>On (0)</li>
+<li>Off (1)</li>
+<li>Close (2)</li>
+<li>Open (3)</li>
+<li>Insert (4)</li>
+<li>Extract (5)</li>
+<li>Moving (6)</li>
+<li>Standby (7)</li>
+<li>Fault (8)</li>
+<li>Init (9)</li>
+<li>Running (10)</li>
+<li>Alarm (11)</li>
+<li>Disable (12)</li>
+<li>Unknown (13)</li>
+<li>Invalid (14)</li>
+</ul>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.DataType">
+<code class="descname">DataType</code><em class="property"> = Enumeration('DataType', ['Integer', 'Double', 'String', 'Boolean', 'Encoded', 'Invalid'])</em><a class="headerlink" href="#sardana.sardanadefs.DataType" title="Permalink to this definition">¶</a></dt>
+<dd><p>DataType enumeration. Possible values are:</p>
+<ul class="simple">
+<li>Integer (0)</li>
+<li>Double (1)</li>
+<li>String (2)</li>
+<li>Boolean (3)</li>
+<li>Encoded (4)</li>
+<li>Invalid (5)</li>
+</ul>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.DataFormat">
+<code class="descname">DataFormat</code><em class="property"> = Enumeration('DataFormat', ['Scalar', 'OneD', 'TwoD', 'Invalid'])</em><a class="headerlink" href="#sardana.sardanadefs.DataFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>DataFormat enumeration. Possible values are:</p>
+<ul class="simple">
+<li>Scalar (0)</li>
+<li>OneD (1)</li>
+<li>TwoD (2)</li>
+<li>Invalid (3)</li>
+</ul>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.DataAccess">
+<code class="descname">DataAccess</code><em class="property"> = Enumeration('DataAccess', ['ReadOnly', 'ReadWrite', 'Invalid'])</em><a class="headerlink" href="#sardana.sardanadefs.DataAccess" title="Permalink to this definition">¶</a></dt>
+<dd><p>DataAccess enumeration. Possible values are:</p>
+<ul class="simple">
+<li>ReadOnly (0)</li>
+<li>ReadWrite (1)</li>
+<li>Invalid (2)</li>
+</ul>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.ElementType">
+<code class="descname">ElementType</code><em class="property"> = Enumeration('ElementType', ['Pool', 'Controller', 'Motor', 'CTExpChannel', 'ZeroDExpChannel', 'OneDExpChannel', 'TwoDExpChannel', 'ComChannel', 'IORegister', 'TriggerGate', 'PseudoMotor', 'PseudoCounter', 'Constraint', 'MotorGroup', 'MeasurementGroup', 'Instrument', 'ControllerClass', 'ControllerLibrary', 'RecorderClass', 'RecorderLibrary', 'MacroServer', 'Door', 'MacroClass', 'MacroLibrary', 'MacroFunction', 'External', 'Meta', 'ParameterType', 'Unknown'])</em><a class="headerlink" href="#sardana.sardanadefs.ElementType" title="Permalink to this definition">¶</a></dt>
+<dd><p>ElementType enumeration. Possible values are:</p>
+<ul class="simple">
+<li>Pool (0)</li>
+<li>Controller (1)</li>
+<li>Motor (2)</li>
+<li>CTExpChannel (3)</li>
+<li>ZeroDExpChannel (4)</li>
+<li>OneDExpChannel (5)</li>
+<li>TwoDExpChannel (6)</li>
+<li>ComChannel (7)</li>
+<li>IORegister (8)</li>
+<li>TriggerGate (9)</li>
+<li>PseudoMotor (10)</li>
+<li>PseudoCounter (11)</li>
+<li>Constraint (12)</li>
+<li>MotorGroup (13)</li>
+<li>MeasurementGroup (14)</li>
+<li>Instrument (15)</li>
+<li>ControllerClass (16)</li>
+<li>ControllerLibrary (17)</li>
+<li>RecorderClass (18)</li>
+<li>RecorderLibrary (19)</li>
+<li>MacroServer (20)</li>
+<li>Door (21)</li>
+<li>MacroClass (22)</li>
+<li>MacroLibrary (23)</li>
+<li>MacroFunction (24)</li>
+<li>External (25)</li>
+<li>Meta (26)</li>
+<li>ParameterType (27)</li>
+<li>Unknown (28)</li>
+</ul>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.Interface">
+<code class="descname">Interface</code><em class="property"> = Enumeration('Interface', ['Object', 'Element', 'PoolObject', 'PoolElement', 'Pool', 'Meta', 'TriggerGate', 'MacroServerObject', 'MacroCode', 'Function', 'MacroFunction', 'Class', 'MacroClass', 'Macro', 'Moveable', 'MacroServerElement', 'Acquirable', 'IORegister', 'PseudoMotor', 'Library', 'Countable', 'ExpChannel', 'CTExpChannel', 'TwoDExpChannel', 'MeasurementGroup', 'ParameterType', 'Constraint', 'Motor', 'ZeroDExpChannel', 'Instrument', 'ControllerLibrary', 'MacroServer', 'External', 'Controller', 'OneDExpChannel', 'MacroLibrary', 'MotorGroup', 'ComChannel', 'ControllerClass', 'PseudoCounter', 'Door'])</em><a class="headerlink" href="#sardana.sardanadefs.Interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface enumeration. Possible values are:</p>
+<ul class="simple">
+<li>Object (1)</li>
+<li>Element (3)</li>
+<li>PoolObject (5)</li>
+<li>PoolElement (15)</li>
+<li>Pool (31)</li>
+<li>Meta (32)</li>
+<li>TriggerGate (79)</li>
+<li>MacroServerObject (129)</li>
+<li>MacroCode (385)</li>
+<li>Function (513)</li>
+<li>MacroFunction (1921)</li>
+<li>Class (2049)</li>
+<li>MacroClass (6529)</li>
+<li>Macro (16257)</li>
+<li>Moveable (16399)</li>
+<li>MacroServerElement (32899)</li>
+<li>Acquirable (65551)</li>
+<li>IORegister (196623)</li>
+<li>PseudoMotor (344079)</li>
+<li>Library (524289)</li>
+<li>Countable (1048591)</li>
+<li>ExpChannel (2162703)</li>
+<li>CTExpChannel (7405583)</li>
+<li>TwoDExpChannel (11599887)</li>
+<li>MeasurementGroup (17825807)</li>
+<li>ParameterType (33554464)</li>
+<li>Constraint (67108869)</li>
+<li>Motor (134299663)</li>
+<li>ZeroDExpChannel (270598159)</li>
+<li>Instrument (536870927)</li>
+<li>ControllerLibrary (1074266117)</li>
+<li>MacroServer (2147516547)</li>
+<li>External (4294967297)</li>
+<li>Controller (8589934607)</li>
+<li>OneDExpChannel (17183080463)</li>
+<li>MacroLibrary (34360262785)</li>
+<li>MotorGroup (68719476751)</li>
+<li>ComChannel (137438953487)</li>
+<li>ControllerClass (274877908997)</li>
+<li>PseudoCounter (549757976591)</li>
+<li>Door (1099511660675)</li>
+</ul>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.Interfaces">
+<code class="descname">Interfaces</code><em class="property"> = {137438953487: {15}, 16257: {1921, 6529}, 32899: {129, 3}, 129: {1}, 67108869: {5}, 1921: {385, 513}, 1048591: {15}, 270598159: {2162703}, 79: {15}, 274877908997: {2049, 5}, 536870927: {15}, 17183080463: {2162703, 1048591}, 2162703: {65551}, 2147516547: {32899}, 196623: {65551}, 1099511660675: {32899}, 15: {3, 5}, 1074266117: {524289, 5}, 16399: {15}, 5: {1}, 32: set(), 3: {1}, 524289: {1}, 344079: {16399, 65551}, 34360262785: {129, 524289}, 65551: {15}, 33554464: {32}, 17825807: {15, 1048591}, 6529: {385, 2049}, 385: {129}, 68719476751: {15}, 4294967297: {1}, 513: {1}, 1: set(), 549757976591: {2162703}, 2049: {1}, 7405583: {2162703, 1048591}, 134299663: {16399, 65551}, 31: {15}, 11599887: {2162703, 1048591}, 8589934607: {15}}</em><a class="headerlink" href="#sardana.sardanadefs.Interfaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>a dictionary containing the direct interfaces supported by each type
+(<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> &lt;<a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a> &lt; <a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>&gt; &gt;)</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.InterfacesExpanded">
+<code class="descname">InterfacesExpanded</code><em class="property"> = {137438953487: {1, 3, 15, 5, 137438953487}, 16257: {1921, 129, 385, 1, 513, 2049, 6529, 16257}, 32899: {129, 3, 32899, 1}, 129: {129, 1}, 67108869: {1, 5, 67108869}, 1921: {385, 129, 1921, 1, 513}, 1048591: {1, 3, 15, 5, 1048591}, 270598159: {1, 3, 5, 270598159, 15, 65551, 2162703}, 79: {1, 3, 15, 5, 79}, 274877908997: {2049, 5, 274877908997, 1}, 536870927: {1, 3, 15, 5, 536870927}, 17183080463: {1, 3, 5, 17183080463, 1048591, 2162703, 65551, 15}, 2162703: {1, 3, 5, 2162703, 15, 65551}, 2147516547: {129, 3, 32899, 2147516547, 1}, 196623: {1, 3, 5, 15, 196623, 65551}, 1099511660675: {129, 3, 32899, 1099511660675, 1}, 15: {1, 3, 5, 15}, 1074266117: {1, 5, 1074266117, 524289}, 16399: {1, 3, 15, 5, 16399}, 5: {1, 5}, 32: {32}, 3: {1, 3}, 524289: {1, 524289}, 344079: {1, 3, 5, 16399, 344079, 15, 65551}, 34360262785: {129, 34360262785, 1, 524289}, 65551: {1, 3, 15, 5, 65551}, 33554464: {32, 33554464}, 17825807: {1, 3, 5, 1048591, 17825807, 15}, 6529: {385, 129, 6529, 2049, 1}, 385: {385, 129, 1}, 68719476751: {1, 3, 15, 5, 68719476751}, 4294967297: {4294967297, 1}, 513: {513, 1}, 1: {1}, 549757976591: {1, 3, 5, 549757976591, 15, 65551, 2162703}, 2049: {2049, 1}, 7405583: {1, 3, 5, 2162703, 7405583, 1048591, 65551, 15}, 134299663: {1, 3, 5, 16399, 134299663, 15, 65551}, 31: {1, 3, 15, 5, 31}, 11599887: {1, 3, 5, 15, 1048591, 2162703, 65551, 11599887}, 8589934607: {1, 3, 15, 5, 8589934607}}</em><a class="headerlink" href="#sardana.sardanadefs.InterfacesExpanded" title="Permalink to this definition">¶</a></dt>
+<dd><p>a dictionary containing the <em>all</em> interfaces supported by each type.
+(<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> &lt;<a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a> &lt; <a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>&gt; &gt;)</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.INTERFACES">
+<code class="descname">INTERFACES</code><em class="property"> = {'OneDExpChannel': ({'Countable', 'ExpChannel'}, 'A 1D experimental channel'), 'Meta': (set(), 'A generic sardana meta object'), 'MacroServerElement': ({'Element', 'MacroServerObject'}, 'A generic macro server element'), 'Macro': ({'MacroFunction', 'MacroClass'}, 'A macro server macro'), 'MacroServer': ({'MacroServerElement'}, 'A MacroServer'), 'IORegister': ({'Acquirable'}, 'An IO register'), 'MacroClass': ({'MacroCode', 'Class'}, 'A macro server macro class'), 'TriggerGate': ({'PoolElement'}, 'A trigger/gate'), 'Function': ({'Object'}, 'A generic sardana function'), 'Library': ({'Object'}, 'A generic sardana library'), 'Door': ({'MacroServerElement'}, 'A macro server door'), 'Object': (set(), 'A generic sardana object'), 'PoolElement': ({'Element', 'PoolObject'}, 'A Pool element'), 'Countable': ({'PoolElement'}, 'A countable element'), 'MeasurementGroup': ({'Countable', 'PoolElement'}, 'A measurement group'), 'ParameterType': ({'Meta'}, 'A generic macro server parameter type'), 'Constraint': ({'PoolObject'}, 'A constraint'), 'MacroLibrary': ({'MacroServerObject', 'Library'}, 'A macro server library'), 'PoolObject': ({'Object'}, 'A Pool object'), 'MacroFunction': ({'MacroCode', 'Function'}, 'A macro server macro function'), 'Acquirable': ({'PoolElement'}, 'An acquirable element'), 'MacroCode': ({'MacroServerObject'}, 'A macro server macro code'), 'Motor': ({'Acquirable', 'Moveable'}, 'a motor'), 'External': ({'Object'}, 'An external object'), 'Element': ({'Object'}, 'A generic sardana element'), 'Instrument': ({'PoolElement'}, 'An instrument'), 'ControllerLibrary': ({'PoolObject', 'Library'}, 'A controller library'), 'Pool': ({'PoolElement'}, 'A Pool'), 'ExpChannel': ({'Acquirable'}, 'A generic experimental channel'), 'ControllerClass': ({'Class', 'PoolObject'}, 'A controller class'), 'ZeroDExpChannel': ({'ExpChannel'}, 'A 0D experimental channel'), 'Controller': ({'PoolElement'}, 'A controller'), 'Class': ({'Object'}, 'A generic sardana class'), 'PseudoCounter': ({'ExpChannel'}, 'A pseudo counter'), 'MotorGroup': ({'PoolElement'}, 'A motor group'), 'PseudoMotor': ({'Acquirable', 'Moveable'}, 'A pseudo motor'), 'Moveable': ({'PoolElement'}, 'A moveable element'), 'ComChannel': ({'PoolElement'}, 'A communication channel'), 'TwoDExpChannel': ({'Countable', 'ExpChannel'}, 'A 2D experimental channel'), 'CTExpChannel': ({'Countable', 'ExpChannel'}, 'A counter/timer experimental channel'), 'MacroServerObject': ({'Object'}, 'A generic macro server object')}</em><a class="headerlink" href="#sardana.sardanadefs.INTERFACES" title="Permalink to this definition">¶</a></dt>
+<dd><p>a dictionary containing the direct interfaces supported by each type
+(<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a>&lt;<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>&lt;<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a>&lt;<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>&gt;&gt;&gt;)</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="sardana.sardanadefs.INTERFACES_EXPANDED">
+<code class="descname">INTERFACES_EXPANDED</code><em class="property"> = {'Pool': ({'Element', 'Pool', 'PoolObject', 'Object', 'PoolElement'}, 'A Pool'), 'Meta': ({'Meta'}, 'A generic sardana meta object'), 'TriggerGate': ({'Element', 'TriggerGate', 'PoolObject', 'Object', 'PoolElement'}, 'A trigger/gate'), 'Macro': ({'MacroFunction', 'MacroServerObject', 'Function', 'MacroCode', 'Class', 'Object', 'MacroClass', 'Macro'}, 'A macro server macro'), 'Moveable': ({'Element', 'Moveable', 'PoolObject', 'Object', 'PoolElement'}, 'A moveable element'), 'Function': ({'Function', 'Object'}, 'A generic sardana function'), 'MacroClass': ({'MacroCode', 'Class', 'Object', 'MacroServerObject', 'MacroClass'}, 'A macro server macro class'), 'MacroServerElement': ({'Element', 'MacroServerObject', 'MacroServerElement', 'Object'}, 'A generic macro server element'), 'IORegister': ({'Acquirable', 'Object', 'PoolElement', 'Element', 'IORegister', 'PoolObject'}, 'An IO register'), 'PseudoMotor': ({'Acquirable', 'Element', 'PseudoMotor', 'Object', 'PoolElement', 'Moveable', 'PoolObject'}, 'A pseudo motor'), 'Library': ({'Object', 'Library'}, 'A generic sardana library'), 'Object': ({'Object'}, 'A generic sardana object'), 'PoolElement': ({'Element', 'PoolElement', 'Object', 'PoolObject'}, 'A Pool element'), 'CTExpChannel': ({'Acquirable', 'Element', 'CTExpChannel', 'Countable', 'ExpChannel', 'Object', 'PoolElement', 'PoolObject'}, 'A counter/timer experimental channel'), 'TwoDExpChannel': ({'Acquirable', 'Element', 'Countable', 'ExpChannel', 'Object', 'PoolElement', 'TwoDExpChannel', 'PoolObject'}, 'A 2D experimental channel'), 'MeasurementGroup': ({'Object', 'PoolElement', 'Element', 'MeasurementGroup', 'PoolObject', 'Countable'}, 'A measurement group'), 'ParameterType': ({'Meta', 'ParameterType'}, 'A generic macro server parameter type'), 'Constraint': ({'Constraint', 'Object', 'PoolObject'}, 'A constraint'), 'MacroFunction': ({'MacroCode', 'Object', 'MacroServerObject', 'Function', 'MacroFunction'}, 'A macro server macro function'), 'PoolObject': ({'Object', 'PoolObject'}, 'A Pool object'), 'Acquirable': ({'Element', 'Acquirable', 'PoolObject', 'Object', 'PoolElement'}, 'An acquirable element'), 'Motor': ({'Acquirable', 'Motor', 'Element', 'Object', 'PoolElement', 'Moveable', 'PoolObject'}, 'a motor'), 'ZeroDExpChannel': ({'Acquirable', 'ZeroDExpChannel', 'Object', 'PoolElement', 'Element', 'PoolObject', 'ExpChannel'}, 'A 0D experimental channel'), 'Element': ({'Element', 'Object'}, 'A generic sardana element'), 'Instrument': ({'Element', 'Instrument', 'PoolObject', 'Object', 'PoolElement'}, 'An instrument'), 'ControllerLibrary': ({'ControllerLibrary', 'PoolObject', 'Object', 'Library'}, 'A controller library'), 'MacroServer': ({'Element', 'MacroServerObject', 'MacroServerElement', 'Object', 'MacroServer'}, 'A MacroServer'), 'ExpChannel': ({'Acquirable', 'Object', 'ExpChannel', 'PoolElement', 'Element', 'PoolObject'}, 'A generic experimental channel'), 'MacroCode': ({'MacroCode', 'MacroServerObject', 'Object'}, 'A macro server macro code'), 'External': ({'External', 'Object'}, 'An external object'), 'Controller': ({'Element', 'Controller', 'PoolObject', 'Object', 'PoolElement'}, 'A controller'), 'OneDExpChannel': ({'Acquirable', 'Element', 'Countable', 'ExpChannel', 'OneDExpChannel', 'Object', 'PoolElement', 'PoolObject'}, 'A 1D experimental channel'), 'MacroLibrary': ({'MacroServerObject', 'Object', 'MacroLibrary', 'Library'}, 'A macro server library'), 'MotorGroup': ({'Element', 'MotorGroup', 'PoolObject', 'Object', 'PoolElement'}, 'A motor group'), 'Class': ({'Class', 'Object'}, 'A generic sardana class'), 'MacroServerObject': ({'MacroServerObject', 'Object'}, 'A generic macro server object'), 'Countable': ({'Element', 'PoolObject', 'Object', 'Countable', 'PoolElement'}, 'A countable element'), 'ComChannel': ({'Element', 'PoolObject', 'Object', 'ComChannel', 'PoolElement'}, 'A communication channel'), 'ControllerClass': ({'ControllerClass', 'Class', 'Object', 'PoolObject'}, 'A controller class'), 'PseudoCounter': ({'Acquirable', 'Object', 'PoolElement', 'Element', 'PoolObject', 'PseudoCounter', 'ExpChannel'}, 'A pseudo counter'), 'Door': ({'Element', 'MacroServerObject', 'MacroServerElement', 'Object', 'Door'}, 'A macro server door')}</em><a class="headerlink" href="#sardana.sardanadefs.INTERFACES_EXPANDED" title="Permalink to this definition">¶</a></dt>
+<dd><p>a dictionary containing the <em>all</em> interfaces supported by each type
+(<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a> &lt; <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>&gt; &gt;)</p>
+</dd></dl>
+
+<p class="rubric">Functions</p>
+<dl class="function">
+<dt id="sardana.sardanadefs.from_dtype_str">
+<code class="descname">from_dtype_str</code><span class="sig-paren">(</span><em>dtype</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sardana/sardanadefs.html#from_dtype_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.sardanadefs.from_dtype_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms the given dtype parameter (string/<a class="reference internal" href="#sardana.sardanadefs.DataType" title="sardana.sardanadefs.DataType"><code class="xref py py-obj docutils literal"><span class="pre">DataType</span></code></a> or None)
+into a tuple of two elements (str, <a class="reference internal" href="#sardana.sardanadefs.DataFormat" title="sardana.sardanadefs.DataFormat"><code class="xref py py-obj docutils literal"><span class="pre">DataFormat</span></code></a>) where the first
+element is a string with a simplified data type.</p>
+<blockquote>
+<div><ul class="simple">
+<li>If None is given, it returns
+(&#8216;float&#8217;, <code class="xref py py-obj docutils literal"><span class="pre">DataFormat.Scalar</span></code>)</li>
+<li>If <a class="reference internal" href="#sardana.sardanadefs.DataType" title="sardana.sardanadefs.DataType"><code class="xref py py-obj docutils literal"><span class="pre">DataType</span></code></a> is given, it returns
+(<a class="reference internal" href="#sardana.sardanadefs.DataType" title="sardana.sardanadefs.DataType"><code class="xref py py-obj docutils literal"><span class="pre">DataType</span></code></a>, <code class="xref py py-obj docutils literal"><span class="pre">DataFormat.Scalar</span></code>)</li>
+</ul>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> or None or <a class="reference internal" href="#sardana.sardanadefs.DataType" title="sardana.sardanadefs.DataType"><code class="xref py py-obj docutils literal"><span class="pre">DataType</span></code></a>) &#8211; the data type to be transformed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a tuple &lt;str, <a class="reference internal" href="#sardana.sardanadefs.DataFormat" title="sardana.sardanadefs.DataFormat"><code class="xref py py-obj docutils literal"><span class="pre">DataFormat</span></code></a>&gt; for the given dtype</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple&lt;str, <a class="reference internal" href="#sardana.sardanadefs.DataFormat" title="sardana.sardanadefs.DataFormat"><code class="xref py py-obj docutils literal"><span class="pre">DataFormat</span></code></a>&gt;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sardana.sardanadefs.from_access_str">
+<code class="descname">from_access_str</code><span class="sig-paren">(</span><em>access</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sardana/sardanadefs.html#from_access_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.sardanadefs.from_access_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms the given access parameter (string or <a class="reference internal" href="#sardana.sardanadefs.DataAccess" title="sardana.sardanadefs.DataAccess"><code class="xref py py-obj docutils literal"><span class="pre">DataAccess</span></code></a>) into
+a simplified data access string.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; the access to be transformed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a simple string for the given access</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sardana.sardanadefs.to_dtype_dformat">
+<code class="descname">to_dtype_dformat</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sardana/sardanadefs.html#to_dtype_dformat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.sardanadefs.to_dtype_dformat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms the given data parameter (string/ or sequence of string or
+sequence of sequence of string/<a class="reference internal" href="#sardana.sardanadefs.DataType" title="sardana.sardanadefs.DataType"><code class="xref py py-obj docutils literal"><span class="pre">DataType</span></code></a>) into a tuple of two
+elements (<a class="reference internal" href="#sardana.sardanadefs.DataType" title="sardana.sardanadefs.DataType"><code class="xref py py-obj docutils literal"><span class="pre">DataType</span></code></a>, <a class="reference internal" href="#sardana.sardanadefs.DataFormat" title="sardana.sardanadefs.DataFormat"><code class="xref py py-obj docutils literal"><span class="pre">DataFormat</span></code></a>).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>data</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a> or seq&lt;str&gt; or seq&lt;seq&lt;str&gt;&gt;) &#8211; the data information to be transformed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a tuple &lt;<a class="reference internal" href="#sardana.sardanadefs.DataType" title="sardana.sardanadefs.DataType"><code class="xref py py-obj docutils literal"><span class="pre">DataType</span></code></a>, <a class="reference internal" href="#sardana.sardanadefs.DataFormat" title="sardana.sardanadefs.DataFormat"><code class="xref py py-obj docutils literal"><span class="pre">DataFormat</span></code></a>&gt; for the given data</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple&lt;<a class="reference internal" href="#sardana.sardanadefs.DataType" title="sardana.sardanadefs.DataType"><code class="xref py py-obj docutils literal"><span class="pre">DataType</span></code></a>, <a class="reference internal" href="#sardana.sardanadefs.DataFormat" title="sardana.sardanadefs.DataFormat"><code class="xref py py-obj docutils literal"><span class="pre">DataFormat</span></code></a>&gt;</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="sardana.sardanadefs.to_daccess">
+<code class="descname">to_daccess</code><span class="sig-paren">(</span><em>daccess</em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sardana/sardanadefs.html#to_daccess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.sardanadefs.to_daccess" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transforms the given access parameter (string or None) into a
+<a class="reference internal" href="#sardana.sardanadefs.DataAccess" title="sardana.sardanadefs.DataAccess"><code class="xref py py-obj docutils literal"><span class="pre">DataAccess</span></code></a>. If None is given returns <code class="xref py py-obj docutils literal"><span class="pre">DataAccess.ReadWrite</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>dtype</strong> (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>) &#8211; the access to be transformed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a <a class="reference internal" href="#sardana.sardanadefs.DataAccess" title="sardana.sardanadefs.DataAccess"><code class="xref py py-obj docutils literal"><span class="pre">DataAccess</span></code></a> for the given access</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#sardana.sardanadefs.DataAccess" title="sardana.sardanadefs.DataAccess"><code class="xref py py-obj docutils literal"><span class="pre">DataAccess</span></code></a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sardanabase.html" class="btn btn-neutral float-right" title="sardanabase" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="taurus/core/tango/sardana/pool.html" class="btn btn-neutral" title="Taurus Extensions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../',
+            VERSION:'3.0.2-alpha',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
