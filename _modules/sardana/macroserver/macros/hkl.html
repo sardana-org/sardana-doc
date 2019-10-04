@@ -1802,11 +1802,7 @@
         <span class="k">while</span><span class="p">(</span><span class="n">moving</span><span class="p">):</span>
             <span class="n">moving</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="k">for</span> <span class="n">angle</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle_names</span><span class="p">:</span>
-                <span class="c1"># TODO: For Taurus 4 / Taurus 3 compatibility</span>
-                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mot_dev</span><span class="p">,</span> <span class="s2">&quot;stateObj&quot;</span><span class="p">):</span>
-                    <span class="n">angle_state</span> <span class="o">=</span> <span class="n">tmp_dev</span><span class="p">[</span><span class="n">angle</span><span class="p">]</span><span class="o">.</span><span class="n">stateObj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">angle_state</span> <span class="o">=</span> <span class="n">tmp_dev</span><span class="p">[</span><span class="n">angle</span><span class="p">]</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>
+                <span class="n">angle_state</span> <span class="o">=</span> <span class="n">tmp_dev</span><span class="p">[</span><span class="n">angle</span><span class="p">]</span><span class="o">.</span><span class="n">stateObj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span>
                 <span class="k">if</span> <span class="n">angle_state</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
                     <span class="n">moving</span> <span class="o">=</span> <span class="mi">1</span>
             <span class="k">if</span> <span class="n">flagprint</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>

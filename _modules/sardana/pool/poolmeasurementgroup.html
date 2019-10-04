@@ -175,12 +175,8 @@
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">weakref</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">taurus.core.taurusvalidator</span> <span class="k">import</span> <span class="n">AttributeNameValidator</span> <span class="k">as</span>\
-        <span class="n">TangoAttributeNameValidator</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="c1"># TODO: For Taurus 4 compatibility</span>
-    <span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoAttributeNameValidator</span>
+
+<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoAttributeNameValidator</span>
 
 <span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_EXP_CHANNEL_ELEMENTS</span>
 <span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="k">import</span> <span class="n">EventType</span>
@@ -873,7 +869,7 @@
                 <span class="k">if</span> <span class="n">external</span><span class="p">:</span>
                     <span class="n">validator</span> <span class="o">=</span> <span class="n">TangoAttributeNameValidator</span><span class="p">()</span>
                     <span class="n">full_name</span> <span class="o">=</span> <span class="n">ch_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;full_name&#39;</span><span class="p">,</span> <span class="n">ch_name</span><span class="p">)</span>
-                    <span class="n">params</span> <span class="o">=</span> <span class="n">validator</span><span class="o">.</span><span class="n">getParams</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
+                    <span class="n">params</span> <span class="o">=</span> <span class="n">validator</span><span class="o">.</span><span class="n">getUriGroups</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
                     <span class="n">params</span><span class="p">[</span><span class="s1">&#39;pool&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool</span>
                     <span class="n">channel</span> <span class="o">=</span> <span class="n">PoolExternalObject</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>

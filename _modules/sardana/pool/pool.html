@@ -175,12 +175,7 @@
 <span class="kn">import</span> <span class="nn">os.path</span>
 <span class="kn">import</span> <span class="nn">logging.handlers</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">taurus.core.taurusvalidator</span> <span class="k">import</span> <span class="n">AttributeNameValidator</span> <span class="k">as</span>\
-        <span class="n">TangoAttributeNameValidator</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="c1"># TODO: For Taurus 4 compatibility</span>
-    <span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoAttributeNameValidator</span>
+<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoAttributeNameValidator</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
 
 <span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">InvalidId</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_ACQUIRABLE_ELEMENTS</span><span class="p">,</span> \
@@ -665,7 +660,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="o">.</span><span class="n">get_element</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">elem_id</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">tg_attr_validator</span> <span class="o">=</span> <span class="n">TangoAttributeNameValidator</span><span class="p">()</span>
-                <span class="n">params</span> <span class="o">=</span> <span class="n">tg_attr_validator</span><span class="o">.</span><span class="n">getParams</span><span class="p">(</span><span class="n">elem_id</span><span class="p">)</span>
+                <span class="n">params</span> <span class="o">=</span> <span class="n">tg_attr_validator</span><span class="o">.</span><span class="n">getUriGroups</span><span class="p">(</span><span class="n">elem_id</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Invalid channel name </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">elem_id</span><span class="p">)</span>
 

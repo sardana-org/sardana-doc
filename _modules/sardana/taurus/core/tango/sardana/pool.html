@@ -196,12 +196,7 @@
 <span class="kn">from</span> <span class="nn">taurus</span> <span class="k">import</span> <span class="n">Factory</span><span class="p">,</span> <span class="n">Device</span><span class="p">,</span> <span class="n">Attribute</span>
 <span class="kn">from</span> <span class="nn">taurus.core.taurusbasetypes</span> <span class="k">import</span> <span class="n">TaurusEventType</span>
 
-<span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">taurus.core.taurusvalidator</span> <span class="k">import</span> <span class="n">AttributeNameValidator</span> <span class="k">as</span> \
-        <span class="n">TangoAttributeNameValidator</span>
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-    <span class="c1"># TODO: For Taurus 4 compatibility</span>
-    <span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoAttributeNameValidator</span>
+<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoAttributeNameValidator</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
@@ -694,13 +689,9 @@
         <span class="n">indent</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">tab</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="s1">&#39; &#39;</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">]</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># TODO: For Taurus 4 / Taurus 3 compatibility</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;stateObj&quot;</span><span class="p">):</span>
-                <span class="n">state_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateObj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span>
-                <span class="c1"># state_value is DevState enumeration (IntEnum)</span>
-                <span class="n">state</span> <span class="o">=</span> <span class="n">state_value</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">state</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="p">())</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+            <span class="n">state_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateObj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span>
+            <span class="c1"># state_value is DevState enumeration (IntEnum)</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">state_value</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
         <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
                 <span class="n">state</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">desc</span>
@@ -1594,8 +1585,8 @@
                 <span class="n">n_tg_chs</span><span class="p">[</span><span class="n">channel_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_data</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># Handle tango channel</span>
-                <span class="n">dev_name</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;devicename&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
-                <span class="n">attr_name</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;attributename&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                <span class="n">dev_name</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;devname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                <span class="n">attr_name</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s1">&#39;_shortattrname&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
                 <span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">),</span> <span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">host</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">port</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">dev_name</span> <span class="o">=</span> <span class="s2">&quot;tango://</span><span class="si">{0}</span><span class="s2">:</span><span class="si">{1}</span><span class="s2">/</span><span class="si">{2}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span>
@@ -2428,10 +2419,10 @@
         <span class="k">elif</span> <span class="n">evt_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CHANGE_EVT_TYPES</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">elems</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">evt_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">elems</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">evt_value</span><span class="o">.</span><span class="n">rvalue</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Could not decode element info&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;value: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">evt_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;value: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">evt_value</span><span class="o">.</span><span class="n">rvalue</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Details:&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="k">return</span>
         <span class="n">elements</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getElementsInfo</span><span class="p">()</span>

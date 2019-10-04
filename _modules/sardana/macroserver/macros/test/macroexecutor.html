@@ -443,11 +443,7 @@
         <span class="c1"># For the moment I implement it by calling an internal member of</span>
         <span class="c1"># TaurusManager</span>
         <span class="kn">from</span> <span class="nn">taurus.core</span> <span class="k">import</span> <span class="n">TaurusManager</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">scheme</span> <span class="o">=</span> <span class="n">TaurusManager</span><span class="p">()</span><span class="o">.</span><span class="n">_get_scheme</span><span class="p">(</span><span class="n">door_name</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-            <span class="c1"># TODO: For Taurus 4 compatibility</span>
-            <span class="n">scheme</span> <span class="o">=</span> <span class="n">TaurusManager</span><span class="p">()</span><span class="o">.</span><span class="n">getScheme</span><span class="p">(</span><span class="n">door_name</span><span class="p">)</span>
+        <span class="n">scheme</span> <span class="o">=</span> <span class="n">TaurusManager</span><span class="p">()</span><span class="o">.</span><span class="n">getScheme</span><span class="p">(</span><span class="n">door_name</span><span class="p">)</span>
         <span class="c1">#======================================================================</span>
 
         <span class="k">if</span> <span class="n">scheme</span> <span class="o">==</span> <span class="s1">&#39;tango&#39;</span><span class="p">:</span>
