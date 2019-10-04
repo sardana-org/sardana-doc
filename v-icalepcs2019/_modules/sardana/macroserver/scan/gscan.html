@@ -2622,11 +2622,7 @@
                 <span class="n">timeout</span> <span class="o">=</span> <span class="mi">15</span>
                 <span class="n">measurement_group</span><span class="o">.</span><span class="n">waitFinish</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">mg_id</span><span class="p">)</span>
             <span class="k">finally</span><span class="p">:</span>
-                <span class="c1"># TODO: For Taurus 4 / Taurus 3 compatibility</span>
-                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">measurement_group</span><span class="p">,</span> <span class="s2">&quot;stateObj&quot;</span><span class="p">):</span>
-                    <span class="n">state</span> <span class="o">=</span> <span class="n">measurement_group</span><span class="o">.</span><span class="n">stateObj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">state</span> <span class="o">=</span> <span class="n">measurement_group</span><span class="o">.</span><span class="n">state</span><span class="p">()</span>
+                <span class="n">state</span> <span class="o">=</span> <span class="n">measurement_group</span><span class="o">.</span><span class="n">stateObj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span>
                 <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">MOVING</span><span class="p">:</span>
                     <span class="n">measurement_group</span><span class="o">.</span><span class="n">Stop</span><span class="p">()</span>
                     <span class="k">if</span> <span class="n">end_move</span><span class="p">:</span>
