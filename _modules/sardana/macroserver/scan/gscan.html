@@ -1199,12 +1199,12 @@
         <span class="n">scream</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nr_points&quot;</span><span class="p">):</span>
-            <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">macro</span><span class="o">.</span><span class="n">nr_points</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nb_points&quot;</span><span class="p">):</span>
+            <span class="n">nb_points</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">macro</span><span class="o">.</span><span class="n">nb_points</span><span class="p">)</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;integ_time&quot;</span><span class="p">):</span>
                 <span class="n">integ_time</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">integ_time</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">putIntegrationTime</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">setNbStarts</span><span class="p">(</span><span class="n">nr_points</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">setNbStarts</span><span class="p">(</span><span class="n">nb_points</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">scream</span> <span class="o">=</span> <span class="kc">True</span>
@@ -1220,7 +1220,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">stepUp</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">lstep</span><span class="p">)</span>
             <span class="n">lstep</span> <span class="o">=</span> <span class="n">step</span>
             <span class="k">if</span> <span class="n">scream</span><span class="p">:</span>
-                <span class="k">yield</span> <span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_points</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+                <span class="k">yield</span> <span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nb_points</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">scream</span><span class="p">:</span>
             <span class="k">yield</span> <span class="mf">100.0</span>
@@ -1962,8 +1962,8 @@
         <span class="n">sum_delay</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">sum_integ_time</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nr_points&quot;</span><span class="p">):</span>
-            <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">macro</span><span class="o">.</span><span class="n">nr_points</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nb_points&quot;</span><span class="p">):</span>
+            <span class="n">nb_points</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">macro</span><span class="o">.</span><span class="n">nb_points</span><span class="p">)</span>
             <span class="n">scream</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">yield</span> <span class="mf">0.0</span>
@@ -2077,7 +2077,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">addRecord</span><span class="p">(</span><span class="n">data_line</span><span class="p">)</span>
 
                     <span class="k">if</span> <span class="n">scream</span><span class="p">:</span>
-                        <span class="k">yield</span> <span class="p">((</span><span class="n">point_nb</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_points</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+                        <span class="k">yield</span> <span class="p">((</span><span class="n">point_nb</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">nb_points</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">break</span>
                 <span class="n">old_curr_time</span> <span class="o">=</span> <span class="n">curr_time</span>
@@ -2217,13 +2217,13 @@
     <span class="k">return</span> <span class="n">ret</span>
 
 
-<span class="k">def</span> <span class="nf">generate_positions</span><span class="p">(</span><span class="n">motors</span><span class="p">,</span> <span class="n">starts</span><span class="p">,</span> <span class="n">finals</span><span class="p">,</span> <span class="n">nr_points</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">generate_positions</span><span class="p">(</span><span class="n">motors</span><span class="p">,</span> <span class="n">starts</span><span class="p">,</span> <span class="n">finals</span><span class="p">,</span> <span class="n">nb_points</span><span class="p">):</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="c1"># generate theoretical positions</span>
     <span class="n">moveable_positions</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">final</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">finals</span><span class="p">):</span>
         <span class="n">moveable_positions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">final</span><span class="p">,</span> <span class="n">nr_points</span><span class="p">))</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">final</span><span class="p">,</span> <span class="n">nb_points</span><span class="p">))</span>
     <span class="c1"># prepare table header from moveables names</span>
     <span class="n">dtype_spec</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">motor</span> <span class="ow">in</span> <span class="n">motors</span><span class="p">:</span>
@@ -2474,7 +2474,7 @@
                 <span class="k">raise</span> <span class="n">ScanException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
             <span class="c1"># Set the index offset used in CAcquisition class.</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_index_offset</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">nr_points</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_index_offset</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">nb_points</span>
 
             <span class="n">startTimestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
@@ -2490,7 +2490,7 @@
             <span class="n">moveable</span> <span class="o">=</span> <span class="n">moveables</span><span class="p">[</span><span class="n">MASTER</span><span class="p">]</span><span class="o">.</span><span class="n">full_name</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">setMoveable</span><span class="p">(</span><span class="n">moveable</span><span class="p">)</span>
             <span class="n">path</span> <span class="o">=</span> <span class="n">motion_paths</span><span class="p">[</span><span class="n">MASTER</span><span class="p">]</span>
-            <span class="n">repeats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">nr_points</span>
+            <span class="n">repeats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">nb_points</span>
             <span class="n">active_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">integ_time</span>
             <span class="n">active_position</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">max_vel</span> <span class="o">*</span> <span class="n">active_time</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">positive_displacement</span><span class="p">:</span>
@@ -2572,9 +2572,9 @@
             <span class="n">motors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">motors</span>
             <span class="n">starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">starts</span>
             <span class="n">finals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">finals</span>
-            <span class="n">nr_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">nr_points</span>
+            <span class="n">nb_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">nb_points</span>
             <span class="n">theoretical_positions</span> <span class="o">=</span> <span class="n">generate_positions</span><span class="p">(</span><span class="n">motors</span><span class="p">,</span> <span class="n">starts</span><span class="p">,</span> <span class="n">finals</span><span class="p">,</span>
-                                                       <span class="n">nr_points</span><span class="p">)</span>
+                                                       <span class="n">nb_points</span><span class="p">)</span>
             <span class="n">theoretical_timestamps</span> <span class="o">=</span> <span class="n">generate_timestamps</span><span class="p">(</span><span class="n">synch</span><span class="p">,</span> <span class="n">dt_timestamp</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">theoretical_positions</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
                 <span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">theoretical_timestamps</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
@@ -2679,8 +2679,8 @@
         <span class="n">sum_delay</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">sum_integ_time</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nr_points&quot;</span><span class="p">):</span>
-            <span class="c1"># nr_points = float(macro.nr_points)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nb_points&quot;</span><span class="p">):</span>
+            <span class="c1"># nb_points = float(macro.nb_points)</span>
             <span class="n">scream</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">yield</span> <span class="mf">0.0</span>
@@ -2835,7 +2835,7 @@
 <span class="sd">    information in either of the following two ways:</span>
 <span class="sd">      - synchronization attribute that follows the synchronization format of</span>
 <span class="sd">      the measurement group</span>
-<span class="sd">      - integ_time, nr_points and latency_time (optional) attributes</span>
+<span class="sd">      - integ_time, nb_points and latency_time (optional) attributes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span> <span class="n">env</span><span class="o">=</span><span class="p">{},</span> <span class="n">constraints</span><span class="o">=</span><span class="p">[],</span> <span class="n">extrainfodesc</span><span class="o">=</span><span class="p">[]):</span>
@@ -2868,7 +2868,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">active_time</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;integ_time&quot;</span><span class="p">)</span>
-                <span class="n">repeats</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nr_points&quot;</span><span class="p">)</span>
+                <span class="n">repeats</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nb_points&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Macro object is missing synchronization attributes&quot;</span>
                 <span class="k">raise</span> <span class="n">ScanSetupError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -2920,9 +2920,9 @@
 
     <span class="k">def</span> <span class="nf">_fill_missing_records</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># fill record list with dummy records for the final padding</span>
-        <span class="n">nr_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">nr_points</span>
+        <span class="n">nb_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">nb_points</span>
         <span class="n">records</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">records</span><span class="p">)</span>
-        <span class="n">missing_records</span> <span class="o">=</span> <span class="n">nr_points</span> <span class="o">-</span> <span class="n">records</span>
+        <span class="n">missing_records</span> <span class="o">=</span> <span class="n">nb_points</span> <span class="o">-</span> <span class="n">records</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">initRecords</span><span class="p">(</span><span class="n">missing_records</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_estimate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

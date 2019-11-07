@@ -295,7 +295,7 @@
 
         <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">StepMode</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">=</span> <span class="n">scan_length</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interv_sizes</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">finals</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;a</span><span class="si">%i</span><span class="s1">scan&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span> <span class="o">=</span> <span class="n">SScan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stepGenerator</span><span class="p">,</span>
@@ -321,7 +321,7 @@
                                      <span class="n">constrains</span><span class="p">,</span> <span class="n">extrainfodesc</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">ContinuousHwTimeMode</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">=</span> <span class="n">scan_length</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
                 <span class="n">mg_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
                 <span class="n">mg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMeasurementGroup</span><span class="p">(</span><span class="n">mg_name</span><span class="p">)</span>
                 <span class="n">mg_latency_time</span> <span class="o">=</span> <span class="n">mg</span><span class="o">.</span><span class="n">getLatencyTime</span><span class="p">()</span>
@@ -338,7 +338,7 @@
                                      <span class="n">extrainfodesc</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">HybridMode</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">=</span> <span class="n">scan_length</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">interv_sizes</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">finals</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;a</span><span class="si">%i</span><span class="s1">scanh&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span> <span class="o">=</span> <span class="n">HScan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stepGenerator</span><span class="p">,</span>
@@ -364,7 +364,7 @@
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-step-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-step&#39;</span><span class="p">)</span>
 
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span><span class="p">):</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span> <span class="o">+</span> <span class="n">point_no</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">interv_sizes</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_no</span>
             <span class="k">yield</span> <span class="n">step</span>
@@ -395,8 +395,8 @@
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-acq-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-acq&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span>
             <span class="s1">&#39;_NOHINTS_&#39;</span><span class="p">)</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;active_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">+</span>
-                                                <span class="bp">self</span><span class="o">.</span><span class="n">latency_time</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;active_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span>
+                                                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">latency_time</span><span class="p">)</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;start_positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span>
@@ -452,7 +452,7 @@
                 <span class="n">max_step_time</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_step_time</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">duration</span><span class="p">)</span>
             <span class="n">motion_time</span> <span class="o">=</span> <span class="n">max_step0_time</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">*</span> <span class="n">max_step_time</span>
             <span class="c1"># calculate acquisition time</span>
-            <span class="n">acq_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span>
+            <span class="n">acq_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span>
             <span class="n">total_time</span> <span class="o">=</span> <span class="n">motion_time</span> <span class="o">+</span> <span class="n">acq_time</span>
 
         <span class="k">elif</span> <span class="n">mode</span> <span class="o">==</span> <span class="n">ContinuousMode</span><span class="p">:</span>
@@ -469,12 +469,19 @@
 
     <span class="k">def</span> <span class="nf">_fill_missing_records</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># fill record list with dummy records for the final padding</span>
-        <span class="n">nb_of_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span>
+        <span class="n">nb_of_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span>
         <span class="n">scan</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span>
         <span class="n">nb_of_records</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">scan</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">records</span><span class="p">)</span>
         <span class="n">missing_records</span> <span class="o">=</span> <span class="n">nb_of_points</span> <span class="o">-</span> <span class="n">nb_of_records</span>
-        <span class="n">scan</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">initRecords</span><span class="p">(</span><span class="n">missing_records</span><span class="p">)</span></div>
+        <span class="n">scan</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">initRecords</span><span class="p">(</span><span class="n">missing_records</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">_get_nr_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nr_points is deprecated since version Jan20. &quot;</span>
+               <span class="s2">&quot;Use nb_points instead.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span>
+
+    <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_nr_points</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="dNscan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.dNscan">[docs]</a><span class="k">class</span> <span class="nc">dNscan</span><span class="p">(</span><span class="n">aNscan</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -1021,7 +1028,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">paths</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SafeEvaluator</span><span class="p">(</span><span class="nb">globals</span><span class="p">)</span><span class="o">.</span><span class="n">eval</span><span class="p">(</span>
             <span class="n">func</span><span class="p">)</span> <span class="k">for</span> <span class="nb">globals</span> <span class="ow">in</span> <span class="n">globals_lst</span><span class="p">]</span> <span class="k">for</span> <span class="n">func</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcstrings</span><span class="p">]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_integ_time</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">eval</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">opts</span> <span class="o">=</span> <span class="n">opts</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">motors</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -1046,14 +1053,14 @@
                                      <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">funcstrings</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fs</span><span class="p">,</span> <span class="n">npoints</span><span class="p">,</span>
                                       <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)))</span>
             <span class="k">raise</span>  <span class="c1"># the problem wasn&#39;t a shape mismatch</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">=</span> <span class="n">npoints</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nb_points</span> <span class="o">=</span> <span class="n">npoints</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">*</span> \
-                <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">)</span>  <span class="c1"># extend integ_time</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integ_time</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_integ_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integ_time</span> <span class="o">*</span> \
+                <span class="n">numpy</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nb_points</span><span class="p">)</span>  <span class="c1"># extend integ_time</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integ_time</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nb_points</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;time_integ must either be a scalar or &#39;</span>
-                             <span class="s1">&#39;length=npoints (</span><span class="si">%i</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">)</span>
+                             <span class="s1">&#39;length=npoints (</span><span class="si">%i</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nb_points</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;fscan&#39;</span><span class="p">)</span>
 
@@ -1086,15 +1093,24 @@
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-step-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-step&#39;</span><span class="p">)</span>
 
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_nb_points</span><span class="p">):</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">paths</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span>
-            <span class="n">step</span><span class="p">[</span><span class="s2">&quot;integ_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">step</span><span class="p">[</span><span class="s2">&quot;integ_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_integ_time</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
             <span class="k">yield</span> <span class="n">step</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">step_scan</span><span class="p">():</span>
-            <span class="k">yield</span> <span class="n">step</span></div>
+            <span class="k">yield</span> <span class="n">step</span>
+
+    <span class="k">def</span> <span class="nf">_get_nr_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nr_points is deprecated since version Jan20. &quot;</span>
+               <span class="s2">&quot;Use nb_points instead.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span>
+
+    <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_nr_points</span><span class="p">)</span></div>
+
 
 
 <span class="k">class</span> <span class="nc">ascanh</span><span class="p">(</span><span class="n">aNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">):</span>
@@ -1845,7 +1861,7 @@
         <span class="c1"># Number of intervals of the first motor which is doing the</span>
         <span class="c1"># continuous scan.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">=</span> <span class="n">m1_nr_interv</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bidirectional_mode</span> <span class="o">=</span> <span class="n">bidirectional</span>
 
@@ -1908,8 +1924,8 @@
             <span class="s1">&#39;post-move&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_fill_missing_records</span><span class="p">]</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-move-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">post_move_hooks</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;active_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">+</span>
-                                                <span class="bp">self</span><span class="o">.</span><span class="n">latency_time</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;active_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span>
+                                                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">latency_time</span><span class="p">)</span>
 
         <span class="n">points1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_intervs</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">waypoint</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">waypoints</span><span class="p">):</span>
@@ -1942,12 +1958,20 @@
 
     <span class="k">def</span> <span class="nf">_fill_missing_records</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># fill record list with dummy records for the final padding</span>
-        <span class="n">nb_of_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span>
+        <span class="n">nb_of_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span>
         <span class="n">scan</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span>
         <span class="n">nb_of_total_records</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">scan</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">records</span><span class="p">)</span>
         <span class="n">nb_of_records</span> <span class="o">=</span> <span class="n">nb_of_total_records</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">point_id</span>
         <span class="n">missing_records</span> <span class="o">=</span> <span class="n">nb_of_points</span> <span class="o">-</span> <span class="n">nb_of_records</span>
-        <span class="n">scan</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">initRecords</span><span class="p">(</span><span class="n">missing_records</span><span class="p">)</span></div>
+        <span class="n">scan</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">initRecords</span><span class="p">(</span><span class="n">missing_records</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_nr_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nr_points is deprecated since version Jan20. &quot;</span>
+               <span class="s2">&quot;Use nb_points instead.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span>
+
+    <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_nr_points</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="timescan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.timescan">[docs]</a><span class="k">class</span> <span class="nc">timescan</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
@@ -1967,7 +1991,7 @@
 
     <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">latency_time</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">=</span> <span class="n">nr_interv</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">=</span> <span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">=</span> <span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">latency_time</span> <span class="o">=</span> <span class="n">latency_time</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span> <span class="o">=</span> <span class="n">TScan</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -1985,10 +2009,18 @@
     <span class="k">def</span> <span class="nf">getTimeEstimation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">mg_latency_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">getLatencyTime</span><span class="p">()</span>
         <span class="n">latency_time</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latency_time</span><span class="p">,</span> <span class="n">mg_latency_time</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">+</span> <span class="n">latency_time</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">+</span> <span class="n">latency_time</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">getIntervalEstimation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span>
+
+    <span class="k">def</span> <span class="nf">_get_nr_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nr_points is deprecated since version Jan20. &quot;</span>
+               <span class="s2">&quot;Use nb_points instead.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span>
+
+    <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_nr_points</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

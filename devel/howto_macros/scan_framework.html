@@ -218,18 +218,18 @@ sizes as a function of some counter reading).</p>
        <span class="p">[</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span>      <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Motor to move&#39;</span><span class="p">],</span>
        <span class="p">[</span><span class="s1">&#39;start_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Scan start position&#39;</span><span class="p">],</span>
        <span class="p">[</span><span class="s1">&#39;final_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Scan final position&#39;</span><span class="p">],</span>
-       <span class="p">[</span><span class="s1">&#39;nr_interv&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>  <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Number of scan intervals&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;nb_interv&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>  <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Number of scan intervals&#39;</span><span class="p">],</span>
        <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">final_pos</span><span class="p">,</span> <span class="n">nb_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
         <span class="c1">#parse the user parameters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">start_pos</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">final</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">final_pos</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">=</span> <span class="n">nr_interv</span><span class="o">+</span><span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">interv_size</span> <span class="o">=</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">final</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_interv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">=</span> <span class="n">nb_interv</span><span class="o">+</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">interv_size</span> <span class="o">=</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">final</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">nb_interv</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;ascan_demo&#39;</span>
         <span class="n">env</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;env&#39;</span><span class="p">,{})</span> <span class="c1">#the &quot;env&quot; dictionary may be passed as an option</span>
 
@@ -240,7 +240,7 @@ sizes as a function of some counter reading).</p>
     <span class="k">def</span> <span class="nf">_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">step</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;integ_time&quot;</span><span class="p">]</span> <span class="o">=</span>  <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="c1">#integ_time is the same for all steps</span>
-        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="n">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span><span class="p">):</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="n">point_no</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">interv_size</span> <span class="c1">#note that this is a numpy array</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_no</span>
             <span class="k">yield</span> <span class="n">step</span>
@@ -341,6 +341,31 @@ the most basic features of a continuous scan::</p>
 (with more elaborated waypoint generator), see the code of
 <a class="reference internal" href="../api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.meshc" title="sardana.macroserver.macros.scan.meshc"><code class="xref py py-class docutils literal"><span class="pre">meshc</span></code></a></p>
 </div>
+</div>
+<div class="section" id="deterministic-scans">
+<h2>Deterministic scans<a class="headerlink" href="#deterministic-scans" title="Permalink to this headline">¶</a></h2>
+<p>By <em>deterministic scans</em> we call these scans which know <em>a priori</em> the number
+of points and the integration time. In some cases the experimental channel
+controllers may take profit of this information and prepare for the whole
+scan measurement up-front instead of preparing before each scan point.
+When writing this type of scan macros it is enough to set two attributes:
+<code class="docutils literal"><span class="pre">nb_points</span></code> and <code class="docutils literal"><span class="pre">integ_time</span></code> in your macro.
+When these attributes are present in your macro, the <em>generic scan framework</em>
+will take care of preparing the experimental channels for the whole scan
+measurement upfront.</p>
+<blockquote>
+<div><div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Since <code class="docutils literal"><span class="pre">nb_points</span></code> and <code class="docutils literal"><span class="pre">integ_time</span></code> attributes identify
+deterministic scan macros as deterministic and you must not use these
+attribute names for any other needs.</p>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last">More information about deterministic scans and measurement
+preparation can be found in <a class="reference external" href="http://www.sardana-controls.org/sep/?SEP18.md">SEP18</a>.</p>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="hooks-support-in-scans">
 <h2>Hooks support in scans<a class="headerlink" href="#hooks-support-in-scans" title="Permalink to this headline">¶</a></h2>

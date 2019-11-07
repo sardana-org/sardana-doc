@@ -846,7 +846,31 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
 671
 672
 673
-674</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">##############################################################################</span>
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">##############################################################################</span>
 <span class="c1">##</span>
 <span class="c1"># This file is part of Sardana</span>
 <span class="c1">##</span>
@@ -918,7 +942,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="bp">self</span><span class="o">.</span><span class="n">final</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">final_pos</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">=</span> <span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">=</span> <span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interv_size</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">final</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_interv</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ascan_demo&#39;</span>
         <span class="c1"># the &quot;env&quot; dictionary may be passed as an option</span>
@@ -932,7 +956,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="n">step</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="c1"># integ_time is the same for all steps</span>
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;integ_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span>
-        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span><span class="p">):</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="n">point_no</span> <span class="o">*</span> \
                 <span class="bp">self</span><span class="o">.</span><span class="n">interv_size</span>  <span class="c1"># note that this is a numpy array</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_no</span>
@@ -945,6 +969,14 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">data</span>  <span class="c1"># the GScan provides scan data</span>
+
+    <span class="k">def</span> <span class="nf">_get_nr_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nr_points is deprecated since version Jan20. &quot;</span>
+               <span class="s2">&quot;Use nb_points instead.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span>
+
+    <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_nr_points</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">ascanr</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
@@ -985,7 +1017,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="bp">self</span><span class="o">.</span><span class="n">repeat</span> <span class="o">=</span> <span class="n">repeat</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">opts</span> <span class="o">=</span> <span class="n">opts</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">=</span> <span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">=</span> <span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interv_sizes</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">finals</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_interv</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ascanr&#39;</span>
 
@@ -1008,7 +1040,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="n">step</span><span class="p">[</span><span class="s2">&quot;check_func&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">extrainfo</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;repetition&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}</span>  <span class="c1"># !!!</span>
         <span class="n">step</span><span class="p">[</span><span class="s1">&#39;extrainfo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">extrainfo</span>  <span class="c1"># !!!</span>
-        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">point_no</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span><span class="p">):</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;positions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span> <span class="o">+</span> <span class="n">point_no</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">interv_sizes</span>
             <span class="n">step</span><span class="p">[</span><span class="s2">&quot;point_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_no</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">repeat</span><span class="p">):</span>
@@ -1022,6 +1054,14 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">_get_nr_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nr_points is deprecated since version Jan20. &quot;</span>
+               <span class="s2">&quot;Use nb_points instead.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span>
+
+    <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_nr_points</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">toothedtriangle</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
@@ -1059,8 +1099,8 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="bp">self</span><span class="o">.</span><span class="n">nr_cycles</span> <span class="o">=</span> <span class="n">nr_cycles</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nr_samples</span> <span class="o">=</span> <span class="n">nr_samples</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">opts</span> <span class="o">=</span> <span class="n">opts</span>
-        <span class="n">cycle_nr_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">nr_points</span> <span class="o">=</span> <span class="n">cycle_nr_points</span> <span class="o">*</span> <span class="n">nr_samples</span> <span class="o">*</span> <span class="n">nr_cycles</span> <span class="o">+</span> <span class="n">nr_samples</span>
+        <span class="n">cycle_nb_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nr_interv</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span> <span class="o">=</span> <span class="n">cycle_nb_points</span> <span class="o">*</span> <span class="n">nr_samples</span> <span class="o">*</span> <span class="n">nr_cycles</span> <span class="o">+</span> <span class="n">nr_samples</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">interv_size</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">final_pos</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span><span class="p">)</span> <span class="o">/</span> <span class="n">nr_interv</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;toothedtriangle&#39;</span>
@@ -1126,6 +1166,14 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">_get_nr_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;nr_points is deprecated since version Jan20. &quot;</span>
+               <span class="s2">&quot;Use nb_points instead.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span>
+
+    <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_nr_points</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">regscan</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
