@@ -366,79 +366,65 @@ Constant values belong to <a class="reference internal" href="#sardana.sardanade
 
 <dl class="data">
 <dt id="sardana.sardanadefs.Interface">
-<code class="descname">Interface</code><em class="property"> = Enumeration('Interface', ['Object', 'Element', 'PoolObject', 'PoolElement', 'Acquirable', 'Moveable', 'PseudoMotor', 'Countable', 'MacroServerObject', 'Class', 'MacroCode', 'MacroClass', 'ControllerClass', 'Library', 'ControllerLibrary', 'MacroServerElement', 'Door', 'ExpChannel', 'OneDExpChannel', 'External', 'MacroServer', 'Instrument', 'ComChannel', 'Meta', 'ParameterType', 'Function', 'MacroFunction', 'TwoDExpChannel', 'Motor', 'MotorGroup', 'ZeroDExpChannel', 'Macro', 'IORegister', 'CTExpChannel', 'Constraint', 'PseudoCounter', 'MeasurementGroup', 'MacroLibrary', 'TriggerGate', 'Pool', 'Controller'])</em><a class="headerlink" href="#sardana.sardanadefs.Interface" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Interface</code><em class="property"> = Enumeration('Interface', ['Object', 'MacroServerObject', 'MacroCode', 'PoolObject', 'Constraint', 'Element', 'PoolElement', 'Countable', 'MeasurementGroup', 'ComChannel', 'Class', 'MacroServerElement', 'Controller', 'Acquirable', 'ControllerClass', 'ExpChannel', 'PseudoCounter', 'Library', 'MacroLibrary', 'Moveable', 'PseudoMotor', 'Meta', 'ParameterType', 'Function', 'Motor', 'ControllerLibrary', 'MotorGroup', 'OneDExpChannel', 'MacroFunction', 'Door', 'TriggerGate', 'CTExpChannel', 'MacroClass', 'Macro', 'Instrument', 'TwoDExpChannel', 'External', 'IORegister', 'Pool', 'ZeroDExpChannel', 'MacroServer'])</em><a class="headerlink" href="#sardana.sardanadefs.Interface" title="Permalink to this definition">¶</a></dt>
 <dd><p>Interface enumeration. Possible values are:</p>
 <ul class="simple">
 <li>Object (1)</li>
-<li>Element (3)</li>
-<li>PoolObject (5)</li>
-<li>PoolElement (15)</li>
-<li>Acquirable (31)</li>
-<li>Moveable (47)</li>
-<li>PseudoMotor (127)</li>
-<li>Countable (143)</li>
-<li>MacroServerObject (257)</li>
-<li>Class (513)</li>
-<li>MacroCode (1281)</li>
-<li>MacroClass (3841)</li>
-<li>ControllerClass (4613)</li>
-<li>Library (8193)</li>
-<li>ControllerLibrary (24581)</li>
-<li>MacroServerElement (33027)</li>
-<li>Door (98563)</li>
-<li>ExpChannel (131103)</li>
-<li>OneDExpChannel (393375)</li>
-<li>External (524289)</li>
-<li>MacroServer (1081603)</li>
-<li>Instrument (2097167)</li>
-<li>ComChannel (4194319)</li>
-<li>Meta (8388608)</li>
-<li>ParameterType (25165824)</li>
-<li>Function (33554433)</li>
-<li>MacroFunction (100664577)</li>
-<li>TwoDExpChannel (134348959)</li>
-<li>Motor (268435519)</li>
-<li>MotorGroup (536870927)</li>
-<li>ZeroDExpChannel (1073872927)</li>
-<li>Macro (2248150785)</li>
-<li>IORegister (4294967327)</li>
-<li>CTExpChannel (8590065823)</li>
-<li>Constraint (17179869189)</li>
-<li>PseudoCounter (34359869471)</li>
-<li>MeasurementGroup (68719476879)</li>
-<li>MacroLibrary (137438961921)</li>
-<li>TriggerGate (274877906959)</li>
-<li>Pool (549755813903)</li>
-<li>Controller (1099511627791)</li>
+<li>MacroServerObject (3)</li>
+<li>MacroCode (7)</li>
+<li>PoolObject (9)</li>
+<li>Constraint (25)</li>
+<li>Element (33)</li>
+<li>PoolElement (105)</li>
+<li>Countable (233)</li>
+<li>MeasurementGroup (489)</li>
+<li>ComChannel (617)</li>
+<li>Class (1025)</li>
+<li>MacroServerElement (2083)</li>
+<li>Controller (4201)</li>
+<li>Acquirable (8297)</li>
+<li>ControllerClass (17417)</li>
+<li>ExpChannel (41065)</li>
+<li>PseudoCounter (106601)</li>
+<li>Library (131073)</li>
+<li>MacroLibrary (393219)</li>
+<li>Moveable (524393)</li>
+<li>PseudoMotor (1581161)</li>
+<li>Meta (2097152)</li>
+<li>ParameterType (6291456)</li>
+<li>Function (8388609)</li>
+<li>Motor (17309801)</li>
+<li>ControllerLibrary (33685513)</li>
+<li>MotorGroup (67108969)</li>
+<li>OneDExpChannel (134258921)</li>
+<li>MacroFunction (276824071)</li>
+<li>Door (536872995)</li>
+<li>TriggerGate (1073741929)</li>
+<li>CTExpChannel (2147524841)</li>
+<li>MacroClass (4294968327)</li>
+<li>Macro (13161726983)</li>
+<li>Instrument (17179869289)</li>
+<li>TwoDExpChannel (34359779561)</li>
+<li>External (68719476737)</li>
+<li>IORegister (137438961769)</li>
+<li>Pool (274877907049)</li>
+<li>ZeroDExpChannel (549755854953)</li>
+<li>MacroServer (1099511629859)</li>
 </ul>
 </dd></dl>
 
 <dl class="data">
 <dt id="sardana.sardanadefs.Interfaces">
-<code class="descname">Interfaces</code><em class="property"> = {8388608: set(), 3841: {513, 1281}, 1081603: {33027}, 34359869471: {131103}, 4613: {513, 5}, 25165824: {8388608}, 524289: {1}, 2097167: {15}, 1073872927: {131103}, 1281: {257}, 17179869189: {5}, 536870927: {15}, 4194319: {15}, 2248150785: {3841, 100664577}, 98563: {33027}, 47: {15}, 134348959: {131103, 143}, 549755813903: {15}, 15: {3, 5}, 5: {1}, 257: {1}, 31: {15}, 3: {1}, 1: set(), 24581: {8193, 5}, 4294967327: {31}, 33027: {257, 3}, 274877906959: {15}, 1099511627791: {15}, 393375: {131103, 143}, 268435519: {47, 31}, 8590065823: {131103, 143}, 68719476879: {15, 143}, 8193: {1}, 513: {1}, 33554433: {1}, 137438961921: {257, 8193}, 131103: {31}, 143: {15}, 100664577: {33554433, 1281}, 127: {47, 31}}</em><a class="headerlink" href="#sardana.sardanadefs.Interfaces" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Interfaces</code><em class="property"> = {6291456: {2097152}, 131073: {1}, 3: {1}, 1025: {1}, 1073741929: {105}, 2097152: set(), 4294968327: {1025, 7}, 9: {1}, 68719476737: {1}, 41065: {8297}, 105: {33, 9}, 2083: {33, 3}, 33685513: {9, 131073}, 524393: {105}, 17417: {1025, 9}, 8297: {105}, 7: {3}, 25: {9}, 549755854953: {41065}, 134258921: {41065, 233}, 106601: {41065}, 17179869289: {105}, 33: {1}, 536872995: {2083}, 1: set(), 617: {105}, 1099511629859: {2083}, 233: {105}, 13161726983: {4294968327, 276824071}, 137438961769: {8297}, 489: {105, 233}, 34359779561: {41065, 233}, 67108969: {105}, 8388609: {1}, 2147524841: {41065, 233}, 4201: {105}, 276824071: {8388609, 7}, 393219: {131073, 3}, 1581161: {8297, 524393}, 17309801: {8297, 524393}, 274877907049: {105}}</em><a class="headerlink" href="#sardana.sardanadefs.Interfaces" title="Permalink to this definition">¶</a></dt>
 <dd><p>a dictionary containing the direct interfaces supported by each type
 (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> &lt;<a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a> &lt; <a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>&gt; &gt;)</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="sardana.sardanadefs.InterfacesExpanded">
-<code class="descname">InterfacesExpanded</code><em class="property"> = {8388608: {8388608}, 3841: {1281, 257, 3841, 513, 1}, 1081603: {1081603, 257, 3, 1, 33027}, 34359869471: {1, 3, 5, 131103, 15, 34359869471, 31}, 4613: {513, 5, 4613, 1}, 25165824: {8388608, 25165824}, 524289: {1, 524289}, 2097167: {1, 3, 2097167, 5, 15}, 1073872927: {1, 3, 5, 131103, 15, 1073872927, 31}, 1281: {257, 1281, 1}, 17179869189: {1, 5, 17179869189}, 536870927: {1, 3, 536870927, 5, 15}, 4194319: {1, 3, 4194319, 5, 15}, 2248150785: {1281, 257, 2248150785, 513, 3841, 33554433, 100664577, 1}, 98563: {3, 257, 98563, 1, 33027}, 47: {1, 5, 3, 47, 15}, 134348959: {1, 3, 5, 131103, 143, 15, 31, 134348959}, 549755813903: {1, 3, 549755813903, 5, 15}, 15: {1, 3, 5, 15}, 5: {1, 5}, 257: {257, 1}, 31: {1, 3, 31, 5, 15}, 3: {1, 3}, 1: {1}, 24581: {8193, 5, 24581, 1}, 4294967327: {1, 3, 5, 15, 31, 4294967327}, 33027: {33027, 257, 3, 1}, 274877906959: {1, 3, 274877906959, 5, 15}, 1099511627791: {1, 3, 1099511627791, 5, 15}, 393375: {1, 3, 5, 131103, 143, 15, 31, 393375}, 268435519: {1, 3, 5, 47, 15, 31, 268435519}, 8590065823: {1, 3, 5, 131103, 143, 15, 31, 8590065823}, 68719476879: {1, 3, 5, 68719476879, 15, 143}, 8193: {8193, 1}, 513: {513, 1}, 33554433: {33554433, 1}, 137438961921: {257, 1, 137438961921, 8193}, 131103: {1, 3, 5, 15, 131103, 31}, 143: {1, 3, 15, 5, 143}, 100664577: {100664577, 33554433, 1, 257, 1281}, 127: {1, 3, 5, 47, 15, 127, 31}}</em><a class="headerlink" href="#sardana.sardanadefs.InterfacesExpanded" title="Permalink to this definition">¶</a></dt>
+<code class="descname">InterfacesExpanded</code><em class="property"> = {6291456: {6291456, 2097152}, 131073: {1, 131073}, 3: {1, 3}, 1025: {1025, 1}, 1073741929: {1073741929, 33, 1, 105, 9}, 2097152: {2097152}, 4294968327: {1025, 3, 4294968327, 1, 7}, 9: {1, 9}, 68719476737: {68719476737, 1}, 41065: {1, 33, 41065, 105, 9, 8297}, 105: {33, 1, 9, 105}, 2083: {3, 33, 2083, 1}, 33685513: {9, 1, 131073, 33685513}, 524393: {105, 524393, 1, 9, 33}, 17417: {17417, 1025, 9, 1}, 8297: {105, 8297, 1, 9, 33}, 7: {1, 3, 7}, 25: {9, 25, 1}, 549755854953: {1, 33, 41065, 105, 549755854953, 8297, 9}, 134258921: {33, 1, 41065, 8297, 134258921, 105, 233, 9}, 106601: {1, 33, 41065, 105, 106601, 8297, 9}, 17179869289: {105, 17179869289, 1, 9, 33}, 33: {33, 1}, 536872995: {3, 33, 2083, 536872995, 1}, 1: {1}, 617: {105, 617, 1, 9, 33}, 1099511629859: {3, 33, 2083, 1099511629859, 1}, 233: {105, 1, 233, 9, 33}, 13161726983: {1025, 8388609, 3, 1, 276824071, 7, 13161726983, 4294968327}, 137438961769: {1, 33, 105, 9, 137438961769, 8297}, 489: {1, 33, 105, 233, 9, 489}, 34359779561: {33, 1, 41065, 8297, 34359779561, 105, 233, 9}, 67108969: {105, 67108969, 1, 9, 33}, 8388609: {1, 8388609}, 2147524841: {33, 1, 41065, 8297, 2147524841, 105, 233, 9}, 4201: {105, 4201, 1, 9, 33}, 276824071: {8388609, 3, 276824071, 1, 7}, 393219: {393219, 1, 3, 131073}, 1581161: {33, 1, 524393, 8297, 9, 105, 1581161}, 17309801: {33, 1, 9, 105, 8297, 17309801, 524393}, 274877907049: {105, 274877907049, 1, 9, 33}}</em><a class="headerlink" href="#sardana.sardanadefs.InterfacesExpanded" title="Permalink to this definition">¶</a></dt>
 <dd><p>a dictionary containing the <em>all</em> interfaces supported by each type.
 (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> &lt;<a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a> &lt; <a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>&gt; &gt;)</p>
-</dd></dl>
-
-<dl class="data">
-<dt id="sardana.sardanadefs.INTERFACES">
-<code class="descname">INTERFACES</code><em class="property"> = {'PseudoMotor': ({'Acquirable', 'Moveable'}, 'A pseudo motor'), 'Countable': ({'PoolElement'}, 'A countable element'), 'MacroClass': ({'Class', 'MacroCode'}, 'A macro server macro class'), 'Acquirable': ({'PoolElement'}, 'An acquirable element'), 'ControllerClass': ({'Class', 'PoolObject'}, 'A controller class'), 'MacroCode': ({'MacroServerObject'}, 'A macro server macro code'), 'PoolObject': ({'Object'}, 'A Pool object'), 'ControllerLibrary': ({'Library', 'PoolObject'}, 'A controller library'), 'ZeroDExpChannel': ({'ExpChannel'}, 'A 0D experimental channel'), 'Door': ({'MacroServerElement'}, 'A macro server door'), 'OneDExpChannel': ({'Countable', 'ExpChannel'}, 'A 1D experimental channel'), 'MacroServerElement': ({'MacroServerObject', 'Element'}, 'A generic macro server element'), 'External': ({'Object'}, 'An external object'), 'ExpChannel': ({'Acquirable'}, 'A generic experimental channel'), 'MacroServer': ({'MacroServerElement'}, 'A MacroServer'), 'PoolElement': ({'Element', 'PoolObject'}, 'A Pool element'), 'Instrument': ({'PoolElement'}, 'An instrument'), 'ComChannel': ({'PoolElement'}, 'A communication channel'), 'Object': (set(), 'A generic sardana object'), 'Macro': ({'MacroClass', 'MacroFunction'}, 'A macro server macro'), 'MacroServerObject': ({'Object'}, 'A generic macro server object'), 'Function': ({'Object'}, 'A generic sardana function'), 'MacroFunction': ({'Function', 'MacroCode'}, 'A macro server macro function'), 'TwoDExpChannel': ({'Countable', 'ExpChannel'}, 'A 2D experimental channel'), 'TriggerGate': ({'PoolElement'}, 'A trigger/gate'), 'MotorGroup': ({'PoolElement'}, 'A motor group'), 'Library': ({'Object'}, 'A generic sardana library'), 'CTExpChannel': ({'Countable', 'ExpChannel'}, 'A counter/timer experimental channel'), 'Motor': ({'Acquirable', 'Moveable'}, 'a motor'), 'IORegister': ({'Acquirable'}, 'An IO register'), 'Meta': (set(), 'A generic sardana meta object'), 'Element': ({'Object'}, 'A generic sardana element'), 'Class': ({'Object'}, 'A generic sardana class'), 'Constraint': ({'PoolObject'}, 'A constraint'), 'PseudoCounter': ({'ExpChannel'}, 'A pseudo counter'), 'MeasurementGroup': ({'Countable', 'PoolElement'}, 'A measurement group'), 'MacroLibrary': ({'MacroServerObject', 'Library'}, 'A macro server library'), 'Moveable': ({'PoolElement'}, 'A moveable element'), 'Pool': ({'PoolElement'}, 'A Pool'), 'Controller': ({'PoolElement'}, 'A controller'), 'ParameterType': ({'Meta'}, 'A generic macro server parameter type')}</em><a class="headerlink" href="#sardana.sardanadefs.INTERFACES" title="Permalink to this definition">¶</a></dt>
-<dd><p>a dictionary containing the direct interfaces supported by each type
-(<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a>&lt;<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">tuple</span></code></a>&lt;<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a>&lt;<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>&gt;&gt;&gt;)</p>
-</dd></dl>
-
-<dl class="data">
-<dt id="sardana.sardanadefs.INTERFACES_EXPANDED">
-<code class="descname">INTERFACES_EXPANDED</code><em class="property"> = {'PseudoMotor': ({'PseudoMotor', 'Acquirable', 'PoolObject', 'Element', 'PoolElement', 'Moveable', 'Object'}, 'A pseudo motor'), 'Countable': ({'Countable', 'Element', 'PoolElement', 'PoolObject', 'Object'}, 'A countable element'), 'MacroClass': ({'MacroServerObject', 'Class', 'MacroClass', 'MacroCode', 'Object'}, 'A macro server macro class'), 'Acquirable': ({'Element', 'PoolElement', 'Acquirable', 'PoolObject', 'Object'}, 'An acquirable element'), 'ControllerClass': ({'ControllerClass', 'Class', 'PoolObject', 'Object'}, 'A controller class'), 'MacroCode': ({'MacroServerObject', 'MacroCode', 'Object'}, 'A macro server macro code'), 'PoolObject': ({'PoolObject', 'Object'}, 'A Pool object'), 'ControllerLibrary': ({'ControllerLibrary', 'Library', 'PoolObject', 'Object'}, 'A controller library'), 'Door': ({'MacroServerObject', 'Door', 'Element', 'MacroServerElement', 'Object'}, 'A macro server door'), 'Moveable': ({'Element', 'PoolElement', 'Moveable', 'PoolObject', 'Object'}, 'A moveable element'), 'OneDExpChannel': ({'Countable', 'Acquirable', 'PoolObject', 'Element', 'ExpChannel', 'OneDExpChannel', 'PoolElement', 'Object'}, 'A 1D experimental channel'), 'MacroServerElement': ({'MacroServerObject', 'Element', 'MacroServerElement', 'Object'}, 'A generic macro server element'), 'External': ({'Object', 'External'}, 'An external object'), 'MacroServer': ({'MacroServerObject', 'Element', 'MacroServer', 'MacroServerElement', 'Object'}, 'A MacroServer'), 'PoolElement': ({'Element', 'PoolElement', 'PoolObject', 'Object'}, 'A Pool element'), 'Instrument': ({'Element', 'PoolElement', 'Instrument', 'PoolObject', 'Object'}, 'An instrument'), 'ComChannel': ({'Element', 'PoolElement', 'PoolObject', 'Object', 'ComChannel'}, 'A communication channel'), 'Object': ({'Object'}, 'A generic sardana object'), 'ParameterType': ({'Meta', 'ParameterType'}, 'A generic macro server parameter type'), 'MacroServerObject': ({'MacroServerObject', 'Object'}, 'A generic macro server object'), 'Meta': ({'Meta'}, 'A generic sardana meta object'), 'MacroFunction': ({'Function', 'MacroServerObject', 'MacroFunction', 'MacroCode', 'Object'}, 'A macro server macro function'), 'TwoDExpChannel': ({'Countable', 'Acquirable', 'TwoDExpChannel', 'PoolObject', 'Element', 'ExpChannel', 'PoolElement', 'Object'}, 'A 2D experimental channel'), 'Motor': ({'Acquirable', 'PoolObject', 'Motor', 'Element', 'PoolElement', 'Moveable', 'Object'}, 'a motor'), 'MotorGroup': ({'Element', 'PoolElement', 'PoolObject', 'Object', 'MotorGroup'}, 'A motor group'), 'Library': ({'Library', 'Object'}, 'A generic sardana library'), 'ZeroDExpChannel': ({'Element', 'ExpChannel', 'Acquirable', 'ZeroDExpChannel', 'PoolElement', 'PoolObject', 'Object'}, 'A 0D experimental channel'), 'Macro': ({'MacroServerObject', 'MacroClass', 'MacroCode', 'Macro', 'Function', 'Class', 'MacroFunction', 'Object'}, 'A macro server macro'), 'IORegister': ({'Element', 'Acquirable', 'PoolElement', 'PoolObject', 'Object', 'IORegister'}, 'An IO register'), 'Function': ({'Function', 'Object'}, 'A generic sardana function'), 'CTExpChannel': ({'Countable', 'Acquirable', 'PoolObject', 'Element', 'ExpChannel', 'CTExpChannel', 'PoolElement', 'Object'}, 'A counter/timer experimental channel'), 'ExpChannel': ({'Element', 'ExpChannel', 'Acquirable', 'PoolElement', 'PoolObject', 'Object'}, 'A generic experimental channel'), 'Constraint': ({'Constraint', 'PoolObject', 'Object'}, 'A constraint'), 'Element': ({'Element', 'Object'}, 'A generic sardana element'), 'PseudoCounter': ({'Element', 'ExpChannel', 'Acquirable', 'PseudoCounter', 'PoolElement', 'PoolObject', 'Object'}, 'A pseudo counter'), 'MeasurementGroup': ({'Countable', 'Element', 'MeasurementGroup', 'PoolElement', 'PoolObject', 'Object'}, 'A measurement group'), 'MacroLibrary': ({'MacroServerObject', 'MacroLibrary', 'Library', 'Object'}, 'A macro server library'), 'TriggerGate': ({'Element', 'PoolElement', 'TriggerGate', 'PoolObject', 'Object'}, 'A trigger/gate'), 'Pool': ({'Element', 'PoolElement', 'PoolObject', 'Object', 'Pool'}, 'A Pool'), 'Controller': ({'Element', 'PoolElement', 'Controller', 'PoolObject', 'Object'}, 'A controller'), 'Class': ({'Class', 'Object'}, 'A generic sardana class')}</em><a class="headerlink" href="#sardana.sardanadefs.INTERFACES_EXPANDED" title="Permalink to this definition">¶</a></dt>
-<dd><p>a dictionary containing the <em>all</em> interfaces supported by each type
-(<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> &lt;<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a> &lt; <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">str</span></code></a>&gt; &gt;)</p>
 </dd></dl>
 
 <p class="rubric">Functions</p>
