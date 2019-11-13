@@ -34,7 +34,7 @@
               href="../../../../../../genindex.html"/>
         <link rel="search" title="Search" href="../../../../../../search.html"/>
     <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../../../../../index.html"/>
-        <link rel="up" title="Module code" href="../../../../../index.html"/> 
+        <link rel="up" title="sardana.taurus.core.tango.sardana" href="../sardana.html"/> 
 
   
   <script src="../../../../../../_static/js/modernizr.min.js"></script>
@@ -124,6 +124,8 @@
     <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
       
           <li><a href="../../../../../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../sardana.html">sardana.taurus.core.tango.sardana</a> &raquo;</li>
       
     <li>sardana.taurus.core.tango.sardana.pool</li>
       <li class="wy-breadcrumbs-aside">
@@ -2645,7 +2647,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wait_for_element_in_container</span><span class="p">(</span><span class="n">elements_info</span><span class="p">,</span> <span class="n">full_name</span><span class="p">)</span></div></div>
 
 
-<span class="k">def</span> <span class="nf">registerExtensions</span><span class="p">():</span>
+<div class="viewcode-block" id="registerExtensions"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.registerExtensions">[docs]</a><span class="k">def</span> <span class="nf">registerExtensions</span><span class="p">():</span>
     <span class="n">factory</span> <span class="o">=</span> <span class="n">Factory</span><span class="p">()</span>
     <span class="n">factory</span><span class="o">.</span><span class="n">registerDeviceClass</span><span class="p">(</span><span class="s2">&quot;Pool&quot;</span><span class="p">,</span> <span class="n">Pool</span><span class="p">)</span>
 
@@ -2658,10 +2660,10 @@
     <span class="n">hw_type_map</span> <span class="o">=</span> <span class="p">[(</span><span class="n">name</span><span class="p">,</span> <span class="nb">globals</span><span class="p">()[</span><span class="n">name</span><span class="p">])</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">hw_type_names</span><span class="p">]</span>
 
     <span class="k">for</span> <span class="n">klass_name</span><span class="p">,</span> <span class="n">klass</span> <span class="ow">in</span> <span class="n">hw_type_map</span><span class="p">:</span>
-        <span class="n">factory</span><span class="o">.</span><span class="n">registerDeviceClass</span><span class="p">(</span><span class="n">klass_name</span><span class="p">,</span> <span class="n">klass</span><span class="p">)</span>
+        <span class="n">factory</span><span class="o">.</span><span class="n">registerDeviceClass</span><span class="p">(</span><span class="n">klass_name</span><span class="p">,</span> <span class="n">klass</span><span class="p">)</span></div>
 
 
-<span class="k">def</span> <span class="nf">unregisterExtensions</span><span class="p">():</span>
+<div class="viewcode-block" id="unregisterExtensions"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.unregisterExtensions">[docs]</a><span class="k">def</span> <span class="nf">unregisterExtensions</span><span class="p">():</span>
     <span class="n">factory</span> <span class="o">=</span> <span class="n">Factory</span><span class="p">()</span>
     <span class="n">factory</span><span class="o">.</span><span class="n">unregisterDeviceClass</span><span class="p">(</span><span class="s2">&quot;Pool&quot;</span><span class="p">)</span>
 
@@ -2672,7 +2674,7 @@
         <span class="s1">&#39;PseudoCounter&#39;</span><span class="p">,</span> <span class="s1">&#39;IORegister&#39;</span><span class="p">,</span> <span class="s1">&#39;MotorGroup&#39;</span><span class="p">,</span> <span class="s1">&#39;MeasurementGroup&#39;</span><span class="p">]</span>
 
     <span class="k">for</span> <span class="n">klass_name</span> <span class="ow">in</span> <span class="n">hw_type_names</span><span class="p">:</span>
-        <span class="n">factory</span><span class="o">.</span><span class="n">unregisterDeviceClass</span><span class="p">(</span><span class="n">klass_name</span><span class="p">)</span>
+        <span class="n">factory</span><span class="o">.</span><span class="n">unregisterDeviceClass</span><span class="p">(</span><span class="n">klass_name</span><span class="p">)</span></div>
 </pre></div>
 
            </div>

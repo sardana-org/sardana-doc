@@ -191,13 +191,52 @@
             
   <div class="section" id="module-sardana.taurus.core.tango.sardana">
 <span id="sardana"></span><span id="sardana-taurus-api"></span><h1><a class="reference internal" href="#module-sardana.taurus.core.tango.sardana" title="sardana.taurus.core.tango.sardana"><code class="xref py py-mod docutils literal"><span class="pre">sardana</span></code></a><a class="headerlink" href="#module-sardana.taurus.core.tango.sardana" title="Permalink to this headline">¶</a></h1>
-<p>The sardana package. It contains specific part of sardana</p>
+<p>Taurus extensions for Sardana devices.</p>
+<p>Objects obtained with <code class="xref py py-func docutils literal"><span class="pre">taurus.Device()</span></code> expose standard interfaces
+e.g., allow to interact with their attributes, check their state, etc.
+This module defines classes for enriched interaction with Sardana devices
+(also for other elements not exported as devices), e.g. synchronous move
+of a sardana motor with
+<a class="reference internal" href="sardana/pool.html#sardana.taurus.core.tango.sardana.pool.Motor.move" title="sardana.taurus.core.tango.sardana.pool.Motor.move"><code class="xref py py-meth docutils literal"><span class="pre">move()</span></code></a>
+method instead of writing motor&#8217;s position attribute and then waiting for its
+state change.</p>
+<p>To obtain these enriched objects with <code class="xref py py-func docutils literal"><span class="pre">taurus.Device()</span></code> you need to first
+register the extension classes with
+the <a class="reference internal" href="#sardana.taurus.core.tango.sardana.registerExtensions" title="sardana.taurus.core.tango.sardana.registerExtensions"><code class="xref py py-obj docutils literal"><span class="pre">registerExtensions</span></code></a> function.</p>
+<p>The registration needs to be done before the first access to the given
+<code class="xref py py-func docutils literal"><span class="pre">taurus.Device()</span></code>.</p>
+<p>When you would like to get back to the default <code class="xref py py-func docutils literal"><span class="pre">taurus.Device()</span></code> behavior
+you need to unregister the extension classes with the
+<a class="reference internal" href="#sardana.taurus.core.tango.sardana.unregisterExtensions" title="sardana.taurus.core.tango.sardana.unregisterExtensions"><code class="xref py py-obj docutils literal"><span class="pre">unregisterExtensions</span></code></a> function.</p>
+<p>Note that the unregistration will not remove the already created devices from
+the <code class="xref py py-func docutils literal"><span class="pre">taurus.Factory()</span></code> cache.</p>
+<p class="rubric">Functions</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><a class="reference internal" href="#sardana.taurus.core.tango.sardana.registerExtensions" title="sardana.taurus.core.tango.sardana.registerExtensions"><code class="xref py py-func docutils literal"><span class="pre">registerExtensions()</span></code></a></li>
+</ul>
+</td><td><ul class="simple">
+<li><a class="reference internal" href="#sardana.taurus.core.tango.sardana.unregisterExtensions" title="sardana.taurus.core.tango.sardana.unregisterExtensions"><code class="xref py py-func docutils literal"><span class="pre">unregisterExtensions()</span></code></a></li>
+</ul>
+</td><td><ul class="simple">
+</ul>
+</td></tr></table>
 <p class="rubric">Modules</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="sardana/pool.html">pool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sardana/macroserver.html">macroserver</a></li>
 </ul>
 </div>
+<dl class="function">
+<dt id="sardana.taurus.core.tango.sardana.registerExtensions">
+<code class="descname">registerExtensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/sardana/taurus/core/tango/sardana.html#registerExtensions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.registerExtensions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sardana.taurus.core.tango.sardana.unregisterExtensions">
+<code class="descname">unregisterExtensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../_modules/sardana/taurus/core/tango/sardana.html#unregisterExtensions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.unregisterExtensions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </div>
 
 

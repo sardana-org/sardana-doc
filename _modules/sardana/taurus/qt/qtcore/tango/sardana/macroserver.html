@@ -1,0 +1,489 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sardana.taurus.qt.qtcore.tango.sardana.macroserver &mdash; sardana 3.0.2-alpha documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../../../../search.html"/>
+    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../../../../../../index.html"/>
+        <link rel="up" title="sardana.taurus.qt.qtcore.tango.sardana" href="../sardana.html"/> 
+
+  
+  <script src="../../../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../../../../index.html" class="icon icon-home"> sardana
+          
+
+          
+            
+            <img src="../../../../../../../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../../docs.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana-plugins">Plugins Catalogue</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../../../index.html">sardana</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../../index.html">Module code</a> &raquo;</li>
+      
+          <li><a href="../sardana.html">sardana.taurus.qt.qtcore.tango.sardana</a> &raquo;</li>
+      
+    <li>sardana.taurus.qt.qtcore.tango.sardana.macroserver</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sardana.taurus.qt.qtcore.tango.sardana.macroserver</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1">##############################################################################</span>
+<span class="c1">##</span>
+<span class="c1"># This file is part of Sardana</span>
+<span class="c1">##</span>
+<span class="c1"># http://www.sardana-controls.org/</span>
+<span class="c1">##</span>
+<span class="c1"># Copyright 2011 CELLS / ALBA Synchrotron, Bellaterra, Spain</span>
+<span class="c1">##</span>
+<span class="c1"># Sardana is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU Lesser General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">##</span>
+<span class="c1"># Sardana is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU Lesser General Public License for more details.</span>
+<span class="c1">##</span>
+<span class="c1"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1"># along with Sardana.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">##</span>
+<span class="c1">##############################################################################</span>
+
+<span class="sd">&quot;&quot;&quot;MacroServer extension for taurus Qt&quot;&quot;&quot;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;QDoor&quot;</span><span class="p">,</span> <span class="s2">&quot;QMacroServer&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;MacroServerMessageErrorHandler&quot;</span><span class="p">,</span> <span class="s2">&quot;registerExtensions&quot;</span><span class="p">]</span>
+
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">from</span> <span class="nn">taurus.core.taurusbasetypes</span> <span class="k">import</span> <span class="n">TaurusEventType</span>
+<span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="k">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">compat</span>
+
+<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana.macroserver</span> <span class="k">import</span> <span class="n">BaseMacroServer</span><span class="p">,</span> \
+    <span class="n">BaseDoor</span>
+
+<span class="n">CHANGE_EVTS</span> <span class="o">=</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Change</span><span class="p">,</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Periodic</span>
+
+
+<div class="viewcode-block" id="QDoor"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.QDoor">[docs]</a><span class="k">class</span> <span class="nc">QDoor</span><span class="p">(</span><span class="n">BaseDoor</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">QObject</span><span class="p">):</span>
+
+    <span class="n">__pyqtSignals__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;resultUpdated&quot;</span><span class="p">,</span>
+                       <span class="s2">&quot;recordDataUpdated&quot;</span><span class="p">,</span> <span class="s2">&quot;macroStatusUpdated&quot;</span><span class="p">]</span>
+    <span class="n">__pyqtSignals__</span> <span class="o">+=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">Updated&quot;</span> <span class="o">%</span> <span class="n">l</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">BaseDoor</span><span class="o">.</span><span class="n">log_streams</span><span class="p">]</span>
+
+    <span class="n">EXP_DESC_ENV_VARS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">,</span> <span class="s1">&#39;ScanDir&#39;</span><span class="p">,</span> <span class="s1">&#39;ScanFile&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;DataCompressionRank&#39;</span><span class="p">,</span> <span class="s1">&#39;PreScanSnapshot&#39;</span><span class="p">]</span>
+
+    <span class="c1"># sometimes we emit None hence the type is object</span>
+    <span class="c1"># (but most of the data are passed with type list)</span>
+    <span class="n">resultUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
+    <span class="n">recordDataUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
+    <span class="n">macroStatusUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
+    <span class="n">errorUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
+    <span class="n">warningUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
+    <span class="n">infoUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
+    <span class="n">outputUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
+    <span class="n">debugUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
+    <span class="n">experimentConfigurationChanged</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
+    <span class="n">elementsChanged</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
+    <span class="n">environmentChanged</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">qt_parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">call__init__wo_kw</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">QObject</span><span class="p">,</span> <span class="n">qt_parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">BaseDoor</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mntgrps_connected</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_use_experiment_configuration</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_connections_prepared</span> <span class="o">=</span> <span class="kc">False</span>
+
+<div class="viewcode-block" id="QDoor.resultReceived"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.QDoor.resultReceived">[docs]</a>    <span class="k">def</span> <span class="nf">resultReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_name</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">BaseDoor</span><span class="o">.</span><span class="n">resultReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_name</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">resultUpdated</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="QDoor.recordDataReceived"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.QDoor.recordDataReceived">[docs]</a>    <span class="k">def</span> <span class="nf">recordDataReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CHANGE_EVTS</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">BaseDoor</span><span class="o">.</span><span class="n">recordDataReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recordDataUpdated</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="QDoor.macroStatusReceived"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.QDoor.macroStatusReceived">[docs]</a>    <span class="k">def</span> <span class="nf">macroStatusReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">BaseDoor</span><span class="o">.</span><span class="n">macroStatusReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Error</span><span class="p">:</span>
+            <span class="n">macro</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRunningMacro</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">macro</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">macroStatusUpdated</span><span class="o">.</span><span class="n">emit</span><span class="p">((</span><span class="n">macro</span><span class="p">,</span> <span class="n">res</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="QDoor.logReceived"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.QDoor.logReceived">[docs]</a>    <span class="k">def</span> <span class="nf">logReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_name</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">BaseDoor</span><span class="o">.</span><span class="n">logReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_name</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+        <span class="n">log_name</span> <span class="o">=</span> <span class="n">log_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="n">recordDataUpdated</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">Updated&quot;</span> <span class="o">%</span> <span class="n">log_name</span><span class="p">)</span>
+        <span class="n">recordDataUpdated</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+    <span class="k">def</span> <span class="nf">_prepare_connections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_use_experiment_configuration</span> <span class="ow">and</span> \
+                <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_connections_prepared</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">environmentChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_onEnvironmentChanged</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">elementsChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_elementsChanged</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_elementsChanged</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_connections_prepared</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">_elementsChanged</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">mntgrps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">getElementsOfType</span><span class="p">(</span><span class="s2">&quot;MeasurementGroup&quot;</span><span class="p">)</span>
+        <span class="c1"># one or more measurement group was deleted</span>
+        <span class="n">mntgrp_changed</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mntgrps_connected</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">mntgrps</span><span class="p">)</span>
+        <span class="n">new_mntgrps_connected</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">mg</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">mntgrps</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mntgrps_connected</span><span class="p">:</span>
+                <span class="n">mntgrp_changed</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># this measurement group is new</span>
+                <span class="n">obj</span> <span class="o">=</span> <span class="n">mg</span><span class="o">.</span><span class="n">getObj</span><span class="p">()</span>
+                <span class="n">obj</span><span class="o">.</span><span class="n">configurationChanged</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_onExperimentConfigurationChanged</span><span class="p">)</span>
+            <span class="n">new_mntgrps_connected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mntgrps_connected</span> <span class="o">=</span> <span class="n">new_mntgrps_connected</span>
+
+        <span class="k">if</span> <span class="n">mntgrp_changed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_onExperimentConfigurationChanged</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_onEnvironmentChanged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env_changes</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Filter environment changes that affect to the experiment</span>
+<span class="sd">        configuration.</span>
+
+<span class="sd">        :param env_changes: tuple with three elements in the following order:</span>
+
+<span class="sd">        * added (environment variables added)</span>
+<span class="sd">        * removed (environment variables removed)</span>
+<span class="sd">        * changed (environment variables changed)</span>
+
+<span class="sd">        :type env_changes: :obj:`tuple`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">env_exp_changed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># Filter only the Environment added/removed/changes related with</span>
+        <span class="c1"># the experiment, not for all.</span>
+        <span class="k">for</span> <span class="n">envs</span> <span class="ow">in</span> <span class="n">env_changes</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">envs</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">EXP_DESC_ENV_VARS</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">env_exp_changed</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">env_exp_changed</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_onExperimentConfigurationChanged</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_onExperimentConfigurationChanged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="n">conf</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">BaseDoor</span><span class="o">.</span><span class="n">getExperimentConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">experimentConfigurationChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">conf</span><span class="p">)</span>
+
+<div class="viewcode-block" id="QDoor.getExperimentConfigurationObj"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.QDoor.getExperimentConfigurationObj">[docs]</a>    <span class="k">def</span> <span class="nf">getExperimentConfigurationObj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_connections</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">BaseDoor</span><span class="o">.</span><span class="n">getExperimentConfigurationObj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="QDoor.getExperimentConfiguration"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.QDoor.getExperimentConfiguration">[docs]</a>    <span class="k">def</span> <span class="nf">getExperimentConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_connections</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">BaseDoor</span><span class="o">.</span><span class="n">getExperimentConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="QMacroServer"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.QMacroServer">[docs]</a><span class="k">class</span> <span class="nc">QMacroServer</span><span class="p">(</span><span class="n">BaseMacroServer</span><span class="p">,</span> <span class="n">Qt</span><span class="o">.</span><span class="n">QObject</span><span class="p">):</span>
+
+    <span class="c1"># TODO: Choose and homogenize signals named ...Updated and ...Changed.</span>
+    <span class="c1">#  e.g: there should exist only one signal for elementsUpdated</span>
+    <span class="c1">#  and elementsChanged.</span>
+    <span class="n">typesUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
+    <span class="n">elementsUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
+    <span class="n">elementsChanged</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
+    <span class="n">macrosUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
+    <span class="n">environmentChanged</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">qt_parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">call__init__wo_kw</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">QObject</span><span class="p">,</span> <span class="n">qt_parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">BaseMacroServer</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+    <span class="c1"># TODO: The following three methods are not used, and are not</span>
+    <span class="c1">#  implemented in the base class &#39;BaseMacroServer&#39;: Implement them.</span>
+    <span class="c1">#  (Now commented because they give conflicts with new style PyQt signals).</span>
+    <span class="c1"># def typesChanged(self, s, t, v):</span>
+    <span class="c1">#     res = BaseMacroServer.typesChanged(self, s, t, v)</span>
+    <span class="c1">#     self.typesUpdated.emit()</span>
+    <span class="c1">#     return res</span>
+    <span class="c1">#</span>
+    <span class="c1"># def elementsChanged(self, s, t, v):</span>
+    <span class="c1">#     res = BaseMacroServer.elementsChanged(self, s, t, v)</span>
+    <span class="c1">#     self.elementsUpdated.emit()</span>
+    <span class="c1">#     return res</span>
+    <span class="c1">#</span>
+    <span class="c1"># def macrosChanged(self, s, t, v):</span>
+    <span class="c1">#     res = BaseMacroServer.macrosChanged(self, s, t, v)</span>
+    <span class="c1">#     self.macrosUpdated.emit()</span>
+    <span class="c1">#     return res</span>
+
+<div class="viewcode-block" id="QMacroServer.on_elements_changed"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.QMacroServer.on_elements_changed">[docs]</a>    <span class="k">def</span> <span class="nf">on_elements_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">added</span><span class="p">,</span> <span class="n">removed</span><span class="p">,</span> <span class="n">changed</span> <span class="o">=</span> \
+            <span class="n">BaseMacroServer</span><span class="o">.</span><span class="n">on_elements_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+
+        <span class="n">macros</span><span class="p">,</span> <span class="n">elements</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">set</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">added</span><span class="p">,</span> <span class="n">removed</span><span class="p">,</span> <span class="n">changed</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s2">&quot;MacroCode&quot;</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">interfaces</span><span class="p">:</span>
+                <span class="n">macros</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">elements</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">elements</span> <span class="ow">and</span> <span class="n">macros</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">elements</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">elementsChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">macros</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">macrosUpdated</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ret</span></div>
+
+<div class="viewcode-block" id="QMacroServer.on_environment_changed"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.QMacroServer.on_environment_changed">[docs]</a>    <span class="k">def</span> <span class="nf">on_environment_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">added</span><span class="p">,</span> <span class="n">removed</span><span class="p">,</span> <span class="n">changed</span> <span class="o">=</span> \
+            <span class="n">BaseMacroServer</span><span class="o">.</span><span class="n">on_environment_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">added</span> <span class="ow">or</span> <span class="n">removed</span> <span class="ow">or</span> <span class="n">changed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">environmentChanged</span><span class="o">.</span><span class="n">emit</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">ret</span></div></div>
+
+
+<span class="c1"># ugly access to qtgui level: in future find a better way to register error</span>
+<span class="c1"># handlers, maybe in TangoFactory &amp; TaurusManager</span>
+
+<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.panel</span> <span class="k">import</span> <span class="n">TaurusMessageErrorHandler</span>
+
+
+<span class="k">class</span> <span class="nc">MacroServerMessageErrorHandler</span><span class="p">(</span><span class="n">TaurusMessageErrorHandler</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">setError</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">err_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">err_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">err_traceback</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Translates the given error object into an HTML string and places it</span>
+<span class="sd">        in the message panel</span>
+
+<span class="sd">        :param error: an error object (typically an exception object)</span>
+<span class="sd">        :type error: object&quot;&quot;&quot;</span>
+
+        <span class="n">msgbox</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_msgbox</span>
+        <span class="n">msgbox</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">err_value</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;&lt;html&gt;&lt;body&gt;&lt;pre&gt;</span><span class="si">%s</span><span class="s2">&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span> <span class="o">%</span> <span class="n">err_value</span>
+        <span class="n">msgbox</span><span class="o">.</span><span class="n">setDetailedHtml</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="n">html_orig</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;&lt;html&gt;&lt;head&gt;&lt;style type=&quot;text/css&quot;&gt;</span><span class="si">{style}</span><span class="s2"></span>
+<span class="s2">            &lt;/style&gt;&lt;/head&gt;&lt;body&gt;&quot;&quot;&quot;</span>
+        <span class="n">exc_info</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">err_traceback</span><span class="p">)</span>
+        <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="kn">import</span> <span class="nn">pygments.formatters</span>
+            <span class="kn">import</span> <span class="nn">pygments.lexers</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">pygments</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">pygments</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">formatter</span> <span class="o">=</span> <span class="n">pygments</span><span class="o">.</span><span class="n">formatters</span><span class="o">.</span><span class="n">HtmlFormatter</span><span class="p">()</span>
+            <span class="n">style</span> <span class="o">=</span> <span class="n">formatter</span><span class="o">.</span><span class="n">get_style_defs</span><span class="p">()</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">html_orig</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">pygments</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">html</span> <span class="o">+=</span> <span class="s2">&quot;&lt;pre&gt;</span><span class="si">%s</span><span class="s2">&lt;/pre&gt;&quot;</span> <span class="o">%</span> <span class="n">exc_info</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">formatter</span> <span class="o">=</span> <span class="n">pygments</span><span class="o">.</span><span class="n">formatters</span><span class="o">.</span><span class="n">HtmlFormatter</span><span class="p">()</span>
+            <span class="n">html</span> <span class="o">+=</span> <span class="n">pygments</span><span class="o">.</span><span class="n">highlight</span><span class="p">(</span><span class="n">exc_info</span><span class="p">,</span>
+                                       <span class="n">pygments</span><span class="o">.</span><span class="n">lexers</span><span class="o">.</span><span class="n">PythonTracebackLexer</span><span class="p">(</span>
+
+                                       <span class="p">),</span> <span class="n">formatter</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">+=</span> <span class="s2">&quot;&lt;/body&gt;&lt;/html&gt;&quot;</span>
+        <span class="n">msgbox</span><span class="o">.</span><span class="n">setOriginHtml</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="registerExtensions"><a class="viewcode-back" href="../../../../../../../devel/api/sardana/taurus/qt/qtcore/tango/sardana/macroserver.html#sardana.taurus.qt.qtcore.tango.sardana.macroserver.registerExtensions">[docs]</a><span class="k">def</span> <span class="nf">registerExtensions</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Registers the macroserver extensions in the</span>
+<span class="sd">    :class:taurus.core.tango.TangoFactory`&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">taurus</span>
+    <span class="n">factory</span> <span class="o">=</span> <span class="n">taurus</span><span class="o">.</span><span class="n">Factory</span><span class="p">()</span>
+    <span class="n">factory</span><span class="o">.</span><span class="n">registerDeviceClass</span><span class="p">(</span><span class="s1">&#39;MacroServer&#39;</span><span class="p">,</span> <span class="n">QMacroServer</span><span class="p">)</span>
+    <span class="n">factory</span><span class="o">.</span><span class="n">registerDeviceClass</span><span class="p">(</span><span class="s1">&#39;Door&#39;</span><span class="p">,</span> <span class="n">QDoor</span><span class="p">)</span>
+
+    <span class="c1"># ugly access to qtgui level: in future find a better way to register error</span>
+    <span class="c1"># handlers, maybe in TangoFactory &amp; TaurusManager</span>
+    <span class="kn">import</span> <span class="nn">sardana.taurus.core.tango.sardana.macro</span>
+    <span class="kn">import</span> <span class="nn">taurus.qt.qtgui.panel</span>
+    <span class="n">MacroRunExcep</span> <span class="o">=</span> <span class="n">sardana</span><span class="o">.</span><span class="n">taurus</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">tango</span><span class="o">.</span><span class="n">sardana</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">MacroRunException</span>
+    <span class="n">TaurusMessagePanel</span> <span class="o">=</span> <span class="n">taurus</span><span class="o">.</span><span class="n">qt</span><span class="o">.</span><span class="n">qtgui</span><span class="o">.</span><span class="n">panel</span><span class="o">.</span><span class="n">TaurusMessagePanel</span>
+
+    <span class="n">TaurusMessagePanel</span><span class="o">.</span><span class="n">registerErrorHandler</span><span class="p">(</span><span class="n">MacroRunExcep</span><span class="p">,</span>
+                                            <span class="n">MacroServerMessageErrorHandler</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../../',
+            VERSION:'3.0.2-alpha',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

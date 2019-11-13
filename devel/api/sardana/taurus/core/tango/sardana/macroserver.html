@@ -1,0 +1,802 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Taurus Extensions &mdash; sardana 3.0.2-alpha documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../../../../../../genindex.html"/>
+        <link rel="search" title="Search" href="../../../../../../../search.html"/>
+    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../../../../../../index.html"/>
+        <link rel="up" title="sardana" href="../sardana.html"/>
+        <link rel="next" title="qt" href="../../../qt.html"/>
+        <link rel="prev" title="Taurus Extensions" href="pool.html"/> 
+
+  
+  <script src="../../../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../../../../index.html" class="icon icon-home"> sardana
+          
+
+          
+            
+            <img src="../../../../../../../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../../../docs.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../users/index.html">User&#8217;s Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../../../index.html">Developer&#8217;s Guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../overview/index.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../howto_macros/index.html">Writing macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../howto_controllers/index.html">Writing controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../howto_recorders.html">Writing recorders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../howto_test/index.html">Sardana Testing</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../../../../api_sardana.html">API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_macro.html">Macro API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_controller.html">Controller API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_motor.html">Motor API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_IOR.html">I/O register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_countertimer.html">Counter/timer API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_0D.html">0D experiment channel API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_1D.html">1D experiment channel API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_2D.html">2D experiment channel API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_triggergate.html">Trigger/gate API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_pseudomotor.html">Pseudo motor API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_pseudocounter.html">Pseudo counter API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_measurementgroup.html">Measurement group API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_macroserver.html">MacroServer API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_pool.html">Pool API</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../../../sardana.html">Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../../api_test.html">Test API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../guide_migration.html">Migration guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../examples/examples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../../guide_coding.html">Development guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../sep/index.html">Sardana Enhancement Proposals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../../../other_versions.html">Docs for other Sardana versions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana-plugins">Plugins Catalogue</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../../../index.html">sardana</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../../../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../../../../../../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
+      
+          <li><a href="../../../../../../index.html">Developer&#8217;s Guide</a> &raquo;</li>
+      
+          <li><a href="../../../../../api_sardana.html">Sardana API</a> &raquo;</li>
+      
+          <li><a href="../../../../sardana.html"><code class="docutils literal"><span class="pre">sardana</span></code></a> &raquo;</li>
+      
+          <li><a href="../../../../taurus.html"><code class="docutils literal"><span class="pre">taurus</span></code></a> &raquo;</li>
+      
+          <li><a href="../../../core.html"><code class="docutils literal"><span class="pre">core</span></code></a> &raquo;</li>
+      
+          <li><a href="../../tango.html"><code class="docutils literal"><span class="pre">tango</span></code></a> &raquo;</li>
+      
+          <li><a href="../sardana.html"><code class="docutils literal"><span class="pre">sardana</span></code></a> &raquo;</li>
+      
+    <li>Taurus Extensions</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../../../../_sources/devel/api/sardana/taurus/core/tango/sardana/macroserver.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="taurus-extensions">
+<h1>Taurus Extensions<a class="headerlink" href="#taurus-extensions" title="Permalink to this headline">¶</a></h1>
+<p class="rubric">Functions</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><a class="reference internal" href="#sardana.taurus.core.tango.sardana.macroserver.registerExtensions" title="sardana.taurus.core.tango.sardana.macroserver.registerExtensions"><code class="xref py py-func docutils literal"><span class="pre">registerExtensions()</span></code></a></li>
+</ul>
+</td><td><ul class="simple">
+<li><a class="reference internal" href="#sardana.taurus.core.tango.sardana.macroserver.unregisterExtensions" title="sardana.taurus.core.tango.sardana.macroserver.unregisterExtensions"><code class="xref py py-func docutils literal"><span class="pre">unregisterExtensions()</span></code></a></li>
+</ul>
+</td><td><ul class="simple">
+</ul>
+</td></tr></table>
+<p class="rubric">Classes</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><a class="reference internal" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor" title="sardana.taurus.core.tango.sardana.macroserver.BaseDoor"><code class="xref py py-class docutils literal"><span class="pre">BaseDoor</span></code></a></li>
+</ul>
+</td><td><ul class="simple">
+<li><a class="reference internal" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer" title="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer"><code class="xref py py-class docutils literal"><span class="pre">BaseMacroServer</span></code></a></li>
+</ul>
+</td><td><ul class="simple">
+</ul>
+</td><td><ul class="simple">
+</ul>
+</td></tr></table>
+<dl class="function">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.registerExtensions">
+<code class="descname">registerExtensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#registerExtensions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.registerExtensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers the macroserver extensions in the
+<a class="reference external" href="http://taurus-scada.org/devel/api/taurus/core/tango/_TangoFactory.html#taurus.core.tango.TangoFactory" title="(in taurus v4.6)"><code class="xref py py-class docutils literal"><span class="pre">taurus.core.tango.TangoFactory</span></code></a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.unregisterExtensions">
+<code class="descname">unregisterExtensions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#unregisterExtensions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.unregisterExtensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers the macroserver extensions in the
+<a class="reference external" href="http://taurus-scada.org/devel/api/taurus/core/tango/_TangoFactory.html#taurus.core.tango.TangoFactory" title="(in taurus v4.6)"><code class="xref py py-class docutils literal"><span class="pre">taurus.core.tango.TangoFactory</span></code></a></p>
+</dd></dl>
+
+<div class="section" id="basedoor">
+<h2>BaseDoor<a class="headerlink" href="#basedoor" title="Permalink to this headline">¶</a></h2>
+<img src="../../../../../../../_images/inheritance-c04936e7e48f3bf81d588eda8483df865b2c7f5a.png" alt="Inheritance diagram of BaseDoor" usemap="#inheritance7e80199f42" class="inheritance"/>
+<map id="inheritance7e80199f42" name="inheritance7e80199f42">
+<area shape="rect" id="node1" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor" target="_top" title="Class encapsulating Door device functionality." alt="" coords="36,525,121,564"/>
+<area shape="rect" id="node2" title="A class encapsulating a generic macro server device (usually a" alt="" coords="5,439,152,477"/>
+<area shape="rect" id="node3" title="The taurus logger class. All taurus pertinent classes should inherit" alt="" coords="43,92,115,131"/>
+<area shape="rect" id="node5" title="A Device object representing an abstraction of the PyTango.DeviceProxy" alt="" coords="27,352,130,391"/>
+<area shape="rect" id="node6" title="A Device object. Different schemes may assign different roles, but" alt="" coords="25,265,132,304"/>
+</map>
+<dl class="class">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor">
+<em class="property">class </em><code class="descname">BaseDoor</code><span class="sig-paren">(</span><em>name</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">sardana.taurus.core.tango.sardana.macroserver.MacroServerDevice</span></code></p>
+<p>Class encapsulating Door device functionality.</p>
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.On">
+<code class="descname">On</code><em class="property"> = tango._tango.DevState.ON</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.On" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Running">
+<code class="descname">Running</code><em class="property"> = tango._tango.DevState.RUNNING</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Running" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Paused">
+<code class="descname">Paused</code><em class="property"> = tango._tango.DevState.STANDBY</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Paused" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Critical">
+<code class="descname">Critical</code><em class="property"> = 'Critical'</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Error">
+<code class="descname">Error</code><em class="property"> = 'Error'</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Warning">
+<code class="descname">Warning</code><em class="property"> = 'Warning'</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Info">
+<code class="descname">Info</code><em class="property"> = 'Info'</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Output">
+<code class="descname">Output</code><em class="property"> = 'Output'</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Output" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Debug">
+<code class="descname">Debug</code><em class="property"> = 'Debug'</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Result">
+<code class="descname">Result</code><em class="property"> = 'Result'</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.Result" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.RecordData">
+<code class="descname">RecordData</code><em class="property"> = 'RecordData'</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.RecordData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.BlockStart">
+<code class="descname">BlockStart</code><em class="property"> = '&lt;BLOCK&gt;'</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.BlockStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.BlockFinish">
+<code class="descname">BlockFinish</code><em class="property"> = '&lt;/BLOCK&gt;'</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.BlockFinish" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.log_streams">
+<code class="descname">log_streams</code><em class="property"> = ('Error', 'Warning', 'Info', 'Output', 'Debug', 'Result')</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.log_streams" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.InteractiveTimeout">
+<code class="descname">InteractiveTimeout</code><em class="property"> = 0.3</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.InteractiveTimeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.create_input_handler">
+<code class="descname">create_input_handler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.create_input_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.create_input_handler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.get_input_handler">
+<code class="descname">get_input_handler</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.get_input_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.get_input_handler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.get_color_mode">
+<code class="descname">get_color_mode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.get_color_mode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.get_color_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.log_start">
+<code class="descname">log_start</code><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.log_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.log_stop">
+<code class="descname">log_stop</code><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.log_stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getStateAttr">
+<code class="descname">getStateAttr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.getStateAttr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getStateAttr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.macro_server">
+<code class="descname">macro_server</code><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.macro_server" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.setDebugMode">
+<code class="descname">setDebugMode</code><span class="sig-paren">(</span><em>state</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.setDebugMode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.setDebugMode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getDebugMode">
+<code class="descname">getDebugMode</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.getDebugMode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getDebugMode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.setSilent">
+<code class="descname">setSilent</code><span class="sig-paren">(</span><em>yesno</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.setSilent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.setSilent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.isSilent">
+<code class="descname">isSilent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.isSilent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.isSilent" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getLogObj">
+<code class="descname">getLogObj</code><span class="sig-paren">(</span><em>log_name='Debug'</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.getLogObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getLogObj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getRunningXML">
+<code class="descname">getRunningXML</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.getRunningXML"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getRunningXML" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getRunningMacro">
+<code class="descname">getRunningMacro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.getRunningMacro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getRunningMacro" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getLastRunningMacro">
+<code class="descname">getLastRunningMacro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.getLastRunningMacro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getLastRunningMacro" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.abort">
+<code class="descname">abort</code><span class="sig-paren">(</span><em>synch=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.abort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.abort" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.stop">
+<code class="descname">stop</code><span class="sig-paren">(</span><em>synch=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.stop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.preRunMacro">
+<code class="descname">preRunMacro</code><span class="sig-paren">(</span><em>obj</em>, <em>parameters</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.preRunMacro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.preRunMacro" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.postRunMacro">
+<code class="descname">postRunMacro</code><span class="sig-paren">(</span><em>result</em>, <em>synch</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.postRunMacro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.postRunMacro" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.runMacro">
+<code class="descname">runMacro</code><span class="sig-paren">(</span><em>obj</em>, <em>parameters=[]</em>, <em>synch=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.runMacro"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.runMacro" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.stateChanged">
+<code class="descname">stateChanged</code><span class="sig-paren">(</span><em>s</em>, <em>t</em>, <em>v</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.stateChanged"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.stateChanged" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.resultReceived">
+<code class="descname">resultReceived</code><span class="sig-paren">(</span><em>log_name</em>, <em>result</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.resultReceived"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.resultReceived" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method invoked by the arrival of a change event on the Result
+attribute</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.putEnvironment">
+<code class="descname">putEnvironment</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.putEnvironment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.putEnvironment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.putEnvironments">
+<code class="descname">putEnvironments</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.putEnvironments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.putEnvironments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.setEnvironment">
+<code class="descname">setEnvironment</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.setEnvironment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.setEnvironments">
+<code class="descname">setEnvironments</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.setEnvironments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getEnvironment">
+<code class="descname">getEnvironment</code><span class="sig-paren">(</span><em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.getEnvironment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getEnvironment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.inputReceived">
+<code class="descname">inputReceived</code><span class="sig-paren">(</span><em>s</em>, <em>t</em>, <em>v</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.inputReceived"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.inputReceived" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.processInput">
+<code class="descname">processInput</code><span class="sig-paren">(</span><em>input_data</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.processInput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.processInput" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.recordDataReceived">
+<code class="descname">recordDataReceived</code><span class="sig-paren">(</span><em>s</em>, <em>t</em>, <em>v</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.recordDataReceived"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.recordDataReceived" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.processRecordData">
+<code class="descname">processRecordData</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.processRecordData"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.processRecordData" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.macroStatusReceived">
+<code class="descname">macroStatusReceived</code><span class="sig-paren">(</span><em>s</em>, <em>t</em>, <em>v</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.macroStatusReceived"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.macroStatusReceived" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.logReceived">
+<code class="descname">logReceived</code><span class="sig-paren">(</span><em>log_name</em>, <em>output</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.logReceived"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.logReceived" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.write">
+<code class="descname">write</code><span class="sig-paren">(</span><em>msg</em>, <em>stream=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.write" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.writeln">
+<code class="descname">writeln</code><span class="sig-paren">(</span><em>msg=''</em>, <em>stream=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.writeln"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.writeln" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getExperimentConfigurationObj">
+<code class="descname">getExperimentConfigurationObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.getExperimentConfigurationObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getExperimentConfigurationObj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getExperimentConfiguration">
+<code class="descname">getExperimentConfiguration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.getExperimentConfiguration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.getExperimentConfiguration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseDoor.setExperimentConfiguration">
+<code class="descname">setExperimentConfiguration</code><span class="sig-paren">(</span><em>config</em>, <em>mnt_grps=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseDoor.setExperimentConfiguration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.setExperimentConfiguration" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="basemacroserver">
+<h2>BaseMacroServer<a class="headerlink" href="#basemacroserver" title="Permalink to this headline">¶</a></h2>
+<img src="../../../../../../../_images/inheritance-bd45ca0e04d9daa0fa4bd9844c9ca9ec38f62310.png" alt="Inheritance diagram of BaseMacroServer" usemap="#inheritance7624844107" class="inheritance"/>
+<map id="inheritance7624844107" name="inheritance7624844107">
+<area shape="rect" id="node1" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer" target="_top" title="Class encapsulating Macro Server device functionality." alt="" coords="11,525,146,564"/>
+<area shape="rect" id="node2" title="A class encapsulating a generic macro server device (usually a" alt="" coords="5,439,152,477"/>
+<area shape="rect" id="node3" title="The taurus logger class. All taurus pertinent classes should inherit" alt="" coords="43,92,115,131"/>
+<area shape="rect" id="node5" title="A Device object representing an abstraction of the PyTango.DeviceProxy" alt="" coords="27,352,130,391"/>
+<area shape="rect" id="node6" title="A Device object. Different schemes may assign different roles, but" alt="" coords="25,265,132,304"/>
+</map>
+<dl class="class">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer">
+<em class="property">class </em><code class="descname">BaseMacroServer</code><span class="sig-paren">(</span><em>name</em>, <em>**kw</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">sardana.taurus.core.tango.sardana.macroserver.MacroServerDevice</span></code></p>
+<p>Class encapsulating Macro Server device functionality.</p>
+<dl class="attribute">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.NO_CLASS_TYPES">
+<code class="descname">NO_CLASS_TYPES</code><em class="property"> = ('ControllerClass', 'ControllerLibrary', 'MacroLibrary', 'Instrument', 'Meta', 'ParameterType')</em><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.NO_CLASS_TYPES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.on_environment_changed">
+<code class="descname">on_environment_changed</code><span class="sig-paren">(</span><em>evt_src</em>, <em>evt_type</em>, <em>evt_value</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.on_environment_changed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.on_environment_changed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.putEnvironment">
+<code class="descname">putEnvironment</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.putEnvironment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.putEnvironment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.putEnvironments">
+<code class="descname">putEnvironments</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.putEnvironments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.putEnvironments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.setEnvironment">
+<code class="descname">setEnvironment</code><span class="sig-paren">(</span><em>name</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.setEnvironment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.setEnvironments">
+<code class="descname">setEnvironments</code><span class="sig-paren">(</span><em>obj</em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.setEnvironments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getEnvironment">
+<code class="descname">getEnvironment</code><span class="sig-paren">(</span><em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getEnvironment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getEnvironment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.removeEnvironment">
+<code class="descname">removeEnvironment</code><span class="sig-paren">(</span><em>key</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.removeEnvironment"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.removeEnvironment" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.removeEnvironments">
+<code class="descname">removeEnvironments</code><span class="sig-paren">(</span><em>keys</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.removeEnvironments"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.removeEnvironments" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getObject">
+<code class="descname">getObject</code><span class="sig-paren">(</span><em>element_info</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getObject" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.on_elements_changed">
+<code class="descname">on_elements_changed</code><span class="sig-paren">(</span><em>evt_src</em>, <em>evt_type</em>, <em>evt_value</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.on_elements_changed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.on_elements_changed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementsInfo">
+<code class="descname">getElementsInfo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getElementsInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementsInfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElements">
+<code class="descname">getElements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getElements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementInfo">
+<code class="descname">getElementInfo</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getElementInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementInfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementNamesOfType">
+<code class="descname">getElementNamesOfType</code><span class="sig-paren">(</span><em>elem_type</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getElementNamesOfType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementNamesOfType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementNamesWithInterface">
+<code class="descname">getElementNamesWithInterface</code><span class="sig-paren">(</span><em>interface</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getElementNamesWithInterface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementNamesWithInterface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementsWithInterface">
+<code class="descname">getElementsWithInterface</code><span class="sig-paren">(</span><em>interface</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getElementsWithInterface"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementsWithInterface" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementsWithInterfaces">
+<code class="descname">getElementsWithInterfaces</code><span class="sig-paren">(</span><em>interfaces</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getElementsWithInterfaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementsWithInterfaces" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementsOfType">
+<code class="descname">getElementsOfType</code><span class="sig-paren">(</span><em>elem_type</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getElementsOfType"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementsOfType" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementsOfTypes">
+<code class="descname">getElementsOfTypes</code><span class="sig-paren">(</span><em>elem_types</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getElementsOfTypes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getElementsOfTypes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getInterfaces">
+<code class="descname">getInterfaces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getInterfaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getInterfaces" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getExpChannelElements">
+<code class="descname">getExpChannelElements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getExpChannelElements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getExpChannelElements" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getMacros">
+<code class="descname">getMacros</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getMacros"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getMacros" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getMacroInfoObj">
+<code class="descname">getMacroInfoObj</code><span class="sig-paren">(</span><em>macro_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getMacroInfoObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getMacroInfoObj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getMacroStrList">
+<code class="descname">getMacroStrList</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getMacroStrList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getMacroStrList" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getMacroNodeObj">
+<code class="descname">getMacroNodeObj</code><span class="sig-paren">(</span><em>macro_name</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getMacroNodeObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getMacroNodeObj" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method retrieves information about macro from MacroServer
+and creates MacroNode object, filled with all information about
+parameters.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>macro_name</strong> &#8211; (str) macro name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">(MacroNode)</td>
+</tr>
+</tbody>
+</table>
+<p>See Also: fillMacroNodeAddidtionalInfos</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.validateMacroName">
+<code class="descname">validateMacroName</code><span class="sig-paren">(</span><em>macroName</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.validateMacroName"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.validateMacroName" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.validateMacroNode">
+<code class="descname">validateMacroNode</code><span class="sig-paren">(</span><em>macroNode</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.validateMacroNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.validateMacroNode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.validateParamNode">
+<code class="descname">validateParamNode</code><span class="sig-paren">(</span><em>paramNode</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.validateParamNode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.validateParamNode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.validateSingleParam">
+<code class="descname">validateSingleParam</code><span class="sig-paren">(</span><em>singleParamNode</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.validateSingleParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.validateSingleParam" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.validateRepeatParam">
+<code class="descname">validateRepeatParam</code><span class="sig-paren">(</span><em>repeatParamNode</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.validateRepeatParam"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.validateRepeatParam" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.fillMacroNodeAdditionalInfos">
+<code class="descname">fillMacroNodeAdditionalInfos</code><span class="sig-paren">(</span><em>macroNode</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.fillMacroNodeAdditionalInfos"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.fillMacroNodeAdditionalInfos" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method fills macroNode information which couldn&#8217;t be stored
+in XML file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>macroNode</strong> &#8211; (MacroNode) macro node obj populated from XML
+information</td>
+</tr>
+</tbody>
+</table>
+<p>See also: getMacroNodeObj</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.printTree">
+<code class="descname">printTree</code><span class="sig-paren">(</span><em>nodes</em>, <em>tabs=0</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.printTree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.printTree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getMacroPathObj">
+<code class="descname">getMacroPathObj</code><span class="sig-paren">(</span><em>cache=False</em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/macroserver.html#BaseMacroServer.getMacroPathObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer.getMacroPathObj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../../qt.html" class="btn btn-neutral float-right" title="qt" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="pool.html" class="btn btn-neutral" title="Taurus Extensions" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../../../',
+            VERSION:'3.0.2-alpha',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
