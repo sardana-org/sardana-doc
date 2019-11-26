@@ -859,7 +859,6 @@
     <span class="k">def</span> <span class="nf">_createMacroNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">,</span> <span class="n">macro_params_raw</span><span class="p">):</span>
         <span class="n">macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMacro</span><span class="p">(</span><span class="n">macro_name</span><span class="p">)</span>
         <span class="n">params_def</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">get_parameter</span><span class="p">()</span>
-        <span class="c1"># merge params to a single, space separated, string (spock like)</span>
         <span class="n">macro_params_str</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">macro_params_raw</span><span class="p">)</span>
         <span class="n">param_parser</span> <span class="o">=</span> <span class="n">ParamParser</span><span class="p">(</span><span class="n">params_def</span><span class="p">)</span>
         <span class="c1"># parse string with macro params to the correct list representation</span>
@@ -1276,7 +1275,26 @@
             <span class="n">xml_root</span> <span class="o">=</span> <span class="n">xml_seq</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s1">&#39;sequence&#39;</span><span class="p">)</span>
             <span class="n">macro_name</span> <span class="o">=</span> <span class="n">par_str_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">macro_params</span> <span class="o">=</span> <span class="n">par_str_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-            <span class="n">macro_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_createMacroNode</span><span class="p">(</span><span class="n">macro_name</span><span class="p">,</span> <span class="n">macro_params</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">quote_string</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+                <span class="c1"># if string contains double quotes, use single quotes,</span>
+                <span class="c1"># otherwise use double quotes</span>
+                <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="n">string</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="s2">&quot;&#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+
+            <span class="c1"># param parser relies on whitespace separation of parameter values</span>
+            <span class="c1"># quote string parameter values containing whitespaces</span>
+            <span class="n">macro_params_quoted</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">macro_params</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;.*\s+.*&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>  <span class="c1"># no white spaces</span>
+                        <span class="ow">or</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^&#39;.*\s+.*&#39;$&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>  <span class="c1"># already quoted</span>
+                        <span class="ow">or</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^&quot;.*\s+.*&quot;$&#39;</span><span class="p">,</span> <span class="n">param</span><span class="p">)):</span>  <span class="c1"># already quoted</span>
+                    <span class="n">macro_params_quoted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">macro_params_quoted</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">quote_string</span><span class="p">(</span><span class="n">param</span><span class="p">))</span>
+            <span class="n">macro_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_createMacroNode</span><span class="p">(</span><span class="n">macro_name</span><span class="p">,</span> <span class="n">macro_params_quoted</span><span class="p">)</span>
             <span class="n">xml_macro</span> <span class="o">=</span> <span class="n">macro_node</span><span class="o">.</span><span class="n">toXml</span><span class="p">()</span>
             <span class="n">xml_seq</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xml_macro</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
