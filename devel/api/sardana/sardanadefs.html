@@ -366,63 +366,63 @@ Constant values belong to <a class="reference internal" href="#sardana.sardanade
 
 <dl class="data">
 <dt id="sardana.sardanadefs.Interface">
-<code class="descname">Interface</code><em class="property"> = Enumeration('Interface', ['Object', 'Element', 'PoolObject', 'PoolElement', 'Acquirable', 'IORegister', 'Meta', 'Constraint', 'Library', 'MotorGroup', 'MacroServerObject', 'MacroServerElement', 'MacroServer', 'ControllerLibrary', 'Class', 'ControllerClass', 'Countable', 'ExpChannel', 'OneDExpChannel', 'CTExpChannel', 'ParameterType', 'MacroCode', 'MacroClass', 'Moveable', 'Motor', 'Function', 'MacroFunction', 'Macro', 'TriggerGate', 'MeasurementGroup', 'MacroLibrary', 'PseudoMotor', 'PseudoCounter', 'Instrument', 'ComChannel', 'Door', 'ZeroDExpChannel', 'External', 'Pool', 'TwoDExpChannel', 'Controller'])</em><a class="headerlink" href="#sardana.sardanadefs.Interface" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Interface</code><em class="property"> = Enumeration('Interface', ['Object', 'Element', 'PoolObject', 'PoolElement', 'Pool', 'Instrument', 'Meta', 'ParameterType', 'Function', 'Acquirable', 'ExpChannel', 'ZeroDExpChannel', 'Moveable', 'MacroServerObject', 'MacroServerElement', 'Door', 'TriggerGate', 'PseudoMotor', 'Library', 'MacroLibrary', 'IORegister', 'Countable', 'PseudoCounter', 'ControllerLibrary', 'MacroCode', 'MacroFunction', 'Class', 'MacroClass', 'Macro', 'CTExpChannel', 'TwoDExpChannel', 'Controller', 'MotorGroup', 'MacroServer', 'Constraint', 'External', 'Motor', 'MeasurementGroup', 'ComChannel', 'OneDExpChannel', 'ControllerClass'])</em><a class="headerlink" href="#sardana.sardanadefs.Interface" title="Permalink to this definition">¶</a></dt>
 <dd><p>Interface enumeration. Possible values are:</p>
 <ul class="simple">
 <li>Object (1)</li>
 <li>Element (3)</li>
 <li>PoolObject (5)</li>
 <li>PoolElement (15)</li>
-<li>Acquirable (31)</li>
-<li>IORegister (63)</li>
+<li>Pool (31)</li>
+<li>Instrument (47)</li>
 <li>Meta (64)</li>
-<li>Constraint (133)</li>
-<li>Library (257)</li>
-<li>MotorGroup (527)</li>
-<li>MacroServerObject (1025)</li>
-<li>MacroServerElement (3075)</li>
-<li>MacroServer (7171)</li>
-<li>ControllerLibrary (8453)</li>
-<li>Class (16385)</li>
-<li>ControllerClass (49157)</li>
-<li>Countable (65551)</li>
-<li>ExpChannel (131103)</li>
-<li>OneDExpChannel (458783)</li>
-<li>CTExpChannel (720927)</li>
-<li>ParameterType (1048640)</li>
-<li>MacroCode (2098177)</li>
-<li>MacroClass (6308865)</li>
-<li>Moveable (8388623)</li>
-<li>Motor (25165855)</li>
-<li>Function (33554433)</li>
-<li>MacroFunction (102761473)</li>
-<li>Macro (241189889)</li>
-<li>TriggerGate (268435471)</li>
-<li>MeasurementGroup (536936463)</li>
-<li>MacroLibrary (1073743105)</li>
-<li>PseudoMotor (2155872287)</li>
-<li>PseudoCounter (4295098399)</li>
-<li>Instrument (8589934607)</li>
-<li>ComChannel (17179869199)</li>
-<li>Door (34359741443)</li>
-<li>ZeroDExpChannel (68719607839)</li>
-<li>External (137438953473)</li>
-<li>Pool (274877906959)</li>
-<li>TwoDExpChannel (549756010527)</li>
-<li>Controller (1099511627791)</li>
+<li>ParameterType (192)</li>
+<li>Function (257)</li>
+<li>Acquirable (527)</li>
+<li>ExpChannel (1551)</li>
+<li>ZeroDExpChannel (3599)</li>
+<li>Moveable (4111)</li>
+<li>MacroServerObject (8193)</li>
+<li>MacroServerElement (24579)</li>
+<li>Door (57347)</li>
+<li>TriggerGate (65551)</li>
+<li>PseudoMotor (135695)</li>
+<li>Library (262145)</li>
+<li>MacroLibrary (794625)</li>
+<li>IORegister (1049103)</li>
+<li>Countable (2097167)</li>
+<li>PseudoCounter (4195855)</li>
+<li>ControllerLibrary (8650757)</li>
+<li>MacroCode (16785409)</li>
+<li>MacroFunction (50340097)</li>
+<li>Class (67108865)</li>
+<li>MacroClass (218112001)</li>
+<li>Macro (520102145)</li>
+<li>CTExpChannel (538969615)</li>
+<li>TwoDExpChannel (1075840527)</li>
+<li>Controller (2147483663)</li>
+<li>MotorGroup (4294967311)</li>
+<li>MacroServer (8589959171)</li>
+<li>Constraint (17179869189)</li>
+<li>External (34359738369)</li>
+<li>Motor (68719481359)</li>
+<li>MeasurementGroup (137441050639)</li>
+<li>ComChannel (274877906959)</li>
+<li>OneDExpChannel (549757912591)</li>
+<li>ControllerClass (1099578736645)</li>
 </ul>
 </dd></dl>
 
 <dl class="data">
 <dt id="sardana.sardanadefs.Interfaces">
-<code class="descname">Interfaces</code><em class="property"> = {64: set(), 257: {1}, 7171: {3075}, 6308865: {2098177, 16385}, 8453: {257, 5}, 102761473: {33554433, 2098177}, 1048640: {64}, 549756010527: {65551, 131103}, 1: set(), 1073743105: {257, 1025}, 1099511627791: {15}, 15: {3, 5}, 536936463: {15, 65551}, 16385: {1}, 274877906959: {15}, 34359741443: {3075}, 3075: {1025, 3}, 2098177: {1025}, 527: {15}, 17179869199: {15}, 268435471: {15}, 5: {1}, 25165855: {31, 8388623}, 133: {5}, 3: {1}, 33554433: {1}, 241189889: {6308865, 102761473}, 31: {15}, 720927: {65551, 131103}, 65551: {15}, 8589934607: {15}, 131103: {31}, 2155872287: {31, 8388623}, 1025: {1}, 68719607839: {131103}, 4295098399: {131103}, 137438953473: {1}, 458783: {65551, 131103}, 8388623: {15}, 49157: {16385, 5}, 63: {31}}</em><a class="headerlink" href="#sardana.sardanadefs.Interfaces" title="Permalink to this definition">¶</a></dt>
+<code class="descname">Interfaces</code><em class="property"> = {64: set(), 192: {64}, 1099578736645: {67108865, 5}, 57347: {24579}, 8650757: {262145, 5}, 262145: {1}, 218112001: {16785409, 67108865}, 15: {3, 5}, 274877906959: {15}, 16785409: {8193}, 17179869189: {5}, 2147483663: {15}, 137441050639: {15, 2097167}, 1075840527: {1551, 2097167}, 3: {1}, 4195855: {1551}, 549757912591: {1551, 2097167}, 527: {15}, 5: {1}, 1551: {527}, 2097167: {15}, 3599: {1551}, 257: {1}, 24579: {8193, 3}, 31: {15}, 8589959171: {24579}, 794625: {8193, 262145}, 50340097: {16785409, 257}, 65551: {15}, 520102145: {218112001, 50340097}, 4111: {15}, 47: {15}, 8193: {1}, 34359738369: {1}, 4294967311: {15}, 67108865: {1}, 538969615: {1551, 2097167}, 1049103: {527}, 68719481359: {527, 4111}, 135695: {527, 4111}, 1: set()}</em><a class="headerlink" href="#sardana.sardanadefs.Interfaces" title="Permalink to this definition">¶</a></dt>
 <dd><p>a dictionary containing the direct interfaces supported by each type
 (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> &lt;<a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a> &lt; <a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>&gt; &gt;)</p>
 </dd></dl>
 
 <dl class="data">
 <dt id="sardana.sardanadefs.InterfacesExpanded">
-<code class="descname">InterfacesExpanded</code><em class="property"> = {64: {64}, 257: {1, 257}, 7171: {3075, 7171, 3, 1, 1025}, 6308865: {6308865, 1, 1025, 2098177, 16385}, 8453: {1, 8453, 5, 257}, 102761473: {1025, 1, 102761473, 2098177, 33554433}, 1048640: {1048640, 64}, 549756010527: {1, 3, 5, 549756010527, 65551, 15, 131103, 31}, 1: {1}, 1073743105: {1073743105, 1, 257, 1025}, 1099511627791: {1, 3, 15, 5, 1099511627791}, 15: {1, 3, 5, 15}, 536936463: {1, 3, 5, 65551, 15, 536936463}, 16385: {1, 16385}, 274877906959: {1, 3, 15, 5, 274877906959}, 34359741443: {3075, 1, 3, 34359741443, 1025}, 3075: {3075, 1, 3, 1025}, 2098177: {1025, 1, 2098177}, 527: {1, 3, 15, 5, 527}, 17179869199: {1, 3, 15, 5, 17179869199}, 268435471: {1, 3, 15, 5, 268435471}, 5: {1, 5}, 25165855: {1, 3, 5, 8388623, 15, 25165855, 31}, 133: {1, 5, 133}, 3: {1, 3}, 33554433: {33554433, 1}, 241189889: {6308865, 1, 1025, 33554433, 2098177, 16385, 241189889, 102761473}, 31: {1, 3, 15, 5, 31}, 720927: {1, 3, 5, 131103, 15, 65551, 31, 720927}, 65551: {1, 3, 15, 5, 65551}, 8589934607: {1, 3, 15, 5, 8589934607}, 131103: {1, 3, 5, 15, 131103, 31}, 2155872287: {1, 3, 5, 8388623, 15, 2155872287, 31}, 1025: {1, 1025}, 68719607839: {1, 3, 5, 68719607839, 15, 131103, 31}, 4295098399: {1, 3, 5, 4295098399, 15, 131103, 31}, 137438953473: {1, 137438953473}, 458783: {1, 3, 5, 131103, 65551, 15, 458783, 31}, 8388623: {1, 3, 15, 5, 8388623}, 49157: {1, 49157, 5, 16385}, 63: {1, 3, 5, 15, 63, 31}}</em><a class="headerlink" href="#sardana.sardanadefs.InterfacesExpanded" title="Permalink to this definition">¶</a></dt>
+<code class="descname">InterfacesExpanded</code><em class="property"> = {64: {64}, 192: {64, 192}, 1099578736645: {67108865, 5, 1099578736645, 1}, 57347: {3, 8193, 57347, 24579, 1}, 8650757: {262145, 5, 8650757, 1}, 262145: {262145, 1}, 218112001: {8193, 16785409, 67108865, 1, 218112001}, 15: {1, 3, 5, 15}, 274877906959: {1, 3, 15, 5, 274877906959}, 16785409: {8193, 16785409, 1}, 17179869189: {1, 5, 17179869189}, 2147483663: {1, 3, 15, 5, 2147483663}, 137441050639: {1, 3, 5, 15, 137441050639, 2097167}, 1075840527: {1, 3, 5, 527, 2097167, 1551, 1075840527, 15}, 3: {1, 3}, 4195855: {1, 3, 5, 1551, 4195855, 527, 15}, 549757912591: {1, 3, 5, 1551, 2097167, 527, 549757912591, 15}, 527: {1, 3, 15, 5, 527}, 5: {1, 5}, 1551: {1, 3, 5, 15, 1551, 527}, 2097167: {1, 3, 15, 5, 2097167}, 3599: {1, 3, 5, 527, 1551, 3599, 15}, 257: {257, 1}, 24579: {24579, 8193, 3, 1}, 31: {1, 3, 15, 5, 31}, 8589959171: {24579, 8193, 3, 8589959171, 1}, 794625: {794625, 1, 8193, 262145}, 50340097: {8193, 16785409, 50340097, 257, 1}, 65551: {1, 3, 15, 5, 65551}, 520102145: {16785409, 520102145, 257, 1, 50340097, 8193, 218112001, 67108865}, 4111: {1, 3, 15, 5, 4111}, 47: {1, 3, 15, 5, 47}, 8193: {8193, 1}, 34359738369: {34359738369, 1}, 4294967311: {1, 3, 15, 5, 4294967311}, 67108865: {67108865, 1}, 538969615: {1, 3, 5, 1551, 2097167, 527, 538969615, 15}, 1049103: {1, 3, 5, 15, 527, 1049103}, 68719481359: {1, 3, 5, 68719481359, 4111, 527, 15}, 135695: {1, 3, 5, 135695, 4111, 527, 15}, 1: {1}}</em><a class="headerlink" href="#sardana.sardanadefs.InterfacesExpanded" title="Permalink to this definition">¶</a></dt>
 <dd><p>a dictionary containing the <em>all</em> interfaces supported by each type.
 (<a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">dict</span></code></a> &lt;<a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>, <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#set" title="(in Python v3.9)"><code class="xref py py-obj docutils literal"><span class="pre">set</span></code></a> &lt; <a class="reference internal" href="#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-obj docutils literal"><span class="pre">sardana.sardanadefs.Interface</span></code></a>&gt; &gt;)</p>
 </dd></dl>
