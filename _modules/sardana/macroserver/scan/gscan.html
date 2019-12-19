@@ -628,8 +628,9 @@
             <span class="k">raise</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">macro</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;ScanDir is not defined. This operation will not be &#39;</span>
-                          <span class="s1">&#39;stored persistently. Use Use &quot;expconf&quot; (or &quot;senv &#39;</span>
-                          <span class="s1">&#39;ScanDir &lt;abs directory&gt;&quot;) to enable it&#39;</span><span class="p">)</span>
+                          <span class="s1">&#39;stored persistently. Use &quot;expconf&quot; or &quot;newfile&quot; &#39;</span>
+                          <span class="s1">&#39;to configure data storage (or eventually &quot;senv &#39;</span>
+                          <span class="s1">&#39;ScanDir &lt;abs directory&gt;&quot;)&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="p">()</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scan_dir</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
@@ -642,8 +643,9 @@
             <span class="k">raise</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">macro</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;ScanFile is not defined. This operation will not &#39;</span>
-                          <span class="s1">&#39;be stored persistently. Use &quot;expconf&quot; (or &quot;senv &#39;</span>
-                          <span class="s1">&#39;ScanFile &lt;scan file(s)&gt;&quot;) to enable it&#39;</span><span class="p">)</span>
+                          <span class="s1">&#39;be stored persistently. Use &quot;expconf&quot; or &quot;newfile&quot; &#39;</span>
+                          <span class="s1">&#39;to configure data storage (or eventually &quot;senv &#39;</span>
+                          <span class="s1">&#39;ScanFile &lt;scan file(s)&gt;&quot;)&#39;</span><span class="p">)</span>
             <span class="k">return</span> <span class="p">()</span>
 
         <span class="n">scan_recorders</span> <span class="o">=</span> <span class="p">[]</span>
