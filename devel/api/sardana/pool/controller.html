@@ -1414,7 +1414,7 @@ upper and lower limit switches are active:</p>
 
 <dl class="attribute">
 <dt id="sardana.pool.controller.MotorController.standard_axis_attributes">
-<code class="descname">standard_axis_attributes</code><em class="property"> = {'Position': {'type': &lt;class 'float'&gt;, 'description': 'Position'}, 'Backlash': {'type': &lt;class 'float'&gt;, 'description': 'Backlash'}, 'Sign': {'type': &lt;class 'float'&gt;, 'description': 'Sign'}, 'DialPosition': {'type': &lt;class 'float'&gt;, 'description': 'Dial Position'}, 'Offset': {'type': &lt;class 'float'&gt;, 'description': 'Offset'}, 'Velocity': {'type': &lt;class 'float'&gt;, 'description': 'Velocity'}, 'Base_rate': {'type': &lt;class 'float'&gt;, 'description': 'Base rate'}, 'Deceleration': {'type': &lt;class 'float'&gt;, 'description': 'Deceleration time (s)'}, 'Step_per_unit': {'type': &lt;class 'float'&gt;, 'description': 'Steps per unit'}, 'Limit_switches': {'type': (&lt;class 'bool'&gt;,), 'description': &quot;This attribute is the motor limit switches state. It's an array with 3 \nelements which are:\n0 - The home switch\n1 - The upper limit switch\n2 - The lower limit switch\nFalse means not active. True means active&quot;}, 'Acceleration': {'type': &lt;class 'float'&gt;, 'description': 'Acceleration time (s)'}}</em><a class="headerlink" href="#sardana.pool.controller.MotorController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">standard_axis_attributes</code><em class="property"> = {'Position': {'description': 'Position', 'type': &lt;class 'float'&gt;}, 'Sign': {'description': 'Sign', 'type': &lt;class 'float'&gt;}, 'Limit_switches': {'description': &quot;This attribute is the motor limit switches state. It's an array with 3 \nelements which are:\n0 - The home switch\n1 - The upper limit switch\n2 - The lower limit switch\nFalse means not active. True means active&quot;, 'type': (&lt;class 'bool'&gt;,)}, 'Step_per_unit': {'description': 'Steps per unit', 'type': &lt;class 'float'&gt;}, 'DialPosition': {'description': 'Dial Position', 'type': &lt;class 'float'&gt;}, 'Base_rate': {'description': 'Base rate', 'type': &lt;class 'float'&gt;}, 'Deceleration': {'description': 'Deceleration time (s)', 'type': &lt;class 'float'&gt;}, 'Backlash': {'description': 'Backlash', 'type': &lt;class 'float'&gt;}, 'Offset': {'description': 'Offset', 'type': &lt;class 'float'&gt;}, 'Velocity': {'description': 'Velocity', 'type': &lt;class 'float'&gt;}, 'Acceleration': {'description': 'Acceleration time (s)', 'type': &lt;class 'float'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.MotorController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
@@ -1545,7 +1545,7 @@ controller</p>
 
 <dl class="attribute">
 <dt id="sardana.pool.controller.PseudoMotorController.standard_axis_attributes">
-<code class="descname">standard_axis_attributes</code><em class="property"> = {'Position': {'type': &lt;class 'float'&gt;, 'description': 'Position'}}</em><a class="headerlink" href="#sardana.pool.controller.PseudoMotorController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">standard_axis_attributes</code><em class="property"> = {'Position': {'description': 'Position', 'type': &lt;class 'float'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.PseudoMotorController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
@@ -1882,7 +1882,7 @@ implement your own counter/timer controller for the device pool.</p>
 </div></blockquote>
 <dl class="attribute">
 <dt id="sardana.pool.controller.CounterTimerController.standard_axis_attributes">
-<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'type': &lt;class 'float'&gt;, 'description': 'Value'}, 'ValueBuffer': {'type': &lt;class 'str'&gt;, 'description': 'Value buffer'}, 'Timer': {'type': &lt;class 'str'&gt;, 'description': 'Timer used in independent acquisition'}, 'IntegrationTime': {'type': &lt;class 'float'&gt;, 'description': 'Integration time used in independent acquisition'}}</em><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'description': 'Value', 'type': &lt;class 'float'&gt;}, 'ValueBuffer': {'description': 'Value buffer', 'type': &lt;class 'str'&gt;}, 'IntegrationTime': {'description': 'Integration time used in independent acquisition', 'type': &lt;class 'float'&gt;}, 'Timer': {'description': 'Timer used in independent acquisition', 'type': &lt;class 'str'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
@@ -2057,7 +2057,7 @@ nothing.</p>
 implement your own 0D controller for the device pool.</p>
 <dl class="attribute">
 <dt id="sardana.pool.controller.ZeroDController.standard_axis_attributes">
-<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'type': &lt;class 'float'&gt;, 'description': 'Value'}, 'ValueBuffer': {'type': &lt;class 'str'&gt;, 'description': 'Value buffer'}, 'IntegrationTime': {'type': &lt;class 'float'&gt;, 'description': 'Integration time used in independent acquisition'}}</em><a class="headerlink" href="#sardana.pool.controller.ZeroDController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'description': 'Value', 'type': &lt;class 'float'&gt;}, 'ValueBuffer': {'description': 'Value buffer', 'type': &lt;class 'str'&gt;}, 'IntegrationTime': {'description': 'Integration time used in independent acquisition', 'type': &lt;class 'float'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.ZeroDController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
@@ -2108,7 +2108,7 @@ implement your own 1D controller for the device pool.</p>
 </div>
 <dl class="attribute">
 <dt id="sardana.pool.controller.OneDController.standard_axis_attributes">
-<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'type': (&lt;class 'float'&gt;,), 'maxdimsize': (16384,), 'description': 'Value'}, 'ValueBuffer': {'type': &lt;class 'str'&gt;, 'description': 'Value buffer'}, 'Timer': {'type': &lt;class 'str'&gt;, 'description': 'Timer used in independent acquisition'}, 'IntegrationTime': {'type': &lt;class 'float'&gt;, 'description': 'Integration time used in independent acquisition'}}</em><a class="headerlink" href="#sardana.pool.controller.OneDController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'description': 'Value', 'maxdimsize': (16384,), 'type': (&lt;class 'float'&gt;,)}, 'ValueBuffer': {'description': 'Value buffer', 'type': &lt;class 'str'&gt;}, 'IntegrationTime': {'description': 'Integration time used in independent acquisition', 'type': &lt;class 'float'&gt;}, 'Timer': {'description': 'Timer used in independent acquisition', 'type': &lt;class 'str'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.OneDController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -2155,7 +2155,7 @@ references.</p>
 implement your own 2D controller for the device pool.</p>
 <dl class="attribute">
 <dt id="sardana.pool.controller.TwoDController.standard_axis_attributes">
-<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'type': ((&lt;class 'float'&gt;,),), 'maxdimsize': (4096, 4096), 'description': 'Value'}, 'ValueBuffer': {'type': &lt;class 'str'&gt;, 'description': 'Value buffer'}, 'Timer': {'type': &lt;class 'str'&gt;, 'description': 'Timer used in independent acquisition'}, 'IntegrationTime': {'type': &lt;class 'float'&gt;, 'description': 'Integration time used in independent acquisition'}}</em><a class="headerlink" href="#sardana.pool.controller.TwoDController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'description': 'Value', 'maxdimsize': (4096, 4096), 'type': ((&lt;class 'float'&gt;,),)}, 'ValueBuffer': {'description': 'Value buffer', 'type': &lt;class 'str'&gt;}, 'IntegrationTime': {'description': 'Integration time used in independent acquisition', 'type': &lt;class 'float'&gt;}, 'Timer': {'description': 'Timer used in independent acquisition', 'type': &lt;class 'str'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.TwoDController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
@@ -2226,7 +2226,7 @@ controller</p>
 
 <dl class="attribute">
 <dt id="sardana.pool.controller.PseudoCounterController.standard_axis_attributes">
-<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'type': &lt;class 'float'&gt;, 'description': 'Value'}, 'ValueBuffer': {'type': &lt;class 'str'&gt;, 'description': 'Data'}, 'IntegrationTime': {'type': &lt;class 'float'&gt;, 'description': 'Integration time used in independent acquisition'}}</em><a class="headerlink" href="#sardana.pool.controller.PseudoCounterController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'description': 'Value', 'type': &lt;class 'float'&gt;}, 'ValueBuffer': {'description': 'Data', 'type': &lt;class 'str'&gt;}, 'IntegrationTime': {'description': 'Integration time used in independent acquisition', 'type': &lt;class 'float'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.PseudoCounterController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
@@ -2350,7 +2350,7 @@ implement your own IORegister controller for the device pool.</p>
 
 <dl class="attribute">
 <dt id="sardana.pool.controller.IORegisterController.standard_axis_attributes">
-<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'type': &lt;class 'float'&gt;, 'description': 'Value'}}</em><a class="headerlink" href="#sardana.pool.controller.IORegisterController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="descname">standard_axis_attributes</code><em class="property"> = {'Value': {'description': 'Value', 'type': &lt;class 'float'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.IORegisterController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference external" href="https://docs.python.org/dev/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
