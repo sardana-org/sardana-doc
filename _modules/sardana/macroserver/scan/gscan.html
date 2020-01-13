@@ -620,6 +620,9 @@
         <span class="n">macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">scan_dir</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ScanDir&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">scan_dir</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">macro</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;ScanDir value is empty&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;ScanDir value is empty&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">InterruptException</span><span class="p">:</span>
             <span class="k">raise</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
@@ -635,6 +638,9 @@
 
         <span class="k">try</span><span class="p">:</span>
             <span class="n">file_names</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ScanFile&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">file_names</span> <span class="o">==</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">macro</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;ScanFile value is empty&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;ScanFile value is empty&#39;</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">InterruptException</span><span class="p">:</span>
             <span class="k">raise</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
