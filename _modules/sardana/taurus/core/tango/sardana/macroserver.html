@@ -208,6 +208,14 @@
 <span class="n">CHANGE_EVT_TYPES</span> <span class="o">=</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Change</span><span class="p">,</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Periodic</span>
 
 
+<span class="k">def</span> <span class="nf">_get_console_width</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">popen</span><span class="p">(</span><span class="s1">&#39;stty size&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">width</span>
+
+
 <span class="k">def</span> <span class="nf">_get_nb_lines</span><span class="p">(</span><span class="n">nb_chrs</span><span class="p">,</span> <span class="n">max_chrs</span><span class="p">):</span>
     <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">nb_chrs</span><span class="p">)</span><span class="o">/</span><span class="n">max_chrs</span><span class="p">))</span>
 
@@ -822,7 +830,7 @@
         <span class="k">return</span> <span class="n">data</span></div>
 
 <div class="viewcode-block" id="BaseDoor.logReceived"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macroserver.html#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.logReceived">[docs]</a>    <span class="k">def</span> <span class="nf">logReceived</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_name</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
-        <span class="n">max_chrs</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">get_terminal_size</span><span class="p">()</span><span class="o">.</span><span class="n">columns</span>
+        <span class="n">max_chrs</span> <span class="o">=</span> <span class="n">_get_console_width</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">output</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_silent</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ignore_logs</span><span class="p">:</span>
             <span class="k">return</span>
 
