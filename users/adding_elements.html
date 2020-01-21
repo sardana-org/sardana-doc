@@ -196,8 +196,14 @@ plugin class into the Sardana. To check if it is already loaded use the
 <a class="reference internal" href="../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsctrl" title="sardana.macroserver.macros.lists.lsctrl"><code class="xref py py-class docutils literal"><span class="pre">lsctrl</span></code></a> macro. If it is not, you will
 need to configure the <a class="reference internal" href="configuration/pool.html#sardana-configuration-pool"><span class="std std-ref">controller plugin discovery path</span></a>
 (<code class="docutils literal"><span class="pre">PoolPath</span></code> property) and either restart the Sardana server or call the
-<a class="reference internal" href="../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.addctrllib" title="sardana.macroserver.macros.expert.addctrllib"><code class="xref py py-class docutils literal"><span class="pre">addctrllib</span></code></a> macro. After that
-check again with the list macro if the controller class is present and if
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.addctrllib" title="sardana.macroserver.macros.expert.addctrllib"><code class="xref py py-class docutils literal"><span class="pre">addctrllib</span></code></a> macro:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Pool_</span><span class="o">&lt;</span><span class="n">ServerName</span><span class="o">&gt;</span><span class="n">_</span><span class="o">&lt;</span><span class="n">ServerNumber</span><span class="o">&gt;.</span><span class="n">put_property</span><span class="p">({</span><span class="s2">&quot;PoolPath&quot;</span><span class="p">:[</span><span class="s2">&quot;&lt;Your controller dir path&gt;&quot;</span><span class="p">]})</span>
+
+<span class="n">Example</span><span class="p">:</span>
+<span class="n">Pool_demo1_1</span><span class="o">.</span><span class="n">put_property</span><span class="p">({</span><span class="s2">&quot;PoolPath&quot;</span><span class="p">:[</span><span class="s2">&quot;/home/vagrant/controllers&quot;</span><span class="p">]})</span>
+</pre></div>
+</div>
+<p>After that check again with the list macro if the controller class is present and if
 yes let&#8217;s continue...</p>
 <p>To create a controller instance you can use
 <a class="reference internal" href="../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defctrl" title="sardana.macroserver.macros.expert.defctrl"><code class="xref py py-class docutils literal"><span class="pre">defctrl</span></code></a> macro:</p>
@@ -211,6 +217,10 @@ used to configure the controller.</p>
 our IcePAP system:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">defctrl</span> <span class="n">IcepapController</span> <span class="n">ipap01</span> <span class="n">Host</span> <span class="mf">10.0</span><span class="o">.</span><span class="mf">0.30</span> <span class="n">Port</span> <span class="mi">5000</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In order to use the controller you must define also a motor and use the created controller as a parameter</p>
 </div>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
