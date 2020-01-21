@@ -189,6 +189,7 @@
 <span class="kn">from</span> <span class="nn">sardana.pool.poolmonitor</span> <span class="k">import</span> <span class="n">PoolMonitor</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolmetacontroller</span> <span class="k">import</span> <span class="n">TYPE_MAP_OBJ</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolcontrollermanager</span> <span class="k">import</span> <span class="n">ControllerManager</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmeasurementgroup</span> <span class="k">import</span> <span class="n">PoolMeasurementGroup</span>
 
 
 <span class="k">class</span> <span class="nc">Graph</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
@@ -678,7 +679,10 @@
 
 <div class="viewcode-block" id="Pool.rename_element"><a class="viewcode-back" href="../../../devel/api/sardana/pool/pool.html#sardana.pool.pool.Pool.rename_element">[docs]</a>    <span class="k">def</span> <span class="nf">rename_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">):</span>
         <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_by_name</span><span class="p">(</span><span class="n">old_name</span><span class="p">)</span>
-        <span class="n">elem</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">rename_element</span><span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span> <span class="o">==</span> <span class="n">PoolMeasurementGroup</span><span class="p">:</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">rename_element</span><span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">controller</span><span class="o">.</span><span class="n">rename_element</span><span class="p">(</span><span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
         <span class="n">PoolContainer</span><span class="o">.</span><span class="n">rename_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">)</span>
         <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_element_by_name</span><span class="p">(</span><span class="n">new_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;ElementChanged&quot;</span><span class="p">),</span> <span class="n">elem</span><span class="p">)</span></div>

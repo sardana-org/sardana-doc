@@ -1154,6 +1154,22 @@
             <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span> <span class="ow">is</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">TriggerGate</span><span class="p">:</span>
                 <span class="k">return</span>
         <span class="k">return</span> <span class="n">PoolGroupElement</span><span class="o">.</span><span class="n">add_user_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="PoolMeasurementGroup.rename_element"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.rename_element">[docs]</a>    <span class="k">def</span> <span class="nf">rename_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">old_name</span><span class="p">,</span> <span class="n">new_name</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Rename element in the controller.</span>
+
+<span class="sd">        :param old_name: old name of the element</span>
+<span class="sd">        :type old_name: :obj:`str`</span>
+<span class="sd">        :param new_name: new name of the element</span>
+<span class="sd">        :type new_name: :obj:`str`</span>
+<span class="sd">        :param propagate: 0 for not propagating, 1 to propagate,</span>
+<span class="sd">               2 propagate with priority</span>
+<span class="sd">        :type propagate: :obj:`int`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="n">propagate</span><span class="p">),</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">)</span></div>
+
     <span class="c1"># -------------------------------------------------------------------------</span>
     <span class="c1"># configuration</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
