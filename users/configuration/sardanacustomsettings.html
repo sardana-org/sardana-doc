@@ -231,9 +231,14 @@ logs.</p>
 <code class="descname">SCAN_RECORDER_MAP</code><em class="property"> = None</em><a class="headerlink" href="#sardana.sardanacustomsettings.SCAN_RECORDER_MAP" title="Permalink to this definition">¶</a></dt>
 <dd><p>Use this map in order to avoid ambiguity with scan recorders (file) if
 extension is intended to be the recorder selector.
-dict&lt;str, str&gt;
-key   - scan file extension e.g. &#8221;.h5&#8221;
-value - recorder name</p>
+Set it to a dict&lt;str, str&gt; where:</p>
+<ul class="simple">
+<li>key   - scan file extension e.g. &#8221;.h5&#8221;</li>
+<li>value - recorder name</li>
+</ul>
+<p>The SCAN_RECORDER_MAP will make an union with the dynamically (created map
+at the MacroServer startup) taking precedence in case the extensions repeats
+in both of them.</p>
 </dd></dl>
 
 <dl class="data">

@@ -228,16 +228,39 @@ the environment variables.</p>
 <h2>Writing a custom recorder<a class="headerlink" href="#writing-a-custom-recorder" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-todo admonition" id="index-0">
 <p class="first admonition-title">Todo</p>
-<p class="last">document how to write custom recorders</p>
+<p class="last">finish chapter based on user&#8217;s input</p>
 </div>
+<p>This chapter provides the necessary information to write recorders in Sardana.</p>
+<p>Before writing a new recorder you should check the <a class="reference external" href="https://github.com/sardana-org/sardana-plugins">Sardana plugins
+catalogue</a>.
+There&#8217;s a chance that somebody already wrote one that fits your needs.</p>
+<p>If finally you decide to write a new one, below you can find some useful
+information:</p>
+<ul>
+<li><p class="first">Your recorder class would need to inherit from <code class="docutils literal"><span class="pre">DataRecorder</span></code>
+(or <code class="docutils literal"><span class="pre">BaseFileRecorder</span></code> if you write data to a file) and
+implement minimum the following methods:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">_startRecordList</span></code></li>
+<li><code class="docutils literal"><span class="pre">_writeRecord</span></code></li>
+<li><code class="docutils literal"><span class="pre">_endRecordList</span></code></li>
+</ul>
+<p>You can find some examples in <code class="docutils literal"><span class="pre">sardana.macroserver.recorders</span></code> module.</p>
+</li>
+<li><p class="first">Recorder classes are used to instantiate recorder objects in a scan.
+Every time a scan starts, in its preparation phase, a new recorder object
+gets created. Reversely, at the end of the scan the recorder object gets
+destroyed. If you need to keep a long lived objects in your recorder
+you may consider using the <a class="reference internal" href="../glossary.html#term-singleton-pattern"><span class="xref std std-term">singleton pattern</span></a></p>
+</li>
+</ul>
 </div>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <p>Custom recorders may be added to the Sardana system by placing the recorder
 library module in a directory which is specified by the MacroServer
-<em>RecorderPath</em> property. RecorderPath property may contain an ordered,
-colon-separated list of directories.
-In case of overriding recorders by name or by file extension (in case of the
+<a class="reference internal" href="../users/configuration/macroserver.html#sardana-configuration-macroserver"><span class="std std-ref">RecorderPath</span></a> property.</p>
+<p>In case of overriding recorders by name or by file extension (in case of the
 file recorders), recorders located in the first paths are of higher priority
 than the ones from the last paths.</p>
 <p>Three types of overriding may occur:</p>
@@ -258,15 +281,12 @@ selection by name). If both of these recorders&#8217; modules are located in the
 same directory, the system will assign a list of recorders to a given
 extension. Then the application is in charge of deciding which one to use.</dd>
 </dl>
-<p>As previously mentioned recorders are selectable by either the recorder name or
-the extension. During the MacroServer startup the extension to recorder map is
+<p>As previously mentioned recorders are selectable by either the extension
+(using the <a class="reference internal" href="../users/environment_variable_catalog.html#scanfile"><span class="std std-ref">ScanFile</span></a> environment variable) or the recorder name
+(using the <a class="reference internal" href="../users/environment_variable_catalog.html#scanrecorder"><span class="std std-ref">ScanRecorder</span></a> environment variable).</p>
+<p>During the MacroServer startup the extension to recorder map is
 generated while loading the recorder libraries. This dynamically created map
-may be overridden by the custom map defined in the <em>sardanacustomsettings</em>
-module (SCAN_RECORDER_MAP variable with a dictionary where key is the scan file
-extension e.g. &#8221;.h5&#8221; and value is the recorder name e.g. &#8220;MyCustomRecorder&#8221;,
-where both keys and values are of type string). The SCAN_RECORDER_MAP will make
-an union with the dynamically created map taking precedence in case the
-extensions repeats in both of them.</p>
+may be overridden by editing the <a class="reference internal" href="../users/configuration/sardanacustomsettings.html#sardana.sardanacustomsettings.SCAN_RECORDER_MAP" title="sardana.sardanacustomsettings.SCAN_RECORDER_MAP"><code class="xref py py-data docutils literal"><span class="pre">SCAN_RECORDER_MAP</span></code></a>.</p>
 </div>
 </div>
 

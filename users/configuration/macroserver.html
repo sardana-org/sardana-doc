@@ -198,12 +198,15 @@ configurable via <a class="reference internal" href="../../devel/api/api_macrose
 <a class="reference internal" href="../../devel/api/api_macroserver.html#sardana-macroserver-api-recorderpath"><span class="std std-ref">recorder path</span></a> attributes. In case Sardana is
 used with Tango this configuration is accessible via the <code class="docutils literal"><span class="pre">MacroPath</span></code> and
 <code class="docutils literal"><span class="pre">RecorderPath</span></code> <a class="reference internal" href="../../devel/api/sardana/tango/macroserver/MacroServer.html#sardana.tango.macroserver.MacroServer.MacroServer" title="sardana.tango.macroserver.MacroServer.MacroServer"><code class="xref py py-class docutils literal"><span class="pre">MacroServer</span></code></a>
-device properties.</p>
+device properties. Both <code class="docutils literal"><span class="pre">MacroPath</span></code> and <code class="docutils literal"><span class="pre">RecorderPath</span></code> properties may
+contain an ordered, colon-separated list of directories.</p>
 <p>Your plugins may need to access to third party Python modules. One can
 configure the directory where to look for them via
 <a class="reference internal" href="../../devel/api/api_macroserver.html#sardana-macroserver-api-pythonpath"><span class="std std-ref">python path</span></a> attribute. In case Sardana is
 used with Tango this configuration is accessible via the <code class="docutils literal"><span class="pre">PythonPath</span></code>
-<a class="reference internal" href="../../devel/api/sardana/tango/macroserver/MacroServer.html#sardana.tango.macroserver.MacroServer.MacroServer" title="sardana.tango.macroserver.MacroServer.MacroServer"><code class="xref py py-class docutils literal"><span class="pre">MacroServer</span></code></a> device property.</p>
+<a class="reference internal" href="../../devel/api/sardana/tango/macroserver/MacroServer.html#sardana.tango.macroserver.MacroServer.MacroServer" title="sardana.tango.macroserver.MacroServer.MacroServer"><code class="xref py py-class docutils literal"><span class="pre">MacroServer</span></code></a> device property.
+<code class="docutils literal"><span class="pre">PythonPath</span></code> property may contain an ordered, colon-separated list of
+directories.</p>
 <p>Multiple macros can run concurrently in the MacroServer and the maximum number
 of these threads is configurable via
 <a class="reference internal" href="../../devel/api/api_macroserver.html#sardana-macroserver-api-maxparallelmacros"><span class="std std-ref">max parallel macros</span></a> attribute. In case Sardana is
