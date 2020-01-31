@@ -237,7 +237,10 @@ from inside a macro.</p>
 60
 61
 62
-63</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+63
+64
+65
+66</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
 <span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">j0</span>
@@ -265,6 +268,7 @@ from inside a macro.</p>
         <span class="sa">r</span><span class="s1">&#39;Verify $J_0(x)=\frac{1}{\pi}\int_0^{\pi}\cos(x \sin\phi)\,d\phi$&#39;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 
 
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">random</span>
@@ -275,6 +279,7 @@ from inside a macro.</p>
     <span class="sd">&quot;&quot;&quot;Shows a random image 32x32&quot;&quot;&quot;</span>
     <span class="n">img</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">matshow</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 
@@ -300,6 +305,7 @@ from inside a macro.</p>
         <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">fractal</span> <span class="o">==</span> <span class="mi">255</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
         <span class="n">fractal</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">254</span> <span class="o">*</span> <span class="n">n</span> <span class="o">/</span> <span class="n">interactions</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">fractal</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
 </div>

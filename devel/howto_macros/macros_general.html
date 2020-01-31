@@ -1197,7 +1197,8 @@ example:</p>
 22
 23
 24
-25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+25
+26</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">linspace</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
 <span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">j0</span>
@@ -1222,8 +1223,11 @@ example:</p>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Verify $J_0(x)=\frac{1}{\pi}\int_0^{\pi}\cos(x \sin\phi)\,d\phi$&#39;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
+<p>The last call to <code class="docutils literal"><span class="pre">pyplot.draw()</span></code> is important to ensure the client updates
+the figure properly.</p>
 <p>Running this macro from spock will result in something like:</p>
 <blockquote>
 <div><img alt="../../_images/macro_plotting1.png" src="../../_images/macro_plotting1.png" />
@@ -1252,7 +1256,8 @@ example:</p>
 21
 22
 23
-24</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+24
+25</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
 
 <span class="nd">@macro</span><span class="p">([[</span><span class="s2">&quot;interactions&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span>
         <span class="p">[</span><span class="s2">&quot;density&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]])</span>
@@ -1276,6 +1281,7 @@ example:</p>
         <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">fractal</span> <span class="o">==</span> <span class="mi">255</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
         <span class="n">fractal</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="mi">254</span> <span class="o">*</span> <span class="n">n</span> <span class="o">/</span> <span class="n">finteractions</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">fractal</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">pyplot</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
 <p>And the resulting image (interactions=20, density=512):</p>
@@ -1302,6 +1308,10 @@ the actual line is in spock). The result of any function call in
 <p>Also consider that each time you plot the complete data to be plotted is sent
 from the server to the client... so please avoid plotting arrays of 10,000,000
 points!</p>
+<p>Clients like spock receive the requests to plot in a separate thread.
+Matplotlib has a long history of issues concerning plot updates using different
+threads. To mitigate these effects please be sure to call <code class="docutils literal"><span class="pre">self.pyplot.draw()</span></code>
+on your macro every time you need to be sure the matplotlib figure is up to date.</p>
 </div>
 </div>
 <div class="section" id="asking-for-user-input">
