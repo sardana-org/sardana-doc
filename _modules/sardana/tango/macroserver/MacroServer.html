@@ -293,7 +293,7 @@
             <span class="c1"># force the element list cache to be rebuild next time someone reads</span>
             <span class="c1"># the element list</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">ElementsCache</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="n">elems_attr</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">evt_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="n">elems_attr</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">evt_value</span><span class="o">.</span><span class="n">rvalue</span><span class="p">)</span>
             <span class="c1">#self.push_change_event(&#39;Elements&#39;, *evt_value.value)</span>
         <span class="k">elif</span> <span class="n">evt_name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;elementcreated&quot;</span><span class="p">,</span> <span class="s2">&quot;elementdeleted&quot;</span><span class="p">):</span>
             <span class="c1"># force the element list cache to be rebuild next time someone reads</span>

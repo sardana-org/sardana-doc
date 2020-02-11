@@ -368,12 +368,17 @@
         <span class="k">if</span> <span class="n">evt_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">v</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">v</span> <span class="o">=</span> <span class="n">evt_value</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">evt_value</span><span class="o">.</span><span class="n">rvalue</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="s2">&quot;magnitude&quot;</span><span class="p">):</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">magnitude</span>
         <span class="n">EventGenerator</span><span class="o">.</span><span class="n">fireEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">last_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attr</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="ow">not</span> <span class="n">force</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">last_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attr</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="ow">not</span> <span class="n">force</span><span class="p">)</span><span class="o">.</span><span class="n">rvalue</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">last_val</span><span class="p">,</span> <span class="s2">&quot;magnitude&quot;</span><span class="p">):</span>
+                <span class="n">last_val</span> <span class="o">=</span> <span class="n">last_val</span><span class="o">.</span><span class="n">magnitude</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">last_val</span> <span class="o">=</span> <span class="n">last_val</span>
         <span class="k">except</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Read error&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Details:&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -443,7 +448,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">getStateEG</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_find_pool_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">pool</span> <span class="o">=</span> <span class="n">get_pool_for_device</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getParentObj</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHWObj</span><span class="p">())</span>
+        <span class="n">pool</span> <span class="o">=</span> <span class="n">get_pool_for_device</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getParentObj</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDeviceProxy</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">pool</span>
 
     <span class="k">def</span> <span class="nf">_find_pool_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1581,7 +1586,7 @@
         <span class="k">for</span> <span class="n">channel_name</span><span class="p">,</span> <span class="n">channel_data</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">cache</span><span class="p">[</span><span class="n">channel_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="n">data_source</span> <span class="o">=</span> <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span>
-            <span class="n">params</span> <span class="o">=</span> <span class="n">tg_attr_validator</span><span class="o">.</span><span class="n">getParams</span><span class="p">(</span><span class="n">data_source</span><span class="p">)</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="n">tg_attr_validator</span><span class="o">.</span><span class="n">getUriGroups</span><span class="p">(</span><span class="n">data_source</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="c1"># Handle NON tango channel</span>
                 <span class="n">n_tg_chs</span><span class="p">[</span><span class="n">channel_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_data</span>
@@ -1869,7 +1874,7 @@
         <span class="k">if</span> <span class="n">evt_type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">CHANGE_EVT_TYPES</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Configuration changed&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_setConfiguration</span><span class="p">(</span><span class="n">evt_value</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setConfiguration</span><span class="p">(</span><span class="n">evt_value</span><span class="o">.</span><span class="n">rvalue</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.getTimerName"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getTimerName">[docs]</a>    <span class="k">def</span> <span class="nf">getTimerName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getTimer</span><span class="p">()[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span></div>

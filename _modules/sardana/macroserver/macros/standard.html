@@ -449,7 +449,7 @@
         <span class="n">name</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>
         <span class="n">old_pos</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">getPosition</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">offset_attr</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s1">&#39;Offset&#39;</span><span class="p">)</span>
-        <span class="n">old_offset</span> <span class="o">=</span> <span class="n">offset_attr</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">old_offset</span> <span class="o">=</span> <span class="n">offset_attr</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span><span class="o">.</span><span class="n">magnitude</span>
         <span class="n">new_offset</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">-</span> <span class="p">(</span><span class="n">old_pos</span> <span class="o">-</span> <span class="n">old_offset</span><span class="p">)</span>
         <span class="n">offset_attr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">new_offset</span><span class="p">)</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> reset from </span><span class="si">%.4f</span><span class="s2"> (offset </span><span class="si">%.4f</span><span class="s2">) to </span><span class="si">%.4f</span><span class="s2"> (offset </span><span class="si">%.4f</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span>
@@ -508,8 +508,8 @@
             <span class="k">except</span><span class="p">:</span>
                 <span class="n">val1</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">motor</span><span class="o">.</span><span class="n">getPosition</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-            <span class="n">val2</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">posObj</span><span class="o">.</span><span class="n">getMaxValue</span><span class="p">()</span>
-            <span class="n">val3</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">posObj</span><span class="o">.</span><span class="n">getMinValue</span><span class="p">()</span>
+            <span class="n">val2</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">posObj</span><span class="o">.</span><span class="n">getMaxRange</span><span class="p">()</span><span class="o">.</span><span class="n">magnitude</span>
+            <span class="n">val3</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">posObj</span><span class="o">.</span><span class="n">getMinRange</span><span class="p">()</span><span class="o">.</span><span class="n">magnitude</span>
 
             <span class="k">if</span> <span class="n">show_ctrlaxis</span><span class="p">:</span>
                 <span class="n">valctrl</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="p">(</span><span class="n">ctrl_name</span><span class="p">)</span>
@@ -527,8 +527,8 @@
                     <span class="n">val1</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">motor</span><span class="o">.</span><span class="n">getDialPosition</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
                 <span class="n">dPosObj</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">getDialPositionObj</span><span class="p">()</span>
-                <span class="n">val2</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">dPosObj</span><span class="o">.</span><span class="n">getMaxValue</span><span class="p">()</span>
-                <span class="n">val3</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">dPosObj</span><span class="o">.</span><span class="n">getMinValue</span><span class="p">()</span>
+                <span class="n">val2</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">dPosObj</span><span class="o">.</span><span class="n">getMaxRange</span><span class="p">()</span><span class="o">.</span><span class="n">magnitude</span>
+                <span class="n">val3</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">dPosObj</span><span class="o">.</span><span class="n">getMinRange</span><span class="p">()</span><span class="o">.</span><span class="n">magnitude</span>
 
                 <span class="n">dpos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="p">[</span><span class="n">val2</span><span class="p">,</span> <span class="n">val1</span><span class="p">,</span> <span class="n">val3</span><span class="p">]))</span>
                 <span class="n">pos_data</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">dpos</span>
@@ -571,8 +571,9 @@
             <span class="n">name</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>
             <span class="n">motor_names</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">name</span><span class="p">])</span>
             <span class="n">posObj</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">getPositionObj</span><span class="p">()</span>
-            <span class="n">upos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="p">[</span><span class="n">posObj</span><span class="o">.</span><span class="n">getMaxValue</span><span class="p">(),</span> <span class="n">motor</span><span class="o">.</span><span class="n">getPosition</span><span class="p">(</span>
-                <span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">posObj</span><span class="o">.</span><span class="n">getMinValue</span><span class="p">()]))</span>
+            <span class="n">upos</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="p">[</span><span class="n">posObj</span><span class="o">.</span><span class="n">getMaxRange</span><span class="p">()</span><span class="o">.</span><span class="n">magnitude</span><span class="p">,</span>
+                                  <span class="n">motor</span><span class="o">.</span><span class="n">getPosition</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+                                  <span class="n">posObj</span><span class="o">.</span><span class="n">getMinRange</span><span class="p">()</span><span class="o">.</span><span class="n">magnitude</span><span class="p">]))</span>
             <span class="n">pos_data</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">upos</span>
 
             <span class="n">motor_pos</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos_data</span><span class="p">)</span>
@@ -631,7 +632,7 @@
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Motor to check state&#39;</span><span class="p">]]</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Motor </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">motor</span><span class="o">.</span><span class="n">getState</span><span class="p">()))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Motor </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">motor</span><span class="o">.</span><span class="n">stateObj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="umv"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.umv">[docs]</a><span class="k">class</span> <span class="nc">umv</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -792,7 +793,7 @@
 <span class="k">def</span> <span class="nf">_value_to_repr</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="s2">&quot;&lt;nodata&gt;&quot;</span>
-    <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">rank</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">ndim</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">data</span>
