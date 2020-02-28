@@ -191,6 +191,7 @@
 <span class="kn">from</span> <span class="nn">taurus.core.util.enumeration</span> <span class="k">import</span> <span class="n">Enumeration</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.threadpool</span> <span class="k">import</span> <span class="n">ThreadPool</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.event</span> <span class="k">import</span> <span class="n">CallableRef</span>
+<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoDeviceNameValidator</span>
 
 <span class="kn">from</span> <span class="nn">sardana.util.tree</span> <span class="k">import</span> <span class="n">BranchNode</span><span class="p">,</span> <span class="n">LeafNode</span><span class="p">,</span> <span class="n">Tree</span>
 <span class="kn">from</span> <span class="nn">sardana.util.motion</span> <span class="k">import</span> <span class="n">Motor</span> <span class="k">as</span> <span class="n">VMotor</span>
@@ -2179,18 +2180,12 @@
 <span class="sd">        .. todo:: add validation for psuedo counters</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">non_compatible_channels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">validator</span> <span class="o">=</span> <span class="n">TangoDeviceNameValidator</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">channel_info</span> <span class="ow">in</span> <span class="n">measurement_group</span><span class="o">.</span><span class="n">getChannels</span><span class="p">():</span>
             <span class="n">full_name</span> <span class="o">=</span> <span class="n">channel_info</span><span class="p">[</span><span class="s2">&quot;full_name&quot;</span><span class="p">]</span>
             <span class="n">name</span> <span class="o">=</span> <span class="n">channel_info</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="c1"># Use DeviceProxy instead of taurus to avoid crashes in Py3</span>
-                <span class="c1"># See: tango-controls/pytango#292</span>
-                <span class="c1"># taurus.Device(full_name)</span>
-                <span class="n">PyTango</span><span class="o">.</span><span class="n">DeviceProxy</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="c1"># external channels are attributes so Device constructor fails</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">validator</span><span class="o">.</span><span class="n">isValid</span><span class="p">(</span><span class="n">full_name</span><span class="p">):</span>
                 <span class="n">non_compatible_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-                <span class="k">continue</span>
         <span class="n">is_compatible</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">non_compatible_channels</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
         <span class="k">return</span> <span class="n">is_compatible</span><span class="p">,</span> <span class="n">non_compatible_channels</span>
 
