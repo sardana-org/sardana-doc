@@ -733,6 +733,21 @@
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">pass</span></div>
 
+<div class="viewcode-block" id="PoolElementDevice.delete_device"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/PoolDevice.html#sardana.tango.pool.PoolDevice.PoolElementDevice.delete_device">[docs]</a>    <span class="k">def</span> <span class="nf">delete_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">element</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">element</span><span class="o">.</span><span class="n">deleted</span><span class="p">:</span>
+            <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ctrl</span>
+            <span class="n">ctrl</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span>
+            <span class="k">if</span> <span class="n">ctrl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">axis</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">axis</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">ctrl</span><span class="o">.</span><span class="n">DeleteDevice</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="n">name</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">name</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Unable to delete </span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span>
+                               <span class="n">exc_info</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">PoolDevice</span><span class="o">.</span><span class="n">delete_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="PoolElementDevice.read_Instrument"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/PoolDevice.html#sardana.tango.pool.PoolDevice.PoolElementDevice.read_Instrument">[docs]</a>    <span class="k">def</span> <span class="nf">read_Instrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Read the value of the ``Instrument`` tango attribute.</span>
 <span class="sd">        Returns the instrument full name or empty string if this element doesn&#39;t</span>

@@ -186,6 +186,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_axis</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;axis&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_id</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_id</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deleted</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">instrument</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;instrument&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_instrument</span><span class="p">(</span><span class="n">instrument</span><span class="p">)</span>
@@ -213,6 +214,12 @@
 
 <div class="viewcode-block" id="PoolElement.get_axis"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolElement.get_axis">[docs]</a>    <span class="k">def</span> <span class="nf">get_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_axis</span></div>
+
+<div class="viewcode-block" id="PoolElement.is_deleted"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolElement.is_deleted">[docs]</a>    <span class="k">def</span> <span class="nf">is_deleted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deleted</span></div>
+
+<div class="viewcode-block" id="PoolElement.set_deleted"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolElement.set_deleted">[docs]</a>    <span class="k">def</span> <span class="nf">set_deleted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">deleted</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deleted</span> <span class="o">=</span> <span class="n">deleted</span></div>
 
 <div class="viewcode-block" id="PoolElement.set_action_cache"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolElement.set_action_cache">[docs]</a>    <span class="k">def</span> <span class="nf">set_action_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">action_cache</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_action_cache</span> <span class="o">=</span> <span class="n">action_cache</span>
@@ -282,7 +289,9 @@
     <span class="n">controller</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_controller</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;element controller&quot;</span><span class="p">)</span>
     <span class="n">controller_id</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_controller_id</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;element controller id&quot;</span><span class="p">)</span>
     <span class="n">instrument</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_instrument</span><span class="p">,</span> <span class="n">set_instrument</span><span class="p">,</span>
-                          <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;element instrument&quot;</span><span class="p">)</span></div>
+                          <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;element instrument&quot;</span><span class="p">)</span>
+    <span class="n">deleted</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">is_deleted</span><span class="p">,</span> <span class="n">set_deleted</span><span class="p">,</span>
+                       <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;element is deleted from pool (experimental API)&quot;</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
