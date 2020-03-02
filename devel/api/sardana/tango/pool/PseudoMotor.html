@@ -201,14 +201,13 @@
 </td></tr></table>
 <div class="section" id="id1">
 <h2>PseudoMotor<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<img src="../../../../../_images/inheritance-7e55889fb3193fb6051981e6493aa35b8f20a498.png" alt="Inheritance diagram of PseudoMotor" usemap="#inheritance10b4ae20f0" class="inheritance"/>
+<img src="../../../../../_images/inheritance-057aa986f936bd40eae3b4ed1484fc0a604a5a8a.png" alt="Inheritance diagram of PseudoMotor" usemap="#inheritance10b4ae20f0" class="inheritance"/>
 <map id="inheritance10b4ae20f0" name="inheritance10b4ae20f0">
-<area shape="rect" id="node7" title="Latest implementation of the TANGO device base class (alias for Device_5Impl)." alt="" coords="102,525,234,564"/>
-<area shape="rect" id="node11" href="../core/SardanaDevice.html#sardana.tango.core.SardanaDevice.SardanaDevice" target="_top" title="SardanaDevice represents the base class for all Sardana" alt="" coords="54,612,173,651"/>
-<area shape="rect" id="node8" title="The taurus logger class. All taurus pertinent classes should inherit" alt="" coords="5,525,77,564"/>
-<area shape="rect" id="node10" href="PoolDevice.html#sardana.tango.pool.PoolDevice.PoolDevice" target="_top" title="Base Tango Pool device class" alt="" coords="67,699,159,737"/>
-<area shape="rect" id="node12" href="PoolDevice.html#sardana.tango.pool.PoolDevice.PoolElementDevice" target="_top" title="Base Tango Pool Element Device class" alt="" coords="41,785,186,824"/>
-<area shape="rect" id="node13" href="#sardana.tango.pool.PseudoMotor.PseudoMotor" target="_top" title="PseudoMotor" alt="" coords="60,872,167,911"/>
+<area shape="rect" id="node9" href="../core/SardanaDevice.html#sardana.tango.core.SardanaDevice.SardanaDevice" target="_top" title="SardanaDevice represents the base class for all Sardana" alt="" coords="47,439,166,477"/>
+<area shape="rect" id="node6" title="The taurus logger class. All taurus pertinent classes should inherit" alt="" coords="5,352,77,391"/>
+<area shape="rect" id="node8" href="PoolDevice.html#sardana.tango.pool.PoolDevice.PoolDevice" target="_top" title="Base Tango Pool device class" alt="" coords="61,525,153,564"/>
+<area shape="rect" id="node10" href="PoolDevice.html#sardana.tango.pool.PoolDevice.PoolElementDevice" target="_top" title="Base Tango Pool Element Device class" alt="" coords="34,612,179,651"/>
+<area shape="rect" id="node11" href="#sardana.tango.pool.PseudoMotor.PseudoMotor" target="_top" title="PseudoMotor" alt="" coords="53,699,160,737"/>
 </map>
 <dl class="class">
 <dt id="sardana.tango.pool.PseudoMotor.PseudoMotor">
@@ -344,17 +343,17 @@ position(s)</p>
 
 <dl class="attribute">
 <dt id="sardana.tango.pool.PseudoMotor.PseudoMotorClass.device_property_list">
-<code class="descname">device_property_list</code><em class="property"> = {'Force_HW_Read': [tango._tango.CmdArgType.DevBoolean, 'Force a hardware read of value even when in operation (motion/acquisition', False], 'Instrument_id': [tango._tango.CmdArgType.DevLong64, 'Controller ID', [0]], 'DriftCorrection': [tango._tango.CmdArgType.DevBoolean, 'Locally apply drift correction on pseudo motors. Default is the current global drift correction in the Pool Device', None], 'Elements': [tango._tango.CmdArgType.DevVarStringArray, 'elements used by the pseudo', []], 'Id': [tango._tango.CmdArgType.DevLong64, 'Internal ID', 0], 'Axis': [tango._tango.CmdArgType.DevLong64, 'Axis in the controller', [0]], 'Ctrl_id': [tango._tango.CmdArgType.DevLong64, 'Controller ID', [0]]}</em><a class="headerlink" href="#sardana.tango.pool.PseudoMotor.PseudoMotorClass.device_property_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">device_property_list</code><em class="property"> = {'Axis': [tango._tango.CmdArgType.DevLong64, 'Axis in the controller', [0]], 'Force_HW_Read': [tango._tango.CmdArgType.DevBoolean, 'Force a hardware read of value even when in operation (motion/acquisition', False], 'Instrument_id': [tango._tango.CmdArgType.DevLong64, 'Controller ID', [0]], 'Elements': [tango._tango.CmdArgType.DevVarStringArray, 'elements used by the pseudo', []], 'Id': [tango._tango.CmdArgType.DevLong64, 'Internal ID', 0], 'Ctrl_id': [tango._tango.CmdArgType.DevLong64, 'Controller ID', [0]], 'DriftCorrection': [tango._tango.CmdArgType.DevBoolean, 'Locally apply drift correction on pseudo motors. Default is the current global drift correction in the Pool Device', None]}</em><a class="headerlink" href="#sardana.tango.pool.PseudoMotor.PseudoMotorClass.device_property_list" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="sardana.tango.pool.PseudoMotor.PseudoMotorClass.cmd_list">
-<code class="descname">cmd_list</code><em class="property"> = {'MoveRelative': [[tango._tango.CmdArgType.DevDouble, 'amount to move'], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'CalcPhysical': [[tango._tango.CmdArgType.DevDouble, 'pseudo position'], [tango._tango.CmdArgType.DevVarDoubleArray, 'physical positions']], 'CalcAllPhysical': [[tango._tango.CmdArgType.DevVarDoubleArray, 'pseudo positions'], [tango._tango.CmdArgType.DevVarDoubleArray, 'physical positions']], 'CalcAllPseudo': [[tango._tango.CmdArgType.DevVarDoubleArray, 'physical positions'], [tango._tango.CmdArgType.DevVarDoubleArray, 'pseudo positions']], 'CalcPseudo': [[tango._tango.CmdArgType.DevVarDoubleArray, 'physical positions'], [tango._tango.CmdArgType.DevDouble, 'pseudo position']], 'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PseudoMotor.PseudoMotorClass.cmd_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">cmd_list</code><em class="property"> = {'CalcPhysical': [[tango._tango.CmdArgType.DevDouble, 'pseudo position'], [tango._tango.CmdArgType.DevVarDoubleArray, 'physical positions']], 'CalcAllPseudo': [[tango._tango.CmdArgType.DevVarDoubleArray, 'physical positions'], [tango._tango.CmdArgType.DevVarDoubleArray, 'pseudo positions']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'CalcPseudo': [[tango._tango.CmdArgType.DevVarDoubleArray, 'physical positions'], [tango._tango.CmdArgType.DevDouble, 'pseudo position']], 'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'CalcAllPhysical': [[tango._tango.CmdArgType.DevVarDoubleArray, 'pseudo positions'], [tango._tango.CmdArgType.DevVarDoubleArray, 'physical positions']], 'MoveRelative': [[tango._tango.CmdArgType.DevDouble, 'amount to move'], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PseudoMotor.PseudoMotorClass.cmd_list" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="sardana.tango.pool.PseudoMotor.PseudoMotorClass.standard_attr_list">
-<code class="descname">standard_attr_list</code><em class="property"> = {'Position': [[tango._tango.CmdArgType.DevDouble, tango._tango.AttrDataFormat.SCALAR, tango._tango.AttrWriteType.READ_WRITE], {'label': 'Position', 'abs_change': '1.0'}]}</em><a class="headerlink" href="#sardana.tango.pool.PseudoMotor.PseudoMotorClass.standard_attr_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">standard_attr_list</code><em class="property"> = {'Position': [[tango._tango.CmdArgType.DevDouble, tango._tango.AttrDataFormat.SCALAR, tango._tango.AttrWriteType.READ_WRITE], {'abs_change': '1.0', 'label': 'Position'}]}</em><a class="headerlink" href="#sardana.tango.pool.PseudoMotor.PseudoMotorClass.standard_attr_list" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
