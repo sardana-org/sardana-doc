@@ -188,12 +188,12 @@
 <span class="kn">import</span> <span class="nn">collections</span>
 
 
-<div class="viewcode-block" id="Pool"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool">[docs]</a><span class="k">class</span> <span class="nc">Pool</span><span class="p">(</span><span class="n">PyTango</span><span class="o">.</span><span class="n">Device_4Impl</span><span class="p">,</span> <span class="n">Logger</span><span class="p">):</span>
+<div class="viewcode-block" id="Pool"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool">[docs]</a><span class="k">class</span> <span class="nc">Pool</span><span class="p">(</span><span class="n">PyTango</span><span class="o">.</span><span class="n">LatestDeviceImpl</span><span class="p">,</span> <span class="n">Logger</span><span class="p">):</span>
 
     <span class="n">ElementsCache</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="n">PyTango</span><span class="o">.</span><span class="n">Device_4Impl</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">PyTango</span><span class="o">.</span><span class="n">LatestDeviceImpl</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">Logger</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init_device</span><span class="p">()</span>
@@ -1716,7 +1716,7 @@
     <span class="k">def</span> <span class="nf">_get_class_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ProjectTitle</span><span class="o">=</span><span class="s2">&quot;Sardana&quot;</span><span class="p">,</span> <span class="n">Description</span><span class="o">=</span><span class="s2">&quot;Device Pool management class&quot;</span><span class="p">,</span>
                     <span class="n">doc_url</span><span class="o">=</span><span class="s2">&quot;http://sardana-controls.org/&quot;</span><span class="p">,</span>
-                    <span class="n">InheritedFrom</span><span class="o">=</span><span class="s2">&quot;Device_4Impl&quot;</span><span class="p">)</span>
+                    <span class="n">InheritedFrom</span><span class="o">=</span><span class="s2">&quot;Device_5Impl&quot;</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">write_class_property</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">util</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">Util</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
