@@ -335,6 +335,8 @@
     <span class="sd">&quot;&quot;&quot;A generic class to handle any type of operation (like motion or</span>
 <span class="sd">    acquisition)&quot;&quot;&quot;</span>
 
+    <span class="n">OperationContextClass</span> <span class="o">=</span> <span class="n">OperationContext</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;GlobalAction&quot;</span><span class="p">):</span>
         <span class="n">Logger</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_action_run_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
@@ -476,7 +478,7 @@
 
         <span class="k">if</span> <span class="n">synch</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">with</span> <span class="n">OperationContext</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">as</span> <span class="n">context</span><span class="p">:</span>
+                <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">OperationContextClass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="k">as</span> <span class="n">context</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">action_loop</span><span class="p">()</span>
@@ -484,7 +486,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">False</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_running</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">context</span> <span class="o">=</span> <span class="n">OperationContext</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">OperationContextClass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
             <span class="n">context</span><span class="o">.</span><span class="n">enter</span><span class="p">()</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>

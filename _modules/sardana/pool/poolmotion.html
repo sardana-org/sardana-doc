@@ -171,6 +171,7 @@
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
 <span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">functools</span>
 
 <span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">DebugIt</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.enumeration</span> <span class="k">import</span> <span class="n">Enumeration</span>
@@ -530,9 +531,11 @@
                     <span class="c1"># ... but before protect the motor so that the monitor</span>
                     <span class="c1"># doesn&#39;t come in between the two instructions below and</span>
                     <span class="c1"># send a state event on it&#39;s own</span>
-                    <span class="k">with</span> <span class="n">moveable</span><span class="p">:</span>
-                        <span class="n">moveable</span><span class="o">.</span><span class="n">clear_operation</span><span class="p">()</span>
-                    <span class="n">moveable</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">(</span><span class="n">real_state_info</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="n">set_state_info</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">moveable</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">,</span>
+                                                       <span class="n">state_info</span><span class="p">,</span>
+                                                       <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                                                       <span class="n">safe</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add_finish_hook</span><span class="p">(</span><span class="n">set_state_info</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
                 <span class="c1"># Then update the state</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">stopped_now</span><span class="p">:</span>
