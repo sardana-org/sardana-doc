@@ -395,28 +395,21 @@
         <span class="k">for</span> <span class="n">new_position</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">new_positions</span><span class="p">,</span> <span class="n">user_elements</span><span class="p">):</span>
             <span class="n">calculated</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_position</span>
 
-            <span class="c1"># TODO: get the configuration for an specific sardana class and</span>
-            <span class="c1"># get rid of AttributeProxy.</span>
-            <span class="n">config</span> <span class="o">=</span> <span class="n">AttributeProxy</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;/position&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+            <span class="c1"># TODO: use Sardana attribute configuration and</span>
+            <span class="c1">#  get rid of accessing tango - see sardana-org/sardana#663</span>
+            <span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">_check_attr_range</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">high</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">max_value</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="n">high</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">low</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">min_value</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
-                <span class="n">low</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">if</span> <span class="n">high</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">new_position</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">high</span><span class="p">:</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;requested movement of </span><span class="si">%s</span><span class="s2"> is above its upper limit&quot;</span>\
-                        <span class="o">%</span> <span class="n">element</span><span class="o">.</span><span class="n">name</span>
-                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">low</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="nb">float</span><span class="p">(</span><span class="n">new_position</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">low</span><span class="p">:</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;requested movement of </span><span class="si">%s</span><span class="s2"> is below its lower limit&quot;</span>\
-                        <span class="o">%</span> <span class="n">element</span><span class="o">.</span><span class="n">name</span>
-                    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">_check_attr_range</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="n">new_position</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="c1"># TODO: don&#39;t concatenate exception message whenever</span>
+                <span class="c1">#  tango-controls/pytango#340 is fixed</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;requested move of </span><span class="si">{}</span><span class="s2"> is outside of limits (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
 
+            <span class="n">element</span><span class="o">.</span><span class="n">calculate_motion</span><span class="p">(</span><span class="n">new_position</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">,</span>
+                                     <span class="n">calculated</span><span class="o">=</span><span class="n">calculated</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">new_position</span><span class="p">,</span> <span class="n">element</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">new_positions</span><span class="p">,</span> <span class="n">user_elements</span><span class="p">):</span>
             <span class="n">element</span><span class="o">.</span><span class="n">calculate_motion</span><span class="p">(</span><span class="n">new_position</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">,</span>
                                      <span class="n">calculated</span><span class="o">=</span><span class="n">calculated</span><span class="p">)</span>
