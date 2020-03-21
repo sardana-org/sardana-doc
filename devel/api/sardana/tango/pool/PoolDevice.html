@@ -572,7 +572,7 @@ stored in the database</p>
 
 <dl class="attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolDeviceClass.device_property_list">
-<code class="descname">device_property_list</code><em class="property"> = {'Force_HW_Read': [tango._tango.CmdArgType.DevBoolean, 'Force a hardware read of value even when in operation (motion/acquisition', False], 'Id': [tango._tango.CmdArgType.DevLong64, 'Internal ID', 0]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.device_property_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">device_property_list</code><em class="property"> = {'Id': [tango._tango.CmdArgType.DevLong64, 'Internal ID', 0], 'Force_HW_Read': [tango._tango.CmdArgType.DevBoolean, 'Force a hardware read of value even when in operation (motion/acquisition', False]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.device_property_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device properties definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -582,7 +582,7 @@ stored in the database</p>
 
 <dl class="attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolDeviceClass.cmd_list">
-<code class="descname">cmd_list</code><em class="property"> = {'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">cmd_list</code><em class="property"> = {'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device command definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -777,7 +777,7 @@ element to get the dynamic attribute value</p>
 <p>Base Tango Pool Element Device Class class</p>
 <dl class="attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDeviceClass.device_property_list">
-<code class="descname">device_property_list</code><em class="property"> = {'Instrument_id': [tango._tango.CmdArgType.DevLong64, 'Controller ID', [0]], 'Id': [tango._tango.CmdArgType.DevLong64, 'Internal ID', 0], 'Axis': [tango._tango.CmdArgType.DevLong64, 'Axis in the controller', [0]], 'Force_HW_Read': [tango._tango.CmdArgType.DevBoolean, 'Force a hardware read of value even when in operation (motion/acquisition', False], 'Ctrl_id': [tango._tango.CmdArgType.DevLong64, 'Controller ID', [0]]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.device_property_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">device_property_list</code><em class="property"> = {'Id': [tango._tango.CmdArgType.DevLong64, 'Internal ID', 0], 'Ctrl_id': [tango._tango.CmdArgType.DevLong64, 'Controller ID', [0]], 'Axis': [tango._tango.CmdArgType.DevLong64, 'Axis in the controller', [0]], 'Force_HW_Read': [tango._tango.CmdArgType.DevBoolean, 'Force a hardware read of value even when in operation (motion/acquisition', False], 'Instrument_id': [tango._tango.CmdArgType.DevLong64, 'Controller ID', [0]]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.device_property_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device properties definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -787,7 +787,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDeviceClass.attr_list">
-<code class="descname">attr_list</code><em class="property"> = {'Instrument': [[tango._tango.CmdArgType.DevString, tango._tango.AttrDataFormat.SCALAR, tango._tango.AttrWriteType.READ_WRITE], {'label': 'Instrument', 'Display level': tango._tango.DispLevel.EXPERT}], 'SimulationMode': [[tango._tango.CmdArgType.DevBoolean, tango._tango.AttrDataFormat.SCALAR, tango._tango.AttrWriteType.READ_WRITE], {'label': 'Simulation mode'}]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.attr_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">attr_list</code><em class="property"> = {'SimulationMode': [[tango._tango.CmdArgType.DevBoolean, tango._tango.AttrDataFormat.SCALAR, tango._tango.AttrWriteType.READ_WRITE], {'label': 'Simulation mode'}], 'Instrument': [[tango._tango.CmdArgType.DevString, tango._tango.AttrDataFormat.SCALAR, tango._tango.AttrWriteType.READ_WRITE], {'Display level': tango._tango.DispLevel.EXPERT, 'label': 'Instrument'}]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.attr_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device attribute definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -797,7 +797,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDeviceClass.cmd_list">
-<code class="descname">cmd_list</code><em class="property"> = {'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">cmd_list</code><em class="property"> = {'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -887,7 +887,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.cmd_list">
-<code class="descname">cmd_list</code><em class="property"> = {'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
+<code class="descname">cmd_list</code><em class="property"> = {'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device command definition</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
