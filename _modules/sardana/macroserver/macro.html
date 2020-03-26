@@ -195,19 +195,16 @@
 
 <span class="kn">from</span> <span class="nn">sardana.sardanadefs</span> <span class="k">import</span> <span class="n">State</span>
 <span class="kn">from</span> <span class="nn">sardana.util.wrap</span> <span class="k">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">sardana.util.thread</span> <span class="k">import</span> <span class="n">_asyncexc</span>
 
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="k">import</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamType</span><span class="p">,</span> <span class="n">ParamRepeat</span><span class="p">,</span> \
     <span class="n">Optional</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">StopException</span><span class="p">,</span> <span class="n">AbortException</span><span class="p">,</span> \
-    <span class="n">MacroWrongParameterType</span><span class="p">,</span> <span class="n">UnknownEnv</span><span class="p">,</span> <span class="n">UnknownMacro</span><span class="p">,</span> <span class="n">LibraryError</span>
+    <span class="n">ReleaseException</span><span class="p">,</span> <span class="n">MacroWrongParameterType</span><span class="p">,</span> <span class="n">UnknownEnv</span><span class="p">,</span> <span class="n">UnknownMacro</span><span class="p">,</span> \
+    <span class="n">LibraryError</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msoptions</span> <span class="k">import</span> <span class="n">ViewOption</span>
 
 <span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana.pool</span> <span class="k">import</span> <span class="n">PoolElement</span>
-
-<span class="n">asyncexc</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">pythonapi</span><span class="o">.</span><span class="n">PyThreadState_SetAsyncExc</span>
-<span class="c1"># first define the async exception function args. This is</span>
-<span class="c1"># absolutely necessary for 64 bits machines.</span>
-<span class="n">asyncexc</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">py_object</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">OverloadPrint</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -2522,6 +2519,8 @@
 <span class="sd">        protecting it against exceptions&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">on_abort</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ReleaseException</span><span class="p">:</span>
+            <span class="k">pass</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">Logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Error in on_abort(): </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span>
                          <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">())</span>
@@ -2549,7 +2548,7 @@
             <span class="n">th</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_thread</span>
             <span class="n">th_id</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_long</span><span class="p">(</span><span class="n">th</span><span class="o">.</span><span class="n">ident</span><span class="p">)</span>
             <span class="n">Logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Sending AbortException to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">th</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="n">asyncexc</span><span class="p">(</span><span class="n">th_id</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">py_object</span><span class="p">(</span><span class="n">AbortException</span><span class="p">))</span>
+            <span class="n">ret</span> <span class="o">=</span> <span class="n">_asyncexc</span><span class="p">(</span><span class="n">th_id</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">py_object</span><span class="p">(</span><span class="n">AbortException</span><span class="p">))</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">if</span> <span class="n">ret</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="c1"># try again</span>

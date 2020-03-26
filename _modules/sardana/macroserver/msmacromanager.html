@@ -205,8 +205,9 @@
     <span class="n">Hookable</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">UnknownMacroLibrary</span><span class="p">,</span> \
     <span class="n">LibraryError</span><span class="p">,</span> <span class="n">UnknownMacro</span><span class="p">,</span> <span class="n">MissingEnv</span><span class="p">,</span> <span class="n">AbortException</span><span class="p">,</span> <span class="n">StopException</span><span class="p">,</span> \
-    <span class="n">MacroServerException</span><span class="p">,</span> <span class="n">UnknownEnv</span>
+    <span class="n">ReleaseException</span><span class="p">,</span> <span class="n">MacroServerException</span><span class="p">,</span> <span class="n">UnknownEnv</span>
 <span class="kn">from</span> <span class="nn">sardana.util.parser</span> <span class="k">import</span> <span class="n">ParamParser</span>
+<span class="kn">from</span> <span class="nn">sardana.util.thread</span> <span class="k">import</span> <span class="n">raise_in_thread</span>
 
 <span class="c1"># These classes are imported from the &quot;client&quot; part of sardana, if finally</span>
 <span class="c1"># both the client and the server side needs them, place them in some</span>
@@ -1204,6 +1205,11 @@
         <span class="c1"># key Macro - macro object</span>
         <span class="c1"># value - sequence of reserverd objects by the macro</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="c1"># dict&lt;Macro, seq&lt;PoolElement&gt;&gt;</span>
+        <span class="c1"># key Macro - macro object</span>
+        <span class="c1"># value - sequence of reserverd objects by the macro</span>
+        <span class="c1">#   which were already successfully stopped</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stopped_macro_objs</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="c1"># reset the stacks</span>
 <span class="c1">#        self._macro_stack = None</span>
@@ -1211,9 +1217,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_xml_stack</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_abort_thread</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop_thread</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_paused</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_released</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_macro_status</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># threading events for synchronization of stopping/abortting of</span>
         <span class="c1"># reserved objects</span>
@@ -1527,8 +1536,15 @@
 
     <span class="k">def</span> <span class="nf">__stopObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stops all the reserved objects in the executor&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">objs</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">for</span> <span class="n">macro</span><span class="p">,</span> <span class="n">objs</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span><span class="p">:</span>
+                <span class="k">break</span>  <span class="c1"># someone aborted, no sense to stop anymore</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_stopped_macro_objs</span><span class="p">[</span><span class="n">macro</span><span class="p">]</span> <span class="o">=</span> <span class="n">stopped_macro_objs</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span><span class="p">:</span>
+                    <span class="k">break</span>  <span class="c1"># someone aborted, no sense to stop anymore</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span>
+                    <span class="s2">&quot;Stopping </span><span class="si">{}</span><span class="s2"> reserved by </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">macro</span><span class="o">.</span><span class="n">_name</span><span class="p">))</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">obj</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
                 <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
@@ -1536,11 +1552,19 @@
                 <span class="k">except</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Unable to stop </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">obj</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Details:&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> stopped&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+                    <span class="n">stopped_macro_objs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">__abortObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Aborts all the reserved objects in the executor&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">objs</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">for</span> <span class="n">macro</span><span class="p">,</span> <span class="n">objs</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="n">stopped_macro_objs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stopped_macro_objs</span><span class="p">[</span><span class="n">macro</span><span class="p">]</span>
             <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">objs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">stopped_macro_objs</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span>
+                    <span class="s2">&quot;Aborting </span><span class="si">{}</span><span class="s2"> reserved by </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">macro</span><span class="o">.</span><span class="n">_name</span><span class="p">))</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">obj</span><span class="o">.</span><span class="n">abort</span><span class="p">()</span>
                 <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
@@ -1548,6 +1572,8 @@
                 <span class="k">except</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Unable to abort </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">obj</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Details:&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> aborted&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">_setStopDone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stop_done</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
@@ -1555,29 +1581,66 @@
     <span class="k">def</span> <span class="nf">_waitStopDone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stop_done</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">_isStopDone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_done</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span>
+
     <span class="k">def</span> <span class="nf">_setAbortDone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_abort_done</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_waitAbortDone</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_abort_done</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">_isAbortDone</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_abort_done</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span>
+
     <span class="k">def</span> <span class="nf">abort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;**Internal method**. Aborts the macro abruptly.&quot;&quot;&quot;</span>
+        <span class="c1"># carefull: Inside this method never call a method that has the</span>
+        <span class="c1"># mAPI decorator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isStopDone</span><span class="p">():</span>
+            <span class="n">Logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Break stopping...&quot;</span><span class="p">)</span>
+            <span class="n">raise_in_thread</span><span class="p">(</span><span class="n">ReleaseException</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop_thread</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">add_job</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_abort</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setAbortDone</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;**Internal method**. Release the macro from hang situations</span>
+
+<span class="sd">        Hanged situations:</span>
+<span class="sd">        * hanged process of aborting reserved objects</span>
+<span class="sd">        * hanged macro on_abort method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># carefull: Inside this method never call a method that has the</span>
+        <span class="c1"># mAPI decorator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_released</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isAbortDone</span><span class="p">():</span>
+            <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRunningMacro</span><span class="p">()</span>
+            <span class="n">Logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Break </span><span class="si">{}</span><span class="s2">.on_abort...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">_name</span><span class="p">))</span>
+            <span class="n">raise_in_thread</span><span class="p">(</span><span class="n">ReleaseException</span><span class="p">,</span> <span class="n">m</span><span class="o">.</span><span class="n">_macro_thread</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">Logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;Break aborting...&quot;</span><span class="p">)</span>
+            <span class="n">raise_in_thread</span><span class="p">(</span><span class="n">ReleaseException</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_abort_thread</span><span class="p">)</span>
+
+
     <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">add_job</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_setStopDone</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_abort</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_abort_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span><span class="p">:</span>
+            <span class="c1"># stopping did not finish on its own - we are aborting it</span>
+            <span class="c1"># but need to wait anyway so its thread finishes</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_waitStopDone</span><span class="p">()</span>
         <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRunningMacro</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">m</span><span class="o">.</span><span class="n">abort</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__abortObjects</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">current_thread</span><span class="p">()</span>
         <span class="n">m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRunningMacro</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">m</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">isPaused</span><span class="p">():</span>
                 <span class="n">m</span><span class="o">.</span><span class="n">resume</span><span class="p">(</span><span class="n">cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_macroResumed</span><span class="p">)</span>
@@ -1747,19 +1810,21 @@
                         <span class="s1">&#39;args&#39;</span><span class="p">:</span> <span class="n">err</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
                         <span class="s1">&#39;traceback&#39;</span><span class="p">:</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()}</span>
             <span class="n">macro_exp</span> <span class="o">=</span> <span class="n">MacroServerException</span><span class="p">(</span><span class="n">exp_pars</span><span class="p">)</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">returnObjs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span><span class="p">)</span>
 
         <span class="c1"># make sure the macro&#39;s on_abort is called and that a proper macro</span>
         <span class="c1"># status is sent</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_waitStopDone</span><span class="p">()</span>
-            <span class="n">macro_obj</span><span class="o">.</span><span class="n">_stopOnError</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">sendMacroStatusStop</span><span class="p">()</span>
-        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_waitAbortDone</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Executing </span><span class="si">{}</span><span class="s2">.on_abort method...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
             <span class="n">macro_obj</span><span class="o">.</span><span class="n">_abortOnError</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">sendMacroStatusAbort</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_waitStopDone</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Executing </span><span class="si">{}</span><span class="s2">.on_stop method...&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+            <span class="n">macro_obj</span><span class="o">.</span><span class="n">_stopOnError</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sendMacroStatusStop</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">returnObjs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span><span class="p">)</span>
 
         <span class="c1"># From this point on don&#39;t call any method of macro_obj which is part</span>
         <span class="c1"># of the mAPI (methods decorated with @mAPI) to avoid throwing an</span>
@@ -1897,6 +1962,8 @@
         <span class="sd">&quot;&quot;&quot;Free the macro reserved objects&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">macro_obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
+        <span class="c1"># remove stopped objects to not keep reference to them</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stopped_macro_obj</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">macro_obj</span><span class="p">)</span>
         <span class="n">objs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">macro_obj</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">objs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>

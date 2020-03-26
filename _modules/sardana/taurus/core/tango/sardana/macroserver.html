@@ -622,6 +622,33 @@
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span></div>
 
+<div class="viewcode-block" id="BaseDoor.release"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macroserver.html#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.release">[docs]</a>    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synch</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">synch</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s2">&quot;ReleaseMacro&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
+                <span class="c1"># Macro already finished - no need to release</span>
+                <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s2">&quot;API_CommandNotAllowed&quot;</span><span class="p">:</span>
+                    <span class="k">pass</span>
+            <span class="k">return</span>
+
+        <span class="n">evt_wait</span> <span class="o">=</span> <span class="n">AttributeEventWait</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">))</span>
+        <span class="n">evt_wait</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s2">&quot;ReleaseMacro&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
+                <span class="c1"># Macro already finished - no need to release</span>
+                <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s2">&quot;API_CommandNotAllowed&quot;</span><span class="p">:</span>
+                    <span class="k">return</span>
+            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                               <span class="n">after</span><span class="o">=</span><span class="n">time_stamp</span><span class="p">,</span>
+                               <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">InteractiveTimeout</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="n">evt_wait</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
+            <span class="n">evt_wait</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span></div>
+
 <div class="viewcode-block" id="BaseDoor.stop"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macroserver.html#sardana.taurus.core.tango.sardana.macroserver.BaseDoor.stop">[docs]</a>    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synch</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">synch</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s2">&quot;StopMacro&quot;</span><span class="p">)</span>

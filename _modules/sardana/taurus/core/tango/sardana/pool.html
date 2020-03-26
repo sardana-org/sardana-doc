@@ -172,6 +172,7 @@
 <span class="kn">import</span> <span class="nn">collections</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;InterruptException&quot;</span><span class="p">,</span> <span class="s2">&quot;StopException&quot;</span><span class="p">,</span> <span class="s2">&quot;AbortException&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;ReleaseException&quot;</span><span class="p">,</span>
            <span class="s2">&quot;BaseElement&quot;</span><span class="p">,</span> <span class="s2">&quot;ControllerClass&quot;</span><span class="p">,</span> <span class="s2">&quot;ControllerLibrary&quot;</span><span class="p">,</span>
            <span class="s2">&quot;PoolElement&quot;</span><span class="p">,</span> <span class="s2">&quot;Controller&quot;</span><span class="p">,</span> <span class="s2">&quot;ComChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;ExpChannel&quot;</span><span class="p">,</span>
            <span class="s2">&quot;CTExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;ZeroDExpChannel&quot;</span><span class="p">,</span> <span class="s2">&quot;OneDExpChannel&quot;</span><span class="p">,</span>
@@ -247,6 +248,10 @@
 
 
 <span class="k">class</span> <span class="nc">AbortException</span><span class="p">(</span><span class="n">InterruptException</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span> <span class="nc">ReleaseException</span><span class="p">(</span><span class="n">InterruptException</span><span class="p">):</span>
     <span class="k">pass</span>
 
 
@@ -633,17 +638,23 @@
 <span class="sd">        :param id: id of the opertation returned by start</span>
 <span class="sd">        :type id: tuple(float)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Due to taurus-org/taurus #573 we need to divide the timeout</span>
-        <span class="c1"># in two intervals</span>
-        <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># 0.1 s of timeout with infinite retries facilitates aborting</span>
+            <span class="c1"># by raising exceptions from a different threads</span>
+            <span class="n">timeout</span> <span class="o">=</span> <span class="mf">0.1</span>
+            <span class="n">retries</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Due to taurus-org/taurus #573 we need to divide the timeout</span>
+            <span class="c1"># in two intervals</span>
             <span class="n">timeout</span> <span class="o">=</span> <span class="n">timeout</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">retries</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">evt_wait</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getEventWait</span><span class="p">()</span>
         <span class="n">evt_wait</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="n">DevState</span><span class="o">.</span><span class="n">MOVING</span><span class="p">,</span> <span class="n">after</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                               <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">retries</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                               <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">retries</span><span class="o">=</span><span class="n">retries</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__go_end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__go_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_end_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_start_time</span>
