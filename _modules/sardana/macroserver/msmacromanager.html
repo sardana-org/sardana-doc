@@ -1962,8 +1962,8 @@
         <span class="sd">&quot;&quot;&quot;Free the macro reserved objects&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">macro_obj</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="c1"># remove stopped objects to not keep reference to them</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stopped_macro_obj</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">macro_obj</span><span class="p">)</span>
+        <span class="c1"># remove eventually stopped objects to not keep reference to them</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stopped_macro_objs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">macro_obj</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="n">objs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_reserved_macro_objs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">macro_obj</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">objs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
