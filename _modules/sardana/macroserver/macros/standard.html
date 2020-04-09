@@ -238,6 +238,8 @@
                         <span class="n">value</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">value</span>
                         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                             <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;NaN&#39;</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">attr</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;dialposition&#39;</span><span class="p">:</span>
+                                <span class="n">value</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">getDialPosition</span><span class="p">()</span>
                         <span class="n">data</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
                     <span class="n">req2delete</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
                 <span class="k">except</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">AsynReplyNotArrived</span><span class="p">:</span>
@@ -523,7 +525,7 @@
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">val1</span> <span class="o">=</span> <span class="n">fmt</span> <span class="o">%</span> <span class="n">motor</span><span class="o">.</span><span class="n">getDialPosition</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
                     <span class="n">val1</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">val1</span>
-                <span class="k">except</span><span class="p">:</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                     <span class="n">val1</span> <span class="o">=</span> <span class="n">str_fmt</span> <span class="o">%</span> <span class="n">motor</span><span class="o">.</span><span class="n">getDialPosition</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
                 <span class="n">dPosObj</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">getDialPositionObj</span><span class="p">()</span>
