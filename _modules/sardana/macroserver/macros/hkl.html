@@ -13,42 +13,39 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../../../index.html"/>
-        <link rel="up" title="Module code" href="../../../index.html"/> 
-
-  
-  <script src="../../../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -57,7 +54,7 @@
 
           
             
-            <img src="../../../../_static/logo.png" class="logo" />
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -86,7 +83,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
@@ -104,34 +104,52 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      
-    <li>sardana.macroserver.macros.hkl</li>
+        
+      <li>sardana.macroserver.macros.hkl</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -187,12 +205,12 @@
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">py2_round</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">iMacro</span><span class="p">,</span> <span class="n">Type</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.scan</span> <span class="k">import</span> <span class="n">aNscan</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">UnknownEnv</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="kn">import</span> <span class="n">py2_round</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">iMacro</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.scan</span> <span class="kn">import</span> <span class="n">aNscan</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">UnknownEnv</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">&quot;MacroManager&quot;</span><span class="p">)</span>
 
@@ -355,10 +373,10 @@
          <span class="s2">&quot;If 1 printing. Used by ubr&quot;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">,</span> <span class="n">FlagNotBlocking</span><span class="p">,</span> <span class="n">FlagPrinting</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="br.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.br.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">,</span> <span class="n">FlagNotBlocking</span><span class="p">,</span> <span class="n">FlagPrinting</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">,</span> <span class="n">FlagNotBlocking</span><span class="p">,</span> <span class="n">FlagPrinting</span><span class="p">):</span>
+<div class="viewcode-block" id="br.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.br.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">,</span> <span class="n">FlagNotBlocking</span><span class="p">,</span> <span class="n">FlagPrinting</span><span class="p">):</span>
         <span class="n">h_idx</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">k_idx</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="n">l_idx</span> <span class="o">=</span> <span class="mi">2</span>
@@ -406,7 +424,7 @@
                 <span class="n">angle_dev</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;Position&quot;</span><span class="p">,</span> <span class="n">angle</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="p">[</span><span class="n">hkl_values</span><span class="p">[</span><span class="n">h_idx</span><span class="p">],</span> <span class="n">hkl_values</span><span class="p">[</span><span class="n">k_idx</span><span class="p">],</span>
-                          <span class="n">hkl_values</span><span class="p">[</span><span class="n">l_idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">WaveLength</span><span class="p">])</span></div>
+                          <span class="n">hkl_values</span><span class="p">[</span><span class="n">l_idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">WaveLength</span><span class="p">])</span></div></div>
 
 
 <div class="viewcode-block" id="ubr"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ubr">[docs]</a><span class="k">class</span> <span class="nc">ubr</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -421,14 +439,14 @@
         <span class="p">[</span><span class="s1">&#39;AnglesIndex&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Angles index&quot;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="ubr.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ubr.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">):</span>
+<div class="viewcode-block" id="ubr.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ubr.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ll</span> <span class="o">!=</span> <span class="s2">&quot;Not set&quot;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s2">&quot;br&quot;</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;usage:  ubr H K L [Trajectory]&quot;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;usage:  ubr H K L [Trajectory]&quot;</span><span class="p">)</span></div></div>
 
 
 <span class="k">class</span> <span class="nc">_ca</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -532,14 +550,14 @@
         <span class="p">[</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;L value for the azimutal vector&quot;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="ca.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ca.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+<div class="viewcode-block" id="ca.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ca.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
 
         <span class="n">hkl_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s2">&quot;_ca&quot;</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s2">&quot;_ca&quot;</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="caa"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.caa">[docs]</a><span class="k">class</span> <span class="nc">caa</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -552,14 +570,14 @@
         <span class="p">[</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;L value for the azimutal vector&quot;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="caa.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.caa.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+<div class="viewcode-block" id="caa.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.caa.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
 
         <span class="n">hkl_values</span> <span class="o">=</span> <span class="p">[</span><span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s2">&quot;_ca&quot;</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s2">&quot;_ca&quot;</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="ci"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ci">[docs]</a><span class="k">class</span> <span class="nc">ci</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -575,10 +593,10 @@
         <span class="p">[</span><span class="s1">&#39;omega_t&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="s2">&quot;Omega_t value&quot;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">omega_t</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="ci.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ci.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">omega_t</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">omega_t</span><span class="p">):</span>
+<div class="viewcode-block" id="ci.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ci.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">chi</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">delta</span><span class="p">,</span> <span class="n">omega_t</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="n">delta</span> <span class="o">==</span> <span class="o">-</span><span class="mi">999</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_motors</span> <span class="o">==</span> <span class="mi">6</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Six angle values are need as argument&quot;</span><span class="p">)</span>
@@ -597,7 +615,7 @@
             <span class="n">hkl_values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">computehkl</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;h </span><span class="si">%f</span><span class="s2"> k </span><span class="si">%f</span><span class="s2"> l </span><span class="si">%f</span><span class="s2">&quot;</span> <span class="o">%</span>
-                        <span class="p">(</span><span class="n">hkl_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">hkl_values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">hkl_values</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span></div>
+                        <span class="p">(</span><span class="n">hkl_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">hkl_values</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">hkl_values</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span></div></div>
 
 
 <div class="viewcode-block" id="pa"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.pa">[docs]</a><span class="k">class</span> <span class="nc">pa</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -605,10 +623,10 @@
 
     <span class="n">suffix</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;st&quot;</span><span class="p">,</span> <span class="s2">&quot;nd&quot;</span><span class="p">,</span> <span class="s2">&quot;rd&quot;</span><span class="p">,</span> <span class="s2">&quot;th&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="pa.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.pa.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="pa.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.pa.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="n">str_type</span> <span class="o">=</span> <span class="s2">&quot;Eulerian 6C&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;E4CV&#39;</span><span class="p">:</span>
@@ -703,7 +721,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;  UB-Matrix&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;  </span><span class="si">%15g</span><span class="s2"> </span><span class="si">%15g</span><span class="s2"> </span><span class="si">%15g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;  </span><span class="si">%15g</span><span class="s2"> </span><span class="si">%15g</span><span class="s2"> </span><span class="si">%15g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;  </span><span class="si">%15g</span><span class="s2"> </span><span class="si">%15g</span><span class="s2"> </span><span class="si">%15g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;  </span><span class="si">%15g</span><span class="s2"> </span><span class="si">%15g</span><span class="s2"> </span><span class="si">%15g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">2</span><span class="p">]))</span></div></div>
 
 
 <div class="viewcode-block" id="wh"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.wh">[docs]</a><span class="k">class</span> <span class="nc">wh</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -715,10 +733,10 @@
 <span class="sd">    reflection (ALPHA and BETA) and the incident wavelength (LAMBDA)</span>
 <span class="sd">    may be displayed.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="wh.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.wh.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="wh.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.wh.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Engine: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
@@ -844,7 +862,7 @@
 
 
         <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">h_device</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_device</span><span class="o">.</span><span class="n">position</span><span class="p">,</span>
-                          <span class="bp">self</span><span class="o">.</span><span class="n">l_device</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">WaveLength</span><span class="p">])</span></div>
+                          <span class="bp">self</span><span class="o">.</span><span class="n">l_device</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">WaveLength</span><span class="p">])</span></div></div>
 
 
 <div class="viewcode-block" id="freeze"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.freeze">[docs]</a><span class="k">class</span> <span class="nc">freeze</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -855,10 +873,10 @@
         <span class="p">[</span><span class="s1">&#39;value&#39;</span><span class="p">,</span>     <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>  <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Value to be frozen&quot;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="freeze.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.freeze.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="freeze.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.freeze.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="n">parameter</span> <span class="o">==</span> <span class="s2">&quot;psi&quot;</span><span class="p">:</span>
             <span class="n">engine_restore</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">engine</span>
@@ -885,7 +903,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;enginemode&quot;</span><span class="p">,</span> <span class="n">mode_restore</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Only implemented for parameter psi. Nothing done&quot;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Only implemented for parameter psi. Nothing done&quot;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="setmode"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setmode">[docs]</a><span class="k">class</span> <span class="nc">setmode</span><span class="p">(</span><span class="n">iMacro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -896,10 +914,10 @@
     <span class="p">]</span>
 
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_mode</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="setmode.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setmode.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_mode</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_mode</span><span class="p">):</span>
+<div class="viewcode-block" id="setmode.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setmode.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_mode</span><span class="p">):</span>
 
         <span class="n">modes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">enginemodelist</span>
 
@@ -938,18 +956,18 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;enginemode&quot;</span><span class="p">,</span> <span class="n">modes</span><span class="p">[</span><span class="n">new_mode</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Now using </span><span class="si">%s</span><span class="s2"> mode&quot;</span> <span class="o">%</span> <span class="n">modes</span><span class="p">[</span><span class="n">new_mode</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;savecrystal&#39;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;savecrystal&#39;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="getmode"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.getmode">[docs]</a><span class="k">class</span> <span class="nc">getmode</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get operation mode.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="getmode.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.getmode.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="getmode.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.getmode.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">enginemode</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">enginemode</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="setlat"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setlat">[docs]</a><span class="k">class</span> <span class="nc">setlat</span><span class="p">(</span><span class="n">iMacro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -966,10 +984,10 @@
     <span class="p">]</span>
 
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="setlat.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setlat.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+<div class="viewcode-block" id="setlat.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setlat.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="n">gamma</span> <span class="o">==</span> <span class="o">-</span><span class="mi">999</span><span class="p">:</span>
             <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">a</span>
@@ -1007,7 +1025,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;computeub&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;computeub&#39;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="or0"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.or0">[docs]</a><span class="k">class</span> <span class="nc">or0</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1019,10 +1037,10 @@
         <span class="p">[</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;L value&quot;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="or0.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.or0.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+<div class="viewcode-block" id="or0.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.or0.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
 
         <span class="c1"># Check collinearity</span>
 
@@ -1038,7 +1056,7 @@
         <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;SubstituteReflection&quot;</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;computeub&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;computeub&#39;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="or1"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.or1">[docs]</a><span class="k">class</span> <span class="nc">or1</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1050,10 +1068,10 @@
         <span class="p">[</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;L value&quot;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="or1.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.or1.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
+<div class="viewcode-block" id="or1.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.or1.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
 
         <span class="c1"># Check collinearity</span>
 
@@ -1069,7 +1087,7 @@
         <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;SubstituteReflection&quot;</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;computeub&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;computeub&#39;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="setor0"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setor0">[docs]</a><span class="k">class</span> <span class="nc">setor0</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1089,14 +1107,14 @@
         <span class="p">[</span><span class="s1">&#39;ang7&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="s2">&quot;Real position&quot;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="setor0.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setor0.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">):</span>
+<div class="viewcode-block" id="setor0.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setor0.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">):</span>
         <span class="n">setorn</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">createMacro</span><span class="p">(</span>
             <span class="s2">&quot;setorn&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">setorn</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">setorn</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="setor1"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setor1">[docs]</a><span class="k">class</span> <span class="nc">setor1</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1116,17 +1134,17 @@
         <span class="p">[</span><span class="s1">&#39;ang7&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="s2">&quot;Real position&quot;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">):</span>
+<div class="viewcode-block" id="setor1.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setor1.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;setor1 prepare&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ang3</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">ang7</span><span class="p">)</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">):</span>
+<div class="viewcode-block" id="setor1.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setor1.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">):</span>
         <span class="n">setorn</span><span class="p">,</span> <span class="n">pars</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">createMacro</span><span class="p">(</span>
             <span class="s2">&quot;setorn&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">setorn</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">setorn</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="setorn"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setorn">[docs]</a><span class="k">class</span> <span class="nc">setorn</span><span class="p">(</span><span class="n">iMacro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1147,11 +1165,11 @@
         <span class="p">[</span><span class="s1">&#39;ang7&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="s2">&quot;Real position&quot;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_id</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span>
+<div class="viewcode-block" id="setorn.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setorn.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_id</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span>
                 <span class="n">ang7</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_id</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">):</span>
+<div class="viewcode-block" id="setorn.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setorn.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ref_id</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">ang1</span><span class="p">,</span> <span class="n">ang2</span><span class="p">,</span> <span class="n">ang3</span><span class="p">,</span> <span class="n">ang4</span><span class="p">,</span> <span class="n">ang5</span><span class="p">,</span> <span class="n">ang6</span><span class="p">,</span> <span class="n">ang7</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="n">H</span> <span class="o">==</span> <span class="o">-</span><span class="mf">999.0</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Order of the real motor positions to be given as argument:&quot;</span>
@@ -1251,7 +1269,7 @@
 
         <span class="c1"># Recompute u</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;computeub&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;computeub&#39;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="setaz"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setaz">[docs]</a><span class="k">class</span> <span class="nc">setaz</span><span class="p">(</span><span class="n">iMacro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1263,10 +1281,10 @@
         <span class="p">[</span><span class="s1">&#39;PsiL&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="s2">&quot;L value of psi reference vector&quot;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PsiH</span><span class="p">,</span> <span class="n">PsiK</span><span class="p">,</span> <span class="n">PsiL</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="setaz.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setaz.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PsiH</span><span class="p">,</span> <span class="n">PsiK</span><span class="p">,</span> <span class="n">PsiL</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PsiH</span><span class="p">,</span> <span class="n">PsiK</span><span class="p">,</span> <span class="n">PsiL</span><span class="p">):</span>
+<div class="viewcode-block" id="setaz.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.setaz.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PsiH</span><span class="p">,</span> <span class="n">PsiK</span><span class="p">,</span> <span class="n">PsiL</span><span class="p">):</span>
         <span class="n">engine_restore</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">engine</span>
         <span class="n">mode_restore</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">enginemode</span>
 
@@ -1304,16 +1322,16 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;engine&quot;</span><span class="p">,</span> <span class="n">engine_restore</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;enginemode&quot;</span><span class="p">,</span> <span class="n">mode_restore</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;savecrystal&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;savecrystal&#39;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="computeub"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.computeub">[docs]</a><span class="k">class</span> <span class="nc">computeub</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Compute UB matrix with reflections 0 and 1 &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="computeub.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.computeub.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="computeub.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.computeub.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="n">reflections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">reflectionlist</span>
         <span class="k">if</span> <span class="n">reflections</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1325,7 +1343,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;UB can not be computed. Only one reflection&quot;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;UB can not be computed. No reflection&quot;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;UB can not be computed. No reflection&quot;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="addreflection"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.addreflection">[docs]</a><span class="k">class</span> <span class="nc">addreflection</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1338,16 +1356,16 @@
         <span class="p">[</span><span class="s1">&#39;affinement&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="o">-</span><span class="mf">999.</span><span class="p">,</span> <span class="s2">&quot;Affinement&quot;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">affinement</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="addreflection.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.addreflection.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">affinement</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">affinement</span><span class="p">):</span>
+<div class="viewcode-block" id="addreflection.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.addreflection.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">affinement</span><span class="p">):</span>
 
         <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">affinement</span> <span class="o">!=</span> <span class="o">-</span><span class="mf">999.</span><span class="p">:</span>
             <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">affinement</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;AddReflection&quot;</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;AddReflection&quot;</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="affine"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.affine">[docs]</a><span class="k">class</span> <span class="nc">affine</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1357,25 +1375,25 @@
 <span class="sd">    set to 0 are not used. A new crystal with the post fix</span>
 <span class="sd">    (affine) is created and set as current crystal&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="affine.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.affine.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="affine.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.affine.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;AffineCrystal&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;AffineCrystal&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="orswap"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.orswap">[docs]</a><span class="k">class</span> <span class="nc">orswap</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Swap values for primary and secondary vectors.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="orswap.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.orswap.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="orswap.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.orswap.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;SwapReflections01&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Orientation vectors swapped.&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;computeub&#39;</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;computeub&#39;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="newcrystal"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.newcrystal">[docs]</a><span class="k">class</span> <span class="nc">newcrystal</span><span class="p">(</span><span class="n">iMacro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1386,10 +1404,10 @@
     <span class="p">]</span>
 
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crystal_name</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="newcrystal.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.newcrystal.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crystal_name</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crystal_name</span><span class="p">):</span>
+<div class="viewcode-block" id="newcrystal.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.newcrystal.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crystal_name</span><span class="p">):</span>
 
         <span class="n">crystal_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">crystallist</span>
 
@@ -1453,7 +1471,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;c&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;alpha&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">beta</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">gamma</span><span class="p">))</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;gamma&quot;</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">gamma</span><span class="p">))</span></div></div>
 
 
 <div class="viewcode-block" id="hscan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.hscan">[docs]</a><span class="k">class</span> <span class="nc">hscan</span><span class="p">(</span><span class="n">aNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1466,10 +1484,10 @@
         <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
+<div class="viewcode-block" id="hscan.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.hscan.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
         <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">aNscan</span><span class="o">.</span><span class="n">_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">h_device</span><span class="p">],</span> <span class="p">[</span><span class="n">start_pos</span><span class="p">],</span>
-                        <span class="p">[</span><span class="n">final_pos</span><span class="p">],</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">)</span></div>
+                        <span class="p">[</span><span class="n">final_pos</span><span class="p">],</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="kscan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.kscan">[docs]</a><span class="k">class</span> <span class="nc">kscan</span><span class="p">(</span><span class="n">aNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1482,10 +1500,10 @@
         <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
+<div class="viewcode-block" id="kscan.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.kscan.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
         <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">aNscan</span><span class="o">.</span><span class="n">_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">k_device</span><span class="p">],</span> <span class="p">[</span><span class="n">start_pos</span><span class="p">],</span>
-                        <span class="p">[</span><span class="n">final_pos</span><span class="p">],</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">)</span></div>
+                        <span class="p">[</span><span class="n">final_pos</span><span class="p">],</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="lscan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.lscan">[docs]</a><span class="k">class</span> <span class="nc">lscan</span><span class="p">(</span><span class="n">aNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1498,10 +1516,10 @@
         <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
+<div class="viewcode-block" id="lscan.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.lscan.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
         <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">aNscan</span><span class="o">.</span><span class="n">_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">l_device</span><span class="p">],</span> <span class="p">[</span><span class="n">start_pos</span><span class="p">],</span>
-                        <span class="p">[</span><span class="n">final_pos</span><span class="p">],</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">)</span></div>
+                        <span class="p">[</span><span class="n">final_pos</span><span class="p">],</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="hklscan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.hklscan">[docs]</a><span class="k">class</span> <span class="nc">hklscan</span><span class="p">(</span><span class="n">aNscan</span><span class="p">,</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1518,13 +1536,13 @@
         <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h_start_pos</span><span class="p">,</span> <span class="n">h_final_pos</span><span class="p">,</span> <span class="n">k_start_pos</span><span class="p">,</span> <span class="n">k_final_pos</span><span class="p">,</span> <span class="n">l_start_pos</span><span class="p">,</span> <span class="n">l_final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
+<div class="viewcode-block" id="hklscan.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.hklscan.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h_start_pos</span><span class="p">,</span> <span class="n">h_final_pos</span><span class="p">,</span> <span class="n">k_start_pos</span><span class="p">,</span> <span class="n">k_final_pos</span><span class="p">,</span> <span class="n">l_start_pos</span><span class="p">,</span> <span class="n">l_final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
         <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">aNscan</span><span class="o">.</span><span class="n">_prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">h_device</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_device</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">l_device</span><span class="p">],</span>
                         <span class="p">[</span><span class="n">h_start_pos</span><span class="p">,</span> <span class="n">k_start_pos</span><span class="p">,</span> <span class="n">l_start_pos</span><span class="p">],</span> <span class="p">[</span><span class="n">h_final_pos</span><span class="p">,</span>
                                                                   <span class="n">k_final_pos</span><span class="p">,</span>
                                                                   <span class="n">l_final_pos</span><span class="p">],</span>
-                        <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">)</span></div>
+                        <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">)</span></div></div>
 
 
 
@@ -1541,7 +1559,7 @@
         <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="o">-</span><span class="mi">999</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rel_start_pos</span><span class="p">,</span> <span class="n">rel_final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
+<div class="viewcode-block" id="th2th.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.th2th.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rel_start_pos</span><span class="p">,</span> <span class="n">rel_final_pos</span><span class="p">,</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">):</span>
 
         <span class="k">if</span> <span class="p">((</span><span class="n">integ_time</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">999</span><span class="p">)):</span>
             <span class="n">motor_del</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="s2">&quot;del&quot;</span><span class="p">)</span>
@@ -1553,7 +1571,7 @@
                                <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span>
-                <span class="s2">&quot;Usage:   th2th tth_start_rel tth_stop_rel intervals time&quot;</span><span class="p">)</span></div>
+                <span class="s2">&quot;Usage:   th2th tth_start_rel tth_stop_rel intervals time&quot;</span><span class="p">)</span></div></div>
 
 
 <span class="n">count_scan</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1658,13 +1676,13 @@
 <span class="sd">         Save crystal information to file</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="savecrystal.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.savecrystal.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="savecrystal.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.savecrystal.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Be aware: changes in crystal file format are still possible.&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;SaveCrystal&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">write_attribute</span><span class="p">(</span><span class="s2">&quot;SaveCrystal&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="loadcrystal"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.loadcrystal">[docs]</a><span class="k">class</span> <span class="nc">loadcrystal</span><span class="p">(</span><span class="n">iMacro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1672,10 +1690,10 @@
 <span class="sd">         Load crystal information from file</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="loadcrystal.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.loadcrystal.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="loadcrystal.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.loadcrystal.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Be aware: changes in crystal file format are still possible.&quot;</span><span class="p">)</span>
         <span class="n">active_dir</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
@@ -1723,7 +1741,7 @@
             <span class="k">if</span> <span class="n">a0</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;Wrong input!&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;An input file has to be given. Nothing done&quot;</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;An input file has to be given. Nothing done&quot;</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="latticecal"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.latticecal">[docs]</a><span class="k">class</span> <span class="nc">latticecal</span><span class="p">(</span><span class="n">iMacro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1735,10 +1753,10 @@
         <span class="p">[</span><span class="s2">&quot;parameter&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;Parameter&quot;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<div class="viewcode-block" id="latticecal.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.latticecal.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
+<div class="viewcode-block" id="latticecal.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.latticecal.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">parameter</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">parameter</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span> <span class="ow">or</span> <span class="n">parameter</span> <span class="o">==</span> <span class="s2">&quot;b&quot;</span> <span class="ow">or</span> <span class="n">parameter</span> <span class="o">==</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">parameter</span> <span class="o">==</span> <span class="s2">&quot;a&quot;</span><span class="p">:</span>
@@ -1780,7 +1798,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span>
                 <span class="s2">&quot;Calibration of lattice parameters a, b or c to current 2theta value&quot;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;usage:  latticecal parameter&quot;</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;usage:  latticecal parameter&quot;</span><span class="p">)</span></div></div>
 
 
 <span class="k">class</span> <span class="nc">_blockprintmove</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
@@ -1855,6 +1873,7 @@
 </pre></div>
 
            </div>
+           
           </div>
           <footer>
   
@@ -1864,11 +1883,11 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1881,35 +1900,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

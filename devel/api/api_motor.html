@@ -13,44 +13,41 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../index.html"/>
-        <link rel="up" title="Sardana API" href="api_sardana.html"/>
-        <link rel="next" title="I/O register API reference" href="api_IOR.html"/>
-        <link rel="prev" title="Controller API reference" href="api_controller.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="I/O register API reference" href="api_IOR.html" />
+    <link rel="prev" title="Controller API reference" href="api_controller.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -59,7 +56,7 @@
 
           
             
-            <img src="../../_static/logo.png" class="logo" />
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -88,13 +85,16 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../docs.html">Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User&#8217;s Guide</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer&#8217;s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User’s Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer’s Guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../overview/index.html">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../howto_macros/index.html">Writing macros</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../howto_controllers/index.html">Writing controllers</a></li>
@@ -142,40 +142,60 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
-      
-          <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
-      
+        
+          <li><a href="../index.html">Developer’s Guide</a> &raquo;</li>
+        
           <li><a href="api_sardana.html">Sardana API</a> &raquo;</li>
-      
-    <li>Motor API reference</li>
+        
+      <li>Motor API reference</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../../_sources/devel/api/api_motor.txt" rel="nofollow"> View page source</a>
+            
+            <a href="../../_sources/devel/api/api_motor.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -185,109 +205,97 @@
 <span id="sardana-motor-api"></span><h1>Motor API reference<a class="headerlink" href="#motor-api-reference" title="Permalink to this headline">¶</a></h1>
 <p>The motor is one of the most used elements in sardana. A motor represents
 anything that can be <em>changed</em> (and can potentially take some time to do it).</p>
-<p>This chapter explains the generic motor <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> in the context of sardana.
-In sardana there are, in fact, two Motor <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a>s. To better explain why,
-let&#8217;s consider the case were sardana server is running as a Sardana Tango
+<p>This chapter explains the generic motor <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> in the context of sardana.
+In sardana there are, in fact, two Motor <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a>s. To better explain why,
+let’s consider the case were sardana server is running as a Sardana Tango
 device server:</p>
 <a class="reference internal image-reference" href="../../_images/sardana_server_internal_motor.png"><img alt="../../_images/sardana_server_internal_motor.png" class="align-center" src="../../_images/sardana_server_internal_motor.png" style="width: 680px;" /></a>
 <p>Every motor in sardana is represented in the sardana kernel as a
-<a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor" title="sardana.pool.poolmotor.PoolMotor"><code class="xref py py-class docutils literal"><span class="pre">PoolMotor</span></code></a>. The <a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor" title="sardana.pool.poolmotor.PoolMotor"><code class="xref py py-class docutils literal"><span class="pre">PoolMotor</span></code></a> <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> is not directly
-accessible from outside the sardana server. This is a low level <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a>
+<a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor" title="sardana.pool.poolmotor.PoolMotor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PoolMotor</span></code></a>. The <a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor" title="sardana.pool.poolmotor.PoolMotor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PoolMotor</span></code></a> <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> is not directly
+accessible from outside the sardana server. This is a low level <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a>
 that is only accessbile to someone writing a server extension to sardana. At
 the time of writing, the only available sardana server extension is Tango.</p>
 <p>The second motor interface consists on the one provided by the server extension,
 which is in this case the one provided by the Tango motor device interface:
-<a class="reference internal" href="sardana/tango/pool/Motor.html#sardana.tango.pool.Motor.Motor" title="sardana.tango.pool.Motor.Motor"><code class="xref py py-class docutils literal"><span class="pre">Motor</span></code></a>. The Tango motor interface tries to
-mimic the as closely as possible the <a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor" title="sardana.pool.poolmotor.PoolMotor"><code class="xref py py-class docutils literal"><span class="pre">PoolMotor</span></code></a> <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a>.</p>
+<a class="reference internal" href="sardana/tango/pool/Motor.html#sardana.tango.pool.Motor.Motor" title="sardana.tango.pool.Motor.Motor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Motor</span></code></a>. The Tango motor interface tries to
+mimic the as closely as possible the <a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor" title="sardana.pool.poolmotor.PoolMotor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PoolMotor</span></code></a> <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a>.</p>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<dl class="last docutils">
-<dt><a class="reference internal" href="../overview/overview_motor.html#sardana-motor-overview"><span class="std std-ref">Motor overview</span></a></dt>
-<dd>the motor overview</dd>
-<dt><a class="reference internal" href="sardana/tango/pool/Motor.html#sardana.tango.pool.Motor.Motor" title="sardana.tango.pool.Motor.Motor"><code class="xref py py-class docutils literal"><span class="pre">Motor</span></code></a></dt>
-<dd>the motor tango device <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="../overview/overview_motor.html#sardana-motor-overview"><span class="std std-ref">Motor overview</span></a></dt><dd><p>the motor overview</p>
+</dd>
+<dt><a class="reference internal" href="sardana/tango/pool/Motor.html#sardana.tango.pool.Motor.Motor" title="sardana.tango.pool.Motor.Motor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Motor</span></code></a></dt><dd><p>the motor tango device <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a></p>
+</dd>
 </dl>
 </div>
-<p>A motor will have, at least, a <code class="docutils literal"><span class="pre">state</span></code>, and a <code class="docutils literal"><span class="pre">position</span></code>. The state
+<p>A motor will have, at least, a <code class="docutils literal notranslate"><span class="pre">state</span></code>, and a <code class="docutils literal notranslate"><span class="pre">position</span></code>. The state
 indicates at any time if the motor is stopped, in alarm or moving. The
 position, indicates the current <a class="reference internal" href="../../glossary.html#term-user-position"><span class="xref std std-term">user position</span></a>. Unless a motor
-controller is specifically programmed not to, it&#8217;s motors will also have:</p>
-<dl class="docutils">
-<dt><strong>limit switches</strong></dt>
-<dd><p class="first">the three limit switches (home, upper and lower). Each switch is
+controller is specifically programmed not to, it’s motors will also have:</p>
+<dl>
+<dt><strong>limit switches</strong></dt><dd><p>the three limit switches (home, upper and lower). Each switch is
 represented by a boolean value: False means inactive while True means
 active.</p>
-<p>low level <a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor" title="sardana.pool.poolmotor.PoolMotor"><code class="xref py py-attr docutils literal"><span class="pre">PoolMotor</span></code></a> API.</p>
-<p class="last">high level Tango Motor API: limit_switches tango attribute</p>
+<p>low level <a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor" title="sardana.pool.poolmotor.PoolMotor"><code class="xref py py-attr docutils literal notranslate"><span class="pre">PoolMotor</span></code></a> API.</p>
+<p>high level Tango Motor API: limit_switches tango attribute</p>
 </dd>
-<dt><strong>acceleration</strong></dt>
-<dd><p class="first">motor acceleration (usually acceleration time in seconds, but it&#8217;s up to
+<dt><strong>acceleration</strong></dt><dd><p>motor acceleration (usually acceleration time in seconds, but it’s up to
 the motor controller class to decide)</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.acceleration" title="sardana.pool.poolmotor.PoolMotor.acceleration"><code class="xref py py-attr docutils literal"><span class="pre">acceleration</span></code></a></p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.acceleration" title="sardana.pool.poolmotor.PoolMotor.acceleration"><code class="xref py py-attr docutils literal notranslate"><span class="pre">acceleration</span></code></a></p>
 </dd>
-<dt><strong>deceleration</strong></dt>
-<dd><p class="first">motor deceleration (usually deceleration time in seconds, but it&#8217;s up to
+<dt><strong>deceleration</strong></dt><dd><p>motor deceleration (usually deceleration time in seconds, but it’s up to
 the motor controller class to decide)</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.deceleration" title="sardana.pool.poolmotor.PoolMotor.deceleration"><code class="xref py py-attr docutils literal"><span class="pre">deceleration</span></code></a></p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.deceleration" title="sardana.pool.poolmotor.PoolMotor.deceleration"><code class="xref py py-attr docutils literal notranslate"><span class="pre">deceleration</span></code></a></p>
 </dd>
-<dt><strong>velocity</strong></dt>
-<dd><p class="first">top velocity</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.velocity" title="sardana.pool.poolmotor.PoolMotor.velocity"><code class="xref py py-attr docutils literal"><span class="pre">velocity</span></code></a></p>
+<dt><strong>velocity</strong></dt><dd><p>top velocity</p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.velocity" title="sardana.pool.poolmotor.PoolMotor.velocity"><code class="xref py py-attr docutils literal notranslate"><span class="pre">velocity</span></code></a></p>
 </dd>
-<dt><strong>base rate</strong></dt>
-<dd><p class="first">initial velocity</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.base_rate" title="sardana.pool.poolmotor.PoolMotor.base_rate"><code class="xref py py-attr docutils literal"><span class="pre">base_rate</span></code></a></p>
+<dt><strong>base rate</strong></dt><dd><p>initial velocity</p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.base_rate" title="sardana.pool.poolmotor.PoolMotor.base_rate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">base_rate</span></code></a></p>
 </dd>
-<dt><strong>dial position</strong></dt>
-<dd><p class="first">the <a class="reference internal" href="../../glossary.html#term-dial-position"><span class="xref std std-term">dial position</span></a></p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.dial_position" title="sardana.pool.poolmotor.PoolMotor.dial_position"><code class="xref py py-attr docutils literal"><span class="pre">dial_position</span></code></a></p>
+<dt><strong>dial position</strong></dt><dd><p>the <a class="reference internal" href="../../glossary.html#term-dial-position"><span class="xref std std-term">dial position</span></a></p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.dial_position" title="sardana.pool.poolmotor.PoolMotor.dial_position"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dial_position</span></code></a></p>
 </dd>
-<dt><strong>offset</strong></dt>
-<dd><p class="first">the offset to be applied in the motor position computation [default: 0.0]</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.offset" title="sardana.pool.poolmotor.PoolMotor.offset"><code class="xref py py-attr docutils literal"><span class="pre">offset</span></code></a></p>
+<dt><strong>offset</strong></dt><dd><p>the offset to be applied in the motor position computation [default: 0.0]</p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.offset" title="sardana.pool.poolmotor.PoolMotor.offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">offset</span></code></a></p>
 </dd>
-<dt><strong>sign</strong></dt>
-<dd><p class="first">the sign to be applied in the motor position computation [default: 1,
+<dt><strong>sign</strong></dt><dd><p>the sign to be applied in the motor position computation [default: 1,
 possible values are (1, -1)]</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.sign" title="sardana.pool.poolmotor.PoolMotor.sign"><code class="xref py py-attr docutils literal"><span class="pre">sign</span></code></a></p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.sign" title="sardana.pool.poolmotor.PoolMotor.sign"><code class="xref py py-attr docutils literal notranslate"><span class="pre">sign</span></code></a></p>
 </dd>
-<dt><strong>steps per unit</strong></dt>
-<dd><p class="first">This is the number of motor steps per <a class="reference internal" href="../../glossary.html#term-user-position"><span class="xref std std-term">user position</span></a> [default:
+<dt><strong>steps per unit</strong></dt><dd><p>This is the number of motor steps per <a class="reference internal" href="../../glossary.html#term-user-position"><span class="xref std std-term">user position</span></a> [default:
 1.0]</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.step_per_unit" title="sardana.pool.poolmotor.PoolMotor.step_per_unit"><code class="xref py py-attr docutils literal"><span class="pre">step_per_unit</span></code></a></p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.step_per_unit" title="sardana.pool.poolmotor.PoolMotor.step_per_unit"><code class="xref py py-attr docutils literal notranslate"><span class="pre">step_per_unit</span></code></a></p>
 </dd>
-<dt><strong>backlash</strong></dt>
-<dd><p class="first">If this is defined to be something different than 0, the motor will
+<dt><strong>backlash</strong></dt><dd><p>If this is defined to be something different than 0, the motor will
 always stop the motion coming from the same mechanical direction. This
 means that it could be possible to ask the motor to go a little bit after
 the desired position and then to return to the desired position. The value
 is the number of steps the motor will pass the desired position if it
-arrives from the &#8220;wrong&#8221; direction. This is a signed value. If the sign is
+arrives from the “wrong” direction. This is a signed value. If the sign is
 positive, this means that the authorized direction to stop the motion is
 the increasing motor position direction. If the sign is negative, this
 means that the authorized direction to stop the motion is the decreasing
 motor position direction.</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.backlash" title="sardana.pool.poolmotor.PoolMotor.backlash"><code class="xref py py-attr docutils literal"><span class="pre">backlash</span></code></a></p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.backlash" title="sardana.pool.poolmotor.PoolMotor.backlash"><code class="xref py py-attr docutils literal notranslate"><span class="pre">backlash</span></code></a></p>
 </dd>
-<dt><strong>instability time</strong></dt>
-<dd><p class="first">This property defines the time in milliseconds that the software
+<dt><strong>instability time</strong></dt><dd><p>This property defines the time in milliseconds that the software
 managing a motor movement will wait between it detects the end of the
 motion and the last motor position reading. It is typically used for motors
 that move mechanics which have an instability time after each motion.</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.instability_time" title="sardana.pool.poolmotor.PoolMotor.instability_time"><code class="xref py py-attr docutils literal"><span class="pre">instability_time</span></code></a></p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.instability_time" title="sardana.pool.poolmotor.PoolMotor.instability_time"><code class="xref py py-attr docutils literal notranslate"><span class="pre">instability_time</span></code></a></p>
 </dd>
 </dl>
 <p>The available operations are:</p>
-<dl class="docutils">
-<dt>start move absolute (<a class="reference internal" href="../../glossary.html#term-user-position"><span class="xref std std-term">user position</span></a>)</dt>
-<dd><p class="first">starts to move the motor to the given absolute user position</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.start_move" title="sardana.pool.poolmotor.PoolMotor.start_move"><code class="xref py py-meth docutils literal"><span class="pre">start_move()</span></code></a></p>
+<dl>
+<dt>start move absolute (<a class="reference internal" href="../../glossary.html#term-user-position"><span class="xref std std-term">user position</span></a>)</dt><dd><p>starts to move the motor to the given absolute user position</p>
+<p><a class="reference internal" href="sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.start_move" title="sardana.pool.poolmotor.PoolMotor.start_move"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start_move()</span></code></a></p>
 </dd>
-<dt>stop</dt>
-<dd>stops the motor in an orderly fashion</dd>
-<dt>abort</dt>
-<dd>stops the motor motion as fast as possible (possibly without
-deceleration time and loss of position)</dd>
+<dt>stop</dt><dd><p>stops the motor in an orderly fashion</p>
+</dd>
+<dt>abort</dt><dd><p>stops the motor motion as fast as possible (possibly without
+deceleration time and loss of position)</p>
+</dd>
 </dl>
 <div class="section" id="motor-state">
 <h2>Motor state<a class="headerlink" href="#motor-state" title="Permalink to this headline">¶</a></h2>
@@ -298,7 +306,7 @@ sequence of calls.</p>
 </div>
 <div class="section" id="motor-position">
 <span id="sardana-motor-api-position"></span><h2>Motor position<a class="headerlink" href="#motor-position" title="Permalink to this headline">¶</a></h2>
-<p>The motor&#8217;s current <a class="reference internal" href="../../glossary.html#term-user-position"><span class="xref std std-term">user position</span></a> can be obtained by reading the
+<p>The motor’s current <a class="reference internal" href="../../glossary.html#term-user-position"><span class="xref std std-term">user position</span></a> can be obtained by reading the
 position attribute. The diagram shows the internal sequence of calls.</p>
 <a class="reference internal image-reference" href="../../_images/sardana_server_internal_motor_read_position_flow.png"><img alt="../../_images/sardana_server_internal_motor_read_position_flow.png" class="align-center" src="../../_images/sardana_server_internal_motor_read_position_flow.png" style="width: 680px;" /></a>
 </div>
@@ -312,9 +320,9 @@ into the position attribute.</p>
 tango (not represented in the diagram):</p>
 <blockquote>
 <div><ul class="simple">
-<li>motor is in a proper state;</li>
-<li>requested position is within the allowed motor boundaries (if
-defined)</li>
+<li><p>motor is in a proper state;</p></li>
+<li><p>requested position is within the allowed motor boundaries (if
+defined)</p></li>
 </ul>
 </div></blockquote>
 <p>Then, the <a class="reference internal" href="../../glossary.html#term-dial-position"><span class="xref std std-term">dial position</span></a> is calculated taking into account the <em>offset</em>,
@@ -323,37 +331,38 @@ defined)</li>
 pre-conditions are checked:</p>
 <blockquote>
 <div><ul class="simple">
-<li>is the final <a class="reference internal" href="../../glossary.html#term-dial-position"><span class="xref std std-term">dial position</span></a> (including backlash) within the
-motor boundaries (if defined)</li>
-<li>will the resulting motion end in an allowed position for all the
-pseudo motors that depend on this motor</li>
+<li><p>is the final <a class="reference internal" href="../../glossary.html#term-dial-position"><span class="xref std std-term">dial position</span></a> (including backlash) within the
+motor boundaries (if defined)</p></li>
+<li><p>will the resulting motion end in an allowed position for all the
+pseudo motors that depend on this motor</p></li>
 </ul>
 </div></blockquote>
 <p>After all pre-conditions are checked, the motor will deploy a motion <em>job</em> into
 the sardana kernel engine which will trigger a series of calls to the
 underlying motor controller.</p>
-<p>The motor awaits for the <a class="reference internal" href="sardana/pool/controller.html#sardana.pool.controller.Startable.PreStartOne" title="sardana.pool.controller.Startable.PreStartOne"><code class="xref py py-meth docutils literal"><span class="pre">PreStartOne()</span></code></a>
+<p>The motor awaits for the <a class="reference internal" href="sardana/pool/controller.html#sardana.pool.controller.Startable.PreStartOne" title="sardana.pool.controller.Startable.PreStartOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PreStartOne()</span></code></a>
 to signal that the motion will be possible to return successfully from the move
 request.</p>
 <p>The following diagram shows the motion state machine of a motor. The black state
 transitions are the ones which can be triggered by a <em>user</em>.
 For simplicity, only the most relevant states involved in a motor
 motion are shown. Error states are omitted.</p>
-<img src="../../_images/graphviz-aba0ed6920fde3ffcf91942b1707c60b3525ba02.png" alt="Basic motion diagram" />
+<div class="graphviz"><img src="../../_images/graphviz-2b14d35cf563bb8221898aa6cb73d649c1abcf0f.png" alt="Basic motion diagram" class="graphviz" /></div>
 </div>
 </div>
 
 
            </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api_IOR.html" class="btn btn-neutral float-right" title="I/O register API reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api_IOR.html" class="btn btn-neutral float-right" title="I/O register API reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="api_controller.html" class="btn btn-neutral" title="Controller API reference" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="api_controller.html" class="btn btn-neutral float-left" title="Controller API reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -363,11 +372,11 @@ motion are shown. Error states are omitted.</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -380,35 +389,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

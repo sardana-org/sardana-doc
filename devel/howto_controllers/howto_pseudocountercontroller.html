@@ -13,44 +13,41 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../index.html"/>
-        <link rel="up" title="Writing controllers" href="index.html"/>
-        <link rel="next" title="Writing recorders" href="../howto_recorders.html"/>
-        <link rel="prev" title="How to write a pseudo motor controller" href="howto_pseudomotorcontroller.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Writing recorders" href="../howto_recorders.html" />
+    <link rel="prev" title="How to write a pseudo motor controller" href="howto_pseudomotorcontroller.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -59,7 +56,7 @@
 
           
             
-            <img src="../../_static/logo.png" class="logo" />
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -88,13 +85,16 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../docs.html">Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User&#8217;s Guide</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer&#8217;s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User’s Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer’s Guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../overview/index.html">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../howto_macros/index.html">Writing macros</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Writing controllers</a><ul class="current">
@@ -136,40 +136,60 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
-      
-          <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
-      
+        
+          <li><a href="../index.html">Developer’s Guide</a> &raquo;</li>
+        
           <li><a href="index.html">Writing controllers</a> &raquo;</li>
-      
-    <li>How to write a pseudo counter controller</li>
+        
+      <li>How to write a pseudo counter controller</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../../_sources/devel/howto_controllers/howto_pseudocountercontroller.txt" rel="nofollow"> View page source</a>
+            
+            <a href="../../_sources/devel/howto_controllers/howto_pseudocountercontroller.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -183,10 +203,10 @@
 will be build incrementally from scratch to aid in the explanation. Its purpose
 is to provide an easy feedback about the beam position in the vertical and
 horizontal axes as well as the total intensity of the beam.</p>
-<p>By now you should have read <a class="reference internal" href="../api/api_controller.html#sardana-controller-api"><span class="std std-ref">the general controller basics</span></a> chapter. Let&#8217;s start
-from writing a <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController" title="sardana.pool.controller.PseudoCounterController"><code class="xref py py-class docutils literal"><span class="pre">PseudoCounterController</span></code></a>
+<p>By now you should have read <a class="reference internal" href="../api/api_controller.html#sardana-controller-api"><span class="std std-ref">the general controller basics</span></a> chapter. Let’s start
+from writing a <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController" title="sardana.pool.controller.PseudoCounterController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PseudoCounterController</span></code></a>
 subclass with a proper constructor and the roles defined.</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="kn">import</span> <span class="n">PseudoCounterController</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="kn">import</span> <span class="n">PseudoCounterController</span>
 
 <span class="k">class</span> <span class="nc">XBPMPseudoCounterController</span><span class="p">(</span><span class="n">PseudoCounterController</span><span class="p">):</span>
 
@@ -197,24 +217,24 @@ subclass with a proper constructor and the roles defined.</p>
         <span class="nb">super</span><span class="p">(</span><span class="n">XBPMPseudoCounterController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.counter_roles" title="sardana.pool.controller.PseudoCounterController.counter_roles"><code class="xref py py-obj docutils literal"><span class="pre">counter_roles</span></code></a> and
-<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.pseudo_counter_roles" title="sardana.pool.controller.PseudoCounterController.pseudo_counter_roles"><code class="xref py py-obj docutils literal"><span class="pre">pseudo_counter_roles</span></code></a>
+<p>The <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.counter_roles" title="sardana.pool.controller.PseudoCounterController.counter_roles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">counter_roles</span></code></a> and
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.pseudo_counter_roles" title="sardana.pool.controller.PseudoCounterController.pseudo_counter_roles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pseudo_counter_roles</span></code></a>
 tuples contains names of the counter and pseudo counter roles respectively.
 These names are used when creating the controller instance and their order is
 important when writing the controller itself. Each controller will define its
 own roles.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">It is possible to omit the
-<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.pseudo_counter_roles" title="sardana.pool.controller.PseudoCounterController.pseudo_counter_roles"><code class="xref py py-obj docutils literal"><span class="pre">pseudo_counter_roles</span></code></a>
+<p class="admonition-title">Note</p>
+<p>It is possible to omit the
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.pseudo_counter_roles" title="sardana.pool.controller.PseudoCounterController.pseudo_counter_roles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pseudo_counter_roles</span></code></a>
 definition if the controller provides only one axis. The controller class
 name will be assumed as the pseudo counter role.</p>
 </div>
 <p>The constructor does nothing apart of calling the parent class constructor but
 could be used to implement any necessary initialization.</p>
 <p>The pseudo counter calculations are implemented in the
-<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.calc" title="sardana.pool.controller.PseudoCounterController.calc"><code class="xref py py-meth docutils literal"><span class="pre">calc()</span></code></a> method:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">counter_values</span><span class="p">):</span>
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.calc" title="sardana.pool.controller.PseudoCounterController.calc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calc()</span></code></a> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">counter_values</span><span class="p">):</span>
     <span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="n">counter_values</span>
 
     <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1"># vertical</span>
@@ -241,14 +261,14 @@ the mean value of all the four sensors and indicates the beam intensity.</p>
 <p>Pseudo counters instantiated from your controller will have a default
 interface, which among others, comprises the <em>value</em> attribute. This attribute
 is feed with the result of the
-<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.calc" title="sardana.pool.controller.PseudoCounterController.calc"><code class="xref py py-meth docutils literal"><span class="pre">calc()</span></code></a> method and by
-default it expects values of <code class="docutils literal"><span class="pre">float</span></code> type and scalar shape. You can easily
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.calc" title="sardana.pool.controller.PseudoCounterController.calc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calc()</span></code></a> method and by
+default it expects values of <code class="docutils literal notranslate"><span class="pre">float</span></code> type and scalar shape. You can easily
 <a class="reference internal" href="howto_controller.html#sardana-controller-howto-change-default-interface"><span class="std std-ref">change the default interface</span></a>.
-This way you could program a pseudo counter to obtain an image <a class="reference internal" href="../../glossary.html#term-roi"><span class="xref std std-term">ROI</span></a>
+This way you could program a pseudo counter to obtain an image <a class="reference internal" href="../../glossary.html#term-ROI"><span class="xref std std-term">ROI</span></a>
 of a <a class="reference internal" href="../overview/overview_2D.html#sardana-2d-overview"><span class="std std-ref">2D experimental channel</span></a>.</p>
-<p>Here is an example of how to change <em>value</em> attribute&#8217;s shape to an image
+<p>Here is an example of how to change <em>value</em> attribute’s shape to an image
 and specify its maximum dimension of 1024 x 1024 pixels:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">GetAxisAttributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">GetAxisAttributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
 <span class="n">axis_attrs</span> <span class="o">=</span> <span class="n">PseudoCounterController</span><span class="o">.</span><span class="n">GetAxisAttributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
 <span class="n">axis_attrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">axis_attrs</span><span class="p">)</span>
 <span class="n">axis_attrs</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">][</span><span class="n">Type</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="nb">float</span><span class="p">,</span> <span class="p">),</span> <span class="p">)</span>
@@ -264,21 +284,22 @@ a counter value. One can use <a class="reference external" href="http://packages
 read their attributes and use them in the calculation. It is even possible
 to write pseudo counters not based at all on the counters. In this case it is
 enough to define an empty
-<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.counter_roles" title="sardana.pool.controller.PseudoCounterController.counter_roles"><code class="xref py py-obj docutils literal"><span class="pre">counter_roles</span></code></a> tuple.</p>
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.counter_roles" title="sardana.pool.controller.PseudoCounterController.counter_roles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">counter_roles</span></code></a> tuple.</p>
 </div>
 </div>
 
 
            </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../howto_recorders.html" class="btn btn-neutral float-right" title="Writing recorders" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../howto_recorders.html" class="btn btn-neutral float-right" title="Writing recorders" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="howto_pseudomotorcontroller.html" class="btn btn-neutral" title="How to write a pseudo motor controller" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="howto_pseudomotorcontroller.html" class="btn btn-neutral float-left" title="How to write a pseudo motor controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -288,11 +309,11 @@ enough to define an empty
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -305,35 +326,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

@@ -13,42 +13,39 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../../../index.html"/>
-        <link rel="up" title="Module code" href="../../../index.html"/> 
-
-  
-  <script src="../../../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -57,7 +54,7 @@
 
           
             
-            <img src="../../../../_static/logo.png" class="logo" />
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -86,7 +83,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
@@ -104,34 +104,52 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      
-    <li>sardana.macroserver.macros.expert</li>
+        
+      <li>sardana.macroserver.macros.expert</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -176,9 +194,9 @@
 <span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">import</span> <span class="nn">array</span>
 
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">UnknownMacroLibrary</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="k">import</span> <span class="n">WrongParam</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamRepeat</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">LibraryError</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">UnknownMacroLibrary</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="kn">import</span> <span class="n">WrongParam</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamRepeat</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">LibraryError</span>
 
 <span class="c1">##########################################################################</span>
 <span class="c1">#</span>
@@ -194,12 +212,12 @@
                  <span class="p">[</span><span class="s1">&#39;controller&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Controller</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Controller name&#39;</span><span class="p">],</span>
                  <span class="p">[</span><span class="s1">&#39;axis&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;motor axis&#39;</span><span class="p">],</span> <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+<div class="viewcode-block" id="defm.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defm.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">axis</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">elem</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Created </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Created </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span></div></div>
 
 
 <div class="viewcode-block" id="defmeas"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defmeas">[docs]</a><span class="k">class</span> <span class="nc">defmeas</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -216,19 +234,19 @@
             <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of measurement channels&#39;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel_list</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="defmeas.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defmeas.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel_list</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
 
         <span class="n">mntgrp_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">findObjs</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mntgrp_list</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-                <span class="s1">&#39;A measurement group with that name already exists&#39;</span><span class="p">)</span>
+                <span class="s1">&#39;A measurement group with that name already exists&#39;</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel_list</span><span class="p">):</span>
+<div class="viewcode-block" id="defmeas.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defmeas.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">channel_list</span><span class="p">):</span>
         <span class="n">channel0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="n">channel_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="n">channel0</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
         <span class="n">mg</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">createMeasurementGroup</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">channel_list</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Created </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">mg</span><span class="p">))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Created </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">mg</span><span class="p">))</span></div></div>
 
 
 <div class="viewcode-block" id="udefmeas"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.udefmeas">[docs]</a><span class="k">class</span> <span class="nc">udefmeas</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -241,10 +259,10 @@
                      <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
          <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of measurement group names&#39;</span><span class="p">],</span> <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mntgrps</span><span class="p">):</span>
+<div class="viewcode-block" id="udefmeas.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.udefmeas.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mntgrps</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">mntgrp</span> <span class="ow">in</span> <span class="n">mntgrps</span><span class="p">:</span>
             <span class="n">pool</span> <span class="o">=</span> <span class="n">mntgrp</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
-            <span class="n">pool</span><span class="o">.</span><span class="n">deleteMeasurementGroup</span><span class="p">(</span><span class="n">mntgrp</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span></div>
+            <span class="n">pool</span><span class="o">.</span><span class="n">deleteMeasurementGroup</span><span class="p">(</span><span class="n">mntgrp</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span></div></div>
 
 
 <div class="viewcode-block" id="defelem"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defelem">[docs]</a><span class="k">class</span> <span class="nc">defelem</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -254,12 +272,12 @@
                  <span class="p">[</span><span class="s1">&#39;ctrl&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Controller</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;existing controller&#39;</span><span class="p">],</span>
                  <span class="p">[</span><span class="s1">&#39;axis&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;axis in the controller (default is -1, meaning add to the end)&#39;</span><span class="p">],</span> <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
+<div class="viewcode-block" id="defelem.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defelem.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">axis</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">axis</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">elem</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">createElement</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">ctrl</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Created </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Created </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span></div></div>
 
 
 <span class="k">class</span> <span class="nc">renameelem</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -288,10 +306,10 @@
          <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of element(s) name&#39;</span><span class="p">],</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
+<div class="viewcode-block" id="udefelem.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.udefelem.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
             <span class="n">pool</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
-            <span class="n">pool</span><span class="o">.</span><span class="n">deleteElement</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span></div>
+            <span class="n">pool</span><span class="o">.</span><span class="n">deleteElement</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span></div></div>
 
 
 <div class="viewcode-block" id="defctrl"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defctrl">[docs]</a><span class="k">class</span> <span class="nc">defctrl</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -319,10 +337,10 @@
                                <span class="s1">&#39;a role or property item&#39;</span><span class="p">],</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
                   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;roles and/or properties&#39;</span><span class="p">]]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrl_class</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">props</span><span class="p">):</span>
+<div class="viewcode-block" id="defctrl.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defctrl.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrl_class</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">props</span><span class="p">):</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="n">ctrl_class</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
         <span class="n">elem</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">createController</span><span class="p">(</span><span class="n">ctrl_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">props</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Created </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Created </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">elem</span><span class="p">))</span></div></div>
 
 
 <div class="viewcode-block" id="udefctrl"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.udefctrl">[docs]</a><span class="k">class</span> <span class="nc">udefctrl</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -334,7 +352,7 @@
                      <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
          <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of controller(s) name(s)&#39;</span><span class="p">],</span> <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controllers</span><span class="p">):</span>
+<div class="viewcode-block" id="udefctrl.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.udefctrl.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controllers</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">controller</span> <span class="ow">in</span> <span class="n">controllers</span><span class="p">:</span>
             <span class="n">pool</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
             <span class="n">ctrl_name</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>
@@ -344,7 +362,7 @@
                 <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> and subsequent controllers (if any) &quot;</span>\
                       <span class="s2">&quot;could not be deleted&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ctrl_name</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                <span class="k">raise</span></div>
+                <span class="k">raise</span></div></div>
 
 
 <span class="c1">##########################################################################</span>
@@ -363,13 +381,13 @@
                                <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;a string item&#39;</span><span class="p">],),</span>
                   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;data to be sent&#39;</span><span class="p">]]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="send2ctrl.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.send2ctrl.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
         <span class="n">str_data</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
         <span class="n">res</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">SendToController</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">str_data</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">res</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div></div>
 
 <span class="c1">##########################################################################</span>
 <span class="c1">#</span>
@@ -392,7 +410,7 @@
 
     <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;commit_cmd&#39;</span><span class="p">:</span> <span class="s1">&#39;commit_ctrllib&#39;</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrlclass</span><span class="p">):</span>
+<div class="viewcode-block" id="edctrlcls.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.edctrlcls.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrlclass</span><span class="p">):</span>
         <span class="n">f_name</span> <span class="o">=</span> <span class="n">ctrlclass</span><span class="o">.</span><span class="n">file</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="n">ctrlclass</span><span class="o">.</span><span class="n">getPool</span><span class="p">()</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">GetFile</span><span class="p">(</span><span class="n">f_name</span><span class="p">)</span>
@@ -404,7 +422,7 @@
                     <span class="n">line</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;:&quot;</span><span class="p">):</span>
                 <span class="k">break</span>
             <span class="n">line_nb</span> <span class="o">=</span> <span class="n">line_nb</span> <span class="o">+</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">f_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">line_nb</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">f_name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">line_nb</span><span class="p">]</span></div></div>
 
 
 <div class="viewcode-block" id="edctrllib"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.edctrllib">[docs]</a><span class="k">class</span> <span class="nc">edctrllib</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -421,10 +439,10 @@
 
     <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;commit_cmd&#39;</span><span class="p">:</span> <span class="s1">&#39;commit_ctrllib&#39;</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<div class="viewcode-block" id="edctrllib.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.edctrllib.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getManager</span><span class="p">()</span><span class="o">.</span><span class="n">getPool</span><span class="p">()</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">GetFile</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">[</span><span class="n">filename</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">tostring</span><span class="p">(),</span> <span class="mi">0</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">filename</span><span class="p">,</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">tostring</span><span class="p">(),</span> <span class="mi">0</span><span class="p">]</span></div></div>
 
 
 <div class="viewcode-block" id="commit_ctrllib"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.commit_ctrllib">[docs]</a><span class="k">class</span> <span class="nc">commit_ctrllib</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -438,12 +456,12 @@
         <span class="p">[</span><span class="s1">&#39;filedata&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">File</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;The file data object&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">comment</span><span class="p">,</span> <span class="n">filedata</span><span class="p">):</span>
+<div class="viewcode-block" id="commit_ctrllib.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.commit_ctrllib.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">username</span><span class="p">,</span> <span class="n">comment</span><span class="p">,</span> <span class="n">filedata</span><span class="p">):</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getManager</span><span class="p">()</span><span class="o">.</span><span class="n">getPool</span><span class="p">()</span>
         <span class="n">meta</span> <span class="o">=</span> <span class="n">filename</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">username</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">comment</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">meta</span><span class="p">)</span>
         <span class="n">data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="n">filedata</span><span class="p">))</span>
-        <span class="n">pool</span><span class="o">.</span><span class="n">PutFile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span></div>
+        <span class="n">pool</span><span class="o">.</span><span class="n">PutFile</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span></div></div>
 
 <span class="c1">##########################################################################</span>
 <span class="c1">#</span>
@@ -459,10 +477,10 @@
         <span class="p">[</span><span class="s1">&#39;macro_name&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">MacroCode</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;macro name&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_data</span><span class="p">):</span>
+<div class="viewcode-block" id="prdef.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.prdef.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_data</span><span class="p">):</span>
         <span class="n">code_lines</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">macro_data</span><span class="o">.</span><span class="n">code</span>
         <span class="k">for</span> <span class="n">code_line</span> <span class="ow">in</span> <span class="n">code_lines</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">code_line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">code_line</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span></div></div>
 
 
 <div class="viewcode-block" id="relctrllib"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.relctrllib">[docs]</a><span class="k">class</span> <span class="nc">relctrllib</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -473,9 +491,9 @@
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;ctrl_library&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">ControllerLibrary</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
                   <span class="s2">&quot;Controller library to reload&quot;</span><span class="p">]]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrl_library</span><span class="p">):</span>
+<div class="viewcode-block" id="relctrllib.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.relctrllib.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrl_library</span><span class="p">):</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="n">ctrl_library</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
-        <span class="n">pool</span><span class="o">.</span><span class="n">ReloadControllerLib</span><span class="p">(</span><span class="n">ctrl_library</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+        <span class="n">pool</span><span class="o">.</span><span class="n">ReloadControllerLib</span><span class="p">(</span><span class="n">ctrl_library</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="addctrllib"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.addctrllib">[docs]</a><span class="k">class</span> <span class="nc">addctrllib</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -491,10 +509,10 @@
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;ctrl_library_name&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
                   <span class="s2">&quot;The module name to be loaded (without extension)&quot;</span><span class="p">]]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrl_library_name</span><span class="p">):</span>
+<div class="viewcode-block" id="addctrllib.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.addctrllib.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrl_library_name</span><span class="p">):</span>
         <span class="c1"># TODO: make it compatible with multiple pools</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPools</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">pool</span><span class="o">.</span><span class="n">ReloadControllerLib</span><span class="p">(</span><span class="n">ctrl_library_name</span><span class="p">)</span></div>
+        <span class="n">pool</span><span class="o">.</span><span class="n">ReloadControllerLib</span><span class="p">(</span><span class="n">ctrl_library_name</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="relctrlcls"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.relctrlcls">[docs]</a><span class="k">class</span> <span class="nc">relctrlcls</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -504,9 +522,9 @@
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;ctrl_class&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">ControllerClass</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;Controller &quot;</span>
                                                             <span class="s2">&quot;class to reload&quot;</span><span class="p">]]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrl_class</span><span class="p">):</span>
+<div class="viewcode-block" id="relctrlcls.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.relctrlcls.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrl_class</span><span class="p">):</span>
         <span class="n">pool</span> <span class="o">=</span> <span class="n">ctrl_class</span><span class="o">.</span><span class="n">getPoolObj</span><span class="p">()</span>
-        <span class="n">pool</span><span class="o">.</span><span class="n">ReloadControllerClass</span><span class="p">(</span><span class="n">ctrl_class</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+        <span class="n">pool</span><span class="o">.</span><span class="n">ReloadControllerClass</span><span class="p">(</span><span class="n">ctrl_class</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="rellib"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.rellib">[docs]</a><span class="k">class</span> <span class="nc">rellib</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -538,7 +556,7 @@
          <span class="s1">&#39;The module name to be reloaded (without extension)&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_name</span><span class="p">):</span>
+<div class="viewcode-block" id="rellib.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.rellib.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_name</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">reloadLibrary</span><span class="p">(</span><span class="n">module_name</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> successfully (re)loaded&quot;</span><span class="p">,</span> <span class="n">module_name</span><span class="p">)</span>
@@ -547,7 +565,7 @@
                        <span class="s2">&quot;Use &#39;relmaclib&#39; instead&quot;</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="o">*</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="relmaclib"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.relmaclib">[docs]</a><span class="k">class</span> <span class="nc">relmaclib</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -558,7 +576,7 @@
          <span class="s1">&#39;The module name to be reloaded (without extension)&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_library</span><span class="p">):</span>
+<div class="viewcode-block" id="relmaclib.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.relmaclib.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_library</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">macro_library</span><span class="o">.</span><span class="n">name</span>
         <span class="n">new_macro_library</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reloadMacroLibrary</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">new_macro_library</span><span class="o">.</span><span class="n">has_errors</span><span class="p">():</span>
@@ -570,7 +588,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="n">macros</span> <span class="o">=</span> <span class="n">new_macro_library</span><span class="o">.</span><span class="n">get_macros</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span>
-                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> successfully (re)loaded (found </span><span class="si">%d</span><span class="s2"> macros)&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">macros</span><span class="p">))</span></div>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> successfully (re)loaded (found </span><span class="si">%d</span><span class="s2"> macros)&quot;</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">macros</span><span class="p">))</span></div></div>
 
 
 <div class="viewcode-block" id="addmaclib"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.addmaclib">[docs]</a><span class="k">class</span> <span class="nc">addmaclib</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -584,16 +602,16 @@
          <span class="s1">&#39;The module name to be loaded (without extension)&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_library_name</span><span class="p">):</span>
+<div class="viewcode-block" id="addmaclib.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.addmaclib.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_library_name</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMacroLib</span><span class="p">(</span><span class="n">macro_library_name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">UnknownMacroLibrary</span><span class="p">:</span>
             <span class="k">pass</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">WrongParam</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> macro library is already loaded&#39;</span> <span class="o">%</span>
-                             <span class="n">macro_library_name</span><span class="p">)</span>
+                             <span class="n">macro_library_name</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_library_name</span><span class="p">):</span>
+<div class="viewcode-block" id="addmaclib.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.addmaclib.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_library_name</span><span class="p">):</span>
         <span class="n">old_macros</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMacroNames</span><span class="p">()</span>
         <span class="n">new_macro_library</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reloadMacroLibrary</span><span class="p">(</span><span class="n">macro_library_name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">new_macro_library</span><span class="o">.</span><span class="n">has_errors</span><span class="p">():</span>
@@ -612,7 +630,7 @@
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">overridden_macros</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> macro library has overridden the following &#39;</span> <span class="o">+</span>
                        <span class="s1">&#39;macros: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="n">macro_library_name</span><span class="p">,</span> <span class="n">overridden_macros</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span></div></div>
 
 
 <div class="viewcode-block" id="relmac"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.relmac">[docs]</a><span class="k">class</span> <span class="nc">relmac</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -623,7 +641,7 @@
         <span class="p">[</span><span class="s1">&#39;macro_code&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">MacroCode</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;macro name to be reloaded&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_code</span><span class="p">):</span>
+<div class="viewcode-block" id="relmac.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.relmac.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_code</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">macro_code</span><span class="o">.</span><span class="n">name</span>
         <span class="n">macro_library_name</span> <span class="o">=</span> <span class="n">macro_code</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">name</span>
         <span class="n">macro_library</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reloadMacro</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -639,7 +657,7 @@
             <span class="n">macros_in_lib</span> <span class="o">=</span> <span class="n">macro_library</span><span class="o">.</span><span class="n">get_macros</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">All macros from macro library </span><span class="si">%s</span><span class="s2"> have &quot;</span> <span class="o">+</span>
                         <span class="s2">&quot;been reloaded:&quot;</span><span class="p">,</span> <span class="n">maclibname</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">([</span><span class="n">macro</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">macro</span> <span class="ow">in</span> <span class="n">macros_in_lib</span><span class="p">])</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">([</span><span class="n">macro</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">macro</span> <span class="ow">in</span> <span class="n">macros_in_lib</span><span class="p">])</span></div></div>
 
 
 <div class="viewcode-block" id="sar_info"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.sar_info">[docs]</a><span class="k">class</span> <span class="nc">sar_info</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
@@ -649,8 +667,8 @@
         <span class="p">[</span><span class="s1">&#39;obj&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Object</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;obj&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">dump_properties</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+<div class="viewcode-block" id="sar_info.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.sar_info.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dump_properties</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
         <span class="c1"># self.output(&quot;&quot;)</span>
         <span class="c1"># self.dump_attributes(obj)</span>
 
@@ -691,6 +709,7 @@
 </pre></div>
 
            </div>
+           
           </div>
           <footer>
   
@@ -700,11 +719,11 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -717,35 +736,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

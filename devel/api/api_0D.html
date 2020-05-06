@@ -13,44 +13,41 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../index.html"/>
-        <link rel="up" title="Sardana API" href="api_sardana.html"/>
-        <link rel="next" title="1D channel API reference" href="api_1D.html"/>
-        <link rel="prev" title="Counter/Timer API reference" href="api_countertimer.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1D channel API reference" href="api_1D.html" />
+    <link rel="prev" title="Counter/Timer API reference" href="api_countertimer.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -59,7 +56,7 @@
 
           
             
-            <img src="../../_static/logo.png" class="logo" />
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -88,13 +85,16 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../docs.html">Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User&#8217;s Guide</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer&#8217;s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User’s Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer’s Guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../overview/index.html">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../howto_macros/index.html">Writing macros</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../howto_controllers/index.html">Writing controllers</a></li>
@@ -142,40 +142,60 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
-      
-          <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
-      
+        
+          <li><a href="../index.html">Developer’s Guide</a> &raquo;</li>
+        
           <li><a href="api_sardana.html">Sardana API</a> &raquo;</li>
-      
-    <li>0D channel API reference</li>
+        
+      <li>0D channel API reference</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../../_sources/devel/api/api_0D.txt" rel="nofollow"> View page source</a>
+            
+            <a href="../../_sources/devel/api/api_0D.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -185,75 +205,74 @@
 <span id="sardana-0d-api"></span><h1>0D channel API reference<a class="headerlink" href="#d-channel-api-reference" title="Permalink to this headline">¶</a></h1>
 <p>The 0D experimental channel is used to access any kind of device which returns
 a scalar value and which are not counter/timer.</p>
-<p>A 0D has a <code class="docutils literal"><span class="pre">state</span></code>, and a <code class="docutils literal"><span class="pre">value</span></code> attributes. The state indicates at any
+<p>A 0D has a <code class="docutils literal notranslate"><span class="pre">state</span></code>, and a <code class="docutils literal notranslate"><span class="pre">value</span></code> attributes. The state indicates at any
 time if the 0D is stopped, in alarm or moving. The value behaves exactly the
 same as the accumulated value attribute.</p>
 <p>The other attributes are:</p>
-<dl class="docutils">
-<dt>accumulation</dt>
-<dd><p class="first">Defines the computation type done on the values gathered during the
+<dl class="simple">
+<dt>accumulation</dt><dd><p>Defines the computation type done on the values gathered during the
 acquisition. Three type of computation are supported:</p>
-<ul class="last simple">
-<li>Sum - the accumulation value attribute is the sum of all the data read
-during the acquisition. This is the default type.</li>
-<li>Average - the accumulation value attribute is the average of all the data
-read during the acquisition.</li>
-<li>Integral - the accumulation value attribute is a type of the integral of
-all the data read during the acquisition.</li>
+<ul class="simple">
+<li><p>Sum - the accumulation value attribute is the sum of all the data read
+during the acquisition. This is the default type.</p></li>
+<li><p>Average - the accumulation value attribute is the average of all the data
+read during the acquisition.</p></li>
+<li><p>Integral - the accumulation value attribute is a type of the integral of
+all the data read during the acquisition.</p></li>
 </ul>
 </dd>
-<dt>current value</dt>
-<dd>This is the current a.k.a. instant value of the experimental channel.
+<dt>current value</dt><dd><p>This is the current a.k.a. instant value of the experimental channel.
 If the current value attribute is read while the acquisition is in
 progress, it returns the last updated by the acquisition operation value
 (cache). When there is no acquisition in progress the current value read
-executes the hardware readout and returns an updated value.</dd>
-<dt>accumulated value</dt>
-<dd>This is the result of the data acquisition after the computation defined by
+executes the hardware readout and returns an updated value.</p>
+</dd>
+<dt>accumulated value</dt><dd><p>This is the result of the data acquisition after the computation defined by
 the accumulation attribute has been applied. This value is 0 until an
 acquisition has been started. After an acquisition, the attribute value
-stays unchanged until the next acquisition is started.</dd>
-<dt>accumulation buffer</dt>
-<dd>This buffer is filled with the instant values read by the acquisition
-operation.</dd>
-<dt>time buffer</dt>
-<dd>This buffer is filled with the timestamps of the instant values present in
+stays unchanged until the next acquisition is started.</p>
+</dd>
+<dt>accumulation buffer</dt><dd><p>This buffer is filled with the instant values read by the acquisition
+operation.</p>
+</dd>
+<dt>time buffer</dt><dd><p>This buffer is filled with the timestamps of the instant values present in
 the accumulation buffer and it is also filled during the acquisition
-operation.</dd>
+operation.</p>
+</dd>
 </dl>
 <p>The available operations are:</p>
-<dl class="docutils">
-<dt>start acquisition(integration time)</dt>
-<dd><p class="first">starts to acquire the 0D with the given integration time</p>
-<p class="last"><a class="reference internal" href="sardana/pool/poolzerodexpchannel.html#sardana.pool.poolzerodexpchannel.Pool0DExpChannel.start_acquisition" title="sardana.pool.poolzerodexpchannel.Pool0DExpChannel.start_acquisition"><code class="xref py py-meth docutils literal"><span class="pre">start_acquisition()</span></code></a></p>
+<dl>
+<dt>start acquisition(integration time)</dt><dd><p>starts to acquire the 0D with the given integration time</p>
+<p><a class="reference internal" href="sardana/pool/poolzerodexpchannel.html#sardana.pool.poolzerodexpchannel.Pool0DExpChannel.start_acquisition" title="sardana.pool.poolzerodexpchannel.Pool0DExpChannel.start_acquisition"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start_acquisition()</span></code></a></p>
 </dd>
-<dt>stop</dt>
-<dd>stops the 0D acquisition in an orderly fashion</dd>
-<dt>abort</dt>
-<dd>stops the 0D acquisition as fast as possible</dd>
+<dt>stop</dt><dd><p>stops the 0D acquisition in an orderly fashion</p>
+</dd>
+<dt>abort</dt><dd><p>stops the 0D acquisition as fast as possible</p>
+</dd>
 </dl>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<dl class="last docutils">
-<dt><a class="reference internal" href="../overview/overview_0D.html#sardana-0d-overview"><span class="std std-ref">0D channel overview</span></a></dt>
-<dd>the 0D experiment channel overview</dd>
-<dt><a class="reference internal" href="sardana/tango/pool/ZeroDExpChannel.html#sardana.tango.pool.ZeroDExpChannel.ZeroDExpChannel" title="sardana.tango.pool.ZeroDExpChannel.ZeroDExpChannel"><code class="xref py py-class docutils literal"><span class="pre">ZeroDExpChannel</span></code></a></dt>
-<dd>the 0D experiment channel tango device <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="../overview/overview_0D.html#sardana-0d-overview"><span class="std std-ref">0D channel overview</span></a></dt><dd><p>the 0D experiment channel overview</p>
+</dd>
+<dt><a class="reference internal" href="sardana/tango/pool/ZeroDExpChannel.html#sardana.tango.pool.ZeroDExpChannel.ZeroDExpChannel" title="sardana.tango.pool.ZeroDExpChannel.ZeroDExpChannel"><code class="xref py py-class docutils literal notranslate"><span class="pre">ZeroDExpChannel</span></code></a></dt><dd><p>the 0D experiment channel tango device <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a></p>
+</dd>
 </dl>
 </div>
 </div>
 
 
            </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api_1D.html" class="btn btn-neutral float-right" title="1D channel API reference" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api_1D.html" class="btn btn-neutral float-right" title="1D channel API reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="api_countertimer.html" class="btn btn-neutral" title="Counter/Timer API reference" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="api_countertimer.html" class="btn btn-neutral float-left" title="Counter/Timer API reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -263,11 +282,11 @@ operation.</dd>
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -280,35 +299,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

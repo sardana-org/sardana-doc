@@ -13,44 +13,41 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../index.html"/>
-        <link rel="up" title="Overview" href="index.html"/>
-        <link rel="next" title="Motor overview" href="overview_motor.html"/>
-        <link rel="prev" title="Pool overview" href="overview_pool.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Motor overview" href="overview_motor.html" />
+    <link rel="prev" title="Pool overview" href="overview_pool.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -59,7 +56,7 @@
 
           
             
-            <img src="../../_static/logo.png" class="logo" />
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -88,13 +85,16 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../docs.html">Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User&#8217;s Guide</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer&#8217;s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User’s Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer’s Guide</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Overview</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="overview.html">Global overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_macroserver.html">Macro Server</a></li>
@@ -143,40 +143,60 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
-      
-          <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
-      
+        
+          <li><a href="../index.html">Developer’s Guide</a> &raquo;</li>
+        
           <li><a href="index.html">Overview</a> &raquo;</li>
-      
-    <li>Controller overview</li>
+        
+      <li>Controller overview</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../../_sources/devel/overview/overview_controller.txt" rel="nofollow"> View page source</a>
+            
+            <a href="../../_sources/devel/overview/overview_controller.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -191,7 +211,7 @@ between a set of hardware objects (example motors) and the underlying hardware
 a <a class="reference external" href="http://www.tango-controls.org/">Tango</a> device.</p>
 <p>Usually a controller is capable of handling several hardware objects.
 For example, a motor controller crate is capable of controlling several motors
-(generally called <em>axis</em> <a class="footnote-reference" href="#id2" id="id1">[1]</a>).</p>
+(generally called <em>axis</em> <a class="footnote-reference brackets" href="#id2" id="id1">1</a>).</p>
 <p>The controller objects can be created/deleted/renamed dynamically in a running
 pool.</p>
 <p>A specific type of controller needs to be created to handle each specific type
@@ -203,69 +223,63 @@ pool capabilities to talk to all kinds of different hardware.</p>
 <div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../../_images/sardana_server_np200.png"><img alt="../../_images/sardana_server_np200.png" src="../../_images/sardana_server_np200.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-text">A diagram representing a sardana server with a controller class
-<em>NSC200Controller</em>, an instance of that controller <em>np200ctrl_1</em> &#8220;connected&#8221;
-to a real hardware and a single motor <em>npm_1</em>.</span></p>
+<em>NSC200Controller</em>, an instance of that controller <em>np200ctrl_1</em> “connected”
+to a real hardware and a single motor <em>npm_1</em>.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<p>A sardana controller is responsible for it&#8217;s sardana element(s). Example: an
+<p>A sardana controller is responsible for it’s sardana element(s). Example: an
 Icepap hardware motor controller can <em>control</em> up to 128 individual motor axis.
 In the same way, the coresponding software motor controller <em>IcepapController</em>
 will <em>own</em> the individual motor axises.</p>
 <div class="figure align-center" id="id4">
 <a class="reference internal image-reference" href="../../_images/sardana_server_icepap.png"><img alt="../../_images/sardana_server_icepap.png" src="../../_images/sardana_server_icepap.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-text">A diagram representing a sardana server with a controller class
-<em>IcepapController</em>, an instance of that controller <em>icectrl_1</em> &#8220;connected&#8221;
-to a real hardware and motors <em>icem_[1..5]</em>.</span></p>
+<em>IcepapController</em>, an instance of that controller <em>icectrl_1</em> “connected”
+to a real hardware and motors <em>icem_[1..5]</em>.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>These are the different types of controllers recognized by sardana:</p>
-<dl class="docutils">
-<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController" title="sardana.pool.controller.MotorController"><code class="xref py py-class docutils literal"><span class="pre">MotorController</span></code></a></dt>
-<dd><p class="first">You should use/write a <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController" title="sardana.pool.controller.MotorController"><code class="xref py py-class docutils literal"><span class="pre">MotorController</span></code></a> sardana <a class="reference internal" href="../../glossary.html#term-plug-in"><span class="xref std std-term">plug-in</span></a> if
+<dl>
+<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController" title="sardana.pool.controller.MotorController"><code class="xref py py-class docutils literal notranslate"><span class="pre">MotorController</span></code></a></dt><dd><p>You should use/write a <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController" title="sardana.pool.controller.MotorController"><code class="xref py py-class docutils literal notranslate"><span class="pre">MotorController</span></code></a> sardana <a class="reference internal" href="../../glossary.html#term-plug-in"><span class="xref std std-term">plug-in</span></a> if
 the the device you want to control has a <em>moveable</em> interface.
-The <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController" title="sardana.pool.controller.MotorController"><code class="xref py py-class docutils literal"><span class="pre">MotorController</span></code></a> actually fullfils a <em>changeable</em> interface.
+The <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController" title="sardana.pool.controller.MotorController"><code class="xref py py-class docutils literal notranslate"><span class="pre">MotorController</span></code></a> actually fullfils a <em>changeable</em> interface.
 This means that, for example, a power supply that has a current which you
-want to <em>ramp</em> could also be implemented as a <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController" title="sardana.pool.controller.MotorController"><code class="xref py py-class docutils literal"><span class="pre">MotorController</span></code></a>.</p>
-<p class="last">Example: the Newport NSC200 motor controller</p>
+want to <em>ramp</em> could also be implemented as a <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController" title="sardana.pool.controller.MotorController"><code class="xref py py-class docutils literal notranslate"><span class="pre">MotorController</span></code></a>.</p>
+<p>Example: the Newport NSC200 motor controller</p>
 </dd>
-<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController" title="sardana.pool.controller.CounterTimerController"><code class="xref py py-class docutils literal"><span class="pre">CounterTimerController</span></code></a></dt>
-<dd><p class="first">This controller type is designed to control a device capable of counting
+<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController" title="sardana.pool.controller.CounterTimerController"><code class="xref py py-class docutils literal notranslate"><span class="pre">CounterTimerController</span></code></a></dt><dd><p>This controller type is designed to control a device capable of counting
 scalar values (and, optionaly have a timer).</p>
-<p class="last">Example: The National Instruments 6602 8-Channel Counter/Timer</p>
+<p>Example: The National Instruments 6602 8-Channel Counter/Timer</p>
 </dd>
-<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.ZeroDController" title="sardana.pool.controller.ZeroDController"><code class="xref py py-class docutils literal"><span class="pre">ZeroDController</span></code></a></dt>
-<dd><p class="first">This controller type is designed to control a device capable of supplying
-scalar values. The <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> provides a way to obtain a value over a
+<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.ZeroDController" title="sardana.pool.controller.ZeroDController"><code class="xref py py-class docutils literal notranslate"><span class="pre">ZeroDController</span></code></a></dt><dd><p>This controller type is designed to control a device capable of supplying
+scalar values. The <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> provides a way to obtain a value over a
 certain acquisition time through different algorithms (average, maximum,
 integration).</p>
-<p class="last">Example: an electrometer</p>
+<p>Example: an electrometer</p>
 </dd>
-<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.OneDController" title="sardana.pool.controller.OneDController"><code class="xref py py-class docutils literal"><span class="pre">OneDController</span></code></a></dt>
-<dd><p class="first">This controller type is designed to control a device capable of supplying
-1D values. It has a very similar <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> to <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController" title="sardana.pool.controller.CounterTimerController"><code class="xref py py-class docutils literal"><span class="pre">CounterTimerController</span></code></a></p>
-<p class="last">Example: an <a class="reference internal" href="../../glossary.html#term-mca"><span class="xref std std-term">MCA</span></a></p>
+<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.OneDController" title="sardana.pool.controller.OneDController"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneDController</span></code></a></dt><dd><p>This controller type is designed to control a device capable of supplying
+1D values. It has a very similar <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> to <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController" title="sardana.pool.controller.CounterTimerController"><code class="xref py py-class docutils literal notranslate"><span class="pre">CounterTimerController</span></code></a></p>
+<p>Example: an <a class="reference internal" href="../../glossary.html#term-MCA"><span class="xref std std-term">MCA</span></a></p>
 </dd>
-<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.TwoDController" title="sardana.pool.controller.TwoDController"><code class="xref py py-class docutils literal"><span class="pre">TwoDController</span></code></a></dt>
-<dd><p class="first">This controller type is designed to control a device capable of supplying
-2D values. It has a very similar <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> to <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController" title="sardana.pool.controller.CounterTimerController"><code class="xref py py-class docutils literal"><span class="pre">CounterTimerController</span></code></a></p>
-<p class="last">Example: a <a class="reference internal" href="../../glossary.html#term-ccd"><span class="xref std std-term">CCD</span></a></p>
+<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.TwoDController" title="sardana.pool.controller.TwoDController"><code class="xref py py-class docutils literal notranslate"><span class="pre">TwoDController</span></code></a></dt><dd><p>This controller type is designed to control a device capable of supplying
+2D values. It has a very similar <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> to <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController" title="sardana.pool.controller.CounterTimerController"><code class="xref py py-class docutils literal notranslate"><span class="pre">CounterTimerController</span></code></a></p>
+<p>Example: a <a class="reference internal" href="../../glossary.html#term-CCD"><span class="xref std std-term">CCD</span></a></p>
 </dd>
-<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController" title="sardana.pool.controller.PseudoMotorController"><code class="xref py py-class docutils literal"><span class="pre">PseudoMotorController</span></code></a></dt>
-<dd><p class="first">A controller designed to export <em>virtual motors</em> that represent a new view
+<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController" title="sardana.pool.controller.PseudoMotorController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PseudoMotorController</span></code></a></dt><dd><p>A controller designed to export <em>virtual motors</em> that represent a new view
 over the actual physical motors.</p>
-<p class="last">Example: A slit pseudo motor controller provides <em>gap</em> and <em>offset</em> virtual
+<p>Example: A slit pseudo motor controller provides <em>gap</em> and <em>offset</em> virtual
 motors over the physical blades</p>
 </dd>
-<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController" title="sardana.pool.controller.PseudoCounterController"><code class="xref py py-class docutils literal"><span class="pre">PseudoCounterController</span></code></a></dt>
-<dd>A controller designed to export <em>virtual counters</em> that represent a new view
-over the actual physical counters/0Ds.</dd>
-<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.IORegisterController" title="sardana.pool.controller.IORegisterController"><code class="xref py py-class docutils literal"><span class="pre">IORegisterController</span></code></a></dt>
-<dd>A controller designed to control hardware registers.</dd>
+<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController" title="sardana.pool.controller.PseudoCounterController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PseudoCounterController</span></code></a></dt><dd><p>A controller designed to export <em>virtual counters</em> that represent a new view
+over the actual physical counters/0Ds.</p>
+</dd>
+<dt><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.IORegisterController" title="sardana.pool.controller.IORegisterController"><code class="xref py py-class docutils literal notranslate"><span class="pre">IORegisterController</span></code></a></dt><dd><p>A controller designed to control hardware registers.</p>
+</dd>
 </dl>
 <p>Controller plug-ins can be written in <a class="reference external" href="http://www.python.org/">Python</a> (and in the future in C++).
 Each controller code is basically a <a class="reference external" href="http://www.python.org/">Python</a> class that needs to obey a
-specific <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a>.</p>
+specific <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a>.</p>
 <p>Here is an a extract of the pertinent part of a <a class="reference external" href="http://www.python.org/">Python</a> motor controller code
 that is able to talk to a Newport motor controller:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="k">import</span> <span class="n">MotorController</span><span class="p">,</span> \
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="kn">import</span> <span class="n">MotorController</span><span class="p">,</span> \
     <span class="n">Type</span><span class="p">,</span> <span class="n">Description</span><span class="p">,</span> <span class="n">DefaultValue</span>
 
 <span class="k">class</span> <span class="nc">NSC200Controller</span><span class="p">(</span><span class="n">MotorController</span><span class="p">):</span>
@@ -284,7 +298,7 @@ that is able to talk to a Newport motor controller:</p>
                                  <span class="n">Description</span> <span class="p">:</span> <span class="s1">&#39;Controller number&#39;</span><span class="p">,</span>
                                  <span class="n">DefaultValue</span> <span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">MotorController</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">serial</span> <span class="o">=</span> <span class="kc">None</span>
@@ -352,37 +366,37 @@ that is able to talk to a Newport motor controller:</p>
 </pre></div>
 </div>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<dl class="last docutils">
-<dt><a class="reference internal" href="../howto_controllers/index.html#sardana-controller-howto"><span class="std std-ref">Writing controllers</span></a></dt>
-<dd>How to write controller <a class="reference internal" href="../../glossary.html#term-plug-in"><span class="xref std std-term">plug-in</span></a>s in sardana</dd>
-<dt><a class="reference internal" href="../api/api_controller.html#sardana-controller-api"><span class="std std-ref">Controller API reference</span></a></dt>
-<dd>the controller <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
-<dt><a class="reference internal" href="../api/sardana/tango/pool/Controller.html#sardana.tango.pool.Controller.Controller" title="sardana.tango.pool.Controller.Controller"><code class="xref py py-class docutils literal"><span class="pre">Controller</span></code></a></dt>
-<dd>the controller tango device <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a></dd>
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference internal" href="../howto_controllers/index.html#sardana-controller-howto"><span class="std std-ref">Writing controllers</span></a></dt><dd><p>How to write controller <a class="reference internal" href="../../glossary.html#term-plug-in"><span class="xref std std-term">plug-in</span></a>s in sardana</p>
+</dd>
+<dt><a class="reference internal" href="../api/api_controller.html#sardana-controller-api"><span class="std std-ref">Controller API reference</span></a></dt><dd><p>the controller <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a></p>
+</dd>
+<dt><a class="reference internal" href="../api/sardana/tango/pool/Controller.html#sardana.tango.pool.Controller.Controller" title="sardana.tango.pool.Controller.Controller"><code class="xref py py-class docutils literal notranslate"><span class="pre">Controller</span></code></a></dt><dd><p>the controller tango device <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a></p>
+</dd>
 </dl>
 </div>
 <p class="rubric">Footnotes</p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>The term <em>axis</em> will be used from here on to refer to the ID of
-a specific hardware object (like a motor) with respect to its <em>controller</em>.</td></tr>
-</tbody>
-</table>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The term <em>axis</em> will be used from here on to refer to the ID of
+a specific hardware object (like a motor) with respect to its <em>controller</em>.</p>
+</dd>
+</dl>
 </div>
 
 
            </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview_motor.html" class="btn btn-neutral float-right" title="Motor overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview_motor.html" class="btn btn-neutral float-right" title="Motor overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="overview_pool.html" class="btn btn-neutral" title="Pool overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="overview_pool.html" class="btn btn-neutral float-left" title="Pool overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -392,11 +406,11 @@ a specific hardware object (like a motor) with respect to its <em>controller</em
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -409,35 +423,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

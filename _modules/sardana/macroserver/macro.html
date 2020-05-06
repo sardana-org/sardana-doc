@@ -13,42 +13,39 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../../index.html"/>
-        <link rel="up" title="Module code" href="../../index.html"/> 
-
-  
-  <script src="../../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -57,7 +54,7 @@
 
           
             
-            <img src="../../../_static/logo.png" class="logo" />
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -86,7 +83,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
@@ -104,34 +104,52 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../index.html">Module code</a> &raquo;</li>
-      
-    <li>sardana.macroserver.macro</li>
+        
+      <li>sardana.macroserver.macro</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -188,36 +206,36 @@
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.prop</span> <span class="k">import</span> <span class="n">propertx</span>
-<span class="kn">from</span> <span class="nn">taurus.console.table</span> <span class="k">import</span> <span class="n">Table</span>
-<span class="kn">from</span> <span class="nn">taurus.console.list</span> <span class="k">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.prop</span> <span class="kn">import</span> <span class="n">propertx</span>
+<span class="kn">from</span> <span class="nn">taurus.console.table</span> <span class="kn">import</span> <span class="n">Table</span>
+<span class="kn">from</span> <span class="nn">taurus.console.list</span> <span class="kn">import</span> <span class="n">List</span>
 
-<span class="kn">from</span> <span class="nn">sardana.sardanadefs</span> <span class="k">import</span> <span class="n">State</span>
-<span class="kn">from</span> <span class="nn">sardana.util.wrap</span> <span class="k">import</span> <span class="n">wraps</span>
-<span class="kn">from</span> <span class="nn">sardana.util.thread</span> <span class="k">import</span> <span class="n">_asyncexc</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanadefs</span> <span class="kn">import</span> <span class="n">State</span>
+<span class="kn">from</span> <span class="nn">sardana.util.wrap</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">sardana.util.thread</span> <span class="kn">import</span> <span class="n">_asyncexc</span>
 
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="k">import</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamType</span><span class="p">,</span> <span class="n">ParamRepeat</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="kn">import</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamType</span><span class="p">,</span> <span class="n">ParamRepeat</span><span class="p">,</span> \
     <span class="n">Optional</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">StopException</span><span class="p">,</span> <span class="n">AbortException</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">StopException</span><span class="p">,</span> <span class="n">AbortException</span><span class="p">,</span> \
     <span class="n">ReleaseException</span><span class="p">,</span> <span class="n">MacroWrongParameterType</span><span class="p">,</span> <span class="n">UnknownEnv</span><span class="p">,</span> <span class="n">UnknownMacro</span><span class="p">,</span> \
     <span class="n">LibraryError</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msoptions</span> <span class="k">import</span> <span class="n">ViewOption</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msoptions</span> <span class="kn">import</span> <span class="n">ViewOption</span>
 
-<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana.pool</span> <span class="k">import</span> <span class="n">PoolElement</span>
+<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana.pool</span> <span class="kn">import</span> <span class="n">PoolElement</span>
 
 
 <span class="k">class</span> <span class="nc">OverloadPrint</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro</span> <span class="o">=</span> <span class="n">m</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_accum</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stdout</span>
 
@@ -244,7 +262,7 @@
 
 <span class="k">class</span> <span class="nc">PauseEvent</span><span class="p">(</span><span class="n">Logger</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_obj</span><span class="p">,</span> <span class="n">abort_timeout</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_obj</span><span class="p">,</span> <span class="n">abort_timeout</span><span class="o">=</span><span class="mf">0.2</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pause_cb</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_resume_cb</span> <span class="o">=</span> <span class="kc">None</span>
@@ -451,7 +469,7 @@
 <span class="sd">    The API basically follows the :meth:`Macro.execMacro`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_macro</span><span class="p">,</span> <span class="o">*</span><span class="n">pars</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent_macro</span><span class="p">,</span> <span class="o">*</span><span class="n">pars</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_obj_wr</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">parent_macro</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pars</span> <span class="o">=</span> <span class="n">pars</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_opts</span> <span class="o">=</span> <span class="n">kwargs</span>
@@ -460,20 +478,20 @@
     <span class="k">def</span> <span class="nf">macro_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_obj_wr</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">macro_obj</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_pars</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_opts</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">MacroFinder</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_obj</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_obj</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_obj_wr</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">macro_obj</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">macro_obj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_obj_wr</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
 
         <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="n">p_m</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_obj</span>
@@ -528,7 +546,7 @@
 <span class="sd">        def where_moveable(self, moveable):</span>
 <span class="sd">            self.output(&quot;Moveable %s is at %s&quot;, moveable.getName(), moveable.getPosition())&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">interactive</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param_def</span> <span class="o">=</span> <span class="n">param_def</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">result_def</span> <span class="o">=</span> <span class="n">result_def</span>
@@ -536,7 +554,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">hints</span> <span class="o">=</span> <span class="n">hints</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="n">interactive</span>
 
-    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
         <span class="n">fn</span><span class="o">.</span><span class="n">macro_data</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">fn</span><span class="o">.</span><span class="n">param_def</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">param_def</span>
         <span class="n">fn</span><span class="o">.</span><span class="n">result_def</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">result_def</span>
@@ -546,7 +564,7 @@
         <span class="k">return</span> <span class="n">fn</span></div>
 
 
-<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
 <span class="n">imacro</span> <span class="o">=</span> <span class="n">partial</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="n">interactive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
@@ -651,7 +669,7 @@
     <span class="c1">#: will print a warning message each time it is executed</span>
     <span class="n">interactive</span> <span class="o">=</span> <span class="kc">False</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;as&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_in_pars</span> <span class="o">=</span> <span class="n">args</span>
@@ -717,15 +735,15 @@
     <span class="c1"># API</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.checkPoint"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.checkPoint">[docs]</a>    <span class="k">def</span> <span class="nf">checkPoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.checkPoint"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.checkPoint">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">checkPoint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Empty method that just performs a checkpoint. This can be used</span>
 <span class="sd">        to check for the stop. Usually you won&#39;t need to call this method&quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.pausePoint"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.pausePoint">[docs]</a>    <span class="k">def</span> <span class="nf">pausePoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.pausePoint"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.pausePoint">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">pausePoint</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Will establish a pause point where called. If an external source as</span>
 <span class="sd">        invoked a pause then, when this this method is called, it will be block</span>
@@ -756,8 +774,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_macros</span> <span class="o">=</span> <span class="n">MacroFinder</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macros</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMacroStatus"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroStatus">[docs]</a>    <span class="k">def</span> <span class="nf">getMacroStatus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMacroStatus"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroStatus">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMacroStatus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the current macro status. Macro status is a :obj:`dict` where</span>
 <span class="sd">        keys are the strings:</span>
@@ -774,8 +792,8 @@
 <span class="sd">        :rtype: :obj:`dict`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_status</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getName"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getName">[docs]</a>    <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getName"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getName">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns this macro name</span>
 
@@ -783,8 +801,8 @@
 <span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getID"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getID">[docs]</a>    <span class="k">def</span> <span class="nf">getID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getID"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getID">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns this macro id</span>
 
@@ -792,8 +810,8 @@
 <span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getParentMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getParentMacro">[docs]</a>    <span class="k">def</span> <span class="nf">getParentMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getParentMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getParentMacro">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getParentMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the parent macro reference.</span>
 
@@ -801,8 +819,8 @@
 <span class="sd">        :rtype: :class:`~sardana.macroserver.macro.Macro`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_macro</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getDescription"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getDescription">[docs]</a>    <span class="k">def</span> <span class="nf">getDescription</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getDescription"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getDescription">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getDescription</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns a string description of the macro.</span>
 
@@ -810,8 +828,8 @@
 <span class="sd">        :rtype:  :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_desc</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getParameters"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getParameters">[docs]</a>    <span class="k">def</span> <span class="nf">getParameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getParameters"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getParameters">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getParameters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns a the macro parameters. It returns a list containning the</span>
 <span class="sd">        parameters with which the macro was executed</span>
@@ -820,8 +838,8 @@
 <span class="sd">        :rtype: :obj:`list`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_pars</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getExecutor"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getExecutor">[docs]</a>    <span class="k">def</span> <span class="nf">getExecutor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getExecutor"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getExecutor">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getExecutor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the reference to the object that invoked this macro. Usually</span>
 <span class="sd">        is a MacroExecutor object.</span>
@@ -830,8 +848,8 @@
 <span class="sd">        :rtype: :class:`~sardana.macroserver.macromanager.MacroExecutor`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_executor</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getDoorObj"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getDoorObj">[docs]</a>    <span class="k">def</span> <span class="nf">getDoorObj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getDoorObj"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getDoorObj">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getDoorObj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the reference to the Door that invoked this macro.</span>
 
@@ -839,8 +857,8 @@
 <span class="sd">        :rype: :class:`~sardana.macroserver.door.Door`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">getDoor</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getManager"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getManager">[docs]</a>    <span class="k">def</span> <span class="nf">getManager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getManager"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getManager">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getManager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the manager for this macro (usually a MacroServer)</span>
 
@@ -850,8 +868,8 @@
 
     <span class="n">manager</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getManager</span><span class="p">)</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMacroServer"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroServer">[docs]</a>    <span class="k">def</span> <span class="nf">getMacroServer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMacroServer"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroServer">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMacroServer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the MacroServer for this macro</span>
 
@@ -861,8 +879,8 @@
 
     <span class="n">macro_server</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getMacroServer</span><span class="p">)</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getDoorName"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getDoorName">[docs]</a>    <span class="k">def</span> <span class="nf">getDoorName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getDoorName"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getDoorName">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getDoorName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the string with the name of the Door that invoked this macro.</span>
 
@@ -870,8 +888,8 @@
 <span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">name</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getCommand"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getCommand">[docs]</a>    <span class="k">def</span> <span class="nf">getCommand</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getCommand"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getCommand">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getCommand</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the string used to execute the macro.</span>
 <span class="sd">        Ex.: &#39;ascan M1 0 1000 100 0.8&#39;</span>
@@ -880,8 +898,8 @@
 <span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">(),</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_pars</span><span class="p">]))</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getDateString"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getDateString">[docs]</a>    <span class="k">def</span> <span class="nf">getDateString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_format</span><span class="o">=</span><span class="s1">&#39;%a %b </span><span class="si">%d</span><span class="s1"> %H:%M:%S %Y&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getDateString"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getDateString">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getDateString</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%a</span><span class="s1"> %b </span><span class="si">%d</span><span class="s1"> %H:%M:%S %Y&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Helper method. Returns the current date in a string.</span>
 
@@ -893,8 +911,8 @@
 <span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">time_format</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.outputDate"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.outputDate">[docs]</a>    <span class="k">def</span> <span class="nf">outputDate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_format</span><span class="o">=</span><span class="s1">&#39;%a %b </span><span class="si">%d</span><span class="s1"> %H:%M:%S %Y&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.outputDate"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.outputDate">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">outputDate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%a</span><span class="s1"> %b </span><span class="si">%d</span><span class="s1"> %H:%M:%S %Y&#39;</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Helper method. Outputs the current date into the output buffer</span>
 
@@ -904,19 +922,24 @@
 <span class="sd">        :type time_format: :obj:`str`&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getDateString</span><span class="p">(</span><span class="n">time_format</span><span class="o">=</span><span class="n">time_format</span><span class="p">))</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.sendRecordData"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.sendRecordData">[docs]</a>    <span class="k">def</span> <span class="nf">sendRecordData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">codec</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.sendRecordData"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.sendRecordData">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">sendRecordData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">codec</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Sends the given data to the RecordData attribute of the Door</span>
 
-<span class="sd">        :param data: (sequence) the data to be sent&quot;&quot;&quot;</span>
+<span class="sd">        :param data: data to be sent (must be compatible with the codec)</span>
+<span class="sd">        :type data: object</span>
+<span class="sd">        :param codec: codec to encode data (in Tango server None defaults</span>
+<span class="sd">            to &quot;utf8_json&quot;)</span>
+<span class="sd">        :type codec: str or None</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sendRecordData</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">codec</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_sendRecordData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">codec</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">sendRecordData</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">codec</span><span class="o">=</span><span class="n">codec</span><span class="p">)</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.plot"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.plot">[docs]</a>    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.plot"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.plot">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Sends the plot command to the client using the &#39;RecordData&#39; DevEncoded</span>
 <span class="sd">        attribute. The data is encoded using the pickle -&gt; BZ2 codec.</span>
@@ -945,8 +968,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_pyplot</span> <span class="o">=</span> <span class="n">pyplot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">pyplot</span>
         <span class="k">return</span> <span class="n">pyplot</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getData"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getData">[docs]</a>    <span class="k">def</span> <span class="nf">getData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getData"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getData">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the data produced by the macro.</span>
 
@@ -959,8 +982,8 @@
                 <span class="s2">&quot;Macro &#39;</span><span class="si">%s</span><span class="s2">&#39; does not produce any data&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.setData"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.setData">[docs]</a>    <span class="k">def</span> <span class="nf">setData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.setData"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.setData">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">setData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Sets the data for this macro</span>
 
 <span class="sd">        :param object data: new data to be associated with this macro&quot;&quot;&quot;</span>
@@ -968,8 +991,8 @@
 
     <span class="n">data</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getData</span><span class="p">,</span> <span class="n">setData</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;macro data&quot;</span><span class="p">)</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.print"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.print">[docs]</a>    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.print"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.print">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Prints a message. Accepted *args* and</span>
 <span class="sd">        *kwargs* are the same as :func:`print`. Example::</span>
@@ -995,8 +1018,8 @@
             <span class="n">ret</span> <span class="o">=</span> <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.input"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.input">[docs]</a>    <span class="k">def</span> <span class="nf">input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.input"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.input">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        If args is present, it is written to standard output without a trailing</span>
 <span class="sd">        newline. The function then reads a line from input, converts it to a</span>
@@ -1053,8 +1076,8 @@
                     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">])</span>
             <span class="k">return</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;default_value&#39;</span><span class="p">]</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.output"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.output">[docs]</a>    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.output"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.output">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Record a log message in this object&#39;s output. Accepted *args* and</span>
 <span class="sd">        *kwargs* are the same as :meth:`logging.Logger.log`.</span>
@@ -1068,8 +1091,8 @@
 <span class="sd">        :param kwargs: list of keyword arguments&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.log"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.log">[docs]</a>    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.log"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.log">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Record a log message in this object&#39;s logger. Accepted *args* and</span>
 <span class="sd">        *kwargs* are the same as :meth:`logging.Logger.log`.</span>
@@ -1085,8 +1108,8 @@
 <span class="sd">        :param kwargs: list of keyword arguments&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.debug"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.debug">[docs]</a>    <span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.debug"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.debug">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Record a debug message in this object&#39;s logger. Accepted *args* and</span>
 <span class="sd">        *kwargs* are the same as :meth:`logging.Logger.debug`.</span>
@@ -1100,8 +1123,8 @@
 <span class="sd">        :param kw: list of keyword arguments&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.info"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.info">[docs]</a>    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.info"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.info">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Record an info message in this object&#39;s logger. Accepted *args* and</span>
 <span class="sd">        *kwargs* are the same as :meth:`logging.Logger.info`.</span>
@@ -1115,8 +1138,8 @@
 <span class="sd">        :param kwargs: list of keyword arguments&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.warning"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.warning">[docs]</a>    <span class="k">def</span> <span class="nf">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.warning"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.warning">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Record a warning message in this object&#39;s logger. Accepted *args* and</span>
 <span class="sd">        *kwargs* are the same as :meth:`logging.Logger.warning`.</span>
@@ -1130,8 +1153,8 @@
 <span class="sd">        :param kwargs: list of keyword arguments&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.error"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.error">[docs]</a>    <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.error"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.error">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Record an error message in this object&#39;s logger. Accepted *args* and</span>
 <span class="sd">        *kwargs* are the same as :meth:`logging.Logger.error`.</span>
@@ -1146,8 +1169,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.critical"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.critical">[docs]</a>    <span class="k">def</span> <span class="nf">critical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.critical"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.critical">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">critical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Record a critical message in this object&#39;s logger. Accepted *args* and</span>
 <span class="sd">        *kwargs* are the same as :meth:`logging.Logger.critical`.</span>
@@ -1161,8 +1184,8 @@
 <span class="sd">        :param kwargs: list of keyword arguments&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">critical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.trace"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.trace">[docs]</a>    <span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.trace"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.trace">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Record a trace message in this object&#39;s logger.</span>
 
 <span class="sd">        :param msg: (str) the message to be recorded</span>
@@ -1170,20 +1193,20 @@
 <span class="sd">        :param kw: list of keyword arguments&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.traceback"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.traceback">[docs]</a>    <span class="k">def</span> <span class="nf">traceback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.traceback"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.traceback">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">traceback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Logs the traceback with level TRACE on the macro logger.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">traceback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.stack"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.stack">[docs]</a>    <span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.stack"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.stack">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">stack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Logs the stack with level TRACE on the macro logger.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.report"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.report">[docs]</a>    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.report"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.report">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">report</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Record a log message in the sardana report (if enabled) with default</span>
 <span class="sd">        level **INFO**. The msg is the message format string, and the args are</span>
@@ -1204,14 +1227,14 @@
 <span class="sd">        :param kwargs: list of keyword arguments&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDoorObj</span><span class="p">()</span><span class="o">.</span><span class="n">report</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.flushOutput"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.flushOutput">[docs]</a>    <span class="k">def</span> <span class="nf">flushOutput</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.flushOutput"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.flushOutput">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">flushOutput</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Flushes the output buffer.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Logger</span><span class="o">.</span><span class="n">flushOutput</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMacroThread"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroThread">[docs]</a>    <span class="k">def</span> <span class="nf">getMacroThread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMacroThread"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroThread">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMacroThread</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the python thread where this macro is running</span>
 
@@ -1219,8 +1242,8 @@
 <span class="sd">        :rtype: threading.Thread&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_thread</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMacroThreadID"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroThreadID">[docs]</a>    <span class="k">def</span> <span class="nf">getMacroThreadID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMacroThreadID"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroThreadID">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMacroThreadID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Returns the python thread id where this macro is running</span>
 
@@ -1232,8 +1255,8 @@
     <span class="c1"># Hook helper API</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.createExecMacroHook"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.createExecMacroHook">[docs]</a>    <span class="k">def</span> <span class="nf">createExecMacroHook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">par_str_sequence</span><span class="p">,</span> <span class="n">parent_macro</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.createExecMacroHook"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.createExecMacroHook">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">createExecMacroHook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">par_str_sequence</span><span class="p">,</span> <span class="n">parent_macro</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**.</span>
 <span class="sd">        Creates a hook that executes the macro given as a sequence of strings</span>
 <span class="sd">        where the first string is macro name and the following strings the</span>
@@ -1251,8 +1274,8 @@
     <span class="c1"># Handle child macro execution</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.createMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.createMacro">[docs]</a>    <span class="k">def</span> <span class="nf">createMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">pars</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.createMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.createMacro">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">createMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">pars</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Create a new macro and prepare it for execution</span>
 <span class="sd">        Several different parameter formats are supported::</span>
 
@@ -1302,8 +1325,8 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepareMacro</span><span class="p">(</span><span class="o">*</span><span class="n">pars</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.prepareMacroObj"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.prepareMacroObj">[docs]</a>    <span class="k">def</span> <span class="nf">prepareMacroObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name_or_klass</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.prepareMacroObj"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.prepareMacroObj">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">prepareMacroObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name_or_klass</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Prepare a new macro for execution</span>
 
 <span class="sd">        :param macro_name_or_klass name: name of the macro to be prepared or</span>
@@ -1322,8 +1345,8 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">prepareMacroObj</span><span class="p">(</span><span class="n">macro_name_or_klass</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span>
                                              <span class="n">init_opts</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.prepareMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.prepareMacro">[docs]</a>    <span class="k">def</span> <span class="nf">prepareMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.prepareMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.prepareMacro">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">prepareMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Prepare a new macro for execution</span>
 <span class="sd">        Several different parameter formats are supported::</span>
 
@@ -1375,8 +1398,8 @@
         <span class="n">init_opts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;parent_macro&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="p">}</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">prepareMacro</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">init_opts</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.runMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.runMacro">[docs]</a>    <span class="k">def</span> <span class="nf">runMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_obj</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.runMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.runMacro">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">runMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_obj</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Runs the macro. This the lower level version of</span>
 <span class="sd">        :meth:`~sardana.macroserver.macro.Macro.execMacro`. The method only</span>
 <span class="sd">        returns after the macro is completed or an exception is thrown.</span>
@@ -1395,8 +1418,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">syncLog</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">macro_obj</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.execMacroObj"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.execMacroObj">[docs]</a>    <span class="k">def</span> <span class="nf">execMacroObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.execMacroObj"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.execMacroObj">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">execMacroObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Execute a macro in this macro. The method only returns</span>
 <span class="sd">        after the macro is completed or an exception is thrown. This is a</span>
 <span class="sd">        higher level version of runMacro method. It is the same as::</span>
@@ -1416,8 +1439,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">macro_obj</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">macro_obj</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.execMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.execMacro">[docs]</a>    <span class="k">def</span> <span class="nf">execMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.execMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.execMacro">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">execMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Execute a macro in this macro. The method only</span>
 <span class="sd">        returns after the macro is completed or an exception is thrown. Several</span>
 <span class="sd">        different parameter formats are supported::</span>
@@ -1486,8 +1509,8 @@
     <span class="c1"># taurus helpers</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getTangoFactory"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getTangoFactory">[docs]</a>    <span class="k">def</span> <span class="nf">getTangoFactory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getTangoFactory"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getTangoFactory">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getTangoFactory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Helper method that returns the tango factory.</span>
 
 <span class="sd">        :return: the tango factory singleton</span>
@@ -1495,8 +1518,8 @@
         <span class="kn">import</span> <span class="nn">taurus</span>
         <span class="k">return</span> <span class="n">taurus</span><span class="o">.</span><span class="n">Factory</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getDevice"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getDevice">[docs]</a>    <span class="k">def</span> <span class="nf">getDevice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dev_name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getDevice"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getDevice">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getDevice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dev_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Helper method that returns the device for the given</span>
 <span class="sd">        device name</span>
 
@@ -1509,20 +1532,20 @@
     <span class="c1"># Handle parameter objects</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.setLogBlockStart"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.setLogBlockStart">[docs]</a>    <span class="k">def</span> <span class="nf">setLogBlockStart</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.setLogBlockStart"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.setLogBlockStart">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">setLogBlockStart</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Specifies the begining of a block of data. Basically</span>
 <span class="sd">        it outputs the &#39;BLOCK&#39; tag&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">Macro</span><span class="o">.</span><span class="n">BlockStart</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.setLogBlockFinish"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.setLogBlockFinish">[docs]</a>    <span class="k">def</span> <span class="nf">setLogBlockFinish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.setLogBlockFinish"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.setLogBlockFinish">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">setLogBlockFinish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Specifies the end of a block of data. Basically it</span>
 <span class="sd">        outputs the &#39;/BLOCK&#39; tag&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">Macro</span><span class="o">.</span><span class="n">BlockFinish</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.outputBlock"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.outputBlock">[docs]</a>    <span class="k">def</span> <span class="nf">outputBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.outputBlock"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.outputBlock">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">outputBlock</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Sends an line tagged as a block to the output</span>
 
 <span class="sd">        :param :obj:`str` line: line to be sent&quot;&quot;&quot;</span>
@@ -1537,8 +1560,8 @@
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
     <span class="c1"># Handle parameter objects</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getPools"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getPools">[docs]</a>    <span class="k">def</span> <span class="nf">getPools</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getPools"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getPools">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getPools</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Returns the list of known device pools.</span>
 
 <span class="sd">        :return: the list of known device pools</span>
@@ -1549,8 +1572,8 @@
     <span class="c1"># Handle parameter objects</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.addObj"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.addObj">[docs]</a>    <span class="k">def</span> <span class="nf">addObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.addObj"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.addObj">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">addObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Adds the given object to the list of controlled</span>
 <span class="sd">        objects of this macro. In practice it means that if a stop is</span>
 <span class="sd">        executed the stop method of the given object will be called.</span>
@@ -1563,8 +1586,8 @@
 <span class="sd">        :type priority: :obj:`int`&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">reserveObj</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="n">priority</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.addObjs"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.addObjs">[docs]</a>    <span class="k">def</span> <span class="nf">addObjs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj_list</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.addObjs"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.addObjs">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">addObjs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj_list</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Adds the given objects to the list of controlled</span>
 <span class="sd">        objects of this macro. In practice it means that if a stop is</span>
 <span class="sd">        executed the stop method of the given object will be called.</span>
@@ -1583,8 +1606,8 @@
 <span class="sd">        :rtype: object&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executor</span><span class="o">.</span><span class="n">returnObj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getObj"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getObj">[docs]</a>    <span class="k">def</span> <span class="nf">getObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">subtype</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">reserve</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getObj"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getObj">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">subtype</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">reserve</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Gets the object of the given type belonging to the</span>
 <span class="sd">        given pool with the given name. The object (if found) will automatically</span>
 <span class="sd">        become controlled by the macro.</span>
@@ -1618,8 +1641,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">addObj</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getObjs"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getObjs">[docs]</a>    <span class="k">def</span> <span class="nf">getObjs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">subtype</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">reserve</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getObjs"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getObjs">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getObjs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">subtype</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">reserve</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Gets the objects of the given type belonging to the</span>
 <span class="sd">           given pool with the given names. The objects (if found) will</span>
 <span class="sd">           automatically become controlled by the macro.</span>
@@ -1646,8 +1669,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">addObjs</span><span class="p">(</span><span class="n">obj_list</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj_list</span> <span class="ow">or</span> <span class="p">[]</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.findObjs"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.findObjs">[docs]</a>    <span class="k">def</span> <span class="nf">findObjs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">subtype</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="n">All</span><span class="p">,</span>
+<div class="viewcode-block" id="Macro.findObjs"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.findObjs">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">findObjs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">names</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">subtype</span><span class="o">=</span><span class="n">All</span><span class="p">,</span> <span class="n">pool</span><span class="o">=</span><span class="n">All</span><span class="p">,</span>
                  <span class="n">reserve</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Gets the objects of the given type belonging to the</span>
 <span class="sd">        given pool with the given names. The objects (if found) will</span>
@@ -1674,8 +1697,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">addObjs</span><span class="p">(</span><span class="n">obj_list</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj_list</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMacroNames"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroNames">[docs]</a>    <span class="k">def</span> <span class="nf">getMacroNames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMacroNames"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroNames">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMacroNames</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Returns a list of strings containing the names of all</span>
 <span class="sd">        known macros</span>
 
@@ -1683,8 +1706,8 @@
 <span class="sd">           :rtype: seq&lt;:obj:`str`\&gt;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_macro_names</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMacros"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacros">[docs]</a>    <span class="k">def</span> <span class="nf">getMacros</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMacros"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacros">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMacros</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Returns a sequence of</span>
 <span class="sd">        :class:`~sardana.macroserver.msmetamacro.MacroClass`</span>
 <span class="sd">        /:class:`~sardana.macroserver.msmetamacro.MacroFunction` objects for all</span>
@@ -1702,8 +1725,8 @@
         <span class="n">ret</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_macros</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMacroLibraries"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroLibraries">[docs]</a>    <span class="k">def</span> <span class="nf">getMacroLibraries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMacroLibraries"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroLibraries">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMacroLibraries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Returns a sequence of</span>
 <span class="sd">        :class:`~sardana.macroserver.msmetamacro.MacroLibrary` objects for all</span>
 <span class="sd">        known macros that obey the filter expression.</span>
@@ -1718,8 +1741,8 @@
         <span class="n">ret</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_macro_libs</span><span class="p">(</span><span class="nb">filter</span><span class="o">=</span><span class="nb">filter</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMacroLibrary"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroLibrary">[docs]</a>    <span class="k">def</span> <span class="nf">getMacroLibrary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMacroLibrary"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroLibrary">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMacroLibrary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Returns a</span>
 <span class="sd">        :class:`~sardana.macroserver.msmetamacro.MacroLibrary` object for the</span>
 <span class="sd">        given library name.</span>
@@ -1736,8 +1759,8 @@
     <span class="n">getMacroLib</span> <span class="o">=</span> <span class="n">getMacroLibrary</span>
     <span class="n">getMacroLibs</span> <span class="o">=</span> <span class="n">getMacroLibraries</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMacroInfo"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroInfo">[docs]</a>    <span class="k">def</span> <span class="nf">getMacroInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMacroInfo"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMacroInfo">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMacroInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Returns the corresponding</span>
 <span class="sd">        :class:`~sardana.macroserver.msmetamacro.MacroClass`</span>
 <span class="sd">        /:class:`~sardana.macroserver.msmetamacro.MacroFunction` object.</span>
@@ -1752,8 +1775,8 @@
 <span class="sd">                /:class:`~sardana.macroserver.msmetamacro.MacroFunction`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_macro</span><span class="p">(</span><span class="n">macro_name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMotion"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMotion">[docs]</a>    <span class="k">def</span> <span class="nf">getMotion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elems</span><span class="p">,</span> <span class="n">motion_source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">read_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMotion"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMotion">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMotion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elems</span><span class="p">,</span> <span class="n">motion_source</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">read_only</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Returns a new Motion object containing the given</span>
 <span class="sd">        elements.</span>
 
@@ -1786,124 +1809,124 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">addObj</span><span class="p">(</span><span class="n">motion</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">motion</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getElementsWithInterface"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getElementsWithInterface">[docs]</a>    <span class="k">def</span> <span class="nf">getElementsWithInterface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getElementsWithInterface"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getElementsWithInterface">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getElementsWithInterface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_elements_with_interface</span><span class="p">(</span><span class="n">interface</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getControllers"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getControllers">[docs]</a>    <span class="k">def</span> <span class="nf">getControllers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getControllers"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getControllers">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getControllers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_controllers</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMoveables"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMoveables">[docs]</a>    <span class="k">def</span> <span class="nf">getMoveables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMoveables"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMoveables">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMoveables</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_moveables</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMotors"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMotors">[docs]</a>    <span class="k">def</span> <span class="nf">getMotors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMotors"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMotors">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMotors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_motors</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getPseudoMotors"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getPseudoMotors">[docs]</a>    <span class="k">def</span> <span class="nf">getPseudoMotors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getPseudoMotors"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getPseudoMotors">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getPseudoMotors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_pseudo_motors</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getIORegisters"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getIORegisters">[docs]</a>    <span class="k">def</span> <span class="nf">getIORegisters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getIORegisters"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getIORegisters">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getIORegisters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_io_registers</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMeasurementGroups"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMeasurementGroups">[docs]</a>    <span class="k">def</span> <span class="nf">getMeasurementGroups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMeasurementGroups"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMeasurementGroups">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMeasurementGroups</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_measurement_groups</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getExpChannels"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getExpChannels">[docs]</a>    <span class="k">def</span> <span class="nf">getExpChannels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getExpChannels"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getExpChannels">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getExpChannels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_exp_channels</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getCounterTimers"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getCounterTimers">[docs]</a>    <span class="k">def</span> <span class="nf">getCounterTimers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getCounterTimers"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getCounterTimers">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getCounterTimers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_counter_timers</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.get0DExpChannels"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get0DExpChannels">[docs]</a>    <span class="k">def</span> <span class="nf">get0DExpChannels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.get0DExpChannels"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get0DExpChannels">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">get0DExpChannels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_0d_exp_channels</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.get1DExpChannels"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get1DExpChannels">[docs]</a>    <span class="k">def</span> <span class="nf">get1DExpChannels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.get1DExpChannels"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get1DExpChannels">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">get1DExpChannels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_1d_exp_channels</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.get2DExpChannels"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get2DExpChannels">[docs]</a>    <span class="k">def</span> <span class="nf">get2DExpChannels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.get2DExpChannels"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get2DExpChannels">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">get2DExpChannels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_2d_exp_channels</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getPseudoCounters"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getPseudoCounters">[docs]</a>    <span class="k">def</span> <span class="nf">getPseudoCounters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getPseudoCounters"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getPseudoCounters">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getPseudoCounters</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_pseudo_counters</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getInstruments"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getInstruments">[docs]</a>    <span class="k">def</span> <span class="nf">getInstruments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getInstruments"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getInstruments">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getInstruments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_instruments</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getElementWithInterface"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getElementWithInterface">[docs]</a>    <span class="k">def</span> <span class="nf">getElementWithInterface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getElementWithInterface"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getElementWithInterface">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getElementWithInterface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">interface</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_element_with_interface</span><span class="p">(</span><span class="n">interface</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getController"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getController">[docs]</a>    <span class="k">def</span> <span class="nf">getController</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getController"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getController">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getController</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_controller</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMoveable"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMoveable">[docs]</a>    <span class="k">def</span> <span class="nf">getMoveable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMoveable"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMoveable">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMoveable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_moveable</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMotor"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMotor">[docs]</a>    <span class="k">def</span> <span class="nf">getMotor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMotor"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMotor">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMotor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_motor</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getPseudoMotor"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getPseudoMotor">[docs]</a>    <span class="k">def</span> <span class="nf">getPseudoMotor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getPseudoMotor"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getPseudoMotor">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getPseudoMotor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_pseudo_motor</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getIORegister"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getIORegister">[docs]</a>    <span class="k">def</span> <span class="nf">getIORegister</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getIORegister"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getIORegister">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getIORegister</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_io_register</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getMeasurementGroup"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMeasurementGroup">[docs]</a>    <span class="k">def</span> <span class="nf">getMeasurementGroup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getMeasurementGroup"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getMeasurementGroup">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getMeasurementGroup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_measurement_group</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getExpChannel"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getExpChannel">[docs]</a>    <span class="k">def</span> <span class="nf">getExpChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getExpChannel"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getExpChannel">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getExpChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_exp_channel</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getCounterTimer"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getCounterTimer">[docs]</a>    <span class="k">def</span> <span class="nf">getCounterTimer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getCounterTimer"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getCounterTimer">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getCounterTimer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_counter_timer</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.get0DExpChannel"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get0DExpChannel">[docs]</a>    <span class="k">def</span> <span class="nf">get0DExpChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.get0DExpChannel"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get0DExpChannel">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">get0DExpChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_0d_exp_channel</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.get1DExpChannel"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get1DExpChannel">[docs]</a>    <span class="k">def</span> <span class="nf">get1DExpChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.get1DExpChannel"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get1DExpChannel">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">get1DExpChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_1d_exp_channel</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.get2DExpChannel"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get2DExpChannel">[docs]</a>    <span class="k">def</span> <span class="nf">get2DExpChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.get2DExpChannel"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.get2DExpChannel">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">get2DExpChannel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_2d_exp_channel</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getPseudoCounter"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getPseudoCounter">[docs]</a>    <span class="k">def</span> <span class="nf">getPseudoCounter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getPseudoCounter"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getPseudoCounter">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getPseudoCounter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_pseudo_counter</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getInstrument"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getInstrument">[docs]</a>    <span class="k">def</span> <span class="nf">getInstrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getInstrument"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getInstrument">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getInstrument</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_instrument</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
     <span class="c1"># Handle macro environment</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getEnv">[docs]</a>    <span class="k">def</span> <span class="nf">getEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getEnv">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Gets the local environment matching the given</span>
 <span class="sd">        parameters:</span>
 
@@ -1936,24 +1959,24 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">get_env</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="n">macro_name</span><span class="p">,</span>
                                          <span class="n">door_name</span><span class="o">=</span><span class="n">door_name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getGlobalEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getGlobalEnv">[docs]</a>    <span class="k">def</span> <span class="nf">getGlobalEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getGlobalEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getGlobalEnv">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getGlobalEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Returns the global environment.</span>
 
 <span class="sd">        :return: a :obj:`dict` containing the global environment</span>
 <span class="sd">        :rtype: :obj:`dict`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getAllEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getAllEnv">[docs]</a>    <span class="k">def</span> <span class="nf">getAllEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getAllEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getAllEnv">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getAllEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Returns the enviroment for the macro.</span>
 
 <span class="sd">        :return: a :obj:`dict` containing the environment for the macro</span>
 <span class="sd">        :rtype: :obj:`dict`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getAllDoorEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getAllDoorEnv">[docs]</a>    <span class="k">def</span> <span class="nf">getAllDoorEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getAllDoorEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getAllDoorEnv">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getAllDoorEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Returns the enviroment for the door where the macro</span>
 <span class="sd">        is running.</span>
 
@@ -1961,8 +1984,8 @@
 <span class="sd">        :rtype: :obj:`dict`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_env</span><span class="p">()</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.setEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.setEnv">[docs]</a>    <span class="k">def</span> <span class="nf">setEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.setEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.setEnv">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">setEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Sets the environment key to the new value and</span>
 <span class="sd">        stores it persistently.</span>
 
@@ -1970,8 +1993,8 @@
 <span class="sd">        :rtype: :obj:`tuple`\&lt;:obj:`str`\, object&gt;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">set_env</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.unsetEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.unsetEnv">[docs]</a>    <span class="k">def</span> <span class="nf">unsetEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.unsetEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.unsetEnv">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">unsetEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Unsets the given environment variable.</span>
 
 <span class="sd">        :param key: the environment variable name</span>
@@ -1982,8 +2005,8 @@
     <span class="c1"># Reload API</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.reloadLibrary"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.reloadLibrary">[docs]</a>    <span class="k">def</span> <span class="nf">reloadLibrary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.reloadLibrary"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.reloadLibrary">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">reloadLibrary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Reloads the given library(=module) names</span>
 
 <span class="sd">        :raises: ImportError in case the reload process is not</span>
@@ -1996,8 +2019,8 @@
 <span class="sd">            the reloaded python module object&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">reload_lib</span><span class="p">(</span><span class="n">lib_name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.reloadMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.reloadMacro">[docs]</a>    <span class="k">def</span> <span class="nf">reloadMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.reloadMacro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.reloadMacro">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">reloadMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Reloads the module corresponding to the given macro</span>
 <span class="sd">        name</span>
 
@@ -2008,8 +2031,8 @@
 <span class="sd">        :type macro_name: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">reload_macro</span><span class="p">(</span><span class="n">macro_name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.reloadMacros"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.reloadMacros">[docs]</a>    <span class="k">def</span> <span class="nf">reloadMacros</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_names</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.reloadMacros"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.reloadMacros">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">reloadMacros</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_names</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Reloads the modules corresponding to the given macro</span>
 <span class="sd">        names.</span>
 
@@ -2020,8 +2043,8 @@
 <span class="sd">        :type macro_names: sequence&lt;:obj:`str`\&gt;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">reload_macros</span><span class="p">(</span><span class="n">macro_names</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.reloadMacroLibrary"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.reloadMacroLibrary">[docs]</a>    <span class="k">def</span> <span class="nf">reloadMacroLibrary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.reloadMacroLibrary"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.reloadMacroLibrary">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">reloadMacroLibrary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Reloads the given library(=module) names</span>
 
 <span class="sd">        :raises: MacroServerExceptionList in case the reload process is not</span>
@@ -2036,8 +2059,8 @@
 <span class="sd">        :rtype: :class:`~sardana.macroserver.metamacro.MacroLibrary`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">reload_macro_lib</span><span class="p">(</span><span class="n">lib_name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.reloadMacroLibraries"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.reloadMacroLibraries">[docs]</a>    <span class="k">def</span> <span class="nf">reloadMacroLibraries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_names</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.reloadMacroLibraries"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.reloadMacroLibraries">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">reloadMacroLibraries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lib_names</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Reloads the given library(=module) names</span>
 
 <span class="sd">        :raises: MacroServerExceptionList in case the reload process is not</span>
@@ -2055,12 +2078,12 @@
     <span class="n">reloadMacroLib</span> <span class="o">=</span> <span class="n">reloadMacroLibrary</span>
     <span class="n">reloadMacroLibs</span> <span class="o">=</span> <span class="n">reloadMacroLibraries</span>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getViewOption"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getViewOption">[docs]</a>    <span class="k">def</span> <span class="nf">getViewOption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getViewOption"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getViewOption">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getViewOption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getViewOption</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.getViewOptions"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getViewOptions">[docs]</a>    <span class="k">def</span> <span class="nf">getViewOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.getViewOptions"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getViewOptions">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">getViewOptions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">vo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getViewOptions</span><span class="p">()</span>
         <span class="c1"># ensure that all view options known by sardana are present, in case</span>
         <span class="c1"># there were missing ones, update _ViewOptions dictionary after</span>
@@ -2071,14 +2094,14 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;_ViewOptions&#39;</span><span class="p">,</span> <span class="n">vo</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ivo</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.setViewOption"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.setViewOption">[docs]</a>    <span class="k">def</span> <span class="nf">setViewOption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.setViewOption"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.setViewOption">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">setViewOption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="n">vo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getViewOptions</span><span class="p">()</span>
         <span class="n">vo</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;_ViewOptions&#39;</span><span class="p">,</span> <span class="n">vo</span><span class="p">)</span></div>
 
-    <span class="nd">@mAPI</span>
-<div class="viewcode-block" id="Macro.resetViewOption"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.resetViewOption">[docs]</a>    <span class="k">def</span> <span class="nf">resetViewOption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<div class="viewcode-block" id="Macro.resetViewOption"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.resetViewOption">[docs]</a>    <span class="nd">@mAPI</span>
+    <span class="k">def</span> <span class="nf">resetViewOption</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">vo</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getViewOptions</span><span class="p">()</span>
         <span class="n">ViewOption</span><span class="o">.</span><span class="n">reset_option</span><span class="p">(</span><span class="n">vo</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s1">&#39;_ViewOptions&#39;</span><span class="p">,</span> <span class="n">vo</span><span class="p">)</span>
@@ -2593,7 +2616,7 @@
 
     <span class="c1">#@}</span>
 
-    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">get_macro</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">UnknownMacro</span><span class="p">:</span>
@@ -2619,7 +2642,7 @@
 
 <span class="k">class</span> <span class="nc">MacroFunc</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">function</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;function&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_function</span> <span class="o">=</span> <span class="n">function</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;as&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_function</span><span class="o">.</span><span class="vm">__name__</span>
@@ -2640,6 +2663,7 @@
 </pre></div>
 
            </div>
+           
           </div>
           <footer>
   
@@ -2649,11 +2673,11 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -2666,35 +2690,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

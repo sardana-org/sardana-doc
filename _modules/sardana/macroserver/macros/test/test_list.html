@@ -13,42 +13,39 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../../../../index.html"/>
-        <link rel="up" title="Module code" href="../../../../index.html"/> 
-
-  
-  <script src="../../../../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -57,7 +54,7 @@
 
           
             
-            <img src="../../../../../_static/logo.png" class="logo" />
+            <img src="../../../../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -86,7 +83,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
@@ -104,34 +104,52 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../../../index.html">Module code</a> &raquo;</li>
-      
-    <li>sardana.macroserver.macros.test.test_list</li>
+        
+      <li>sardana.macroserver.macros.test.test_list</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -167,7 +185,7 @@
 
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="p">(</span><span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="kn">import</span> <span class="p">(</span><span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span>
                                              <span class="n">SarDemoEnv</span><span class="p">)</span>
 
 
@@ -226,9 +244,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">check_elements</span><span class="p">(</span><span class="n">macro_output</span><span class="p">,</span> <span class="n">list_sardemo</span><span class="p">)</span></div></div>
 
 
-<span class="nd">@testRun</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;l.*&#39;</span><span class="p">])</span>
+<div class="viewcode-block" id="LsmTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.LsmTest">[docs]</a><span class="nd">@testRun</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;l.*&#39;</span><span class="p">])</span>
 <span class="nd">@testRun</span>
-<div class="viewcode-block" id="LsmTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.LsmTest">[docs]</a><span class="k">class</span> <span class="nc">LsmTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">LsmTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;Class used for testing the &#39;lsm&#39; macro.</span>
 <span class="sd">       It verifies that all motors created by sar_demo are listed after</span>
@@ -238,8 +256,8 @@
     <span class="n">elem_type</span> <span class="o">=</span> <span class="s2">&quot;moveable&quot;</span></div>
 
 
-<span class="nd">@testRun</span>
-<div class="viewcode-block" id="LspmTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.LspmTest">[docs]</a><span class="k">class</span> <span class="nc">LspmTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="LspmTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.LspmTest">[docs]</a><span class="nd">@testRun</span>
+<span class="k">class</span> <span class="nc">LspmTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;Class used for testing the &#39;lspm&#39; macro.</span>
 <span class="sd">       It verifies that all pseudomotors created by sar_demo are listed after</span>
@@ -249,8 +267,8 @@
     <span class="n">elem_type</span> <span class="o">=</span> <span class="s2">&quot;pseudomotor&quot;</span></div>
 
 
-<span class="nd">@testRun</span>
-<div class="viewcode-block" id="LsctrlTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.LsctrlTest">[docs]</a><span class="k">class</span> <span class="nc">LsctrlTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="LsctrlTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.LsctrlTest">[docs]</a><span class="nd">@testRun</span>
+<span class="k">class</span> <span class="nc">LsctrlTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;Class used for testing the &#39;lsctrl&#39; macro.</span>
 <span class="sd">       It verifies that all controllers created by sar_demo are listed after</span>
@@ -260,8 +278,8 @@
     <span class="n">elem_type</span> <span class="o">=</span> <span class="s2">&quot;controller&quot;</span></div>
 
 
-<span class="nd">@testRun</span>
-<div class="viewcode-block" id="LsctTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.LsctTest">[docs]</a><span class="k">class</span> <span class="nc">LsctTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="LsctTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.LsctTest">[docs]</a><span class="nd">@testRun</span>
+<span class="k">class</span> <span class="nc">LsctTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;Class used for testing the &#39;lsct&#39; macro.</span>
 <span class="sd">       It verifies that all ct created by sar_demo are listed after</span>
@@ -271,8 +289,8 @@
     <span class="n">elem_type</span> <span class="o">=</span> <span class="s2">&quot;ctexpchannel&quot;</span></div>
 
 
-<span class="nd">@testRun</span>
-<div class="viewcode-block" id="Ls0dTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.Ls0dTest">[docs]</a><span class="k">class</span> <span class="nc">Ls0dTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="Ls0dTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.Ls0dTest">[docs]</a><span class="nd">@testRun</span>
+<span class="k">class</span> <span class="nc">Ls0dTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;Class used for testing the &#39;ls0d&#39; macro.</span>
 <span class="sd">       It verifies that all 0d created by sar_demo are listed after</span>
@@ -282,8 +300,8 @@
     <span class="n">elem_type</span> <span class="o">=</span> <span class="s2">&quot;zerodexpchannel&quot;</span></div>
 
 
-<span class="nd">@testRun</span>
-<div class="viewcode-block" id="Ls1dTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.Ls1dTest">[docs]</a><span class="k">class</span> <span class="nc">Ls1dTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="Ls1dTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.Ls1dTest">[docs]</a><span class="nd">@testRun</span>
+<span class="k">class</span> <span class="nc">Ls1dTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;Class used for testing the &#39;ls1d&#39; macro.</span>
 <span class="sd">       It verifies that all 1d created by sar_demo are listed after</span>
@@ -293,8 +311,8 @@
     <span class="n">elem_type</span> <span class="o">=</span> <span class="s2">&quot;onedexpchannel&quot;</span></div>
 
 
-<span class="nd">@testRun</span>
-<div class="viewcode-block" id="Ls2dTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.Ls2dTest">[docs]</a><span class="k">class</span> <span class="nc">Ls2dTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="viewcode-block" id="Ls2dTest"><a class="viewcode-back" href="../../../../../devel/howto_test/tests/test_list.html#sardana.macroserver.macros.test.test_list.Ls2dTest">[docs]</a><span class="nd">@testRun</span>
+<span class="k">class</span> <span class="nc">Ls2dTest</span><span class="p">(</span><span class="n">LsTest</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
 
     <span class="sd">&quot;&quot;&quot;Class used for testing the &#39;ls2d&#39; macro.</span>
 <span class="sd">       It verifies that all 2d created by sar_demo are listed after</span>
@@ -354,6 +372,7 @@
 </pre></div>
 
            </div>
+           
           </div>
           <footer>
   
@@ -363,11 +382,11 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -380,35 +399,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

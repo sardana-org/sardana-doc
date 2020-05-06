@@ -13,42 +13,39 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../../../index.html"/>
-        <link rel="up" title="Module code" href="../../../index.html"/> 
-
-  
-  <script src="../../../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -57,7 +54,7 @@
 
           
             
-            <img src="../../../../_static/logo.png" class="logo" />
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -86,7 +83,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
@@ -104,34 +104,52 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      
-    <li>sardana.tango.pool.Pool</li>
+        
+      <li>sardana.tango.pool.Pool</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -175,16 +193,16 @@
 
 <span class="kn">import</span> <span class="nn">PyTango</span>
 
-<span class="kn">from</span> <span class="nn">taurus</span> <span class="k">import</span> <span class="n">Factory</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span><span class="p">,</span> <span class="n">DebugIt</span>
+<span class="kn">from</span> <span class="nn">taurus</span> <span class="kn">import</span> <span class="n">Factory</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="kn">import</span> <span class="n">CaselessDict</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span><span class="p">,</span> <span class="n">DebugIt</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">SardanaServer</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">Interface</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">SardanaServer</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">Interface</span><span class="p">,</span> \
     <span class="n">TYPE_ACQUIRABLE_ELEMENTS</span><span class="p">,</span> <span class="n">TYPE_PSEUDO_ELEMENTS</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.pool</span> <span class="k">import</span> <span class="n">Pool</span> <span class="k">as</span> <span class="n">POOL</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolmetacontroller</span> <span class="k">import</span> <span class="n">TYPE_MAP_OBJ</span>
-<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">get_tango_version_number</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.pool</span> <span class="kn">import</span> <span class="n">Pool</span> <span class="k">as</span> <span class="n">POOL</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmetacontroller</span> <span class="kn">import</span> <span class="n">TYPE_MAP_OBJ</span>
+<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="kn">import</span> <span class="n">get_tango_version_number</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 
 
@@ -192,7 +210,7 @@
 
     <span class="n">ElementsCache</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">PyTango</span><span class="o">.</span><span class="n">Device_4Impl</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">Logger</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -231,7 +249,7 @@
         <span class="n">db_name</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_db_host</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span> <span class="o">+</span> <span class="n">db</span><span class="o">.</span><span class="n">get_db_port</span><span class="p">()</span>
         <span class="c1"># try to use Taurus 4 to retrieve FQDN</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> \
+            <span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="kn">import</span> \
                 <span class="n">TangoAuthorityNameValidator</span>
             <span class="n">db_name</span> <span class="o">=</span> <span class="s2">&quot;//</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">db_name</span>
             <span class="n">db_name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">TangoAuthorityNameValidator</span><span class="p">()</span><span class="o">.</span><span class="n">getNames</span><span class="p">(</span><span class="n">db_name</span><span class="p">)</span>
@@ -245,13 +263,13 @@
     <span class="k">def</span> <span class="nf">pool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool</span>
 
-    <span class="nd">@DebugIt</span><span class="p">()</span>
-<div class="viewcode-block" id="Pool.delete_device"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool.delete_device">[docs]</a>    <span class="k">def</span> <span class="nf">delete_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Pool.delete_device"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool.delete_device">[docs]</a>    <span class="nd">@DebugIt</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">delete_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># self.pool.monitor.pause()</span>
         <span class="k">pass</span></div>
 
-    <span class="nd">@DebugIt</span><span class="p">()</span>
-<div class="viewcode-block" id="Pool.init_device"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool.init_device">[docs]</a>    <span class="k">def</span> <span class="nf">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Pool.init_device"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool.init_device">[docs]</a>    <span class="nd">@DebugIt</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">init_device</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">INIT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_device_properties</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_device_class</span><span class="p">())</span>
         <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span>
@@ -310,8 +328,8 @@
         <span class="k">pass</span></div>
 
     <span class="c1">#@DebugIt()</span>
-<div class="viewcode-block" id="Pool.read_attr_hardware"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool.read_attr_hardware">[docs]</a>    <span class="k">def</span> <span class="nf">read_attr_hardware</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="k">pass</span></div>
+    <span class="k">def</span> <span class="nf">read_attr_hardware</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">pass</span>
 
     <span class="c1">#@DebugIt()</span>
 <div class="viewcode-block" id="Pool.read_ControllerLibList"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Pool.html#sardana.tango.pool.Pool.Pool.read_ControllerLibList">[docs]</a>    <span class="k">def</span> <span class="nf">read_ControllerLibList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
@@ -1709,7 +1727,7 @@
             <span class="p">}],</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">PyTango</span><span class="o">.</span><span class="n">DeviceClass</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 
@@ -1727,6 +1745,7 @@
 </pre></div>
 
            </div>
+           
           </div>
           <footer>
   
@@ -1736,11 +1755,11 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -1753,35 +1772,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

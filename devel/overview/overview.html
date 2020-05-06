@@ -13,44 +13,41 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../index.html"/>
-        <link rel="up" title="Overview" href="index.html"/>
-        <link rel="next" title="Macro Server overview" href="overview_macroserver.html"/>
-        <link rel="prev" title="Overview" href="index.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Macro Server overview" href="overview_macroserver.html" />
+    <link rel="prev" title="Overview" href="index.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -59,7 +56,7 @@
 
           
             
-            <img src="../../_static/logo.png" class="logo" />
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -88,13 +85,16 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../docs.html">Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User&#8217;s Guide</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer&#8217;s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User’s Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer’s Guide</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Overview</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Global overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="overview_macroserver.html">Macro Server</a></li>
@@ -143,40 +143,60 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
-      
-          <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
-      
+        
+          <li><a href="../index.html">Developer’s Guide</a> &raquo;</li>
+        
           <li><a href="index.html">Overview</a> &raquo;</li>
-      
-    <li>Global overview</li>
+        
+      <li>Global overview</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../../_sources/devel/overview/overview.txt" rel="nofollow"> View page source</a>
+            
+            <a href="../../_sources/devel/overview/overview.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -201,36 +221,36 @@ implemented protocol is <a class="reference external" href="http://www.tango-con
 connected to <a class="reference external" href="http://www.tango-controls.org/">Tango</a>. This documentation, is therefore centered in the
 <a class="reference external" href="http://www.tango-controls.org/">Tango</a> server implementation. When other comunication protocols become
 available, the documentation will be revised.</p>
-<p>Client applications (both <a class="reference internal" href="../../glossary.html#term-gui"><span class="xref std std-term">GUI</span></a>  and <a class="reference internal" href="../../glossary.html#term-cli"><span class="xref std std-term">CLI</span></a>) can connect to the
-sardana server through the high level sardana client <a class="reference internal" href="../../glossary.html#term-api"><span class="xref std std-term">API</span></a> or through the
+<p>Client applications (both <a class="reference internal" href="../../glossary.html#term-GUI"><span class="xref std std-term">GUI</span></a>  and <a class="reference internal" href="../../glossary.html#term-CLI"><span class="xref std std-term">CLI</span></a>) can connect to the
+sardana server through the high level sardana client <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> or through the
 low level pure <a class="reference external" href="http://www.tango-controls.org/">Tango</a> channels.
 Client applications can be build with the purpose of <em>operating</em> an existing
 sardana server or of <em>configuring</em> it.</p>
 <div class="section" id="sardana-server-sds">
-<h3>Sardana server (<a class="reference internal" href="../../glossary.html#term-sds"><span class="xref std std-term">SDS</span></a>)<a class="headerlink" href="#sardana-server-sds" title="Permalink to this headline">¶</a></h3>
-<p>The sardana server consists of a sardana tango device server (<a class="reference internal" href="../../glossary.html#term-sds"><span class="xref std std-term">SDS</span></a>)
+<h3>Sardana server (<a class="reference internal" href="../../glossary.html#term-SDS"><span class="xref std std-term">SDS</span></a>)<a class="headerlink" href="#sardana-server-sds" title="Permalink to this headline">¶</a></h3>
+<p>The sardana server consists of a sardana tango device server (<a class="reference internal" href="../../glossary.html#term-SDS"><span class="xref std std-term">SDS</span></a>)
 running a sardana kernel engine.
-This server runs as an <a class="reference internal" href="../../glossary.html#term-os"><span class="xref std std-term">OS</span></a> <a class="reference internal" href="../../glossary.html#term-daemon"><span class="xref std std-term">daemon</span></a>. Once configured, this server
+This server runs as an <a class="reference internal" href="../../glossary.html#term-OS"><span class="xref std std-term">OS</span></a> <a class="reference internal" href="../../glossary.html#term-daemon"><span class="xref std std-term">daemon</span></a>. Once configured, this server
 acts as a container of device objects which can be accessed by the outside
 world as <em>tango device objects</em>.
 Typically, a sardana server will consist of:</p>
 <blockquote>
 <div><ul class="simple">
-<li>a low level <strong>Pool</strong> object which manages all the server objects related
+<li><p>a low level <strong>Pool</strong> object which manages all the server objects related
 to motion control and data acquisition (controllers, motors, counters,
-experiment channels, etc).</li>
-<li>a <strong>Macro Server</strong> object which manages the execution of macros
-(procedures) and client connection points (called doors).</li>
-<li>a set of low level objects (controllers, motors, counters, experiment
-channels, etc) controlled by the Pool object</li>
-<li>a set of <strong>Door</strong> objects managed by the macro server. A Door is the
+experiment channels, etc).</p></li>
+<li><p>a <strong>Macro Server</strong> object which manages the execution of macros
+(procedures) and client connection points (called doors).</p></li>
+<li><p>a set of low level objects (controllers, motors, counters, experiment
+channels, etc) controlled by the Pool object</p></li>
+<li><p>a set of <strong>Door</strong> objects managed by the macro server. A Door is the
 preferred access point from a client application to the to the sardana
-server</li>
+server</p></li>
 </ul>
 </div></blockquote>
 <div class="figure align-center" id="id1">
 <a class="reference internal image-reference" href="../../_images/sardana_server.png"><img alt="../../_images/sardana_server.png" src="../../_images/sardana_server.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">A diagram representing a sardana server with its objects</span></p>
+<p class="caption"><span class="caption-text">A diagram representing a sardana server with its objects</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>A sardana server may contain only a Pool object or a Macro Server object or both.
 It may <strong>NOT</strong> contain more than one Pool object or more than one Macro Server object.</p>
@@ -241,21 +261,21 @@ is called <em>MacroServer</em> server).</p>
 <p>The following figures show some of the possible alternative configurations</p>
 <div class="figure align-center" id="id2">
 <a class="reference internal image-reference" href="../../_images/pool_server.png"><img alt="../../_images/pool_server.png" src="../../_images/pool_server.png" style="width: 256px;" /></a>
-<p class="caption"><span class="caption-text">1 - Sardana configured to be a single Pool DS (no MacroServer present)</span></p>
+<p class="caption"><span class="caption-text">1 - Sardana configured to be a single Pool DS (no MacroServer present)</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-center" id="id3">
 <a class="reference internal image-reference" href="../../_images/macroserver_server.png"><img alt="../../_images/macroserver_server.png" src="../../_images/macroserver_server.png" style="width: 256px;" /></a>
-<p class="caption"><span class="caption-text">2 - Sardana configured to be a single MacroServer DS (no Pool present)</span></p>
+<p class="caption"><span class="caption-text">2 - Sardana configured to be a single MacroServer DS (no Pool present)</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-center" id="id4">
 <a class="reference internal image-reference" href="../../_images/macroserver_pool_server.png"><img alt="../../_images/macroserver_pool_server.png" src="../../_images/macroserver_pool_server.png" style="width: 256px;" /></a>
 <p class="caption"><span class="caption-text">3 - Sardana configured with a MacroServer DS connecting to an underlying
-Pool DS</span></p>
+Pool DS</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <div class="figure align-center" id="id5">
 <a class="reference internal image-reference" href="../../_images/sardana_pool_server.png"><img alt="../../_images/sardana_pool_server.png" src="../../_images/sardana_pool_server.png" style="width: 512px;" /></a>
 <p class="caption"><span class="caption-text">4 - Sardana configured with a Sardna DS connecting to another underlying
-Pool DS</span></p>
+Pool DS</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <p>The following chapters describe each of the Sardana objects in more detail.</p>
 </div>
@@ -264,15 +284,16 @@ Pool DS</span></p>
 
 
            </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="overview_macroserver.html" class="btn btn-neutral float-right" title="Macro Server overview" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="overview_macroserver.html" class="btn btn-neutral float-right" title="Macro Server overview" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="Overview" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -282,11 +303,11 @@ Pool DS</span></p>
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -299,35 +320,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

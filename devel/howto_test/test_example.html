@@ -13,44 +13,41 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../genindex.html"/>
-        <link rel="search" title="Search" href="../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../index.html"/>
-        <link rel="up" title="Sardana Testing" href="index.html"/>
-        <link rel="next" title="Sardana Unit Test Examples" href="tests/index.html"/>
-        <link rel="prev" title="Run tests from command line" href="test_run_commands.html"/> 
-
-  
-  <script src="../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Sardana Unit Test Examples" href="tests/index.html" />
+    <link rel="prev" title="Run tests from command line" href="test_run_commands.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -59,7 +56,7 @@
 
           
             
-            <img src="../../_static/logo.png" class="logo" />
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -88,13 +85,16 @@
           
             
             
-                <ul class="current">
+              
+            
+            
+              <ul class="current">
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../docs.html">Documentation</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User&#8217;s Guide</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer&#8217;s Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User’s Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer’s Guide</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../overview/index.html">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../howto_macros/index.html">Writing macros</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../howto_controllers/index.html">Writing controllers</a></li>
@@ -130,40 +130,60 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
- 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
-      
-          <li><a href="../index.html">Developer&#8217;s Guide</a> &raquo;</li>
-      
+        
+          <li><a href="../index.html">Developer’s Guide</a> &raquo;</li>
+        
           <li><a href="index.html">Sardana Testing</a> &raquo;</li>
-      
-    <li>Test-driven development example</li>
+        
+      <li>Test-driven development example</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-            <a href="../../_sources/devel/howto_test/test_example.txt" rel="nofollow"> View page source</a>
+            
+            <a href="../../_sources/devel/howto_test/test_example.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -174,12 +194,12 @@
 <p>In this section it is presented a practical example of how to code a macro
 by doing test-driven development thanks to the tools provided by the Sardana
 Test Framework.</p>
-<p>Consider that we want to write a new macro named &#8220;sqrtmac&#8221; for calculating the
-square root of an input number. The &#8220;sqrtmac&#8221; specifications are:</p>
+<p>Consider that we want to write a new macro named “sqrtmac” for calculating the
+square root of an input number. The “sqrtmac” specifications are:</p>
 <ol class="arabic simple">
-<li>Its data must be given in the form {&#8216;in&#8217;:x,&#8217;out&#8217;:s}</li>
-<li>Its output (&#8216;out&#8217;) must be the square root of the input data (&#8216;in&#8217;).</li>
-<li>Macro must raise an Exception of type ValueError if negative numbers are given as input.</li>
+<li><p>Its data must be given in the form {‘in’:x,’out’:s}</p></li>
+<li><p>Its output (‘out’) must be the square root of the input data (‘in’).</p></li>
+<li><p>Macro must raise an Exception of type ValueError if negative numbers are given as input.</p></li>
 </ol>
 <div class="section" id="test-development">
 <h2>Test development<a class="headerlink" href="#test-development" title="Permalink to this headline">¶</a></h2>
@@ -188,10 +208,10 @@ features that are required for the macro. For doing so we will need some
 imports in order to be able to use the base classes and decorators.
 In this case the important base class is RunMacroTestCase, and
 we import testRun and testFail to be used as decorators:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for sqrt macro&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for sqrt macro&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="kn">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
 </pre></div>
 </div>
 <p>Now we will write a basic test, that will check the execution of the sqrtmac for
@@ -200,10 +220,10 @@ from RunMacroTestCase. In this implementation we will calculate in the test the
 sqrt of the input parameter and then, using assertEqual, we will verify that
 this value is equal to the output of the macro. The helper method macro_runs is
 used for executing the macro:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for a macro calculating the sqrt of an input number&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for a macro calculating the sqrt of an input number&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="kn">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
 
 
 <span class="k">class</span> <span class="nc">sqrtmacTest</span><span class="p">(</span><span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
@@ -235,10 +255,10 @@ its input and output values against the expected values which we pass to the
 decorator. A wait_timeout of 5s will be given;  this means, that if the test
 does not finish within 5 seconds, the current test will give an error and
 the following test will be executed:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for a macro calculating the sqrt of an input number&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for a macro calculating the sqrt of an input number&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="kn">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
 
 
 <span class="nd">@testRun</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;9&#39;</span><span class="p">])</span>
@@ -267,10 +287,10 @@ ValueError. For developing this test we will use the decorator testFail which
 allows to test if a macro is raising an Exception before finishing its
 execution. The final implementation of our test file test_sqrt.py is as
 follows:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for a macro calculating the sqrt of an input number&quot;&quot;&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for a macro calculating the sqrt of an input number&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="kn">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
 
 <span class="nd">@testRun</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;9&#39;</span><span class="p">])</span>
 <span class="nd">@testRun</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2.25&#39;</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;in&#39;</span><span class="p">:</span><span class="mf">2.25</span><span class="p">,</span><span class="s1">&#39;out&#39;</span><span class="p">:</span><span class="mf">1.5</span><span class="p">},</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -301,8 +321,8 @@ the macro and check if it is developed according to the specifications.</p>
 <p>We do a first implementation of the macro by calculating the square root
 of an input number. Then we will execute the test and analyze the results. The
 first implementation looks like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="k">class</span> <span class="nc">sqrtmac</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Macro sqrtmac&quot;&quot;&quot;</span>
@@ -318,7 +338,7 @@ first implementation looks like this:</p>
 </pre></div>
 </div>
 <p>An its ouput on the screen:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sardana</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">sardana</span><span class="o">/</span><span class="n">macroserver</span><span class="o">/</span><span class="n">macros</span><span class="o">/</span><span class="n">test</span><span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">unittest</span> <span class="o">-</span><span class="n">v</span> <span class="n">test_sqrtmac</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sardana</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">sardana</span><span class="o">/</span><span class="n">macroserver</span><span class="o">/</span><span class="n">macros</span><span class="o">/</span><span class="n">test</span><span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">unittest</span> <span class="o">-</span><span class="n">v</span> <span class="n">test_sqrtmac</span>
 <span class="n">test_sqrtmac</span> <span class="p">(</span><span class="n">test_sqrtmac</span><span class="o">.</span><span class="n">sqrtmacTest</span><span class="p">)</span> <span class="o">...</span> <span class="n">ERROR</span>
 <span class="n">test_sqrtmac_macro_fails</span> <span class="p">(</span><span class="n">test_sqrtmac</span><span class="o">.</span><span class="n">sqrtmacTest</span><span class="p">)</span>
 <span class="n">Testing</span> <span class="n">sqrtmac</span> <span class="k">with</span> <span class="n">macro_fails</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-3.0&#39;</span><span class="p">],</span> <span class="n">exception</span><span class="o">=&lt;</span><span class="nb">type</span> <span class="s1">&#39;exceptions.ValueError&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">...</span> <span class="n">FAIL</span>
@@ -365,14 +385,14 @@ first implementation looks like this:</p>
 <span class="n">FAILED</span> <span class="p">(</span><span class="n">failures</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>At this moment two tests are giving an error because &#8216;sqrtmac&#8217; does not produce
+<p>At this moment two tests are giving an error because ‘sqrtmac’ does not produce
 data, and one test is failing because the exception is not treat.
-The test that is giving &#8216;Ok&#8217; is only testing that the macro can be
+The test that is giving ‘Ok’ is only testing that the macro can be
 executed.</p>
 <p>The second step will be to set the input and output data of the macro and
 execute the test again:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="k">class</span> <span class="nc">sqrtmac</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Macro sqrtmac&quot;&quot;&quot;</span>
@@ -389,7 +409,7 @@ execute the test again:</p>
 </pre></div>
 </div>
 <p>An its ouput on the screen:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sardana</span><span class="o">/</span><span class="n">macroserver</span><span class="o">/</span><span class="n">macros</span><span class="o">/</span><span class="n">test</span><span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">unittest</span> <span class="o">-</span><span class="n">v</span> <span class="n">test_sqrtmac</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sardana</span><span class="o">/</span><span class="n">macroserver</span><span class="o">/</span><span class="n">macros</span><span class="o">/</span><span class="n">test</span><span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">unittest</span> <span class="o">-</span><span class="n">v</span> <span class="n">test_sqrtmac</span>
 <span class="n">test_sqrtmac</span> <span class="p">(</span><span class="n">test_sqrtmac</span><span class="o">.</span><span class="n">sqrtmacTest</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
 <span class="n">test_sqrtmac_macro_fails</span> <span class="p">(</span><span class="n">test_sqrtmac</span><span class="o">.</span><span class="n">sqrtmacTest</span><span class="p">)</span>
 <span class="n">Testing</span> <span class="n">sqrtmac</span> <span class="k">with</span> <span class="n">macro_fails</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-3.0&#39;</span><span class="p">],</span> <span class="n">exception</span><span class="o">=&lt;</span><span class="nb">type</span> <span class="s1">&#39;exceptions.ValueError&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">...</span> <span class="n">FAIL</span>
@@ -422,8 +442,8 @@ execution and the expected output values are OK.</p>
 account the Exception that should be raised if we enter a negative number
 as input parameter. For coding this macro test-driven development has been
 used:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="k">class</span> <span class="nc">sqrtmac</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Macro sqrtmac&quot;&quot;&quot;</span>
@@ -443,7 +463,7 @@ used:</p>
 </pre></div>
 </div>
 <p>An the output on the console after executing the test looks like this:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sardana</span><span class="o">/</span><span class="n">macroserver</span><span class="o">/</span><span class="n">macros</span><span class="o">/</span><span class="n">test</span><span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">unittest</span> <span class="o">-</span><span class="n">v</span> <span class="n">test_sqrtmac</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sardana</span><span class="o">/</span><span class="n">macroserver</span><span class="o">/</span><span class="n">macros</span><span class="o">/</span><span class="n">test</span><span class="o">&gt;</span> <span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">unittest</span> <span class="o">-</span><span class="n">v</span> <span class="n">test_sqrtmac</span>
 <span class="n">test_sqrtmac</span> <span class="p">(</span><span class="n">test_sqrtmac</span><span class="o">.</span><span class="n">sqrtmacTest</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
 <span class="n">test_sqrtmac_macro_fails</span> <span class="p">(</span><span class="n">test_sqrtmac</span><span class="o">.</span><span class="n">sqrtmacTest</span><span class="p">)</span>
 <span class="n">Testing</span> <span class="n">sqrtmac</span> <span class="k">with</span> <span class="n">macro_fails</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-3.0&#39;</span><span class="p">],</span> <span class="n">exception</span><span class="o">=&lt;</span><span class="nb">type</span> <span class="s1">&#39;exceptions.ValueError&#39;</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">...</span> <span class="n">ok</span>
@@ -463,15 +483,16 @@ used:</p>
 
 
            </div>
+           
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="tests/index.html" class="btn btn-neutral float-right" title="Sardana Unit Test Examples" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="tests/index.html" class="btn btn-neutral float-right" title="Sardana Unit Test Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="test_run_commands.html" class="btn btn-neutral" title="Run tests from command line" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="test_run_commands.html" class="btn btn-neutral float-left" title="Run tests from command line" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -481,11 +502,11 @@ used:</p>
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -498,35 +519,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>

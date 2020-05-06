@@ -13,42 +13,39 @@
 
   
   
+  
+  
 
   
+  <script type="text/javascript" src="../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
-  
-  
-    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../../../../genindex.html"/>
-        <link rel="search" title="Search" href="../../../../search.html"/>
-    <link rel="top" title="sardana 3.0.2-alpha documentation" href="../../../../index.html"/>
-        <link rel="up" title="Module code" href="../../../index.html"/> 
-
-  
-  <script src="../../../../_static/js/modernizr.min.js"></script>
-
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
+   
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -57,7 +54,7 @@
 
           
             
-            <img src="../../../../_static/logo.png" class="logo" />
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -86,7 +83,10 @@
           
             
             
-                <ul>
+              
+            
+            
+              <ul>
 <li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
 <li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
@@ -104,34 +104,52 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="../../../../index.html">sardana</a>
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">sardana</a>
+        
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
 <div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
-      
+    
+      <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+        
           <li><a href="../../../index.html">Module code</a> &raquo;</li>
-      
-    <li>sardana.macroserver.macros.lists</li>
+        
+      <li>sardana.macroserver.macros.lists</li>
+    
+    
       <li class="wy-breadcrumbs-aside">
         
-          
-        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
@@ -172,9 +190,9 @@
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
-<span class="kn">from</span> <span class="nn">taurus.console</span> <span class="k">import</span> <span class="n">Alignment</span>
-<span class="kn">from</span> <span class="nn">taurus.console.list</span> <span class="k">import</span> <span class="n">List</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamRepeat</span><span class="p">,</span> <span class="n">ViewOption</span>
+<span class="kn">from</span> <span class="nn">taurus.console</span> <span class="kn">import</span> <span class="n">Alignment</span>
+<span class="kn">from</span> <span class="nn">taurus.console.list</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamRepeat</span><span class="p">,</span> <span class="n">ViewOption</span>
 
 <span class="n">Left</span><span class="p">,</span> <span class="n">Right</span><span class="p">,</span> <span class="n">HCenter</span> <span class="o">=</span> <span class="n">Alignment</span><span class="o">.</span><span class="n">Left</span><span class="p">,</span> <span class="n">Alignment</span><span class="o">.</span><span class="n">Right</span><span class="p">,</span> <span class="n">Alignment</span><span class="o">.</span><span class="n">HCenter</span>
 
@@ -222,7 +240,7 @@
     <span class="n">width</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>       <span class="o">-</span><span class="mi">1</span><span class="p">,</span>                  <span class="o">-</span><span class="mi">1</span>
     <span class="n">align</span> <span class="o">=</span> <span class="n">Right</span><span class="p">,</span>    <span class="n">Right</span><span class="p">,</span>                <span class="n">Left</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">):</span>
+<div class="viewcode-block" id="lsdef.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsdef.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">):</span>
         <span class="c1"># TODO: passing a list causes TypeError: unhashable type: &#39;list&#39;</span>
         <span class="c1"># uncomment it when bug-473 is fixed:</span>
         <span class="c1"># https://sourceforge.net/p/sardana/tickets/473/</span>
@@ -244,7 +262,7 @@
                     <span class="n">out</span><span class="o">.</span><span class="n">appendRow</span><span class="p">([</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">description</span><span class="p">[</span><span class="mi">60</span><span class="o">*</span><span class="n">i</span><span class="p">:</span><span class="mi">60</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]])</span>
 
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">out</span><span class="o">.</span><span class="n">genOutput</span><span class="p">():</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div></div>
 
 
 <span class="k">class</span> <span class="nc">_lsobj</span><span class="p">(</span><span class="n">_ls</span><span class="p">):</span>
@@ -402,11 +420,11 @@
     <span class="n">width</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>     <span class="o">-</span><span class="mi">1</span><span class="p">,</span>      <span class="o">-</span><span class="mi">1</span><span class="p">,</span>                  <span class="mi">60</span>
     <span class="n">align</span> <span class="o">=</span> <span class="n">HCenter</span><span class="p">,</span>  <span class="n">Right</span><span class="p">,</span>   <span class="n">Right</span><span class="p">,</span>                <span class="n">Left</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+<div class="viewcode-block" id="lsmeas.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsmeas.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">filter</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> <span class="kc">None</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="k">def</span> <span class="nf">obj2Row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span> <span class="ow">and</span> <span class="p">(</span><span class="n">o</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">mnt_grp</span><span class="p">):</span>
@@ -435,6 +453,7 @@
 </pre></div>
 
            </div>
+           
           </div>
           <footer>
   
@@ -444,11 +463,11 @@
   <div role="contentinfo">
     <p>
         &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License.
+licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -461,35 +480,15 @@ licensed under a Creative Commons Attribution 3.0 License.
   
 
 
-  
-
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../../../../',
-            VERSION:'3.0.2-alpha',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true
-        };
-    </script>
-      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
-      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
-      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
-
-  
-
-  
-  
-    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
-  
-
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
   </script>
+
+  
+  
+    
    
 
 </body>
