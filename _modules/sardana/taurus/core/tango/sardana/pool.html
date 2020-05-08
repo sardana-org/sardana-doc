@@ -208,6 +208,7 @@
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">import</span> <span class="nn">weakref</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 
 <span class="kn">import</span> <span class="nn">PyTango</span>
@@ -725,37 +726,43 @@
         <span class="n">indent</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">tab</span> <span class="o">+</span> <span class="mi">10</span> <span class="o">*</span> <span class="s1">&#39; &#39;</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;:&quot;</span><span class="p">]</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">state_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateObj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">state_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="c1"># TODO: use expiration_period=float(&quot;inf&quot;) to always use event</span>
+            <span class="c1">#  value (taurus-org/taurus#1105)</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateObj</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="n">state_time</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="c1"># state_value is DevState enumeration (IntEnum)</span>
-            <span class="n">state</span> <span class="o">=</span> <span class="n">state_value</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">state</span><span class="o">.</span><span class="n">rvalue</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
         <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
                 <span class="n">state</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">desc</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">e_info</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
-                <span class="n">state</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="o">*</span><span class="n">e_info</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
+                <span class="n">state</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="o">*</span><span class="n">e_info</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">e_info</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
-            <span class="n">state</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="o">*</span><span class="n">e_info</span><span class="p">)</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">msg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tab</span> <span class="o">+</span> <span class="s2">&quot;   State: &quot;</span> <span class="o">+</span> <span class="n">state</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-            <span class="n">msg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tab</span> <span class="o">+</span> <span class="s2">&quot;   State: &quot;</span> <span class="o">+</span> <span class="n">state</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="o">*</span><span class="n">e_info</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tab</span> <span class="o">+</span> <span class="s2">&quot;   State: &quot;</span> <span class="o">+</span> <span class="n">state</span> <span class="o">+</span> <span class="s2">&quot; (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state_time</span><span class="p">))</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">e_info</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
-            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
-            <span class="n">status</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="p">)</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="n">status_time</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="c1"># TODO: ideally status should come from the event and no extra</span>
+            <span class="c1">#  readout should be made</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_attribute</span><span class="p">(</span><span class="s2">&quot;status&quot;</span><span class="p">)</span>
+            <span class="n">status_time</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%H:%M:%S.</span><span class="si">%f</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">indent</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">DevFailed</span> <span class="k">as</span> <span class="n">df</span><span class="p">:</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">):</span>
                 <span class="n">status</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">desc</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">e_info</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
-                <span class="n">status</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="o">*</span><span class="n">e_info</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
+                <span class="n">status</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="o">*</span><span class="n">e_info</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="n">e_info</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
-            <span class="n">status</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="o">*</span><span class="n">e_info</span><span class="p">)</span>
-        <span class="n">msg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tab</span> <span class="o">+</span> <span class="s2">&quot;  Status: &quot;</span> <span class="o">+</span> <span class="n">status</span><span class="p">)</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="o">*</span><span class="n">e_info</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+        <span class="n">msg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tab</span> <span class="o">+</span> <span class="s2">&quot;  Status: &quot;</span> <span class="o">+</span> <span class="n">status</span> <span class="o">+</span> <span class="s2">&quot; (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">status_time</span><span class="p">))</span>
 
         <span class="k">return</span> <span class="n">msg</span></div>
 

@@ -819,7 +819,16 @@
         <span class="k">return</span> <span class="n">data</span>
 
 
-<div class="viewcode-block" id="ct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.ct">[docs]</a><span class="k">class</span> <span class="nc">ct</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">_ct</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">dump_information</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elements</span><span class="p">):</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Elements ended acquisition with:&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+            <span class="n">msg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">information</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">msg</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="ct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.ct">[docs]</a><span class="k">class</span> <span class="nc">ct</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">,</span> <span class="n">_ct</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Count for the specified time on the measurement group</span>
 <span class="sd">       or experimental channel given as second argument</span>
 <span class="sd">       (if not given the active measurement group is used)&quot;&quot;&quot;</span>
@@ -861,7 +870,20 @@
         <span class="k">for</span> <span class="n">preAcqHook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-acq&#39;</span><span class="p">):</span>
             <span class="n">preAcqHook</span><span class="p">()</span>
 
-        <span class="n">state</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">state</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">:</span>
+                <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">ElementList</span>
+                <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dump_information</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+            <span class="k">raise</span>
+        <span class="k">if</span> <span class="n">state</span> <span class="o">!=</span> <span class="n">DevState</span><span class="o">.</span><span class="n">ON</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">:</span>
+                <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">ElementList</span>
+                <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dump_information</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Acquisition ended with </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
 
         <span class="k">for</span> <span class="n">postAcqHook</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-acq&#39;</span><span class="p">):</span>
             <span class="n">postAcqHook</span><span class="p">()</span>
@@ -886,7 +908,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">line</span><span class="p">)</span></div></div>
 
 
-<div class="viewcode-block" id="uct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.uct">[docs]</a><span class="k">class</span> <span class="nc">uct</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+<div class="viewcode-block" id="uct"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.uct">[docs]</a><span class="k">class</span> <span class="nc">uct</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_ct</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Count on the active measurement group and update&quot;&quot;&quot;</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
@@ -945,14 +967,26 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">print_value</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">setData</span><span class="p">(</span><span class="n">Record</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+            <span class="n">state</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">:</span>
+                <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">ElementList</span>
+                <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dump_information</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+            <span class="k">raise</span>
         <span class="k">finally</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">state</span> <span class="o">!=</span> <span class="n">DevState</span><span class="o">.</span><span class="n">ON</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">:</span>
+                <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span><span class="o">.</span><span class="n">ElementList</span>
+                <span class="n">elements</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">dump_information</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Acquisition ended with </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">state</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setData</span><span class="p">(</span><span class="n">Record</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">printAllValues</span><span class="p">()</span></div>
 
     <span class="k">def</span> <span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_clean</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">printAllValues</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">_clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">:</span>
