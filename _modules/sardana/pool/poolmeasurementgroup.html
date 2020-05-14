@@ -612,6 +612,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_channel_acq_synch</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_acq_synch</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">changed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="c1"># provide back. compatibility for value_ref_{enabled,pattern}</span>
+        <span class="c1"># config parameters created with Sardana &lt; 3.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_compat</span> <span class="o">=</span> <span class="kc">False</span>
 
 <div class="viewcode-block" id="MeasurementConfiguration.get_acq_synch_by_channel"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.get_acq_synch_by_channel">[docs]</a>    <span class="k">def</span> <span class="nf">get_acq_synch_by_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return acquisition synchronization configured for this element.</span>
@@ -756,7 +759,16 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user_config</span></div>
 
 <div class="viewcode-block" id="MeasurementConfiguration.set_configuration_from_user"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.set_configuration_from_user">[docs]</a>    <span class="k">def</span> <span class="nf">set_configuration_from_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="n">to_fqdn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Load measurement configuration from serializable data structure.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Set measurement configuration from serializable data structure.</span>
+
+<span class="sd">        Setting of the configuration includes the validation process. Setting</span>
+<span class="sd">        of invalid configuration raises an exception hence it is not necessary</span>
+<span class="sd">        that the client application does the validation.</span>
+
+<span class="sd">        The configuration parameters for given channels/controllers may differ</span>
+<span class="sd">        depending on their types e.g. 0D channel does not support timer</span>
+<span class="sd">        parameter while C/T does.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">pool</span>
 
@@ -803,7 +815,8 @@
             <span class="k">if</span> <span class="n">ch_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">continue</span>
 
-            <span class="n">external</span> <span class="o">=</span> <span class="n">ctrl_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;__&#39;</span><span class="p">)</span>
+            <span class="n">external</span> <span class="o">=</span> <span class="n">ctrl_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;__tango__&#39;</span><span class="p">]</span>
+
             <span class="k">if</span> <span class="n">external</span><span class="p">:</span>
                 <span class="n">ctrl</span> <span class="o">=</span> <span class="n">ctrl_name</span>
             <span class="k">else</span><span class="p">:</span>
@@ -814,57 +827,72 @@
 
             <span class="n">user_config</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">][</span><span class="n">ctrl_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_config_ctrl</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="n">ctrl_conf</span> <span class="o">=</span> <span class="p">{}</span>
-
-            <span class="n">synchronizer</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">,</span> <span class="s1">&#39;software&#39;</span><span class="p">)</span>
             <span class="n">conf_synch</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="k">if</span> <span class="n">synchronizer</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">synchronizer</span> <span class="o">==</span> <span class="s1">&#39;software&#39;</span><span class="p">:</span>
-                <span class="n">ctrl_conf</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;software&#39;</span>
-                <span class="n">user_config_ctrl</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;software&#39;</span>
+
+            <span class="c1"># The external controllers should not have synchronizer</span>
+
+            <span class="k">if</span> <span class="n">external</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s1">&#39;synchronizer&#39;</span> <span class="ow">in</span> <span class="n">ctrl_data</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;External controller does not allow &#39;</span>
+                                     <span class="s1">&#39;to have synchronizer&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s1">&#39;monitor&#39;</span> <span class="ow">in</span> <span class="n">ctrl_data</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;External controller does not allow &#39;</span>
+                                     <span class="s1">&#39;to have monitor&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="s1">&#39;timer&#39;</span> <span class="ow">in</span> <span class="n">ctrl_data</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;External controller does not allow &#39;</span>
+                                     <span class="s1">&#39;to have timer&#39;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
-                    <span class="n">synchronizer</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">synchronizer</span><span class="p">,</span>
-                                            <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
+                <span class="n">synchronizer</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">,</span> <span class="s1">&#39;software&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">synchronizer</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">synchronizer</span> <span class="o">==</span> <span class="s1">&#39;software&#39;</span><span class="p">:</span>
+                    <span class="n">ctrl_conf</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;software&#39;</span>
+                    <span class="n">user_config_ctrl</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;software&#39;</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
+                        <span class="n">synchronizer</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">synchronizer</span><span class="p">,</span>
+                                                <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
 
-                <span class="n">user_config_ctrl</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">synchronizer</span>
-                <span class="n">pool_synch</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_element_by_full_name</span><span class="p">(</span><span class="n">synchronizer</span><span class="p">)</span>
-                <span class="n">pool_synch_ctrl</span> <span class="o">=</span> <span class="n">pool_synch</span><span class="o">.</span><span class="n">controller</span>
-                <span class="n">conf_synch_ctrl</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="n">conf_synch</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">for</span> <span class="n">conf_ctrl_created</span> <span class="ow">in</span> <span class="n">synch_ctrls</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">pool_synch_ctrl</span> <span class="o">==</span> <span class="n">conf_ctrl_created</span><span class="o">.</span><span class="n">element</span><span class="p">:</span>
-                        <span class="n">conf_synch_ctrl</span> <span class="o">=</span> <span class="n">conf_ctrl_created</span>
-                        <span class="k">for</span> <span class="n">conf_synch_created</span> <span class="ow">in</span> \
-                                <span class="n">conf_ctrl_created</span><span class="o">.</span><span class="n">get_channels</span><span class="p">():</span>
-                            <span class="k">if</span> <span class="n">pool_synch</span> <span class="o">==</span> <span class="n">conf_synch_created</span><span class="o">.</span><span class="n">element</span><span class="p">:</span>
-                                <span class="n">conf_synch</span> <span class="o">=</span> <span class="n">conf_synch_created</span>
-                                <span class="k">break</span>
-                        <span class="k">break</span>
+                    <span class="n">user_config_ctrl</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">synchronizer</span>
+                    <span class="n">pool_synch</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_element_by_full_name</span><span class="p">(</span><span class="n">synchronizer</span><span class="p">)</span>
+                    <span class="n">pool_synch_ctrl</span> <span class="o">=</span> <span class="n">pool_synch</span><span class="o">.</span><span class="n">controller</span>
+                    <span class="n">conf_synch_ctrl</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">conf_synch</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">for</span> <span class="n">conf_ctrl_created</span> <span class="ow">in</span> <span class="n">synch_ctrls</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">pool_synch_ctrl</span> <span class="o">==</span> <span class="n">conf_ctrl_created</span><span class="o">.</span><span class="n">element</span><span class="p">:</span>
+                            <span class="n">conf_synch_ctrl</span> <span class="o">=</span> <span class="n">conf_ctrl_created</span>
+                            <span class="k">for</span> <span class="n">conf_synch_created</span> <span class="ow">in</span> \
+                                    <span class="n">conf_ctrl_created</span><span class="o">.</span><span class="n">get_channels</span><span class="p">():</span>
+                                <span class="k">if</span> <span class="n">pool_synch</span> <span class="o">==</span> <span class="n">conf_synch_created</span><span class="o">.</span><span class="n">element</span><span class="p">:</span>
+                                    <span class="n">conf_synch</span> <span class="o">=</span> <span class="n">conf_synch_created</span>
+                                    <span class="k">break</span>
+                            <span class="k">break</span>
 
-                <span class="k">if</span> <span class="n">conf_synch_ctrl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">conf_synch_ctrl</span> <span class="o">=</span> <span class="n">ControllerConfiguration</span><span class="p">(</span><span class="n">pool_synch_ctrl</span><span class="p">)</span>
-                    <span class="n">synch_ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conf_synch_ctrl</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">conf_synch_ctrl</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">conf_synch_ctrl</span> <span class="o">=</span> \
+                            <span class="n">ControllerConfiguration</span><span class="p">(</span><span class="n">pool_synch_ctrl</span><span class="p">)</span>
+                        <span class="n">synch_ctrls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">conf_synch_ctrl</span><span class="p">)</span>
 
-                <span class="k">if</span> <span class="n">conf_synch</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">conf_synch</span> <span class="o">=</span> <span class="n">SynchronizerConfiguration</span><span class="p">(</span><span class="n">pool_synch</span><span class="p">)</span>
-                    <span class="n">conf_synch_ctrl</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="n">conf_synch</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">conf_synch</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">conf_synch</span> <span class="o">=</span> <span class="n">SynchronizerConfiguration</span><span class="p">(</span><span class="n">pool_synch</span><span class="p">)</span>
+                        <span class="n">conf_synch_ctrl</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="n">conf_synch</span><span class="p">)</span>
 
-                <span class="n">ctrl_conf</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">conf_synch</span>
+                    <span class="n">ctrl_conf</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">conf_synch</span>
 
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">synchronization</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;synchronization&#39;</span><span class="p">]</span>
-            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                <span class="c1"># backwards compatibility for configurations before SEP6</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">synchronization</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;trigger_type&#39;</span><span class="p">]</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;trigger_type configuration parameter is deprecated&quot;</span>
-                           <span class="s2">&quot; in favor of synchronization. Re-apply &quot;</span>
-                           <span class="s2">&quot;configuration in order to upgrade.&quot;</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="n">synchronization</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;synchronization&#39;</span><span class="p">]</span>
                 <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                    <span class="n">synchronization</span> <span class="o">=</span> <span class="n">AcqSynchType</span><span class="o">.</span><span class="n">Trigger</span>
+                    <span class="c1"># backwards compatibility for configurations before SEP6</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">synchronization</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;trigger_type&#39;</span><span class="p">]</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;trigger_type configuration parameter &quot;</span>
+                               <span class="s2">&quot;is deprecated&quot;</span>
+                               <span class="s2">&quot; in favor of synchronization. Re-apply &quot;</span>
+                               <span class="s2">&quot;configuration in order to upgrade.&quot;</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                        <span class="n">synchronization</span> <span class="o">=</span> <span class="n">AcqSynchType</span><span class="o">.</span><span class="n">Trigger</span>
 
-            <span class="n">ctrl_conf</span><span class="p">[</span><span class="s1">&#39;synchronization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">synchronization</span>
-            <span class="n">user_config_ctrl</span><span class="p">[</span><span class="s1">&#39;synchronization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">synchronization</span>
+                <span class="n">ctrl_conf</span><span class="p">[</span><span class="s1">&#39;synchronization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">synchronization</span>
+                <span class="n">user_config_ctrl</span><span class="p">[</span><span class="s1">&#39;synchronization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">synchronization</span>
 
             <span class="n">acq_synch</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">if</span> <span class="n">external</span><span class="p">:</span>
@@ -977,7 +1005,7 @@
                     <span class="c1"># Skip controllers disabled</span>
                     <span class="k">pass</span>
                 <span class="k">elif</span> <span class="n">acq_synch</span> <span class="ow">in</span> <span class="p">(</span><span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span><span class="p">,</span>
-                                 <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareGate</span><span class="p">):</span>
+                                   <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareGate</span><span class="p">):</span>
                     <span class="k">if</span> <span class="n">ctrl_item</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">index</span> <span class="o">&lt;</span> <span class="n">master_timer_idx_sw</span><span class="p">:</span>
                         <span class="n">master_timer_sw</span> <span class="o">=</span> <span class="n">ctrl_item</span><span class="o">.</span><span class="n">timer</span>
                         <span class="n">master_timer_idx_sw</span> <span class="o">=</span> <span class="n">ctrl_item</span><span class="o">.</span><span class="n">timer</span><span class="o">.</span><span class="n">index</span>
@@ -1081,6 +1109,22 @@
         <span class="k">if</span> <span class="n">ctype</span> <span class="o">!=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">External</span> <span class="ow">and</span> <span class="n">channel</span><span class="o">.</span><span class="n">is_referable</span><span class="p">():</span>
             <span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="n">channel_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value_ref_enabled&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
             <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;value_ref_enabled&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value_ref_enabled</span>
+            <span class="n">value_ref_pattern</span> <span class="o">=</span> <span class="n">channel_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value_ref_pattern&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;value_ref_pattern&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">value_ref_pattern</span>
+        <span class="k">elif</span> <span class="s1">&#39;value_ref_enabled&#39;</span> <span class="ow">in</span> <span class="n">channel_data</span> <span class="ow">or</span> <span class="s1">&#39;value_ref_pattern&#39;</span> <span class="ow">in</span> \
+                <span class="n">channel_data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value_ref_compat</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;value_ref_pattern/value_ref_enabled is deprecated &#39;</span> \
+                      <span class="s1">&#39;for non-referable channels since Jul20. Re-apply &#39;</span> \
+                      <span class="s1">&#39;configuration in order to upgrade.&#39;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">channel_data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;value_ref_enabled&#39;</span><span class="p">)</span>
+                <span class="n">channel_data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;value_ref_pattern&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;The channel </span><span class="si">{}</span><span class="s1"> is not referable. You can not set &#39;</span>
+                       <span class="s1">&#39;the enabled and/or the pattern parameters.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">name</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="c1"># Definitively should be initialized by measurement group</span>
         <span class="c1"># index MUST be here already (asserting this in the following line)</span>
         <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">channel_data</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span>

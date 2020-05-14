@@ -469,7 +469,7 @@
             <span class="k">raise</span> <span class="n">ScanSetupError</span><span class="p">(</span><span class="s2">&quot;ActiveMntGrp has invalid value: &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span>
                                  <span class="o">%</span> <span class="n">mnt_grp_name</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_master</span> <span class="o">=</span> <span class="n">mnt_grp</span><span class="o">.</span><span class="n">getTimer</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_master</span> <span class="o">=</span> <span class="n">mnt_grp</span><span class="o">.</span><span class="n">getConfiguration</span><span class="p">()</span><span class="o">.</span><span class="n">getTimer</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_master</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ScanSetupError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> has no timer defined&#39;</span> <span class="o">%</span> <span class="n">mnt_grp</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span>

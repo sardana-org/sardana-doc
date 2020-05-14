@@ -191,7 +191,7 @@
 <span class="kn">import</span> <span class="nn">time</span>
 
 <span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">Except</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevLong</span><span class="p">,</span> <span class="n">DevDouble</span><span class="p">,</span> <span class="n">DevString</span><span class="p">,</span> \
-    <span class="n">DispLevel</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrQuality</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">,</span> <span class="n">SCALAR</span>
+    <span class="n">DispLevel</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrQuality</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">Util</span>
 
 <span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">DebugIt</span>
@@ -395,6 +395,11 @@
 <div class="viewcode-block" id="MeasurementGroup.write_Configuration"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.write_Configuration">[docs]</a>    <span class="k">def</span> <span class="nf">write_Configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+        <span class="n">util</span> <span class="o">=</span> <span class="n">Util</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">util</span><span class="o">.</span><span class="n">is_svr_starting</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">_value_ref_compat</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">_value_ref_compat</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">set_configuration_from_user</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.read_NbStarts"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.read_NbStarts">[docs]</a>    <span class="k">def</span> <span class="nf">read_NbStarts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>

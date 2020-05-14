@@ -941,7 +941,13 @@ enabled/disabled:</p>
 <dl class="py method">
 <dt id="sardana.pool.poolmeasurementgroup.MeasurementConfiguration.set_configuration_from_user">
 <code class="sig-name descname">set_configuration_from_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg</span></em>, <em class="sig-param"><span class="n">to_fqdn</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#MeasurementConfiguration.set_configuration_from_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.set_configuration_from_user" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load measurement configuration from serializable data structure.</p>
+<dd><p>Set measurement configuration from serializable data structure.</p>
+<p>Setting of the configuration includes the validation process. Setting
+of invalid configuration raises an exception hence it is not necessary
+that the client application does the validation.</p>
+<p>The configuration parameters for given channels/controllers may differ
+depending on their types e.g. 0D channel does not support timer
+parameter while C/T does.</p>
 </dd></dl>
 
 </dd></dl>
