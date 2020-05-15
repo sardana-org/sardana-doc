@@ -818,16 +818,33 @@ TaurusDevState instead of TaurusSWDevState</p>
 </div>
 <div class="section" id="measurementgroup">
 <h2>MeasurementGroup<a class="headerlink" href="#measurementgroup" title="Permalink to this headline">¶</a></h2>
-<div class="graphviz"><img src="../../../../../../../_images/inheritance-7da2bfc9829ab33606f8f241d8de1ac729246230.png" alt="Inheritance diagram of MeasurementGroup" usemap="#inheritance81e4951c6c" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="../../../../../../../_images/inheritance-1926285c882270fa3ccb8dab01125674c9080025.png" alt="Inheritance diagram of MeasurementGroup" usemap="#inheritance81e4951c6c" class="inheritance graphviz" /></div>
 <map id="inheritance81e4951c6c" name="inheritance81e4951c6c">
 <area shape="rect" id="node1" href="#sardana.taurus.core.tango.sardana.pool.BaseElement" target="_top" title="The base class for elements in the Pool (Pool itself, Motor," alt="" coords="17,352,123,391"/>
 <area shape="rect" id="node5" href="#sardana.taurus.core.tango.sardana.pool.PoolElement" target="_top" title="Base class for a Pool element device." alt="" coords="29,439,132,477"/>
-<area shape="rect" id="node4" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup" target="_top" title="Class encapsulating MeasurementGroup functionality." alt="" coords="5,525,156,564"/>
+<area shape="rect" id="node4" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup" target="_top" title="MeasurementGroup Sardana&#45;Taurus extension." alt="" coords="5,525,156,564"/>
 </map><dl class="py class">
 <dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup">
 <em class="property">class </em><code class="sig-name descname">MeasurementGroup</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sardana.taurus.core.tango.sardana.pool.PoolElement" title="sardana.taurus.core.tango.sardana.pool.PoolElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.taurus.core.tango.sardana.pool.PoolElement</span></code></a></p>
-<p>Class encapsulating MeasurementGroup functionality.</p>
+<p>MeasurementGroup Sardana-Taurus extension.</p>
+<p>Setting configuration parameters using e.g.,
+<a class="reference internal" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setEnabled" title="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setEnabled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setEnabled</span></code></a> or
+<a class="reference internal" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setTimer" title="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setTimer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setTimer</span></code></a>, etc.
+by default applies changes on the server. Since setting the configuration
+means passing to the server all the configuration parameters of
+the measurement group at once this behavior can be changed with the
+<code class="docutils literal notranslate"><span class="pre">apply=False</span></code>. Then the configuration changes are kept locally.
+This is useful when changing more then one parameter. In this case only
+setting of the last parameter should use <code class="docutils literal notranslate"><span class="pre">apply=True</span></code> or use
+<a class="reference internal" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.applyConfiguration" title="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.applyConfiguration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">applyConfiguration</span></code></a>
+afterwards:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># or in a macro use: meas_grp = self.getMeasurementGroup(&quot;mntgrp01&quot;)</span>
+<span class="n">meas_grp</span> <span class="o">=</span> <span class="n">taurus</span><span class="o">.</span><span class="n">Device</span><span class="p">(</span><span class="s2">&quot;mntgrp01&quot;</span><span class="p">)</span>
+<span class="n">meas_grp</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">apply</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">meas_grp</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;ct01&quot;</span><span class="p">,</span> <span class="s2">&quot;ct02&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.cleanUp">
 <code class="sig-name descname">cleanUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.cleanUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.cleanUp" title="Permalink to this definition">¶</a></dt>
@@ -917,13 +934,6 @@ Overwrite when necessary</p>
 <p>Channels and controllers are accepted as elements. Setting the output
 on the controller means setting it to all channels of this controller
 present in this measurement group.</p>
-<p>Configuration by default is directly applied on the server.
-Since setting the configuration means passing to the server all the
-configuration paramters of the measurement group at once this
-behavior can be changed with the <em>apply</em> argument and we can keep
-the configuration changes only locally. This is useful when we want
-to change more then one parameter, in this case only the setting of
-the last parameter should use <code class="xref py py-obj docutils literal notranslate"><span class="pre">apply=True</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -973,13 +983,6 @@ only channels.</p>
 <p>Channels and controllers are accepted as elements. Setting the enabled
 on the controller means setting it to all channels of this controller
 present in this measurement group.</p>
-<p>Configuration by default is directly applied on the server.
-Since setting the configuration means passing to the server all the
-configuration paramters of the measurement group at once this
-behavior can be changed with the <em>apply</em> argument and we can keep
-the configuration changes only locally. This is useful when we want
-to change more then one parameter, in this case only the setting of
-the last parameter should use <code class="xref py py-obj docutils literal notranslate"><span class="pre">apply=True</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1029,13 +1032,6 @@ only channels.</p>
 <p>Channels and controllers are accepted as elements. Setting the plot
 type on the controller means setting it to all channels of this
 controller present in this measurement group.</p>
-<p>Configuration by default is directly applied on the server.
-Since setting the configuration means passing to the server all the
-configuration paramters of the measurement group at once this
-behavior can be changed with the <em>apply</em> argument and we can keep
-the configuration changes only locally. This is useful when we want
-to change more then one parameter, in this case only the setting of
-the last parameter should use <code class="xref py py-obj docutils literal notranslate"><span class="pre">apply=True</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1085,13 +1081,6 @@ only channels.</p>
 <p>Channels and controllers are accepted as elements. Setting the plot
 axes on the controller means setting it to all channels of this
 controller present in this measurement group.</p>
-<p>Configuration by default is directly applied on the server.
-Since setting the configuration means passing to the server all the
-configuration paramters of the measurement group at once this
-behavior can be changed with the <em>apply</em> argument and we can keep
-the configuration changes only locally. This is useful when we want
-to change more then one parameter, in this case only the setting of
-the last parameter should use <code class="xref py py-obj docutils literal notranslate"><span class="pre">apply=True</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1141,13 +1130,6 @@ only channels.</p>
 <p>Channels and controllers are accepted as elements. Setting the value
 reference enabled on the controller means setting it to all channels
 of this controller present in this measurement group.</p>
-<p>Configuration by default is directly applied on the server.
-Since setting the configuration means passing to the server all the
-configuration paramters of the measurement group at once this
-behavior can be changed with the <em>apply</em> argument and we can keep
-the configuration changes only locally. This is useful when we want
-to change more then one parameter, in this case only the setting of
-the last parameter should use <code class="xref py py-obj docutils literal notranslate"><span class="pre">apply=True</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1197,13 +1179,6 @@ only channels.</p>
 <p>Channels and controllers are accepted as elements. Setting the value
 reference pattern on the controller means setting it to all channels
 of this controller present in this measurement group.</p>
-<p>Configuration by default is directly applied on the server.
-Since setting the configuration means passing to the server all the
-configuration paramters of the measurement group at once this
-behavior can be changed with the <em>apply</em> argument and we can keep
-the configuration changes only locally. This is useful when we want
-to change more then one parameter, in this case only the setting of
-the last parameter should use <code class="xref py py-obj docutils literal notranslate"><span class="pre">apply=True</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1251,13 +1226,12 @@ only channels.</p>
 <code class="sig-name descname">setTimer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timer</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">elements</span></em>, <em class="sig-param"><span class="n">apply</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.setTimer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setTimer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the timer configuration for the given channels of the same
 controller.</p>
-<p>Configuration by default is directly applied on the server.
-Since setting the configuration means passing to the server all the
-configuration  paramters of the measurement group at once this
-behavior can be  changed with the <em>apply</em> argument and we can keep
-the configuration changes only locally. This is useful when we want
-to change more then one parameter, in this case only the setting of
-the last parameter should use <code class="xref py py-obj docutils literal notranslate"><span class="pre">apply=True</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently the controller’s timer must be unique. Hence this
+method will set it for the whole controller regardless of the
+<code class="docutils literal notranslate"><span class="pre">elements</span></code> argument.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1306,13 +1280,12 @@ configurations</p>
 <code class="sig-name descname">setMonitor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">monitor</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">elements</span></em>, <em class="sig-param"><span class="n">apply</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.setMonitor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setMonitor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the monitor configuration for the given channels of the same
 controller.</p>
-<p>Configuration by default is directly applied on the server.
-Since setting the configuration means passing to the server all the
-configuration  parameters of the measurement group at once this
-behavior can be  changed with the <em>apply</em> argument and we can keep
-the configuration changes only locally. This is useful when we want
-to change more then one parameter, in this case only the setting of
-the last parameter should use <code class="xref py py-obj docutils literal notranslate"><span class="pre">apply=True</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently the controller’s monitor must be unique.
+Hence this method will set it for the whole controller regardless of
+the <code class="docutils literal notranslate"><span class="pre">elements</span></code> argument.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1361,13 +1334,12 @@ configurations</p>
 <code class="sig-name descname">setSynchronizer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">synchronizer</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">elements</span></em>, <em class="sig-param"><span class="n">apply</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.setSynchronizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setSynchronizer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the synchronizer configuration for the given channels or
 controller.</p>
-<p>Configuration by default is directly applied on the server.
-Since setting the configuration means passing to the server all the
-configuration  paramters of the measurement group at once this
-behavior can be  changed with the <em>apply</em> argument and we can keep
-the configuration changes only locally. This is useful when we want
-to change more then one parameter, in this case only the setting of
-the last parameter should use <code class="xref py py-obj docutils literal notranslate"><span class="pre">apply=True</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently the controller’s synchronizer must be unique.
+Hence this method will set it for the whole controller regardless of
+the <code class="docutils literal notranslate"><span class="pre">elements</span></code> argument.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1409,6 +1381,19 @@ configurations</p>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>)</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.applyConfiguration">
+<code class="sig-name descname">applyConfiguration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.applyConfiguration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.applyConfiguration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply configuration changes kept locally on the server.</p>
+<p>Setting configuration parameters using e.g.,
+<a class="reference internal" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setEnabled" title="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setEnabled"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setEnabled</span></code></a>
+or
+<a class="reference internal" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setTimer" title="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setTimer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setTimer</span></code></a>,
+etc.
+with <code class="docutils literal notranslate"><span class="pre">apply=False</span></code> keeps the changes locally. Use this method to
+apply them on the server afterwards.</p>
 </dd></dl>
 
 <dl class="py method">

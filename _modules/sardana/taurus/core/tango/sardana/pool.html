@@ -2532,7 +2532,25 @@
 
 
 <div class="viewcode-block" id="MeasurementGroup"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup">[docs]</a><span class="k">class</span> <span class="nc">MeasurementGroup</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; Class encapsulating MeasurementGroup functionality.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;MeasurementGroup Sardana-Taurus extension.</span>
+
+<span class="sd">    Setting configuration parameters using e.g.,</span>
+<span class="sd">    `~sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setEnabled` or</span>
+<span class="sd">    `~sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setTimer`, etc.</span>
+<span class="sd">    by default applies changes on the server. Since setting the configuration</span>
+<span class="sd">    means passing to the server all the configuration parameters of</span>
+<span class="sd">    the measurement group at once this behavior can be changed with the</span>
+<span class="sd">    ``apply=False``. Then the configuration changes are kept locally.</span>
+<span class="sd">    This is useful when changing more then one parameter. In this case only</span>
+<span class="sd">    setting of the last parameter should use ``apply=True`` or use</span>
+<span class="sd">    `~sardana.taurus.core.tango.sardana.pool.MeasurementGroup.applyConfiguration`</span>
+<span class="sd">    afterwards::</span>
+
+<span class="sd">        # or in a macro use: meas_grp = self.getMeasurementGroup(&quot;mntgrp01&quot;)</span>
+<span class="sd">        meas_grp = taurus.Device(&quot;mntgrp01&quot;)</span>
+<span class="sd">        meas_grp.setEnabled(False, apply=False)</span>
+<span class="sd">        meas_grp.setEnabled(True, &quot;ct01&quot;, &quot;ct02&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;PoolElement initialization.&quot;&quot;&quot;</span>
@@ -2663,14 +2681,6 @@
 <span class="sd">        on the controller means setting it to all channels of this controller</span>
 <span class="sd">        present in this measurement group.</span>
 
-<span class="sd">        Configuration by default is directly applied on the server.</span>
-<span class="sd">        Since setting the configuration means passing to the server all the</span>
-<span class="sd">        configuration paramters of the measurement group at once this</span>
-<span class="sd">        behavior can be changed with the *apply* argument and we can keep</span>
-<span class="sd">        the configuration changes only locally. This is useful when we want</span>
-<span class="sd">        to change more then one parameter, in this case only the setting of</span>
-<span class="sd">        the last parameter should use `apply=True`.</span>
-
 <span class="sd">        :param output: `True` - output enabled, `False` - output disabled</span>
 <span class="sd">        :type output: bool</span>
 <span class="sd">        :param elements: sequence of element names or full names, no elements</span>
@@ -2716,14 +2726,6 @@
 <span class="sd">        on the controller means setting it to all channels of this controller</span>
 <span class="sd">        present in this measurement group.</span>
 
-<span class="sd">        Configuration by default is directly applied on the server.</span>
-<span class="sd">        Since setting the configuration means passing to the server all the</span>
-<span class="sd">        configuration paramters of the measurement group at once this</span>
-<span class="sd">        behavior can be changed with the *apply* argument and we can keep</span>
-<span class="sd">        the configuration changes only locally. This is useful when we want</span>
-<span class="sd">        to change more then one parameter, in this case only the setting of</span>
-<span class="sd">        the last parameter should use `apply=True`.</span>
-
 <span class="sd">        :param enabled: `True` - element enabled, `False` - element disabled</span>
 <span class="sd">        :type enabled: bool</span>
 <span class="sd">        :param elements: sequence of element names or full names, no elements</span>
@@ -2768,14 +2770,6 @@
 <span class="sd">        Channels and controllers are accepted as elements. Setting the plot</span>
 <span class="sd">        type on the controller means setting it to all channels of this</span>
 <span class="sd">        controller present in this measurement group.</span>
-
-<span class="sd">        Configuration by default is directly applied on the server.</span>
-<span class="sd">        Since setting the configuration means passing to the server all the</span>
-<span class="sd">        configuration paramters of the measurement group at once this</span>
-<span class="sd">        behavior can be changed with the *apply* argument and we can keep</span>
-<span class="sd">        the configuration changes only locally. This is useful when we want</span>
-<span class="sd">        to change more then one parameter, in this case only the setting of</span>
-<span class="sd">        the last parameter should use `apply=True`.</span>
 
 <span class="sd">        :param plot_type: &#39;No&#39;/0 , &#39;Spectrum&#39;/1, &#39;Image&#39;/2</span>
 <span class="sd">        :type plot_type: str or int</span>
@@ -2825,14 +2819,6 @@
 <span class="sd">        axes on the controller means setting it to all channels of this</span>
 <span class="sd">        controller present in this measurement group.</span>
 
-<span class="sd">        Configuration by default is directly applied on the server.</span>
-<span class="sd">        Since setting the configuration means passing to the server all the</span>
-<span class="sd">        configuration paramters of the measurement group at once this</span>
-<span class="sd">        behavior can be changed with the *apply* argument and we can keep</span>
-<span class="sd">        the configuration changes only locally. This is useful when we want</span>
-<span class="sd">        to change more then one parameter, in this case only the setting of</span>
-<span class="sd">        the last parameter should use `apply=True`.</span>
-
 <span class="sd">        :param plot_axes: [&#39;&lt;mov&gt;&#39;] / [&#39;&lt;mov&gt;&#39;, &#39;&lt;idx&gt;&#39;]</span>
 <span class="sd">        :type plot_axes: list(str)</span>
 <span class="sd">        :param elements: sequence of element names or full names, no elements</span>
@@ -2878,14 +2864,6 @@
 <span class="sd">        Channels and controllers are accepted as elements. Setting the value</span>
 <span class="sd">        reference enabled on the controller means setting it to all channels</span>
 <span class="sd">        of this controller present in this measurement group.</span>
-
-<span class="sd">        Configuration by default is directly applied on the server.</span>
-<span class="sd">        Since setting the configuration means passing to the server all the</span>
-<span class="sd">        configuration paramters of the measurement group at once this</span>
-<span class="sd">        behavior can be changed with the *apply* argument and we can keep</span>
-<span class="sd">        the configuration changes only locally. This is useful when we want</span>
-<span class="sd">        to change more then one parameter, in this case only the setting of</span>
-<span class="sd">        the last parameter should use `apply=True`.</span>
 
 <span class="sd">        :param value_ref_enabled: `True` - enabled, `False` - disabled</span>
 <span class="sd">        :type value_ref_enabled: bool</span>
@@ -2933,14 +2911,6 @@
 <span class="sd">        Channels and controllers are accepted as elements. Setting the value</span>
 <span class="sd">        reference pattern on the controller means setting it to all channels</span>
 <span class="sd">        of this controller present in this measurement group.</span>
-
-<span class="sd">        Configuration by default is directly applied on the server.</span>
-<span class="sd">        Since setting the configuration means passing to the server all the</span>
-<span class="sd">        configuration paramters of the measurement group at once this</span>
-<span class="sd">        behavior can be changed with the *apply* argument and we can keep</span>
-<span class="sd">        the configuration changes only locally. This is useful when we want</span>
-<span class="sd">        to change more then one parameter, in this case only the setting of</span>
-<span class="sd">        the last parameter should use `apply=True`.</span>
 
 <span class="sd">        :param value_ref_pattern: `/path/file{index:03d}.txt`</span>
 <span class="sd">        :type value_ref_pattern: :py:obj:`str`</span>
@@ -2993,17 +2963,9 @@
         <span class="sd">&quot;&quot;&quot;Set the timer configuration for the given channels of the same</span>
 <span class="sd">        controller.</span>
 
-<span class="sd">        .. note: Currently the controller&#39;s timer must be unique. Hence this</span>
+<span class="sd">        .. note:: Currently the controller&#39;s timer must be unique. Hence this</span>
 <span class="sd">           method will set it for the whole controller regardless of the</span>
 <span class="sd">           ``elements`` argument.</span>
-
-<span class="sd">        Configuration by default is directly applied on the server.</span>
-<span class="sd">        Since setting the configuration means passing to the server all the</span>
-<span class="sd">        configuration  paramters of the measurement group at once this</span>
-<span class="sd">        behavior can be  changed with the *apply* argument and we can keep</span>
-<span class="sd">        the configuration changes only locally. This is useful when we want</span>
-<span class="sd">        to change more then one parameter, in this case only the setting of</span>
-<span class="sd">        the last parameter should use `apply=True`.</span>
 
 <span class="sd">        :param timer: channel use as timer</span>
 <span class="sd">        :type timer: :py:obj:`str`</span>
@@ -3056,17 +3018,9 @@
         <span class="sd">&quot;&quot;&quot;Set the monitor configuration for the given channels of the same</span>
 <span class="sd">        controller.</span>
 
-<span class="sd">        .. note: Currently the controller&#39;s monitor must be unique.</span>
+<span class="sd">        .. note:: Currently the controller&#39;s monitor must be unique.</span>
 <span class="sd">           Hence this method will set it for the whole controller regardless of</span>
 <span class="sd">           the ``elements`` argument.</span>
-
-<span class="sd">        Configuration by default is directly applied on the server.</span>
-<span class="sd">        Since setting the configuration means passing to the server all the</span>
-<span class="sd">        configuration  parameters of the measurement group at once this</span>
-<span class="sd">        behavior can be  changed with the *apply* argument and we can keep</span>
-<span class="sd">        the configuration changes only locally. This is useful when we want</span>
-<span class="sd">        to change more then one parameter, in this case only the setting of</span>
-<span class="sd">        the last parameter should use `apply=True`.</span>
 
 <span class="sd">        :param monitor: channel use as monitor</span>
 <span class="sd">        :type monitor: :py:obj:`str`</span>
@@ -3120,17 +3074,9 @@
         <span class="sd">&quot;&quot;&quot;Set the synchronizer configuration for the given channels or</span>
 <span class="sd">        controller.</span>
 
-<span class="sd">        .. note: Currently the controller&#39;s synchronizer must be unique.</span>
+<span class="sd">        .. note:: Currently the controller&#39;s synchronizer must be unique.</span>
 <span class="sd">           Hence this method will set it for the whole controller regardless of</span>
 <span class="sd">           the ``elements`` argument.</span>
-
-<span class="sd">        Configuration by default is directly applied on the server.</span>
-<span class="sd">        Since setting the configuration means passing to the server all the</span>
-<span class="sd">        configuration  paramters of the measurement group at once this</span>
-<span class="sd">        behavior can be  changed with the *apply* argument and we can keep</span>
-<span class="sd">        the configuration changes only locally. This is useful when we want</span>
-<span class="sd">        to change more then one parameter, in this case only the setting of</span>
-<span class="sd">        the last parameter should use `apply=True`.</span>
 
 <span class="sd">        :param synchronizer: triger/gate element name or software</span>
 <span class="sd">        :type synchronizer: :py:obj:`str`</span>
@@ -3181,6 +3127,19 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_value_per_channel</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">ctrls_sync</span><span class="p">,</span>
                                                <span class="n">use_fullname</span><span class="o">=</span><span class="n">ret_full_name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MeasurementGroup.applyConfiguration"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.applyConfiguration">[docs]</a>    <span class="k">def</span> <span class="nf">applyConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Apply configuration changes kept locally on the server.</span>
+
+<span class="sd">        Setting configuration parameters using e.g.,</span>
+<span class="sd">        `~sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setEnabled`</span>
+<span class="sd">        or</span>
+<span class="sd">        `~sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setTimer`,</span>
+<span class="sd">        etc.</span>
+<span class="sd">        with ``apply=False`` keeps the changes locally. Use this method to</span>
+<span class="sd">        apply them on the server afterwards.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getConfiguration</span><span class="p">()</span><span class="o">.</span><span class="n">applyConfiguration</span><span class="p">()</span></div>
 
     <span class="c1">#########################################################################</span>
     <span class="c1"># TODO: review the following API</span>
