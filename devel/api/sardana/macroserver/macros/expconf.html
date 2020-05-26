@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>expconf &mdash; sardana 3.0.2-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="expert" href="expert.html" />
+    <link rel="prev" title="env" href="env.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> sardana
+          
+
+          
+            
+            <img src="../../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../../../docs.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../../../users/index.html">User’s Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../../../index.html">Developer’s Guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../../../overview/index.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../howto_macros/index.html">Writing macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../howto_controllers/index.html">Writing controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../howto_recorders.html">Writing recorders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../howto_test/index.html">Sardana Testing</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../../api_sardana.html">API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../../../api_macro.html">Macro API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_controller.html">Controller API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_motor.html">Motor API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_IOR.html">I/O register</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_countertimer.html">Counter/timer API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_0D.html">0D experiment channel API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_1D.html">1D experiment channel API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_2D.html">2D experiment channel API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_triggergate.html">Trigger/gate API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_pseudomotor.html">Pseudo motor API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_pseudocounter.html">Pseudo counter API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_measurementgroup.html">Measurement group API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_macroserver.html">MacroServer API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_pool.html">Pool API</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../sardana.html">Library</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api_test.html">Test API</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../guide_migration.html">Migration guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../examples/examples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../guide_coding.html">Development guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../sep/index.html">Sardana Enhancement Proposals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../other_versions.html">Docs for other Sardana versions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana-plugins">Plugins Catalogue</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">sardana</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../../../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
+        
+          <li><a href="../../../../index.html">Developer’s Guide</a> &raquo;</li>
+        
+          <li><a href="../../../api_sardana.html">Sardana API</a> &raquo;</li>
+        
+          <li><a href="../../sardana.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">sardana</span></code></a> &raquo;</li>
+        
+          <li><a href="../../macroserver.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">macroserver</span></code></a> &raquo;</li>
+        
+          <li><a href="../macros.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">macros</span></code></a> &raquo;</li>
+        
+      <li><code class="xref py py-mod docutils literal notranslate"><span class="pre">expconf</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../../../_sources/devel/api/sardana/macroserver/macros/expconf.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-sardana.macroserver.macros.expconf">
+<span id="expconf"></span><h1><a class="reference internal" href="#module-sardana.macroserver.macros.expconf" title="sardana.macroserver.macros.expconf"><code class="xref py py-mod docutils literal notranslate"><span class="pre">expconf</span></code></a><a class="headerlink" href="#module-sardana.macroserver.macros.expconf" title="Permalink to this headline">¶</a></h1>
+<p>Experiment configuration related macros</p>
+<dl class="py function">
+<dt id="sardana.macroserver.macros.expconf.get_meas_conf">
+<code class="sig-name descname">get_meas_conf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">detail</span></em>, <em class="sig-param"><span class="n">meas_grp</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expconf.html#get_meas_conf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expconf.get_meas_conf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print measurement group configuration in form of a table.</p>
+<p>Examples of usage:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_meas_conf</span>  <span class="c1"># get &lt;ActiveMntGrp&gt; simple configuration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_meas_conf</span> <span class="nb">all</span>  <span class="c1"># get &lt;ActiveMntGrp&gt; complete configuration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_meas_conf</span> <span class="n">simple</span> <span class="n">mntgrp01</span>  <span class="c1"># get mntgrp01 simple configuration</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_meas_conf</span> <span class="nb">all</span> <span class="n">mntgrp01</span>  <span class="c1"># get mntgrp01 complete configuration</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sardana.macroserver.macros.expconf.set_meas_conf">
+<code class="sig-name descname">set_meas_conf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">parameter</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">items</span></em>, <em class="sig-param"><span class="n">meas_grp</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expconf.html#set_meas_conf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expconf.set_meas_conf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set measurement group configuration parameter.</p>
+<p>Available configuration parameters and values:</p>
+<ul class="simple">
+<li><p><strong>Enabled</strong>: True/1 or False/0</p></li>
+<li><p><strong>Output</strong>: True/1 or False/0</p></li>
+<li><p><strong>PlotType</strong>: No, Spectrum or Image</p></li>
+<li><p><strong>PlotAxes</strong>: idx, mov or a &lt;channel name&gt; e.g. ct01
+(for image use “|” as separator of axes e.g. idx|ct01)</p></li>
+<li><p><strong>Timer</strong>: &lt;channel name&gt; e.g. ct01</p></li>
+<li><p><strong>Monitor</strong>: &lt;channel name&gt; e.g. ct01</p></li>
+<li><p><strong>Synchronizer</strong>: software or &lt;trigger/gate name&gt; e.g. tg01</p></li>
+<li><p><strong>ValueRefEnabled</strong> - True/1 or False/0</p></li>
+<li><p><strong>ValueRefPattern</strong> - URI e.g. <a class="reference external" href="file:///tmp">file:///tmp</a>/img_{index}.tiff</p></li>
+</ul>
+<p>Examples of usage:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># enable all channels in &lt;ActiveMntGrp&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_meas_conf</span> <span class="n">enabled</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># enable spectrum plotting for ct01 on &lt;ActiveMntGrp&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_meas_conf</span> <span class="n">plottype</span> <span class="n">spectrum</span> <span class="n">ct01</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># set plot x-axis to &lt;moveable&gt; for all channels of &lt;ActiveMntGrp&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_meas_conf</span> <span class="n">plotaxes</span> <span class="n">mov</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># enable spectrum plotting for all mntgrp01</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_meas_conf</span> <span class="n">plottype</span> <span class="n">spectrum</span> <span class="p">[]</span> <span class="n">mntgrp01</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sardana.macroserver.macros.expconf.set_meas">
+<code class="sig-name descname">set_meas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">meas_grp</span></em>, <em class="sig-param"><span class="n">macro</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expconf.html#set_meas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expconf.set_meas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activate measurement group.</p>
+<p>It sets the ActiveMntGrp environment variable.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="sardana.macroserver.macros.expconf.get_meas">
+<code class="sig-name descname">get_meas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">macro</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expconf.html#get_meas"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expconf.get_meas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activate measurement group.</p>
+<p>It gets the ActiveMntGrp environment variable.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.expconf.lssnap">
+<em class="property">class </em><code class="sig-name descname">lssnap</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expconf.html#lssnap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expconf.lssnap" title="Permalink to this definition">¶</a></dt>
+<dd><p>List pre-scan snapshot group.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.expconf.lssnap.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expconf.html#lssnap.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expconf.lssnap.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.expconf.defsnap">
+<em class="property">class </em><code class="sig-name descname">defsnap</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expconf.html#defsnap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expconf.defsnap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define snapshot group item(s).</p>
+<p>Accepts:</p>
+<ul class="simple">
+<li><p>Pool moveables: motor, pseudo motor</p></li>
+<li><p>Pool experimental channels: counter/timer, 0D, 1D, 2D, pseudo counter</p></li>
+<li><p>Taurus attributes</p></li>
+</ul>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.expconf.defsnap.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">snap_names</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expconf.html#defsnap.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expconf.defsnap.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.expconf.udefsnap">
+<em class="property">class </em><code class="sig-name descname">udefsnap</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expconf.html#udefsnap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expconf.udefsnap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Undefine snapshot group item(s). Without arguments undefine all.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.expconf.udefsnap.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">snap_names</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/expconf.html#udefsnap.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.expconf.udefsnap.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="expert.html" class="btn btn-neutral float-right" title="expert" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="env.html" class="btn btn-neutral float-left" title="env" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
