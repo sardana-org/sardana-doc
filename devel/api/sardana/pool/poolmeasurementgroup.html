@@ -396,18 +396,18 @@ skipped if used multiple times in the group</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.get_synchronization">
-<code class="sig-name descname">get_synchronization</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#PoolMeasurementGroup.get_synchronization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.get_synchronization" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.get_synch_description">
+<code class="sig-name descname">get_synch_description</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#PoolMeasurementGroup.get_synch_description"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.get_synch_description" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_synchronization">
-<code class="sig-name descname">set_synchronization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">synchronization</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#PoolMeasurementGroup.set_synchronization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_synchronization" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_synch_description">
+<code class="sig-name descname">set_synch_description</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">description</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#PoolMeasurementGroup.set_synch_description"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_synch_description" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.synchronization">
-<em class="property">property </em><code class="sig-name descname">synchronization</code><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.synchronization" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.synch_description">
+<em class="property">property </em><code class="sig-name descname">synch_description</code><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.synch_description" title="Permalink to this definition">¶</a></dt>
 <dd><p>the current acquisition mode</p>
 </dd></dl>
 
@@ -424,7 +424,7 @@ skipped if used multiple times in the group</p>
 <dl class="py method">
 <dt id="sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.moveable">
 <em class="property">property </em><code class="sig-name descname">moveable</code><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.moveable" title="Permalink to this definition">¶</a></dt>
-<dd><p>moveable source used in synchronization</p>
+<dd><p>moveable source used in synchronization description</p>
 </dd></dl>
 
 <dl class="py method">
@@ -950,6 +950,11 @@ that the client application does the validation.</p>
 <p>The configuration parameters for given channels/controllers may differ
 depending on their types e.g. 0D channel does not support timer
 parameter while C/T does.</p>
+<div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>Raise exceptions when setting _Synchronization_ parameter for
+external channels, 0D and PSeudoCounters.</p>
+</div>
 </dd></dl>
 
 </dd></dl>

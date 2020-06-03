@@ -523,7 +523,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Stopping ZeroD acquisition.&#39;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">stop_action</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">acq_mode</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">synchronization</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">acq_mode</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">synch_description</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">moveable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sw_synch_initial_domain</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                 <span class="n">nb_starts</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Prepare measurement process.</span>
@@ -540,8 +540,8 @@
         <span class="n">ctrls_sw</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">ctrls_sw_start</span> <span class="o">=</span> <span class="p">[]</span>
 
-        <span class="n">repetitions</span> <span class="o">=</span> <span class="n">synchronization</span><span class="o">.</span><span class="n">repetitions</span>
-        <span class="n">latency</span> <span class="o">=</span> <span class="n">synchronization</span><span class="o">.</span><span class="n">passive_time</span>
+        <span class="n">repetitions</span> <span class="o">=</span> <span class="n">synch_description</span><span class="o">.</span><span class="n">repetitions</span>
+        <span class="n">latency</span> <span class="o">=</span> <span class="n">synch_description</span><span class="o">.</span><span class="n">passive_time</span>
         <span class="c1"># Prepare controllers synchronized by hardware</span>
         <span class="n">acq_sync_hw</span> <span class="o">=</span> <span class="p">[</span><span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareTrigger</span><span class="p">,</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareStart</span><span class="p">,</span>
                        <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareGate</span><span class="p">]</span>
@@ -600,7 +600,7 @@
         <span class="c1"># Prepare synchronizer controllers</span>
         <span class="n">ctrls</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_synch_ctrls</span><span class="p">(</span><span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="n">ctrls_synch</span> <span class="o">=</span> <span class="n">get_acq_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">)</span>
-        <span class="n">synch_args</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctrls_synch</span><span class="p">,</span> <span class="n">synchronization</span><span class="p">)</span>
+        <span class="n">synch_args</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctrls_synch</span><span class="p">,</span> <span class="n">synch_description</span><span class="p">)</span>
         <span class="n">synch_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;moveable&#39;</span><span class="p">:</span> <span class="n">moveable</span><span class="p">,</span>
                         <span class="s1">&#39;sw_synch_initial_domain&#39;</span><span class="p">:</span> <span class="n">sw_synch_initial_domain</span><span class="p">}</span>
         <span class="n">synch_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>

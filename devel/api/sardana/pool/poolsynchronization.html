@@ -213,7 +213,7 @@
 for the synchronization</p>
 <p class="rubric">Classes</p>
 <table class="hlist"><tr><td><ul class="simple">
-<li><p><a class="reference internal" href="#sardana.pool.poolsynchronization.SynchronizationDescription" title="sardana.pool.poolsynchronization.SynchronizationDescription"><code class="xref py py-class docutils literal notranslate"><span class="pre">SynchronizationDescription</span></code></a></p></li>
+<li><p><a class="reference internal" href="#sardana.pool.poolsynchronization.SynchDescription" title="sardana.pool.poolsynchronization.SynchDescription"><code class="xref py py-class docutils literal notranslate"><span class="pre">SynchDescription</span></code></a></p></li>
 </ul>
 </td><td><ul class="simple">
 <li><p><a class="reference internal" href="#sardana.pool.poolsynchronization.PoolSynchronization" title="sardana.pool.poolsynchronization.PoolSynchronization"><code class="xref py py-class docutils literal notranslate"><span class="pre">PoolSynchronization</span></code></a></p></li>
@@ -240,13 +240,13 @@ for the synchronization</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolsynchronization.PoolSynchronization.start_action">
-<code class="sig-name descname">start_action</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ctrls</span></em>, <em class="sig-param"><span class="n">synchronization</span></em>, <em class="sig-param"><span class="n">moveable</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sw_synch_initial_domain</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolsynchronization.html#PoolSynchronization.start_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolsynchronization.PoolSynchronization.start_action" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">start_action</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ctrls</span></em>, <em class="sig-param"><span class="n">synch_description</span></em>, <em class="sig-param"><span class="n">moveable</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">sw_synch_initial_domain</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolsynchronization.html#PoolSynchronization.start_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolsynchronization.PoolSynchronization.start_action" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start synchronization action.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ctrls</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of enabled trigger/gate controllers</p></li>
-<li><p><strong>synchronization</strong> (<a class="reference internal" href="#sardana.pool.poolsynchronization.SynchronizationDescription" title="sardana.pool.poolsynchronization.SynchronizationDescription"><code class="xref py py-class docutils literal notranslate"><span class="pre">SynchronizationDescription</span></code></a>) – synchronization description</p></li>
+<li><p><strong>synch_description</strong> (<a class="reference internal" href="#sardana.pool.poolsynchronization.SynchDescription" title="sardana.pool.poolsynchronization.SynchDescription"><code class="xref py py-class docutils literal notranslate"><span class="pre">SynchDescription</span></code></a>) – synchronization description</p></li>
 <li><p><strong>moveable</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PoolMotor</span></code> or
 <a class="reference internal" href="poolpseudomotor.html#sardana.pool.poolpseudomotor.PoolPseudoMotor" title="sardana.pool.poolpseudomotor.PoolPseudoMotor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PoolPseudoMotor</span></code></a>) – (optional) moveable object used as the
 synchronization source in the Position domain</p></li>
@@ -287,37 +287,37 @@ read_state_info: ((state, status), exception_error)</p>
 </dd></dl>
 
 </div>
-<div class="section" id="synchronizationdescription">
-<h2>SynchronizationDescription<a class="headerlink" href="#synchronizationdescription" title="Permalink to this headline">¶</a></h2>
-<div class="graphviz"><img src="../../../../_images/inheritance-a2fc5baf310c4b2f989f0ca702077591de6c12fd.png" alt="Inheritance diagram of SynchronizationDescription" usemap="#inheritance5f1dd06844" class="inheritance graphviz" /></div>
-<map id="inheritance5f1dd06844" name="inheritance5f1dd06844">
-<area shape="rect" id="node1" href="#sardana.pool.poolsynchronization.SynchronizationDescription" target="_top" title="Synchronization description. It is composed from groups &#45; repetitions" alt="" coords="5,5,201,44"/>
+<div class="section" id="synchdescription">
+<h2>SynchDescription<a class="headerlink" href="#synchdescription" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><img src="../../../../_images/inheritance-b17434b4e1b25147b84baa48b8ef367598b946fb.png" alt="Inheritance diagram of SynchDescription" usemap="#inheritance51de80ff17" class="inheritance graphviz" /></div>
+<map id="inheritance51de80ff17" name="inheritance51de80ff17">
+<area shape="rect" id="node1" href="#sardana.pool.poolsynchronization.SynchDescription" target="_top" title="Synchronization description. It is composed from groups &#45; repetitions" alt="" coords="5,5,139,44"/>
 </map><dl class="py class">
-<dt id="sardana.pool.poolsynchronization.SynchronizationDescription">
-<em class="property">class </em><code class="sig-name descname">SynchronizationDescription</code><a class="reference internal" href="../../../../_modules/sardana/pool/poolsynchronization.html#SynchronizationDescription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchronizationDescription" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.pool.poolsynchronization.SynchDescription">
+<em class="property">class </em><code class="sig-name descname">SynchDescription</code><a class="reference internal" href="../../../../_modules/sardana/pool/poolsynchronization.html#SynchDescription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchDescription" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
 <p>Synchronization description. It is composed from groups - repetitions
 of equidistant synchronization events. Each group is described by
 <a class="reference internal" href="pooldefs.html#sardana.pool.pooldefs.SynchParam" title="sardana.pool.pooldefs.SynchParam"><code class="xref py py-class docutils literal notranslate"><span class="pre">SynchParam</span></code></a> parameters which may have
 values in <a class="reference internal" href="pooldefs.html#sardana.pool.pooldefs.SynchDomain" title="sardana.pool.pooldefs.SynchDomain"><code class="xref py py-class docutils literal notranslate"><span class="pre">SynchDomain</span></code></a> domains.</p>
 <dl class="py method">
-<dt id="sardana.pool.poolsynchronization.SynchronizationDescription.repetitions">
-<em class="property">property </em><code class="sig-name descname">repetitions</code><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchronizationDescription.repetitions" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.pool.poolsynchronization.SynchDescription.repetitions">
+<em class="property">property </em><code class="sig-name descname">repetitions</code><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchDescription.repetitions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.pool.poolsynchronization.SynchronizationDescription.active_time">
-<em class="property">property </em><code class="sig-name descname">active_time</code><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchronizationDescription.active_time" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.pool.poolsynchronization.SynchDescription.active_time">
+<em class="property">property </em><code class="sig-name descname">active_time</code><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchDescription.active_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.pool.poolsynchronization.SynchronizationDescription.total_time">
-<em class="property">property </em><code class="sig-name descname">total_time</code><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchronizationDescription.total_time" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.pool.poolsynchronization.SynchDescription.total_time">
+<em class="property">property </em><code class="sig-name descname">total_time</code><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchDescription.total_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.pool.poolsynchronization.SynchronizationDescription.passive_time">
-<em class="property">property </em><code class="sig-name descname">passive_time</code><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchronizationDescription.passive_time" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.pool.poolsynchronization.SynchDescription.passive_time">
+<em class="property">property </em><code class="sig-name descname">passive_time</code><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchDescription.passive_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

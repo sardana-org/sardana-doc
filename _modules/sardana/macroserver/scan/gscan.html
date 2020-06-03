@@ -2229,19 +2229,20 @@
         <span class="k">return</span> <span class="n">is_compatible</span><span class="p">,</span> <span class="n">non_compatible_channels</span>
 
 
-<span class="k">def</span> <span class="nf">generate_timestamps</span><span class="p">(</span><span class="n">synchronization</span><span class="p">,</span> <span class="n">initial_timestamp</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">generate_timestamps</span><span class="p">(</span><span class="n">synch_description</span><span class="p">,</span> <span class="n">initial_timestamp</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generate theoretical timestamps at which the acquisition should take</span>
 <span class="sd">    place according to the synchronization description</span>
 
-<span class="sd">    :param synchronization: synchronization description data structure</span>
-<span class="sd">    :type synchronization: list&lt;dict&gt;</span>
+<span class="sd">    :param synch_description: synchronization description data</span>
+<span class="sd">      structure</span>
+<span class="sd">    :type synch_description: list&lt;dict&gt;</span>
 <span class="sd">    :param initial_timestamp: initial timestamp to start from</span>
 <span class="sd">    :type initial_timestamp: float</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
     <span class="n">timestamp</span> <span class="o">=</span> <span class="n">initial_timestamp</span>
     <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">synchronization</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">synch_description</span><span class="p">:</span>
         <span class="n">delay</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">SynchParam</span><span class="o">.</span><span class="n">Delay</span><span class="p">][</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">]</span>
         <span class="n">total</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">SynchParam</span><span class="o">.</span><span class="n">Total</span><span class="p">][</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">]</span>
         <span class="n">repeats</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">SynchParam</span><span class="o">.</span><span class="n">Repeats</span><span class="p">]</span>
@@ -2547,8 +2548,8 @@
                  <span class="n">SynchParam</span><span class="o">.</span><span class="n">Total</span><span class="p">:</span> <span class="p">{</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Position</span><span class="p">:</span> <span class="n">total_position</span><span class="p">,</span>
                                     <span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">:</span> <span class="n">total_time</span><span class="p">},</span>
                  <span class="n">SynchParam</span><span class="o">.</span><span class="n">Repeats</span><span class="p">:</span> <span class="n">repeats</span><span class="p">}]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Synchronization: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">synch</span><span class="p">)</span>
-            <span class="n">measurement_group</span><span class="o">.</span><span class="n">setSynchronization</span><span class="p">(</span><span class="n">synch</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;SynchDescription: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">synch</span><span class="p">)</span>
+            <span class="n">measurement_group</span><span class="o">.</span><span class="n">setSynchDescription</span><span class="p">(</span><span class="n">synch</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">checkPoint</span><span class="p">()</span>
 
             <span class="c1"># extra post configuration</span>
@@ -2869,9 +2870,9 @@
     <span class="sd">&quot;&quot;&quot;Time scan.</span>
 
 <span class="sd">    Macro that employs the time scan must define the synchronization</span>
-<span class="sd">    information in either of the following two ways:</span>
-<span class="sd">      - synchronization attribute that follows the synchronization format of</span>
-<span class="sd">      the measurement group</span>
+<span class="sd">    description in either of the following two ways:</span>
+<span class="sd">      - synch_description attribute that follows the synchronization</span>
+<span class="sd">      description format of the measurement group</span>
 <span class="sd">      - integ_time, nb_points and latency_time (optional) attributes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -2880,9 +2881,9 @@
                        <span class="n">moveables</span><span class="o">=</span><span class="n">moveables</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
                        <span class="n">extrainfodesc</span><span class="o">=</span><span class="n">extrainfodesc</span><span class="p">)</span>
         <span class="n">CAcquisition</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synch_description</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">_create_synchronization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active_time</span><span class="p">,</span> <span class="n">repeats</span><span class="p">,</span> <span class="n">latency_time</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_create_synch_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">active_time</span><span class="p">,</span> <span class="n">repeats</span><span class="p">,</span> <span class="n">latency_time</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="n">delay_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">mg_latency_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">getLatencyTime</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">mg_latency_time</span> <span class="o">&gt;</span> <span class="n">latency_time</span><span class="p">:</span>
@@ -2890,38 +2891,39 @@
                             <span class="n">mg_latency_time</span><span class="p">)</span>
             <span class="n">latency_time</span> <span class="o">=</span> <span class="n">mg_latency_time</span>
         <span class="n">total_time</span> <span class="o">=</span> <span class="n">active_time</span> <span class="o">+</span> <span class="n">latency_time</span>
-        <span class="n">synchronization</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">synch_description</span> <span class="o">=</span> <span class="p">[</span>
             <span class="p">{</span><span class="n">SynchParam</span><span class="o">.</span><span class="n">Delay</span><span class="p">:</span> <span class="p">{</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">:</span> <span class="n">delay_time</span><span class="p">},</span>
              <span class="n">SynchParam</span><span class="o">.</span><span class="n">Active</span><span class="p">:</span> <span class="p">{</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">:</span> <span class="n">active_time</span><span class="p">},</span>
              <span class="n">SynchParam</span><span class="o">.</span><span class="n">Total</span><span class="p">:</span> <span class="p">{</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">:</span> <span class="n">total_time</span><span class="p">},</span>
              <span class="n">SynchParam</span><span class="o">.</span><span class="n">Repeats</span><span class="p">:</span> <span class="n">repeats</span><span class="p">}]</span>
-        <span class="k">return</span> <span class="n">synchronization</span>
+        <span class="k">return</span> <span class="n">synch_description</span>
 
-    <span class="k">def</span> <span class="nf">get_synchronization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;synchronization&quot;</span><span class="p">):</span>
-            <span class="n">synchronization</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">synchronization</span>
+    <span class="k">def</span> <span class="nf">get_synch_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synch_description</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synch_description</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;synch_description&quot;</span><span class="p">):</span>
+            <span class="n">synch_description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">synch_description</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">active_time</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;integ_time&quot;</span><span class="p">)</span>
                 <span class="n">repeats</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nb_points&quot;</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
-                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Macro object is missing synchronization attributes&quot;</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Macro object is missing synchronization description &quot;</span> \
+                      <span class="s2">&quot;attributes&quot;</span>
                 <span class="k">raise</span> <span class="n">ScanSetupError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
             <span class="n">latency_time</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;latency_time&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-            <span class="n">synchronization</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_create_synchronization</span><span class="p">(</span><span class="n">active_time</span><span class="p">,</span>
-                                                           <span class="n">repeats</span><span class="p">,</span>
-                                                           <span class="n">latency_time</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="o">=</span> <span class="n">synchronization</span>
-        <span class="k">return</span> <span class="n">synchronization</span>
+            <span class="n">synch_description</span> <span class="o">=</span> \
+                <span class="bp">self</span><span class="o">.</span><span class="n">_create_synch_description</span><span class="p">(</span><span class="n">active_time</span><span class="p">,</span> <span class="n">repeats</span><span class="p">,</span>
+                                               <span class="n">latency_time</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synch_description</span> <span class="o">=</span> <span class="n">synch_description</span>
+        <span class="k">return</span> <span class="n">synch_description</span>
 
-    <span class="n">synchronization</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_synchronization</span><span class="p">)</span>
+    <span class="n">synch_description</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_synch_description</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">scan_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span>
         <span class="n">measurement_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span>
-        <span class="n">synchronization</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">synchronization</span>
+        <span class="n">synch_description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">synch_description</span>
 
         <span class="n">compatible</span><span class="p">,</span> <span class="n">channels</span> <span class="o">=</span> \
             <span class="bp">self</span><span class="o">.</span><span class="n">is_measurement_group_compatible</span><span class="p">(</span><span class="n">measurement_group</span><span class="p">)</span>
@@ -2932,7 +2934,8 @@
                   <span class="p">(</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">getName</span><span class="p">(),</span> <span class="n">macro</span><span class="o">.</span><span class="n">getName</span><span class="p">())</span>
             <span class="k">raise</span> <span class="n">ScanException</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
 
-        <span class="n">theoretical_timestamps</span> <span class="o">=</span> <span class="n">generate_timestamps</span><span class="p">(</span><span class="n">synchronization</span><span class="p">)</span>
+        <span class="n">theoretical_timestamps</span> <span class="o">=</span> \
+            <span class="n">generate_timestamps</span><span class="p">(</span><span class="n">synch_description</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">initial_data</span> <span class="o">=</span> <span class="n">theoretical_timestamps</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Relative timestamp (dt) column contains theoretical values&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
@@ -2943,7 +2946,7 @@
 
         <span class="k">yield</span> <span class="mi">0</span>
         <span class="n">measurement_group</span><span class="o">.</span><span class="n">setNbStarts</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">measurement_group</span><span class="o">.</span><span class="n">count_continuous</span><span class="p">(</span><span class="n">synchronization</span><span class="p">,</span>
+        <span class="n">measurement_group</span><span class="o">.</span><span class="n">count_continuous</span><span class="p">(</span><span class="n">synch_description</span><span class="p">,</span>
                                            <span class="bp">self</span><span class="o">.</span><span class="n">value_buffer_changed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Waiting for value buffer events to be processed&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait_value_buffer</span><span class="p">()</span>
@@ -2971,12 +2974,13 @@
             <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">getIntervalEstimation</span><span class="p">()</span>
             <span class="k">return</span> <span class="n">t</span><span class="p">,</span> <span class="n">i</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;synchronization&quot;</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;synchronization is mandatory to estimate&quot;</span><span class="p">)</span>
-        <span class="n">synchronization</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">synchronization</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;synch_description&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;synch_description is mandatory &quot;</span>
+                                 <span class="s2">&quot;to estimate&quot;</span><span class="p">)</span>
+        <span class="n">synch_description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">synch_description</span>
         <span class="n">time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">intervals</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">synchronization</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">synch_description</span><span class="p">:</span>
             <span class="n">delay</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">SynchParam</span><span class="o">.</span><span class="n">Delay</span><span class="p">][</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">]</span>
             <span class="n">time</span> <span class="o">+=</span> <span class="n">delay</span>
             <span class="n">total</span> <span class="o">=</span> <span class="n">group</span><span class="p">[</span><span class="n">SynchParam</span><span class="o">.</span><span class="n">Total</span><span class="p">][</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">]</span>

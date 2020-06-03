@@ -192,6 +192,7 @@
 <span class="kn">from</span> <span class="nn">taurus.console</span> <span class="kn">import</span> <span class="n">Alignment</span>
 <span class="kn">from</span> <span class="nn">taurus.console.list</span> <span class="kn">import</span> <span class="n">List</span>
 
+<span class="kn">from</span> <span class="nn">sardana.pool</span> <span class="kn">import</span> <span class="n">AcqSynchType</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">UnknownEnv</span>
 <span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="kn">import</span> <span class="n">PlotType</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">macro</span><span class="p">,</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Optional</span>
@@ -209,6 +210,10 @@
     <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;n/a&quot;</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
 
 
+<span class="k">def</span> <span class="nf">synchrtonization_sanitizer</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">AcqSynchType</span><span class="o">.</span><span class="n">whatis</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
+
+
 <span class="k">def</span> <span class="nf">plot_axes_validator</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
     <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;idx&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;idx&gt;&quot;</span><span class="p">):</span>
@@ -219,15 +224,30 @@
 
 
 <span class="k">def</span> <span class="nf">bool_validator</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="n">in_value</span> <span class="o">=</span> <span class="n">value</span>
     <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">]:</span>
         <span class="n">value</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="k">elif</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;false&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">]:</span>
         <span class="n">value</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> is not a boolean&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{0}</span><span class="s1"> is not a boolean&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">in_value</span><span class="p">))</span>
     <span class="k">return</span> <span class="n">value</span>
 
+
+<span class="k">def</span> <span class="nf">synchronization_validator</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="n">in_value</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">AcqSynchType</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">value</span><span class="o">.</span><span class="n">capitalize</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">AcqSynchType</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> is not a synchronization type&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">in_value</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">value</span>
 
 <span class="c1"># if sanitizers and validators evolve to sth too complicated refactor this</span>
 <span class="c1"># to use classes</span>
@@ -239,6 +259,9 @@
     <span class="p">(</span><span class="s2">&quot;timer&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Timer&quot;</span><span class="p">,</span> <span class="n">sanitizer</span><span class="p">,</span> <span class="kc">None</span><span class="p">)),</span>
     <span class="p">(</span><span class="s2">&quot;monitor&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Monitor&quot;</span><span class="p">,</span> <span class="n">sanitizer</span><span class="p">,</span> <span class="kc">None</span><span class="p">)),</span>
     <span class="p">(</span><span class="s2">&quot;synchronizer&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;Synchronizer&quot;</span><span class="p">,</span> <span class="n">sanitizer</span><span class="p">,</span> <span class="kc">None</span><span class="p">)),</span>
+    <span class="p">(</span><span class="s2">&quot;synchronization&quot;</span><span class="p">,</span>
+        <span class="p">(</span><span class="s2">&quot;Synchronization&quot;</span><span class="p">,</span> <span class="n">synchrtonization_sanitizer</span><span class="p">,</span>
+         <span class="n">synchronization_validator</span><span class="p">)),</span>
     <span class="p">(</span><span class="s2">&quot;valuerefenabled&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;ValueRefEnabled&quot;</span><span class="p">,</span> <span class="n">sanitizer</span><span class="p">,</span> <span class="n">bool_validator</span><span class="p">)),</span>
     <span class="p">(</span><span class="s2">&quot;valuerefpattern&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s2">&quot;ValueRefPattern&quot;</span><span class="p">,</span> <span class="n">sanitizer</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
 <span class="p">])</span>
@@ -322,6 +345,7 @@
 <span class="sd">    - **Timer**: &lt;channel name&gt; e.g. ct01</span>
 <span class="sd">    - **Monitor**: &lt;channel name&gt; e.g. ct01</span>
 <span class="sd">    - **Synchronizer**: software or &lt;trigger/gate name&gt; e.g. tg01</span>
+<span class="sd">    - **Synchronization**: 0/Trigger, 1/Gate or 2/Start</span>
 <span class="sd">    - **ValueRefEnabled** - True/1 or False/0</span>
 <span class="sd">    - **ValueRefPattern** - URI e.g. file:///tmp/img_{index}.tiff</span>
 

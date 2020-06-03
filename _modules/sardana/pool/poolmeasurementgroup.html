@@ -203,7 +203,7 @@
 
 <span class="kn">from</span> <span class="nn">sardana.pool.poolgroupelement</span> <span class="kn">import</span> <span class="n">PoolGroupElement</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolacquisition</span> <span class="kn">import</span> <span class="n">PoolAcquisition</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolsynchronization</span> <span class="kn">import</span> <span class="n">SynchronizationDescription</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolsynchronization</span> <span class="kn">import</span> <span class="n">SynchDescription</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolexternal</span> <span class="kn">import</span> <span class="n">PoolExternalObject</span>
 
 <span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="kn">import</span> <span class="n">PlotType</span><span class="p">,</span> <span class="n">Normalization</span>
@@ -768,6 +768,10 @@
 <span class="sd">        The configuration parameters for given channels/controllers may differ</span>
 <span class="sd">        depending on their types e.g. 0D channel does not support timer</span>
 <span class="sd">        parameter while C/T does.</span>
+
+<span class="sd">        .. todo::</span>
+<span class="sd">            Raise exceptions when setting _Synchronization_ parameter for</span>
+<span class="sd">            external channels, 0D and PSeudoCounters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">pool</span>
@@ -1168,7 +1172,7 @@
         <span class="c1"># by default software synchronizer initial domain is set to Position</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sw_synch_initial_domain</span> <span class="o">=</span> <span class="n">SynchDomain</span><span class="o">.</span><span class="n">Position</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="o">=</span> <span class="n">SynchronizationDescription</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synch_description</span> <span class="o">=</span> <span class="n">SynchDescription</span><span class="p">()</span>
 
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;elem_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">MeasurementGroup</span>
         <span class="n">PoolGroupElement</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1282,14 +1286,15 @@
     <span class="c1"># -------------------------------------------------------------------------</span>
 
 <div class="viewcode-block" id="PoolMeasurementGroup.get_integration_time"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.get_integration_time">[docs]</a>    <span class="k">def</span> <span class="nf">get_integration_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">integration_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span><span class="o">.</span><span class="n">active_time</span>
+        <span class="n">integration_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synch_description</span><span class="o">.</span><span class="n">active_time</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">integration_time</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">integration_time</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">integration_time</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;The synchronization group has not been&quot;</span>
-                            <span class="s2">&quot; initialized&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;The synchronization description group has not&quot;</span>
+                            <span class="s2">&quot; been initialized&quot;</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">integration_time</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;There are more than one synchronization groups&quot;</span><span class="p">)</span></div>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;There are more than one synchronization&quot;</span>
+                            <span class="s2">&quot;description groups&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PoolMeasurementGroup.set_integration_time"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_integration_time">[docs]</a>    <span class="k">def</span> <span class="nf">set_integration_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integration_time</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="n">total_time</span> <span class="o">=</span> <span class="n">integration_time</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">latency_time</span>
@@ -1297,7 +1302,7 @@
                   <span class="n">SynchParam</span><span class="o">.</span><span class="n">Active</span><span class="p">:</span> <span class="p">{</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">:</span> <span class="n">integration_time</span><span class="p">},</span>
                   <span class="n">SynchParam</span><span class="o">.</span><span class="n">Total</span><span class="p">:</span> <span class="p">{</span><span class="n">SynchDomain</span><span class="o">.</span><span class="n">Time</span><span class="p">:</span> <span class="n">total_time</span><span class="p">},</span>
                   <span class="n">SynchParam</span><span class="o">.</span><span class="n">Repeats</span><span class="p">:</span> <span class="mi">1</span><span class="p">}]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_synchronization</span><span class="p">(</span><span class="n">synch</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_synch_description</span><span class="p">(</span><span class="n">synch</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">propagate</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;integration_time&quot;</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="n">propagate</span><span class="p">),</span>
@@ -1342,22 +1347,24 @@
                                 <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;the current acquisition mode&quot;</span><span class="p">)</span>
 
     <span class="c1"># -------------------------------------------------------------------------</span>
-    <span class="c1"># synchronization</span>
+    <span class="c1"># synch_description</span>
     <span class="c1"># -------------------------------------------------------------------------</span>
 
-<div class="viewcode-block" id="PoolMeasurementGroup.get_synchronization"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.get_synchronization">[docs]</a>    <span class="k">def</span> <span class="nf">get_synchronization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span></div>
+<div class="viewcode-block" id="PoolMeasurementGroup.get_synch_description"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.get_synch_description">[docs]</a>    <span class="k">def</span> <span class="nf">get_synch_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synch_description</span></div>
 
-<div class="viewcode-block" id="PoolMeasurementGroup.set_synchronization"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_synchronization">[docs]</a>    <span class="k">def</span> <span class="nf">set_synchronization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synchronization</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="o">=</span> <span class="n">SynchronizationDescription</span><span class="p">(</span><span class="n">synchronization</span><span class="p">)</span>
+<div class="viewcode-block" id="PoolMeasurementGroup.set_synch_description"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_synch_description">[docs]</a>    <span class="k">def</span> <span class="nf">set_synch_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synch_description</span> <span class="o">=</span> \
+            <span class="n">SynchDescription</span><span class="p">(</span><span class="n">description</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_dirty</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># acquisition mode goes to configuration</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">propagate</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;synchronization&quot;</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="n">propagate</span><span class="p">),</span>
-                        <span class="n">synchronization</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;synch_description&quot;</span><span class="p">,</span>
+                                  <span class="n">priority</span><span class="o">=</span><span class="n">propagate</span><span class="p">),</span>
+                        <span class="n">description</span><span class="p">)</span></div>
 
-    <span class="n">synchronization</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_synchronization</span><span class="p">,</span> <span class="n">set_synchronization</span><span class="p">,</span>
-                               <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;the current acquisition mode&quot;</span><span class="p">)</span>
+    <span class="n">synch_description</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_synch_description</span><span class="p">,</span> <span class="n">set_synch_description</span><span class="p">,</span>
+                                 <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;the current acquisition mode&quot;</span><span class="p">)</span>
 
     <span class="c1"># -------------------------------------------------------------------------</span>
     <span class="c1"># moveable</span>
@@ -1376,7 +1383,8 @@
                         <span class="n">moveable</span><span class="p">)</span></div>
 
     <span class="n">moveable</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_moveable</span><span class="p">,</span> <span class="n">set_moveable</span><span class="p">,</span>
-                        <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;moveable source used in synchronization&quot;</span><span class="p">)</span>
+                        <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;moveable source used in synchronization &quot;</span>
+                            <span class="s2">&quot;description&quot;</span><span class="p">)</span>
 
     <span class="c1"># -------------------------------------------------------------------------</span>
     <span class="c1"># latency time</span>
@@ -1475,7 +1483,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configuration</span><span class="p">,</span>
                                  <span class="bp">self</span><span class="o">.</span><span class="n">acquisition_mode</span><span class="p">,</span>
                                  <span class="n">value</span><span class="p">,</span>
-                                 <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">_synch_description</span><span class="p">,</span>
                                  <span class="bp">self</span><span class="o">.</span><span class="n">_moveable_obj</span><span class="p">,</span>
                                  <span class="bp">self</span><span class="o">.</span><span class="n">sw_synch_initial_domain</span><span class="p">,</span>
                                  <span class="bp">self</span><span class="o">.</span><span class="n">nb_starts</span><span class="p">,</span>

@@ -907,18 +907,18 @@ Overwrite when necessary</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getSynchronizationObj">
-<code class="sig-name descname">getSynchronizationObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.getSynchronizationObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getSynchronizationObj" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getSynchDescriptionObj">
+<code class="sig-name descname">getSynchDescriptionObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.getSynchDescriptionObj"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getSynchDescriptionObj" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getSynchronization">
-<code class="sig-name descname">getSynchronization</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.getSynchronization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getSynchronization" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getSynchDescription">
+<code class="sig-name descname">getSynchDescription</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.getSynchDescription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getSynchDescription" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setSynchronization">
-<code class="sig-name descname">setSynchronization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">synchronization</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.setSynchronization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setSynchronization" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setSynchDescription">
+<code class="sig-name descname">setSynchDescription</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">synch_description</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.setSynchDescription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setSynchDescription" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1260,7 +1260,7 @@ controllers or channels (default: <a class="reference external" href="https://do
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>ordered dictionary where keys are <strong>channel</strong> names (or full
-names if <code class="xref py py-obj docutils literal notranslate"><span class="pre">ret_full_name=True</span></code>) and values are their synchronization
+names if <code class="xref py py-obj docutils literal notranslate"><span class="pre">ret_full_name=True</span></code>) and values are their timer
 configurations</p>
 </dd>
 <dt class="field-odd">Return type</dt>
@@ -1314,7 +1314,7 @@ controllers or channels (default: <a class="reference external" href="https://do
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>ordered dictionary where keys are <strong>channel</strong> names (or full
-names if <code class="xref py py-obj docutils literal notranslate"><span class="pre">ret_full_name=True</span></code>) and values are their synchronization
+names if <code class="xref py py-obj docutils literal notranslate"><span class="pre">ret_full_name=True</span></code>) and values are their monitor
 configurations</p>
 </dd>
 <dt class="field-odd">Return type</dt>
@@ -1368,11 +1368,66 @@ controllers or channels (default: <a class="reference external" href="https://do
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>ordered dictionary where keys are <strong>channel</strong> names (or full
-names if <code class="xref py py-obj docutils literal notranslate"><span class="pre">ret_full_name=True</span></code>) and values are their synchronization
+names if <code class="xref py py-obj docutils literal notranslate"><span class="pre">ret_full_name=True</span></code>) and values are their synchronizer
 configurations</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setSynchronization">
+<code class="sig-name descname">setSynchronization</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">synchronization</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">elements</span></em>, <em class="sig-param"><span class="n">apply</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.setSynchronization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.setSynchronization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the synchronization configuration for the given channels or
+controller.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently the controller’s synchronization must be unique.
+Hence this method will set it for the whole controller regardless of
+the <code class="docutils literal notranslate"><span class="pre">elements</span></code> argument.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>synchronization</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">sardana.pool.AcqSynchType</span></code>) – synchronization type e.g. Trigger, Gate or
+Start</p></li>
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>)</em>) – sequence of channels names or full names, no elements
+means set to all</p></li>
+<li><p><strong>apply</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> - apply on the server, <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> - do not apply yet
+on the server and keep locally (default: <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getSynchronization">
+<code class="sig-name descname">getSynchronization</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">elements</span></em>, <em class="sig-param"><span class="n">ret_full_name</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">ret_by_ctrl</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.getSynchronization"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getSynchronization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the synchronization configuration of the given elements.</p>
+<p>Channels and controllers are accepted as elements. Getting the output
+from the controller means getting it from all channels of this
+controller present in this measurement group, unless
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">ret_by_ctrl=True</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>elements</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>)</em>) – sequence of element names or full names, no elements
+means get from all</p></li>
+<li><p><strong>ret_full_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – whether keys in the returned dictionary are
+full names or names (default: <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> means return names)</p></li>
+<li><p><strong>ret_by_ctrl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – whether keys in the returned dictionary are
+controllers or channels (default: <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> means return channels)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ordered dictionary where keys are <strong>channel</strong> names (or full
+names if <code class="xref py py-obj docutils literal notranslate"><span class="pre">ret_full_name=True</span></code>) and values are their
+synchronization configurations</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict&lt;<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">sardana.pool.AcqSynchType</span></code>&gt;</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1682,13 +1737,14 @@ channel values (or value references - experimental)</p>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count_continuous">
-<code class="sig-name descname">count_continuous</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">synchronization</span></em>, <em class="sig-param"><span class="n">value_buffer_cb</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.count_continuous"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count_continuous" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">count_continuous</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">synch_description</span></em>, <em class="sig-param"><span class="n">value_buffer_cb</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#MeasurementGroup.count_continuous"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count_continuous" title="Permalink to this definition">¶</a></dt>
 <dd><p>Execute measurement process according to the given synchronization
 description.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>synchronization</strong> (<em>list of groups with equidistant synchronizations</em>) – synchronization description</p></li>
+<li><p><strong>synch_description</strong> (<em>list of groups with equidistant
+synchronizations</em>) – synchronization description</p></li>
 <li><p><strong>value_buffer_cb</strong> (<em>callable</em>) – callback on value buffer updates</p></li>
 </ul>
 </dd>
