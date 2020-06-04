@@ -196,7 +196,7 @@
 
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">UnknownMacroLibrary</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="kn">import</span> <span class="n">WrongParam</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamRepeat</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">LibraryError</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">LibraryError</span>
 
 <span class="c1">##########################################################################</span>
 <span class="c1">#</span>
@@ -228,9 +228,8 @@
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Measurement group name&#39;</span><span class="p">],</span>
-        <span class="p">[</span><span class="s1">&#39;channel_list&#39;</span><span class="p">,</span>
-            <span class="n">ParamRepeat</span><span class="p">([</span><span class="s1">&#39;channel&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
-                         <span class="s1">&#39;Measurement Channel&#39;</span><span class="p">],),</span>
+        <span class="p">[</span><span class="s1">&#39;channel_list&#39;</span><span class="p">,</span> <span class="p">[[</span><span class="s1">&#39;channel&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                           <span class="s1">&#39;Measurement Channel&#39;</span><span class="p">]],</span>
             <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of measurement channels&#39;</span><span class="p">],</span>
     <span class="p">]</span>
 
@@ -253,10 +252,9 @@
     <span class="sd">&quot;&quot;&quot;Deletes existing measurement groups&quot;&quot;&quot;</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="s1">&#39;mntgrps&#39;</span><span class="p">,</span>
-         <span class="n">ParamRepeat</span><span class="p">([</span><span class="s1">&#39;mntgrp&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="p">[</span><span class="s1">&#39;mntgrps&#39;</span><span class="p">,</span> <span class="p">[[</span><span class="s1">&#39;mntgrp&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
                       <span class="s1">&#39;Measurement group name&#39;</span><span class="p">],</span>
-                     <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+                     <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}],</span>
          <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of measurement group names&#39;</span><span class="p">],</span> <span class="p">]</span>
 
 <div class="viewcode-block" id="udefmeas.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.udefmeas.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mntgrps</span><span class="p">):</span>
@@ -301,8 +299,8 @@
     <span class="sd">&quot;&quot;&quot;Deletes existing elements&quot;&quot;&quot;</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="s1">&#39;elements&#39;</span><span class="p">,</span>
-         <span class="n">ParamRepeat</span><span class="p">([</span><span class="s1">&#39;element&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Element</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;element name&#39;</span><span class="p">],</span> <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">[</span><span class="s1">&#39;elements&#39;</span><span class="p">,</span> <span class="p">[[</span><span class="s1">&#39;element&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Element</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;element name&#39;</span><span class="p">],</span>
+                      <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}],</span>
          <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of element(s) name&#39;</span><span class="p">],</span>
     <span class="p">]</span>
 
@@ -332,9 +330,8 @@
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;class&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">ControllerClass</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;controller class&#39;</span><span class="p">],</span>
                  <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;new controller name&#39;</span><span class="p">],</span>
-                 <span class="p">[</span><span class="s1">&#39;roles_props&#39;</span><span class="p">,</span>
-                  <span class="n">ParamRepeat</span><span class="p">([</span><span class="s1">&#39;role_prop&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
-                               <span class="s1">&#39;a role or property item&#39;</span><span class="p">],</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
+                 <span class="p">[</span><span class="s1">&#39;roles_props&#39;</span><span class="p">,</span> <span class="p">[[</span><span class="s1">&#39;role_prop&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                                   <span class="s1">&#39;a role or property item&#39;</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}],</span>
                   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;roles and/or properties&#39;</span><span class="p">]]</span>
 
 <div class="viewcode-block" id="defctrl.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.defctrl.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrl_class</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">props</span><span class="p">):</span>
@@ -347,9 +344,8 @@
     <span class="sd">&quot;&quot;&quot;Deletes existing controllers&quot;&quot;&quot;</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">,</span>
-         <span class="n">ParamRepeat</span><span class="p">([</span><span class="s1">&#39;controller&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Controller</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;controller name&#39;</span><span class="p">],</span>
-                     <span class="nb">min</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">,</span> <span class="p">[[</span><span class="s1">&#39;controller&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Controller</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                          <span class="s1">&#39;controller name&#39;</span><span class="p">],</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}],</span>
          <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of controller(s) name(s)&#39;</span><span class="p">],</span> <span class="p">]</span>
 
 <div class="viewcode-block" id="udefctrl.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.udefctrl.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controllers</span><span class="p">):</span>
@@ -376,9 +372,8 @@
     <span class="sd">&quot;&quot;&quot;Sends the given data directly to the controller&quot;&quot;&quot;</span>
 
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;controller&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Controller</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Controller name&#39;</span><span class="p">],</span>
-                 <span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">,</span>
-                  <span class="n">ParamRepeat</span><span class="p">([</span><span class="s1">&#39;string item&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span>
-                               <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;a string item&#39;</span><span class="p">],),</span>
+                 <span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="p">[[</span><span class="s1">&#39;string item&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="s1">&#39;a string item&#39;</span><span class="p">]],</span>
                   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;data to be sent&#39;</span><span class="p">]]</span>
 
 <div class="viewcode-block" id="send2ctrl.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/expert.html#sardana.macroserver.macros.expert.send2ctrl.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">controller</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>

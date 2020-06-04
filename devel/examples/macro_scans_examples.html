@@ -891,7 +891,10 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
 696
 697
 698
-699</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">##############################################################################</span>
+699
+700
+701
+702</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">##############################################################################</span>
 <span class="c1">##</span>
 <span class="c1"># This file is part of Sardana</span>
 <span class="c1">##</span>
@@ -931,7 +934,7 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
 
 <span class="kn">import</span> <span class="nn">numpy</span>
 
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">ParamRepeat</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">,</span> <span class="n">Type</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.scan</span> <span class="kn">import</span> <span class="o">*</span>
 
 
@@ -1211,8 +1214,9 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
         <span class="p">[</span><span class="s1">&#39;start_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Start position&#39;</span><span class="p">],</span>
         <span class="p">[</span><span class="s1">&#39;step_region&#39;</span><span class="p">,</span>
-         <span class="n">ParamRepeat</span><span class="p">([</span><span class="s1">&#39;next_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;next position&#39;</span><span class="p">],</span>
-                     <span class="p">[</span><span class="s1">&#39;region_nr_intervals&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Region number of intervals&#39;</span><span class="p">]),</span>
+         <span class="p">[[</span><span class="s1">&#39;next_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;next position&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;region_nr_intervals&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span>
+           <span class="s1">&#39;Region number of intervals&#39;</span><span class="p">]],</span>
          <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of tuples: (next_pos, region_nr_intervals&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
@@ -1272,8 +1276,9 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
         <span class="p">[</span><span class="s1">&#39;start_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Start position&#39;</span><span class="p">],</span>
         <span class="p">[</span><span class="s1">&#39;step_region&#39;</span><span class="p">,</span>
-         <span class="n">ParamRepeat</span><span class="p">([</span><span class="s1">&#39;next_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;next position&#39;</span><span class="p">],</span>
-                     <span class="p">[</span><span class="s1">&#39;region_nr_intervals&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Region number of intervals&#39;</span><span class="p">]),</span>
+         <span class="p">[[</span><span class="s1">&#39;next_pos&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;next position&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;region_nr_intervals&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+           <span class="s1">&#39;Region number of intervals&#39;</span><span class="p">]],</span>
          <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of tuples: (next_pos, region_nr_intervals&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
@@ -1337,8 +1342,9 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
         <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
         <span class="p">[</span><span class="s1">&#39;start_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Start position&#39;</span><span class="p">],</span>
         <span class="p">[</span><span class="s1">&#39;step_region&#39;</span><span class="p">,</span>
-         <span class="n">ParamRepeat</span><span class="p">([</span><span class="s1">&#39;next_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;next position&#39;</span><span class="p">],</span>
-                     <span class="p">[</span><span class="s1">&#39;region_nr_intervals&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Region number of intervals&#39;</span><span class="p">]),</span>
+         <span class="p">[[</span><span class="s1">&#39;next_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;next position&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;region_nr_intervals&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span>
+           <span class="s1">&#39;Region number of intervals&#39;</span><span class="p">]],</span>
          <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of tuples: (next_pos, region_nr_intervals&#39;</span><span class="p">]</span>
     <span class="p">]</span>
 
