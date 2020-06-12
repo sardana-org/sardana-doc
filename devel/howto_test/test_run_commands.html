@@ -193,42 +193,22 @@
 <span id="sardana-test-run-commands"></span><h1>Run tests from command line<a class="headerlink" href="#run-tests-from-command-line" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="run-test-suite">
 <h2>Run test suite<a class="headerlink" href="#run-test-suite" title="Permalink to this headline">¶</a></h2>
-<p>Running the Sardana test suite from command line can be done in two
-different ways:</p>
-<ol class="arabic">
-<li><p>Sardana tests can be executed using the <code class="xref py py-obj docutils literal notranslate"><span class="pre">setuptools</span></code> test command prior to
-the installation by executing the following command from within the sardana
-project directory:</p>
-<blockquote>
-<div><p>python setup.py test</p>
-</div></blockquote>
-<p>This will execute only a subset of all the sardana tests - the unit test suite.
-The functional tests, that require the <a class="reference internal" href="#sardana-test-sar-demo"><span class="std std-ref">sar_demo test environment</span></a>, are
-excluded on purpose.</p>
-</li>
-<li><p>The complete Sardana test suite, that includes the unit and the functional tests
-can be executed only after the Sardana installation by executing the
-<code class="xref py py-obj docutils literal notranslate"><span class="pre">sardanatestsuite</span></code> script.</p></li>
-</ol>
+<p>We recommend using pytest to run Sardana tests. Please refer to
+<a class="reference external" href="https://docs.pytest.org/en/latest/usage.html">pytest documentation</a>
+on how to execute tests.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently the majority of the Sardana tests are written using unittest.
+We plan to gradually migrate them to pytest.</p>
 </div>
-<div class="section" id="run-a-single-test">
-<h2>Run a single test<a class="headerlink" href="#run-a-single-test" title="Permalink to this headline">¶</a></h2>
-<p>Executing a single test from command line is done by doing:</p>
-<blockquote>
-<div><p>python -m unittest test_name</p>
-</div></blockquote>
-<p>Where test_name is the test module that has to be run.</p>
-<p>That can be done with more verbosity by indicating the option -v.</p>
-<blockquote>
-<div><p>python -m unittest -v test_name</p>
-</div></blockquote>
 </div>
 <div class="section" id="sar-demo-test-environment">
 <span id="sardana-test-sar-demo"></span><h2>sar_demo test environment<a class="headerlink" href="#sar-demo-test-environment" title="Permalink to this headline">¶</a></h2>
 <p>Some of the Sardana tests e.g. the ones that test the macros, require a running Sardana
-instance with the sar_demo macro executed previosly. By default the tests will try to
+instance with the sar_demo macro executed previously. By default the tests will try to
 connect to the <code class="xref py py-obj docutils literal notranslate"><span class="pre">door/demo1/1</span></code> door in order to run the macros there. The default door
-name can be changed in the <code class="xref py py-obj docutils literal notranslate"><span class="pre">sardanacustomsettings</span></code> module.</p>
+name can be changed with the <a class="reference internal" href="../../users/configuration/sardanacustomsettings.html#sardana.sardanacustomsettings.UNITTEST_DOOR_NAME" title="sardana.sardanacustomsettings.UNITTEST_DOOR_NAME"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sardana.sardanacustomsettings.UNITTEST_DOOR_NAME</span></code></a>
+module.</p>
 </div>
 </div>
 
