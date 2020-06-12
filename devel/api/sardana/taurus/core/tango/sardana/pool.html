@@ -1998,8 +1998,10 @@ channel values (or value references - experimental)</p>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.Motor.startMove">
-<code class="sig-name descname">startMove</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.Motor.startMove" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">startMove</code><span class="sig-paren">(</span><em class="sig-param">sequence&lt;float&gt; new_pos</em>, <em class="sig-param">double timeout=None</em><span class="sig-paren">)</span> &#x2192; sequence&lt;id&gt;<a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.Motor.startMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calling this method will trigger a movement off all components of
+the movement.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.Motor.waitMove">
@@ -2017,8 +2019,9 @@ channel values (or value references - experimental)</p>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.Motor.move">
-<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.Motor.move" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">list&lt;double&gt; new_pos</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.Motor.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggers a movement and waits for it to end.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.Motor.getLastMotionTime">
@@ -2036,7 +2039,8 @@ to prepare, wait for events, etc</p>
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.Motor.iterMove">
 <code class="sig-name descname">iterMove</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#Motor.iterMove"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.Motor.iterMove" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>generator for motor positions</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.Motor.readPosition">
@@ -2100,8 +2104,10 @@ to prepare, wait for events, etc</p>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MotorGroup.startMove">
-<code class="sig-name descname">startMove</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MotorGroup.startMove" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">startMove</code><span class="sig-paren">(</span><em class="sig-param">sequence&lt;float&gt; new_pos</em>, <em class="sig-param">double timeout=None</em><span class="sig-paren">)</span> &#x2192; sequence&lt;id&gt;<a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MotorGroup.startMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calling this method will trigger a movement off all components of
+the movement.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MotorGroup.waitMove">
@@ -2119,8 +2125,9 @@ to prepare, wait for events, etc</p>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MotorGroup.move">
-<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MotorGroup.move" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">list&lt;double&gt; new_pos</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.MotorGroup.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggers a movement and waits for it to end.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.MotorGroup.getLastMotionTime">
@@ -2528,8 +2535,10 @@ to prepare, wait for events, etc</p>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.PseudoMotor.startMove">
-<code class="sig-name descname">startMove</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.PseudoMotor.startMove" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">startMove</code><span class="sig-paren">(</span><em class="sig-param">sequence&lt;float&gt; new_pos</em>, <em class="sig-param">double timeout=None</em><span class="sig-paren">)</span> &#x2192; sequence&lt;id&gt;<a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.PseudoMotor.startMove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calling this method will trigger a movement off all components of
+the movement.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.PseudoMotor.waitMove">
@@ -2547,8 +2556,9 @@ to prepare, wait for events, etc</p>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.PseudoMotor.move">
-<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.PseudoMotor.move" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname">move</code><span class="sig-paren">(</span><em class="sig-param">list&lt;double&gt; new_pos</em>, <em class="sig-param">timeout=None</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.PseudoMotor.move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Triggers a movement and waits for it to end.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.PseudoMotor.getLastMotionTime">

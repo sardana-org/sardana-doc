@@ -635,184 +635,10 @@ exists</p>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.Critical">
-<code class="sig-name descname">Critical</code><em class="property"> = 50</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Critical" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.queue_event">
+<code class="sig-name descname">queue_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.queue_event" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.Debug">
-<code class="sig-name descname">Debug</code><em class="property"> = 10</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Debug" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.DftLogFormat">
-<code class="sig-name descname">DftLogFormat</code><em class="property"> = &lt;logging.Formatter object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.DftLogFormat" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.DftLogLevel">
-<code class="sig-name descname">DftLogLevel</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.DftLogLevel" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.DftLogMessageFormat">
-<code class="sig-name descname">DftLogMessageFormat</code><em class="property"> = '%(threadName)-14s %(levelname)-8s %(asctime)s %(name)s: %(message)s'</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.DftLogMessageFormat" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.Error">
-<code class="sig-name descname">Error</code><em class="property"> = 40</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Error" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.Fatal">
-<code class="sig-name descname">Fatal</code><em class="property"> = 50</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Fatal" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.Info">
-<code class="sig-name descname">Info</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Info" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.Trace">
-<code class="sig-name descname">Trace</code><em class="property"> = 5</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Trace" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.Warning">
-<code class="sig-name descname">Warning</code><em class="property"> = 30</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Warning" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.addChild">
-<code class="sig-name descname">addChild</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">child</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.addChild" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a new logging child</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>child</strong> – (logging.Logger) the new child</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.addLevelName">
-<em class="property">classmethod </em><code class="sig-name descname">addLevelName</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level_no</span></em>, <em class="sig-param"><span class="n">level_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.addLevelName" title="Permalink to this definition">¶</a></dt>
-<dd><p>Registers a new log level</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>level_no</strong> – (int) the level number</p></li>
-<li><p><strong>level_name</strong> – (str) the corresponding name</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.addLogHandler">
-<code class="sig-name descname">addLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">handler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.addLogHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Registers a new handler in this object’s logger</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>handler</strong> – (logging.Handler) the new handler to be added</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.addRootLogHandler">
-<em class="property">classmethod </em><code class="sig-name descname">addRootLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.addRootLogHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a new handler to the root logger</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>h</strong> – (logging.Handler) the new log handler</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.add_listener">
-<code class="sig-name descname">add_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.add_listener" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a new listener for this object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>listener</strong> – a listener</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.are_events_blocked">
-<code class="sig-name descname">are_events_blocked</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.are_events_blocked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.block_events">
-<code class="sig-name descname">block_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.block_events" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.call__init__">
-<code class="sig-name descname">call__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">klass</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.call__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method to be called from subclasses to call superclass corresponding
-__init__ method. This method ensures that classes from diamond like
-class hierarquies don’t call their super classes __init__ more than
-once.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.call__init__wo_kw">
-<code class="sig-name descname">call__init__wo_kw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">klass</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.call__init__wo_kw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Same as call__init__ but without keyword arguments because PyQT does
-not support them.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.changeLogName">
-<code class="sig-name descname">changeLogName</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.changeLogName" title="Permalink to this definition">¶</a></dt>
-<dd><p>Change the log name for this object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>name</strong> – (str) the new log name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.cleanUp">
-<code class="sig-name descname">cleanUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.cleanUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>The cleanUp. Default implementation does nothing
-Overwrite when necessary</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.copyLogHandlers">
-<code class="sig-name descname">copyLogHandlers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.copyLogHandlers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Copies the log handlers of other object to this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>other</strong> – (object) object which contains ‘log_handlers’</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.critical">
-<code class="sig-name descname">critical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.critical" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record a critical message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.critical" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.critical()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
-<li><p><strong>args</strong> – list of arguments</p></li>
-<li><p><strong>kw</strong> – list of keyword arguments</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.sardanameta.SardanaLibrary.debug">
@@ -828,6 +654,45 @@ Overwrite when necessary</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.get_parent">
+<code class="sig-name descname">get_parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this pool object parent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this objects parent</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject" title="sardana.sardanabase.SardanaBaseObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaBaseObject</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.call__init__">
+<code class="sig-name descname">call__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">klass</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.call__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to be called from subclasses to call superclass corresponding
+__init__ method. This method ensures that classes from diamond like
+class hierarquies don’t call their super classes __init__ more than
+once.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.Warning">
+<code class="sig-name descname">Warning</code><em class="property"> = 30</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.fire_event">
+<code class="sig-name descname">fire_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">protected</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.fire_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.resetLogFormat">
+<em class="property">classmethod </em><code class="sig-name descname">resetLogFormat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.resetLogFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the log message format (the root log format)</p>
 </dd></dl>
 
 <dl class="py method">
@@ -857,24 +722,10 @@ deprecated (in case msg is None)</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.disableLogOutput">
-<em class="property">classmethod </em><code class="sig-name descname">disableLogOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.disableLogOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Disables the <a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.StreamHandler</span></code></a> which dumps log records,
-by default, to the stderr.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.enableLogOutput">
-<em class="property">classmethod </em><code class="sig-name descname">enableLogOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.enableLogOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Enables the <a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.StreamHandler</span></code></a> which dumps log records,
-by default, to the stderr.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.error">
-<code class="sig-name descname">error</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.error" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record an error message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.error" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.error()</span></code></a>.</p>
+<dt id="sardana.sardanameta.SardanaLibrary.trace">
+<code class="sig-name descname">trace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record a trace message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.log" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.log()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -887,17 +738,360 @@ by default, to the stderr.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.exception">
-<code class="sig-name descname">exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.exception" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log a message with severity ‘ERROR’ on the root logger, with
-exception information.. Accepted <em>args</em> are the same as
-<a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.exception" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.exception()</span></code></a>.</p>
+<dt id="sardana.sardanameta.SardanaLibrary.copyLogHandlers">
+<code class="sig-name descname">copyLogHandlers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.copyLogHandlers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies the log handlers of other object to this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>other</strong> – (object) object which contains ‘log_handlers’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.are_events_blocked">
+<code class="sig-name descname">are_events_blocked</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.are_events_blocked" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.stack">
+<code class="sig-name descname">stack</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.stack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log the usual stack information, followed by a listing of all the
+local variables in each frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>target</strong> – (int) the log level assigned to the record</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(str) The stack string representation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.Trace">
+<code class="sig-name descname">Trace</code><em class="property"> = 5</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Trace" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.get_type">
+<code class="sig-name descname">get_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this sardana object type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this sardana object type</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="sardanadefs.html#sardana.sardanadefs.ElementType" title="sardana.sardanadefs.ElementType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementType</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.syncLog">
+<code class="sig-name descname">syncLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.syncLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronises the log output</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.get_full_name">
+<code class="sig-name descname">get_full_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_full_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this sardana object full name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this sardana object full name</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.Fatal">
+<code class="sig-name descname">Fatal</code><em class="property"> = 50</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.call__init__wo_kw">
+<code class="sig-name descname">call__init__wo_kw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">klass</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.call__init__wo_kw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as call__init__ but without keyword arguments because PyQT does
+not support them.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.setLogFormat">
+<em class="property">classmethod </em><code class="sig-name descname">setLogFormat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">format</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.setLogFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>sets the new log message format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>level</strong> – (str) the new log message format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.has_listeners">
+<code class="sig-name descname">has_listeners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.has_listeners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if anybody is listening to events from this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True is at least one listener is listening or False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.warning">
+<code class="sig-name descname">warning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record a warning message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.warning" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.warning()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
 <li><p><strong>args</strong> – list of arguments</p></li>
+<li><p><strong>kw</strong> – list of keyword arguments</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.frontend">
+<em class="property">property </em><code class="sig-name descname">frontend</code><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.frontend" title="Permalink to this definition">¶</a></dt>
+<dd><p>the object frontend</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.flush_queue">
+<code class="sig-name descname">flush_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.flush_queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>object name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.root_init_lock">
+<code class="sig-name descname">root_init_lock</code><em class="property"> = &lt;unlocked _thread.lock object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.root_init_lock" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.updateAttrDict">
+<code class="sig-name descname">updateAttrDict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.updateAttrDict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.getLogger">
+<em class="property">classmethod </em><code class="sig-name descname">getLogger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.full_name">
+<em class="property">property </em><code class="sig-name descname">full_name</code><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.full_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>object full name</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.getLogObj">
+<code class="sig-name descname">getLogObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogObj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the log object for this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(logging.Logger) the log object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.addLogHandler">
+<code class="sig-name descname">addLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">handler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.addLogHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers a new handler in this object’s logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>handler</strong> – (logging.Handler) the new handler to be added</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.getRootLog">
+<em class="property">classmethod </em><code class="sig-name descname">getRootLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getRootLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retuns the root logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(logging.Logger) the root logger</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.getLogFormat">
+<em class="property">classmethod </em><code class="sig-name descname">getLogFormat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retuns the current log message format (the root log format)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(str) the log message format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.DftLogLevel">
+<code class="sig-name descname">DftLogLevel</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.DftLogLevel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.critical">
+<code class="sig-name descname">critical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.critical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record a critical message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.critical" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.critical()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
+<li><p><strong>args</strong> – list of arguments</p></li>
+<li><p><strong>kw</strong> – list of keyword arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.addChild">
+<code class="sig-name descname">addChild</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">child</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.addChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new logging child</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>child</strong> – (logging.Logger) the new child</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.setLogLevel">
+<em class="property">classmethod </em><code class="sig-name descname">setLogLevel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.setLogLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>sets the new log level (the root log level)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>level</strong> – (int) the new log level</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.getAttrDict">
+<code class="sig-name descname">getAttrDict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getAttrDict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.info">
+<code class="sig-name descname">info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record an info message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.info" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.info()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
+<li><p><strong>args</strong> – list of arguments</p></li>
+<li><p><strong>kw</strong> – list of keyword arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.cleanUp">
+<code class="sig-name descname">cleanUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.cleanUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>The cleanUp. Default implementation does nothing
+Overwrite when necessary</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.DftLogFormat">
+<code class="sig-name descname">DftLogFormat</code><em class="property"> = &lt;logging.Formatter object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.DftLogFormat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.get_interface">
+<code class="sig-name descname">get_interface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the interface this object implements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The interface this object implements.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="sardanadefs.html#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.sardanadefs.Interface</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.changeLogName">
+<code class="sig-name descname">changeLogName</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.changeLogName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the log name for this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – (str) the new log name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.getParent">
+<code class="sig-name descname">getParent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getParent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the log parent for this object or None if no parent exists</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(logging.Logger or None) the log parent for this object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.get_frontend">
+<code class="sig-name descname">get_frontend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_frontend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this sardana frontend object or None if no frontend is
+registered</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this objects frontend</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.enableLogOutput">
+<em class="property">classmethod </em><code class="sig-name descname">enableLogOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.enableLogOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables the <a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.StreamHandler</span></code></a> which dumps log records,
+by default, to the stderr.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.unblock_events">
+<code class="sig-name descname">unblock_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.unblock_events" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.traceback">
+<code class="sig-name descname">traceback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">extended</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log the usual traceback information, followed by a listing of all the
+local variables in each frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> – (int) the log level assigned to the traceback record</p></li>
+<li><p><strong>extended</strong> – (bool) if True, the log record message will have multiple lines</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(str) The traceback string representation</p>
 </dd>
 </dl>
 </dd></dl>
@@ -919,72 +1113,6 @@ exception information.. Accepted <em>args</em> are the same as
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.fire_event">
-<code class="sig-name descname">fire_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">protected</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.fire_event" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.flushOutput">
-<code class="sig-name descname">flushOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.flushOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Flushes the log output</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.flush_queue">
-<code class="sig-name descname">flush_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.flush_queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.frontend">
-<em class="property">property </em><code class="sig-name descname">frontend</code><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.frontend" title="Permalink to this definition">¶</a></dt>
-<dd><p>the object frontend</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.full_name">
-<em class="property">property </em><code class="sig-name descname">full_name</code><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.full_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>object full name</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.getAttrDict">
-<code class="sig-name descname">getAttrDict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getAttrDict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.getChildren">
-<code class="sig-name descname">getChildren</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getChildren" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the log children for this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(sequence&lt;logging.Logger) the list of log children</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.getLogFormat">
-<em class="property">classmethod </em><code class="sig-name descname">getLogFormat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogFormat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retuns the current log message format (the root log format)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(str) the log message format</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.getLogFullName">
-<code class="sig-name descname">getLogFullName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogFullName" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the full log name for this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(str) the full log name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="sardana.sardanameta.SardanaLibrary.getLogLevel">
 <em class="property">classmethod </em><code class="sig-name descname">getLogLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogLevel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retuns the current log level (the root log level)</p>
@@ -996,107 +1124,33 @@ exception information.. Accepted <em>args</em> are the same as
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.getLogName">
-<code class="sig-name descname">getLogName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogName" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the log name for this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(str) the log name</p>
-</dd>
-</dl>
+<dt id="sardana.sardanameta.SardanaLibrary.initRoot">
+<em class="property">classmethod </em><code class="sig-name descname">initRoot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.initRoot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class method to initialize the root logger. Do <strong>NOT</strong> call this
+method directly in your code</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.getLogObj">
-<code class="sig-name descname">getLogObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogObj" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the log object for this object</p>
+<dt id="sardana.sardanameta.SardanaLibrary.set_name">
+<code class="sig-name descname">set_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.set_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets sardana object name</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(logging.Logger) the log object</p>
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>sardana object name</p>
 </dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.getLogger">
-<em class="property">classmethod </em><code class="sig-name descname">getLogger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogger" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.getParent">
-<code class="sig-name descname">getParent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getParent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the log parent for this object or None if no parent exists</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(logging.Logger or None) the log parent for this object</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.getRootLog">
-<em class="property">classmethod </em><code class="sig-name descname">getRootLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getRootLog" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retuns the root logger</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(logging.Logger) the root logger</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.get_frontend">
-<code class="sig-name descname">get_frontend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_frontend" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this sardana frontend object or None if no frontend is
-registered</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this objects frontend</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.get_full_name">
-<code class="sig-name descname">get_full_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_full_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this sardana object full name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this sardana object full name</p>
-</dd>
-<dt class="field-even">Return type</dt>
+<dt class="field-even">Type</dt>
 <dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.get_interface">
-<code class="sig-name descname">get_interface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_interface" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the interface this object implements.</p>
+<dt id="sardana.sardanameta.SardanaLibrary.getChildren">
+<code class="sig-name descname">getChildren</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getChildren" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the log children for this object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The interface this object implements.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="sardanadefs.html#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.sardanadefs.Interface</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.get_interface_names">
-<code class="sig-name descname">get_interface_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_interface_names" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a sequence of interface names this object implements.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The sequence of interfaces this object implements.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>sequence&lt;<a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>&gt;</p>
+<dd class="field-odd"><p>(sequence&lt;logging.Logger) the list of log children</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1116,6 +1170,113 @@ registered</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.error">
+<code class="sig-name descname">error</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record an error message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.error" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.error()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
+<li><p><strong>args</strong> – list of arguments</p></li>
+<li><p><strong>kw</strong> – list of keyword arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.DftLogMessageFormat">
+<code class="sig-name descname">DftLogMessageFormat</code><em class="property"> = '%(threadName)-14s %(levelname)-8s %(asctime)s %(name)s: %(message)s'</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.DftLogMessageFormat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.log_level">
+<code class="sig-name descname">log_level</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.log_level" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.exception">
+<code class="sig-name descname">exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log a message with severity ‘ERROR’ on the root logger, with
+exception information.. Accepted <em>args</em> are the same as
+<a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.exception" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.exception()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
+<li><p><strong>args</strong> – list of arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.root_inited">
+<code class="sig-name descname">root_inited</code><em class="property"> = True</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.root_inited" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.Info">
+<code class="sig-name descname">Info</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.resetLogLevel">
+<em class="property">classmethod </em><code class="sig-name descname">resetLogLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.resetLogLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the log level (the root log level)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.log_format">
+<code class="sig-name descname">log_format</code><em class="property"> = &lt;logging.Formatter object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.log_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.get_interface_names">
+<code class="sig-name descname">get_interface_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_interface_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a sequence of interface names this object implements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The sequence of interfaces this object implements.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>sequence&lt;<a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>&gt;</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.addLevelName">
+<em class="property">classmethod </em><code class="sig-name descname">addLevelName</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level_no</span></em>, <em class="sig-param"><span class="n">level_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.addLevelName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers a new log level</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level_no</strong> – (int) the level number</p></li>
+<li><p><strong>level_name</strong> – (str) the corresponding name</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.Critical">
+<code class="sig-name descname">Critical</code><em class="property"> = 50</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.removeRootLogHandler">
+<em class="property">classmethod </em><code class="sig-name descname">removeRootLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.removeRootLogHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the given handler from the root logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>h</strong> – (logging.Handler) the handler to be removed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="sardana.sardanameta.SardanaLibrary.get_manager">
 <code class="sig-name descname">get_manager</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_manager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the <code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.Manager</span></code> which <em>owns</em> this sardana
@@ -1130,80 +1291,27 @@ object.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.get_parent">
-<code class="sig-name descname">get_parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_parent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this pool object parent.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this objects parent</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject" title="sardana.sardanabase.SardanaBaseObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaBaseObject</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaLibrary.Error">
+<code class="sig-name descname">Error</code><em class="property"> = 40</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.get_parent_name">
-<code class="sig-name descname">get_parent_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_parent_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this sardana object parent’s name.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this objects parent</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.get_type">
-<code class="sig-name descname">get_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this sardana object type.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this sardana object type</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="sardanadefs.html#sardana.sardanadefs.ElementType" title="sardana.sardanadefs.ElementType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementType</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.has_listeners">
-<code class="sig-name descname">has_listeners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.has_listeners" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns True if anybody is listening to events from this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>True is at least one listener is listening or False otherwise</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.info">
-<code class="sig-name descname">info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record an info message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.info" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.info()</span></code></a>.</p>
+<dt id="sardana.sardanameta.SardanaLibrary.addRootLogHandler">
+<em class="property">classmethod </em><code class="sig-name descname">addRootLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.addRootLogHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new handler to the root logger</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
-<li><p><strong>args</strong> – list of arguments</p></li>
-<li><p><strong>kw</strong> – list of keyword arguments</p></li>
-</ul>
+<dd class="field-odd"><p><strong>h</strong> – (logging.Handler) the new log handler</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.initRoot">
-<em class="property">classmethod </em><code class="sig-name descname">initRoot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.initRoot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Class method to initialize the root logger. Do <strong>NOT</strong> call this
-method directly in your code</p>
+<dt id="sardana.sardanameta.SardanaLibrary.disableLogOutput">
+<em class="property">classmethod </em><code class="sig-name descname">disableLogOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.disableLogOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables the <a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.StreamHandler</span></code></a> which dumps log records,
+by default, to the stderr.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1223,55 +1331,6 @@ method directly in your code</p>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.log_format">
-<code class="sig-name descname">log_format</code><em class="property"> = &lt;logging.Formatter object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.log_format" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.log_level">
-<code class="sig-name descname">log_level</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.log_level" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.manager">
-<em class="property">property </em><code class="sig-name descname">manager</code><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.manager" title="Permalink to this definition">¶</a></dt>
-<dd><p>reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.Manager</span></code></p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.name">
-<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>object name</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.queue_event">
-<code class="sig-name descname">queue_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.queue_event" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.removeLogHandler">
-<code class="sig-name descname">removeLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">handler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.removeLogHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes the given handler from this object’s logger</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>handler</strong> – (logging.Handler) the handler to be removed</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.removeRootLogHandler">
-<em class="property">classmethod </em><code class="sig-name descname">removeRootLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.removeRootLogHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes the given handler from the root logger</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>h</strong> – (logging.Handler) the handler to be removed</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py method">
 <dt id="sardana.sardanameta.SardanaLibrary.remove_listener">
 <code class="sig-name descname">remove_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.remove_listener" title="Permalink to this definition">¶</a></dt>
@@ -1287,25 +1346,13 @@ method directly in your code</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.resetLogFormat">
-<em class="property">classmethod </em><code class="sig-name descname">resetLogFormat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.resetLogFormat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resets the log message format (the root log format)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.resetLogLevel">
-<em class="property">classmethod </em><code class="sig-name descname">resetLogLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.resetLogLevel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resets the log level (the root log level)</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.root_init_lock">
-<code class="sig-name descname">root_init_lock</code><em class="property"> = &lt;unlocked _thread.lock object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.root_init_lock" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.sardanameta.SardanaLibrary.block_events">
+<code class="sig-name descname">block_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.block_events" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaLibrary.root_inited">
-<code class="sig-name descname">root_inited</code><em class="property"> = True</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.root_inited" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.sardanameta.SardanaLibrary.Debug">
+<code class="sig-name descname">Debug</code><em class="property"> = 10</em><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.Debug" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -1314,52 +1361,54 @@ method directly in your code</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.setLogFormat">
-<em class="property">classmethod </em><code class="sig-name descname">setLogFormat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">format</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.setLogFormat" title="Permalink to this definition">¶</a></dt>
-<dd><p>sets the new log message format</p>
+<dt id="sardana.sardanameta.SardanaLibrary.getLogName">
+<code class="sig-name descname">getLogName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the log name for this object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>level</strong> – (str) the new log message format</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(str) the log name</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.setLogLevel">
-<em class="property">classmethod </em><code class="sig-name descname">setLogLevel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.setLogLevel" title="Permalink to this definition">¶</a></dt>
-<dd><p>sets the new log level (the root log level)</p>
+<dt id="sardana.sardanameta.SardanaLibrary.removeLogHandler">
+<code class="sig-name descname">removeLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">handler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.removeLogHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the given handler from this object’s logger</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>level</strong> – (int) the new log level</p>
+<dd class="field-odd"><p><strong>handler</strong> – (logging.Handler) the handler to be removed</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.set_name">
-<code class="sig-name descname">set_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.set_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets sardana object name</p>
+<dt id="sardana.sardanameta.SardanaLibrary.flushOutput">
+<code class="sig-name descname">flushOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.flushOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flushes the log output</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaLibrary.get_parent_name">
+<code class="sig-name descname">get_parent_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.get_parent_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this sardana object parent’s name.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>sardana object name</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this objects parent</p>
 </dd>
-<dt class="field-even">Type</dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaLibrary.str" title="sardana.sardanameta.SardanaLibrary.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.stack">
-<code class="sig-name descname">stack</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target</span><span class="o">=</span><span class="default_value">5</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.stack" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log the usual stack information, followed by a listing of all the
-local variables in each frame.</p>
+<dt id="sardana.sardanameta.SardanaLibrary.add_listener">
+<code class="sig-name descname">add_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.add_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new listener for this object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>target</strong> – (int) the log level assigned to the record</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>(str) The stack string representation</p>
+<dd class="field-odd"><p><strong>listener</strong> – a listener</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1375,69 +1424,20 @@ local variables in each frame.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.syncLog">
-<code class="sig-name descname">syncLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.syncLog" title="Permalink to this definition">¶</a></dt>
-<dd><p>Synchronises the log output</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.trace">
-<code class="sig-name descname">trace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.trace" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record a trace message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.log" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.log()</span></code></a>.</p>
+<dt id="sardana.sardanameta.SardanaLibrary.getLogFullName">
+<code class="sig-name descname">getLogFullName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.getLogFullName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the full log name for this object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
-<li><p><strong>args</strong> – list of arguments</p></li>
-<li><p><strong>kw</strong> – list of keyword arguments</p></li>
-</ul>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(str) the full log name</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.traceback">
-<code class="sig-name descname">traceback</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">extended</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.traceback" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log the usual traceback information, followed by a listing of all the
-local variables in each frame.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>level</strong> – (int) the log level assigned to the traceback record</p></li>
-<li><p><strong>extended</strong> – (bool) if True, the log record message will have multiple lines</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>(str) The traceback string representation</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.unblock_events">
-<code class="sig-name descname">unblock_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.unblock_events" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.updateAttrDict">
-<code class="sig-name descname">updateAttrDict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.updateAttrDict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaLibrary.warning">
-<code class="sig-name descname">warning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record a warning message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.warning" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.warning()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
-<li><p><strong>args</strong> – list of arguments</p></li>
-<li><p><strong>kw</strong> – list of keyword arguments</p></li>
-</ul>
-</dd>
-</dl>
+<dt id="sardana.sardanameta.SardanaLibrary.manager">
+<em class="property">property </em><code class="sig-name descname">manager</code><a class="headerlink" href="#sardana.sardanameta.SardanaLibrary.manager" title="Permalink to this definition">¶</a></dt>
+<dd><p>reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.Manager</span></code></p>
 </dd></dl>
 
 </dd></dl>
@@ -1455,197 +1455,10 @@ local variables in each frame.</p>
 <dt id="sardana.sardanameta.SardanaClass">
 <em class="property">class </em><code class="sig-name descname">SardanaClass</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sardana/sardanameta.html#SardanaClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.sardanameta.SardanaClass" title="Permalink to this definition">¶</a></dt>
 <dd><p>Object representing a python class.</p>
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.Critical">
-<code class="sig-name descname">Critical</code><em class="property"> = 50</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Critical" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.queue_event">
+<code class="sig-name descname">queue_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.queue_event" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.Debug">
-<code class="sig-name descname">Debug</code><em class="property"> = 10</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Debug" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.DftLogFormat">
-<code class="sig-name descname">DftLogFormat</code><em class="property"> = &lt;logging.Formatter object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.DftLogFormat" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.DftLogLevel">
-<code class="sig-name descname">DftLogLevel</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.DftLogLevel" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.DftLogMessageFormat">
-<code class="sig-name descname">DftLogMessageFormat</code><em class="property"> = '%(threadName)-14s %(levelname)-8s %(asctime)s %(name)s: %(message)s'</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.DftLogMessageFormat" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.Error">
-<code class="sig-name descname">Error</code><em class="property"> = 40</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Error" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.Fatal">
-<code class="sig-name descname">Fatal</code><em class="property"> = 50</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Fatal" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.Info">
-<code class="sig-name descname">Info</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Info" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.Trace">
-<code class="sig-name descname">Trace</code><em class="property"> = 5</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Trace" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.Warning">
-<code class="sig-name descname">Warning</code><em class="property"> = 30</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Warning" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.addChild">
-<code class="sig-name descname">addChild</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">child</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.addChild" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a new logging child</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>child</strong> – (logging.Logger) the new child</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.addLevelName">
-<em class="property">classmethod </em><code class="sig-name descname">addLevelName</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level_no</span></em>, <em class="sig-param"><span class="n">level_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.addLevelName" title="Permalink to this definition">¶</a></dt>
-<dd><p>Registers a new log level</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>level_no</strong> – (int) the level number</p></li>
-<li><p><strong>level_name</strong> – (str) the corresponding name</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.addLogHandler">
-<code class="sig-name descname">addLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">handler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.addLogHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Registers a new handler in this object’s logger</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>handler</strong> – (logging.Handler) the new handler to be added</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.addRootLogHandler">
-<em class="property">classmethod </em><code class="sig-name descname">addRootLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.addRootLogHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a new handler to the root logger</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>h</strong> – (logging.Handler) the new log handler</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.add_listener">
-<code class="sig-name descname">add_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.add_listener" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a new listener for this object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>listener</strong> – a listener</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.are_events_blocked">
-<code class="sig-name descname">are_events_blocked</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.are_events_blocked" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.block_events">
-<code class="sig-name descname">block_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.block_events" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.call__init__">
-<code class="sig-name descname">call__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">klass</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.call__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Method to be called from subclasses to call superclass corresponding
-__init__ method. This method ensures that classes from diamond like
-class hierarquies don’t call their super classes __init__ more than
-once.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.call__init__wo_kw">
-<code class="sig-name descname">call__init__wo_kw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">klass</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.call__init__wo_kw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Same as call__init__ but without keyword arguments because PyQT does
-not support them.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.changeLogName">
-<code class="sig-name descname">changeLogName</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.changeLogName" title="Permalink to this definition">¶</a></dt>
-<dd><p>Change the log name for this object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>name</strong> – (str) the new log name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.cleanUp">
-<code class="sig-name descname">cleanUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.cleanUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>The cleanUp. Default implementation does nothing
-Overwrite when necessary</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.code">
-<em class="property">property </em><code class="sig-name descname">code</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.code" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a tuple (sourcelines, firstline) corresponding to the
-definition of this code object. sourcelines is a list of source code
-lines. firstline is the line number of the first source code line.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.code_object">
-<em class="property">property </em><code class="sig-name descname">code_object</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.code_object" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.copyLogHandlers">
-<code class="sig-name descname">copyLogHandlers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.copyLogHandlers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Copies the log handlers of other object to this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>other</strong> – (object) object which contains ‘log_handlers’</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.critical">
-<code class="sig-name descname">critical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.critical" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record a critical message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.critical" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.critical()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
-<li><p><strong>args</strong> – list of arguments</p></li>
-<li><p><strong>kw</strong> – list of keyword arguments</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.sardanameta.SardanaClass.debug">
@@ -1661,6 +1474,45 @@ lines. firstline is the line number of the first source code line.</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_parent">
+<code class="sig-name descname">get_parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_parent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this pool object parent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this objects parent</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject" title="sardana.sardanabase.SardanaBaseObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaBaseObject</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.call__init__">
+<code class="sig-name descname">call__init__</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">klass</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.call__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to be called from subclasses to call superclass corresponding
+__init__ method. This method ensures that classes from diamond like
+class hierarquies don’t call their super classes __init__ more than
+once.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.Warning">
+<code class="sig-name descname">Warning</code><em class="property"> = 30</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.fire_event">
+<code class="sig-name descname">fire_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">protected</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.fire_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.resetLogFormat">
+<em class="property">classmethod </em><code class="sig-name descname">resetLogFormat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.resetLogFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the log message format (the root log format)</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1689,466 +1541,6 @@ deprecated (in case msg is None)</p></li>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.description">
-<code class="sig-name descname">description</code><em class="property"> = '&lt;Undocumented&gt;'</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.description" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.disableLogOutput">
-<em class="property">classmethod </em><code class="sig-name descname">disableLogOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.disableLogOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Disables the <a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.StreamHandler</span></code></a> which dumps log records,
-by default, to the stderr.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.enableLogOutput">
-<em class="property">classmethod </em><code class="sig-name descname">enableLogOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.enableLogOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Enables the <a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.StreamHandler</span></code></a> which dumps log records,
-by default, to the stderr.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.error">
-<code class="sig-name descname">error</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.error" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record an error message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.error" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.error()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
-<li><p><strong>args</strong> – list of arguments</p></li>
-<li><p><strong>kw</strong> – list of keyword arguments</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.exception">
-<code class="sig-name descname">exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.exception" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log a message with severity ‘ERROR’ on the root logger, with
-exception information.. Accepted <em>args</em> are the same as
-<a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.exception" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.exception()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
-<li><p><strong>args</strong> – list of arguments</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.fatal">
-<code class="sig-name descname">fatal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.fatal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record a fatal message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.fatal()</span></code>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
-<li><p><strong>args</strong> – list of arguments</p></li>
-<li><p><strong>kw</strong> – list of keyword arguments</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.file_name">
-<em class="property">property </em><code class="sig-name descname">file_name</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.file_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the file name for the library where this class is. On posix
-systems is something like: filename.py</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the file name for the library where this class is</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.file_path">
-<em class="property">property </em><code class="sig-name descname">file_path</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.file_path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the file path for for the library where this class is. On
-posix systems is something like: /abs/path/filename.py</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the file path for for the library where this class is</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.fire_event">
-<code class="sig-name descname">fire_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">protected</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.fire_event" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.flushOutput">
-<code class="sig-name descname">flushOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.flushOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Flushes the log output</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.flush_queue">
-<code class="sig-name descname">flush_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.flush_queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.frontend">
-<em class="property">property </em><code class="sig-name descname">frontend</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.frontend" title="Permalink to this definition">¶</a></dt>
-<dd><p>the object frontend</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.full_name">
-<em class="property">property </em><code class="sig-name descname">full_name</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.full_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>object full name</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.getAttrDict">
-<code class="sig-name descname">getAttrDict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getAttrDict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.getChildren">
-<code class="sig-name descname">getChildren</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getChildren" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the log children for this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(sequence&lt;logging.Logger) the list of log children</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.getLogFormat">
-<em class="property">classmethod </em><code class="sig-name descname">getLogFormat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogFormat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retuns the current log message format (the root log format)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(str) the log message format</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.getLogFullName">
-<code class="sig-name descname">getLogFullName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogFullName" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the full log name for this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(str) the full log name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.getLogLevel">
-<em class="property">classmethod </em><code class="sig-name descname">getLogLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogLevel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retuns the current log level (the root log level)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(int) a number representing the log level</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.getLogName">
-<code class="sig-name descname">getLogName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogName" title="Permalink to this definition">¶</a></dt>
-<dd><p>Gets the log name for this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(str) the log name</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.getLogObj">
-<code class="sig-name descname">getLogObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogObj" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the log object for this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(logging.Logger) the log object</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.getLogger">
-<em class="property">classmethod </em><code class="sig-name descname">getLogger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogger" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.getParent">
-<code class="sig-name descname">getParent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getParent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the log parent for this object or None if no parent exists</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(logging.Logger or None) the log parent for this object</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.getRootLog">
-<em class="property">classmethod </em><code class="sig-name descname">getRootLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getRootLog" title="Permalink to this definition">¶</a></dt>
-<dd><p>Retuns the root logger</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(logging.Logger) the root logger</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_brief_description">
-<code class="sig-name descname">get_brief_description</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">max_chars</span><span class="o">=</span><span class="default_value">60</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_brief_description" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_code">
-<code class="sig-name descname">get_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_code" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a tuple (sourcelines, firstline) corresponding to the
-definition of the controller class. sourcelines is a list of source code
-lines. firstline is the line number of the first source code line.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_frontend">
-<code class="sig-name descname">get_frontend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_frontend" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this sardana frontend object or None if no frontend is
-registered</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this objects frontend</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_full_name">
-<code class="sig-name descname">get_full_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_full_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this sardana object full name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this sardana object full name</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_interface">
-<code class="sig-name descname">get_interface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_interface" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the interface this object implements.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The interface this object implements.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="sardanadefs.html#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.sardanadefs.Interface</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_interface_names">
-<code class="sig-name descname">get_interface_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_interface_names" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a sequence of interface names this object implements.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The sequence of interfaces this object implements.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>sequence&lt;<a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>&gt;</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_interfaces">
-<code class="sig-name descname">get_interfaces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_interfaces" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the set of interfaces this object implements.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>The set of interfaces this object implements.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>class:<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set</span></code></a> &lt;<a class="reference internal" href="sardanadefs.html#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.sardanadefs.Interface</span></code></a>&gt;</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_manager">
-<code class="sig-name descname">get_manager</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_manager" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the <code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.Manager</span></code> which <em>owns</em> this sardana
-object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the manager which <em>owns</em> this pool object.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.Manager</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_name">
-<code class="sig-name descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this sardana object name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this sardana object name</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_parent">
-<code class="sig-name descname">get_parent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_parent" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this pool object parent.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this objects parent</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="sardanabase.html#sardana.sardanabase.SardanaBaseObject" title="sardana.sardanabase.SardanaBaseObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaBaseObject</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_parent_name">
-<code class="sig-name descname">get_parent_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_parent_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this sardana object parent’s name.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this objects parent</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.get_type">
-<code class="sig-name descname">get_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns this sardana object type.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>this sardana object type</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="sardanadefs.html#sardana.sardanadefs.ElementType" title="sardana.sardanadefs.ElementType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementType</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.has_listeners">
-<code class="sig-name descname">has_listeners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.has_listeners" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns True if anybody is listening to events from this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>True is at least one listener is listening or False otherwise</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.info">
-<code class="sig-name descname">info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record an info message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.info" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.info()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
-<li><p><strong>args</strong> – list of arguments</p></li>
-<li><p><strong>kw</strong> – list of keyword arguments</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.initRoot">
-<em class="property">classmethod </em><code class="sig-name descname">initRoot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.initRoot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Class method to initialize the root logger. Do <strong>NOT</strong> call this
-method directly in your code</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.lib">
-<em class="property">property </em><code class="sig-name descname">lib</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.lib" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the library :class:~`sardana.sardanameta.SardanaLibrary`
-for this class.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>a reference to the library where this class is located</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>:class:~`sardana.sardanameta.SardanaLibrary`</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.log">
-<code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em>, <em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.log" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record a log message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.log" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.log()</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>level</strong> – (int) the record level</p></li>
-<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
-<li><p><strong>args</strong> – list of arguments</p></li>
-<li><p><strong>kw</strong> – list of keyword arguments</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.log_format">
-<code class="sig-name descname">log_format</code><em class="property"> = &lt;logging.Formatter object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.log_format" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.log_level">
-<code class="sig-name descname">log_level</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.log_level" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.manager">
-<em class="property">property </em><code class="sig-name descname">manager</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.manager" title="Permalink to this definition">¶</a></dt>
-<dd><p>reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.Manager</span></code></p>
-</dd></dl>
-
 <dl class="py method">
 <dt id="sardana.sardanameta.SardanaClass.module">
 <em class="property">property </em><code class="sig-name descname">module</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.module" title="Permalink to this definition">¶</a></dt>
@@ -2164,157 +1556,20 @@ for this class.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.module_name">
-<em class="property">property </em><code class="sig-name descname">module_name</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.module_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the module name for this class.</p>
+<dt id="sardana.sardanameta.SardanaClass.copyLogHandlers">
+<code class="sig-name descname">copyLogHandlers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">other</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.copyLogHandlers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Copies the log handlers of other object to this object</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the module name</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>other</strong> – (object) object which contains ‘log_handlers’</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.name">
-<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>object name</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.path">
-<em class="property">property </em><code class="sig-name descname">path</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.path" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the absolute path for the library where this class is. On
-posix systems is something like: /abs/path</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the absolute path for the library where this class is</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.queue_event">
-<code class="sig-name descname">queue_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.queue_event" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.sardanameta.SardanaClass.are_events_blocked">
+<code class="sig-name descname">are_events_blocked</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.are_events_blocked" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.removeLogHandler">
-<code class="sig-name descname">removeLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">handler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.removeLogHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes the given handler from this object’s logger</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>handler</strong> – (logging.Handler) the handler to be removed</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.removeRootLogHandler">
-<em class="property">classmethod </em><code class="sig-name descname">removeRootLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.removeRootLogHandler" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes the given handler from the root logger</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>h</strong> – (logging.Handler) the handler to be removed</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.remove_listener">
-<code class="sig-name descname">remove_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.remove_listener" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes an existing listener for this object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>listener</strong> – the listener to be removed</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>True is succeeded or False otherwise</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.resetLogFormat">
-<em class="property">classmethod </em><code class="sig-name descname">resetLogFormat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.resetLogFormat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resets the log message format (the root log format)</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.resetLogLevel">
-<em class="property">classmethod </em><code class="sig-name descname">resetLogLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.resetLogLevel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Resets the log level (the root log level)</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.root_init_lock">
-<code class="sig-name descname">root_init_lock</code><em class="property"> = &lt;unlocked _thread.lock object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.root_init_lock" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.root_inited">
-<code class="sig-name descname">root_inited</code><em class="property"> = True</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.root_inited" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.serialize">
-<code class="sig-name descname">serialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.serialize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a serializable object describing this object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>a serializable dict</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.serialized">
-<code class="sig-name descname">serialized</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.serialized" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.setLogFormat">
-<em class="property">classmethod </em><code class="sig-name descname">setLogFormat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">format</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.setLogFormat" title="Permalink to this definition">¶</a></dt>
-<dd><p>sets the new log message format</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>level</strong> – (str) the new log message format</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.setLogLevel">
-<em class="property">classmethod </em><code class="sig-name descname">setLogLevel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.setLogLevel" title="Permalink to this definition">¶</a></dt>
-<dd><p>sets the new log level (the root log level)</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>level</strong> – (int) the new log level</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.set_name">
-<code class="sig-name descname">set_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.set_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets sardana object name</p>
-<dl class="field-list simple">
-<dt class="field-odd">Param</dt>
-<dd class="field-odd"><p>sardana object name</p>
-</dd>
-<dt class="field-even">Type</dt>
-<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.sardanameta.SardanaClass.stack">
@@ -2332,26 +1587,92 @@ local variables in each frame.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.str">
-<code class="sig-name descname">str</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.str" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.sardanameta.SardanaClass.code_object">
+<em class="property">property </em><code class="sig-name descname">code_object</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.code_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.unblock_events">
+<code class="sig-name descname">unblock_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.unblock_events" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="sardana.sardanameta.SardanaClass.stream_handler">
-<code class="sig-name descname">stream_handler</code><em class="property"> = &lt;logging.StreamHandler object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.stream_handler" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.sardanameta.SardanaClass.Trace">
+<code class="sig-name descname">Trace</code><em class="property"> = 5</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Trace" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.syncLog">
-<code class="sig-name descname">syncLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.syncLog" title="Permalink to this definition">¶</a></dt>
-<dd><p>Synchronises the log output</p>
+<dt id="sardana.sardanameta.SardanaClass.get_type">
+<code class="sig-name descname">get_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this sardana object type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this sardana object type</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="sardanadefs.html#sardana.sardanadefs.ElementType" title="sardana.sardanadefs.ElementType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementType</span></code></a></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.trace">
-<code class="sig-name descname">trace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.trace" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record a trace message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.log" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.log()</span></code></a>.</p>
+<dt id="sardana.sardanameta.SardanaClass.serialized">
+<code class="sig-name descname">serialized</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.serialized" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_full_name">
+<code class="sig-name descname">get_full_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_full_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this sardana object full name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this sardana object full name</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.Fatal">
+<code class="sig-name descname">Fatal</code><em class="property"> = 50</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Fatal" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.call__init__wo_kw">
+<code class="sig-name descname">call__init__wo_kw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">klass</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.call__init__wo_kw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Same as call__init__ but without keyword arguments because PyQT does
+not support them.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.setLogFormat">
+<em class="property">classmethod </em><code class="sig-name descname">setLogFormat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">format</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.setLogFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>sets the new log message format</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>level</strong> – (str) the new log message format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.has_listeners">
+<code class="sig-name descname">has_listeners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.has_listeners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if anybody is listening to events from this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True is at least one listener is listening or False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.warning">
+<code class="sig-name descname">warning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.warning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record a warning message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.warning" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.warning()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -2382,9 +1703,66 @@ local variables in each frame.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.unblock_events">
-<code class="sig-name descname">unblock_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.unblock_events" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.sardanameta.SardanaClass.frontend">
+<em class="property">property </em><code class="sig-name descname">frontend</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.frontend" title="Permalink to this definition">¶</a></dt>
+<dd><p>the object frontend</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.flush_queue">
+<code class="sig-name descname">flush_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.flush_queue" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.file_name">
+<em class="property">property </em><code class="sig-name descname">file_name</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.file_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the file name for the library where this class is. On posix
+systems is something like: filename.py</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the file name for the library where this class is</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.getParent">
+<code class="sig-name descname">getParent</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getParent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the log parent for this object or None if no parent exists</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(logging.Logger or None) the log parent for this object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.name">
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>object name</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.root_init_lock">
+<code class="sig-name descname">root_init_lock</code><em class="property"> = &lt;unlocked _thread.lock object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.root_init_lock" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_name">
+<code class="sig-name descname">get_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this sardana object name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this sardana object name</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.sardanameta.SardanaClass.updateAttrDict">
@@ -2392,10 +1770,113 @@ local variables in each frame.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanameta.SardanaClass.warning">
-<code class="sig-name descname">warning</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.warning" title="Permalink to this definition">¶</a></dt>
-<dd><p>Record a warning message in this object’s logger. Accepted <em>args</em> and
-<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.warning" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.warning()</span></code></a>.</p>
+<dt id="sardana.sardanameta.SardanaClass.serialize">
+<code class="sig-name descname">serialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.serialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a serializable object describing this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a serializable dict</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.getLogger">
+<em class="property">classmethod </em><code class="sig-name descname">getLogger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.full_name">
+<em class="property">property </em><code class="sig-name descname">full_name</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.full_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>object full name</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.getLogObj">
+<code class="sig-name descname">getLogObj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogObj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the log object for this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(logging.Logger) the log object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.addLogHandler">
+<code class="sig-name descname">addLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">handler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.addLogHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers a new handler in this object’s logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>handler</strong> – (logging.Handler) the new handler to be added</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.getRootLog">
+<em class="property">classmethod </em><code class="sig-name descname">getRootLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getRootLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retuns the root logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(logging.Logger) the root logger</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.getLogFormat">
+<em class="property">classmethod </em><code class="sig-name descname">getLogFormat</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogFormat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retuns the current log message format (the root log format)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(str) the log message format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_interface">
+<code class="sig-name descname">get_interface</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the interface this object implements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The interface this object implements.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="sardanadefs.html#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.sardanadefs.Interface</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.DftLogLevel">
+<code class="sig-name descname">DftLogLevel</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.DftLogLevel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.file_path">
+<em class="property">property </em><code class="sig-name descname">file_path</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.file_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the file path for for the library where this class is. On
+posix systems is something like: /abs/path/filename.py</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the file path for for the library where this class is</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.critical">
+<code class="sig-name descname">critical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.critical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record a critical message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.critical" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.critical()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -2405,6 +1886,525 @@ local variables in each frame.</p>
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.addChild">
+<code class="sig-name descname">addChild</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">child</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.addChild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new logging child</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>child</strong> – (logging.Logger) the new child</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.setLogLevel">
+<em class="property">classmethod </em><code class="sig-name descname">setLogLevel</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.setLogLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>sets the new log level (the root log level)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>level</strong> – (int) the new log level</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.getAttrDict">
+<code class="sig-name descname">getAttrDict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getAttrDict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.info">
+<code class="sig-name descname">info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record an info message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.info" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.info()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
+<li><p><strong>args</strong> – list of arguments</p></li>
+<li><p><strong>kw</strong> – list of keyword arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.cleanUp">
+<code class="sig-name descname">cleanUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.cleanUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>The cleanUp. Default implementation does nothing
+Overwrite when necessary</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.DftLogFormat">
+<code class="sig-name descname">DftLogFormat</code><em class="property"> = &lt;logging.Formatter object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.DftLogFormat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_brief_description">
+<code class="sig-name descname">get_brief_description</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">max_chars</span><span class="o">=</span><span class="default_value">60</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_brief_description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_parent_name">
+<code class="sig-name descname">get_parent_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_parent_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this sardana object parent’s name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this objects parent</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.changeLogName">
+<code class="sig-name descname">changeLogName</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.changeLogName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the log name for this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – (str) the new log name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.trace">
+<code class="sig-name descname">trace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.trace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record a trace message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.log" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.log()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
+<li><p><strong>args</strong> – list of arguments</p></li>
+<li><p><strong>kw</strong> – list of keyword arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_frontend">
+<code class="sig-name descname">get_frontend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_frontend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns this sardana frontend object or None if no frontend is
+registered</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>this objects frontend</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.enableLogOutput">
+<em class="property">classmethod </em><code class="sig-name descname">enableLogOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.enableLogOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enables the <a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.StreamHandler</span></code></a> which dumps log records,
+by default, to the stderr.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.fatal">
+<code class="sig-name descname">fatal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.fatal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record a fatal message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.fatal()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
+<li><p><strong>args</strong> – list of arguments</p></li>
+<li><p><strong>kw</strong> – list of keyword arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.description">
+<code class="sig-name descname">description</code><em class="property"> = '&lt;Undocumented&gt;'</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.getLogLevel">
+<em class="property">classmethod </em><code class="sig-name descname">getLogLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retuns the current log level (the root log level)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(int) a number representing the log level</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.initRoot">
+<em class="property">classmethod </em><code class="sig-name descname">initRoot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.initRoot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class method to initialize the root logger. Do <strong>NOT</strong> call this
+method directly in your code</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.code">
+<em class="property">property </em><code class="sig-name descname">code</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple (sourcelines, firstline) corresponding to the
+definition of this code object. sourcelines is a list of source code
+lines. firstline is the line number of the first source code line.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.set_name">
+<code class="sig-name descname">set_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.set_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets sardana object name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param</dt>
+<dd class="field-odd"><p>sardana object name</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.getChildren">
+<code class="sig-name descname">getChildren</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getChildren" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the log children for this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(sequence&lt;logging.Logger) the list of log children</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_interfaces">
+<code class="sig-name descname">get_interfaces</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_interfaces" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the set of interfaces this object implements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The set of interfaces this object implements.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>class:<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set</span></code></a> &lt;<a class="reference internal" href="sardanadefs.html#sardana.sardanadefs.Interface" title="sardana.sardanadefs.Interface"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.sardanadefs.Interface</span></code></a>&gt;</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.error">
+<code class="sig-name descname">error</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record an error message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.error" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.error()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
+<li><p><strong>args</strong> – list of arguments</p></li>
+<li><p><strong>kw</strong> – list of keyword arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.DftLogMessageFormat">
+<code class="sig-name descname">DftLogMessageFormat</code><em class="property"> = '%(threadName)-14s %(levelname)-8s %(asctime)s %(name)s: %(message)s'</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.DftLogMessageFormat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.log_level">
+<code class="sig-name descname">log_level</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.log_level" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.exception">
+<code class="sig-name descname">exception</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>Log a message with severity ‘ERROR’ on the root logger, with
+exception information.. Accepted <em>args</em> are the same as
+<a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.exception" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.exception()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
+<li><p><strong>args</strong> – list of arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.root_inited">
+<code class="sig-name descname">root_inited</code><em class="property"> = True</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.root_inited" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.Info">
+<code class="sig-name descname">Info</code><em class="property"> = 20</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.resetLogLevel">
+<em class="property">classmethod </em><code class="sig-name descname">resetLogLevel</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.resetLogLevel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the log level (the root log level)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.log_format">
+<code class="sig-name descname">log_format</code><em class="property"> = &lt;logging.Formatter object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.log_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_code">
+<code class="sig-name descname">get_code</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_code" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple (sourcelines, firstline) corresponding to the
+definition of the controller class. sourcelines is a list of source code
+lines. firstline is the line number of the first source code line.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.addLevelName">
+<em class="property">classmethod </em><code class="sig-name descname">addLevelName</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level_no</span></em>, <em class="sig-param"><span class="n">level_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.addLevelName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registers a new log level</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level_no</strong> – (int) the level number</p></li>
+<li><p><strong>level_name</strong> – (str) the corresponding name</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.path">
+<em class="property">property </em><code class="sig-name descname">path</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the absolute path for the library where this class is. On
+posix systems is something like: /abs/path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the absolute path for the library where this class is</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.Critical">
+<code class="sig-name descname">Critical</code><em class="property"> = 50</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Critical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.removeRootLogHandler">
+<em class="property">classmethod </em><code class="sig-name descname">removeRootLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.removeRootLogHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the given handler from the root logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>h</strong> – (logging.Handler) the handler to be removed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_manager">
+<code class="sig-name descname">get_manager</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_manager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.Manager</span></code> which <em>owns</em> this sardana
+object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the manager which <em>owns</em> this pool object.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.Manager</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.Error">
+<code class="sig-name descname">Error</code><em class="property"> = 40</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Error" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.addRootLogHandler">
+<em class="property">classmethod </em><code class="sig-name descname">addRootLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.addRootLogHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new handler to the root logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>h</strong> – (logging.Handler) the new log handler</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.get_interface_names">
+<code class="sig-name descname">get_interface_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.get_interface_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a sequence of interface names this object implements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The sequence of interfaces this object implements.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>sequence&lt;<a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>&gt;</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.disableLogOutput">
+<em class="property">classmethod </em><code class="sig-name descname">disableLogOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.disableLogOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Disables the <a class="reference external" href="https://docs.python.org/3/library/logging.handlers.html#logging.StreamHandler" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.StreamHandler</span></code></a> which dumps log records,
+by default, to the stderr.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.remove_listener">
+<code class="sig-name descname">remove_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.remove_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes an existing listener for this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>listener</strong> – the listener to be removed</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True is succeeded or False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.block_events">
+<code class="sig-name descname">block_events</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.block_events" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.Debug">
+<code class="sig-name descname">Debug</code><em class="property"> = 10</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.Debug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.add_listener">
+<code class="sig-name descname">add_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.add_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new listener for this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>listener</strong> – a listener</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.log">
+<code class="sig-name descname">log</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em>, <em class="sig-param"><span class="n">msg</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kw</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Record a log message in this object’s logger. Accepted <em>args</em> and
+<em>kwargs</em> are the same as <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger.log" title="(in Python v3.8)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">logging.Logger.log()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>level</strong> – (int) the record level</p></li>
+<li><p><strong>msg</strong> – (str) the message to be recorded</p></li>
+<li><p><strong>args</strong> – list of arguments</p></li>
+<li><p><strong>kw</strong> – list of keyword arguments</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.getLogName">
+<code class="sig-name descname">getLogName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the log name for this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(str) the log name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.removeLogHandler">
+<code class="sig-name descname">removeLogHandler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">handler</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.removeLogHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the given handler from this object’s logger</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>handler</strong> – (logging.Handler) the handler to be removed</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.lib">
+<em class="property">property </em><code class="sig-name descname">lib</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.lib" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the library :class:~`sardana.sardanameta.SardanaLibrary`
+for this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a reference to the library where this class is located</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>:class:~`sardana.sardanameta.SardanaLibrary`</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.syncLog">
+<code class="sig-name descname">syncLog</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.syncLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronises the log output</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.flushOutput">
+<code class="sig-name descname">flushOutput</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.flushOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flushes the log output</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.module_name">
+<em class="property">property </em><code class="sig-name descname">module_name</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.module_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the module name for this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the module name</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#sardana.sardanameta.SardanaClass.str" title="sardana.sardanameta.SardanaClass.str"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.str">
+<code class="sig-name descname">str</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.sardanameta.SardanaClass.stream_handler">
+<code class="sig-name descname">stream_handler</code><em class="property"> = &lt;logging.StreamHandler object&gt;</em><a class="headerlink" href="#sardana.sardanameta.SardanaClass.stream_handler" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.getLogFullName">
+<code class="sig-name descname">getLogFullName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanameta.SardanaClass.getLogFullName" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the full log name for this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(str) the full log name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanameta.SardanaClass.manager">
+<em class="property">property </em><code class="sig-name descname">manager</code><a class="headerlink" href="#sardana.sardanameta.SardanaClass.manager" title="Permalink to this definition">¶</a></dt>
+<dd><p>reference to the <code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.Manager</span></code></p>
 </dd></dl>
 
 <dl class="py method">

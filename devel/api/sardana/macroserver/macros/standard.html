@@ -213,19 +213,75 @@
 <span id="standard"></span><h1><a class="reference internal" href="#module-sardana.macroserver.macros.standard" title="sardana.macroserver.macros.standard"><code class="xref py py-mod docutils literal notranslate"><span class="pre">standard</span></code></a><a class="headerlink" href="#module-sardana.macroserver.macros.standard" title="Permalink to this headline">¶</a></h1>
 <p>This is the standard macro module</p>
 <dl class="py class">
-<dt id="sardana.macroserver.macros.standard.wa">
-<em class="property">class </em><code class="sig-name descname">wa</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wa" title="Permalink to this definition">¶</a></dt>
-<dd><p>Show all motor positions</p>
+<dt id="sardana.macroserver.macros.standard.ct">
+<em class="property">class </em><code class="sig-name descname">ct</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#ct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.ct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Count for the specified time on the measurement group
+or experimental channel given as second argument
+(if not given the active measurement group is used)</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.standard.wa.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filter</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wa.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wa.prepare" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.standard.ct.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">countable_elem</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#ct.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.ct.prepare" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
 Default implementation does nothing</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.macroserver.macros.standard.wa.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wa.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wa.run" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.standard.ct.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">countable_elem</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#ct.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.ct.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.standard.mstate">
+<em class="property">class </em><code class="sig-name descname">mstate</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mstate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mstate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the state of a motor</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.mstate.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mstate.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mstate.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.standard.mv">
+<em class="property">class </em><code class="sig-name descname">mv</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move motor(s) to the specified position(s)</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.mv.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_pos_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mv.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mv.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.standard.mvr">
+<em class="property">class </em><code class="sig-name descname">mvr</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mvr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mvr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move motor(s) relative to the current position(s)</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.mvr.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_disp_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mvr.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mvr.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">
@@ -244,6 +300,62 @@ raises RuntimeError.</p>
 <dl class="py method">
 <dt id="sardana.macroserver.macros.standard.pwa.run">
 <code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#pwa.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.pwa.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.standard.pwm">
+<em class="property">class </em><code class="sig-name descname">pwm</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#pwm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.pwm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the position of the specified motors in a pretty table</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.pwm.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#pwm.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.pwm.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.standard.repeat">
+<em class="property">class </em><code class="sig-name descname">repeat</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#repeat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.repeat" title="Permalink to this definition">¶</a></dt>
+<dd><p>This macro executes as many repetitions of a set of macros as
+specified by nr parameter. The macros to be repeated can be
+given as parameters or as body hooks.
+If both are given first will be executed the ones given as
+parameters and then the ones given as body hooks.
+If nr has negative value, repetitions will be executed until you
+stop repeat macro.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The repeat macro has been included in Sardana
+on a provisional basis. Backwards incompatible changes
+(up to and including removal of the macro) may occur if
+deemed necessary by the core developers.</p>
+</div>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.repeat.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nr</span></em>, <em class="sig-param"><span class="n">macro_name_params</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#repeat.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.repeat.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.repeat.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nr</span></em>, <em class="sig-param"><span class="n">macro_name_params</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#repeat.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.repeat.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">
@@ -310,179 +422,12 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.standard.wm">
-<em class="property">class </em><code class="sig-name descname">wm</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Show the position of the specified motors.</p>
+<dt id="sardana.macroserver.macros.standard.settimer">
+<em class="property">class </em><code class="sig-name descname">settimer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#settimer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.settimer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Defines the timer channel for the active measurement group</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.standard.wm.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_list</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wm.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wm.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.wm.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wm.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wm.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.standard.pwm">
-<em class="property">class </em><code class="sig-name descname">pwm</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#pwm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.pwm" title="Permalink to this definition">¶</a></dt>
-<dd><p>Show the position of the specified motors in a pretty table</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.pwm.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#pwm.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.pwm.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.standard.mv">
-<em class="property">class </em><code class="sig-name descname">mv</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Move motor(s) to the specified position(s)</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.mv.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_pos_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mv.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mv.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.standard.mstate">
-<em class="property">class </em><code class="sig-name descname">mstate</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mstate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mstate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints the state of a motor</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.mstate.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mstate.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mstate.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.standard.umv">
-<em class="property">class </em><code class="sig-name descname">umv</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#umv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.umv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Move motor(s) to the specified position(s) and update</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.umv.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_pos_list</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#umv.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.umv.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.umv.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_pos_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#umv.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.umv.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.standard.mvr">
-<em class="property">class </em><code class="sig-name descname">mvr</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mvr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mvr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Move motor(s) relative to the current position(s)</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.mvr.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_disp_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#mvr.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.mvr.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.standard.umvr">
-<em class="property">class </em><code class="sig-name descname">umvr</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#umvr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.umvr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Move motor(s) relative to the current position(s) and update</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.umvr.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_disp_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#umvr.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.umvr.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.standard.tw">
-<em class="property">class </em><code class="sig-name descname">tw</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#tw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.tw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Tweak motor by variable delta</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.tw.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">delta</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#tw.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.tw.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.standard.ct">
-<em class="property">class </em><code class="sig-name descname">ct</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#ct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.ct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Count for the specified time on the measurement group
-or experimental channel given as second argument
-(if not given the active measurement group is used)</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.ct.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">countable_elem</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#ct.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.ct.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.ct.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">countable_elem</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#ct.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.ct.run" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.standard.settimer.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timer</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#settimer.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.settimer.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">
@@ -520,12 +465,105 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.standard.settimer">
-<em class="property">class </em><code class="sig-name descname">settimer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#settimer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.settimer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Defines the timer channel for the active measurement group</p>
+<dt id="sardana.macroserver.macros.standard.umv">
+<em class="property">class </em><code class="sig-name descname">umv</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#umv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.umv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move motor(s) to the specified position(s) and update</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.standard.settimer.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timer</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#settimer.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.settimer.run" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.standard.umv.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_pos_list</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#umv.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.umv.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.umv.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_pos_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#umv.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.umv.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.standard.umvr">
+<em class="property">class </em><code class="sig-name descname">umvr</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#umvr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.umvr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move motor(s) relative to the current position(s) and update</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.umvr.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_disp_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#umvr.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.umvr.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.standard.wa">
+<em class="property">class </em><code class="sig-name descname">wa</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show all motor positions</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.wa.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filter</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wa.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wa.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.wa.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wa.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wa.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.standard.wm">
+<em class="property">class </em><code class="sig-name descname">wm</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show the position of the specified motors.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.wm.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_list</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wm.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wm.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.wm.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#wm.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.wm.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.standard.tw">
+<em class="property">class </em><code class="sig-name descname">tw</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#tw"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.tw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tweak motor by variable delta</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.standard.tw.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">delta</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#tw.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.tw.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">
@@ -551,44 +589,6 @@ deemed necessary by the core developers</p>
 <dl class="py method">
 <dt id="sardana.macroserver.macros.standard.logmacro.run">
 <code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">offon</span></em>, <em class="sig-param"><span class="n">mode</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#logmacro.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.logmacro.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.standard.repeat">
-<em class="property">class </em><code class="sig-name descname">repeat</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#repeat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.repeat" title="Permalink to this definition">¶</a></dt>
-<dd><p>This macro executes as many repetitions of a set of macros as
-specified by nr parameter. The macros to be repeated can be
-given as parameters or as body hooks.
-If both are given first will be executed the ones given as
-parameters and then the ones given as body hooks.
-If nr has negative value, repetitions will be executed until you
-stop repeat macro.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The repeat macro has been included in Sardana
-on a provisional basis. Backwards incompatible changes
-(up to and including removal of the macro) may occur if
-deemed necessary by the core developers.</p>
-</div>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.repeat.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nr</span></em>, <em class="sig-param"><span class="n">macro_name_params</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#repeat.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.repeat.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.standard.repeat.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nr</span></em>, <em class="sig-param"><span class="n">macro_name_params</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/standard.html#repeat.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.standard.repeat.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">

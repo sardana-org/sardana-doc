@@ -214,39 +214,6 @@
 <p>Macro library containning scan macros for the macros server Tango device
 server as part of the Sardana project.</p>
 <dl class="py class">
-<dt id="sardana.macroserver.macros.scan.aNscan">
-<em class="property">class </em><code class="sig-name descname">aNscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">parent</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">format</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#aNscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.aNscan" title="Permalink to this definition">¶</a></dt>
-<dd><p>N-dimensional scan. This is <strong>not</strong> meant to be called by the user,
-but as a generic base to construct ascan, a2scan, a3scan,…</p>
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.scan.dNscan">
-<em class="property">class </em><code class="sig-name descname">dNscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">parent</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">format</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dNscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dNscan" title="Permalink to this definition">¶</a></dt>
-<dd><p>same as aNscan but it interprets the positions as being relative to the
-current positions and upon completion, it returns the motors to their
-original positions</p>
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.scan.ascan">
-<em class="property">class </em><code class="sig-name descname">ascan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Do an absolute scan of the specified motor.
-ascan scans one motor, as specified by motor. The motor starts at the
-position given by start_pos and ends at the position given by final_pos.
-The step size is (start_pos-final_pos)/nr_interv. The number of data
-points collected will be nr_interv+1. Count time is given by time which
-if positive, specifies seconds and if negative, specifies monitor counts.</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.scan.ascan.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascan.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt id="sardana.macroserver.macros.scan.a2scan">
 <em class="property">class </em><code class="sig-name descname">a2scan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#a2scan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.a2scan" title="Permalink to this definition">¶</a></dt>
 <dd><p>two-motor scan.
@@ -330,39 +297,24 @@ Default implementation does nothing</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.scan.dmultiscan">
-<em class="property">class </em><code class="sig-name descname">dmultiscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dmultiscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dmultiscan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Multiple motor scan relative to the starting positions.
-dmultiscan scans N motors, as specified by motor1, motor2,…,motorN.
-Each motor moves the same number of intervals If each motor is at a
-position X before the scan begins, it will be scanned from X+start_posN
-to X+final_posN (where N is one of 1,2,…)
-The step size for each motor is (start_pos-final_pos)/nr_interv.
-The number of data points collected will be nr_interv+1.
-Count time is given by time which if positive, specifies seconds and
-if negative, specifies monitor counts.</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.scan.dmultiscan.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dmultiscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dmultiscan.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
+<dt id="sardana.macroserver.macros.scan.aNscan">
+<em class="property">class </em><code class="sig-name descname">aNscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">parent</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">format</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#aNscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.aNscan" title="Permalink to this definition">¶</a></dt>
+<dd><p>N-dimensional scan. This is <strong>not</strong> meant to be called by the user,
+but as a generic base to construct ascan, a2scan, a3scan,…</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.scan.dscan">
-<em class="property">class </em><code class="sig-name descname">dscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dscan" title="Permalink to this definition">¶</a></dt>
-<dd><p>motor scan relative to the starting position.
-dscan scans one motor, as specified by motor. If motor motor is at a
-position X before the scan begins, it will be scanned from X+start_pos
-to X+final_pos. The step size is (start_pos-final_pos)/nr_interv.
-The number of data points collected will be nr_interv+1. Count time is
-given by time which if positive, specifies seconds and if negative,
-specifies monitor counts.</p>
+<dt id="sardana.macroserver.macros.scan.ascan">
+<em class="property">class </em><code class="sig-name descname">ascan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do an absolute scan of the specified motor.
+ascan scans one motor, as specified by motor. The motor starts at the
+position given by start_pos and ends at the position given by final_pos.
+The step size is (start_pos-final_pos)/nr_interv. The number of data
+points collected will be nr_interv+1. Count time is given by time which
+if positive, specifies seconds and if negative, specifies monitor counts.</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.scan.dscan.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dscan.prepare" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.scan.ascan.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascan.prepare" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
 Default implementation does nothing</p>
 </dd></dl>
@@ -435,33 +387,49 @@ Default implementation does nothing</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.scan.mesh">
-<em class="property">class </em><code class="sig-name descname">mesh</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#mesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.mesh" title="Permalink to this definition">¶</a></dt>
-<dd><p>2d grid scan.
-The mesh scan traces out a grid using motor1 and motor2.
-The first motor scans from m1_start_pos to m1_final_pos using the specified
-number of intervals. The second motor similarly scans from m2_start_pos
-to m2_final_pos. Each point is counted for for integ_time seconds
-(or monitor counts, if integ_time is negative).
-The scan of motor1 is done at each point scanned by motor2. That is, the
-first motor scan is nested within the second motor scan.</p>
+<dt id="sardana.macroserver.macros.scan.dmultiscan">
+<em class="property">class </em><code class="sig-name descname">dmultiscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dmultiscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dmultiscan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Multiple motor scan relative to the starting positions.
+dmultiscan scans N motors, as specified by motor1, motor2,…,motorN.
+Each motor moves the same number of intervals If each motor is at a
+position X before the scan begins, it will be scanned from X+start_posN
+to X+final_posN (where N is one of 1,2,…)
+The step size for each motor is (start_pos-final_pos)/nr_interv.
+The number of data points collected will be nr_interv+1.
+Count time is given by time which if positive, specifies seconds and
+if negative, specifies monitor counts.</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.scan.mesh.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">m1</span></em>, <em class="sig-param"><span class="n">m1_start_pos</span></em>, <em class="sig-param"><span class="n">m1_final_pos</span></em>, <em class="sig-param"><span class="n">m1_nr_interv</span></em>, <em class="sig-param"><span class="n">m2</span></em>, <em class="sig-param"><span class="n">m2_start_pos</span></em>, <em class="sig-param"><span class="n">m2_final_pos</span></em>, <em class="sig-param"><span class="n">m2_nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">bidirectional</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#mesh.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.mesh.prepare" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.scan.dmultiscan.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dmultiscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dmultiscan.prepare" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
 Default implementation does nothing</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.scan.dNscan">
+<em class="property">class </em><code class="sig-name descname">dNscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em>, <em class="sig-param"><span class="n">parent</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">format</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dNscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dNscan" title="Permalink to this definition">¶</a></dt>
+<dd><p>same as aNscan but it interprets the positions as being relative to the
+current positions and upon completion, it returns the motors to their
+original positions</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.scan.dscan">
+<em class="property">class </em><code class="sig-name descname">dscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dscan" title="Permalink to this definition">¶</a></dt>
+<dd><p>motor scan relative to the starting position.
+dscan scans one motor, as specified by motor. If motor motor is at a
+position X before the scan begins, it will be scanned from X+start_pos
+to X+final_pos. The step size is (start_pos-final_pos)/nr_interv.
+The number of data points collected will be nr_interv+1. Count time is
+given by time which if positive, specifies seconds and if negative,
+specifies monitor counts.</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.scan.mesh.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#mesh.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.mesh.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
+<dt id="sardana.macroserver.macros.scan.dscan.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dscan.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
 </dd></dl>
 
 </dd></dl>
@@ -513,13 +481,26 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.scan.scanhist">
-<em class="property">class </em><code class="sig-name descname">scanhist</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#scanhist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.scanhist" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shows scan history information. Give optional parameter scan number to
-display details about a specific scan</p>
+<dt id="sardana.macroserver.macros.scan.mesh">
+<em class="property">class </em><code class="sig-name descname">mesh</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#mesh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>2d grid scan.
+The mesh scan traces out a grid using motor1 and motor2.
+The first motor scans from m1_start_pos to m1_final_pos using the specified
+number of intervals. The second motor similarly scans from m2_start_pos
+to m2_final_pos. Each point is counted for for integ_time seconds
+(or monitor counts, if integ_time is negative).
+The scan of motor1 is done at each point scanned by motor2. That is, the
+first motor scan is nested within the second motor scan.</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.scan.scanhist.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scan_number</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#scanhist.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.scanhist.run" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.scan.mesh.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">m1</span></em>, <em class="sig-param"><span class="n">m1_start_pos</span></em>, <em class="sig-param"><span class="n">m1_final_pos</span></em>, <em class="sig-param"><span class="n">m1_nr_interv</span></em>, <em class="sig-param"><span class="n">m2</span></em>, <em class="sig-param"><span class="n">m2_start_pos</span></em>, <em class="sig-param"><span class="n">m2_final_pos</span></em>, <em class="sig-param"><span class="n">m2_nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">bidirectional</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#mesh.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.mesh.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.scan.mesh.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#mesh.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.mesh.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">
@@ -532,15 +513,29 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.scan.ascanc">
-<em class="property">class </em><code class="sig-name descname">ascanc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascanc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascanc" title="Permalink to this definition">¶</a></dt>
-<dd><p>Do an absolute continuous scan of the specified motor.
-ascanc scans one motor, as specified by motor.</p>
+<dt id="sardana.macroserver.macros.scan.timescan">
+<em class="property">class </em><code class="sig-name descname">timescan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#timescan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.timescan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do a time scan over the specified time intervals. The scan starts
+immediately. The number of data points collected will be nr_interv + 1.
+Count time is given by integ_time. Latency time will be the longer one
+of latency_time and measurement group latency time.</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.scan.ascanc.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">slow_down</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascanc.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascanc.prepare" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.scan.timescan.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">latency_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#timescan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.timescan.prepare" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
 Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.scan.timescan.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#timescan.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.timescan.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -585,12 +580,13 @@ Default implementation does nothing</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.scan.dscanc">
-<em class="property">class </em><code class="sig-name descname">dscanc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dscanc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dscanc" title="Permalink to this definition">¶</a></dt>
-<dd><p>continuous motor scan relative to the starting position.</p>
+<dt id="sardana.macroserver.macros.scan.ascanc">
+<em class="property">class </em><code class="sig-name descname">ascanc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascanc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascanc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do an absolute continuous scan of the specified motor.
+ascanc scans one motor, as specified by motor.</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.scan.dscanc.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">slow_down</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dscanc.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dscanc.prepare" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.scan.ascanc.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">slow_down</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascanc.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascanc.prepare" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
 Default implementation does nothing</p>
 </dd></dl>
@@ -637,6 +633,19 @@ Default implementation does nothing</p>
 </dd></dl>
 
 <dl class="py class">
+<dt id="sardana.macroserver.macros.scan.dscanc">
+<em class="property">class </em><code class="sig-name descname">dscanc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dscanc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dscanc" title="Permalink to this definition">¶</a></dt>
+<dd><p>continuous motor scan relative to the starting position.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.scan.dscanc.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">slow_down</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#dscanc.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.dscanc.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt id="sardana.macroserver.macros.scan.meshc">
 <em class="property">class </em><code class="sig-name descname">meshc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#meshc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.meshc" title="Permalink to this definition">¶</a></dt>
 <dd><p>2d grid scan. scans continuous</p>
@@ -657,23 +666,6 @@ raises RuntimeError.</p>
 <dd class="field-odd"><p>RuntimeError</p>
 </dd>
 </dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.scan.ascanct">
-<em class="property">class </em><code class="sig-name descname">ascanct</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascanct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascanct" title="Permalink to this definition">¶</a></dt>
-<dd><p>Do an absolute continuous scan of the specified motor.
-ascanct scans one motor, as specified by motor. The motor starts before the
-position given by start_pos in order to reach the constant velocity at the
-start_pos and finishes at the position after the final_pos in order to
-maintain the constant velocity until the final_pos.</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.scan.ascanct.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">latency_time</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascanct.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascanct.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
 </dd></dl>
 
 </dd></dl>
@@ -733,6 +725,23 @@ Default implementation does nothing</p>
 </dd></dl>
 
 <dl class="py class">
+<dt id="sardana.macroserver.macros.scan.ascanct">
+<em class="property">class </em><code class="sig-name descname">ascanct</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascanct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascanct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Do an absolute continuous scan of the specified motor.
+ascanct scans one motor, as specified by motor. The motor starts before the
+position given by start_pos in order to reach the constant velocity at the
+start_pos and finishes at the position after the final_pos in order to
+maintain the constant velocity until the final_pos.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.scan.ascanct.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motor</span></em>, <em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">latency_time</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">opts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#ascanct.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.ascanct.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt id="sardana.macroserver.macros.scan.meshct">
 <em class="property">class </em><code class="sig-name descname">meshct</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#meshct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.meshct" title="Permalink to this definition">¶</a></dt>
 <dd><p>2d grid scan  .
@@ -766,22 +775,13 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.scan.timescan">
-<em class="property">class </em><code class="sig-name descname">timescan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#timescan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.timescan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Do a time scan over the specified time intervals. The scan starts
-immediately. The number of data points collected will be nr_interv + 1.
-Count time is given by integ_time. Latency time will be the longer one
-of latency_time and measurement group latency time.</p>
+<dt id="sardana.macroserver.macros.scan.scanhist">
+<em class="property">class </em><code class="sig-name descname">scanhist</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#scanhist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.scanhist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shows scan history information. Give optional parameter scan number to
+display details about a specific scan</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.scan.timescan.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em>, <em class="sig-param"><span class="n">latency_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#timescan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.timescan.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.scan.timescan.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#timescan.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.timescan.run" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.scan.scanhist.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">scan_number</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#scanhist.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.scanhist.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">

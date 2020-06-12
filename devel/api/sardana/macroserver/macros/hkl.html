@@ -214,6 +214,60 @@
 <p>Macro library containning diffractometer related macros for the macros
 server Tango device server as part of the Sardana project.</p>
 <dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.addreflection">
+<em class="property">class </em><code class="sig-name descname">addreflection</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#addreflection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.addreflection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add reflection at the botton of reflections list</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.addreflection.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">K</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">affinement</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#addreflection.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.addreflection.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.addreflection.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">K</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">affinement</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#addreflection.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.addreflection.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.affine">
+<em class="property">class </em><code class="sig-name descname">affine</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#affine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.affine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Affine current crystal.
+Fine tunning of lattice parameters and UB matrix based on
+current crystal reflections. Reflections with affinement
+set to 0 are not used. A new crystal with the post fix
+(affine) is created and set as current crystal</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.affine.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#affine.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.affine.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.affine.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#affine.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.affine.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt id="sardana.macroserver.macros.hkl.br">
 <em class="property">class </em><code class="sig-name descname">br</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#br"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.br" title="Permalink to this definition">¶</a></dt>
 <dd><p>Move the diffractometer to the reciprocal space coordinates given by
@@ -231,32 +285,6 @@ Default implementation does nothing</p>
 <dl class="py method">
 <dt id="sardana.macroserver.macros.hkl.br.run">
 <code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">K</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">AnglesIndex</span></em>, <em class="sig-param"><span class="n">FlagNotBlocking</span></em>, <em class="sig-param"><span class="n">FlagPrinting</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#br.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.br.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.ubr">
-<em class="property">class </em><code class="sig-name descname">ubr</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#ubr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.ubr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Move the diffractometer to the reciprocal space coordinates given by
-H, K and L und update.</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.ubr.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">kk</span></em>, <em class="sig-param"><span class="n">ll</span></em>, <em class="sig-param"><span class="n">AnglesIndex</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#ubr.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.ubr.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.ubr.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">kk</span></em>, <em class="sig-param"><span class="n">ll</span></em>, <em class="sig-param"><span class="n">AnglesIndex</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#ubr.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.ubr.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">
@@ -346,49 +374,19 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.pa">
-<em class="property">class </em><code class="sig-name descname">pa</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#pa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.pa" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints information about the active diffractometer.</p>
+<dt id="sardana.macroserver.macros.hkl.computeub">
+<em class="property">class </em><code class="sig-name descname">computeub</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#computeub"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.computeub" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute UB matrix with reflections 0 and 1</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.pa.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#pa.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.pa.prepare" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.hkl.computeub.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#computeub.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.computeub.prepare" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
 Default implementation does nothing</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.pa.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#pa.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.pa.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.wh">
-<em class="property">class </em><code class="sig-name descname">wh</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#wh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.wh" title="Permalink to this definition">¶</a></dt>
-<dd><p>Show principal axes and reciprocal space positions.</p>
-<p>Prints the current reciprocal space coordinates (H K L) and the user
-positions of the principal motors. Depending on the diffractometer
-geometry, other parameters such as the angles of incidence and
-reflection (ALPHA and BETA) and the incident wavelength (LAMBDA)
-may be displayed.</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.wh.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#wh.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.wh.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.wh.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#wh.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.wh.run" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.hkl.computeub.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#computeub.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.computeub.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">
@@ -426,31 +424,6 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.setmode">
-<em class="property">class </em><code class="sig-name descname">setmode</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setmode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setmode" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set operation mode.</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.setmode.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_mode</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setmode.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setmode.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.setmode.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_mode</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setmode.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setmode.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt id="sardana.macroserver.macros.hkl.getmode">
 <em class="property">class </em><code class="sig-name descname">getmode</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#getmode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.getmode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get operation mode.</p>
@@ -476,20 +449,121 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.setlat">
-<em class="property">class </em><code class="sig-name descname">setlat</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setlat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setlat" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the crystal lattice parameters a, b, c, alpha, beta and gamma
-for the currently active diffraction pseudo motor controller.</p>
+<dt id="sardana.macroserver.macros.hkl.hklscan">
+<em class="property">class </em><code class="sig-name descname">hklscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#hklscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.hklscan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scan h k l axes</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.setlat.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">b</span></em>, <em class="sig-param"><span class="n">c</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">gamma</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setlat.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setlat.prepare" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.hkl.hklscan.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h_start_pos</span></em>, <em class="sig-param"><span class="n">h_final_pos</span></em>, <em class="sig-param"><span class="n">k_start_pos</span></em>, <em class="sig-param"><span class="n">k_final_pos</span></em>, <em class="sig-param"><span class="n">l_start_pos</span></em>, <em class="sig-param"><span class="n">l_final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#hklscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.hklscan.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.hscan">
+<em class="property">class </em><code class="sig-name descname">hscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#hscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.hscan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scan h axis</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.hscan.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#hscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.hscan.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.kscan">
+<em class="property">class </em><code class="sig-name descname">kscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#kscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.kscan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scan k axis</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.kscan.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#kscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.kscan.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.latticecal">
+<em class="property">class </em><code class="sig-name descname">latticecal</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#latticecal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.latticecal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calibrate lattice parameters a, b or c to current 2theta value</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.latticecal.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parameter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#latticecal.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.latticecal.prepare" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
 Default implementation does nothing</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.setlat.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">b</span></em>, <em class="sig-param"><span class="n">c</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">gamma</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setlat.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setlat.run" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.hkl.latticecal.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parameter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#latticecal.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.latticecal.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.loadcrystal">
+<em class="property">class </em><code class="sig-name descname">loadcrystal</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#loadcrystal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.loadcrystal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load crystal information from file</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.loadcrystal.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#loadcrystal.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.loadcrystal.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.loadcrystal.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#loadcrystal.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.loadcrystal.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.lscan">
+<em class="property">class </em><code class="sig-name descname">lscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#lscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.lscan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scan l axis</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.lscan.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#lscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.lscan.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.newcrystal">
+<em class="property">class </em><code class="sig-name descname">newcrystal</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#newcrystal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.newcrystal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new crystal (if it does not exist) and select it.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.newcrystal.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">crystal_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#newcrystal.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.newcrystal.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.newcrystal.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">crystal_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#newcrystal.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.newcrystal.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">
@@ -540,6 +614,157 @@ Default implementation does nothing</p>
 <dl class="py method">
 <dt id="sardana.macroserver.macros.hkl.or1.run">
 <code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">K</span></em>, <em class="sig-param"><span class="n">L</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#or1.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.or1.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.orswap">
+<em class="property">class </em><code class="sig-name descname">orswap</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#orswap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.orswap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Swap values for primary and secondary vectors.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.orswap.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#orswap.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.orswap.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.orswap.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#orswap.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.orswap.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.pa">
+<em class="property">class </em><code class="sig-name descname">pa</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#pa"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.pa" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints information about the active diffractometer.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.pa.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#pa.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.pa.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.pa.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#pa.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.pa.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.savecrystal">
+<em class="property">class </em><code class="sig-name descname">savecrystal</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#savecrystal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.savecrystal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save crystal information to file</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.savecrystal.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#savecrystal.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.savecrystal.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.savecrystal.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#savecrystal.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.savecrystal.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.setaz">
+<em class="property">class </em><code class="sig-name descname">setaz</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setaz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setaz" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set hkl values of the psi reference vector</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.setaz.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">PsiH</span></em>, <em class="sig-param"><span class="n">PsiK</span></em>, <em class="sig-param"><span class="n">PsiL</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setaz.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setaz.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.setaz.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">PsiH</span></em>, <em class="sig-param"><span class="n">PsiK</span></em>, <em class="sig-param"><span class="n">PsiL</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setaz.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setaz.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.setlat">
+<em class="property">class </em><code class="sig-name descname">setlat</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setlat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setlat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the crystal lattice parameters a, b, c, alpha, beta and gamma
+for the currently active diffraction pseudo motor controller.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.setlat.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">b</span></em>, <em class="sig-param"><span class="n">c</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">gamma</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setlat.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setlat.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.setlat.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">b</span></em>, <em class="sig-param"><span class="n">c</span></em>, <em class="sig-param"><span class="n">alpha</span></em>, <em class="sig-param"><span class="n">beta</span></em>, <em class="sig-param"><span class="n">gamma</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setlat.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setlat.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.hkl.setmode">
+<em class="property">class </em><code class="sig-name descname">setmode</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setmode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setmode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set operation mode.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.setmode.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_mode</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setmode.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setmode.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.hkl.setmode.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_mode</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setmode.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setmode.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">
@@ -630,212 +855,6 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.setaz">
-<em class="property">class </em><code class="sig-name descname">setaz</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setaz"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setaz" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set hkl values of the psi reference vector</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.setaz.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">PsiH</span></em>, <em class="sig-param"><span class="n">PsiK</span></em>, <em class="sig-param"><span class="n">PsiL</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setaz.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setaz.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.setaz.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">PsiH</span></em>, <em class="sig-param"><span class="n">PsiK</span></em>, <em class="sig-param"><span class="n">PsiL</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#setaz.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.setaz.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.computeub">
-<em class="property">class </em><code class="sig-name descname">computeub</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#computeub"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.computeub" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute UB matrix with reflections 0 and 1</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.computeub.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#computeub.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.computeub.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.computeub.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#computeub.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.computeub.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.addreflection">
-<em class="property">class </em><code class="sig-name descname">addreflection</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#addreflection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.addreflection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add reflection at the botton of reflections list</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.addreflection.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">K</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">affinement</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#addreflection.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.addreflection.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.addreflection.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">H</span></em>, <em class="sig-param"><span class="n">K</span></em>, <em class="sig-param"><span class="n">L</span></em>, <em class="sig-param"><span class="n">affinement</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#addreflection.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.addreflection.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.affine">
-<em class="property">class </em><code class="sig-name descname">affine</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#affine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.affine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Affine current crystal.
-Fine tunning of lattice parameters and UB matrix based on
-current crystal reflections. Reflections with affinement
-set to 0 are not used. A new crystal with the post fix
-(affine) is created and set as current crystal</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.affine.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#affine.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.affine.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.affine.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#affine.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.affine.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.orswap">
-<em class="property">class </em><code class="sig-name descname">orswap</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#orswap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.orswap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Swap values for primary and secondary vectors.</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.orswap.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#orswap.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.orswap.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.orswap.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#orswap.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.orswap.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.newcrystal">
-<em class="property">class </em><code class="sig-name descname">newcrystal</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#newcrystal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.newcrystal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new crystal (if it does not exist) and select it.</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.newcrystal.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">crystal_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#newcrystal.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.newcrystal.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.newcrystal.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">crystal_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#newcrystal.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.newcrystal.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.hscan">
-<em class="property">class </em><code class="sig-name descname">hscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#hscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.hscan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Scan h axis</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.hscan.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#hscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.hscan.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.kscan">
-<em class="property">class </em><code class="sig-name descname">kscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#kscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.kscan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Scan k axis</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.kscan.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#kscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.kscan.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.lscan">
-<em class="property">class </em><code class="sig-name descname">lscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#lscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.lscan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Scan l axis</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.lscan.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">start_pos</span></em>, <em class="sig-param"><span class="n">final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#lscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.lscan.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.hklscan">
-<em class="property">class </em><code class="sig-name descname">hklscan</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#hklscan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.hklscan" title="Permalink to this definition">¶</a></dt>
-<dd><p>Scan h k l axes</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.hklscan.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h_start_pos</span></em>, <em class="sig-param"><span class="n">h_final_pos</span></em>, <em class="sig-param"><span class="n">k_start_pos</span></em>, <em class="sig-param"><span class="n">k_final_pos</span></em>, <em class="sig-param"><span class="n">l_start_pos</span></em>, <em class="sig-param"><span class="n">l_final_pos</span></em>, <em class="sig-param"><span class="n">nr_interv</span></em>, <em class="sig-param"><span class="n">integ_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#hklscan.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.hklscan.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
 <dt id="sardana.macroserver.macros.hkl.th2th">
 <em class="property">class </em><code class="sig-name descname">th2th</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#th2th"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.th2th" title="Permalink to this definition">¶</a></dt>
 <dd><p>th2th - scan:</p>
@@ -855,19 +874,20 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.savecrystal">
-<em class="property">class </em><code class="sig-name descname">savecrystal</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#savecrystal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.savecrystal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save crystal information to file</p>
+<dt id="sardana.macroserver.macros.hkl.ubr">
+<em class="property">class </em><code class="sig-name descname">ubr</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#ubr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.ubr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the diffractometer to the reciprocal space coordinates given by
+H, K and L und update.</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.savecrystal.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#savecrystal.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.savecrystal.prepare" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.hkl.ubr.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">kk</span></em>, <em class="sig-param"><span class="n">ll</span></em>, <em class="sig-param"><span class="n">AnglesIndex</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#ubr.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.ubr.prepare" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
 Default implementation does nothing</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.savecrystal.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#savecrystal.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.savecrystal.run" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.hkl.ubr.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hh</span></em>, <em class="sig-param"><span class="n">kk</span></em>, <em class="sig-param"><span class="n">ll</span></em>, <em class="sig-param"><span class="n">AnglesIndex</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#ubr.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.ubr.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">
@@ -880,44 +900,24 @@ raises RuntimeError.</p>
 </dd></dl>
 
 <dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.loadcrystal">
-<em class="property">class </em><code class="sig-name descname">loadcrystal</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#loadcrystal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.loadcrystal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load crystal information from file</p>
+<dt id="sardana.macroserver.macros.hkl.wh">
+<em class="property">class </em><code class="sig-name descname">wh</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#wh"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.wh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show principal axes and reciprocal space positions.</p>
+<p>Prints the current reciprocal space coordinates (H K L) and the user
+positions of the principal motors. Depending on the diffractometer
+geometry, other parameters such as the angles of incidence and
+reflection (ALPHA and BETA) and the incident wavelength (LAMBDA)
+may be displayed.</p>
 <dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.loadcrystal.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#loadcrystal.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.loadcrystal.prepare" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.hkl.wh.prepare">
+<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#wh.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.wh.prepare" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
 Default implementation does nothing</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.loadcrystal.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#loadcrystal.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.loadcrystal.run" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
-raises RuntimeError.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p>RuntimeError</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt id="sardana.macroserver.macros.hkl.latticecal">
-<em class="property">class </em><code class="sig-name descname">latticecal</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#latticecal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.latticecal" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calibrate lattice parameters a, b or c to current 2theta value</p>
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.latticecal.prepare">
-<code class="sig-name descname">prepare</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parameter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#latticecal.prepare"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.latticecal.prepare" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
-Default implementation does nothing</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.hkl.latticecal.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">parameter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#latticecal.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.latticecal.run" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.macroserver.macros.hkl.wh.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/hkl.html#wh.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.hkl.wh.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">

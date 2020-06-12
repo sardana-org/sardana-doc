@@ -511,7 +511,7 @@ is not exception).</p>
 <div class="graphviz"><img src="../../_images/inheritance-31f17290a675f49bc1d1413dc6eb35338b834dda.png" alt="Inheritance diagram of MacroExecutorFactory" class="inheritance graphviz" /></div>
 <dl class="py class">
 <dt id="sardana.macroserver.macros.test.MacroExecutorFactory">
-<em class="property">class </em><code class="sig-name descname">MacroExecutorFactory</code><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/macroexecutor.html#MacroExecutorFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.MacroExecutorFactory" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-name descname">MacroExecutorFactory</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">p</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">k</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/macroexecutor.html#MacroExecutorFactory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.MacroExecutorFactory" title="Permalink to this definition">¶</a></dt>
 <dd><p>A scheme-agnostic factory for MacroExecutor instances</p>
 <p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f</span> <span class="o">=</span>  <span class="n">MacroExecutorFactory</span><span class="p">()</span>
@@ -657,11 +657,6 @@ representations of exception objects)</p></li>
 </dd></dl>
 
 <dl class="py attribute">
-<dt id="sardana.macroserver.macros.test.RunMacroTestCase.door_name">
-<code class="sig-name descname">door_name</code><em class="property"> = 'door/demo1/1'</em><a class="headerlink" href="#sardana.macroserver.macros.test.RunMacroTestCase.door_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
 <dt id="sardana.macroserver.macros.test.RunMacroTestCase.macro_name">
 <code class="sig-name descname">macro_name</code><em class="property"> = None</em><a class="headerlink" href="#sardana.macroserver.macros.test.RunMacroTestCase.macro_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -671,6 +666,11 @@ representations of exception objects)</p></li>
 <code class="sig-name descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunMacroTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
 <dd><p>The macro_executor instance must be removed</p>
 </dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.macroserver.macros.test.RunMacroTestCase.door_name">
+<code class="sig-name descname">door_name</code><em class="property"> = 'door/demo1/1'</em><a class="headerlink" href="#sardana.macroserver.macros.test.RunMacroTestCase.door_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -714,10 +714,29 @@ used.</p></li>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.macro_name">
+<code class="sig-name descname">macro_name</code><em class="property"> = None</em><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.setUp">
+<code class="sig-name descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preconditions:
+- Those from <a class="reference internal" href="#sardana.macroserver.macros.test.BaseMacroTestCase" title="sardana.macroserver.macros.test.BaseMacroTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMacroTestCase</span></code></a>
+- the macro executor registers to all the log levels</p>
+</dd></dl>
+
 <dl class="py method">
 <dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.assertFinished">
 <code class="sig-name descname">assertFinished</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.assertFinished" title="Permalink to this definition">¶</a></dt>
 <dd><p>Asserts that macro has finished.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.tearDown">
+<code class="sig-name descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>The macro_executor instance must be removed</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -746,11 +765,6 @@ representations of exception objects)</p></li>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.macro_name">
-<code class="sig-name descname">macro_name</code><em class="property"> = None</em><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.macro_runs">
 <code class="sig-name descname">macro_runs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">macro_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">macro_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">wait_timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_runs" title="Permalink to this definition">¶</a></dt>
@@ -775,20 +789,6 @@ execution is tested to be equal to this.</p></li>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.setUp">
-<code class="sig-name descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.setUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Preconditions:
-- Those from <a class="reference internal" href="#sardana.macroserver.macros.test.BaseMacroTestCase" title="sardana.macroserver.macros.test.BaseMacroTestCase"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMacroTestCase</span></code></a>
-- the macro executor registers to all the log levels</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.tearDown">
-<code class="sig-name descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
-<dd><p>The macro_executor instance must be removed</p>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -797,7 +797,7 @@ execution is tested to be equal to this.</p></li>
 <div class="graphviz"><img src="../../_images/inheritance-1becf53a24027b6df9df7925bc5fca245d13946e.png" alt="Inheritance diagram of SarDemoEnv" class="inheritance graphviz" /></div>
 <dl class="py class">
 <dt id="sardana.macroserver.macros.test.SarDemoEnv">
-<em class="property">class </em><code class="sig-name descname">SarDemoEnv</code><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/sardemoenv.html#SarDemoEnv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.SarDemoEnv" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-name descname">SarDemoEnv</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">p</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">k</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/sardana/macroserver/macros/test/sardemoenv.html#SarDemoEnv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.macros.test.SarDemoEnv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to get _SAR_DEMO environment variable with cross checking with
 the MacroServer (given by <code class="xref py py-attr docutils literal notranslate"><span class="pre">UNITTEST_DOOR_NAME</span></code>)</p>
 <dl class="py attribute">

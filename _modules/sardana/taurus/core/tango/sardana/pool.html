@@ -637,7 +637,6 @@
     <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">evt_wait</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getEventWait</span><span class="p">()</span>
         <span class="n">evt_wait</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">))</span>
-        <span class="n">evt_wait</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="n">DevState</span><span class="o">.</span><span class="n">MOVING</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__go_time</span> <span class="o">=</span> <span class="mi">0</span>
@@ -648,8 +647,6 @@
         <span class="k">except</span><span class="p">:</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
             <span class="k">raise</span>
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="n">evt_wait</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
         <span class="n">ts2</span> <span class="o">=</span> <span class="n">evt_wait</span><span class="o">.</span><span class="n">getRecordedEvents</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">DevState</span><span class="o">.</span><span class="n">MOVING</span><span class="p">,</span> <span class="n">ts2</span><span class="p">)</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">ts2</span><span class="p">,)</span></div>
 
@@ -674,14 +671,12 @@
         <span class="k">if</span> <span class="nb">id</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">evt_wait</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getEventWait</span><span class="p">()</span>
-        <span class="n">evt_wait</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="n">DevState</span><span class="o">.</span><span class="n">MOVING</span><span class="p">,</span> <span class="n">after</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                                <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">,</span> <span class="n">retries</span><span class="o">=</span><span class="n">retries</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__go_end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__go_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_end_time</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">__go_start_time</span>
-            <span class="n">evt_wait</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="PoolElement.go"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.PoolElement.go">[docs]</a>    <span class="nd">@reservedOperation</span>
