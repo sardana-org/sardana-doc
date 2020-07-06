@@ -603,17 +603,6 @@ exception.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaAttribute.has_listeners">
-<code class="sig-name descname">has_listeners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaAttribute.has_listeners" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns True if anybody is listening to events from this object</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>True is at least one listener is listening or False otherwise</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="sardana.sardanaattribute.SardanaAttribute.remove_listener">
 <code class="sig-name descname">remove_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaAttribute.remove_listener" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes an existing listener for this object.</p>
@@ -628,19 +617,15 @@ exception.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaAttribute.fire_event">
-<code class="sig-name descname">fire_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaAttribute.fire_event" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaAttribute.queue_event">
-<code class="sig-name descname">queue_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaAttribute.queue_event" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaAttribute.flush_queue">
-<code class="sig-name descname">flush_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaAttribute.flush_queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="sardana.sardanaattribute.SardanaAttribute.has_listeners">
+<code class="sig-name descname">has_listeners</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaAttribute.has_listeners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if anybody is listening to events from this object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True is at least one listener is listening or False otherwise</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.sardanaattribute.SardanaAttribute.add_listener">
@@ -652,6 +637,21 @@ exception.</p>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaAttribute.fire_event">
+<code class="sig-name descname">fire_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaAttribute.fire_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaAttribute.flush_queue">
+<code class="sig-name descname">flush_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaAttribute.flush_queue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaAttribute.queue_event">
+<code class="sig-name descname">queue_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaAttribute.queue_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -724,32 +724,15 @@ create a ‘now’ timestamp]</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.exc_info">
-<em class="property">property </em><code class="sig-name descname">exc_info</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.exc_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the exception information (like <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>) about
-last attribute readout or None if last read did not generate an
-exception.</p>
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.remove_listener">
+<code class="sig-name descname">remove_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.remove_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes an existing listener for this object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>exception information or None</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>listener</strong> – the listener to be removed</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>tuple&lt;3&gt; or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_timestamp">
-<code class="sig-name descname">get_timestamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_timestamp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the timestamp of the last readout or None if the attribute
-has never been read before</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>timestamp of the last readout or None</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True is succeeded or False otherwise</p>
 </dd>
 </dl>
 </dd></dl>
@@ -787,16 +770,14 @@ not been written yet</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.fire_write_event">
-<code class="sig-name descname">fire_write_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.fire_write_event" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fires an event to the listeners of the object which owns this
-attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0 for not propagating, 1 to propagate, 2 propagate with priority</p>
-</dd>
-</dl>
-</dd></dl>
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.set_quality">
+<code class="sig-name descname">set_quality</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">quality</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.set_quality" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_quality">
+<code class="sig-name descname">get_quality</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_quality" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.has_listeners">
@@ -810,41 +791,54 @@ attribute.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.error">
-<em class="property">property </em><code class="sig-name descname">error</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.error" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determines if this attribute is in error state.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>True if the attribute is in error state or False otherwise</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.remove_listener">
-<code class="sig-name descname">remove_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.remove_listener" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes an existing listener for this object.</p>
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.add_listener">
+<code class="sig-name descname">add_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.add_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new listener for this object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>listener</strong> – the listener to be removed</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>True is succeeded or False otherwise</p>
+<dd class="field-odd"><p><strong>listener</strong> – a listener</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_write_value">
-<code class="sig-name descname">get_write_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_write_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the last write value for this attribute.</p>
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.quality">
+<em class="property">property </em><code class="sig-name descname">quality</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.quality" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.fire_event">
+<code class="sig-name descname">fire_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.fire_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_timestamp">
+<code class="sig-name descname">get_timestamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the timestamp of the last readout or None if the attribute
+has never been read before</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the last write value for this attribute or None if value has
-not been written yet</p>
+<dd class="field-odd"><p>timestamp of the last readout or None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.timestamp">
+<em class="property">property </em><code class="sig-name descname">timestamp</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>the read timestamp</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_obj">
+<code class="sig-name descname">get_obj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the object which <em>owns</em> this attribute</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the object which <em>owns</em> this attribute</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
@@ -853,16 +847,45 @@ not been written yet</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_write_timestamp">
-<code class="sig-name descname">get_write_timestamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_write_timestamp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the timestamp of the last write or None if the attribute
-has never been written before</p>
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_value_obj">
+<code class="sig-name descname">get_value_obj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_value_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last read value for this attribute.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>timestamp of the last write or None</p>
+<dd class="field-odd"><p>the last read value for this attribute</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+<dd class="field-even"><p><a class="reference internal" href="sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaValue</span></code></a></p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> if no read value has been set yet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.fire_write_event">
+<code class="sig-name descname">fire_write_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.fire_write_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fires an event to the listeners of the object which owns this
+attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0 for not propagating, 1 to propagate, 2 propagate with priority</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.write_value_obj">
+<em class="property">property </em><code class="sig-name descname">write_value_obj</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.write_value_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last write value object for this attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the last write value for this attribute or None if value has
+not been written yet</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaValue</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -898,21 +921,19 @@ in the lifetime of the attribute.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.w_timestamp">
-<em class="property">property </em><code class="sig-name descname">w_timestamp</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.w_timestamp" title="Permalink to this definition">¶</a></dt>
-<dd><p>the write timestamp</p>
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_write_timestamp">
+<code class="sig-name descname">get_write_timestamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_write_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the timestamp of the last write or None if the attribute
+has never been written before</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>timestamp of the last write or None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+</dd>
+</dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.timestamp">
-<em class="property">property </em><code class="sig-name descname">timestamp</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.timestamp" title="Permalink to this definition">¶</a></dt>
-<dd><p>the read timestamp</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.accepts">
-<code class="sig-name descname">accepts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.accepts" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.in_error">
@@ -929,9 +950,62 @@ in the lifetime of the attribute.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.fire_event">
-<code class="sig-name descname">fire_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.fire_event" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.flush_queue">
+<code class="sig-name descname">flush_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.flush_queue" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_exc_info">
+<code class="sig-name descname">get_exc_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_exc_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the exception information (like <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>) about
+last attribute readout or None if last read did not generate an
+exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>exception information or None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple&lt;3&gt; or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.exc_info">
+<em class="property">property </em><code class="sig-name descname">exc_info</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.exc_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the exception information (like <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>) about
+last attribute readout or None if last read did not generate an
+exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>exception information or None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple&lt;3&gt; or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.w_timestamp">
+<em class="property">property </em><code class="sig-name descname">w_timestamp</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.w_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>the write timestamp</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_write_value">
+<code class="sig-name descname">get_write_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_write_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last write value for this attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the last write value for this attribute or None if value has
+not been written yet</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.queue_event">
@@ -939,13 +1013,8 @@ in the lifetime of the attribute.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.quality">
-<em class="property">property </em><code class="sig-name descname">quality</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.quality" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_obj">
-<code class="sig-name descname">get_obj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_obj" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.obj">
+<em class="property">property </em><code class="sig-name descname">obj</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.obj" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the object which <em>owns</em> this attribute</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -956,33 +1025,6 @@ in the lifetime of the attribute.</p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_quality">
-<code class="sig-name descname">get_quality</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_quality" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.fire_read_event">
-<code class="sig-name descname">fire_read_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.fire_read_event" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fires an event to the listeners of the object which owns this
-attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0 for not propagating, 1 to propagate, 2 propagate with priority</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.set_quality">
-<code class="sig-name descname">set_quality</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">quality</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.set_quality" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.flush_queue">
-<code class="sig-name descname">flush_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.flush_queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.value_obj">
@@ -1002,18 +1044,32 @@ attribute.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_value_obj">
-<code class="sig-name descname">get_value_obj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_value_obj" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the last read value for this attribute.</p>
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.accepts">
+<code class="sig-name descname">accepts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.accepts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.error">
+<em class="property">property </em><code class="sig-name descname">error</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if this attribute is in error state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the last read value for this attribute</p>
+<dd class="field-odd"><p>True if the attribute is in error state or False otherwise</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaValue</span></code></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
 </dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> if no read value has been set yet</p>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.fire_read_event">
+<code class="sig-name descname">fire_read_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.fire_read_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fires an event to the listeners of the object which owns this
+attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0 for not propagating, 1 to propagate, 2 propagate with priority</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1021,62 +1077,6 @@ attribute.</p>
 <dl class="py method">
 <dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_write_value_obj">
 <code class="sig-name descname">get_write_value_obj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_write_value_obj" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the last write value object for this attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the last write value for this attribute or None if value has
-not been written yet</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaValue</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.obj">
-<em class="property">property </em><code class="sig-name descname">obj</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.obj" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the object which <em>owns</em> this attribute</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the object which <em>owns</em> this attribute</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.get_exc_info">
-<code class="sig-name descname">get_exc_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.get_exc_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the exception information (like <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>) about
-last attribute readout or None if last read did not generate an
-exception.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>exception information or None</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>tuple&lt;3&gt; or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.add_listener">
-<code class="sig-name descname">add_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.add_listener" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a new listener for this object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>listener</strong> – a listener</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.SardanaSoftwareAttribute.write_value_obj">
-<em class="property">property </em><code class="sig-name descname">write_value_obj</code><a class="headerlink" href="#sardana.sardanaattribute.SardanaSoftwareAttribute.write_value_obj" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the last write value object for this attribute.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1104,32 +1104,15 @@ not been written yet</p>
 <em class="property">class </em><code class="sig-name descname">ScalarNumberAttribute</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/sardana/sardanaattribute.html#ScalarNumberAttribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference internal" href="#sardana.sardanaattribute.SardanaAttribute" title="sardana.sardanaattribute.SardanaAttribute"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaAttribute</span></code></a> specialized for numbers</p>
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.exc_info">
-<em class="property">property </em><code class="sig-name descname">exc_info</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.exc_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the exception information (like <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>) about
-last attribute readout or None if last read did not generate an
-exception.</p>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.remove_listener">
+<code class="sig-name descname">remove_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.remove_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes an existing listener for this object.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>exception information or None</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>listener</strong> – the listener to be removed</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>tuple&lt;3&gt; or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_timestamp">
-<code class="sig-name descname">get_timestamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_timestamp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the timestamp of the last readout or None if the attribute
-has never been read before</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>timestamp of the last readout or None</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True is succeeded or False otherwise</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1167,13 +1150,66 @@ not been written yet</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.fire_write_event">
-<code class="sig-name descname">fire_write_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.fire_write_event" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fires an event to the listeners of the object which owns this
-attribute.</p>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.set_value">
+<code class="sig-name descname">set_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">exc_info</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timestamp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.set_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the current read value and propagates the event (if
+propagate &gt; 0).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0 for not propagating, 1 to propagate, 2 propagate with priority</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a> or SardanaValue) – the new read value for this attribute. If a SardanaValue
+is given, exc_info and timestamp are ignored (if given)</p></li>
+<li><p><strong>exc_info</strong> (<em>tuple&lt;3&gt;</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – exception information as returned by
+<a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a> [default: None, meaning no
+exception]</p></li>
+<li><p><strong>timestamp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – timestamp of attribute readout [default: None, meaning
+create a ‘now’ timestamp]</p></li>
+<li><p><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0 for not propagating, 1 to propagate, 2 propagate with priority</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_value">
+<code class="sig-name descname">get_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last read value for this attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the last read value for this attribute</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> if no read value has been set yet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.set_quality">
+<code class="sig-name descname">set_quality</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">quality</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.set_quality" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_quality">
+<code class="sig-name descname">get_quality</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_quality" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.value">
+<em class="property">property </em><code class="sig-name descname">value</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last read value for this attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the last read value for this attribute</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> if no read value has been set yet</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1190,41 +1226,54 @@ attribute.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.error">
-<em class="property">property </em><code class="sig-name descname">error</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.error" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determines if this attribute is in error state.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>True if the attribute is in error state or False otherwise</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.remove_listener">
-<code class="sig-name descname">remove_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.remove_listener" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes an existing listener for this object.</p>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.add_listener">
+<code class="sig-name descname">add_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.add_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a new listener for this object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>listener</strong> – the listener to be removed</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>True is succeeded or False otherwise</p>
+<dd class="field-odd"><p><strong>listener</strong> – a listener</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_write_value">
-<code class="sig-name descname">get_write_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_write_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the last write value for this attribute.</p>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.quality">
+<em class="property">property </em><code class="sig-name descname">quality</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.quality" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.fire_event">
+<code class="sig-name descname">fire_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.fire_event" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_timestamp">
+<code class="sig-name descname">get_timestamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the timestamp of the last readout or None if the attribute
+has never been read before</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the last write value for this attribute or None if value has
-not been written yet</p>
+<dd class="field-odd"><p>timestamp of the last readout or None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.timestamp">
+<em class="property">property </em><code class="sig-name descname">timestamp</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>the read timestamp</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_obj">
+<code class="sig-name descname">get_obj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the object which <em>owns</em> this attribute</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the object which <em>owns</em> this attribute</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
@@ -1233,16 +1282,45 @@ not been written yet</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_write_timestamp">
-<code class="sig-name descname">get_write_timestamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_write_timestamp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the timestamp of the last write or None if the attribute
-has never been written before</p>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_value_obj">
+<code class="sig-name descname">get_value_obj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_value_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last read value for this attribute.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>timestamp of the last write or None</p>
+<dd class="field-odd"><p>the last read value for this attribute</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+<dd class="field-even"><p><a class="reference internal" href="sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaValue</span></code></a></p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> if no read value has been set yet</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.fire_write_event">
+<code class="sig-name descname">fire_write_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.fire_write_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fires an event to the listeners of the object which owns this
+attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0 for not propagating, 1 to propagate, 2 propagate with priority</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.write_value_obj">
+<em class="property">property </em><code class="sig-name descname">write_value_obj</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.write_value_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last write value object for this attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the last write value for this attribute or None if value has
+not been written yet</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaValue</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1278,55 +1356,19 @@ in the lifetime of the attribute.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_value">
-<code class="sig-name descname">get_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the last read value for this attribute.</p>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_write_timestamp">
+<code class="sig-name descname">get_write_timestamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_write_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the timestamp of the last write or None if the attribute
+has never been written before</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the last read value for this attribute</p>
+<dd class="field-odd"><p>timestamp of the last write or None</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
-</dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> if no read value has been set yet</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
 </dd>
 </dl>
 </dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.w_timestamp">
-<em class="property">property </em><code class="sig-name descname">w_timestamp</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.w_timestamp" title="Permalink to this definition">¶</a></dt>
-<dd><p>the write timestamp</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.value">
-<em class="property">property </em><code class="sig-name descname">value</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the last read value for this attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the last read value for this attribute</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
-</dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> if no read value has been set yet</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.timestamp">
-<em class="property">property </em><code class="sig-name descname">timestamp</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.timestamp" title="Permalink to this definition">¶</a></dt>
-<dd><p>the read timestamp</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.accepts">
-<code class="sig-name descname">accepts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.accepts" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.sardanaattribute.ScalarNumberAttribute.in_error">
@@ -1343,27 +1385,56 @@ in the lifetime of the attribute.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.fire_event">
-<code class="sig-name descname">fire_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.fire_event" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.flush_queue">
+<code class="sig-name descname">flush_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.flush_queue" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.queue_event">
-<code class="sig-name descname">queue_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.queue_event" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.quality">
-<em class="property">property </em><code class="sig-name descname">quality</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.quality" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_obj">
-<code class="sig-name descname">get_obj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_obj" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the object which <em>owns</em> this attribute</p>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_exc_info">
+<code class="sig-name descname">get_exc_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_exc_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the exception information (like <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>) about
+last attribute readout or None if last read did not generate an
+exception.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the object which <em>owns</em> this attribute</p>
+<dd class="field-odd"><p>exception information or None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple&lt;3&gt; or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.exc_info">
+<em class="property">property </em><code class="sig-name descname">exc_info</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.exc_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the exception information (like <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>) about
+last attribute readout or None if last read did not generate an
+exception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>exception information or None</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>tuple&lt;3&gt; or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.w_timestamp">
+<em class="property">property </em><code class="sig-name descname">w_timestamp</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.w_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd><p>the write timestamp</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_write_value">
+<code class="sig-name descname">get_write_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_write_value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the last write value for this attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the last write value for this attribute or None if value has
+not been written yet</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
@@ -1372,49 +1443,20 @@ in the lifetime of the attribute.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_quality">
-<code class="sig-name descname">get_quality</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_quality" title="Permalink to this definition">¶</a></dt>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.queue_event">
+<code class="sig-name descname">queue_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">event_type</span></em>, <em class="sig-param"><span class="n">event_value</span></em>, <em class="sig-param"><span class="n">listeners</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.queue_event" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.fire_read_event">
-<code class="sig-name descname">fire_read_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.fire_read_event" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fires an event to the listeners of the object which owns this
-attribute.</p>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.obj">
+<em class="property">property </em><code class="sig-name descname">obj</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.obj" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the object which <em>owns</em> this attribute</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0 for not propagating, 1 to propagate, 2 propagate with priority</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>the object which <em>owns</em> this attribute</p>
 </dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.set_quality">
-<code class="sig-name descname">set_quality</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">quality</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.set_quality" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.flush_queue">
-<code class="sig-name descname">flush_queue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.flush_queue" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.set_value">
-<code class="sig-name descname">set_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">exc_info</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">timestamp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.set_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets the current read value and propagates the event (if
-propagate &gt; 0).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a> or SardanaValue) – the new read value for this attribute. If a SardanaValue
-is given, exc_info and timestamp are ignored (if given)</p></li>
-<li><p><strong>exc_info</strong> (<em>tuple&lt;3&gt;</em><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – exception information as returned by
-<a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a> [default: None, meaning no
-exception]</p></li>
-<li><p><strong>timestamp</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – timestamp of attribute readout [default: None, meaning
-create a ‘now’ timestamp]</p></li>
-<li><p><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0 for not propagating, 1 to propagate, 2 propagate with priority</p></li>
-</ul>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1437,18 +1479,32 @@ create a ‘now’ timestamp]</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_value_obj">
-<code class="sig-name descname">get_value_obj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_value_obj" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the last read value for this attribute.</p>
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.accepts">
+<code class="sig-name descname">accepts</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.accepts" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.error">
+<em class="property">property </em><code class="sig-name descname">error</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if this attribute is in error state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the last read value for this attribute</p>
+<dd class="field-odd"><p>True if the attribute is in error state or False otherwise</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaValue</span></code></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
 </dd>
-<dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">Exception</span></code></a> if no read value has been set yet</p>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.sardanaattribute.ScalarNumberAttribute.fire_read_event">
+<code class="sig-name descname">fire_read_event</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.fire_read_event" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fires an event to the listeners of the object which owns this
+attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>propagate</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – 0 for not propagating, 1 to propagate, 2 propagate with priority</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1456,62 +1512,6 @@ create a ‘now’ timestamp]</p></li>
 <dl class="py method">
 <dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_write_value_obj">
 <code class="sig-name descname">get_write_value_obj</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_write_value_obj" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the last write value object for this attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the last write value for this attribute or None if value has
-not been written yet</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaValue</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.obj">
-<em class="property">property </em><code class="sig-name descname">obj</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.obj" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the object which <em>owns</em> this attribute</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the object which <em>owns</em> this attribute</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">object</span></code></a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.get_exc_info">
-<code class="sig-name descname">get_exc_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.get_exc_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the exception information (like <a class="reference external" href="https://docs.python.org/3/library/sys.html#sys.exc_info" title="(in Python v3.8)"><code class="xref py py-func docutils literal notranslate"><span class="pre">sys.exc_info()</span></code></a>) about
-last attribute readout or None if last read did not generate an
-exception.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>exception information or None</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>tuple&lt;3&gt; or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)">None</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.add_listener">
-<code class="sig-name descname">add_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">listener</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.add_listener" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a new listener for this object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>listener</strong> – a listener</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.sardanaattribute.ScalarNumberAttribute.write_value_obj">
-<em class="property">property </em><code class="sig-name descname">write_value_obj</code><a class="headerlink" href="#sardana.sardanaattribute.ScalarNumberAttribute.write_value_obj" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the last write value object for this attribute.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
