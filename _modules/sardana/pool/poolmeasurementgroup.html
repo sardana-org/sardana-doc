@@ -1191,13 +1191,15 @@
         <span class="c1"># check if software synchronizer is occupied</span>
         <span class="n">synch_soft</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">_synch_soft</span>
         <span class="n">acq_sw</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span><span class="o">.</span><span class="n">_sw_acq</span>
+        <span class="n">acq_sw_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span><span class="o">.</span><span class="n">_sw_start_acq</span>
         <span class="n">acq_0d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span><span class="o">.</span><span class="n">_0d_acq</span>
-        <span class="k">if</span> <span class="n">state</span> <span class="ow">in</span> <span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">On</span><span class="p">,</span> <span class="n">State</span><span class="o">.</span><span class="n">Unknown</span><span class="p">)</span> \
-            <span class="ow">and</span> <span class="p">(</span><span class="n">synch_soft</span><span class="o">.</span><span class="n">is_started</span><span class="p">()</span> <span class="ow">or</span>
-                 <span class="n">acq_sw</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()</span> <span class="ow">or</span>
-                 <span class="n">acq_0d</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">state</span> <span class="ow">in</span> <span class="p">(</span><span class="n">State</span><span class="o">.</span><span class="n">On</span><span class="p">,</span> <span class="n">State</span><span class="o">.</span><span class="n">Unknown</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="p">(</span><span class="n">synch_soft</span><span class="o">.</span><span class="n">is_started</span><span class="p">()</span>
+                 <span class="ow">or</span> <span class="n">acq_sw</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()</span>
+                 <span class="ow">or</span> <span class="n">acq_sw_start</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()</span>
+                 <span class="ow">or</span> <span class="n">acq_0d</span><span class="o">.</span><span class="n">_is_started</span><span class="p">())):</span>
             <span class="n">state</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">Moving</span>
-            <span class="n">status</span> <span class="o">+=</span> <span class="s2">&quot;/nSoftware synchronization is in progress&quot;</span>
+            <span class="n">status</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Software synchronization is in progress&quot;</span>
         <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">status</span>
 
 <div class="viewcode-block" id="PoolMeasurementGroup.on_element_changed"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.on_element_changed">[docs]</a>    <span class="k">def</span> <span class="nf">on_element_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt_src</span><span class="p">,</span> <span class="n">evt_type</span><span class="p">,</span> <span class="n">evt_value</span><span class="p">):</span>

@@ -195,7 +195,7 @@
 <span class="kn">import</span> <span class="nn">datetime</span>
 
 <span class="kn">from</span> <span class="nn">.sardanaevent</span> <span class="kn">import</span> <span class="n">EventGenerator</span><span class="p">,</span> <span class="n">EventType</span>
-<span class="kn">from</span> <span class="nn">.sardanadefs</span> <span class="kn">import</span> <span class="n">ScalarNumberFilter</span>
+<span class="kn">from</span> <span class="nn">.sardanadefs</span> <span class="kn">import</span> <span class="n">ScalarNumberFilter</span><span class="p">,</span> <span class="n">AttrQuality</span>
 <span class="kn">from</span> <span class="nn">.sardanavalue</span> <span class="kn">import</span> <span class="n">SardanaValue</span>
 
 
@@ -212,6 +212,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_r_value</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_event_value</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_w_value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_quality</span> <span class="o">=</span> <span class="n">AttrQuality</span><span class="o">.</span><span class="n">Valid</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filter</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">SardanaAttributeConfiguration</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">initial_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -370,6 +371,12 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_write_value</span><span class="p">():</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_w_value</span>
 
+<div class="viewcode-block" id="SardanaAttribute.get_quality"><a class="viewcode-back" href="../../devel/api/sardana/sardanaattribute.html#sardana.sardanaattribute.SardanaAttribute.get_quality">[docs]</a>    <span class="k">def</span> <span class="nf">get_quality</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_quality</span></div>
+
+<div class="viewcode-block" id="SardanaAttribute.set_quality"><a class="viewcode-back" href="../../devel/api/sardana/sardanaattribute.html#sardana.sardanaattribute.SardanaAttribute.set_quality">[docs]</a>    <span class="k">def</span> <span class="nf">set_quality</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quality</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_quality</span> <span class="o">=</span> <span class="n">quality</span></div>
+
 <div class="viewcode-block" id="SardanaAttribute.get_exc_info"><a class="viewcode-back" href="../../devel/api/sardana/sardanaattribute.html#sardana.sardanaattribute.SardanaAttribute.get_exc_info">[docs]</a>    <span class="k">def</span> <span class="nf">get_exc_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the exception information (like :func:`sys.exc_info`) about</span>
 <span class="sd">        last attribute readout or None if last read did not generate an</span>
@@ -449,6 +456,8 @@
                      <span class="s2">&quot;current read value for this attribute&quot;</span><span class="p">)</span>
     <span class="n">w_value</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_write_value</span><span class="p">,</span> <span class="n">set_write_value</span><span class="p">,</span>
                        <span class="s2">&quot;current write value for this attribute&quot;</span><span class="p">)</span>
+    <span class="n">quality</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_quality</span><span class="p">,</span> <span class="n">set_quality</span><span class="p">,</span>
+                       <span class="s2">&quot;current quality for this attribute&quot;</span><span class="p">)</span>
     <span class="n">timestamp</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_timestamp</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;the read timestamp&quot;</span><span class="p">)</span>
     <span class="n">w_timestamp</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_write_timestamp</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="s2">&quot;the write timestamp&quot;</span><span class="p">)</span>
     <span class="n">error</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">in_error</span><span class="p">)</span>

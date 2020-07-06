@@ -187,8 +187,8 @@
 <span class="kn">import</span> <span class="nn">collections</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;EpsilonError&quot;</span><span class="p">,</span> <span class="s2">&quot;SardanaServer&quot;</span><span class="p">,</span> <span class="s2">&quot;ServerRunMode&quot;</span><span class="p">,</span> <span class="s2">&quot;State&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;DataType&quot;</span><span class="p">,</span> <span class="s2">&quot;DataFormat&quot;</span><span class="p">,</span> <span class="s2">&quot;DataAccess&quot;</span><span class="p">,</span> <span class="s2">&quot;DTYPE_MAP&quot;</span><span class="p">,</span> <span class="s2">&quot;R_DTYPE_MAP&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;DACCESS_MAP&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;DataType&quot;</span><span class="p">,</span> <span class="s2">&quot;DataFormat&quot;</span><span class="p">,</span> <span class="s2">&quot;DataAccess&quot;</span><span class="p">,</span> <span class="s2">&quot;AttrQuality&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;DTYPE_MAP&quot;</span><span class="p">,</span> <span class="s2">&quot;R_DTYPE_MAP&quot;</span><span class="p">,</span> <span class="s2">&quot;DACCESS_MAP&quot;</span><span class="p">,</span>
            <span class="s2">&quot;from_dtype_str&quot;</span><span class="p">,</span> <span class="s2">&quot;from_access_str&quot;</span><span class="p">,</span> <span class="s2">&quot;to_dtype_dformat&quot;</span><span class="p">,</span>
            <span class="s2">&quot;to_daccess&quot;</span><span class="p">,</span> <span class="s2">&quot;InvalidId&quot;</span><span class="p">,</span> <span class="s2">&quot;InvalidAxis&quot;</span><span class="p">,</span> <span class="s2">&quot;ElementType&quot;</span><span class="p">,</span>
            <span class="s2">&quot;Interface&quot;</span><span class="p">,</span> <span class="s2">&quot;Interfaces&quot;</span><span class="p">,</span> <span class="s2">&quot;InterfacesExpanded&quot;</span><span class="p">,</span>
@@ -201,6 +201,7 @@
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
 <span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">IntEnum</span>
 
 <span class="kn">from</span> <span class="nn">taurus.core.util.enumeration</span> <span class="kn">import</span> <span class="n">Enumeration</span>
 
@@ -277,6 +278,21 @@
     <span class="s2">&quot;ReadOnly&quot;</span><span class="p">,</span>
     <span class="s2">&quot;ReadWrite&quot;</span><span class="p">,</span>
     <span class="s2">&quot;Invalid&quot;</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">AttrQuality</span><span class="p">(</span><span class="n">IntEnum</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Attribute quality factor&quot;&quot;&quot;</span>
+
+    <span class="c1">#: Attribute is valid</span>
+    <span class="n">Valid</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1">#: Attribute is invalid</span>
+    <span class="n">Invalid</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="c1">#: Attribute is in alarm</span>
+    <span class="n">Alarm</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="c1">#: Attribute is changing e.g. element is in operation</span>
+    <span class="n">Changing</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="c1">#: Attribute is in warning</span>
+    <span class="ne">Warning</span> <span class="o">=</span> <span class="mi">4</span>
 
 <span class="c1">#: dictionary dict&lt;data type, :class:`sardana.DataType`&gt;</span>
 <span class="n">DTYPE_MAP</span> <span class="o">=</span> <span class="p">{</span>

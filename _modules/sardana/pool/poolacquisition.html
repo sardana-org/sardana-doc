@@ -196,11 +196,14 @@
 <span class="kn">import</span> <span class="nn">datetime</span>
 <span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">threading</span>
 
 <span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">DebugIt</span>
 <span class="kn">from</span> <span class="nn">taurus.core.util.enumeration</span> <span class="kn">import</span> <span class="n">Enumeration</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">SardanaValue</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_TIMERABLE_ELEMENTS</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">AttrQuality</span><span class="p">,</span> <span class="n">SardanaValue</span><span class="p">,</span> <span class="n">State</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> \
+    <span class="n">TYPE_TIMERABLE_ELEMENTS</span>
+
 <span class="kn">from</span> <span class="nn">sardana.sardanathreadpool</span> <span class="kn">import</span> <span class="n">get_thread_pool</span>
 <span class="kn">from</span> <span class="nn">sardana.pool</span> <span class="kn">import</span> <span class="n">AcqSynch</span><span class="p">,</span> <span class="n">AcqMode</span>
 <span class="kn">from</span> <span class="nn">sardana.pool.poolaction</span> <span class="kn">import</span> <span class="n">ActionContext</span><span class="p">,</span> <span class="n">PoolAction</span><span class="p">,</span> \
@@ -463,6 +466,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span> <span class="o">=</span> <span class="n">Pool0DAcquisition</span><span class="p">(</span><span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">zerodname</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span> <span class="o">=</span> <span class="n">PoolAcquisitionHardware</span><span class="p">(</span><span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">hwname</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span> <span class="o">=</span> <span class="n">PoolSynchronization</span><span class="p">(</span><span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">synchname</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_handled_first_active</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">event_received</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Callback executed on event of software synchronizer.</span>
@@ -480,46 +484,58 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;start&quot;</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span><span class="o">.</span><span class="n">_wait</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span><span class="o">.</span><span class="n">_set_busy</span><span class="p">()</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Executing software start acquisition.&#39;</span><span class="p">)</span>
-                <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq</span><span class="o">.</span><span class="n">_set_ready</span><span class="p">,</span>
                                       <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
                                       <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;active&quot;</span><span class="p">:</span>
             <span class="c1"># this code is not thread safe, but for the moment we assume that</span>
             <span class="c1"># only one EventGenerator will work at the same time</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handled_first_active</span><span class="p">:</span>
+                <span class="n">timeout</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">timeout</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_handled_first_active</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">_wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
                     <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Skipping trigger: software acquisition is still&#39;</span>
                            <span class="s1">&#39; in progress.&#39;</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                     <span class="k">return</span>
                 <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">_set_busy</span><span class="p">()</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Executing software acquisition.&#39;</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">index</span><span class="p">})</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">True</span>
-                    <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span>
+                                          <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq</span><span class="o">.</span><span class="n">_set_ready</span><span class="p">,</span>
                                           <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
                                           <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">):</span>
                     <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Skipping trigger: ZeroD acquisition is still in&#39;</span>
                            <span class="s1">&#39; progress.&#39;</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
                     <span class="k">return</span>
                 <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_set_busy</span><span class="p">()</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Executing ZeroD acquisition.&#39;</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="n">index</span><span class="p">})</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_started</span> <span class="o">=</span> <span class="kc">True</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">False</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
-                    <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                    <span class="n">get_thread_pool</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">run</span><span class="p">,</span>
+                                          <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_set_ready</span><span class="p">,</span>
                                           <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
                                           <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;passive&quot;</span><span class="p">:</span>
             <span class="c1"># TODO: _0d_acq_args comparison may not be necessary</span>
             <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-                    <span class="ow">and</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_is_started</span><span class="p">()</span>
-                         <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">is_running</span><span class="p">())):</span>
+                    <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">_is_ready</span><span class="p">()):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Stopping ZeroD acquisition.&#39;</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq</span><span class="o">.</span><span class="n">stop_action</span><span class="p">()</span>
 
@@ -536,6 +552,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_0d_acq_args</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_handled_first_active</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">ctrls_hw</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">ctrls_sw</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">ctrls_sw_start</span> <span class="o">=</span> <span class="p">[]</span>
@@ -692,8 +709,11 @@
                 <span class="n">pseudo_elem</span><span class="o">.</span><span class="n">clear_value_buffer</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">_wait</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">_set_busy</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
-                             <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+                             <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">,</span>
+                             <span class="n">cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_hw_acq</span><span class="o">.</span><span class="n">_set_ready</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>\
                 <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sw_start_acq_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>\
@@ -701,8 +721,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">add_listener</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">_wait</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">_set_busy</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span><span class="o">.</span><span class="n">args</span><span class="p">,</span>
-                            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">)</span>
+                            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_synch_args</span><span class="o">.</span><span class="n">kwargs</span><span class="p">,</span>
+                            <span class="n">cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_synch</span><span class="o">.</span><span class="n">_set_ready</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_action_for_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
         <span class="n">elem_type</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span>
@@ -808,10 +831,48 @@
 
 
 <span class="k">class</span> <span class="nc">PoolAcquisitionBase</span><span class="p">(</span><span class="n">PoolAction</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Base class for acquisitions with a generic start_action method.</span>
+    <span class="sd">&quot;&quot;&quot;Base class for sub-acquisition.</span>
 
 <span class="sd">    .. note::</span>
 <span class="sd">        The PoolAcquisitionBase class has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including removal of the module) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+
+<span class="sd">    .. todo: Think of moving the ready/busy mechanism to PoolAction</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="n">PoolAction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_is_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_wait</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_is_busy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_set_busy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+
+<span class="k">class</span> <span class="nc">PoolAcquisitionTimerable</span><span class="p">(</span><span class="n">PoolAcquisitionBase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for acquisitions of timerable channels.</span>
+
+<span class="sd">     Implements a generic start_action method. action_loop method must be</span>
+<span class="sd">     implemented by the sub-class.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The PoolAcquisitionTimerable class has been included in Sardana</span>
 <span class="sd">        on a provisional basis. Backwards incompatible changes</span>
 <span class="sd">        (up to and including removal of the module) may occur if</span>
 <span class="sd">        deemed necessary by the core developers.</span>
@@ -820,9 +881,7 @@
     <span class="n">OperationContextClass</span> <span class="o">=</span> <span class="n">AcquisitionBaseContext</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="n">PoolAction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_nb_states_per_value</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_acq_sleep_time</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1138,7 +1197,7 @@
             <span class="n">channel</span><span class="o">.</span><span class="n">clear_value_buffer</span><span class="p">()</span>
 
 
-<span class="k">class</span> <span class="nc">PoolAcquisitionHardware</span><span class="p">(</span><span class="n">PoolAcquisitionBase</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PoolAcquisitionHardware</span><span class="p">(</span><span class="n">PoolAcquisitionTimerable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Acquisition action for controllers synchronized by hardware</span>
 
 <span class="sd">    .. note::</span>
@@ -1152,12 +1211,12 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;AcquisitionHardware&quot;</span><span class="p">):</span>
-        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">PoolAcquisitionTimerable</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
                      <span class="n">acq_sleep_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                      <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">PoolAcquisitionTimerable</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
                                          <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
                                          <span class="n">acq_sleep_time</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="p">,</span>
                                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1205,9 +1264,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_ref</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">value_refs</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="c1"># first update the element state so that value calculation</span>
-            <span class="c1"># that is done after takes the updated state into account</span>
-            <span class="n">acquirable</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">acquirable</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">acquirable</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
@@ -1236,7 +1292,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add_finish_hook</span><span class="p">(</span><span class="n">set_state_info</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">PoolAcquisitionSoftware</span><span class="p">(</span><span class="n">PoolAcquisitionBase</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PoolAcquisitionSoftware</span><span class="p">(</span><span class="n">PoolAcquisitionTimerable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Acquisition action for controllers synchronized by software</span>
 
 <span class="sd">    .. note::</span>
@@ -1247,7 +1303,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;AcquisitionSoftware&quot;</span><span class="p">,</span> <span class="n">slaves</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">PoolAcquisitionTimerable</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">slaves</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">slaves</span> <span class="o">=</span> <span class="p">()</span>
@@ -1274,7 +1330,7 @@
 
     <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">acq_sleep_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                      <span class="n">nb_states_per_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">PoolAcquisitionTimerable</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
                                          <span class="n">index</span><span class="p">,</span> <span class="n">acq_sleep_time</span><span class="p">,</span>
                                          <span class="n">nb_states_per_value</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -1298,7 +1354,7 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="o">%</span> <span class="n">nb_states_per_value</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">read_value_loop</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-                    <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">AttrQuality</span><span class="o">.</span><span class="n">Changing</span><span class="p">)</span>
 
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">nap</span><span class="p">)</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1317,9 +1373,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_ref</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">value_refs</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="c1"># first update the element state so that value calculation</span>
-            <span class="c1"># that is done after takes the updated state into account</span>
-            <span class="n">acquirable</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">acquirable</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">acquirable</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
@@ -1328,7 +1381,10 @@
                     <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
                         <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                <span class="n">acquirable</span><span class="o">.</span><span class="n">append_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">)</span>
+                <span class="n">acquirable</span><span class="o">.</span><span class="n">get_value_attribute</span><span class="p">()</span><span class="o">.</span><span class="n">set_quality</span><span class="p">(</span>
+                    <span class="n">AttrQuality</span><span class="o">.</span><span class="n">Valid</span><span class="p">)</span>
+                <span class="n">acquirable</span><span class="o">.</span><span class="n">append_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">,</span>
+                                               <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">acquirable</span> <span class="ow">in</span> <span class="n">value_refs</span><span class="p">:</span>
                 <span class="n">value_ref</span> <span class="o">=</span> <span class="n">value_refs</span><span class="p">[</span><span class="n">acquirable</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value_ref</span><span class="p">):</span>
@@ -1346,7 +1402,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add_finish_hook</span><span class="p">(</span><span class="n">set_state_info</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">PoolAcquisitionSoftwareStart</span><span class="p">(</span><span class="n">PoolAcquisitionBase</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PoolAcquisitionSoftwareStart</span><span class="p">(</span><span class="n">PoolAcquisitionTimerable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Acquisition action for controllers synchronized by software start</span>
 
 <span class="sd">    .. note::</span>
@@ -1360,7 +1416,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;AcquisitionSoftwareStart&quot;</span><span class="p">):</span>
-        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">PoolAcquisitionTimerable</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_read_value_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># technical debt in order to work both in case of meas group and</span>
@@ -1370,7 +1426,7 @@
     <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
                      <span class="n">acq_sleep_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                      <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span>
+        <span class="n">PoolAcquisitionTimerable</span><span class="o">.</span><span class="n">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">master</span><span class="p">,</span>
                                          <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
                                          <span class="n">acq_sleep_time</span><span class="p">,</span> <span class="n">nb_states_per_value</span><span class="p">,</span>
                                          <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1425,9 +1481,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_value_ref</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">value_refs</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="c1"># first update the element state so that value calculation</span>
-            <span class="c1"># that is done after takes the updated state into account</span>
-            <span class="n">acquirable</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">acquirable</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">acquirable</span><span class="p">]</span>
                 <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
@@ -1458,7 +1511,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add_finish_hook</span><span class="p">(</span><span class="n">set_state_info</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="PoolCTAcquisition"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolacquisition.html#sardana.pool.poolacquisition.PoolCTAcquisition">[docs]</a><span class="k">class</span> <span class="nc">PoolCTAcquisition</span><span class="p">(</span><span class="n">PoolAcquisitionBase</span><span class="p">):</span>
+<div class="viewcode-block" id="PoolCTAcquisition"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolacquisition.html#sardana.pool.poolacquisition.PoolCTAcquisition">[docs]</a><span class="k">class</span> <span class="nc">PoolCTAcquisition</span><span class="p">(</span><span class="n">PoolAcquisitionTimerable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;..todo:: remove it, still used by pseudo counter&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;CTAcquisition&quot;</span><span class="p">,</span> <span class="n">slaves</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -1468,7 +1521,7 @@
             <span class="n">slaves</span> <span class="o">=</span> <span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_slaves</span> <span class="o">=</span> <span class="n">slaves</span>
 
-        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">PoolAcquisitionTimerable</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="PoolCTAcquisition.get_read_value_loop_ctrls"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolacquisition.html#sardana.pool.poolacquisition.PoolCTAcquisition.get_read_value_loop_ctrls">[docs]</a>    <span class="k">def</span> <span class="nf">get_read_value_loop_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict_loop</span></div>
@@ -1547,12 +1600,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add_finish_hook</span><span class="p">(</span><span class="n">set_state_info</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">Pool0DAcquisition</span><span class="p">(</span><span class="n">PoolAction</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Pool0DAcquisition</span><span class="p">(</span><span class="n">PoolAcquisitionBase</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;0DAcquisition&quot;</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">PoolAction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+        <span class="n">PoolAcquisitionBase</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">start_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">conf_ctrls</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">acq_sleep_time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                      <span class="n">nb_states_per_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -1627,10 +1678,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">raw_read_state_info</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">states</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-            <span class="c1"># first update the element state so that value calculation</span>
-            <span class="c1"># that is done after takes the updated state into account</span>
             <span class="n">state_info</span> <span class="o">=</span> <span class="n">acquirable</span><span class="o">.</span><span class="n">_from_ctrl_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">)</span>
-            <span class="n">acquirable</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">set_state_info</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">acquirable</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">,</span>
                                                <span class="n">state_info</span><span class="p">,</span>
                                                <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
