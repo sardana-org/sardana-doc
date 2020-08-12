@@ -718,6 +718,25 @@ this technique until the bug is solved).</p>
         <span class="k">pass</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="accessing-tango-from-your-controllers">
+<span id="sardana-controller-accessing-tango"></span><h3>Accessing Tango from your controllers<a class="headerlink" href="#accessing-tango-from-your-controllers" title="Permalink to this headline">¶</a></h3>
+<p>It is a very common pattern that when integrating a new hardware (or
+eventually a software component) in Sardana you start from a Tango Device
+Server (either already existing one or you develop one as an intermediate
+layer). In this case your controller will need to access Tango and there are
+two ways of doing that, either with <a class="reference external" href="http://packages.python.org/taurus/">Taurus</a> (using <code class="xref py py-obj docutils literal notranslate"><span class="pre">taurus.Device</span></code>) or
+with <a class="reference external" href="http://packages.python.org/PyTango/">PyTango</a> (using <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a>). Please consult a similar discussion
+<a class="reference internal" href="../howto_macros/macros_general.html#sardana-macro-accessing-tango"><span class="std std-ref">Accessing Tango from your macros</span></a> on which one to use.</p>
+<p>For accessing Sardana elements e.g.: motors, experimental channels, etc.
+currently there is no Sardana <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> and you will need to use one of the
+above methods.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a very simplified integration of Tango devices in Sardana you may
+consider using
+<a class="reference external" href="https://github.com/ALBA-Synchrotron/sardana-tango">sardana-tango controllers</a>.</p>
+</div>
 <p class="rubric">Footnotes</p>
 <dl class="footnote brackets">
 <dt class="label" id="f1"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>

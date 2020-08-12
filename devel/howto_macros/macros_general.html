@@ -438,7 +438,7 @@ includes <a class="reference external" href="https://docs.python.org/3/reference
 </td></tr></table></div>
 </div>
 <div class="section" id="adding-parameters-to-your-macro">
-<h2>Adding parameters to your macro<a class="headerlink" href="#adding-parameters-to-your-macro" title="Permalink to this headline">¶</a></h2>
+<span id="sardana-macro-parameters"></span><h2>Adding parameters to your macro<a class="headerlink" href="#adding-parameters-to-your-macro" title="Permalink to this headline">¶</a></h2>
 <p>Standard <a class="reference external" href="http://www.python.org/">Python</a> allows you to specify parameters to a function by placing comma
 separated parameter names between the <code class="docutils literal notranslate"><span class="pre">()</span></code> in the function definition. The
 macro <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a>, in adition, enforces you to specify some extra parameter
@@ -710,7 +710,7 @@ this parameter any name but usually, by convention it is called <code class="doc
 your macro to do all kinds of things, among others, to obtain the sardana
 elements. The <a class="reference internal" href="../api/api_macro.html#sardana-macro-api"><span class="std std-ref">Macro API reference</span></a> describes all
 these functions and the
-<a class="reference internal" href="../api/sardana/taurus/core/tango/sardana.html#sardana-taurus-api"><span class="std std-ref">Sardana-Taurus extensions API reference</span></a>
+<a class="reference internal" href="../api/sardana/taurus/core/tango/sardana.html#sardana-taurus-api"><span class="std std-ref">Sardana-Taurus model API reference</span></a>
 describes the obtained sardana elements.</p>
 <p>Let’s say you want to write a macro that explicitly moves a known <em>theta</em> motor
 to a certain position. You could write a macro which receives the motor as
@@ -1196,6 +1196,43 @@ the macro. Using the method appends just one hook but does not affect
 the general hooks eventually attached to the macro.</p>
 </div>
 </div>
+<div class="section" id="accessing-tango-from-your-macros">
+<span id="sardana-macro-accessing-tango"></span><h2>Accessing Tango from your macros<a class="headerlink" href="#accessing-tango-from-your-macros" title="Permalink to this headline">¶</a></h2>
+<p>Your macros almost certainly will need to access <a class="reference external" href="http://www.tango-controls.org/">Tango</a> devices, either
+external, for example, coming from the vacuum system or any other
+arbitrary system integrated with Tango Device Server or internal to Sardana
+(Sardana elements are currently exported as Tango devices) e.g.: motors,
+measurement group, etc.</p>
+<p>There exists different <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> to access to <a class="reference external" href="http://www.tango-controls.org/">Tango</a> devices.</p>
+<p>First, to access Sardana elements it is recommended to use the Sardana
+<a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a>: e.g.: <a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.getMoveable" title="sardana.macroserver.macro.Macro.getMoveable"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getMoveable</span></code></a> to obtain
+any moveable (motor or pseudo motor),
+<a class="reference internal" href="../api/api_macro.html#sardana.macroserver.macro.Macro.getMeasurementGroup" title="sardana.macroserver.macro.Macro.getMeasurementGroup"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getMeasurementGroup</span></code></a> to obtain a measurement
+group.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By <a class="reference internal" href="#sardana-macro-parameters"><span class="std std-ref">adding parameters to your macro</span></a>
+you get the same objects as if you were using the above methods.
+Their classes are documented in:
+<a class="reference internal" href="../api/sardana/taurus/core/tango/sardana.html#sardana-taurus-api"><span class="std std-ref">Sardana-Taurus model API reference</span></a></p>
+</div>
+<p>Any external Tango device could be accessed with <a class="reference external" href="http://packages.python.org/taurus/">Taurus</a> (using
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">taurus.Device</span></code>) or simply with <a class="reference external" href="http://packages.python.org/PyTango/">PyTango</a> (using <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a>).
+Taurus gives you some benefits over PyTango:</p>
+<ul class="simple">
+<li><p>seamless attribute configuration management e.g.: unit aware attribute
+read and write, simplified way to read/write attribute configuration, etc.</p></li>
+<li><p>unique way to access different data sources e.g. <a class="reference external" href="http://www.tango-controls.org/">Tango</a>, <a class="reference external" href="http://www.aps.anl.gov/epics/">EPICS</a>,
+<a class="reference external" href="https://github.com/taurus-org/h5file-scheme">hdf5</a>, etc.</p></li>
+<li><p>simplified way to use <a class="reference external" href="http://www.tango-controls.org/">Tango</a> events</p></li>
+</ul>
+<p>However the above benefits are not for free and more precisely are for some
+extra time overhead (in milliseconds range).</p>
+<p>As a rule of thumb, if you you don’t mind the extra overhead and value the
+simplified usage you should use Taurus. If you strive for very optimal access
+to Tango and don’t need these benefits then most probably PyTango will work
+better for you.</p>
+</div>
 <div class="section" id="using-external-python-libraries">
 <span id="sardana-macro-using-external-libraries"></span><h2>Using external python libraries<a class="headerlink" href="#using-external-python-libraries" title="Permalink to this headline">¶</a></h2>
 <p>Macro libraries can use code e.g. call functions and instantiate classes
@@ -1220,7 +1257,7 @@ runtime using the <a class="reference internal" href="../api/sardana/macroserver
 <span id="sardana-macro-plotting"></span><h2>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h2>
 <p>Remember that your macro will be executed by a Sardana server which may be
 running in a different computer than the computer you are working on. Executing
-a normal plot (from <code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib</span></code> or <a class="reference external" href="https://pythonhosted.org/guiqwt/index.html#module-guiqwt" title="(in guiqwt v3.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">guiqwt</span></code></a>) would just try to show
+a normal plot (from <code class="xref py py-mod docutils literal notranslate"><span class="pre">matplotlib</span></code> or <a class="reference external" href="https://guiqwt.readthedocs.io/en/latest/index.html#module-guiqwt" title="(in guiqwt v3.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">guiqwt</span></code></a>) would just try to show
 a plot in the server machine. The macro <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> provides a way to plot
 graphics from inside your macro whenver the client that runs the macro
 <em>understands</em> the plot request (don’t worry, spock does understand!)</p>

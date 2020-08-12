@@ -119,6 +119,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#how-to-write-procedures">How to write procedures?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#how-to-write-scan-procedures">How to write scan procedures?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#how-to-adapt-sardana-to-your-own-hardware">How to adapt SARDANA to your own hardware?</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#how-to-access-tango-from-within-macros-or-controllers">How to access Tango from within macros or controllers</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#how-to-add-your-own-file-format">How to add your own file format?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#how-to-use-the-standard-macros">How to use the standard macros?</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#how-to-write-your-own-taurus-application">How to write your own Taurus application?</a></li>
@@ -304,6 +305,17 @@ write Sardana controllers and pseudo controllers can be found
 This documentation also includes the <a class="reference internal" href="../glossary.html#term-API"><span class="xref std std-term">API</span></a> which can be used to interface
 to the specific hardware item.</p>
 </div>
+<div class="section" id="how-to-access-tango-from-within-macros-or-controllers">
+<h2>How to access Tango from within macros or controllers<a class="headerlink" href="#how-to-access-tango-from-within-macros-or-controllers" title="Permalink to this headline">¶</a></h2>
+<p>In your macros and controllers almost certainly you will need to access Tango
+devices (including Sardana elements) to read or write their attributes,
+execute commands, etc. There exist different ways of accessing them: Sardana,
+Taurus or PyTango <a class="reference internal" href="../glossary.html#term-API"><span class="xref std std-term">API</span></a>. See more on which to choose in this chapters:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../devel/howto_macros/macros_general.html#sardana-macro-accessing-tango"><span class="std std-ref">Accessing Tango from your macros</span></a></p></li>
+<li><p><a class="reference internal" href="../devel/howto_controllers/howto_controller.html#sardana-controller-accessing-tango"><span class="std std-ref">Accessing Tango from your controllers</span></a></p></li>
+</ul>
+</div>
 <div class="section" id="how-to-add-your-own-file-format">
 <h2>How to add your own file format?<a class="headerlink" href="#how-to-add-your-own-file-format" title="Permalink to this headline">¶</a></h2>
 <p>Documentation how to add your own file format can be found here <strong>&lt;LINK&gt;</strong>.</p>
@@ -334,7 +346,7 @@ and example code can be found here <strong>&lt;LINK&gt;</strong></p>
 <h2>How to work with the graphical GUI editor?<a class="headerlink" href="#how-to-work-with-the-graphical-gui-editor" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="http://packages.python.org/taurus/">Taurus</a> uses the QtDesigner/QtCreator  as a graphical editor. Documentation
 about <a class="reference external" href="http://qt.nokia.com/products/developer-tools/">QtDesigner/QtCreator</a>.
-The <a class="reference external" href="http://packages.python.org/taurus/">Taurus</a> specific parts <a class="reference external" href="http://taurus-scada.org/devel/designer_tutorial.html#taurusqtdesigner-tutorial" title="(in taurus v4.6)"><span class="xref std std-ref">here</span></a>.</p>
+The <a class="reference external" href="http://packages.python.org/taurus/">Taurus</a> specific parts <a class="reference external" href="http://taurus-scada.org/devel/designer_tutorial.html#taurusqtdesigner-tutorial" title="(in taurus v4.7)"><span class="xref std std-ref">here</span></a>.</p>
 </div>
 <div class="section" id="what-are-the-minimum-software-requirements-for-sardana">
 <h2>What are the minimum software requirements for sardana?<a class="headerlink" href="#what-are-the-minimum-software-requirements-for-sardana" title="Permalink to this headline">¶</a></h2>

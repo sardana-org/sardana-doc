@@ -210,7 +210,321 @@
   <div class="section" id="module-sardana.pool.poolutil">
 <span id="poolutil"></span><h1><a class="reference internal" href="#module-sardana.pool.poolutil" title="sardana.pool.poolutil"><code class="xref py py-mod docutils literal notranslate"><span class="pre">poolutil</span></code></a><a class="headerlink" href="#module-sardana.pool.poolutil" title="Permalink to this headline">¶</a></h1>
 <p>Pool utils</p>
+<p class="rubric">Singletons</p>
+<dl class="py data">
+<dt id="sardana.pool.poolutil.PoolUtil">
+<code class="sig-name descname">PoolUtil</code><em class="property"> = &lt;sardana.pool.poolutil._PoolUtil object&gt;</em><a class="headerlink" href="#sardana.pool.poolutil.PoolUtil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Singleton instance of the <a class="reference internal" href="#sardana.pool.poolutil._PoolUtil" title="sardana.pool.poolutil._PoolUtil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_PoolUtil</span></code></a> class.</p>
+<p>It is a factory of <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> objects and ensures only one
+instance of such objects is created for the whole process.
+Please refer to the <a class="reference internal" href="#sardana.pool.poolutil._PoolUtil" title="sardana.pool.poolutil._PoolUtil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_PoolUtil</span></code></a> API on the available
+methods.</p>
+</dd></dl>
+
 <p class="rubric">Classes</p>
+<div class="section" id="id1">
+<h2>_PoolUtil<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="sardana.pool.poolutil._PoolUtil">
+<em class="property">class </em><code class="sig-name descname">_PoolUtil</code><a class="reference internal" href="../../../../_modules/sardana/pool/poolutil.html#_PoolUtil"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_device">
+<code class="sig-name descname">get_device</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolutil.html#_PoolUtil.get_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_motor">
+<code class="sig-name descname">get_motor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_motor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_phy_motor">
+<code class="sig-name descname">get_phy_motor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_phy_motor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_pseudo_motor">
+<code class="sig-name descname">get_pseudo_motor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_pseudo_motor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_motor_group">
+<code class="sig-name descname">get_motor_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_motor_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_exp_channel">
+<code class="sig-name descname">get_exp_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_exp_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_ct_channel">
+<code class="sig-name descname">get_ct_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_ct_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_zerod_channel">
+<code class="sig-name descname">get_zerod_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_zerod_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_oned_channel">
+<code class="sig-name descname">get_oned_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_oned_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_twod_channel">
+<code class="sig-name descname">get_twod_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_twod_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_pseudo_counter_channel">
+<code class="sig-name descname">get_pseudo_counter_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_pseudo_counter_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_measurement_group">
+<code class="sig-name descname">get_measurement_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_measurement_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_com_channel">
+<code class="sig-name descname">get_com_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_com_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolutil._PoolUtil.get_ioregister">
+<code class="sig-name descname">get_ioregister</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_ioregister" title="Permalink to this definition">¶</a></dt>
+<dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
+per controller instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctrl_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Controller name to which assign the proxy object</p></li>
+<li><p><strong>device_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – Tango device name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>single device proxy object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
 </div>
 
 
