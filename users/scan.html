@@ -103,6 +103,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#continuous-scans">Continuous scans</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#scan-snapshots">Scan snapshots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scan-statistics">Scan statistics</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="motion.html">Motion</a></li>
@@ -368,6 +369,19 @@ elements as well as external (Tango) data sources.</p>
 <p>The snapshot is saved only once during a scan, on the very beginning. The exact
 way the snapshot data is saved depends on the <a class="reference internal" href="../devel/howto_recorders.html#sardana-writing-recorders"><span class="std std-ref">recorder</span></a>
 and scan file format being used.</p>
+</div>
+<div class="section" id="scan-statistics">
+<h2>Scan statistics<a class="headerlink" href="#scan-statistics" title="Permalink to this headline">¶</a></h2>
+<p>Sardana may automatically calculate some basic statistics over the scan
+results e.g., max, mean, FWHM, etc.</p>
+<p>In order to enable the statistic calculation you just need to attach
+the <a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.scanstats" title="sardana.macroserver.macros.scan.scanstats"><code class="xref py py-class docutils literal notranslate"><span class="pre">scanstats</span></code></a> macro to the
+<code class="docutils literal notranslate"><span class="pre">post-scan</span></code> hook place (see <a class="reference internal" href="macro_hooks.html#sardana-macros-hooks"><span class="std std-ref">hook documentation</span></a>
+for more info).</p>
+<p>Apart from printing statistics by the scanstats macro these are stored in
+the door’s <a class="reference internal" href="environment_variable_catalog.html#scanstats"><span class="std std-ref">ScanStats</span></a> environment variable. This way some other macro
+can use them e.g. move the scanned motor to the position where a given channel
+reached the maximum value (<em>go to peak</em>).</p>
 </div>
 </div>
 

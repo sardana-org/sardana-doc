@@ -191,7 +191,8 @@
            <span class="s2">&quot;d2scanc&quot;</span><span class="p">,</span> <span class="s2">&quot;d3scanc&quot;</span><span class="p">,</span> <span class="s2">&quot;d4scanc&quot;</span><span class="p">,</span> <span class="s2">&quot;dscanc&quot;</span><span class="p">,</span>
            <span class="s2">&quot;meshc&quot;</span><span class="p">,</span>
            <span class="s2">&quot;a2scanct&quot;</span><span class="p">,</span> <span class="s2">&quot;a3scanct&quot;</span><span class="p">,</span> <span class="s2">&quot;a4scanct&quot;</span><span class="p">,</span> <span class="s2">&quot;ascanct&quot;</span><span class="p">,</span> <span class="s2">&quot;meshct&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;scanhist&quot;</span><span class="p">,</span> <span class="s2">&quot;getCallable&quot;</span><span class="p">,</span> <span class="s2">&quot;UNCONSTRAINED&quot;</span><span class="p">]</span>
+           <span class="s2">&quot;scanhist&quot;</span><span class="p">,</span> <span class="s2">&quot;getCallable&quot;</span><span class="p">,</span> <span class="s2">&quot;UNCONSTRAINED&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;scanstats&quot;</span><span class="p">]</span>
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
@@ -2038,6 +2039,206 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_points</span>
 
     <span class="n">nr_points</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">_get_nr_points</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="scanstats"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.scanstats">[docs]</a><span class="k">class</span> <span class="nc">scanstats</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculate basic statistics of the enabled and plotted channels in</span>
+<span class="sd">    the active measurement group for the last scan. Print it and publish it</span>
+<span class="sd">    in the env. The macro must be hooked in the post-scan hook place.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">env</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ActiveMntGrp&quot;</span><span class="p">,</span> <span class="p">)</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s2">&quot;channel&quot;</span><span class="p">,</span>
+         <span class="p">[[</span><span class="s2">&quot;channel&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">ExpChannel</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="p">{</span><span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}],</span>
+         <span class="kc">None</span><span class="p">,</span>
+         <span class="s2">&quot;List of channels for statistics calculations&quot;</span>
+         <span class="p">]</span>
+        <span class="p">]</span>
+
+<div class="viewcode-block" id="scanstats.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.scanstats.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParentMacro</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">parent</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;for now the scanstats macro can only be executed as&quot;</span>
+                         <span class="s2">&quot; a post-scan hook&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="n">active_meas_grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s2">&quot;ActiveMntGrp&quot;</span><span class="p">)</span>
+        <span class="n">meas_grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMeasurementGroup</span><span class="p">(</span><span class="n">active_meas_grp</span><span class="p">)</span>
+        <span class="n">calc_channels</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">enabled_channels</span> <span class="o">=</span> <span class="n">meas_grp</span><span class="o">.</span><span class="n">getEnabled</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">channel</span><span class="p">:</span>
+            <span class="n">stat_channels</span> <span class="o">=</span> <span class="p">[</span><span class="n">chan</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">chan</span> <span class="ow">in</span> <span class="n">channel</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stat_channels</span> <span class="o">=</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">enabled_channels</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+
+        <span class="k">for</span> <span class="n">chan</span> <span class="ow">in</span> <span class="n">stat_channels</span><span class="p">:</span>
+            <span class="n">enabled</span> <span class="o">=</span> <span class="n">enabled_channels</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">chan</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">enabled</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> not in </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chan</span><span class="p">,</span> <span class="n">meas_grp</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">enabled</span> <span class="ow">and</span> <span class="n">channel</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> not enabled&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">chan</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">enabled</span> <span class="ow">and</span> <span class="n">channel</span><span class="p">:</span>
+                    <span class="c1"># channel was given as parameters</span>
+                    <span class="n">calc_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chan</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">enabled</span> <span class="ow">and</span> <span class="n">meas_grp</span><span class="o">.</span><span class="n">getPlotType</span><span class="p">(</span><span class="n">chan</span><span class="p">)[</span><span class="n">chan</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">calc_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">chan</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">calc_channels</span> <span class="o">==</span> <span class="p">[]:</span>
+            <span class="c1"># fallback is first enabled channel in meas_grp</span>
+            <span class="n">calc_channels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">enabled_channels</span><span class="p">)))</span>
+
+        <span class="n">selected_motor</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">motors</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">col_header</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">motor_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">channels_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">channel_name</span> <span class="ow">in</span> <span class="n">calc_channels</span><span class="p">:</span>
+            <span class="n">channels_data</span><span class="p">[</span><span class="n">channel_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">rc</span> <span class="ow">in</span> <span class="n">parent</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">motor_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rc</span><span class="p">[</span><span class="n">selected_motor</span><span class="p">])</span>
+            <span class="k">for</span> <span class="n">channel_name</span> <span class="ow">in</span> <span class="n">calc_channels</span><span class="p">:</span>
+                <span class="n">channels_data</span><span class="p">[</span><span class="n">channel_name</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rc</span><span class="p">[</span><span class="n">channel_name</span><span class="p">])</span>
+
+        <span class="n">motor_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">motor_data</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">channel_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">channels_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">channel_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="p">(</span><span class="n">_min</span><span class="p">,</span> <span class="n">_max</span><span class="p">,</span> <span class="n">min_at</span><span class="p">,</span> <span class="n">max_at</span><span class="p">,</span> <span class="n">half_max</span><span class="p">,</span> <span class="n">com</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">_int</span><span class="p">,</span>
+             <span class="n">fwhm</span><span class="p">,</span> <span class="n">cen</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_calcStats</span><span class="p">(</span><span class="n">motor_data</span><span class="p">,</span> <span class="n">channel_data</span><span class="p">)</span>
+            <span class="n">stats</span><span class="p">[</span><span class="n">channel_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="n">_min</span><span class="p">,</span>
+                <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="n">_max</span><span class="p">,</span>
+                <span class="s2">&quot;minpos&quot;</span><span class="p">:</span> <span class="n">min_at</span><span class="p">,</span>
+                <span class="s2">&quot;maxpos&quot;</span><span class="p">:</span> <span class="n">max_at</span><span class="p">,</span>
+                <span class="s2">&quot;mean&quot;</span><span class="p">:</span> <span class="n">mean</span><span class="p">,</span>
+                <span class="s2">&quot;int&quot;</span><span class="p">:</span> <span class="n">_int</span><span class="p">,</span>
+                <span class="s2">&quot;com&quot;</span><span class="p">:</span> <span class="n">com</span><span class="p">,</span>
+                <span class="s2">&quot;fwhm&quot;</span><span class="p">:</span> <span class="n">fwhm</span><span class="p">,</span>
+                <span class="s2">&quot;cen&quot;</span><span class="p">:</span> <span class="n">cen</span><span class="p">}</span>
+
+            <span class="n">col_header</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">channel_name</span><span class="p">])</span>
+            <span class="n">cols</span><span class="o">.</span><span class="n">append</span><span class="p">([</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">channel_name</span><span class="p">][</span><span class="s2">&quot;min&quot;</span><span class="p">],</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">channel_name</span><span class="p">][</span><span class="s2">&quot;max&quot;</span><span class="p">],</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">channel_name</span><span class="p">][</span><span class="s2">&quot;minpos&quot;</span><span class="p">],</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">channel_name</span><span class="p">][</span><span class="s2">&quot;maxpos&quot;</span><span class="p">],</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">channel_name</span><span class="p">][</span><span class="s2">&quot;mean&quot;</span><span class="p">],</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">channel_name</span><span class="p">][</span><span class="s2">&quot;int&quot;</span><span class="p">],</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">channel_name</span><span class="p">][</span><span class="s2">&quot;com&quot;</span><span class="p">],</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">channel_name</span><span class="p">][</span><span class="s2">&quot;fwhm&quot;</span><span class="p">],</span>
+                <span class="n">stats</span><span class="p">[</span><span class="n">channel_name</span><span class="p">][</span><span class="s2">&quot;cen&quot;</span><span class="p">],</span>
+                        <span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Statistics for movable: </span><span class="si">{:s}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">selected_motor</span><span class="p">))</span>
+
+        <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">elem_list</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span> <span class="n">elem_fmt</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="si">%*g</span><span class="s2">&quot;</span><span class="p">],</span>
+                      <span class="n">row_head_str</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;MIN&quot;</span><span class="p">,</span> <span class="s2">&quot;MAX&quot;</span><span class="p">,</span> <span class="s2">&quot;MIN@&quot;</span><span class="p">,</span> <span class="s2">&quot;MAX@&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;MEAN&quot;</span><span class="p">,</span> <span class="s2">&quot;INT&quot;</span><span class="p">,</span> <span class="s2">&quot;COM&quot;</span><span class="p">,</span> <span class="s2">&quot;FWHM&quot;</span><span class="p">,</span> <span class="s2">&quot;CEN&quot;</span><span class="p">],</span>
+                      <span class="n">col_head_str</span><span class="o">=</span><span class="n">col_header</span><span class="p">,</span> <span class="n">col_head_sep</span><span class="o">=</span><span class="s2">&quot;-&quot;</span><span class="p">)</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">table</span><span class="o">.</span><span class="n">genOutput</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">out</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:s}</span><span class="s2">.ScanStats&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getDoorName</span><span class="p">()),</span>
+                    <span class="p">{</span><span class="s2">&quot;Stats&quot;</span><span class="p">:</span> <span class="n">stats</span><span class="p">,</span>
+                     <span class="s2">&quot;Motor&quot;</span><span class="p">:</span> <span class="n">selected_motor</span><span class="p">,</span>
+                     <span class="s2">&quot;ScanID&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s2">&quot;ScanID&quot;</span><span class="p">)})</span></div>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_calcStats</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="c1"># max and min</span>
+        <span class="n">_min</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">_max</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="n">min_idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">min_at</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">max_at</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span>
+
+        <span class="c1"># center of mass (com)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">com</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+            <span class="n">com</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">mean</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">_int</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+        <span class="c1"># determine if it is a peak- or erf-like function</span>
+        <span class="n">half_max</span> <span class="o">=</span> <span class="p">(</span><span class="n">_max</span><span class="o">-</span><span class="n">_min</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="o">+</span><span class="n">_min</span>
+
+        <span class="n">lower_left</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">lower_right</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">max_idx</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">half_max</span><span class="p">):</span>
+            <span class="n">lower_left</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">max_idx</span><span class="p">:]</span> <span class="o">&lt;</span> <span class="n">half_max</span><span class="p">):</span>
+            <span class="n">lower_right</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="n">lower_left</span> <span class="ow">and</span> <span class="n">lower_right</span><span class="p">:</span>
+            <span class="c1"># it is a peak-like function</span>
+            <span class="n">y_data</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># it is an erf-like function</span>
+            <span class="c1"># use the gradient for further calculation</span>
+            <span class="n">y_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="c1"># use also the half maximum of the gradient</span>
+            <span class="n">half_max</span> <span class="o">=</span> <span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">y_data</span><span class="p">)</span><span class="o">-</span><span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y_data</span><span class="p">))</span> \
+                <span class="o">/</span> <span class="mi">2</span><span class="o">+</span><span class="n">numpy</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">y_data</span><span class="p">)</span>
+
+        <span class="c1"># cen and fwhm</span>
+        <span class="c1"># this part is adapted from:</span>
+        <span class="c1">#</span>
+        <span class="c1"># The PyMca X-Ray Fluorescence Toolkit</span>
+        <span class="c1">#</span>
+        <span class="c1"># Copyright (c) 2004-2014 European Synchrotron Radiation Facility</span>
+        <span class="c1">#</span>
+        <span class="c1"># This file is part of the PyMca X-ray Fluorescence Toolkit developed</span>
+        <span class="c1"># at the ESRF by the Software group.</span>
+
+        <span class="n">max_idx_data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_data</span><span class="p">)</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">max_idx_data</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">y_data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">half_max</span><span class="p">:</span>
+                <span class="n">idx</span> <span class="o">=</span> <span class="n">idx</span><span class="o">-</span><span class="mi">1</span>
+
+            <span class="n">x0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">y0</span> <span class="o">=</span> <span class="n">y_data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">y1</span> <span class="o">=</span> <span class="n">y_data</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">lhmx</span> <span class="o">=</span> <span class="p">(</span><span class="n">half_max</span><span class="o">*</span><span class="p">(</span><span class="n">x1</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">y0</span><span class="o">*</span><span class="n">x1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">y1</span><span class="o">*</span><span class="n">x0</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y0</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+            <span class="n">lhmx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="n">lhmx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">max_idx_data</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">y_data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">half_max</span><span class="p">:</span>
+                <span class="n">idx</span> <span class="o">=</span> <span class="n">idx</span><span class="o">+</span><span class="mi">1</span>
+
+            <span class="n">x0</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">x1</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">y0</span> <span class="o">=</span> <span class="n">y_data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+            <span class="n">y1</span> <span class="o">=</span> <span class="n">y_data</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+            <span class="n">uhmx</span> <span class="o">=</span> <span class="p">(</span><span class="n">half_max</span><span class="o">*</span><span class="p">(</span><span class="n">x1</span><span class="o">-</span><span class="n">x0</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">y0</span><span class="o">*</span><span class="n">x1</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">y1</span><span class="o">*</span><span class="n">x0</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">y1</span><span class="o">-</span><span class="n">y0</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+            <span class="n">uhmx</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="n">uhmx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">fwhm</span> <span class="o">=</span> <span class="n">uhmx</span> <span class="o">-</span> <span class="n">lhmx</span>
+        <span class="n">cen</span> <span class="o">=</span> <span class="p">(</span><span class="n">uhmx</span> <span class="o">+</span> <span class="n">lhmx</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">_min</span><span class="p">,</span> <span class="n">_max</span><span class="p">,</span> <span class="n">min_at</span><span class="p">,</span> <span class="n">max_at</span><span class="p">,</span> <span class="n">half_max</span><span class="p">,</span> <span class="n">com</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">_int</span><span class="p">,</span>
+                <span class="n">fwhm</span><span class="p">,</span> <span class="n">cen</span><span class="p">)</span></div>
 </pre></div>
 
            </div>
