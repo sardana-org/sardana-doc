@@ -374,14 +374,19 @@ and scan file format being used.</p>
 <h2>Scan statistics<a class="headerlink" href="#scan-statistics" title="Permalink to this headline">¶</a></h2>
 <p>Sardana may automatically calculate some basic statistics over the scan
 results e.g., max, mean, FWHM, etc.</p>
-<p>In order to enable the statistic calculation you just need to attach
+<p>In order to enable the statistics calculation you just need to attach
 the <a class="reference internal" href="../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.scanstats" title="sardana.macroserver.macros.scan.scanstats"><code class="xref py py-class docutils literal notranslate"><span class="pre">scanstats</span></code></a> macro to the
 <code class="docutils literal notranslate"><span class="pre">post-scan</span></code> hook place (see <a class="reference internal" href="macro_hooks.html#sardana-macros-hooks"><span class="std std-ref">hook documentation</span></a>
 for more info).</p>
-<p>Apart from printing statistics by the scanstats macro these are stored in
+<p>Apart from printing the statistics by the scanstats macro these are stored in
 the door’s <a class="reference internal" href="environment_variable_catalog.html#scanstats"><span class="std std-ref">ScanStats</span></a> environment variable. This way some other macro
-can use them e.g. move the scanned motor to the position where a given channel
-reached the maximum value (<em>go to peak</em>).</p>
+can use them e.g.,</p>
+<ul class="simple">
+<li><p>move the scanned motor to the position where a given channel
+reached the maximum value (<a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.pic" title="sardana.macroserver.macros.standard.pic"><code class="xref py py-class docutils literal notranslate"><span class="pre">pic</span></code></a>)</p></li>
+<li><p>move the scanned motor to center position of FWHM
+(<a class="reference internal" href="../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.cen" title="sardana.macroserver.macros.standard.cen"><code class="xref py py-class docutils literal notranslate"><span class="pre">cen</span></code></a>)</p></li>
+</ul>
 </div>
 </div>
 

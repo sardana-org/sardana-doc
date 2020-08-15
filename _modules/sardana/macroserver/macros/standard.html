@@ -183,7 +183,9 @@
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ct&quot;</span><span class="p">,</span> <span class="s2">&quot;mstate&quot;</span><span class="p">,</span> <span class="s2">&quot;mv&quot;</span><span class="p">,</span> <span class="s2">&quot;mvr&quot;</span><span class="p">,</span> <span class="s2">&quot;pwa&quot;</span><span class="p">,</span> <span class="s2">&quot;pwm&quot;</span><span class="p">,</span> <span class="s2">&quot;repeat&quot;</span><span class="p">,</span> <span class="s2">&quot;set_lim&quot;</span><span class="p">,</span>
            <span class="s2">&quot;set_lm&quot;</span><span class="p">,</span> <span class="s2">&quot;set_pos&quot;</span><span class="p">,</span> <span class="s2">&quot;settimer&quot;</span><span class="p">,</span> <span class="s2">&quot;uct&quot;</span><span class="p">,</span> <span class="s2">&quot;umv&quot;</span><span class="p">,</span> <span class="s2">&quot;umvr&quot;</span><span class="p">,</span> <span class="s2">&quot;wa&quot;</span><span class="p">,</span> <span class="s2">&quot;wm&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;tw&quot;</span><span class="p">,</span> <span class="s2">&quot;logmacro&quot;</span><span class="p">,</span> <span class="s2">&quot;newfile&quot;</span><span class="p">,</span> <span class="s2">&quot;plotselect&quot;</span><span class="p">]</span>
+           <span class="s2">&quot;tw&quot;</span><span class="p">,</span> <span class="s2">&quot;logmacro&quot;</span><span class="p">,</span> <span class="s2">&quot;newfile&quot;</span><span class="p">,</span> <span class="s2">&quot;plotselect&quot;</span><span class="p">,</span> <span class="s2">&quot;pic&quot;</span><span class="p">,</span> <span class="s2">&quot;cen&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;where&quot;</span><span class="p">]</span>
+
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
@@ -1244,6 +1246,92 @@
         <span class="n">meas_grp</span><span class="o">.</span><span class="n">setPlotType</span><span class="p">(</span><span class="s2">&quot;No&quot;</span><span class="p">,</span> <span class="n">apply</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">meas_grp</span><span class="o">.</span><span class="n">setPlotType</span><span class="p">(</span><span class="s2">&quot;Spectrum&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">plot_channels_ok</span><span class="p">,</span> <span class="n">apply</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="n">meas_grp</span><span class="o">.</span><span class="n">setPlotAxes</span><span class="p">([</span><span class="s2">&quot;&lt;mov&gt;&quot;</span><span class="p">],</span> <span class="o">*</span><span class="n">plot_channels_ok</span><span class="p">)</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">_movetostatspos</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This macro does the logic for pic and cen&quot;&quot;&quot;</span>
+
+    <span class="n">env</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ScanStats&quot;</span><span class="p">,</span> <span class="p">)</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">ExpChannel</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="s1">&#39;name of channel&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;caller&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;caller (pic or cen)&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="n">caller</span><span class="p">):</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ScanStats&#39;</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">getDoorName</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">channel</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># use first channel in stats</span>
+            <span class="n">channel</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;Stats&#39;</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">channel</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;Stats&#39;</span><span class="p">]:</span>
+                <span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">name</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;channel </span><span class="si">{}</span><span class="s2"> not present in ScanStats&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                <span class="n">channel</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">caller</span> <span class="o">==</span> <span class="s1">&#39;pic&#39;</span><span class="p">:</span>
+            <span class="n">stats_value</span> <span class="o">=</span> <span class="s1">&#39;maxpos&#39;</span>
+            <span class="n">stats_str</span> <span class="o">=</span> <span class="s1">&#39;PIC&#39;</span>
+        <span class="k">elif</span> <span class="n">caller</span> <span class="o">==</span> <span class="s1">&#39;cen&#39;</span><span class="p">:</span>
+            <span class="n">stats_value</span> <span class="o">=</span> <span class="s1">&#39;cen&#39;</span>
+            <span class="n">stats_str</span> <span class="o">=</span> <span class="s1">&#39;CEN&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;caller </span><span class="si">{}</span><span class="s2"> is unknown&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">caller</span><span class="p">))</span>
+
+        <span class="n">motor_name</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;Motor&#39;</span><span class="p">]</span>
+        <span class="n">motor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMotion</span><span class="p">([</span><span class="n">motor_name</span><span class="p">])</span>
+        <span class="n">current_pos</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">readPosition</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">stats</span><span class="p">[</span><span class="s1">&#39;Stats&#39;</span><span class="p">][</span><span class="n">channel</span><span class="p">][</span><span class="n">stats_value</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;move motor </span><span class="si">{:s}</span><span class="s2"> from current position</span><span class="se">\n</span><span class="s2">at </span><span class="si">{:.4f}</span><span class="se">\n</span><span class="s2">&quot;</span>
+                  <span class="s2">&quot;to </span><span class="si">{:s}</span><span class="s2"> of counter </span><span class="si">{:s}</span><span class="se">\n</span><span class="s2">at </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">motor_name</span><span class="p">,</span>
+                                                              <span class="n">current_pos</span><span class="p">,</span>
+                                                              <span class="n">stats_str</span><span class="p">,</span>
+                                                              <span class="n">channel</span><span class="p">,</span>
+                                                              <span class="n">pos</span><span class="p">))</span>
+        <span class="n">motor</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="pic"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.pic">[docs]</a><span class="k">class</span> <span class="nc">pic</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This macro moves the motor of the last scan to the PEAK position for a</span>
+<span class="sd">    given channel. If no channel is given, it selects the first channel from</span>
+<span class="sd">    the ScanStats env variable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">ExpChannel</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="s1">&#39;name of channel&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+<div class="viewcode-block" id="pic.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.pic.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;_movetostatspos&#39;</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="s1">&#39;pic&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="cen"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.cen">[docs]</a><span class="k">class</span> <span class="nc">cen</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This macro moves the motor of the last scan to the CEN position for a</span>
+<span class="sd">    given channel. If no channel is given, it selects the first channel from</span>
+<span class="sd">    the ScanStats env variable.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;channel&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">ExpChannel</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="s1">&#39;name of channel&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+<div class="viewcode-block" id="cen.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.cen.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s1">&#39;_movetostatspos&#39;</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="s1">&#39;cen&#39;</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="where"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.where">[docs]</a><span class="k">class</span> <span class="nc">where</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This macro shows the current position of the last scanned motor.&quot;&quot;&quot;</span>
+
+    <span class="n">env</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;ScanStats&quot;</span><span class="p">,</span> <span class="p">)</span>
+
+<div class="viewcode-block" id="where.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.where.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">motor_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ScanStats&#39;</span><span class="p">)[</span><span class="s1">&#39;Motor&#39;</span><span class="p">]</span>
+        <span class="n">motor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMoveable</span><span class="p">(</span><span class="n">motor_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;motor </span><span class="si">{:s}</span><span class="s2"> is</span><span class="se">\n</span><span class="s2">at </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">motor_name</span><span class="p">,</span>
+                                                    <span class="n">motor</span><span class="o">.</span><span class="n">getPosition</span><span class="p">()))</span></div></div>
 </pre></div>
 
            </div>
