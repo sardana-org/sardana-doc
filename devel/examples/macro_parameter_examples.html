@@ -596,7 +596,8 @@ macros which receive parameter(s).</p>
 401
 402
 403
-404</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">##############################################################################</span>
+404
+405</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">##############################################################################</span>
 <span class="c1">##</span>
 <span class="c1"># This file is part of Sardana</span>
 <span class="c1">##</span>
@@ -791,7 +792,8 @@ macros which receive parameter(s).</p>
 
 
 <span class="k">class</span> <span class="nc">pt7d1</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Macro with a list of pair Motor,Float. Default value for last ParamRepeat element.</span>
+    <span class="sd">&quot;&quot;&quot;Macro with a list of pair Motor,Float. Default value for last</span>
+<span class="sd">    repeat parameter element.</span>
 <span class="sd">    Usages from Spock, ex.:</span>
 <span class="sd">    pt7d1 [[mot1 1] [mot2 3]]</span>
 <span class="sd">    pt7d1 mot1 1 mot2 3</span>
@@ -812,7 +814,8 @@ macros which receive parameter(s).</p>
 
 
 <span class="k">class</span> <span class="nc">pt7d2</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Macro with a list of pair Motor,Float. Default value for both ParamRepeat elements.</span>
+    <span class="sd">&quot;&quot;&quot;Macro with a list of pair Motor,Float. Default value for both</span>
+<span class="sd">    repeat parameters elements.</span>
 <span class="sd">    Usages from Spock, ex.:</span>
 <span class="sd">    pt7d2 [[mot1 1] [mot2 3]]</span>
 <span class="sd">    pt7d2 mot1 1 mot2 3</span>
@@ -850,9 +853,8 @@ macros which receive parameter(s).</p>
 
 
 <span class="k">class</span> <span class="nc">pt9</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Same as macro pt7 but with old style ParamRepeat. If you are writing</span>
-<span class="sd">    a macro with variable number of parameters for the first time don&#39;t even</span>
-<span class="sd">    bother to look at this example since it is DEPRECATED.</span>
+    <span class="sd">&quot;&quot;&quot;Same as macro pt7 but with min and max number of repetitions of the</span>
+<span class="sd">    repeat parameter.</span>
 <span class="sd">    Usages from Spock, ex.:</span>
 <span class="sd">    pt9 [[mot1 1][mot2 3]]</span>
 <span class="sd">    pt9 mot1 1 mot2 3</span>

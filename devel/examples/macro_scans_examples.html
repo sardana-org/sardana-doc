@@ -894,7 +894,9 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
 699
 700
 701
-702</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">##############################################################################</span>
+702
+703
+704</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1">##############################################################################</span>
 <span class="c1">##</span>
 <span class="c1"># This file is part of Sardana</span>
 <span class="c1">##</span>
@@ -1325,11 +1327,13 @@ or tricks for programming custom scan macros using the Sardana scan framework.</
 
 <span class="k">class</span> <span class="nc">reg3scan</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;reg3scan.</span>
-<span class="sd">    Do an absolute scan of the specified motors with different number of intervals for each region.</span>
-<span class="sd">    It uses the gscan framework. All the motors will be drived to the same position in each step</span>
+<span class="sd">    Do an absolute scan of the specified motors with different number of</span>
+<span class="sd">    intervals for each region. It uses the gscan framework.</span>
+<span class="sd">    All the motors will be drived to the same position in each step</span>
 
-<span class="sd">    NOTE: Due to a ParamRepeat limitation, integration time has to be</span>
-<span class="sd">    specified before the regions.</span>
+<span class="sd">    .. note::</span>
+<span class="sd">        integration time is specified before the regions to facilitate</span>
+<span class="sd">        input of parameters in Spock.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;reg3scan&#39;</span><span class="p">}</span>

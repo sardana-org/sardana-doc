@@ -187,7 +187,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;WrongParam&quot;</span><span class="p">,</span> <span class="s2">&quot;MissingParam&quot;</span><span class="p">,</span> <span class="s2">&quot;SupernumeraryParam&quot;</span><span class="p">,</span>
            <span class="s2">&quot;UnknownParamObj&quot;</span><span class="p">,</span> <span class="s2">&quot;WrongParamType&quot;</span><span class="p">,</span> <span class="s2">&quot;MissingRepeat&quot;</span><span class="p">,</span>
            <span class="s2">&quot;SupernumeraryRepeat&quot;</span><span class="p">,</span> <span class="s2">&quot;TypeNames&quot;</span><span class="p">,</span> <span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="s2">&quot;ParamType&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;ParamRepeat&quot;</span><span class="p">,</span> <span class="s2">&quot;ElementParamType&quot;</span><span class="p">,</span> <span class="s2">&quot;ElementParamInterface&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;ElementParamType&quot;</span><span class="p">,</span> <span class="s2">&quot;ElementParamInterface&quot;</span><span class="p">,</span>
            <span class="s2">&quot;AttrParamType&quot;</span><span class="p">,</span> <span class="s2">&quot;AbstractParamTypes&quot;</span><span class="p">,</span> <span class="s2">&quot;ParamDecoder&quot;</span><span class="p">]</span>
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
@@ -342,26 +342,6 @@
         <span class="n">kwargs</span> <span class="o">=</span> <span class="n">MSBaseObject</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;composed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">return</span> <span class="n">kwargs</span></div>
-
-
-<span class="k">class</span> <span class="nc">ParamRepeat</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="c1"># opts: min, max</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">param_def</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">param_def</span> <span class="o">=</span> <span class="n">param_def</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">opts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">opts</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">param_def</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">opts</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">opts</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
-
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">opts</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">obj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_obj</span>
 
 
 <span class="k">class</span> <span class="nc">ElementParamType</span><span class="p">(</span><span class="n">ParamType</span><span class="p">):</span>
