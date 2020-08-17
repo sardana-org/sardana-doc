@@ -756,25 +756,9 @@ property value</p>
 </dd>
 </dl>
 <dl class="py attribute">
-<dt id="sardana.pool.controller.Controller.class_prop">
-<code class="sig-name descname">class_prop</code><em class="property"> = {}</em><a class="headerlink" href="#sardana.pool.controller.Controller.class_prop" title="Permalink to this definition">¶</a></dt>
-<dd><div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.Controller.ctrl_properties" title="sardana.pool.controller.Controller.ctrl_properties"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ctrl_properties</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.ctrl_features">
 <code class="sig-name descname">ctrl_features</code><em class="property"> = []</em><a class="headerlink" href="#sardana.pool.controller.Controller.ctrl_features" title="Permalink to this definition">¶</a></dt>
 <dd><p>A sequence of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller features</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.pool.controller.Controller.ctrl_extra_attributes">
-<code class="sig-name descname">ctrl_extra_attributes</code><em class="property"> = {}</em><a class="headerlink" href="#sardana.pool.controller.Controller.ctrl_extra_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.Controller.axis_attributes" title="sardana.pool.controller.Controller.axis_attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">axis_attributes</span></code></a> instead</p>
-</div>
 </dd></dl>
 
 <dl class="py attribute">
@@ -1041,15 +1025,6 @@ does nothing.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.pool.controller.Controller.inst_name">
-<em class="property">property </em><code class="sig-name descname">inst_name</code><a class="headerlink" href="#sardana.pool.controller.Controller.inst_name" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Controller API</strong>. The controller instance name.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.Controller.GetName" title="sardana.pool.controller.Controller.GetName"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetName()</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
 <dt id="sardana.pool.controller.Controller.GetName">
 <code class="sig-name descname">GetName</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.GetName"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.GetName" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. The controller instance name.</p>
@@ -1147,8 +1122,7 @@ the value contained in this object’s member named ‘_’+parameter.</p>
 <code class="sig-name descname">SetAxisPar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.SetAxisPar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.SetAxisPar" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY.
 Called to set a parameter with a value on the given axis. Default
-implementation calls deprecated <a class="reference internal" href="#sardana.pool.controller.Controller.SetPar" title="sardana.pool.controller.Controller.SetPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetPar()</span></code></a> which, by
-default, raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.</span></p>
 </div>
@@ -1159,8 +1133,7 @@ default, raises <a class="reference external" href="https://docs.python.org/3/li
 <code class="sig-name descname">GetAxisPar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.GetAxisPar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.GetAxisPar" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY.
 Called to get a parameter value on the given axis. Default
-implementation calls deprecated <a class="reference internal" href="#sardana.pool.controller.Controller.GetPar" title="sardana.pool.controller.Controller.GetPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code></a> which, by
-default, raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.</span></p>
 </div>
@@ -1171,8 +1144,7 @@ default, raises <a class="reference external" href="https://docs.python.org/3/li
 <code class="sig-name descname">SetAxisExtraPar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.SetAxisExtraPar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.SetAxisExtraPar" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override if necessary.
 Called to set a parameter with a value on the given axis. Default
-implementation calls deprecated <a class="reference internal" href="#sardana.pool.controller.Controller.SetExtraAttributePar" title="sardana.pool.controller.Controller.SetExtraAttributePar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetExtraAttributePar()</span></code></a>
-which, by default, raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.</span></p>
 </div>
@@ -1183,51 +1155,9 @@ which, by default, raises <a class="reference external" href="https://docs.pytho
 <code class="sig-name descname">GetAxisExtraPar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.GetAxisExtraPar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.GetAxisExtraPar" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override if necessary.
 Called to get a parameter value on the given axis. Default
-implementation calls deprecated <a class="reference internal" href="#sardana.pool.controller.Controller.GetExtraAttributePar" title="sardana.pool.controller.Controller.GetExtraAttributePar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetExtraAttributePar()</span></code></a>
-which, by default, raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.Controller.SetPar">
-<code class="sig-name descname">SetPar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.SetPar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.SetPar" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Controller API</strong>. Called to set a parameter with a value on
-the given axis. Default implementation raises
-<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.Controller.SetAxisPar" title="sardana.pool.controller.Controller.SetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetAxisPar()</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.Controller.GetPar">
-<code class="sig-name descname">GetPar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.GetPar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.GetPar" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Controller API</strong>. Called to get a parameter value on the given
-axis. Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.Controller.GetAxisPar" title="sardana.pool.controller.Controller.GetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisPar()</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.Controller.SetExtraAttributePar">
-<code class="sig-name descname">SetExtraAttributePar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.SetExtraAttributePar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.SetExtraAttributePar" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Controller API</strong>. Called to set a parameter with a value on the
-given axis. Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.Controller.SetAxisExtraPar" title="sardana.pool.controller.Controller.SetAxisExtraPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetAxisExtraPar()</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.Controller.GetExtraAttributePar">
-<code class="sig-name descname">GetExtraAttributePar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.GetExtraAttributePar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.GetExtraAttributePar" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Controller API</strong>. Called to get a parameter value on the given
-axis. Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.Controller.GetAxisExtraPar" title="sardana.pool.controller.Controller.GetAxisExtraPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisExtraPar()</span></code></a> instead</p>
 </div>
 </dd></dl>
 
@@ -1306,13 +1236,7 @@ your own motor controller for the device pool.</p>
 </ul>
 </div></blockquote>
 <p>These parameters are configured through the
-<a class="reference internal" href="#sardana.pool.controller.Controller.GetAxisPar" title="sardana.pool.controller.Controller.GetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisPar()</span></code></a>/<a class="reference internal" href="#sardana.pool.controller.Controller.SetAxisPar" title="sardana.pool.controller.Controller.SetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetAxisPar()</span></code></a>
-API (in version &lt;1.0 the methods were called
-<a class="reference internal" href="#sardana.pool.controller.Controller.GetPar" title="sardana.pool.controller.Controller.GetPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code></a>/<a class="reference internal" href="#sardana.pool.controller.Controller.SetPar" title="sardana.pool.controller.Controller.SetPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetPar()</span></code></a>. Default
-<a class="reference internal" href="#sardana.pool.controller.Controller.GetAxisPar" title="sardana.pool.controller.Controller.GetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisPar()</span></code></a> and
-<a class="reference internal" href="#sardana.pool.controller.Controller.SetAxisPar" title="sardana.pool.controller.Controller.SetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetAxisPar()</span></code></a> still call
-<a class="reference internal" href="#sardana.pool.controller.Controller.GetPar" title="sardana.pool.controller.Controller.GetPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code></a> and <a class="reference internal" href="#sardana.pool.controller.Controller.SetPar" title="sardana.pool.controller.Controller.SetPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetPar()</span></code></a>
-respectively in order to maintain backward compatibility).</p>
+<a class="reference internal" href="#sardana.pool.controller.Controller.GetAxisPar" title="sardana.pool.controller.Controller.GetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisPar()</span></code></a>/<a class="reference internal" href="#sardana.pool.controller.Controller.SetAxisPar" title="sardana.pool.controller.Controller.SetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetAxisPar()</span></code></a> API.</p>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.MotorController.NoLimitSwitch">
 <code class="sig-name descname">NoLimitSwitch</code><em class="property"> = 0</em><a class="headerlink" href="#sardana.pool.controller.MotorController.NoLimitSwitch" title="Permalink to this definition">¶</a></dt>
@@ -2015,7 +1939,7 @@ Called to get a parameter value on the given axis.</p>
 Inherit from <code class="xref py py-class docutils literal notranslate"><span class="pre">Referable</span></code> class in order to report value
 references.</p>
 <p>Default implementation calls deprecated
-<a class="reference internal" href="#sardana.pool.controller.Controller.GetPar" title="sardana.pool.controller.Controller.GetPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code></a> which, by default, raises
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code> which, by default, raises
 <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.2.</span></p>
@@ -2061,7 +1985,7 @@ Called to get a parameter value on the given axis.</p>
 Inherit from <code class="xref py py-class docutils literal notranslate"><span class="pre">Referable</span></code> class in order to report value
 references.</p>
 <p>Default implementation calls deprecated
-<a class="reference internal" href="#sardana.pool.controller.Controller.GetPar" title="sardana.pool.controller.Controller.GetPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code></a> which, by default, raises
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code> which, by default, raises
 <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.2.</span></p>

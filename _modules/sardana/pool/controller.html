@@ -267,17 +267,8 @@
 <span class="sd">    :keyword kwargs:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1">#:</span>
-    <span class="c1">#: .. deprecated:: 1.0</span>
-    <span class="c1">#:     use :attr:`~Controller.ctrl_properties` instead</span>
-    <span class="n">class_prop</span> <span class="o">=</span> <span class="p">{}</span>
-
     <span class="c1">#: A sequence of :obj:`str` representing the controller features</span>
     <span class="n">ctrl_features</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="c1">#:</span>
-    <span class="c1">#: .. deprecated:: 1.0</span>
-    <span class="c1">#:     use :attr:`~Controller.axis_attributes` instead</span>
-    <span class="n">ctrl_extra_attributes</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="c1">#: A :class:`dict` containing controller properties where:</span>
     <span class="c1">#:</span>
@@ -498,14 +489,6 @@
 <span class="sd">        :param int axis: axis number&quot;&quot;&quot;</span>
         <span class="k">pass</span></div>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">inst_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**. The controller instance name.</span>
-
-<span class="sd">        .. deprecated:: 1.0</span>
-<span class="sd">            use :meth:`~Controller.GetName` instead&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_inst_name</span>
-
 <div class="viewcode-block" id="Controller.GetName"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetName">[docs]</a>    <span class="k">def</span> <span class="nf">GetName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. The controller instance name.</span>
 
@@ -572,73 +555,36 @@
 <div class="viewcode-block" id="Controller.SetAxisPar"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetAxisPar">[docs]</a>    <span class="k">def</span> <span class="nf">SetAxisPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override is MANDATORY.</span>
 <span class="sd">        Called to set a parameter with a value on the given axis. Default</span>
-<span class="sd">        implementation calls deprecated :meth:`~Controller.SetPar` which, by</span>
-<span class="sd">        default, raises :exc:`NotImplementedError`.</span>
+<span class="sd">        implementation raises :exc:`NotImplementedError`.</span>
 
 <span class="sd">        .. versionadded:: 1.0&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">SetPar</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;SetAxisPar must be defined in the &quot;</span>
+                                  <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Controller.GetAxisPar"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisPar">[docs]</a>    <span class="k">def</span> <span class="nf">GetAxisPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override is MANDATORY.</span>
 <span class="sd">        Called to get a parameter value on the given axis. Default</span>
-<span class="sd">        implementation calls deprecated :meth:`~Controller.GetPar` which, by</span>
-<span class="sd">        default, raises :exc:`NotImplementedError`.</span>
+<span class="sd">        implementation raises :exc:`NotImplementedError`.</span>
 
 <span class="sd">        .. versionadded:: 1.0&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">GetPar</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;GetAxisPar must be defined in the &quot;</span>
+                                  <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Controller.SetAxisExtraPar"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetAxisExtraPar">[docs]</a>    <span class="k">def</span> <span class="nf">SetAxisExtraPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
 <span class="sd">        Called to set a parameter with a value on the given axis. Default</span>
-<span class="sd">        implementation calls deprecated :meth:`~Controller.SetExtraAttributePar`</span>
-<span class="sd">        which, by default, raises :exc:`NotImplementedError`.</span>
+<span class="sd">        implementation raises :exc:`NotImplementedError`.</span>
 
 <span class="sd">        .. versionadded:: 1.0&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">SetExtraAttributePar</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;SetAxisExtraPar must be defined in the &quot;</span>
+                                  <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Controller.GetAxisExtraPar"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisExtraPar">[docs]</a>    <span class="k">def</span> <span class="nf">GetAxisExtraPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
 <span class="sd">        Called to get a parameter value on the given axis. Default</span>
-<span class="sd">        implementation calls deprecated :meth:`~Controller.GetExtraAttributePar`</span>
-<span class="sd">        which, by default, raises :exc:`NotImplementedError`.</span>
+<span class="sd">        implementation raises :exc:`NotImplementedError`.</span>
 
 <span class="sd">        .. versionadded:: 1.0&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">GetExtraAttributePar</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Controller.SetPar"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetPar">[docs]</a>    <span class="k">def</span> <span class="nf">SetPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**. Called to set a parameter with a value on</span>
-<span class="sd">        the given axis. Default implementation raises</span>
-<span class="sd">        :exc:`NotImplementedError`.</span>
-
-<span class="sd">        .. deprecated:: 1.0</span>
-<span class="sd">            use :meth:`~Controller.SetAxisPar` instead&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;SetAxisPar must be defined in the &quot;</span>
-                                  <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Controller.GetPar"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetPar">[docs]</a>    <span class="k">def</span> <span class="nf">GetPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**. Called to get a parameter value on the given</span>
-<span class="sd">        axis. Default implementation raises :exc:`NotImplementedError`.</span>
-
-<span class="sd">        .. deprecated:: 1.0</span>
-<span class="sd">            use :meth:`~Controller.GetAxisPar` instead&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;GetAxisPar must be defined in the &quot;</span>
-                                  <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Controller.SetExtraAttributePar"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetExtraAttributePar">[docs]</a>    <span class="k">def</span> <span class="nf">SetExtraAttributePar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**. Called to set a parameter with a value on the</span>
-<span class="sd">        given axis. Default implementation raises :exc:`NotImplementedError`.</span>
-
-<span class="sd">        .. deprecated:: 1.0</span>
-<span class="sd">            use :meth:`~Controller.SetAxisExtraPar` instead&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;SetAxisExtraPar must be defined in the &quot;</span>
-                                  <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="Controller.GetExtraAttributePar"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetExtraAttributePar">[docs]</a>    <span class="k">def</span> <span class="nf">GetExtraAttributePar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">parameter</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**. Called to get a parameter value on the given</span>
-<span class="sd">        axis. Default implementation raises :exc:`NotImplementedError`.</span>
-
-<span class="sd">        .. deprecated:: 1.0</span>
-<span class="sd">            use :meth:`~Controller.GetAxisExtraPar` instead&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;GetAxisExtraPar must be defined in the &quot;</span>
                                   <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
 
@@ -655,9 +601,7 @@
 <span class="sd">        .. versionadded:: 1.0&quot;&quot;&quot;</span>
         <span class="n">ret</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">standard_axis_attributes</span><span class="p">)</span>
         <span class="n">axis_attrs</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_attributes</span><span class="p">)</span>
-        <span class="n">old_axis_attrs</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ctrl_extra_attributes</span><span class="p">)</span>
         <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">axis_attrs</span><span class="p">)</span>
-        <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">old_axis_attrs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
 <div class="viewcode-block" id="Controller.SendToCtrl"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.Controller.SendToCtrl">[docs]</a>    <span class="k">def</span> <span class="nf">SendToCtrl</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stream</span><span class="p">):</span>
@@ -955,13 +899,7 @@
 <span class="sd">        - step_per_unit</span>
 
 <span class="sd">    These parameters are configured through the</span>
-<span class="sd">    :meth:`~Controller.GetAxisPar`/:meth:`~Controller.SetAxisPar`</span>
-<span class="sd">    API (in version &lt;1.0 the methods were called</span>
-<span class="sd">    :meth:`~Controller.GetPar`/:meth:`~Controller.SetPar`. Default</span>
-<span class="sd">    :meth:`~Controller.GetAxisPar` and</span>
-<span class="sd">    :meth:`~Controller.SetAxisPar` still call</span>
-<span class="sd">    :meth:`~Controller.GetPar` and :meth:`~Controller.SetPar`</span>
-<span class="sd">    respectively in order to maintain backward compatibility).</span>
+<span class="sd">    :meth:`~Controller.GetAxisPar`/:meth:`~Controller.SetAxisPar` API.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="c1">#: A constant representing no active switch.</span>
