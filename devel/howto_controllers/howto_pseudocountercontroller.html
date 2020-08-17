@@ -233,7 +233,7 @@ name will be assumed as the pseudo counter role.</p>
 <p>The constructor does nothing apart of calling the parent class constructor but
 could be used to implement any necessary initialization.</p>
 <p>The pseudo counter calculations are implemented in the
-<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.calc" title="sardana.pool.controller.PseudoCounterController.calc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calc()</span></code></a> method:</p>
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">calc()</span></code> method:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">counter_values</span><span class="p">):</span>
     <span class="n">top</span><span class="p">,</span> <span class="n">bottom</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="n">counter_values</span>
 
@@ -261,7 +261,7 @@ the mean value of all the four sensors and indicates the beam intensity.</p>
 <p>Pseudo counters instantiated from your controller will have a default
 interface, which among others, comprises the <em>value</em> attribute. This attribute
 is feed with the result of the
-<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.calc" title="sardana.pool.controller.PseudoCounterController.calc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">calc()</span></code></a> method and by
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">calc()</span></code> method and by
 default it expects values of <code class="docutils literal notranslate"><span class="pre">float</span></code> type and scalar shape. You can easily
 <a class="reference internal" href="howto_controller.html#sardana-controller-howto-change-default-interface"><span class="std std-ref">change the default interface</span></a>.
 This way you could program a pseudo counter to obtain an image <a class="reference internal" href="../../glossary.html#term-ROI"><span class="xref std std-term">ROI</span></a>

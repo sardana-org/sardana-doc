@@ -1048,100 +1048,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_master</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_latency_time</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="o">=</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span>
-
-<div class="viewcode-block" id="CounterTimerController.get_trigger_type"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.get_trigger_type">[docs]</a>    <span class="k">def</span> <span class="nf">get_trigger_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;trigger_type is deprecated since SEP6. &quot;</span> <span class="o">+</span>\
-              <span class="s2">&quot;Use synchronization instead&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span></div>
-
-    <span class="n">_trigger_type</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_trigger_type</span><span class="p">)</span>
-
-<div class="viewcode-block" id="CounterTimerController.PreStartAllCT"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.PreStartAllCT">[docs]</a>    <span class="k">def</span> <span class="nf">PreStartAllCT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Counter/Timer Controller API**. Override if necessary.</span>
-<span class="sd">        Called to prepare an acquisition of all selected axis.</span>
-<span class="sd">        Default implementation does nothing.</span>
-
-<span class="sd">        .. deprecated:: 1.0</span>
-<span class="sd">            use :meth:`~CounterTimerController.PreStartAll` instead&quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
-
-<div class="viewcode-block" id="CounterTimerController.PreStartOneCT"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.PreStartOneCT">[docs]</a>    <span class="k">def</span> <span class="nf">PreStartOneCT</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Counter/Timer Controller API**. Override if necessary.</span>
-<span class="sd">        Called to prepare an acquisition a single axis.</span>
-<span class="sd">        Default implementation returns True.</span>
-
-<span class="sd">        :param int axis: axis number</span>
-<span class="sd">        :return: True means a successfull PreStartOneCT or False for a failure</span>
-<span class="sd">        :rtype: bool</span>
-
-<span class="sd">        .. deprecated:: 1.0</span>
-<span class="sd">            use :meth:`~CounterTimerController.PreStartOne` instead&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="kc">True</span></div>
-
-<div class="viewcode-block" id="CounterTimerController.StartOneCT"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.StartOneCT">[docs]</a>    <span class="k">def</span> <span class="nf">StartOneCT</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Counter/Timer Controller API**. Override if necessary.</span>
-<span class="sd">        Called to start an acquisition of a selected axis.</span>
-<span class="sd">        Default implementation does nothing.</span>
-
-<span class="sd">        :param int axis: axis number</span>
-
-<span class="sd">        .. deprecated:: 1.0</span>
-<span class="sd">            use :meth:`~CounterTimerController.StartOne` instead&quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
-
-<div class="viewcode-block" id="CounterTimerController.StartAllCT"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.StartAllCT">[docs]</a>    <span class="k">def</span> <span class="nf">StartAllCT</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Counter/Timer Controller API**.</span>
-<span class="sd">        Called to start an acquisition of a group of channels.</span>
-<span class="sd">        Default implementation does nothing.</span>
-
-<span class="sd">        .. deprecated:: 1.0</span>
-<span class="sd">            use :meth:`~CounterTimerController.StartAll` instead&quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
-
-<div class="viewcode-block" id="CounterTimerController.PreStartAll"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.PreStartAll">[docs]</a>    <span class="k">def</span> <span class="nf">PreStartAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
-<span class="sd">        Called to prepare a write of the position of all axis. Default</span>
-<span class="sd">        implementation calls deprecated</span>
-<span class="sd">        :meth:`~CounterTimerController.PreStartAllCT` which, by default, does</span>
-<span class="sd">        nothing.</span>
-
-<span class="sd">        .. versionadded:: 1.0&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">PreStartAllCT</span><span class="p">()</span></div>
-
-<div class="viewcode-block" id="CounterTimerController.PreStartOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.PreStartOne">[docs]</a>    <span class="k">def</span> <span class="nf">PreStartOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
-<span class="sd">        Called to prepare a write of the position of a single axis.</span>
-<span class="sd">        Default implementation calls deprecated</span>
-<span class="sd">        :meth:`~CounterTimerController.PreStartOneCT` which, by default,</span>
-<span class="sd">        returns True.</span>
-
-<span class="sd">        :param int axis: axis number</span>
-<span class="sd">        :param float value: the value</span>
-<span class="sd">        :return: True means a successfull pre-start or False for a failure</span>
-<span class="sd">        :rtype: bool</span>
-
-<span class="sd">        .. versionadded:: 1.0&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">PreStartOneCT</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="CounterTimerController.StartOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.StartOne">[docs]</a>    <span class="k">def</span> <span class="nf">StartOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
-<span class="sd">        Called to write the position of a selected axis. Default</span>
-<span class="sd">        implementation calls deprecated</span>
-<span class="sd">        :meth:`~CounterTimerController.StartOneCT` which, by default, does</span>
-<span class="sd">        nothing.</span>
-
-<span class="sd">        :param int axis: axis number</span>
-<span class="sd">        :param float value: the value&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">StartOneCT</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="CounterTimerController.StartAll"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.StartAll">[docs]</a>    <span class="k">def</span> <span class="nf">StartAll</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Controller API**.</span>
-<span class="sd">        Default implementation calls deprecated</span>
-<span class="sd">        :meth:`~CounterTimerController.StartAllCT` which, by default, does</span>
-<span class="sd">        nothing.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">StartAllCT</span><span class="p">()</span></div></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="o">=</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span></div>
 
 
 <span class="k">class</span> <span class="nc">TriggerGateController</span><span class="p">(</span><span class="n">Controller</span><span class="p">,</span> <span class="n">Synchronizer</span><span class="p">,</span> <span class="n">Stopable</span><span class="p">,</span> <span class="n">Startable</span><span class="p">):</span>
@@ -1398,7 +1305,8 @@
 <span class="sd">           :rtype: float</span>
 
 <span class="sd">           .. versionadded:: 1.0&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_pseudo</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">physical_pos</span><span class="p">)</span></div>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;CalcPseudo must be defined in the &quot;</span>
+                                  <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PseudoMotorController.CalcPhysical"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.CalcPhysical">[docs]</a>    <span class="k">def</span> <span class="nf">CalcPhysical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">pseudo_pos</span><span class="p">,</span> <span class="n">curr_physical_pos</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Pseudo Motor Controller API**. Override is **MANDATORY**.</span>
@@ -1415,77 +1323,6 @@
 <span class="sd">           :rtype: float</span>
 
 <span class="sd">           .. versionadded:: 1.0&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_physical</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">pseudo_pos</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="PseudoMotorController.calc_all_pseudo"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.calc_all_pseudo">[docs]</a>    <span class="k">def</span> <span class="nf">calc_all_pseudo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">physical_pos</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Pseudo Motor Controller API**. Override if necessary.</span>
-<span class="sd">           Calculates the positions of all pseudo motors that belong to the</span>
-<span class="sd">           pseudo motor system from the positions of the physical motors.</span>
-<span class="sd">           Default implementation does a loop calling</span>
-<span class="sd">           :meth:`PseudoMotorController.calc_pseudo` for each pseudo motor role.</span>
-
-<span class="sd">           :param sequence&lt;float&gt; physical_pos: a sequence of physical motor</span>
-<span class="sd">                                                positions</span>
-<span class="sd">           :return: a sequece of pseudo motor positions (one for each pseudo</span>
-<span class="sd">                    motor role)</span>
-<span class="sd">           :rtype: sequence&lt;float&gt;</span>
-
-<span class="sd">           .. deprecated:: 1.0</span>
-<span class="sd">               implement :meth:`~PseudoMotorController.CalcAllPseudo` instead&quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pseudo_motor_roles</span><span class="p">)):</span>
-            <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calc_pseudo</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">physical_pos</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="PseudoMotorController.calc_all_physical"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.calc_all_physical">[docs]</a>    <span class="k">def</span> <span class="nf">calc_all_physical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pseudo_pos</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Pseudo Motor Controller API**. Override if necessary.</span>
-<span class="sd">           Calculates the positions of all motors that belong to the pseudo</span>
-<span class="sd">           motor system from the positions of the pseudo motors.</span>
-<span class="sd">           Default implementation does a loop calling</span>
-<span class="sd">           :meth:`PseudoMotorController.calc_physical` for each motor role.</span>
-
-<span class="sd">           :param pseudo_pos: a sequence of pseudo motor positions</span>
-<span class="sd">           :type pseudo_pos: sequence&lt;float&gt;</span>
-<span class="sd">           :return: a sequece of motor positions (one for each motor role)</span>
-<span class="sd">           :rtype: sequence&lt;float&gt;</span>
-
-<span class="sd">           .. deprecated:: 1.0</span>
-<span class="sd">               implement :meth:`~PseudoMotorController.CalcAllPhysical`</span>
-<span class="sd">               instead&quot;&quot;&quot;</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">motor_roles</span><span class="p">)):</span>
-            <span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc_physical</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pseudo_pos</span><span class="p">)</span>
-            <span class="n">ret</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">ret</span></div>
-
-<div class="viewcode-block" id="PseudoMotorController.calc_pseudo"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.calc_pseudo">[docs]</a>    <span class="k">def</span> <span class="nf">calc_pseudo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">physical_pos</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Pseudo Motor Controller API**. Override is **MANDATORY**.</span>
-<span class="sd">           Calculate pseudo motor position given the physical motor positions</span>
-
-<span class="sd">           :param int axis: the pseudo motor role axis</span>
-<span class="sd">           :param sequence&lt;float&gt; physical_pos: a sequence of motor positions</span>
-<span class="sd">           :return: a pseudo motor position corresponding to the given axis</span>
-<span class="sd">                    pseudo motor role</span>
-<span class="sd">           :rtype: float</span>
-
-<span class="sd">           .. deprecated:: 1.0</span>
-<span class="sd">               implement :meth:`~PseudoMotorController.CalcPseudo` instead&quot;&quot;&quot;</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
-            <span class="s2">&quot;CalcPseudo must be defined in the controller&quot;</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="PseudoMotorController.calc_physical"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.calc_physical">[docs]</a>    <span class="k">def</span> <span class="nf">calc_physical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">pseudo_pos</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Pseudo Motor Controller API**. Override is **MANDATORY**.</span>
-<span class="sd">           Calculate physical motor position given the pseudo motor positions.</span>
-
-<span class="sd">           :param axis: the motor role axis</span>
-<span class="sd">           :type axis: int</span>
-<span class="sd">           :param pseudo_pos: a sequence of pseudo motor positions</span>
-<span class="sd">           :type pseudo_pos: sequence&lt;float&gt;</span>
-<span class="sd">           :return: a motor position corresponding to the given axis motor role</span>
-<span class="sd">           :rtype: float</span>
-
-<span class="sd">           .. deprecated:: 1.0</span>
-<span class="sd">               implement :meth:`~PseudoMotorController.CalcPhysical` instead&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;CalcPhysical must be defined in the &quot;</span>
                                   <span class="s2">&quot;controller&quot;</span><span class="p">)</span></div>
 
@@ -1581,21 +1418,6 @@
 <span class="sd">           :rtype: float</span>
 
 <span class="sd">           .. versionadded:: 1.0&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calc</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></div>
-
-<div class="viewcode-block" id="PseudoCounterController.calc"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.calc">[docs]</a>    <span class="k">def</span> <span class="nf">calc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;**Pseudo Counter Controller API**. Override is **MANDATORY**.</span>
-<span class="sd">           Calculate pseudo counter value given the counter values.</span>
-
-<span class="sd">           :param int axis: the pseudo counter role axis</span>
-<span class="sd">           :param sequence&lt;float&gt; values: a sequence containing current values</span>
-<span class="sd">                                          of underlying elements</span>
-<span class="sd">           :return: a pseudo counter value corresponding to the given axis</span>
-<span class="sd">                    pseudo counter role</span>
-<span class="sd">           :rtype: float</span>
-
-<span class="sd">           .. deprecated:: 1.0</span>
-<span class="sd">               implement :meth:`~PseudoCounterController.Calc` instead&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Calc must be defined in the controller&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PseudoCounterController.CalcAll"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.PseudoCounterController.CalcAll">[docs]</a>    <span class="k">def</span> <span class="nf">CalcAll</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>

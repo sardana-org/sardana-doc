@@ -1422,7 +1422,7 @@ device</p>
 Calculates the positions of all pseudo motors that belong to the
 pseudo motor system from the positions of the physical motors.
 Default implementation does a loop calling
-<a class="reference internal" href="#sardana.pool.controller.PseudoMotorController.calc_pseudo" title="sardana.pool.controller.PseudoMotorController.calc_pseudo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PseudoMotorController.calc_pseudo()</span></code></a> for each pseudo motor role.</p>
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">PseudoMotorController.calc_pseudo()</span></code> for each pseudo motor role.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1453,7 +1453,7 @@ motor role)</p>
 Calculates the positions of all motors that belong to the pseudo
 motor system from the positions of the pseudo motors.
 Default implementation does a loop calling
-<a class="reference internal" href="#sardana.pool.controller.PseudoMotorController.calc_physical" title="sardana.pool.controller.PseudoMotorController.calc_physical"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PseudoMotorController.calc_physical()</span></code></a> for each motor role.</p>
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">PseudoMotorController.calc_physical()</span></code> for each motor role.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -1528,106 +1528,6 @@ motor positions</p></li>
 </dl>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.PseudoMotorController.calc_all_pseudo">
-<code class="sig-name descname">calc_all_pseudo</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">physical_pos</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#PseudoMotorController.calc_all_pseudo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.PseudoMotorController.calc_all_pseudo" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Pseudo Motor Controller API</strong>. Override if necessary.
-Calculates the positions of all pseudo motors that belong to the
-pseudo motor system from the positions of the physical motors.
-Default implementation does a loop calling
-<a class="reference internal" href="#sardana.pool.controller.PseudoMotorController.calc_pseudo" title="sardana.pool.controller.PseudoMotorController.calc_pseudo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PseudoMotorController.calc_pseudo()</span></code></a> for each pseudo motor role.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>physical_pos</strong> (<em>sequence&lt;float&gt;</em>) – a sequence of physical motor
-positions</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a sequece of pseudo motor positions (one for each pseudo
-motor role)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>sequence&lt;float&gt;</p>
-</dd>
-</dl>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>implement <a class="reference internal" href="#sardana.pool.controller.PseudoMotorController.CalcAllPseudo" title="sardana.pool.controller.PseudoMotorController.CalcAllPseudo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CalcAllPseudo()</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.PseudoMotorController.calc_all_physical">
-<code class="sig-name descname">calc_all_physical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pseudo_pos</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#PseudoMotorController.calc_all_physical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.PseudoMotorController.calc_all_physical" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Pseudo Motor Controller API</strong>. Override if necessary.
-Calculates the positions of all motors that belong to the pseudo
-motor system from the positions of the pseudo motors.
-Default implementation does a loop calling
-<a class="reference internal" href="#sardana.pool.controller.PseudoMotorController.calc_physical" title="sardana.pool.controller.PseudoMotorController.calc_physical"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PseudoMotorController.calc_physical()</span></code></a> for each motor role.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>pseudo_pos</strong> (<em>sequence&lt;float&gt;</em>) – a sequence of pseudo motor positions</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a sequece of motor positions (one for each motor role)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>sequence&lt;float&gt;</p>
-</dd>
-</dl>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>implement <a class="reference internal" href="#sardana.pool.controller.PseudoMotorController.CalcAllPhysical" title="sardana.pool.controller.PseudoMotorController.CalcAllPhysical"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CalcAllPhysical()</span></code></a>
-instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.PseudoMotorController.calc_pseudo">
-<code class="sig-name descname">calc_pseudo</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">physical_pos</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#PseudoMotorController.calc_pseudo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.PseudoMotorController.calc_pseudo" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Pseudo Motor Controller API</strong>. Override is <strong>MANDATORY</strong>.
-Calculate pseudo motor position given the physical motor positions</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the pseudo motor role axis</p></li>
-<li><p><strong>physical_pos</strong> (<em>sequence&lt;float&gt;</em>) – a sequence of motor positions</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a pseudo motor position corresponding to the given axis
-pseudo motor role</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>implement <a class="reference internal" href="#sardana.pool.controller.PseudoMotorController.CalcPseudo" title="sardana.pool.controller.PseudoMotorController.CalcPseudo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CalcPseudo()</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.PseudoMotorController.calc_physical">
-<code class="sig-name descname">calc_physical</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">pseudo_pos</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#PseudoMotorController.calc_physical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.PseudoMotorController.calc_physical" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Pseudo Motor Controller API</strong>. Override is <strong>MANDATORY</strong>.
-Calculate physical motor position given the pseudo motor positions.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the motor role axis</p></li>
-<li><p><strong>pseudo_pos</strong> (<em>sequence&lt;float&gt;</em>) – a sequence of pseudo motor positions</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a motor position corresponding to the given axis motor role</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>implement <a class="reference internal" href="#sardana.pool.controller.PseudoMotorController.CalcPhysical" title="sardana.pool.controller.PseudoMotorController.CalcPhysical"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CalcPhysical()</span></code></a> instead</p>
 </div>
 </dd></dl>
 
@@ -1721,138 +1621,6 @@ device</p>
 <dt id="sardana.pool.controller.CounterTimerController.gender">
 <code class="sig-name descname">gender</code><em class="property"> = 'Counter/Timer controller'</em><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.gender" title="Permalink to this definition">¶</a></dt>
 <dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.CounterTimerController.get_trigger_type">
-<code class="sig-name descname">get_trigger_type</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.get_trigger_type"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.get_trigger_type" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.CounterTimerController.PreStartAllCT">
-<code class="sig-name descname">PreStartAllCT</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.PreStartAllCT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.PreStartAllCT" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Counter/Timer Controller API</strong>. Override if necessary.
-Called to prepare an acquisition of all selected axis.
-Default implementation does nothing.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.CounterTimerController.PreStartAll" title="sardana.pool.controller.CounterTimerController.PreStartAll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PreStartAll()</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.CounterTimerController.PreStartOneCT">
-<code class="sig-name descname">PreStartOneCT</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.PreStartOneCT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.PreStartOneCT" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Counter/Timer Controller API</strong>. Override if necessary.
-Called to prepare an acquisition a single axis.
-Default implementation returns True.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>True means a successfull PreStartOneCT or False for a failure</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
-</dd>
-</dl>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.CounterTimerController.PreStartOne" title="sardana.pool.controller.CounterTimerController.PreStartOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PreStartOne()</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.CounterTimerController.StartOneCT">
-<code class="sig-name descname">StartOneCT</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.StartOneCT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.StartOneCT" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Counter/Timer Controller API</strong>. Override if necessary.
-Called to start an acquisition of a selected axis.
-Default implementation does nothing.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
-</dd>
-</dl>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.CounterTimerController.StartOne" title="sardana.pool.controller.CounterTimerController.StartOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StartOne()</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.CounterTimerController.StartAllCT">
-<code class="sig-name descname">StartAllCT</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.StartAllCT"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.StartAllCT" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Counter/Timer Controller API</strong>.
-Called to start an acquisition of a group of channels.
-Default implementation does nothing.</p>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>use <a class="reference internal" href="#sardana.pool.controller.CounterTimerController.StartAll" title="sardana.pool.controller.CounterTimerController.StartAll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StartAll()</span></code></a> instead</p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.CounterTimerController.PreStartAll">
-<code class="sig-name descname">PreStartAll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.PreStartAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.PreStartAll" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Controller API</strong>. Override if necessary.
-Called to prepare a write of the position of all axis. Default
-implementation calls deprecated
-<a class="reference internal" href="#sardana.pool.controller.CounterTimerController.PreStartAllCT" title="sardana.pool.controller.CounterTimerController.PreStartAllCT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PreStartAllCT()</span></code></a> which, by default, does
-nothing.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.CounterTimerController.PreStartOne">
-<code class="sig-name descname">PreStartOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.PreStartOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.PreStartOne" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Controller API</strong>. Override if necessary.
-Called to prepare a write of the position of a single axis.
-Default implementation calls deprecated
-<a class="reference internal" href="#sardana.pool.controller.CounterTimerController.PreStartOneCT" title="sardana.pool.controller.CounterTimerController.PreStartOneCT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PreStartOneCT()</span></code></a> which, by default,
-returns True.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – the value</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>True means a successfull pre-start or False for a failure</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
-</dd>
-</dl>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.CounterTimerController.StartOne">
-<code class="sig-name descname">StartOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">value</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.StartOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.StartOne" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Controller API</strong>. Override if necessary.
-Called to write the position of a selected axis. Default
-implementation calls deprecated
-<a class="reference internal" href="#sardana.pool.controller.CounterTimerController.StartOneCT" title="sardana.pool.controller.CounterTimerController.StartOneCT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StartOneCT()</span></code></a> which, by default, does
-nothing.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – the value</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.CounterTimerController.StartAll">
-<code class="sig-name descname">StartAll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#CounterTimerController.StartAll"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.StartAll" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Controller API</strong>.
-Default implementation calls deprecated
-<a class="reference internal" href="#sardana.pool.controller.CounterTimerController.StartAllCT" title="sardana.pool.controller.CounterTimerController.StartAllCT"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StartAllCT()</span></code></a> which, by default, does
-nothing.</p>
 </dd></dl>
 
 </dd></dl>
@@ -2070,32 +1838,6 @@ pseudo counter role</p>
 </dl>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.pool.controller.PseudoCounterController.calc">
-<code class="sig-name descname">calc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">values</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#PseudoCounterController.calc"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.PseudoCounterController.calc" title="Permalink to this definition">¶</a></dt>
-<dd><p><strong>Pseudo Counter Controller API</strong>. Override is <strong>MANDATORY</strong>.
-Calculate pseudo counter value given the counter values.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the pseudo counter role axis</p></li>
-<li><p><strong>values</strong> (<em>sequence&lt;float&gt;</em>) – a sequence containing current values
-of underlying elements</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a pseudo counter value corresponding to the given axis
-pseudo counter role</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
-</dd>
-</dl>
-<div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.0: </span>implement <a class="reference internal" href="#sardana.pool.controller.PseudoCounterController.Calc" title="sardana.pool.controller.PseudoCounterController.Calc"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Calc()</span></code></a> instead</p>
 </div>
 </dd></dl>
 
