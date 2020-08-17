@@ -593,10 +593,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">proxy</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
-
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_use_fqdn</span> <span class="o">=</span> <span class="kc">True</span>
-
         <span class="c1"># Structure to store the controllers and their channels</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_timerable_ctrls</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_zerod_ctrls</span> <span class="o">=</span> <span class="p">[]</span>
@@ -758,7 +755,7 @@
         <span class="sd">&quot;&quot;&quot;Return measurement configuration serializable data structure.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user_config</span></div>
 
-<div class="viewcode-block" id="MeasurementConfiguration.set_configuration_from_user"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.set_configuration_from_user">[docs]</a>    <span class="k">def</span> <span class="nf">set_configuration_from_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="n">to_fqdn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementConfiguration.set_configuration_from_user"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.set_configuration_from_user">[docs]</a>    <span class="k">def</span> <span class="nf">set_configuration_from_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Set measurement configuration from serializable data structure.</span>
 
 <span class="sd">        Setting of the configuration includes the validation process. Setting</span>
@@ -824,8 +821,6 @@
             <span class="k">if</span> <span class="n">external</span><span class="p">:</span>
                 <span class="n">ctrl</span> <span class="o">=</span> <span class="n">ctrl_name</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
-                    <span class="n">ctrl_name</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">ctrl_name</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
                 <span class="n">ctrl</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_element_by_full_name</span><span class="p">(</span><span class="n">ctrl_name</span><span class="p">)</span>
                 <span class="k">assert</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_type</span><span class="p">()</span> <span class="o">==</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">Controller</span>
 
@@ -851,10 +846,6 @@
                     <span class="n">ctrl_conf</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;software&#39;</span>
                     <span class="n">user_config_ctrl</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;software&#39;</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
-                        <span class="n">synchronizer</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">synchronizer</span><span class="p">,</span>
-                                                <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
-
                     <span class="n">user_config_ctrl</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">synchronizer</span>
                     <span class="n">pool_synch</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_element_by_full_name</span><span class="p">(</span><span class="n">synchronizer</span><span class="p">)</span>
                     <span class="n">pool_synch_ctrl</span> <span class="o">=</span> <span class="n">pool_synch</span><span class="o">.</span><span class="n">controller</span>
@@ -880,21 +871,10 @@
                         <span class="n">conf_synch_ctrl</span><span class="o">.</span><span class="n">add_channel</span><span class="p">(</span><span class="n">conf_synch</span><span class="p">)</span>
 
                     <span class="n">ctrl_conf</span><span class="p">[</span><span class="s1">&#39;synchronizer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">conf_synch</span>
-
                 <span class="k">try</span><span class="p">:</span>
                     <span class="n">synchronization</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;synchronization&#39;</span><span class="p">]</span>
                 <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                    <span class="c1"># backwards compatibility for configurations before SEP6</span>
-                    <span class="k">try</span><span class="p">:</span>
-                        <span class="n">synchronization</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;trigger_type&#39;</span><span class="p">]</span>
-                        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;trigger_type configuration parameter &quot;</span>
-                               <span class="s2">&quot;is deprecated&quot;</span>
-                               <span class="s2">&quot; in favor of synchronization. Re-apply &quot;</span>
-                               <span class="s2">&quot;configuration in order to upgrade.&quot;</span><span class="p">)</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-                        <span class="n">synchronization</span> <span class="o">=</span> <span class="n">AcqSynchType</span><span class="o">.</span><span class="n">Trigger</span>
-
+                    <span class="n">synchronization</span> <span class="o">=</span> <span class="n">AcqSynchType</span><span class="o">.</span><span class="n">Trigger</span>
                 <span class="n">ctrl_conf</span><span class="p">[</span><span class="s1">&#39;synchronization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">synchronization</span>
                 <span class="n">user_config_ctrl</span><span class="p">[</span><span class="s1">&#39;synchronization&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">synchronization</span>
 
@@ -907,12 +887,8 @@
                                                      <span class="n">synchronization</span><span class="p">)</span>
                 <span class="n">ctrl_acq_synch</span><span class="p">[</span><span class="n">ctrl</span><span class="p">]</span> <span class="o">=</span> <span class="n">acq_synch</span>
                 <span class="n">timer</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;timer&quot;</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">timer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">to_fqdn</span><span class="p">:</span>
-                    <span class="n">timer</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">timer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
                 <span class="n">ctrl_conf</span><span class="p">[</span><span class="s2">&quot;timer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">timer</span>
                 <span class="n">monitor</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;monitor&quot;</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">monitor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">to_fqdn</span><span class="p">:</span>
-                    <span class="n">monitor</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">monitor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
                 <span class="n">ctrl_conf</span><span class="p">[</span><span class="s2">&quot;monitor&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">monitor</span>
                 <span class="n">ctrl_item</span> <span class="o">=</span> <span class="n">TimerableControllerConfiguration</span><span class="p">(</span><span class="n">ctrl</span><span class="p">,</span> <span class="n">ctrl_conf</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -929,9 +905,6 @@
                     <span class="n">params</span><span class="p">[</span><span class="s1">&#39;pool&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool</span>
                     <span class="n">channel</span> <span class="o">=</span> <span class="n">PoolExternalObject</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
-                        <span class="n">ch_name</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">ch_name</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
-                        <span class="n">ch_data</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch_name</span>
                     <span class="n">channel</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_element_by_full_name</span><span class="p">(</span><span class="n">ch_name</span><span class="p">)</span>
                 <span class="n">ch_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fill_channel_data</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">ch_data</span><span class="p">)</span>
                 <span class="n">user_config_channel</span><span class="p">[</span><span class="n">ch_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ch_data</span>
@@ -958,17 +931,11 @@
                 <span class="n">msg_error</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
                 <span class="k">if</span> <span class="n">ctrl_item</span><span class="o">.</span><span class="n">timer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">timer_name</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;timer&#39;</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
-                        <span class="n">timer_name</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">timer_name</span><span class="p">,</span>
-                                              <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
                     <span class="n">ch_timer</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_element_by_full_name</span><span class="p">(</span><span class="n">timer_name</span><span class="p">)</span>
                     <span class="n">msg_error</span> <span class="o">+=</span> <span class="s1">&#39;Channel </span><span class="si">{0}</span><span class="s1"> is not present but used as &#39;</span> \
                                  <span class="s1">&#39;timer. &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ch_timer</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">ctrl_item</span><span class="o">.</span><span class="n">monitor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">monitor_name</span> <span class="o">=</span> <span class="n">ctrl_data</span><span class="p">[</span><span class="s1">&#39;monitor&#39;</span><span class="p">]</span>
-                    <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
-                        <span class="n">monitor_name</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">monitor_name</span><span class="p">,</span>
-                                                <span class="n">logger</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
                     <span class="n">ch_monitor</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_element_by_full_name</span><span class="p">(</span><span class="n">monitor_name</span><span class="p">)</span>
                     <span class="n">msg_error</span> <span class="o">+=</span> <span class="s1">&#39;Channel </span><span class="si">{0}</span><span class="s1"> is not present but used as &#39;</span> \
                                  <span class="s1">&#39;monitor.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ch_monitor</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
@@ -1040,8 +1007,6 @@
         <span class="k">else</span><span class="p">:</span>  <span class="c1"># Measurement Group with all channel synchronized by hardware</span>
             <span class="n">mnt_grp_timer</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;timer&#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">mnt_grp_timer</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
-                    <span class="n">mnt_grp_timer</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">mnt_grp_timer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
                 <span class="n">user_config</span><span class="p">[</span><span class="s1">&#39;timer&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mnt_grp_timer</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># for backwards compatibility use a random monitor</span>
@@ -1054,8 +1019,6 @@
         <span class="k">else</span><span class="p">:</span>  <span class="c1"># Measurement Group with all channel synchronized by hardware</span>
             <span class="n">mnt_grp_monitor</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;monitor&#39;</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">mnt_grp_monitor</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">to_fqdn</span><span class="p">:</span>
-                    <span class="n">mnt_grp_monitor</span> <span class="o">=</span> <span class="n">_to_fqdn</span><span class="p">(</span><span class="n">mnt_grp_monitor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="p">)</span>
                 <span class="n">user_config</span><span class="p">[</span><span class="s1">&#39;monitor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mnt_grp_monitor</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="c1"># for backwards compatibility use a random monitor</span>
@@ -1258,16 +1221,16 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span>
 
     <span class="c1"># TODO: Check if it needed</span>
-<div class="viewcode-block" id="PoolMeasurementGroup.set_configuration"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">set_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">to_fqdn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">_use_fqdn</span> <span class="o">=</span> <span class="n">to_fqdn</span>
+<div class="viewcode-block" id="PoolMeasurementGroup.set_configuration"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_configuration">[docs]</a>    <span class="k">def</span> <span class="nf">set_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">configuration</span> <span class="o">=</span> <span class="n">config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_dirty</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">propagate</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="n">propagate</span><span class="p">),</span> <span class="n">config</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fire_event</span><span class="p">(</span><span class="n">EventType</span><span class="p">(</span><span class="s2">&quot;configuration&quot;</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="n">propagate</span><span class="p">),</span>
+                        <span class="n">config</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="PoolMeasurementGroup.set_configuration_from_user"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_configuration_from_user">[docs]</a>    <span class="k">def</span> <span class="nf">set_configuration_from_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">to_fqdn</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">set_configuration_from_user</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">to_fqdn</span><span class="p">)</span>
+<div class="viewcode-block" id="PoolMeasurementGroup.set_configuration_from_user"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.set_configuration_from_user">[docs]</a>    <span class="k">def</span> <span class="nf">set_configuration_from_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">set_configuration_from_user</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config_dirty</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">propagate</span><span class="p">:</span>
             <span class="k">return</span>
@@ -1500,16 +1463,8 @@
 <span class="sd">        ..todo:: remove value and multiple arguments.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pending_starts</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;starting acquisition without prior preparing is &quot;</span> \
-                  <span class="s2">&quot;deprecated since version Jan18.&quot;</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Preparing with number_of_starts equal to 1&quot;</span><span class="p">)</span>
-            <span class="n">nb_starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nb_starts</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">set_nb_starts</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="n">multiple</span><span class="p">)</span>
-            <span class="k">finally</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">set_nb_starts</span><span class="p">(</span><span class="n">nb_starts</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;prepare is mandatory before starting acquisition&quot;</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pending_starts</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_mode</span><span class="p">:</span>

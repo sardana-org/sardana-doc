@@ -2613,7 +2613,8 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">checkPoint</span><span class="p">()</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Starting measurement group&quot;</span><span class="p">)</span>
-
+            <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">setNbStarts</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
             <span class="n">mg_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">first_timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
