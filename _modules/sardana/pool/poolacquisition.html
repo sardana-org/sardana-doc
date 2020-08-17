@@ -1044,43 +1044,12 @@
             <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">controller</span>
             <span class="n">ctrl</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span>
             <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadAll</span><span class="p">()</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">res</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span>
-                                      <span class="n">latency</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="n">res</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">)</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;PreLoadOne(axis, value, repetitions) is &quot;</span>
-                           <span class="s2">&quot;deprecated since version 2.7.0.&quot;</span>
-                           <span class="s2">&quot;Use PreLoadOne(axis, value, repetitions, &quot;</span>
-                           <span class="s2">&quot;latency_time) instead.&quot;</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                    <span class="n">res</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;PreLoadOne(axis, value) is deprecated since &quot;</span>
-                           <span class="s2">&quot;version 2.3.0. Use PreLoadOne(axis, value, &quot;</span>
-                           <span class="s2">&quot;repetitions, latency_time) instead.&quot;</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">PreLoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">res</span><span class="p">:</span>
                 <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.PreLoadOne(</span><span class="si">%d</span><span class="s2">) returned False&quot;</span> <span class="o">%</span>
                        <span class="p">(</span><span class="n">pool_ctrl</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="p">))</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">)</span>
-            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                <span class="k">try</span><span class="p">:</span>
-                    <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">)</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;LoadOne(axis, value, repetitions) is&quot;</span>
-                           <span class="s2">&quot;deprecated since version Jan18.&quot;</span>
-                           <span class="s2">&quot;Use LoadOne(axis, value, repetitions, &quot;</span>
-                           <span class="s2">&quot;latency_time) instead.&quot;</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-                    <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;LoadOne(axis, value) is deprecated since &quot;</span>
-                           <span class="s2">&quot;version 2.3.0. Use LoadOne(axis, value, &quot;</span>
-                           <span class="s2">&quot;repetitions) instead.&quot;</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">)</span>
             <span class="n">ctrl</span><span class="o">.</span><span class="n">LoadAll</span><span class="p">()</span>
 
         <span class="k">with</span> <span class="n">ActionContext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

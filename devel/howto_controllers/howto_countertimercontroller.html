@@ -293,7 +293,7 @@ well as to start an acquisition:</p>
         <span class="sd">&quot;&quot;&quot;acquire the specified counter&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">StartChannel</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">LoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">LoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">LoadChannel</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">StopOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
@@ -333,7 +333,7 @@ let’s focus on the first two of them.</p>
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.LoadOne" title="sardana.pool.controller.Loadable.LoadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LoadOne()</span></code></a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpringfieldCounterTimerController</span><span class="p">(</span><span class="n">CounterTimerController</span><span class="p">):</span>
 
-<span class="hll">    <span class="k">def</span> <span class="nf">LoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+<span class="hll">    <span class="k">def</span> <span class="nf">LoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">):</span>
 </span>        <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">LoadChannel</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -627,7 +627,7 @@ acquisitions via the third argument of the
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.LoadOne" title="sardana.pool.controller.Loadable.LoadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LoadOne()</span></code></a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpringfieldCounterTimerController</span><span class="p">(</span><span class="n">CounterTimerController</span><span class="p">):</span>
 
-<span class="hll">    <span class="k">def</span> <span class="nf">LoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">):</span>
+<span class="hll">    <span class="k">def</span> <span class="nf">LoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">):</span>
 </span>        <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">LoadChannel</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">SetRepetitions</span><span class="p">(</span><span class="n">repetitions</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">value</span>
