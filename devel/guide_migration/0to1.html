@@ -1,0 +1,470 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>v0 -&gt; v1 &mdash; sardana 3.0.2-alpha documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Examples" href="../examples/examples.html" />
+    <link rel="prev" title="v2 -&gt; v3" href="2to3.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> sardana
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../docs.html">Documentation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../users/index.html">User’s Guide</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Developer’s Guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../overview/index.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../howto_macros/index.html">Writing macros</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../howto_controllers/index.html">Writing controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../howto_recorders.html">Writing recorders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../howto_test/index.html">Sardana Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/api_sardana.html">API</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Migration guide</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="2to3.html">v2 -&gt; v3</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">v0 -&gt; v1</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/examples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../guide_coding.html">Development guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../sep/index.html">Sardana Enhancement Proposals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_versions.html">Docs for other Sardana versions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana-plugins">Plugins Catalogue</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sardana</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
+        
+          <li><a href="../index.html">Developer’s Guide</a> &raquo;</li>
+        
+          <li><a href="index.html">Sardana migration guide</a> &raquo;</li>
+        
+      <li>v0 -&gt; v1</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/devel/guide_migration/0to1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="v0-v1">
+<span id="to1"></span><h1>v0 -&gt; v1<a class="headerlink" href="#v0-v1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="how-to-migrate-your-macro-code">
+<h2>How to migrate your macro code<a class="headerlink" href="#how-to-migrate-your-macro-code" title="Permalink to this headline">¶</a></h2>
+<p>This chapter describes the necessary steps to fully migrate your macros
+from <em>API v0</em> ( sardana 0.x ) to <em>API v1</em> ( sardana 1.x )</p>
+<div class="section" id="mandatory-changes">
+<h3>Mandatory changes<a class="headerlink" href="#mandatory-changes" title="Permalink to this headline">¶</a></h3>
+<p>The following are the 2 necessary changes to make your macros work in
+sardana <em>API v1</em>:</p>
+<ol class="arabic">
+<li><p>from:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">List</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">List</span>
+</pre></div>
+</div>
+</li>
+<li><p>Parameter type <code class="docutils literal notranslate"><span class="pre">Type.Motor</span></code> should be changed <code class="docutils literal notranslate"><span class="pre">Type.Moveable</span></code>.
+In <strong>v0</strong> the <code class="xref py py-obj docutils literal notranslate"><span class="pre">Motor</span></code> meant any motor (including physical motor, pseudo
+motor). In <strong>v1</strong>, for consistency, <code class="xref py py-obj docutils literal notranslate"><span class="pre">Motor</span></code> means only physical motor
+and <code class="xref py py-obj docutils literal notranslate"><span class="pre">Moveable</span></code> means all moveable elements (including physical motor, pseudo
+motor).</p></li>
+</ol>
+</div>
+<div class="section" id="new-features">
+<h3>New features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h3>
+<p>This chapter is a summary of all new features in <em>API v1</em>.</p>
+<ol class="arabic simple">
+<li><p>Macros can now be functions(see <a class="reference internal" href="../howto_macros/macros_general.html#sardana-macros-howto"><span class="std std-ref">Writing macros</span></a>).</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="how-to-migrate-your-controller-code">
+<h2>How to migrate your controller code<a class="headerlink" href="#how-to-migrate-your-controller-code" title="Permalink to this headline">¶</a></h2>
+<p>This chapter describes the necessary steps to fully migrate your controller
+from <em>API v0</em> ( sardana 0.x ) to <em>API v1</em> ( sardana 1.x )</p>
+<div class="section" id="id1">
+<h3>Mandatory changes<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The following are the 2 necessary changes to make your controller work in
+sardana <em>API v1</em>:</p>
+<ol class="arabic">
+<li><p>from:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pool</span>
+<span class="kn">from</span> <span class="nn">pool</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">ControllerClass</span><span class="o">&gt;/</span><span class="n">PoolUtil</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">pool</span>
+<span class="kn">from</span> <span class="nn">sardana.pool</span> <span class="kn">import</span> <span class="n">PoolUtil</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="kn">import</span> <span class="o">&lt;</span><span class="n">ControllerClass</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>change contructor from:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">):</span>
+    <span class="n">code</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">MotorController</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">code</span>
+</pre></div>
+</div>
+<p>(and don’t forget to call the super class constructor also with args
+and kwargs).</p>
+</li>
+</ol>
+<p>The following change is not mandatory but is necessary in order for your
+controller to be recognized by the pool to be a <em>API v1</em> controller:</p>
+<ol class="arabic" start="3">
+<li><p>_log member changed from <a class="reference external" href="https://docs.python.org/3/library/logging.html#logging.Logger" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Logger</span></code></a> to
+<a class="reference external" href="http://taurus-scada.org/devel/api/taurus/core/util/_Logger.html#taurus.core.util.Logger" title="(in taurus v4.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">taurus.core.util.Logger</span></code></a>. This means that you need to change code
+from:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">setLogLevel</span><span class="p">(</span><span class="n">taurus</span><span class="o">.</span><span class="n">Info</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>since taurus.Info == logging.INFO.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="optional-changes">
+<h3>Optional changes<a class="headerlink" href="#optional-changes" title="Permalink to this headline">¶</a></h3>
+<p>The following changes are not necessary to make your controller work. The
+<em>API v1</em> supports the <em>API v0</em> on these matters.</p>
+<ol class="arabic simple">
+<li><p><strong>class members</strong>:</p></li>
+</ol>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>from: <code class="xref py py-attr docutils literal notranslate"><span class="pre">class_prop</span></code> to: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.ctrl_properties" title="sardana.pool.controller.Controller.ctrl_properties"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ctrl_properties</span></code></a></p></li>
+<li><p>from: <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctrl_extra_attributes</span></code> to: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.axis_attributes" title="sardana.pool.controller.Controller.axis_attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">axis_attributes</span></code></a></p></li>
+<li><p>new feature in <em>API v1</em>: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.ctrl_attributes" title="sardana.pool.controller.Controller.ctrl_attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ctrl_attributes</span></code></a></p></li>
+</ol>
+</div></blockquote>
+<ol class="arabic" start="3">
+<li><p><strong>data types</strong>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.StateOne" title="sardana.pool.controller.Controller.StateOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StateOne()</span></code></a> <strong>return type</strong>: Previously
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.StateOne" title="sardana.pool.controller.Controller.StateOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StateOne()</span></code></a> had to return a member of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">PyTango.DevState</span></code>. Now it <strong>can</strong> instead return a member of
+<a class="reference internal" href="../api/sardana/sardanadefs.html#sardana.sardanadefs.State" title="sardana.sardanadefs.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a>. This eliminates the need to import
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">PyTango</span></code>.</p></li>
+<li><p>In <em>API v0</em> class member (like <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctrl_extra_attributes</span></code>)
+value for key <em>type</em> had to be a string (like ‘PyTango.DevString’ or
+‘PyTango.DevDouble’). Now they can be a python type (like str or float).
+Please check <a class="reference internal" href="../api/api_controller.html#sardana-controller-data-type"><span class="std std-ref">Data Type definition</span></a> for more information.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p><strong>generic controller method names</strong>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>from: <code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code> to: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisPar" title="sardana.pool.controller.Controller.GetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisPar()</span></code></a></p></li>
+<li><p>from: <code class="xref py py-meth docutils literal notranslate"><span class="pre">SetPar()</span></code> to: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetAxisPar" title="sardana.pool.controller.Controller.SetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetAxisPar()</span></code></a></p></li>
+<li><p>from: <code class="xref py py-meth docutils literal notranslate"><span class="pre">GetExtraAttributePar()</span></code> to: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisExtraPar" title="sardana.pool.controller.Controller.GetAxisExtraPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisExtraPar()</span></code></a></p></li>
+<li><p>from: <code class="xref py py-meth docutils literal notranslate"><span class="pre">SetExtraAttributePar()</span></code> to: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetAxisExtraPar" title="sardana.pool.controller.Controller.SetAxisExtraPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetAxisExtraPar()</span></code></a></p></li>
+<li><p>new feature in <em>API v1</em>: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetCtrlPar" title="sardana.pool.controller.Controller.GetCtrlPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetCtrlPar()</span></code></a>, <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetCtrlPar" title="sardana.pool.controller.Controller.SetCtrlPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetCtrlPar()</span></code></a></p></li>
+<li><p>new feature in <em>API v1</em>: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Stopable.AbortAll" title="sardana.pool.controller.Stopable.AbortAll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">AbortAll()</span></code></a> (has default
+implementation which calls <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Stopable.AbortOne" title="sardana.pool.controller.Stopable.AbortOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">AbortOne()</span></code></a> for each axis)</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p><strong>pseudo motor controller method names</strong>:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>from: <code class="xref py py-meth docutils literal notranslate"><span class="pre">calc_pseudo()</span></code> to: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.CalcPseudo" title="sardana.pool.controller.PseudoMotorController.CalcPseudo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CalcPseudo()</span></code></a></p></li>
+<li><p>from: <code class="xref py py-meth docutils literal notranslate"><span class="pre">calc_physical()</span></code> to: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.CalcPhysical" title="sardana.pool.controller.PseudoMotorController.CalcPhysical"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CalcPhysical()</span></code></a></p></li>
+<li><p>from: <code class="xref py py-meth docutils literal notranslate"><span class="pre">calc_all_pseudo()</span></code> to: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.CalcAllPseudo" title="sardana.pool.controller.PseudoMotorController.CalcAllPseudo"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CalcAllPseudo()</span></code></a></p></li>
+<li><p>from: <code class="xref py py-meth docutils literal notranslate"><span class="pre">calc_all_physical()</span></code> to: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.CalcAllPhysical" title="sardana.pool.controller.PseudoMotorController.CalcAllPhysical"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CalcAllPhysical()</span></code></a></p></li>
+<li><p>new feature in <em>API v1</em>: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.GetMotor" title="sardana.pool.controller.PseudoMotorController.GetMotor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetMotor()</span></code></a></p></li>
+<li><p>new feature in <em>API v1</em>: <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.GetPseudoMotor" title="sardana.pool.controller.PseudoMotorController.GetPseudoMotor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPseudoMotor()</span></code></a></p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<div class="section" id="id2">
+<h3>New features<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>This chapter is a summary of all new features in <em>API v1</em>.</p>
+<p><em>New controller features:</em></p>
+<ol class="arabic simple">
+<li><p>All Controllers now have a <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.ctrl_attributes" title="sardana.pool.controller.Controller.ctrl_attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ctrl_attributes</span></code></a> class member
+to define extra controller attributes (and new methods:
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetCtrlPar" title="sardana.pool.controller.Controller.GetCtrlPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetCtrlPar()</span></code></a>, <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetCtrlPar" title="sardana.pool.controller.Controller.SetCtrlPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetCtrlPar()</span></code></a>)</p></li>
+<li><p>For <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.ctrl_properties" title="sardana.pool.controller.Controller.ctrl_properties"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ctrl_properties</span></code></a>, <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.axis_attributes" title="sardana.pool.controller.Controller.axis_attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">axis_attributes</span></code></a>
+and <code class="xref py py-attr docutils literal notranslate"><span class="pre">ctrl_extra_attributes</span></code>:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>new (more pythonic) syntax. Old syntax is still supported:</dt><dd><ul>
+<li><p>can replace data type strings for python type (‘PyTango.DevDouble’ -&gt; float)</p></li>
+<li><p>Default behavior. Example: before data access needed to be described explicitly.
+Now it is read-write by default.</p></li>
+<li><p>support for 2D</p></li>
+<li><p>new keys ‘fget’ and ‘fset’ override default method calls</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+<li><p>no need to import <code class="xref py py-mod docutils literal notranslate"><span class="pre">PyTango</span></code> (<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.StateOne" title="sardana.pool.controller.Controller.StateOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StateOne()</span></code></a> can return
+sardana.State.On instead of PyTango.DevState.ON)</p></li>
+<li><p>PseudoMotorController has new <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.GetMotor" title="sardana.pool.controller.PseudoMotorController.GetMotor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetMotor()</span></code></a> and
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.PseudoMotorController.GetPseudoMotor" title="sardana.pool.controller.PseudoMotorController.GetPseudoMotor"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPseudoMotor()</span></code></a></p></li>
+<li><p>new <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Stopable.AbortAll" title="sardana.pool.controller.Stopable.AbortAll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">AbortAll()</span></code></a> (with default implementation which calls
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Stopable.AbortOne" title="sardana.pool.controller.Stopable.AbortOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">AbortOne()</span></code></a> for each axis)</p></li>
+<li><p>new <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Stopable.StopOne" title="sardana.pool.controller.Stopable.StopOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StopOne()</span></code></a> (with default implementation which calls
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Stopable.AbortOne" title="sardana.pool.controller.Stopable.AbortOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">AbortOne()</span></code></a>)</p></li>
+<li><p>new <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Stopable.StopAll" title="sardana.pool.controller.Stopable.StopAll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StopAll()</span></code></a> (with default implementation which calls
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">StoptOne()</span></code> for each axis)</p></li>
+<li><dl class="simple">
+<dt>new <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisAttributes" title="sardana.pool.controller.Controller.GetAxisAttributes"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisAttributes()</span></code></a> allows features like:</dt><dd><ol class="arabic simple">
+<li><p>per axis customized dynamic attributes</p></li>
+<li><p>Basic interface (example: motor without velocity or acceleration)</p></li>
+<li><p>Discrete motor (declare position has an integer instead of a float).
+No need for IORegisters anymore</p></li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>New <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController" title="sardana.pool.controller.MotorController"><code class="xref py py-class docutils literal notranslate"><span class="pre">MotorController</span></code></a> constants:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController.HomeLimitSwitch" title="sardana.pool.controller.MotorController.HomeLimitSwitch"><code class="xref py py-class docutils literal notranslate"><span class="pre">HomeLimitSwitch</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController.UpperLimitSwitch" title="sardana.pool.controller.MotorController.UpperLimitSwitch"><code class="xref py py-class docutils literal notranslate"><span class="pre">UpperLimitSwitch</span></code></a>;</p></li>
+<li><p><a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.MotorController.LowerLimitSwitch" title="sardana.pool.controller.MotorController.LowerLimitSwitch"><code class="xref py py-class docutils literal notranslate"><span class="pre">LowerLimitSwitch</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<p><em>New acquisition features:</em></p>
+<ol class="arabic simple">
+<li><p>Measurement group has a new <em>Configuration</em> attribute which contains the full
+description of the experiment in JSON format</p></li>
+</ol>
+<p><em>New Tango API features:</em></p>
+<ol class="arabic simple">
+<li><p>Controllers are now Tango devices</p></li>
+<li><p>Pool has a default PoolPath (points to &lt;pool install dir&gt;/poolcontrollers)</p></li>
+<li><p>Create* commands can receive JSON object or an old style list of parameters</p></li>
+<li><p>new CreateElement command (can replace CreateMotor, CreateExpChannel, etc)</p></li>
+<li><p>Pool Abort command: aborts all elements (non pseudo elements)</p></li>
+<li><p>Pool Stop command: stops all elements (non pseudo elements)</p></li>
+<li><p>Controller Abort command: aborts all controller elements</p></li>
+<li><p>Controller Stop command: stops all controller elements</p></li>
+<li><p>Controllers have a LogLevel attribute which allows remote python logging
+management</p></li>
+</ol>
+<p><em>Others:</em></p>
+<ol class="arabic simple">
+<li><p>Pool device is a python device :-)</p></li>
+<li><p>many command line parameters help logging, debugging</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../examples/examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="2to3.html" class="btn btn-neutral float-left" title="v2 -&gt; v3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
