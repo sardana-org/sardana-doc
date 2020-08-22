@@ -753,6 +753,8 @@
                 <span class="k">if</span> <span class="n">state_info</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">.StateOne(</span><span class="si">%s</span><span class="s2">(</span><span class="si">%d</span><span class="s2">)) returns &#39;None&#39;&quot;</span>
                                     <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">axis</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="n">State</span><span class="p">:</span>
+                    <span class="n">state_info</span> <span class="o">=</span> <span class="p">(</span><span class="n">state_info</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
                 <span class="n">state_info</span> <span class="o">=</span> <span class="n">state_info</span><span class="p">,</span> <span class="kc">None</span>
             <span class="k">except</span><span class="p">:</span>
                 <span class="n">exc_info</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>

@@ -397,7 +397,7 @@
     <span class="c1"># state information</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
 
-    <span class="n">_STD_STATUS</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2"> is </span><span class="si">{state}</span><span class="se">\n</span><span class="si">{ctrl_status}</span><span class="s2">&quot;</span>
+    <span class="n">_STD_STATUS</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{name}</span><span class="s2"> is </span><span class="si">{state}</span><span class="s2">&quot;</span>
 
 <div class="viewcode-block" id="PoolBaseElement.calculate_state_info"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolBaseElement.calculate_state_info">[docs]</a>    <span class="k">def</span> <span class="nf">calculate_state_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">status_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Transforms the given state information. This specific base</span>
@@ -408,7 +408,8 @@
 <span class="sd">        status information.</span>
 
 <span class="sd">        :param status_info:</span>
-<span class="sd">            given status information [default: None, meaning use current state status.</span>
+<span class="sd">            given status information [default: None, meaning use current state</span>
+<span class="sd">            status.</span>
 <span class="sd">        :type status_info: tuple&lt;State, str&gt;</span>
 <span class="sd">        :return: a transformed state information</span>
 <span class="sd">        :rtype: tuple&lt;State, str&gt;&quot;&quot;&quot;</span>
@@ -416,8 +417,9 @@
             <span class="n">status_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status</span>
         <span class="n">state</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">status_info</span>
         <span class="n">state_str</span> <span class="o">=</span> <span class="n">State</span><span class="p">[</span><span class="n">state</span><span class="p">]</span>
-        <span class="n">new_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_STD_STATUS</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state_str</span><span class="p">,</span>
-                                             <span class="n">ctrl_status</span><span class="o">=</span><span class="n">status</span><span class="p">)</span>
+        <span class="n">new_status</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_STD_STATUS</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">state</span><span class="o">=</span><span class="n">state_str</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">status</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">new_status</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">status</span><span class="p">)</span>  <span class="c1"># append ctrl status</span>
         <span class="k">return</span> <span class="n">status_info</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">new_status</span></div>
 
 <div class="viewcode-block" id="PoolBaseElement.set_state_info"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolBaseElement.set_state_info">[docs]</a>    <span class="k">def</span> <span class="nf">set_state_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_info</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -442,15 +444,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
 
     <span class="k">def</span> <span class="nf">_from_ctrl_state_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_info</span><span class="p">):</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">state_str</span> <span class="o">=</span> <span class="n">State</span><span class="o">.</span><span class="n">whatis</span><span class="p">(</span><span class="n">state_info</span><span class="p">)</span>
-            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">state_info</span><span class="p">),</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> is in </span><span class="si">{1}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">state_str</span><span class="p">)</span>
-        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
-            <span class="k">pass</span>
-        <span class="n">state_info</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">state_info</span>
-        <span class="n">state</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">state_info</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
-        <span class="n">state</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">state</span><span class="p">,</span> <span class="n">status</span>
+        <span class="n">state_info</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">state_info</span>  <span class="c1"># ignoring exc_info</span>
+        <span class="n">state</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">state_info</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">state</span><span class="p">),</span> <span class="n">status</span>
 
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="c1"># default attribute</span>
