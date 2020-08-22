@@ -385,7 +385,7 @@
     <span class="k">def</span> <span class="nf">_hasDoorMacroPropertyEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines if the environment contains a property with the format</span>
 <span class="sd">        &lt;door name&gt;.&lt;macro name&gt;.&lt;property name&gt;&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getDoorMacroPropertyEnv</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getDoorMacroPropertyEnv</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_getMacroPropertyEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the property value for a property which must have the</span>
@@ -402,7 +402,7 @@
     <span class="k">def</span> <span class="nf">_hasMacroPropertyEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines if the environment contains a property with the format</span>
 <span class="sd">        &lt;macro name&gt;.&lt;property name&gt;&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getMacroPropertyEnv</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getMacroPropertyEnv</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_getDoorPropertyEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the property value for a property which must have the</span>
@@ -419,7 +419,7 @@
     <span class="k">def</span> <span class="nf">_hasDoorPropertyEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines if the environment contains a property with the format</span>
 <span class="sd">        &lt;door name&gt;.&lt;property name&gt;&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getDoorPropertyEnv</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getDoorPropertyEnv</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_getEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prop</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the property value for a property which must have the</span>

@@ -954,10 +954,14 @@
         <span class="n">macro_name</span> <span class="o">=</span> <span class="n">macro_class</span><span class="o">.</span><span class="vm">__name__</span>
 
         <span class="n">environment</span> <span class="o">=</span> <span class="n">init_opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;environment&#39;</span><span class="p">)</span>
+        <span class="n">executor</span> <span class="o">=</span> <span class="n">init_opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;executor&#39;</span><span class="p">)</span>
+        <span class="n">door_name</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">name</span>
 
         <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">env</span> <span class="ow">in</span> <span class="n">macro_env</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">environment</span><span class="o">.</span><span class="n">has_env</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">environment</span><span class="o">.</span><span class="n">has_env</span><span class="p">(</span><span class="n">env</span><span class="p">,</span>
+                                       <span class="n">macro_name</span><span class="o">=</span><span class="n">macro_name</span><span class="p">,</span>
+                                       <span class="n">door_name</span><span class="o">=</span><span class="n">door_name</span><span class="p">):</span>
                 <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">r</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">MissingEnv</span><span class="p">(</span><span class="s2">&quot;The macro </span><span class="si">%s</span><span class="s2"> requires the following missing &quot;</span>
@@ -982,13 +986,16 @@
         <span class="n">macro_env</span> <span class="o">=</span> <span class="n">code</span><span class="o">.</span><span class="n">env</span> <span class="ow">or</span> <span class="p">()</span>
 
         <span class="n">environment</span> <span class="o">=</span> <span class="n">init_opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;environment&#39;</span><span class="p">)</span>
-
+        <span class="n">executor</span> <span class="o">=</span> <span class="n">init_opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;executor&#39;</span><span class="p">)</span>
+        <span class="n">door_name</span> <span class="o">=</span> <span class="n">executor</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">macro_name</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">name</span>
         <span class="n">r</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">env</span> <span class="ow">in</span> <span class="n">macro_env</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">environment</span><span class="o">.</span><span class="n">has_env</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">environment</span><span class="o">.</span><span class="n">has_env</span><span class="p">(</span><span class="n">env</span><span class="p">,</span>
+                                       <span class="n">macro_name</span><span class="o">=</span><span class="n">macro_name</span><span class="p">,</span>
+                                       <span class="n">door_name</span><span class="o">=</span><span class="n">door_name</span><span class="p">):</span>
                 <span class="n">r</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">r</span><span class="p">:</span>
-            <span class="n">macro_name</span> <span class="o">=</span> <span class="n">meta</span><span class="o">.</span><span class="n">name</span>
             <span class="k">raise</span> <span class="n">MissingEnv</span><span class="p">(</span><span class="s2">&quot;The macro </span><span class="si">%s</span><span class="s2"> requires the following missing &quot;</span>
                              <span class="s2">&quot;environment to be defined: </span><span class="si">%s</span><span class="s2">&quot;</span>
                              <span class="o">%</span> <span class="p">(</span><span class="n">macro_name</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="p">)))</span>
