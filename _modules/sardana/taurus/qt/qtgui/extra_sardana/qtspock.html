@@ -1,0 +1,635 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sardana.taurus.qt.qtgui.extra_sardana.qtspock &mdash; sardana 3.0.2-alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+        <script src="../../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
+          
+
+          
+            
+            <img src="../../../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../docs.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana-plugins">Plugins Catalogue</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">sardana</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sardana.taurus.qt.qtgui.extra_sardana.qtspock</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sardana.taurus.qt.qtgui.extra_sardana.qtspock</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="c1">##############################################################################</span>
+<span class="c1">##</span>
+<span class="c1"># This file is part of Sardana</span>
+<span class="c1">##</span>
+<span class="c1"># http://www.sardana-controls.org/</span>
+<span class="c1">##</span>
+<span class="c1"># Copyright 2020 DESY</span>
+<span class="c1">##</span>
+<span class="c1"># Sardana is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU Lesser General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">##</span>
+<span class="c1"># Sardana is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU Lesser General Public License for more details.</span>
+<span class="c1">##</span>
+<span class="c1"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1"># along with Sardana.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">##</span>
+<span class="c1">##############################################################################</span>
+
+<span class="sd">&quot;&quot;&quot;A RichJupyterWidget that loads a spock profile.</span>
+
+<span class="sd">.. note::</span>
+<span class="sd">        The `qtspock` module has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including its removal) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">ast</span>
+
+<span class="kn">from</span> <span class="nn">IPython.core.profiledir</span> <span class="kn">import</span> <span class="n">ProfileDirError</span><span class="p">,</span> <span class="n">ProfileDir</span>
+
+<span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="kn">import</span> <span class="n">Qt</span>
+<span class="kn">from</span> <span class="nn">taurus</span> <span class="kn">import</span> <span class="n">info</span><span class="p">,</span> <span class="n">error</span>
+
+<span class="kn">from</span> <span class="nn">qtconsole.rich_jupyter_widget</span> <span class="kn">import</span> <span class="n">RichJupyterWidget</span>
+<span class="kn">from</span> <span class="nn">qtconsole.manager</span> <span class="kn">import</span> <span class="n">QtKernelManager</span>
+
+<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.base</span> <span class="kn">import</span> <span class="n">TaurusBaseWidget</span>
+<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.container</span> <span class="kn">import</span> <span class="n">TaurusMainWindow</span>
+<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.resource</span> <span class="kn">import</span> <span class="n">getThemeIcon</span>
+
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">release</span>
+<span class="kn">from</span> <span class="nn">sardana.spock.ipython_01_00.genutils</span> <span class="kn">import</span> <span class="n">get_profile_metadata</span><span class="p">,</span> \
+    <span class="n">get_ipython_dir</span><span class="p">,</span> <span class="n">from_name_to_tango</span><span class="p">,</span> <span class="n">get_macroserver_for_door</span>
+<span class="kn">from</span> <span class="nn">sardana.taurus.qt.qtgui.extra_macroexecutor</span> <span class="kn">import</span> \
+    <span class="n">TaurusMacroConfigurationDialog</span>
+
+
+<span class="k">def</span> <span class="nf">get_spock_profile_dir</span><span class="p">(</span><span class="n">profile</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the path to the profile with the given name.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">profile_dir</span> <span class="o">=</span> <span class="n">ProfileDir</span><span class="o">.</span><span class="n">find_profile_dir_by_name</span><span class="p">(</span>
+            <span class="n">get_ipython_dir</span><span class="p">(),</span> <span class="n">profile</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ProfileDirError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">profile_dir</span><span class="o">.</span><span class="n">location</span>
+
+
+<span class="k">def</span> <span class="nf">check_spock_profile</span><span class="p">(</span><span class="n">profile</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check if the profile exists and has the correct value&quot;&quot;&quot;</span>
+    <span class="n">profile_dir</span> <span class="o">=</span> <span class="n">get_spock_profile_dir</span><span class="p">(</span><span class="n">profile</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">profile_dir</span><span class="p">:</span>
+        <span class="n">profile_version_str</span><span class="p">,</span> <span class="n">door_name</span> <span class="o">=</span> <span class="n">get_profile_metadata</span><span class="p">(</span><span class="n">profile_dir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">profile_version_str</span> <span class="o">==</span> <span class="n">release</span><span class="o">.</span><span class="n">version</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">class</span> <span class="nc">SpockKernelManager</span><span class="p">(</span><span class="n">QtKernelManager</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A kernel manager that checks the spock profile before starting a kernel.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The `SpockKernelManager` class has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including its removal) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+
+<span class="sd">    If the check fails, i.e., the profile does not exist or has a different</span>
+<span class="sd">    version, an ipython kernel without spock functionality is started instead</span>
+<span class="sd">    and the attribute `valid_spock_profile` is set to `False`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">kernel_about_to_launch</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_launch_kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kernel_cmd</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">profile</span> <span class="o">=</span> <span class="n">kernel_cmd</span><span class="p">[</span><span class="n">kernel_cmd</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;--profile&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_valid_spock_profile</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">check_spock_profile</span><span class="p">(</span><span class="n">profile</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_valid_spock_profile</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">index</span> <span class="o">=</span> <span class="n">kernel_cmd</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s2">&quot;--profile&quot;</span><span class="p">)</span>
+                <span class="k">del</span> <span class="n">kernel_cmd</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+                <span class="k">del</span> <span class="n">kernel_cmd</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">kernel_cmd</span><span class="p">[:]:</span>
+                    <span class="k">if</span> <span class="n">arg</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;--Spock&quot;</span><span class="p">):</span>
+                        <span class="n">kernel_cmd</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">is_valid_spock_profile</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">error</span><span class="p">(</span><span class="s2">&quot;Checking spock profile failed.&quot;</span><span class="p">)</span>
+        <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Starting kernel...&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_about_to_launch</span><span class="o">.</span><span class="n">emit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_launch_kernel</span><span class="p">(</span><span class="n">kernel_cmd</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="QtSpockWidget"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpockWidget">[docs]</a><span class="k">class</span> <span class="nc">QtSpockWidget</span><span class="p">(</span><span class="n">RichJupyterWidget</span><span class="p">,</span> <span class="n">TaurusBaseWidget</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A RichJupyterWidget that starts a kernel with a spock profile.</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The `QtSpockWidget` class has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including its removal) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+
+<span class="sd">    It is important to call `shutdown_kernel` to gracefully clean up the</span>
+<span class="sd">    started subprocesses.</span>
+
+<span class="sd">    Useful methods of the base class include execute, interrupt_kernel,</span>
+<span class="sd">    restart_kernel, and clear.</span>
+
+<span class="sd">    :param profile:</span>
+<span class="sd">        The name of the spock profile to use. The default is &#39;spockdoor&#39;.</span>
+<span class="sd">    :type profile: str</span>
+<span class="sd">    :param kernel:</span>
+<span class="sd">        The name of the kernel to use. The default is &#39;python3&#39;.</span>
+<span class="sd">    :type  kernel: str</span>
+<span class="sd">    :param use_model_from_profile:</span>
+<span class="sd">        If true, the door name is taken from the spock profile, otherwise it</span>
+<span class="sd">        has to be set via setModel.</span>
+<span class="sd">    :type use_model_from_profile: bool</span>
+<span class="sd">    :param kwargs:</span>
+<span class="sd">        All remaining keywords are passed to the RichJupyterWidget base class</span>
+
+<span class="sd">    Examples::</span>
+
+<span class="sd">        from taurus.external.qt import Qt</span>
+<span class="sd">        from sardana.taurus.qt.qtgui.extra_sardana.qtspock import QtSpockWidget</span>
+<span class="sd">        app = Qt.QApplication([])</span>
+<span class="sd">        widget = QtSpockWidget()</span>
+<span class="sd">        widget.show()</span>
+<span class="sd">        app.aboutToQuit.connect(widget.shutdown_kernel)</span>
+<span class="sd">        app.exec_()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span>
+            <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">profile</span><span class="o">=</span><span class="s1">&#39;spockdoor&#39;</span><span class="p">,</span>
+            <span class="n">use_model_from_profile</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">extensions</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;python3&#39;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+        <span class="n">RichJupyterWidget</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">parent</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+        <span class="n">TaurusBaseWidget</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setModelInConfig</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_profile</span> <span class="o">=</span> <span class="n">profile</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_model_from_profile</span> <span class="o">=</span> <span class="n">use_model_from_profile</span>
+
+        <span class="k">if</span> <span class="n">extensions</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">extensions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">extensions</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span>
+            <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;sardana.taurus.qt.qtgui.extra_sardana.qtspock_ext&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_extensions</span> <span class="o">=</span> <span class="n">extensions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_name</span> <span class="o">=</span> <span class="n">kernel</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_alias</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_door_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_door_alias</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span> <span class="o">=</span> <span class="n">SpockKernelManager</span><span class="p">(</span><span class="n">kernel_name</span><span class="o">=</span><span class="n">kernel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span><span class="o">.</span><span class="n">kernel_about_to_launch</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_handle_kernel_lauched</span><span class="p">)</span>
+
+<div class="viewcode-block" id="QtSpockWidget.start_kernel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpockWidget.start_kernel">[docs]</a>    <span class="k">def</span> <span class="nf">start_kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Start the kernel</span>
+
+<span class="sd">        A normal IPython kernel is started if no model is set via `setModel` or</span>
+<span class="sd">        `use_model_from_profile`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span><span class="o">.</span><span class="n">has_kernel</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span><span class="o">.</span><span class="n">start_kernel</span><span class="p">(</span>
+                <span class="n">extra_arguments</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_extra_arguments</span><span class="p">())</span>
+            <span class="n">kernel_client</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span><span class="o">.</span><span class="n">client</span><span class="p">()</span>
+            <span class="n">kernel_client</span><span class="o">.</span><span class="n">start_channels</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kernel_client</span> <span class="o">=</span> <span class="n">kernel_client</span></div>
+
+    <span class="k">def</span> <span class="nf">_extra_arguments</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">extra_arguments</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;--profile&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_profile</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extensions</span><span class="p">:</span>
+            <span class="n">extra_arguments</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="s2">&quot;--ext&quot;</span><span class="p">,</span> <span class="n">ext</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_model_from_profile</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_name</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_door_name</span><span class="p">:</span>
+                <span class="n">extra_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--Spock.macro_server=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_name</span><span class="p">))</span>
+                <span class="n">extra_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--Spock.macro_server_alias=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_alias</span><span class="p">))</span>
+                <span class="n">extra_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--Spock.door_name=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_door_name</span><span class="p">))</span>
+                <span class="n">extra_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--Spock.door_alias=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_door_alias</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Loading the spock profile would use the macro server and door</span>
+                <span class="c1"># configured there. Instead, use no extra arguments for an</span>
+                <span class="c1"># ipython kernel without Spock functionality</span>
+                <span class="n">extra_arguments</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">return</span> <span class="n">extra_arguments</span>
+
+<div class="viewcode-block" id="QtSpockWidget.setModel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpockWidget.setModel">[docs]</a>    <span class="k">def</span> <span class="nf">setModel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set a door as the model</span>
+
+<span class="sd">        An empty string or None will start a normal IPython kernel without</span>
+<span class="sd">        spock functionality.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">old_door_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_door_name</span>
+        <span class="n">old_macroserver_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_door_name</span><span class="p">(</span><span class="n">door</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_macro_server_name</span><span class="p">(</span><span class="n">door</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_door_name</span> <span class="o">==</span> <span class="n">old_door_name</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_name</span> <span class="o">==</span> <span class="n">old_macroserver_name</span><span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span><span class="o">.</span><span class="n">has_kernel</span><span class="p">:</span>
+            <span class="c1"># RichJupyterWidget.restart_kernel does not support extra arguments</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span><span class="o">.</span><span class="n">restart_kernel</span><span class="p">(</span>
+                <span class="n">extra_arguments</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_extra_arguments</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_kernel_restarted_message</span><span class="p">(</span><span class="n">died</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start_kernel</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="QtSpockWidget.getModel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpockWidget.getModel">[docs]</a>    <span class="k">def</span> <span class="nf">getModel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_door_name</span></div>
+
+    <span class="k">def</span> <span class="nf">_set_door_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">door</span><span class="p">:</span>
+            <span class="n">full_door_tg_name</span><span class="p">,</span> <span class="n">door_tg_name</span><span class="p">,</span> <span class="n">door_tg_alias</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">from_name_to_tango</span><span class="p">(</span><span class="n">door</span><span class="p">))</span>
+            <span class="n">door_alias</span> <span class="o">=</span> <span class="n">door_tg_alias</span> <span class="ow">or</span> <span class="n">door_tg_name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_door_name</span> <span class="o">=</span> <span class="n">full_door_tg_name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_door_alias</span> <span class="o">=</span> <span class="n">door_alias</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_door_name</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_door_alias</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_set_macro_server_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">door</span><span class="p">:</span>
+            <span class="n">macro_server</span> <span class="o">=</span> <span class="n">get_macroserver_for_door</span><span class="p">(</span><span class="n">door</span><span class="p">)</span>
+            <span class="n">full_ms_tg_name</span><span class="p">,</span> <span class="n">ms_tg_name</span><span class="p">,</span> <span class="n">ms_tg_alias</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">from_name_to_tango</span><span class="p">(</span><span class="n">macro_server</span><span class="p">))</span>
+            <span class="n">ms_alias</span> <span class="o">=</span> <span class="n">ms_tg_alias</span> <span class="ow">or</span> <span class="n">ms_tg_name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_name</span> <span class="o">=</span> <span class="n">full_ms_tg_name</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_alias</span> <span class="o">=</span> <span class="n">ms_alias</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_name</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_alias</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">_set_prompts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">var</span> <span class="o">=</span> <span class="s2">&quot;get_ipython().config.Spock.door_alias&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_silent_exec_callback</span><span class="p">(</span>
+            <span class="n">var</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_prompts_callback</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_set_prompts_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="n">in_prefix</span> <span class="o">=</span> <span class="s1">&#39;In&#39;</span>
+        <span class="k">if</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;ok&#39;</span><span class="p">:</span>
+            <span class="n">output_bytes</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;text/plain&#39;</span><span class="p">]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">in_prefix</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">output_bytes</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">SyntaxError</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span><span class="o">.</span><span class="n">is_valid_spock_profile</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_print_ipython_warning</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">in_prompt</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">in_prefix</span> <span class="o">+</span> <span class="s1">&#39; [&lt;span class=&quot;in-prompt-number&quot;&gt;</span><span class="si">%i</span><span class="s1">&lt;/span&gt;]:&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_prompt</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s1">&#39;Result [&lt;span class=&quot;out-prompt-number&quot;&gt;</span><span class="si">%i</span><span class="s1">&lt;/span&gt;]:&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_print_ipython_warning</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_model_from_profile</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extra_arguments</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">append_stream</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Spock profile error: please run spock in the terminal&quot;</span>
+                <span class="s2">&quot; and restart the kernel.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">append_stream</span><span class="p">(</span>
+                <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">No door selected. Please select a valid door.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">append_stream</span><span class="p">(</span>
+            <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">This is a normal ipython kernel. &quot;</span>
+            <span class="s2">&quot;Spock functionality is not available.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<div class="viewcode-block" id="QtSpockWidget.runMacro"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpockWidget.runMacro">[docs]</a>    <span class="k">def</span> <span class="nf">runMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_node</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">macro_node</span><span class="o">.</span><span class="n">toSpockCommand</span><span class="p">())</span></div>
+
+    <span class="c1"># Adapted from</span>
+    <span class="c1"># https://github.com/moble/remote_exec/blob/master/remote_exec.py#L61</span>
+<div class="viewcode-block" id="QtSpockWidget.get_value"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpockWidget.get_value">[docs]</a>    <span class="k">def</span> <span class="nf">get_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Retrieve a value from the user namespace through a blocking call.</span>
+
+<span class="sd">        The value must be able to be pickled on the kernel side and unpickled</span>
+<span class="sd">        on the frontend side.</span>
+
+<span class="sd">        The command will import the pickle module in the user namespace. This</span>
+<span class="sd">        may overwrite a user defined variable with the same name.</span>
+
+<span class="sd">        :param var:</span>
+<span class="sd">            The name of the variable to be retrieved</span>
+<span class="sd">        :type var:  str</span>
+<span class="sd">        :param timeout:</span>
+<span class="sd">            Number of seconds to wait for reply. If no reply is recieved, a</span>
+<span class="sd">            `Queue.Empty` exception is thrown. The default is to wait</span>
+<span class="sd">            indefinitely</span>
+<span class="sd">        :type timeout:  int or None</span>
+<span class="sd">        :return:</span>
+<span class="sd">            The value of the variable from the user namespace</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pickle_dumps</span> <span class="o">=</span> <span class="s1">&#39;pickle.dumps(</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+        <span class="n">msg_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocking_client</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+            <span class="s2">&quot;import pickle&quot;</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">user_expressions</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;output&#39;</span><span class="p">:</span> <span class="n">pickle_dumps</span><span class="p">})</span>
+        <span class="n">reply</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">blocking_client</span><span class="o">.</span><span class="n">get_shell_msg</span><span class="p">(</span><span class="n">msg_id</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">reply</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">][</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;ok&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">reply</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">][</span><span class="s1">&#39;ename&#39;</span><span class="p">],</span> <span class="n">reply</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">][</span><span class="s1">&#39;evalue&#39;</span><span class="p">]))</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">reply</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">][</span><span class="s1">&#39;user_expressions&#39;</span><span class="p">][</span><span class="s1">&#39;output&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;ok&quot;</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">output</span><span class="p">[</span><span class="s1">&#39;ename&#39;</span><span class="p">],</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;evalue&#39;</span><span class="p">]))</span>
+        <span class="n">output_bytes</span> <span class="o">=</span> <span class="n">output</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;text/plain&#39;</span><span class="p">]</span>
+        <span class="n">output_bytes</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">output_bytes</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">output_bytes</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="QtSpockWidget.shutdown_kernel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpockWidget.shutdown_kernel">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown_kernel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Cleanly shut down the kernel and client subprocesses&quot;&quot;&quot;</span>
+        <span class="n">info</span><span class="p">(</span><span class="s1">&#39;Shutting down kernel...&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_client</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kernel_client</span><span class="o">.</span><span class="n">stop_channels</span><span class="p">()</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span><span class="o">.</span><span class="n">kernel</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kernel_manager</span><span class="o">.</span><span class="n">shutdown_kernel</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">_handle_kernel_lauched</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_client</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kernel_client</span><span class="o">.</span><span class="n">kernel_info</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_handle_kernel_info_reply</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rep</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_set_prompts</span><span class="p">()</span>
+        <span class="n">is_starting</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_starting</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_handle_kernel_info_reply</span><span class="p">(</span><span class="n">rep</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_starting</span><span class="p">:</span>
+            <span class="c1"># The base method did not print the banner and reset the prompt.</span>
+            <span class="c1"># As the profile might have changed, do it here.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_append_plain_text</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_append_plain_text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_banner</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reset</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="QtSpock"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpock">[docs]</a><span class="k">class</span> <span class="nc">QtSpock</span><span class="p">(</span><span class="n">TaurusMainWindow</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A standalone QtSpock window</span>
+
+<span class="sd">    .. note::</span>
+<span class="sd">        The `QtSpock` class has been included in Sardana</span>
+<span class="sd">        on a provisional basis. Backwards incompatible changes</span>
+<span class="sd">        (up to and including its removal) may occur if</span>
+<span class="sd">        deemed necessary by the core developers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">designMode</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">designMode</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spockWidget</span> <span class="o">=</span> <span class="n">QtSpockWidget</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">registerConfigDelegate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spockWidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spockWidget</span><span class="o">.</span><span class="n">setModelInConfig</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setCentralWidget</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spockWidget</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">configureAction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">createConfigureAction</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">taurusMenu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">configureAction</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">statusBar</span><span class="p">()</span><span class="o">.</span><span class="n">showMessage</span><span class="p">(</span><span class="s2">&quot;QtSpock ready&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loadSettings</span><span class="p">()</span>
+
+<div class="viewcode-block" id="QtSpock.createConfigureAction"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpock.createConfigureAction">[docs]</a>    <span class="k">def</span> <span class="nf">createConfigureAction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">configureAction</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">QAction</span><span class="p">(</span><span class="n">getThemeIcon</span><span class="p">(</span>
+            <span class="s2">&quot;preferences-system-session&quot;</span><span class="p">),</span> <span class="s2">&quot;Change configuration&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="n">configureAction</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">changeConfiguration</span><span class="p">)</span>
+        <span class="n">configureAction</span><span class="o">.</span><span class="n">setToolTip</span><span class="p">(</span><span class="s2">&quot;Configuring MacroServer and Door&quot;</span><span class="p">)</span>
+        <span class="n">configureAction</span><span class="o">.</span><span class="n">setShortcut</span><span class="p">(</span><span class="s2">&quot;F10&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">configureAction</span></div>
+
+<div class="viewcode-block" id="QtSpock.changeConfiguration"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpock.changeConfiguration">[docs]</a>    <span class="k">def</span> <span class="nf">changeConfiguration</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is used to change macroserver as a model of application.</span>
+<span class="sd">           It shows dialog with list of all macroservers on tango host, if the</span>
+<span class="sd">           user Cancel dialog it doesn&#39;t do anything.&quot;&quot;&quot;</span>
+        <span class="n">dialog</span> <span class="o">=</span> <span class="n">TaurusMacroConfigurationDialog</span><span class="p">(</span>
+            <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">spockWidget</span><span class="o">.</span><span class="n">_macro_server_name</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">modelName</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dialog</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">spockWidget</span><span class="o">.</span><span class="n">setModel</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">dialog</span><span class="o">.</span><span class="n">doorComboBox</span><span class="o">.</span><span class="n">currentText</span><span class="p">()))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">taurus.qt.qtgui.application</span> <span class="kn">import</span> <span class="n">TaurusApplication</span>
+    <span class="n">app</span> <span class="o">=</span> <span class="n">TaurusApplication</span><span class="p">()</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">setOrganizationName</span><span class="p">(</span><span class="s2">&quot;Taurus&quot;</span><span class="p">)</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">setApplicationName</span><span class="p">(</span><span class="s2">&quot;QtSpock&quot;</span><span class="p">)</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">QtSpock</span><span class="p">()</span>
+    <span class="n">window</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">aboutToQuit</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">window</span><span class="o">.</span><span class="n">spockWidget</span><span class="o">.</span><span class="n">shutdown_kernel</span><span class="p">)</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">())</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

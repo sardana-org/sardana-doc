@@ -1,8 +1,7 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -12,12 +11,19 @@
   
 
   
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/graphviz.css" type="text/css" />
+
+  
   
   
   
 
   
-  <script type="text/javascript" src="../../../../../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
@@ -29,11 +35,6 @@
     <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../../../../_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="../../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../../search.html" />
     <link rel="next" title="taurus" href="../../../taurus.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../../../../../index.html" class="icon icon-home"> sardana
+            <a href="../../../../../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
           
 
           
@@ -81,6 +82,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -138,6 +140,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -176,7 +179,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../../../../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
         
           <li><a href="../../../../../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
         
@@ -323,20 +326,9 @@ e.g. Output, Error, Critical</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterLog">
-<code class="sig-name descname">unregisterLog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log_level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterLog" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop registering log messages.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>log_level</strong> – (str) string indicating the log level</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerAll">
-<code class="sig-name descname">registerAll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register for macro result, all log levels and common buffer.</p>
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.createCommonBuffer">
+<code class="sig-name descname">createCommonBuffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.createCommonBuffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a common buffer, where all the registered logs will be stored.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -358,6 +350,11 @@ e.g. Output, Error, Critical</p>
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.log_levels">
+<code class="sig-name descname">log_levels</code><em class="property"> = ['debug', 'output', 'info', 'warning', 'critical', 'error']</em><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.log_levels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getState">
 <code class="sig-name descname">getState</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getState" title="Permalink to this definition">¶</a></dt>
@@ -365,6 +362,42 @@ e.g. Output, Error, Critical</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>(str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterResult">
+<code class="sig-name descname">unregisterResult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unregister macro result.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getExceptionStr">
+<code class="sig-name descname">getExceptionStr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getExceptionStr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get macro exception type representation (None if the macro state
+is not exception).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerAll">
+<code class="sig-name descname">registerAll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register for macro result, all log levels and common buffer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.stop">
+<code class="sig-name descname">stop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">started_event_timeout</span><span class="o">=</span><span class="default_value">3.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop macro execution. Execute macro in synchronous way before using
+this method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>started_event_timeout</strong> – (float) waiting timeout for started event</p>
 </dd>
 </dl>
 </dd></dl>
@@ -384,25 +417,29 @@ e.g. Output, Error, Critical</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getExceptionStr">
-<code class="sig-name descname">getExceptionStr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getExceptionStr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get macro exception type representation (None if the macro state
-is not exception).</p>
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getStateBuffer">
+<code class="sig-name descname">getStateBuffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getStateBuffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get buffer (history) of macro execution states.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(str)</p>
+<dd class="field-odd"><p>(seq&lt;str&gt;)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.stop">
-<code class="sig-name descname">stop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">started_event_timeout</span><span class="o">=</span><span class="default_value">3.0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop macro execution. Execute macro in synchronous way before using
-this method.</p>
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterAll">
+<code class="sig-name descname">unregisterAll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unregister macro result, all log levels and common buffer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getResult">
+<code class="sig-name descname">getResult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get macro result.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>started_event_timeout</strong> – (float) waiting timeout for started event</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(seq&lt;str&gt;) list of strings with Result messages</p>
 </dd>
 </dl>
 </dd></dl>
@@ -418,46 +455,6 @@ this method.</p>
 </dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.log_levels">
-<code class="sig-name descname">log_levels</code><em class="property"> = ['debug', 'output', 'info', 'warning', 'critical', 'error']</em><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.log_levels" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterResult">
-<code class="sig-name descname">unregisterResult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unregister macro result.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterAll">
-<code class="sig-name descname">unregisterAll</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unregister macro result, all log levels and common buffer.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerResult">
-<code class="sig-name descname">registerResult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register for macro result</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getStateBuffer">
-<code class="sig-name descname">getStateBuffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getStateBuffer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get buffer (history) of macro execution states.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(seq&lt;str&gt;)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.createCommonBuffer">
-<code class="sig-name descname">createCommonBuffer</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.createCommonBuffer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a common buffer, where all the registered logs will be stored.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.wait">
 <code class="sig-name descname">wait</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.wait" title="Permalink to this definition">¶</a></dt>
@@ -466,6 +463,17 @@ this method.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>timeout</strong> – (float) waiting timeout (in s); None means wait
 infinitely</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterLog">
+<code class="sig-name descname">unregisterLog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log_level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop registering log messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>log_level</strong> – (str) string indicating the log level</p>
 </dd>
 </dl>
 </dd></dl>
@@ -497,14 +505,9 @@ called.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getResult">
-<code class="sig-name descname">getResult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get macro result.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(seq&lt;str&gt;) list of strings with Result messages</p>
-</dd>
-</dl>
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerResult">
+<code class="sig-name descname">registerResult</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register for macro result</p>
 </dd></dl>
 
 </dd></dl>
@@ -532,12 +535,20 @@ called.</p>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright Except where otherwise noted, content on this site is
 licensed under a Creative Commons Attribution 3.0 License
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -548,7 +559,6 @@ licensed under a Creative Commons Attribution 3.0 License
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {

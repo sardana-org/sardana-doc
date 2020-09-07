@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QtSpock &mdash; sardana 3.0.2-alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Scans" href="../scan.html" />
+    <link rel="prev" title="PoolMotorTV User’s Interface" href="poolmotortv.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../docs.html">Documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">User’s Guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/index.html">Getting started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../spock.html">Spock</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Sardana-Taurus Widgets</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="macroexecutor.html">MacroExecutor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sequencer.html">Sequencer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="experimentconfiguration.html">Experiment Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="macrobutton.html">MacroButton</a></li>
+<li class="toctree-l4"><a class="reference internal" href="sardanaeditor.html">Sardana Editor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="showscan.html">Showscan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="poolmotortv.html">PoolMotorTV</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">QtSpock</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../scan.html">Scans</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../motion.html">Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../acquisition.html">Acquisition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../diffractometer.html">Diffractometer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../adding_elements.html">Adding real elements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../macro_hooks.html">Macro Hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../macro_environment.html">Macro Environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../macro_logging_and_reports.html">Macro Logging and Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../environment_variable_catalog.html">Environment Variable Catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../standard_macro_catalog.html">Standard macro catalog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration/index.html">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../screenshots.html">Screenshots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l3"><a class="reference external" href="https://github.com/sardana-org/sardana/issues?q=is:issue+is:open+label:doc:knownbug">Known Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../devel/index.html">Developer’s Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sep/index.html">Sardana Enhancement Proposals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_versions.html">Docs for other Sardana versions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana-plugins">Plugins Catalogue</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">sardana</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
+        
+          <li><a href="../index.html">User’s Guide</a> &raquo;</li>
+        
+          <li><a href="index.html">Sardana-Taurus Extension widgets</a> &raquo;</li>
+        
+      <li>QtSpock</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/users/taurus/qtspock.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="qtspock">
+<span id="id1"></span><h1>QtSpock<a class="headerlink" href="#qtspock" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The QtSpock widget has been included in Sardana
+on a provisional basis. Backwards incompatible changes
+(up to and including its removal) may occur if
+deemed necessary by the core developers.</p>
+</div>
+<p>Sardana provides <a class="reference external" href="https://qtconsole.readthedocs.io">qtconsole</a>-based widget to
+run <a class="reference internal" href="../spock.html#sardana-spock"><span class="std std-ref">Spock</span></a>.</p>
+<img alt="../../_images/qtspock.png" class="align-center" src="../../_images/qtspock.png" />
+<p>It provides most of the Spock features and can be launched either
+as a standalone application</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python3 -m sardana.taurua.qt.qtgui.extran_sardana.qtspock</span>
+</pre></div>
+</div>
+<p>or embedded in the <a class="reference external" href="http://taurus-scada.org/users/ui/taurusgui.html#taurusgui-ui" title="(in taurus v4.7)"><span>TaurusGUI User’s Interface</span></a>: (when <a class="reference external" href="http://taurus-scada.org/users/ui/taurusgui.html#panelcreation" title="(in taurus v4.7)"><span>Creating custom panels</span></a> use:
+<a class="reference internal" href="../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#module-sardana.taurus.qt.qtgui.extra_sardana.qtspock" title="sardana.taurus.qt.qtgui.extra_sardana.qtspock"><code class="xref py py-obj docutils literal notranslate"><span class="pre">sardana.taurus.qt.qtgui.extra_sardana.qtspock</span></code></a> module and
+<a class="reference internal" href="../../devel/api/sardana/taurus/qt/qtgui/extra_sardana/qtspock.html#sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpockWidget" title="sardana.taurus.qt.qtgui.extra_sardana.qtspock.QtSpockWidget"><code class="xref py py-obj docutils literal notranslate"><span class="pre">QtSpockWidget</span></code></a>
+class).</p>
+<p>QtSpock requires a spock profile <em>spockdoor</em> to be created and upgraded
+beforehand (use <code class="docutils literal notranslate"><span class="pre">spock</span></code> command to create/upgrade profile).</p>
+<p>Below you can find a list of features still not supported by QtSpock:</p>
+<ul class="simple">
+<li><p>block update macros e.g. <a class="reference internal" href="../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.umv" title="sardana.macroserver.macros.standard.umv"><code class="xref py py-obj docutils literal notranslate"><span class="pre">umv</span></code></a> are not
+updated in block but their output is simply appended</p></li>
+<li><p><a class="reference internal" href="../../devel/api/sardana/spock/magic.html#sardana.spock.magic.edmac" title="sardana.spock.magic.edmac"><code class="xref py py-obj docutils literal notranslate"><span class="pre">edmac</span></code></a> magic command</p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../scan.html" class="btn btn-neutral float-right" title="Scans" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="poolmotortv.html" class="btn btn-neutral float-left" title="PoolMotorTV User’s Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
