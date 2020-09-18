@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.macros.demo &mdash; sardana 3.0.2-alpha documentation</title>
+  <title>sardana.macroserver.macros.demo &mdash; sardana 3.0.3 documentation</title>
   
 
   
@@ -385,15 +385,6 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="n">_ENV</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
 
     <span class="bp">self</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;DONE!&quot;</span><span class="p">)</span></div>
-
-
-<span class="nd">@macro</span><span class="p">([[</span><span class="s2">&quot;motor&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">]])</span>
-<span class="k">def</span> <span class="nf">mym2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pm</span><span class="p">):</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">pm</span><span class="o">.</span><span class="n">getMotorNames</span><span class="p">())</span>
-    <span class="n">elements</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getMoveable</span><span class="p">,</span> <span class="n">pm</span><span class="o">.</span><span class="n">elements</span><span class="p">))</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">pm</span><span class="p">))</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">elements</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 
 
 <div class="viewcode-block" id="clear_sar_demo_hkl"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/demo.html#sardana.macroserver.macros.demo.clear_sar_demo_hkl">[docs]</a><span class="nd">@macro</span><span class="p">()</span>

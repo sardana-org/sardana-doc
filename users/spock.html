@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Spock &mdash; sardana 3.0.2-alpha documentation</title>
+  <title>Spock &mdash; sardana 3.0.3 documentation</title>
   
 
   
@@ -387,9 +387,38 @@ displays detailed information about an element</p></li>
 <div class="section" id="stopping-macros">
 <span id="sardana-spock-stopping"></span><h2>Stopping macros<a class="headerlink" href="#stopping-macros" title="Permalink to this headline">¶</a></h2>
 <p>Some macros may take a long time to execute. To stop a macro in the middle of
-its execution type <kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">c</kbd></kbd>.</p>
+its execution type <kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">c</kbd></kbd>. If the stopping process last too long,
+you may trigger the aborting process with a second <kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">c</kbd></kbd>.
+Here be patient, further issuing of <kbd class="kbd docutils literal notranslate"><kbd class="kbd docutils literal notranslate">Control</kbd>+<kbd class="kbd docutils literal notranslate">c</kbd></kbd> may leave your macro
+in an uncontrolled way. Use them only if you are sure that the aborting
+process will not bring your system to a safe state.</p>
 <p>Macros that move motors or acquire data from sensors will automatically stop all
 motion and/or all acquisition.</p>
+<p>While stopping and aborting macros Spock reports you what happens behind the
+scene with informative messages:</p>
+<div class="highlight-spock notranslate"><div class="highlight"><pre><span></span><span class="gp">LAB-01-D01 [1]: </span><span class="n">ascan</span> <span class="n">mot01</span> <span class="mi">0</span> <span class="mi">10</span> <span class="mi">100</span> <span class="mf">0.1</span>
+<span class="go">Operation will be saved in /tmp/test.h5 (HDF5::NXscan from NXscanH5_FileRecorder)</span>
+<span class="go">Scan #342 started at Wed Sep  9 23:01:14 2020. It will take at least 0:00:10.174246</span>
+<span class="go">                                       tg_test</span>
+<span class="go"> #Pt No    mot01      ct01     gct01    double_scalar     dt</span>
+<span class="go">   0         0        0.1     2.98023e-08      243.47     0.0967791</span>
+<span class="go">   1        0.1       0.1     5.91929e-08      243.47     0.239136</span>
+<span class="go">   2        0.2       0.1     1.1595e-07      243.47     0.384191</span>
+<span class="go">^C</span>
+<span class="go">Ctrl-C received: Stopping...</span>
+<span class="go">Stopping Motion([&#39;mot01&#39;]) reserved by ascan</span>
+<span class="go">Motion([&#39;mot01&#39;]) stopped</span>
+<span class="go">Stopping mntgrp_expconf reserved by ascan</span>
+<span class="go">mntgrp_expconf stopped</span>
+<span class="go">Stopping /monitor reserved by ascan</span>
+<span class="go">Stopping /mirror reserved by ascan</span>
+<span class="go">Stopping /slit reserved by ascan</span>
+<span class="go">Operation saved in /tmp/test.h5 (HDF5::NXscan)</span>
+<span class="go">Scan #342 ended at Wed Sep  9 23:01:15 2020, taking 0:00:01.055814. Dead time 33.7% (motion dead time 12.8%)</span>
+<span class="go">Executing ascan.on_stop method...</span>
+<span class="go">Stopping done!</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="exiting-spock">
 <h2>Exiting spock<a class="headerlink" href="#exiting-spock" title="Permalink to this headline">¶</a></h2>

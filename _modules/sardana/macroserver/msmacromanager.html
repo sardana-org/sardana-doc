@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.msmacromanager &mdash; sardana 3.0.2-alpha documentation</title>
+  <title>sardana.macroserver.msmacromanager &mdash; sardana 3.0.3 documentation</title>
   
 
   
@@ -688,8 +688,9 @@
                     <span class="k">elif</span> <span class="p">(</span><span class="n">macro_name</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
                             <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="p">[</span><span class="n">macro_name</span><span class="p">]</span><span class="o">.</span><span class="n">lib</span> <span class="o">!=</span> <span class="n">macro_lib</span><span class="p">):</span>
                         <span class="n">isoverwritten</span> <span class="o">=</span> <span class="kc">True</span>
-                        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Macro &quot;</span><span class="si">{}</span><span class="s1">&quot; defined in &quot;</span><span class="si">{}</span><span class="s1">&quot; macro library&#39;</span>
-                               <span class="o">+</span> <span class="s1">&#39; has been overwritten by &quot;</span><span class="si">{}</span><span class="s1">&quot; macro library&#39;</span><span class="p">)</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Macro &quot;</span><span class="si">{0}</span><span class="s1">&quot; defined in &quot;</span><span class="si">{1}</span><span class="s1">&quot; macro library&#39;</span>
+                               <span class="o">+</span> <span class="s1">&#39; has been overwritten by &quot;</span><span class="si">{2}</span><span class="s1">&quot; macro library&#39;</span>
+                               <span class="p">)</span>
                         <span class="n">old_lib_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_dict</span><span class="p">[</span><span class="n">macro_name</span><span class="p">]</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">name</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">macro_name</span><span class="p">,</span> <span class="n">old_lib_name</span><span class="p">,</span>
                                               <span class="n">macro_lib</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>

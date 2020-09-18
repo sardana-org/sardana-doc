@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.macroserver.scan.gscan &mdash; sardana 3.0.2-alpha documentation</title>
+  <title>sardana.macroserver.scan.gscan &mdash; sardana 3.0.3 documentation</title>
   
 
   
@@ -2930,7 +2930,8 @@
         <span class="k">yield</span> <span class="mi">0</span>
         <span class="n">measurement_group</span><span class="o">.</span><span class="n">setNbStarts</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">measurement_group</span><span class="o">.</span><span class="n">count_continuous</span><span class="p">(</span><span class="n">synch_description</span><span class="p">,</span>
-                                           <span class="bp">self</span><span class="o">.</span><span class="n">value_buffer_changed</span><span class="p">)</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">value_buffer_changed</span><span class="p">,</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">value_ref_buffer_changed</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Waiting for value buffer events to be processed&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wait_value_buffer</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">join_thread_pool</span><span class="p">()</span>

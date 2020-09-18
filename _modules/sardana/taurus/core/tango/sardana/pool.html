@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.taurus.core.tango.sardana.pool &mdash; sardana 3.0.2-alpha documentation</title>
+  <title>sardana.taurus.core.tango.sardana.pool &mdash; sardana 3.0.3 documentation</title>
   
 
   
@@ -642,6 +642,11 @@
         <span class="n">evt_wait</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">))</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="n">DevState</span><span class="o">.</span><span class="n">MOVING</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="c1"># Clear event set to not confuse the value coming from the</span>
+            <span class="c1"># connection with the event of of end of the operation</span>
+            <span class="c1"># in the next wait event. This was observed on Windows where</span>
+            <span class="c1"># the time stamp resolution is very poor.</span>
+            <span class="n">evt_wait</span><span class="o">.</span><span class="n">clearEventSet</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__go_time</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__go_start_time</span> <span class="o">=</span> <span class="n">ts1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_start</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1551,6 +1556,34 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># dict&lt;str, list[DeviceProxy, CaselessDict&lt;str, dict&gt;]&gt;</span>
+        <span class="c1"># where key is a device name and value is a list with two elements:</span>
+        <span class="c1">#  - A device proxy or None if there was an error building it</span>
+        <span class="c1">#  - A dict where keys are attribute names and value is a reference to</span>
+        <span class="c1">#    a dict representing channel data as received in raw data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tango_dev_channels</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Number of elements in tango_dev_channels in error (could not build</span>
+        <span class="c1"># DeviceProxy, probably)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tango_dev_channels_in_error</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># dict&lt;str, tuple&lt;str, str, TangoChannelInfo&gt;&gt;</span>
+        <span class="c1"># where key is a channel name and value is a tuple of three elements:</span>
+        <span class="c1">#  - device name</span>
+        <span class="c1">#  - attribute name</span>
+        <span class="c1">#  - attribute information or None if there was an error trying to get</span>
+        <span class="c1">#    the information</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="c1"># Number of elements in tango_channels_info_in_error in error</span>
+        <span class="c1"># (could not build attribute info, probably)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info_in_error</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="c1"># dict&lt;str, dict&gt;</span>
+        <span class="c1"># where key is a channel name and data is a reference to a dict</span>
+        <span class="c1"># representing channel data as received in raw data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">non_tango_channels</span> <span class="o">=</span> <span class="kc">None</span>
+
         <span class="c1"># object each time</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">data</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
@@ -1629,35 +1662,6 @@
             <span class="n">ctrl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_ctrl_for_element</span><span class="p">(</span><span class="n">channel_name</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">ctrl</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller_list_name</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">controller_list_name</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
-        <span class="c1"># dict&lt;str, list[DeviceProxy, CaselessDict&lt;str, dict&gt;]&gt;</span>
-        <span class="c1"># where key is a device name and value is a list with two elements:</span>
-        <span class="c1">#  - A device proxy or None if there was an error building it</span>
-        <span class="c1">#  - A dict where keys are attribute names and value is a reference to</span>
-        <span class="c1">#    a dict representing channel data as received in raw data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tango_dev_channels</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="c1"># Number of elements in tango_dev_channels in error (could not build</span>
-        <span class="c1"># DeviceProxy, probably)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tango_dev_channels_in_error</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="c1"># dict&lt;str, tuple&lt;str, str, TangoChannelInfo&gt;&gt;</span>
-        <span class="c1"># where key is a channel name and value is a tuple of three elements:</span>
-        <span class="c1">#  - device name</span>
-        <span class="c1">#  - attribute name</span>
-        <span class="c1">#  - attribute information or None if there was an error trying to get</span>
-        <span class="c1">#    the information</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="c1"># Number of elements in tango_channels_info_in_error in error</span>
-        <span class="c1"># (could not build attribute info, probably)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tango_channels_info_in_error</span> <span class="o">=</span> <span class="mi">0</span>
-
-        <span class="c1"># dict&lt;str, dict&gt;</span>
-        <span class="c1"># where key is a channel name and data is a reference to a dict</span>
-        <span class="c1"># representing channel data as received in raw data</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">non_tango_channels</span> <span class="o">=</span> <span class="kc">None</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">initialized</span> <span class="o">=</span> <span class="kc">False</span>
 
     <span class="k">def</span> <span class="nf">_build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># internal channel structure that groups channels by tango device so</span>
@@ -2496,7 +2500,7 @@
 
 <span class="sd">        :param timer: &lt;str&gt; timer name</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_mg</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;setTimer() is deprecated since Jul20. &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mg</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;setTimer() is deprecated since 3.0.3. &quot;</span>
                            <span class="s2">&quot;Global measurement group timer does not exist&quot;</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_ctrl_for_channel</span><span class="p">([</span><span class="n">timer</span><span class="p">],</span> <span class="n">unique</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
@@ -2507,13 +2511,13 @@
 
     <span class="k">def</span> <span class="nf">getTimer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;DEPRECATED&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_mg</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;getTimer() is deprecated since Jul20. &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mg</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;getTimer() is deprecated since 3.0.3. &quot;</span>
                            <span class="s2">&quot;Global measurement group timer does not exist&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getTimer</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">getMonitor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;DEPRECATED&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_mg</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;getMonitor() is deprecated since Jul20. &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mg</span><span class="p">()</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;getMonitor() is deprecated since 3.0.3. &quot;</span>
                            <span class="s2">&quot;Global measurement group monitor does not exist&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getMonitor</span><span class="p">()</span>
 
@@ -3243,19 +3247,19 @@
 
 <div class="viewcode-block" id="MeasurementGroup.getMonitorName"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getMonitorName">[docs]</a>    <span class="k">def</span> <span class="nf">getMonitorName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;DEPRECATED&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;getMonitorName() is deprecated since Jul20. &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;getMonitorName() is deprecated since 3.0.3. &quot;</span>
                      <span class="s2">&quot;Global measurement group monitor does not exist.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getConfiguration</span><span class="p">()</span><span class="o">.</span><span class="n">_getMonitorName</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.getTimerName"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getTimerName">[docs]</a>    <span class="k">def</span> <span class="nf">getTimerName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;DEPRECATED&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;getTimerName() is deprecated since Jul20. &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;getTimerName() is deprecated since 3.0.3. &quot;</span>
                      <span class="s2">&quot;Global measurement group timer does not exist.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getConfiguration</span><span class="p">()</span><span class="o">.</span><span class="n">_getTimerName</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.getTimerValue"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.getTimerValue">[docs]</a>    <span class="k">def</span> <span class="nf">getTimerValue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;DEPRECATED&quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;getTimerValue() is deprecated since Jul20. &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;getTimerValue() is deprecated since 3.0.3. &quot;</span>
                      <span class="s2">&quot;Global measurement group timer does not exist.&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getConfiguration</span><span class="p">()</span><span class="o">.</span><span class="n">_getTimerValue</span><span class="p">()</span></div>
 
@@ -3265,7 +3269,7 @@
 <span class="sd">        :param channels: (seq&lt;str&gt;) a sequence of strings indicating</span>
 <span class="sd">           channel names</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;enableChannels() in deprecated since Jul20. &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;enableChannels() in deprecated since 3.0.3. &quot;</span>
                      <span class="s2">&quot;Use setEnabled() instead.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="o">*</span><span class="n">channels</span><span class="p">)</span></div>
 
@@ -3275,7 +3279,7 @@
 <span class="sd">        :param channels: (seq&lt;str&gt;) a sequence of strings indicating</span>
 <span class="sd">           channel names</span>
 <span class="sd">        &#39;&#39;&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;enableChannels() in deprecated since Jul20. &quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;enableChannels() in deprecated since 3.0.3. &quot;</span>
                      <span class="s2">&quot;Use setEnabled() instead.&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setEnabled</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="o">*</span><span class="n">channels</span><span class="p">)</span></div>
 
@@ -3525,7 +3529,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">count_raw</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="MeasurementGroup.count_continuous"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count_continuous">[docs]</a>    <span class="k">def</span> <span class="nf">count_continuous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synch_description</span><span class="p">,</span> <span class="n">value_buffer_cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="viewcode-block" id="MeasurementGroup.count_continuous"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.taurus.core.tango.sardana.pool.MeasurementGroup.count_continuous">[docs]</a>    <span class="k">def</span> <span class="nf">count_continuous</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">synch_description</span><span class="p">,</span> <span class="n">value_buffer_cb</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                         <span class="n">value_ref_buffer_cb</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Execute measurement process according to the given synchronization</span>
 <span class="sd">        description.</span>
 
@@ -3534,6 +3539,9 @@
 <span class="sd">          synchronizations</span>
 <span class="sd">        :param value_buffer_cb: callback on value buffer updates</span>
 <span class="sd">        :type value_buffer_cb: callable</span>
+<span class="sd">        :param value_ref_buffer_cb: callback on value reference</span>
+<span class="sd">          buffer updates</span>
+<span class="sd">        :type value_ref_buffer_cb: callable</span>
 <span class="sd">        :return: state and eventually value buffers if no callback was passed</span>
 <span class="sd">        :rtype: tuple&lt;list&lt;DevState&gt;,&lt;list&gt;&gt;</span>
 
@@ -3550,10 +3558,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">setSynchDescription</span><span class="p">(</span><span class="n">synch_description</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">subscribeValueBuffer</span><span class="p">(</span><span class="n">value_buffer_cb</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subscribeValueRefBuffer</span><span class="p">(</span><span class="n">value_ref_buffer_cb</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">count_raw</span><span class="p">(</span><span class="n">start_time</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">unsubscribeValueBuffer</span><span class="p">(</span><span class="n">value_buffer_cb</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">unsubscribeValueRefBuffer</span><span class="p">(</span><span class="n">value_ref_buffer_cb</span><span class="p">)</span>
         <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getStateEG</span><span class="p">()</span><span class="o">.</span><span class="n">readValue</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">state</span> <span class="o">==</span> <span class="n">Fault</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Measurement group ended acquisition with Fault state&quot;</span>

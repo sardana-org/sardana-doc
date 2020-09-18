@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>sardana.pool.controller &mdash; sardana 3.0.2-alpha documentation</title>
+  <title>sardana.pool.controller &mdash; sardana 3.0.3 documentation</title>
   
 
   
@@ -1051,7 +1051,15 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_master</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_latency_time</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="o">=</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="o">=</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span>
+
+<div class="viewcode-block" id="CounterTimerController.StartOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController.StartOne">[docs]</a>    <span class="k">def</span> <span class="nf">StartOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
+<span class="sd">        Called to do a start of the given axis (whatever start means).</span>
+
+<span class="sd">        :param int axis: axis number</span>
+<span class="sd">        :param float value: new value&quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
 
 
 <span class="k">class</span> <span class="nc">TriggerGateController</span><span class="p">(</span><span class="n">Controller</span><span class="p">,</span> <span class="n">Synchronizer</span><span class="p">,</span> <span class="n">Stopable</span><span class="p">,</span> <span class="n">Startable</span><span class="p">):</span>
