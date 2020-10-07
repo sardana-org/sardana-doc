@@ -248,7 +248,7 @@ for the synchronization</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ctrls</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><em>list</em></a>) – list of enabled trigger/gate controllers</p></li>
+<li><p><strong>ctrls</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – list of enabled trigger/gate controllers</p></li>
 <li><p><strong>synch_description</strong> (<a class="reference internal" href="#sardana.pool.poolsynchronization.SynchDescription" title="sardana.pool.poolsynchronization.SynchDescription"><code class="xref py py-class docutils literal notranslate"><span class="pre">SynchDescription</span></code></a>) – synchronization description</p></li>
 <li><p><strong>moveable</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">PoolMotor</span></code> or
 <a class="reference internal" href="poolpseudomotor.html#sardana.pool.poolpseudomotor.PoolPseudoMotor" title="sardana.pool.poolpseudomotor.PoolPseudoMotor"><code class="xref py py-class docutils literal notranslate"><span class="pre">PoolPseudoMotor</span></code></a>) – (optional) moveable object used as the
@@ -269,14 +269,14 @@ software synchronizer, can be either
 returned by the controller(s) and the software synchronizer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>states</strong> (<em>dict&lt;PoolElement</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>)</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em>)</em><em>)</em>) – a map containing state information as returned by
+<dd class="field-odd"><p><strong>states</strong> (<em>dict&lt;PoolElement</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><em>tuple</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em><em>)</em>) – a map containing state information as returned by
 read_state_info: ((state, status), exception_error)</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>returns True if is triggering or False otherwise</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -298,7 +298,7 @@ read_state_info: ((state, status), exception_error)</p>
 </map><dl class="py class">
 <dt id="sardana.pool.poolsynchronization.SynchDescription">
 <em class="property">class </em><code class="sig-name descname">SynchDescription</code><a class="reference internal" href="../../../../_modules/sardana/pool/poolsynchronization.html#SynchDescription"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolsynchronization.SynchDescription" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a></p>
 <p>Synchronization description. It is composed from groups - repetitions
 of equidistant synchronization events. Each group is described by
 <a class="reference internal" href="pooldefs.html#sardana.pool.pooldefs.SynchParam" title="sardana.pool.pooldefs.SynchParam"><code class="xref py py-class docutils literal notranslate"><span class="pre">SynchParam</span></code></a> parameters which may have

@@ -307,9 +307,9 @@ controllers.</p>
 If name is not None, a controller template code for the given
 controller name is appended to the end of the file.</p>
 <dl class="simple">
-<dt>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> lib_name: module name, python file name, or full file</dt><dd><p>name (with path)</p>
+<dt>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> lib_name: module name, python file name, or full file</dt><dd><p>name (with path)</p>
 </dd>
-<dt>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> controller_name: an optional controller name. If</dt><dd><p>given a controller template code is appended to the
+<dt>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> controller_name: an optional controller name. If</dt><dd><p>given a controller template code is appended to the
 end of the file [default: None, meaning no controller
 code is added)</p>
 </dd>
@@ -321,7 +321,7 @@ line number is 0 if no controller is created or n representing
 the first line of code for the given controller name.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>tuple&lt;str, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>, int&gt;</p>
+<dd class="field-even"><p>tuple&lt;str, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>, int&gt;</p>
 </dd>
 </dl>
 </dd></dl>
@@ -331,8 +331,8 @@ the first line of code for the given controller name.</p>
 <code class="sig-name descname">setControllerLib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lib_name</span></em>, <em class="sig-param"><span class="n">code</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.setControllerLib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.setControllerLib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new controller library file with the given name and code.
 The new module is imported and becomes imediately available.</p>
-<p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> lib_name: name of the new library
-:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> code: python code of the new library</p>
+<p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> lib_name: name of the new library
+:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> code: python code of the new library</p>
 </dd></dl>
 
 <dl class="py method">
@@ -354,12 +354,12 @@ The new module is imported and becomes imediately available.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference internal" href="poolexception.html#sardana.pool.poolexception.UnknownController" title="sardana.pool.poolexception.UnknownController"><code class="xref py py-exc docutils literal notranslate"><span class="pre">sardana.pool.poolexception.UnknownController</span></code></a>
-in case the controller is unknown or <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ImportError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a> if
+in case the controller is unknown or <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ImportError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a> if
 the reload process is not successfull</p>
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>controller_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – controller class name</p></li>
+<li><p><strong>controller_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – controller class name</p></li>
 <li><p><strong>path</strong> (<em>seq&lt;str&gt;</em>) – a list of absolute path to search for libraries
 [default: None, meaning the current ControllerPath
 will be used]</p></li>
@@ -375,7 +375,7 @@ will be used]</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference internal" href="poolexception.html#sardana.pool.poolexception.UnknownController" title="sardana.pool.poolexception.UnknownController"><code class="xref py py-exc docutils literal notranslate"><span class="pre">sardana.pool.poolexception.UnknownController</span></code></a>
-in case the controller is unknown or <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ImportError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a> if
+in case the controller is unknown or <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ImportError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a> if
 the reload process is not successful</p>
 </dd>
 <dt class="field-even">Parameters</dt>
@@ -396,7 +396,7 @@ will be used]</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference internal" href="poolexception.html#sardana.pool.poolexception.UnknownController" title="sardana.pool.poolexception.UnknownController"><code class="xref py py-exc docutils literal notranslate"><span class="pre">sardana.pool.poolexception.UnknownController</span></code></a>
-in case the controller is unknown or <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ImportError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a> if
+in case the controller is unknown or <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ImportError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a> if
 the reload process is not successful</p>
 </dd>
 <dt class="field-even">Parameters</dt>
@@ -417,12 +417,12 @@ will be used]</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
 <dd class="field-odd"><p><a class="reference internal" href="poolexception.html#sardana.pool.poolexception.UnknownController" title="sardana.pool.poolexception.UnknownController"><code class="xref py py-exc docutils literal notranslate"><span class="pre">sardana.pool.poolexception.UnknownController</span></code></a>
-in case the controller is unknown or <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ImportError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a> if
+in case the controller is unknown or <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ImportError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">ImportError</span></code></a> if
 the reload process is not successful</p>
 </dd>
 <dt class="field-even">Parameters</dt>
 <dd class="field-even"><ul class="simple">
-<li><p><strong>module_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – controller library name (=python module name)</p></li>
+<li><p><strong>module_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) – controller library name (=python module name)</p></li>
 <li><p><strong>path</strong> (<em>seq&lt;str&gt;</em>) – a list of absolute path to search for libraries
 [default: None, meaning the current ControllerPath
 will be used]</p></li>

@@ -335,7 +335,7 @@ in the <a class="reference internal" href="#sardana.pool.controller.Memorize" ti
 </map><dl class="py class">
 <dt id="sardana.pool.controller.Readable">
 <em class="property">class </em><code class="sig-name descname">Readable</code><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Readable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Readable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A Readable interface. A controller for which it’s axis are ‘readable’
 (like a motor, counter or 1D for example) should implement this interface</p>
 <dl class="py method">
@@ -354,7 +354,7 @@ Called to prepare a read of the value of a single axis.
 Default implementation does nothing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 </dl>
 </dd></dl>
@@ -371,16 +371,16 @@ Default implementation does nothing.</p>
 <dt id="sardana.pool.controller.Readable.ReadOne">
 <code class="sig-name descname">ReadOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Readable.ReadOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Readable.ReadOne" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY!
-Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a></p>
+Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>the axis value</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)">object</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)">object</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -396,7 +396,7 @@ Default implementation raises <a class="reference external" href="https://docs.p
 </map><dl class="py class">
 <dt id="sardana.pool.controller.Startable">
 <em class="property">class </em><code class="sig-name descname">Startable</code><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Startable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Startable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A Startable interface. A controller for which it’s axis are ‘startable’
 (like a motor, for example) should implement this interface</p>
 <dl class="py method">
@@ -416,15 +416,15 @@ Default implementation returns True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – new value</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – new value</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>True means a successfull pre-start or False for a failure</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -434,12 +434,12 @@ Default implementation returns True.</p>
 <code class="sig-name descname">StartOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Startable.StartOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Startable.StartOne" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override if necessary.
 Called to do a start of the given axis (whatever start means).
-Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a></p>
+Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – new value</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – new value</p></li>
 </ul>
 </dd>
 </dl>
@@ -463,7 +463,7 @@ Default implementation does nothing.</p>
 </map><dl class="py class">
 <dt id="sardana.pool.controller.Stopable">
 <em class="property">class </em><code class="sig-name descname">Stopable</code><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Stopable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Stopable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A Stopable interface. A controller for which it’s axis are ‘stoppable’
 (like a motor, for example) should implement this interface</p>
 <dl class="py method">
@@ -482,13 +482,13 @@ Called to prepare a abort of the given axis (whatever pre-abort means).
 Default implementation returns True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>True means a successfull pre-abort or False for a failure</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -497,11 +497,11 @@ Default implementation returns True.</p>
 <dt id="sardana.pool.controller.Stopable.AbortOne">
 <code class="sig-name descname">AbortOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Stopable.AbortOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Stopable.AbortOne" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY!
-Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.
+Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.
 Aborts one of the axis</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 </dl>
 </dd></dl>
@@ -530,13 +530,13 @@ Called to prepare a stop of the given axis (whatever pre-stop means).
 Default implementation returns True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>True means a successfull pre-stop or False for a failure</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -550,7 +550,7 @@ Stops one of the axis.
 Default implementation calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">AbortOne()</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 </dl>
 <div class="versionadded">
@@ -577,7 +577,7 @@ Default implementation does nothing.</p>
 </map><dl class="py class">
 <dt id="sardana.pool.controller.Loadable">
 <em class="property">class </em><code class="sig-name descname">Loadable</code><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Loadable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Loadable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A Loadable interface. A controller for which it’s axis are ‘loadable’
 (like a counter, 1D or 2D for example) should implement this interface</p>
 <dl class="py attribute">
@@ -596,11 +596,11 @@ Default implementation does nothing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p></li>
-<li><p><strong>repetitions</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of repetitions</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – integration time / monitor count</p></li>
-<li><p><strong>latency</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – latency time</p></li>
-<li><p><strong>nb_starts</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of starts</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p></li>
+<li><p><strong>repetitions</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of repetitions</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – integration time / monitor count</p></li>
+<li><p><strong>latency</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – latency time</p></li>
+<li><p><strong>nb_starts</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of starts</p></li>
 </ul>
 </dd>
 </dl>
@@ -624,17 +624,17 @@ Default implementation returns True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – integration time /monitor value</p></li>
-<li><p><strong>repetitions</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of repetitions</p></li>
-<li><p><strong>latency</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – latency time</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – integration time /monitor value</p></li>
+<li><p><strong>repetitions</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of repetitions</p></li>
+<li><p><strong>latency</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – latency time</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>True means a successful PreLoadOne or False for a failure</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -652,14 +652,14 @@ Default implementation does nothing.</p>
 <code class="sig-name descname">LoadOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">repetitions</span></em>, <em class="sig-param"><span class="n">latency</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Loadable.LoadOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Loadable.LoadOne" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY!
 Called to load the integration time / monitor value.
-Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – integration time /monitor value</p></li>
-<li><p><strong>repetitions</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – number of repetitions</p></li>
-<li><p><strong>latency</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – latency time</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – integration time /monitor value</p></li>
+<li><p><strong>repetitions</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of repetitions</p></li>
+<li><p><strong>latency</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – latency time</p></li>
 <li><p><strong>value</strong> – integration time /monitor value</p></li>
 </ul>
 </dd>
@@ -677,7 +677,7 @@ Default implementation raises <a class="reference external" href="https://docs.p
 </map><dl class="py class">
 <dt id="sardana.pool.controller.Synchronizer">
 <em class="property">class </em><code class="sig-name descname">Synchronizer</code><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Synchronizer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Synchronizer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A Synchronizer interface. A controller for which its axis are ‘Able to
 Synchronize’ should implement this interface</p>
 <dl class="py method">
@@ -697,7 +697,7 @@ Default implementation returns True.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p></li>
 <li><p><strong>list&lt;dict&gt;</strong> – synchronization description</p></li>
 </ul>
 </dd>
@@ -705,7 +705,7 @@ Default implementation returns True.</p>
 <dd class="field-even"><p>True means a successfull PreSynchOne or False for a failure</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -723,11 +723,11 @@ Default implementation does nothing.</p>
 <code class="sig-name descname">SynchOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">description</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Synchronizer.SynchOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Synchronizer.SynchOne" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY!
 Called to load the axis with the synchronization description.
-Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p></li>
 <li><p><strong>description</strong> (<em>list&lt;dict&gt;</em>) – synchronization description</p></li>
 </ul>
 </dd>
@@ -745,9 +745,9 @@ Default implementation raises <a class="reference external" href="https://docs.p
 </map><dl class="py class">
 <dt id="sardana.pool.controller.Controller">
 <em class="property">class </em><code class="sig-name descname">Controller</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inst</span></em>, <em class="sig-param"><span class="n">props</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Base controller class. Do <strong>NOT</strong> inherit from this class directly</p>
-<p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> inst: controller instance name
+<p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> inst: controller instance name
 :param dict props: a dictionary containing pairs of property name,
 property value</p>
 <dl class="field-list simple">
@@ -761,22 +761,22 @@ property value</p>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.ctrl_features">
 <code class="sig-name descname">ctrl_features</code><em class="property"> = []</em><a class="headerlink" href="#sardana.pool.controller.Controller.ctrl_features" title="Permalink to this definition">¶</a></dt>
-<dd><p>A sequence of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller features</p>
+<dd><p>A sequence of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller features</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.ctrl_properties">
 <code class="sig-name descname">ctrl_properties</code><em class="property"> = {}</em><a class="headerlink" href="#sardana.pool.controller.Controller.ctrl_properties" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing controller properties where:</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing controller properties where:</p>
 <ul>
-<li><p>key : (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) controller property name</p></li>
-<li><p>value : <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> with with three <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> keys (“type”,
+<li><p>key : (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) controller property name</p></li>
+<li><p>value : <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> with with three <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> keys (“type”,
 “description” and “defaultvalue” case insensitive):</p>
 <blockquote>
 <div><ul class="simple">
 <li><p>for <a class="reference internal" href="#sardana.pool.controller.Type" title="sardana.pool.controller.Type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Type</span></code></a>, value is one of the values described in
 <a class="reference internal" href="../../api_controller.html#sardana-controller-data-type"><span class="std std-ref">Data Type definition</span></a></p></li>
-<li><p>for <a class="reference internal" href="#sardana.pool.controller.Description" title="sardana.pool.controller.Description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Description</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> description of the
+<li><p>for <a class="reference internal" href="#sardana.pool.controller.Description" title="sardana.pool.controller.Description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Description</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> description of the
 property.
 if is not given it defaults to empty string.</p></li>
 <li><p>for <a class="reference internal" href="#sardana.pool.controller.DefaultValue" title="sardana.pool.controller.DefaultValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DefaultValue</span></code></a>, value is a python object or None if no
@@ -806,10 +806,10 @@ default value exists for the property.</p></li>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.ctrl_attributes">
 <code class="sig-name descname">ctrl_attributes</code><em class="property"> = {}</em><a class="headerlink" href="#sardana.pool.controller.Controller.ctrl_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containning controller extra attributes where:</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containning controller extra attributes where:</p>
 <ul>
-<li><p>key : (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) controller attribute name</p></li>
-<li><p>value : <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> with <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> possible keys: “type”,
+<li><p>key : (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) controller attribute name</p></li>
+<li><p>value : <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> with <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> possible keys: “type”,
 “r/w type”, “description”, “fget”, “fset” and “maxdimsize”
 (case insensitive):</p>
 <blockquote>
@@ -819,17 +819,17 @@ default value exists for the property.</p></li>
 <li><p>for <a class="reference internal" href="#sardana.pool.controller.Access" title="sardana.pool.controller.Access"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Access</span></code></a>, value is one of
 <a class="reference internal" href="../sardanadefs.html#sardana.sardanadefs.DataAccess" title="sardana.sardanadefs.DataAccess"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataAccess</span></code></a> (“read” or “read_write”
 (case insensitive) strings are also accepted) [default: ReadWrite]</p></li>
-<li><p>for <a class="reference internal" href="#sardana.pool.controller.Description" title="sardana.pool.controller.Description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Description</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> description of the
+<li><p>for <a class="reference internal" href="#sardana.pool.controller.Description" title="sardana.pool.controller.Description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Description</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> description of the
 attribute [default: “” (empty string)]</p></li>
-<li><p>for <a class="reference internal" href="#sardana.pool.controller.FGet" title="sardana.pool.controller.FGet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FGet</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> with the method name for
+<li><p>for <a class="reference internal" href="#sardana.pool.controller.FGet" title="sardana.pool.controller.FGet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FGet</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> with the method name for
 the attribute getter [default: “get”&lt;controller attribute name&gt;]</p></li>
-<li><p>for <a class="reference internal" href="#sardana.pool.controller.FSet" title="sardana.pool.controller.FSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FSet</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> with the method name for
+<li><p>for <a class="reference internal" href="#sardana.pool.controller.FSet" title="sardana.pool.controller.FSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FSet</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> with the method name for
 the attribute setter. [default, if <a class="reference internal" href="#sardana.pool.controller.Access" title="sardana.pool.controller.Access"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Access</span></code></a> = “read_write”:
 “set”&lt;controller attribute name&gt;]</p></li>
 <li><p>for <a class="reference internal" href="#sardana.pool.controller.DefaultValue" title="sardana.pool.controller.DefaultValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DefaultValue</span></code></a>, value is a python object or None if no
 default value exists for the attribute. If given, the attribute is
 set when the controller is first created.</p></li>
-<li><p>for <a class="reference internal" href="#sardana.pool.controller.Memorize" title="sardana.pool.controller.Memorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Memorize</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> with possible values:
+<li><p>for <a class="reference internal" href="#sardana.pool.controller.Memorize" title="sardana.pool.controller.Memorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Memorize</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> with possible values:
 <a class="reference internal" href="#sardana.pool.controller.Memorized" title="sardana.pool.controller.Memorized"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Memorized</span></code></a>, <a class="reference internal" href="#sardana.pool.controller.MemorizedNoInit" title="sardana.pool.controller.MemorizedNoInit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MemorizedNoInit</span></code></a> and
 <a class="reference internal" href="#sardana.pool.controller.NotMemorized" title="sardana.pool.controller.NotMemorized"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotMemorized</span></code></a> [default: <a class="reference internal" href="#sardana.pool.controller.Memorized" title="sardana.pool.controller.Memorized"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Memorized</span></code></a>]</p>
 <div class="versionadded">
@@ -837,7 +837,7 @@ set when the controller is first created.</p></li>
 </div>
 </li>
 <li><dl class="simple">
-<dt>for <a class="reference internal" href="#sardana.pool.controller.MaxDimSize" title="sardana.pool.controller.MaxDimSize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaxDimSize</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> with possible values:</dt><dd><ul class="simple">
+<dt>for <a class="reference internal" href="#sardana.pool.controller.MaxDimSize" title="sardana.pool.controller.MaxDimSize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaxDimSize</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> with possible values:</dt><dd><ul class="simple">
 <li><p>for scalar <strong>must</strong> be an empty tuple ( () or [] )
 [default: ()]</p></li>
 <li><p>for 1D arrays a sequence with one value (example: (1024,))
@@ -881,11 +881,11 @@ set when the controller is first created.</p></li>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.axis_attributes">
 <code class="sig-name descname">axis_attributes</code><em class="property"> = {}</em><a class="headerlink" href="#sardana.pool.controller.Controller.axis_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containning controller extra attributes for each axis
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containning controller extra attributes for each axis
 where:</p>
 <ul>
-<li><p>key : (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) axis attribute name</p></li>
-<li><p>value : <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> with three <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> keys
+<li><p>key : (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) axis attribute name</p></li>
+<li><p>value : <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> with three <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> keys
 (“type”, “r/w type”, “description” case insensitive):</p>
 <blockquote>
 <div><ul>
@@ -894,12 +894,12 @@ where:</p>
 <li><p>for <a class="reference internal" href="#sardana.pool.controller.Access" title="sardana.pool.controller.Access"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Access</span></code></a>, value is one of
 <a class="reference internal" href="../sardanadefs.html#sardana.sardanadefs.DataAccess" title="sardana.sardanadefs.DataAccess"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DataAccess</span></code></a> (“read” or “read_write”
 (case insensitive) strings are also accepted)</p></li>
-<li><p>for <a class="reference internal" href="#sardana.pool.controller.Description" title="sardana.pool.controller.Description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Description</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> description of the
+<li><p>for <a class="reference internal" href="#sardana.pool.controller.Description" title="sardana.pool.controller.Description"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Description</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> description of the
 attribute</p></li>
 <li><p>for <a class="reference internal" href="#sardana.pool.controller.DefaultValue" title="sardana.pool.controller.DefaultValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DefaultValue</span></code></a>, value is a python object or None if no
 default value exists for the attribute. If given, the attribute is
 set when the axis is first created.</p></li>
-<li><p>for <a class="reference internal" href="#sardana.pool.controller.Memorize" title="sardana.pool.controller.Memorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Memorize</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> with possible values:
+<li><p>for <a class="reference internal" href="#sardana.pool.controller.Memorize" title="sardana.pool.controller.Memorize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Memorize</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> with possible values:
 <a class="reference internal" href="#sardana.pool.controller.Memorized" title="sardana.pool.controller.Memorized"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Memorized</span></code></a>, <a class="reference internal" href="#sardana.pool.controller.MemorizedNoInit" title="sardana.pool.controller.MemorizedNoInit"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MemorizedNoInit</span></code></a> and
 <a class="reference internal" href="#sardana.pool.controller.NotMemorized" title="sardana.pool.controller.NotMemorized"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotMemorized</span></code></a> [default: <a class="reference internal" href="#sardana.pool.controller.Memorized" title="sardana.pool.controller.Memorized"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Memorized</span></code></a>]</p>
 <div class="versionadded">
@@ -907,7 +907,7 @@ set when the axis is first created.</p></li>
 </div>
 </li>
 <li><dl class="simple">
-<dt>for <a class="reference internal" href="#sardana.pool.controller.MaxDimSize" title="sardana.pool.controller.MaxDimSize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaxDimSize</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> with possible values:</dt><dd><ul class="simple">
+<dt>for <a class="reference internal" href="#sardana.pool.controller.MaxDimSize" title="sardana.pool.controller.MaxDimSize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MaxDimSize</span></code></a>, value is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tuple</span></code></a> with possible values:</dt><dd><ul class="simple">
 <li><p>for scalar <strong>must</strong> be an empty tuple ( () or [] )
 [default: ()]</p></li>
 <li><p>for 1D arrays a sequence with one value (example: (1024,))
@@ -956,38 +956,38 @@ set when the axis is first created.</p></li>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.standard_axis_attributes">
 <code class="sig-name descname">standard_axis_attributes</code><em class="property"> = {}</em><a class="headerlink" href="#sardana.pool.controller.Controller.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.gender">
 <code class="sig-name descname">gender</code><em class="property"> = None</em><a class="headerlink" href="#sardana.pool.controller.Controller.gender" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.model">
 <code class="sig-name descname">model</code><em class="property"> = 'Generic'</em><a class="headerlink" href="#sardana.pool.controller.Controller.model" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller model name</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller model name</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.organization">
 <code class="sig-name descname">organization</code><em class="property"> = 'Sardana team'</em><a class="headerlink" href="#sardana.pool.controller.Controller.organization" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller organization</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller organization</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.image">
 <code class="sig-name descname">image</code><em class="property"> = None</em><a class="headerlink" href="#sardana.pool.controller.Controller.image" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> containning the path to the image file</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> containning the path to the image file</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.Controller.logo">
 <code class="sig-name descname">logo</code><em class="property"> = None</em><a class="headerlink" href="#sardana.pool.controller.Controller.logo" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> containning the path to the image logo file</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> containning the path to the image logo file</p>
 </dd></dl>
 
 <dl class="py method">
@@ -997,7 +997,7 @@ device</p>
 does nothing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1009,7 +1009,7 @@ does nothing.</p>
 does nothing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1023,7 +1023,7 @@ does nothing.</p>
 <dd class="field-odd"><p>the controller instance name</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 <div class="versionadded">
@@ -1040,7 +1040,7 @@ does nothing.</p>
 <dd class="field-odd"><p>the axis name</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 <div class="versionadded">
@@ -1064,7 +1064,7 @@ Called to prepare a read of the state of a single axis.
 Default implementation does nothing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1082,7 +1082,7 @@ Default implementation does nothing.</p>
 <code class="sig-name descname">StateOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.StateOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.StateOne" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY.
 Called to read the state of one axis.
-Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1112,7 +1112,7 @@ the value contained in this object’s member named ‘_’+parameter.</p>
 <code class="sig-name descname">SetAxisPar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.SetAxisPar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.SetAxisPar" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY.
 Called to set a parameter with a value on the given axis. Default
-implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.</span></p>
 </div>
@@ -1123,7 +1123,7 @@ implementation raises <a class="reference external" href="https://docs.python.or
 <code class="sig-name descname">GetAxisPar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.GetAxisPar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.GetAxisPar" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY.
 Called to get a parameter value on the given axis. Default
-implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.</span></p>
 </div>
@@ -1134,7 +1134,7 @@ implementation raises <a class="reference external" href="https://docs.python.or
 <code class="sig-name descname">SetAxisExtraPar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.SetAxisExtraPar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.SetAxisExtraPar" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override if necessary.
 Called to set a parameter with a value on the given axis. Default
-implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.</span></p>
 </div>
@@ -1145,7 +1145,7 @@ implementation raises <a class="reference external" href="https://docs.python.or
 <code class="sig-name descname">GetAxisExtraPar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em>, <em class="sig-param"><span class="n">parameter</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.GetAxisExtraPar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.GetAxisExtraPar" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override if necessary.
 Called to get a parameter value on the given axis. Default
-implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.0.</span></p>
 </div>
@@ -1156,11 +1156,11 @@ implementation raises <a class="reference external" href="https://docs.python.or
 <code class="sig-name descname">GetAxisAttributes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.GetAxisAttributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.GetAxisAttributes" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override if necessary.
 Returns a dictionary of all attributes per axis.
-Default implementation returns a new <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> with the standard
+Default implementation returns a new <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> with the standard
 attributes plus the <a class="reference internal" href="#sardana.pool.controller.Controller.axis_attributes" title="sardana.pool.controller.Controller.axis_attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">axis_attributes</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a dict containing attribute information as defined in
@@ -1177,10 +1177,10 @@ attributes plus the <a class="reference internal" href="#sardana.pool.controller
 <code class="sig-name descname">SendToCtrl</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stream</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Controller.SendToCtrl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Controller.SendToCtrl" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override if necessary.
 Sends a string to the controller.
-Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
-<p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> stream: stream to be sent
+Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+<p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> stream: stream to be sent
 :return: any relevant information e.g. response of the controller
-:rtype: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+:rtype: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd></dl>
 
 </dd></dl>
@@ -1269,14 +1269,14 @@ upper and lower limit switches are active:</p>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.MotorController.standard_axis_attributes">
 <code class="sig-name descname">standard_axis_attributes</code><em class="property"> = {'Acceleration': {'description': 'Acceleration time (s)', 'type': &lt;class 'float'&gt;}, 'Backlash': {'description': 'Backlash', 'type': &lt;class 'float'&gt;}, 'Base_rate': {'description': 'Base rate', 'type': &lt;class 'float'&gt;}, 'Deceleration': {'description': 'Deceleration time (s)', 'type': &lt;class 'float'&gt;}, 'DialPosition': {'description': 'Dial Position', 'type': &lt;class 'float'&gt;}, 'Limit_switches': {'description': &quot;This attribute is the motor limit switches state. It's an array with 3 \nelements which are:\n0 - The home switch\n1 - The upper limit switch\n2 - The lower limit switch\nFalse means not active. True means active&quot;, 'type': (&lt;class 'bool'&gt;,)}, 'Offset': {'description': 'Offset', 'type': &lt;class 'float'&gt;}, 'Position': {'description': 'Position', 'type': &lt;class 'float'&gt;}, 'Sign': {'description': 'Sign', 'type': &lt;class 'float'&gt;}, 'Step_per_unit': {'description': 'Steps per unit', 'type': &lt;class 'float'&gt;}, 'Velocity': {'description': 'Velocity', 'type': &lt;class 'float'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.MotorController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.MotorController.gender">
 <code class="sig-name descname">gender</code><em class="property"> = 'Motor controller'</em><a class="headerlink" href="#sardana.pool.controller.MotorController.gender" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1284,7 +1284,7 @@ device</p>
 <code class="sig-name descname">GetAxisAttributes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#MotorController.GetAxisAttributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.MotorController.GetAxisAttributes" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Motor Controller API</strong>. Override if necessary.
 Returns a sequence of all attributes per axis.
-Default implementation returns a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containning:</p>
+Default implementation returns a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containning:</p>
 <ul class="simple">
 <li><p>Position</p></li>
 <li><p>DialPosition</p></li>
@@ -1318,7 +1318,7 @@ a velocity (ramp speed) but it may not have acceleration)</p></li>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>a dict containing attribute information as defined in
@@ -1395,14 +1395,14 @@ controller</p>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.PseudoMotorController.standard_axis_attributes">
 <code class="sig-name descname">standard_axis_attributes</code><em class="property"> = {'Position': {'description': 'Position', 'type': &lt;class 'float'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.PseudoMotorController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.PseudoMotorController.gender">
 <code class="sig-name descname">gender</code><em class="property"> = 'Pseudo motor controller'</em><a class="headerlink" href="#sardana.pool.controller.PseudoMotorController.gender" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1474,7 +1474,7 @@ Calculate pseudo motor position given the physical motor positions</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the pseudo motor role axis</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the pseudo motor role axis</p></li>
 <li><p><strong>physical_pos</strong> (<em>sequence&lt;float&gt;</em>) – a sequence containing motor
 positions</p></li>
 <li><p><strong>curr_pseudo_pos</strong> (<em>sequence&lt;float&gt;</em>) – a sequence containing the
@@ -1487,7 +1487,7 @@ positions</p></li>
 pseudo motor role</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
 </dd>
 </dl>
 <div class="versionadded">
@@ -1503,7 +1503,7 @@ Calculate physical motor position given the pseudo motor positions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the motor role axis</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the motor role axis</p></li>
 <li><p><strong>pseudo_pos</strong> (<em>sequence&lt;float&gt;</em>) – a sequence containing pseudo motor positions</p></li>
 <li><p><strong>curr_physical_pos</strong> (<em>sequence&lt;float&gt;</em>) – a sequence containing the current physical
 motor positions</p></li>
@@ -1513,7 +1513,7 @@ motor positions</p></li>
 <dd class="field-even"><p>a motor position corresponding to the given axis motor role</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
 </dd>
 </dl>
 <div class="versionadded">
@@ -1536,7 +1536,7 @@ constructor</p></li>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>index_or_role</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – index number or role name</p>
+<dd class="field-odd"><p><strong>index_or_role</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – index number or role name</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Motor object for the given role/index</p>
@@ -1562,7 +1562,7 @@ constructor</p></li>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>index_or_role</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – index number or role name</p>
+<dd class="field-odd"><p><strong>index_or_role</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – index number or role name</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>PseudoMotor object for the given role/index</p>
@@ -1602,14 +1602,14 @@ implement your own counter/timer controller for the device pool.</p>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.CounterTimerController.standard_axis_attributes">
 <code class="sig-name descname">standard_axis_attributes</code><em class="property"> = {'IntegrationTime': {'description': 'Integration time used in independent acquisition', 'type': &lt;class 'float'&gt;}, 'Timer': {'description': 'Timer used in independent acquisition', 'type': &lt;class 'str'&gt;}, 'Value': {'description': 'Value', 'type': &lt;class 'float'&gt;}, 'ValueBuffer': {'description': 'Value buffer', 'type': &lt;class 'str'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.CounterTimerController.gender">
 <code class="sig-name descname">gender</code><em class="property"> = 'Counter/Timer controller'</em><a class="headerlink" href="#sardana.pool.controller.CounterTimerController.gender" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1620,8 +1620,8 @@ Called to do a start of the given axis (whatever start means).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p></li>
-<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – new value</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a>) – new value</p></li>
 </ul>
 </dd>
 </dl>
@@ -1647,14 +1647,14 @@ implement your own 0D controller for the device pool.</p>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.ZeroDController.standard_axis_attributes">
 <code class="sig-name descname">standard_axis_attributes</code><em class="property"> = {'IntegrationTime': {'description': 'Integration time used in independent acquisition', 'type': &lt;class 'float'&gt;}, 'Value': {'description': 'Value', 'type': &lt;class 'float'&gt;}, 'ValueBuffer': {'description': 'Value buffer', 'type': &lt;class 'str'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.ZeroDController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.ZeroDController.gender">
 <code class="sig-name descname">gender</code><em class="property"> = '0D controller'</em><a class="headerlink" href="#sardana.pool.controller.ZeroDController.gender" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1664,7 +1664,7 @@ device</p>
 Default implementation does nothing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – axis number</p>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1699,7 +1699,7 @@ implement your own 1D controller for the device pool.</p>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.OneDController.gender">
 <code class="sig-name descname">gender</code><em class="property"> = '1D controller'</em><a class="headerlink" href="#sardana.pool.controller.OneDController.gender" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1712,7 +1712,7 @@ Inherit from <code class="xref py py-class docutils literal notranslate"><span c
 references.</p>
 <p>Default implementation calls deprecated
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code> which, by default, raises
-<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.2.</span></p>
 </div>
@@ -1745,7 +1745,7 @@ implement your own 2D controller for the device pool.</p>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.TwoDController.gender">
 <code class="sig-name descname">gender</code><em class="property"> = '2D controller'</em><a class="headerlink" href="#sardana.pool.controller.TwoDController.gender" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1758,7 +1758,7 @@ Inherit from <code class="xref py py-class docutils literal notranslate"><span c
 references.</p>
 <p>Default implementation calls deprecated
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code> which, by default, raises
-<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.8)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
+<a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a>.</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.2.</span></p>
 </div>
@@ -1809,14 +1809,14 @@ controller</p>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.PseudoCounterController.standard_axis_attributes">
 <code class="sig-name descname">standard_axis_attributes</code><em class="property"> = {'IntegrationTime': {'description': 'Integration time used in independent acquisition', 'type': &lt;class 'float'&gt;}, 'Value': {'description': 'Value', 'type': &lt;class 'float'&gt;}, 'ValueBuffer': {'description': 'Data', 'type': &lt;class 'str'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.PseudoCounterController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.PseudoCounterController.gender">
 <code class="sig-name descname">gender</code><em class="property"> = 'Pseudo counter controller'</em><a class="headerlink" href="#sardana.pool.controller.PseudoCounterController.gender" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1827,7 +1827,7 @@ Calculate pseudo counter position given the counter values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – the pseudo counter role axis</p></li>
+<li><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – the pseudo counter role axis</p></li>
 <li><p><strong>values</strong> (<em>sequence&lt;float&gt;</em>) – a sequence containing current values
 of underlying elements</p></li>
 </ul>
@@ -1837,7 +1837,7 @@ of underlying elements</p></li>
 pseudo counter role</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)">float</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></p>
 </dd>
 </dl>
 <div class="versionadded">
@@ -1889,14 +1889,14 @@ implement your own IORegister controller for the device pool.</p>
 <dl class="py attribute">
 <dt id="sardana.pool.controller.IORegisterController.standard_axis_attributes">
 <code class="sig-name descname">standard_axis_attributes</code><em class="property"> = {'Value': {'description': 'Value', 'type': &lt;class 'float'&gt;}}</em><a class="headerlink" href="#sardana.pool.controller.IORegisterController.standard_axis_attributes" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> containing the standard attributes present on each axis
 device</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.controller.IORegisterController.gender">
 <code class="sig-name descname">gender</code><em class="property"> = 'I/O register controller'</em><a class="headerlink" href="#sardana.pool.controller.IORegisterController.gender" title="Permalink to this definition">¶</a></dt>
-<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
 </dd></dl>
 
 <dl class="py method">

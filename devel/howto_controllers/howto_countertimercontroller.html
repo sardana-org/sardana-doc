@@ -315,7 +315,7 @@ receives an axis as parameter and should return either:</p>
 <li><dl class="simple">
 <dt>a sequence of two elements:</dt><dd><ul>
 <li><p>state (<a class="reference internal" href="../api/sardana/sardanadefs.html#sardana.sardanadefs.State" title="sardana.sardanadefs.State"><code class="xref py py-obj docutils literal notranslate"><span class="pre">State</span></code></a>)</p></li>
-<li><p>status (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>)</p></li>
+<li><p>status (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -444,7 +444,7 @@ a timestamp. However this timestamp has a certain delay since the time the
 value was actually read from hardware and the time Tango generates the timestamp.</p>
 <p>To avoid this, sardana supports returning in
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Readable.ReadOne" title="sardana.pool.controller.Readable.ReadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ReadOne()</span></code></a> an object that contains both
-the value and the timestamp instead of the usual <a class="reference external" href="https://docs.python.org/3/library/numbers.html#numbers.Number" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numbers.Number</span></code></a>.
+the value and the timestamp instead of the usual <a class="reference external" href="https://docs.python.org/3/library/numbers.html#numbers.Number" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numbers.Number</span></code></a>.
 The object must be an instance of <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaValue</span></code></a>.</p>
 <p>Here is an example of associating a timestamp in
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Readable.ReadOne" title="sardana.pool.controller.Readable.ReadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ReadOne()</span></code></a>:</p>
@@ -653,10 +653,10 @@ of the selected synchronization but its return values should depend on it and
 can be:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>a single counter value: either <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SardanaValue</span></code></a>
+<li><p>a single counter value: either <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SardanaValue</span></code></a>
 in case of the <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareTrigger" title="sardana.pool.pooldefs.AcqSynch.SoftwareTrigger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SoftwareTrigger</span></code></a> or
 <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareGate" title="sardana.pool.pooldefs.AcqSynch.SoftwareGate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SoftwareGate</span></code></a> synchronization</p></li>
-<li><p>a sequence of counter values: either <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SardanaValue</span></code></a>
+<li><p>a sequence of counter values: either <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SardanaValue</span></code></a>
 in case of the <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.HardwareTrigger" title="sardana.pool.pooldefs.AcqSynch.HardwareTrigger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HardwareTrigger</span></code></a> or
 <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.HardwareGate" title="sardana.pool.pooldefs.AcqSynch.HardwareGate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HardwareGate</span></code></a> synchronization</p></li>
 </ul>

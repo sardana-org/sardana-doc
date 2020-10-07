@@ -294,7 +294,7 @@ receives an axis as parameter and should return either:</p>
 <li><dl class="simple">
 <dt>a sequence of two elements:</dt><dd><ul>
 <li><p>state (<a class="reference internal" href="../api/sardana/sardanadefs.html#sardana.sardanadefs.State" title="sardana.sardanadefs.State"><code class="xref py py-obj docutils literal notranslate"><span class="pre">State</span></code></a>)</p></li>
-<li><p>status (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) <em>or</em> limit switches (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p>status (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>) <em>or</em> limit switches (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -302,8 +302,8 @@ receives an axis as parameter and should return either:</p>
 <li><dl class="simple">
 <dt>a sequence of three elements:</dt><dd><ul>
 <li><p>state (<a class="reference internal" href="../api/sardana/sardanadefs.html#sardana.sardanadefs.State" title="sardana.sardanadefs.State"><code class="xref py py-obj docutils literal notranslate"><span class="pre">State</span></code></a>)</p></li>
-<li><p>status (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>)</p></li>
-<li><p>limit switches (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
+<li><p>status (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>)</p></li>
+<li><p>limit switches (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>)</p></li>
 </ul>
 </dd>
 </dl>
@@ -643,7 +643,7 @@ a timestamp. However this timestamp has a certain delay since the time the
 value was actually read from hardware and the time Tango generates the timestamp.</p>
 <p>To avoid this, sardana supports returning in
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Readable.ReadOne" title="sardana.pool.controller.Readable.ReadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ReadOne()</span></code></a> an object that contains both
-the value and the timestamp instead of the usual <a class="reference external" href="https://docs.python.org/3/library/numbers.html#numbers.Number" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numbers.Number</span></code></a>.
+the value and the timestamp instead of the usual <a class="reference external" href="https://docs.python.org/3/library/numbers.html#numbers.Number" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numbers.Number</span></code></a>.
 The object must be an instance of <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-class docutils literal notranslate"><span class="pre">SardanaValue</span></code></a>.</p>
 <p>Here is an example of associating a timestamp in
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Readable.ReadOne" title="sardana.pool.controller.Readable.ReadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ReadOne()</span></code></a>:</p>
