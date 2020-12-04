@@ -973,6 +973,30 @@
         <span class="k">finally</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_value_info</span><span class="o">.</span><span class="n">finish_one</span><span class="p">()</span>
 
+    <span class="k">def</span> <span class="nf">_process_value_buffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">final_str</span> <span class="o">=</span> <span class="s2">&quot;final &quot;</span> <span class="k">if</span> <span class="n">final</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop </span><span class="si">%s</span><span class="s2">read value error for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">final_str</span><span class="p">,</span>
+                                                           <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_process_value_ref_buffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">value_ref</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">final_str</span> <span class="o">=</span> <span class="s2">&quot;final &quot;</span> <span class="k">if</span> <span class="n">final</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value_ref</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop read ref </span><span class="si">%s</span><span class="s2">value error for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
+                       <span class="p">(</span><span class="n">final_str</span><span class="p">,</span> <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+                <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value_ref</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value_ref</span><span class="p">(</span><span class="n">value_ref</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_ref_buffer</span><span class="p">(</span><span class="n">value_ref</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">in_acquisition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines if we are in acquisition or if the acquisition has ended</span>
 <span class="sd">        based on the current unit trigger modes and states returned by the</span>
@@ -1217,15 +1241,10 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="n">i</span> <span class="o">%</span> <span class="n">nb_states_per_value</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">read_value</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">values</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
-                    <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop read value error for </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
-                                   <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                        <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-                            <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                        <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-                    <span class="k">else</span><span class="p">:</span>
-                        <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_process_value_buffer</span><span class="p">(</span><span class="n">acquirable</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">read_value_ref</span><span class="p">(</span><span class="n">ret</span><span class="o">=</span><span class="n">value_refs</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">value_ref</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">value_refs</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_process_value_ref_buffer</span><span class="p">(</span><span class="n">acquirable</span><span class="p">,</span> <span class="n">value_ref</span><span class="p">)</span>
 
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">nap</span><span class="p">)</span>
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1237,24 +1256,11 @@
         <span class="k">for</span> <span class="n">acquirable</span><span class="p">,</span> <span class="n">state_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">states</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="k">if</span> <span class="n">acquirable</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
                 <span class="n">value</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">acquirable</span><span class="p">]</span>
-                <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop final read value error for: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
-                               <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-                        <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                    <span class="n">acquirable</span><span class="o">.</span><span class="n">put_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_buffer</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_process_value_buffer</span><span class="p">(</span><span class="n">acquirable</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">acquirable</span> <span class="ow">in</span> <span class="n">value_refs</span><span class="p">:</span>
                 <span class="n">value_ref</span> <span class="o">=</span> <span class="n">value_refs</span><span class="p">[</span><span class="n">acquirable</span><span class="p">]</span>
-                <span class="k">if</span> <span class="n">is_value_error</span><span class="p">(</span><span class="n">value_ref</span><span class="p">):</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Loop final read value ref error for: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span>
-                               <span class="n">acquirable</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-                    <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Details: &quot;</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-                        <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception</span><span class="p">(</span><span class="o">*</span><span class="n">value_ref</span><span class="o">.</span><span class="n">exc_info</span><span class="p">))</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
-                <span class="n">acquirable</span><span class="o">.</span><span class="n">extend_value_ref_buffer</span><span class="p">(</span><span class="n">value_ref</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_process_value_ref_buffer</span><span class="p">(</span><span class="n">acquirable</span><span class="p">,</span> <span class="n">value_ref</span><span class="p">,</span>
+                                               <span class="n">final</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="n">state_info</span> <span class="o">=</span> <span class="n">acquirable</span><span class="o">.</span><span class="n">_from_ctrl_state_info</span><span class="p">(</span><span class="n">state_info</span><span class="p">)</span>
             <span class="n">set_state_info</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">partial</span><span class="p">(</span><span class="n">acquirable</span><span class="o">.</span><span class="n">set_state_info</span><span class="p">,</span>
                                                <span class="n">state_info</span><span class="p">,</span>
