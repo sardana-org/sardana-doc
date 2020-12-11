@@ -800,11 +800,16 @@
             <span class="n">serialno</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">setEnv</span><span class="p">(</span><span class="s2">&quot;ScanID&quot;</span><span class="p">,</span> <span class="n">serialno</span><span class="p">)</span>
 
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s2">&quot;ScanUser&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">UnknownEnv</span><span class="p">:</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">USER_NAME</span>
+
         <span class="n">env</span> <span class="o">=</span> <span class="n">ScanDataEnvironment</span><span class="p">(</span>
             <span class="p">{</span><span class="s1">&#39;serialno&#39;</span><span class="p">:</span> <span class="n">serialno</span><span class="p">,</span>
              <span class="c1"># TODO: this should be got from</span>
              <span class="c1"># self.measurement_group.getChannelsInfo()</span>
-             <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">USER_NAME</span><span class="p">,</span>
+             <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="n">user</span><span class="p">,</span>
              <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">getCommand</span><span class="p">()})</span>
 
         <span class="c1"># Initialize the data_desc list (and add the point number column)</span>
