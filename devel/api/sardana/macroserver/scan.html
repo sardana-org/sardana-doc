@@ -349,13 +349,24 @@ value for that attr</p>
 
 </div>
 <div class="section" id="id1">
-<h2>GScan<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>Scan<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="graphviz"><img src="../../../../_images/inheritance-cab6ae613294df7f32ce71bf323668da01f3e63a.png" alt="Inheritance diagram of SScan" class="inheritance graphviz" /></div>
 <dl class="py class">
 <dt id="sardana.macroserver.scan.SScan">
 <em class="property">class </em><code class="sig-name descname">SScan</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">macro</span></em>, <em class="sig-param"><span class="n">generator</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">moveables</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">env</span><span class="o">=</span><span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">constraints</span><span class="o">=</span><span class="default_value">[]</span></em>, <em class="sig-param"><span class="n">extrainfodesc</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/macroserver/scan/gscan.html#SScan"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.macroserver.scan.SScan" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.macroserver.scan.gscan.GScan</span></code></p>
 <p>Step scan</p>
+<dl class="py method">
+<dt id="sardana.macroserver.scan.SScan.deterministic_scan">
+<em class="property">property </em><code class="sig-name descname">deterministic_scan</code><a class="headerlink" href="#sardana.macroserver.scan.SScan.deterministic_scan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the scan is a deterministic scan.</p>
+<p>Scan is considered as deterministic scan if
+the <a class="reference internal" href="../../api_macro.html#sardana.macroserver.macro.Macro" title="sardana.macroserver.macro.Macro"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Macro</span></code></a> specialization owning
+the scan object contains <code class="docutils literal notranslate"><span class="pre">nb_points</span></code> and <code class="docutils literal notranslate"><span class="pre">integ_time</span></code> attributes.</p>
+<p>Scan flow depends on this property (some optimizations are applied).
+These can be disabled by setting this property to <a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a>.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>

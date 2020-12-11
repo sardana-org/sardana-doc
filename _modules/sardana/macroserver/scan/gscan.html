@@ -1224,23 +1224,51 @@
 <div class="viewcode-block" id="SScan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/scan.html#sardana.macroserver.scan.SScan">[docs]</a><span class="k">class</span> <span class="nc">SScan</span><span class="p">(</span><span class="n">GScan</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Step scan&quot;&quot;&quot;</span>
 
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span> <span class="n">env</span><span class="o">=</span><span class="p">{},</span>
+                 <span class="n">constraints</span><span class="o">=</span><span class="p">[],</span> <span class="n">extrainfodesc</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="n">GScan</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">,</span> <span class="n">moveables</span><span class="o">=</span><span class="n">moveables</span><span class="p">,</span>
+                       <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
+                       <span class="n">extrainfodesc</span><span class="o">=</span><span class="n">extrainfodesc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">deterministic_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the scan is a deterministic scan.</span>
+
+<span class="sd">        Scan is considered as deterministic scan if</span>
+<span class="sd">        the `~sardana.macroserver.macro.Macro` specialization owning</span>
+<span class="sd">        the scan object contains ``nb_points`` and ``integ_time`` attributes.</span>
+
+<span class="sd">        Scan flow depends on this property (some optimizations are applied).</span>
+<span class="sd">        These can be disabled by setting this property to `False`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nb_points&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;integ_time&quot;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span>
+
+    <span class="nd">@deterministic_scan</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">deterministic_scan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span> <span class="o">=</span> <span class="n">value</span>
+
     <span class="k">def</span> <span class="nf">scan_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">lstep</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span>
         <span class="n">scream</span> <span class="o">=</span> <span class="kc">False</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;nb_points&quot;</span><span class="p">):</span>
             <span class="n">nb_points</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">macro</span><span class="o">.</span><span class="n">nb_points</span><span class="p">)</span>
-            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">macro</span><span class="p">,</span> <span class="s2">&quot;integ_time&quot;</span><span class="p">):</span>
-                <span class="n">integ_time</span> <span class="o">=</span> <span class="n">macro</span><span class="o">.</span><span class="n">integ_time</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">putIntegrationTime</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">setNbStarts</span><span class="p">(</span><span class="n">nb_points</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="n">scream</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">yield</span> <span class="mf">0.0</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">deterministic_scan</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">putIntegrationTime</span><span class="p">(</span><span class="n">macro</span><span class="o">.</span><span class="n">integ_time</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">setNbStarts</span><span class="p">(</span><span class="n">macro</span><span class="o">.</span><span class="n">nb_points</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_sum_motion_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sum_acq_time</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1323,7 +1351,7 @@
         <span class="c1"># Acquire data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;[START] acquisition&quot;</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_deterministic_scan</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">deterministic_scan</span><span class="p">:</span>
                 <span class="n">state</span><span class="p">,</span> <span class="n">data_line</span> <span class="o">=</span> <span class="n">mg</span><span class="o">.</span><span class="n">count_raw</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">state</span><span class="p">,</span> <span class="n">data_line</span> <span class="o">=</span> <span class="n">mg</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">integ_time</span><span class="p">)</span>
