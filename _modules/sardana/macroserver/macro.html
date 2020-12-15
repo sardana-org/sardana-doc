@@ -548,13 +548,24 @@
 <span class="sd">        def where_moveable(self, moveable):</span>
 <span class="sd">            self.output(&quot;Moveable %s is at %s&quot;, moveable.getName(), moveable.getPosition())&quot;&quot;&quot;</span>
 
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">result_def</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">env</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="n">hints</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">interactive</span> <span class="o">=</span> <span class="kc">False</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">result_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">hints</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">interactive</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">param_def</span> <span class="o">=</span> <span class="n">param_def</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">result_def</span> <span class="o">=</span> <span class="n">result_def</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hints</span> <span class="o">=</span> <span class="n">hints</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="n">interactive</span>
+        <span class="k">if</span> <span class="n">param_def</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">param_def</span> <span class="o">=</span> <span class="n">param_def</span>
+        <span class="k">if</span> <span class="n">result_def</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">result_def</span> <span class="o">=</span> <span class="n">result_def</span>
+        <span class="k">if</span> <span class="n">env</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">env</span> <span class="o">=</span> <span class="n">env</span>
+        <span class="k">if</span> <span class="n">hints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hints</span> <span class="o">=</span> <span class="n">hints</span>
+        <span class="k">if</span> <span class="n">interactive</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">interactive</span> <span class="o">=</span> <span class="n">interactive</span>
 
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fn</span><span class="p">):</span>
         <span class="n">fn</span><span class="o">.</span><span class="n">macro_data</span> <span class="o">=</span> <span class="p">{}</span>
