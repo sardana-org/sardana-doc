@@ -1235,6 +1235,45 @@ extra time overhead (in milliseconds range).</p>
 simplified usage you should use Taurus. If you strive for very optimal access
 to Tango and don’t need these benefits then most probably PyTango will work
 better for you.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>If you go for PyTango and wonder if creating a new <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a>
+in frequent macro executions is inefficient from the I/O point of view you
+should not worry about it cause Tango (more precisely CORBA) is taking
+care about recycling the connection during a period of 120 s (default).</p>
+<p>If you still would like to optimize your code in order to avoid creation
+of a new <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> you may consider using the
+<a class="reference external" href="https://docs.python.org/3/library/functools.html#functools.lru_cache" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">functools.lru_cache</span></code></a> as a singleton cache mechanism:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">tango</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">macro</span>
+
+<span class="n">Device</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1024</span><span class="p">)(</span><span class="n">tango</span><span class="o">.</span><span class="n">DeviceProxy</span><span class="p">)</span>
+
+<span class="nd">@macro</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">switch_states</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Switch TangoTest device state&quot;&quot;&quot;</span>
+    <span class="n">proxy</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="s1">&#39;sys/tg_test/1&#39;</span><span class="p">)</span>
+    <span class="n">proxy</span><span class="o">.</span><span class="n">SwitchStates</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+<p>Here you don’t need to worry about the opened connection to the
+Tango device server in case you don’t execute the macro for a while.
+Again, Tango (more precisely CORBA) will take care about it.
+See more details about the CORBA scavanger thread in:
+<a class="reference external" href="https://tango-controls.readthedocs.io/en/latest/development/advanced/threading.html#client-process">Tango client threading</a>
+and <a class="reference external" href="http://omniorb.sourceforge.net/omni42/omniORB/omniORB006.html#sec%3AconnShutdown">CORBA idle connection shutdown</a>.</p>
+</div>
 </div>
 <div class="section" id="using-external-python-libraries">
 <span id="sardana-macro-using-external-libraries"></span><h2>Using external python libraries<a class="headerlink" href="#using-external-python-libraries" title="Permalink to this headline">¶</a></h2>
