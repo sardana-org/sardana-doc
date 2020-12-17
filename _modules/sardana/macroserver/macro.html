@@ -1293,35 +1293,35 @@
 <span class="sd">        Several different parameter formats are supported::</span>
 
 <span class="sd">            # several parameters:</span>
-<span class="sd">            self.execMacro(&#39;ascan&#39;, &#39;th&#39;, &#39;0&#39;, &#39;100&#39;, &#39;10&#39;, &#39;1.0&#39;)</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, [[motor.getName(), &#39;0&#39;]])</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, motor.getName(), &#39;0&#39;) # backwards compatibility - see note</span>
-<span class="sd">            self.execMacro(&#39;ascan&#39;, &#39;th&#39;, 0, 100, 10, 1.0)</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, [[motor.getName(), 0]])</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, motor.getName(), 0) # backwards compatibility - see note</span>
+<span class="sd">            self.createMacro(&#39;ascan&#39;, &#39;th&#39;, &#39;0&#39;, &#39;100&#39;, &#39;10&#39;, &#39;1.0&#39;)</span>
+<span class="sd">            self.createMacro(&#39;mv&#39;, [[motor.getName(), &#39;0&#39;]])</span>
+<span class="sd">            self.createMacro(&#39;mv&#39;, motor.getName(), &#39;0&#39;) # backwards compatibility - see note</span>
+<span class="sd">            self.createMacro(&#39;ascan&#39;, &#39;th&#39;, 0, 100, 10, 1.0)</span>
+<span class="sd">            self.createMacro(&#39;mv&#39;, [[motor.getName(), 0]])</span>
+<span class="sd">            self.createMacro(&#39;mv&#39;, motor.getName(), 0) # backwards compatibility - see note</span>
 <span class="sd">            th = self.getObj(&#39;th&#39;)</span>
-<span class="sd">            self.execMacro(&#39;ascan&#39;, th, 0, 100, 10, 1.0)</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, [[th, 0]])</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, th, 0) # backwards compatibility - see note</span>
+<span class="sd">            self.createMacro(&#39;ascan&#39;, th, 0, 100, 10, 1.0)</span>
+<span class="sd">            self.createMacro(&#39;mv&#39;, [[th, 0]])</span>
+<span class="sd">            self.createMacro(&#39;mv&#39;, th, 0) # backwards compatibility - see note</span>
 
 <span class="sd">            # a sequence of parameters:</span>
-<span class="sd">            self.execMacro([&#39;ascan&#39;, &#39;th&#39;, &#39;0&#39;, &#39;100&#39;, &#39;10&#39;, &#39;1.0&#39;)</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, [[motor.getName(), &#39;0&#39;]]])</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, motor.getName(), &#39;0&#39;]) # backwards compatibility - see note</span>
-<span class="sd">            self.execMacro((&#39;ascan&#39;, &#39;th&#39;, 0, 100, 10, 1.0))</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, [[motor.getName(), 0]]])</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, motor.getName(), 0]) # backwards compatibility - see note</span>
+<span class="sd">            self.createMacro([&#39;ascan&#39;, &#39;th&#39;, &#39;0&#39;, &#39;100&#39;, &#39;10&#39;, &#39;1.0&#39;])</span>
+<span class="sd">            self.createMacro([&#39;mv&#39;, [[motor.getName(), &#39;0&#39;]]])</span>
+<span class="sd">            self.createMacro([&#39;mv&#39;, motor.getName(), &#39;0&#39;]) # backwards compatibility - see note</span>
+<span class="sd">            self.createMacro((&#39;ascan&#39;, &#39;th&#39;, 0, 100, 10, 1.0))</span>
+<span class="sd">            self.createMacro([&#39;mv&#39;, [[motor.getName(), 0]]])</span>
+<span class="sd">            self.createMacro([&#39;mv&#39;, motor.getName(), 0]) # backwards compatibility - see note</span>
 <span class="sd">            th = self.getObj(&#39;th&#39;)</span>
-<span class="sd">            self.execMacro([&#39;ascan&#39;, th, 0, 100, 10, 1.0])</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, [[th, 0]]])</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, th, 0]) # backwards compatibility - see note</span>
+<span class="sd">            self.createMacro([&#39;ascan&#39;, th, 0, 100, 10, 1.0])</span>
+<span class="sd">            self.createMacro([&#39;mv&#39;, [[th, 0]]])</span>
+<span class="sd">            self.createMacro([&#39;mv&#39;, th, 0]) # backwards compatibility - see note</span>
 
 
 <span class="sd">            # a space separated string of parameters (this is not compatible</span>
 <span class="sd">            # with multiple or nested repeat parameters, furthermore the repeat</span>
 <span class="sd">            # parameter must be the last one):</span>
-<span class="sd">            self.execMacro(&#39;ascan th 0 100 10 1.0&#39;)</span>
-<span class="sd">            self.execMacro(&#39;mv %s 0&#39; % motor.getName())</span>
+<span class="sd">            self.createMacro(&#39;ascan th 0 100 10 1.0&#39;)</span>
+<span class="sd">            self.createMacro(&#39;mv %s 0&#39; % motor.getName())</span>
 
 <span class="sd">        .. note:: From Sardana 2.0 the repeat parameter values must be passed</span>
 <span class="sd">            as lists of items. An item of a repeat parameter containing more</span>
@@ -1364,34 +1364,34 @@
 <span class="sd">        Several different parameter formats are supported::</span>
 
 <span class="sd">            # several parameters:</span>
-<span class="sd">            self.execMacro(&#39;ascan&#39;, &#39;th&#39;, &#39;0&#39;, &#39;100&#39;, &#39;10&#39;, &#39;1.0&#39;)</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, [[motor.getName(), &#39;0&#39;]])</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, motor.getName(), &#39;0&#39;) # backwards compatibility - see note</span>
-<span class="sd">            self.execMacro(&#39;ascan&#39;, &#39;th&#39;, 0, 100, 10, 1.0)</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, [[motor.getName(), 0]])</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, motor.getName(), 0) # backwards compatibility - see note</span>
+<span class="sd">            self.prepareMacro(&#39;ascan&#39;, &#39;th&#39;, &#39;0&#39;, &#39;100&#39;, &#39;10&#39;, &#39;1.0&#39;)</span>
+<span class="sd">            self.prepareMacro(&#39;mv&#39;, [[motor.getName(), &#39;0&#39;]])</span>
+<span class="sd">            self.prepareMacro(&#39;mv&#39;, motor.getName(), &#39;0&#39;) # backwards compatibility - see note</span>
+<span class="sd">            self.prepareMacro(&#39;ascan&#39;, &#39;th&#39;, 0, 100, 10, 1.0)</span>
+<span class="sd">            self.prepareMacro(&#39;mv&#39;, [[motor.getName(), 0]])</span>
+<span class="sd">            self.prepareMacro(&#39;mv&#39;, motor.getName(), 0) # backwards compatibility - see note</span>
 <span class="sd">            th = self.getObj(&#39;th&#39;)</span>
-<span class="sd">            self.execMacro(&#39;ascan&#39;, th, 0, 100, 10, 1.0)</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, [[th, 0]])</span>
-<span class="sd">            self.execMacro(&#39;mv&#39;, th, 0) # backwards compatibility - see note</span>
+<span class="sd">            self.prepareMacro(&#39;ascan&#39;, th, 0, 100, 10, 1.0)</span>
+<span class="sd">            self.prepareMacro(&#39;mv&#39;, [[th, 0]])</span>
+<span class="sd">            self.prepareMacro(&#39;mv&#39;, th, 0) # backwards compatibility - see note</span>
 
 <span class="sd">            # a sequence of parameters:</span>
-<span class="sd">            self.execMacro([&#39;ascan&#39;, &#39;th&#39;, &#39;0&#39;, &#39;100&#39;, &#39;10&#39;, &#39;1.0&#39;])</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, [[motor.getName(), &#39;0&#39;]]])</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, motor.getName(), &#39;0&#39;]) # backwards compatibility - see note</span>
-<span class="sd">            self.execMacro((&#39;ascan&#39;, &#39;th&#39;, 0, 100, 10, 1.0))</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, [[motor.getName(), 0]]])</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, motor.getName(), 0]) # backwards compatibility - see note</span>
+<span class="sd">            self.prepareMacro([&#39;ascan&#39;, &#39;th&#39;, &#39;0&#39;, &#39;100&#39;, &#39;10&#39;, &#39;1.0&#39;])</span>
+<span class="sd">            self.prepareMacro([&#39;mv&#39;, [[motor.getName(), &#39;0&#39;]]])</span>
+<span class="sd">            self.prepareMacro([&#39;mv&#39;, motor.getName(), &#39;0&#39;]) # backwards compatibility - see note</span>
+<span class="sd">            self.prepareMacro((&#39;ascan&#39;, &#39;th&#39;, 0, 100, 10, 1.0))</span>
+<span class="sd">            self.prepareMacro([&#39;mv&#39;, [[motor.getName(), 0]]])</span>
+<span class="sd">            self.prepareMacro([&#39;mv&#39;, motor.getName(), 0]) # backwards compatibility - see note</span>
 <span class="sd">            th = self.getObj(&#39;th&#39;)</span>
-<span class="sd">            self.execMacro([&#39;ascan&#39;, th, 0, 100, 10, 1.0])</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, [[th, 0]]])</span>
-<span class="sd">            self.execMacro([&#39;mv&#39;, th, 0]) # backwards compatibility - see note</span>
+<span class="sd">            self.prepareMacro([&#39;ascan&#39;, th, 0, 100, 10, 1.0])</span>
+<span class="sd">            self.prepareMacro([&#39;mv&#39;, [[th, 0]]])</span>
+<span class="sd">            self.prepareMacro([&#39;mv&#39;, th, 0]) # backwards compatibility - see note</span>
 
 <span class="sd">            # a space separated string of parameters (this is not compatible</span>
 <span class="sd">            # with multiple or nested repeat parameters, furthermore the repeat</span>
 <span class="sd">            # parameter must be the last one):</span>
-<span class="sd">            self.execMacro(&#39;ascan th 0 100 10 1.0&#39;)</span>
-<span class="sd">            self.execMacro(&#39;mv %s 0&#39; % motor.getName())</span>
+<span class="sd">            self.prepareMacro(&#39;ascan th 0 100 10 1.0&#39;)</span>
+<span class="sd">            self.prepareMacro(&#39;mv %s 0&#39; % motor.getName())</span>
 
 <span class="sd">        .. note:: From Sardana 2.0 the repeat parameter values must be passed</span>
 <span class="sd">            as lists of items. An item of a repeat parameter containing more</span>
