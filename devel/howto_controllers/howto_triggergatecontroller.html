@@ -314,6 +314,15 @@ receives an axis as parameter and should return either:</p>
 compatibility reasons, it is also supported to return one of
 <code class="xref py py-class docutils literal notranslate"><span class="pre">PyTango.DevState</span></code>). The status could be any string.</p>
 </div>
+<div class="section" id="prepare-for-measurement">
+<span id="sardana-triggergatecontroller-howto-prepare"></span><h3>Prepare for measurement<a class="headerlink" href="#prepare-for-measurement" title="Permalink to this headline">¶</a></h3>
+<p>To prepare a trigger for a measurement you can use the
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.TriggerGateController.PrepareOne" title="sardana.pool.controller.TriggerGateController.PrepareOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PrepareOne()</span></code></a> method which
+receives as an argument the number of starts of the whole measurement.
+This information may be used to prepare the hardware for generating
+multiple events (triggers or gates) in a complex measurement
+e.g. <a class="reference internal" href="../howto_macros/scan_framework.html#sardana-macros-scanframework-determscan"><span class="std std-ref">Deterministic scans</span></a>.</p>
+</div>
 <div class="section" id="load-synchronization-description">
 <span id="sardana-triggergatecontroller-howto-load"></span><h3>Load synchronization description<a class="headerlink" href="#load-synchronization-description" title="Permalink to this headline">¶</a></h3>
 <p>To load a trigger with the synchronization description

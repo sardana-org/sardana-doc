@@ -660,6 +660,9 @@
 
         <span class="n">config</span><span class="o">.</span><span class="n">changed</span> <span class="o">=</span> <span class="kc">False</span>
 
+        <span class="c1"># Call synchronizer controllers prepare method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_synch_ctrls</span><span class="p">(</span><span class="n">ctrls_synch</span><span class="p">,</span> <span class="n">nb_starts</span><span class="p">)</span>
+
         <span class="c1"># Call hardware and software start controllers prepare method</span>
         <span class="n">ctrls</span> <span class="o">=</span> <span class="n">ctrls_hw</span> <span class="o">+</span> <span class="n">ctrls_sw_start</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
@@ -671,6 +674,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_prepare_ctrls</span><span class="p">(</span><span class="n">ctrls_sw</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
                             <span class="n">nb_starts</span><span class="p">)</span>
 
+
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">_prepare_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="n">nb_starts</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
@@ -678,6 +682,14 @@
             <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
             <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">PrepareOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span>
                                       <span class="n">nb_starts</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_prepare_synch_ctrls</span><span class="p">(</span><span class="n">ctrls</span><span class="p">,</span> <span class="n">nb_starts</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">ctrl</span> <span class="ow">in</span> <span class="n">ctrls</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">chn</span> <span class="ow">in</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">get_channels</span><span class="p">():</span>
+                <span class="n">axis</span> <span class="o">=</span> <span class="n">chn</span><span class="o">.</span><span class="n">axis</span>
+                <span class="n">pool_ctrl</span> <span class="o">=</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">element</span>
+                <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">ctrl</span><span class="o">.</span><span class="n">PrepareOne</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">nb_starts</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Checks if acquisition is running.</span>

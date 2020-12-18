@@ -1062,7 +1062,7 @@
         <span class="k">pass</span></div></div>
 
 
-<span class="k">class</span> <span class="nc">TriggerGateController</span><span class="p">(</span><span class="n">Controller</span><span class="p">,</span> <span class="n">Synchronizer</span><span class="p">,</span> <span class="n">Stopable</span><span class="p">,</span> <span class="n">Startable</span><span class="p">):</span>
+<div class="viewcode-block" id="TriggerGateController"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.TriggerGateController">[docs]</a><span class="k">class</span> <span class="nc">TriggerGateController</span><span class="p">(</span><span class="n">Controller</span><span class="p">,</span> <span class="n">Synchronizer</span><span class="p">,</span> <span class="n">Stopable</span><span class="p">,</span> <span class="n">Startable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for a trigger/gate controller. Inherit from this class to</span>
 <span class="sd">    implement your own trigger/gate controller for the device pool.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1072,6 +1072,18 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="c1"># TODO: Implement a Preparable interface and move this method</span>
+    <span class="c1">#  and the Loadable.PrepareOne() there.</span>
+<div class="viewcode-block" id="TriggerGateController.PrepareOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.TriggerGateController.PrepareOne">[docs]</a>    <span class="k">def</span> <span class="nf">PrepareOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nb_starts</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;**Controller API**. Override if necessary.</span>
+<span class="sd">        Called to prepare the trigger/gate axis with the measurement</span>
+<span class="sd">        parameters.</span>
+<span class="sd">        Default implementation does nothing.</span>
+
+<span class="sd">        :param int nb_starts: number of starts</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span></div></div>
 
 
 <div class="viewcode-block" id="ZeroDController"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.ZeroDController">[docs]</a><span class="k">class</span> <span class="nc">ZeroDController</span><span class="p">(</span><span class="n">Controller</span><span class="p">,</span> <span class="n">Readable</span><span class="p">,</span> <span class="n">Stopable</span><span class="p">):</span>

@@ -320,10 +320,11 @@ in the <a class="reference internal" href="#sardana.pool.controller.Memorize" ti
 <li><p><a class="reference internal" href="#sardana.pool.controller.CounterTimerController" title="sardana.pool.controller.CounterTimerController"><code class="xref py py-class docutils literal notranslate"><span class="pre">CounterTimerController</span></code></a></p></li>
 <li><p><a class="reference internal" href="#sardana.pool.controller.ZeroDController" title="sardana.pool.controller.ZeroDController"><code class="xref py py-class docutils literal notranslate"><span class="pre">ZeroDController</span></code></a></p></li>
 <li><p><a class="reference internal" href="#sardana.pool.controller.OneDController" title="sardana.pool.controller.OneDController"><code class="xref py py-class docutils literal notranslate"><span class="pre">OneDController</span></code></a></p></li>
+<li><p><a class="reference internal" href="#sardana.pool.controller.TwoDController" title="sardana.pool.controller.TwoDController"><code class="xref py py-class docutils literal notranslate"><span class="pre">TwoDController</span></code></a></p></li>
 </ul>
 </td><td><ul class="simple">
-<li><p><a class="reference internal" href="#sardana.pool.controller.TwoDController" title="sardana.pool.controller.TwoDController"><code class="xref py py-class docutils literal notranslate"><span class="pre">TwoDController</span></code></a></p></li>
 <li><p><a class="reference internal" href="#sardana.pool.controller.PseudoCounterController" title="sardana.pool.controller.PseudoCounterController"><code class="xref py py-class docutils literal notranslate"><span class="pre">PseudoCounterController</span></code></a></p></li>
+<li><p><a class="reference internal" href="#sardana.pool.controller.TriggerGateController" title="sardana.pool.controller.TriggerGateController"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriggerGateController</span></code></a></p></li>
 <li><p><a class="reference internal" href="#sardana.pool.controller.IORegisterController" title="sardana.pool.controller.IORegisterController"><code class="xref py py-class docutils literal notranslate"><span class="pre">IORegisterController</span></code></a></p></li>
 </ul>
 </td></tr></table>
@@ -1868,6 +1869,44 @@ counter role)</p>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 1.2.</span></p>
 </div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="trigger-gate-controller-api">
+<h2>Trigger/Gate Controller API<a class="headerlink" href="#trigger-gate-controller-api" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><img src="../../../../_images/inheritance-181e5fad71269e523fa3d6bd641e7adb12b51524.png" alt="Inheritance diagram of TriggerGateController" usemap="#inheritanced23d2e765a" class="inheritance graphviz" /></div>
+<map id="inheritanced23d2e765a" name="inheritanced23d2e765a">
+<area shape="rect" id="node1" href="#sardana.pool.controller.Controller" target="_top" title="Base controller class. Do **NOT** inherit from this class directly" alt="" coords="5,5,89,44"/>
+<area shape="rect" id="node5" href="#sardana.pool.controller.TriggerGateController" target="_top" title="Base class for a trigger/gate controller. Inherit from this class to" alt="" coords="127,92,285,131"/>
+<area shape="rect" id="node2" href="#sardana.pool.controller.Startable" target="_top" title="A Startable interface. A controller for which it&#39;s axis are &#39;startable&#39;" alt="" coords="113,5,195,44"/>
+<area shape="rect" id="node3" href="#sardana.pool.controller.Stopable" target="_top" title="A Stopable interface. A controller for which it&#39;s axis are &#39;stoppable&#39;" alt="" coords="219,5,297,44"/>
+<area shape="rect" id="node4" href="#sardana.pool.controller.Synchronizer" target="_top" title="A Synchronizer interface. A controller for which its axis are &#39;Able to" alt="" coords="321,5,427,44"/>
+</map><dl class="py class">
+<dt id="sardana.pool.controller.TriggerGateController">
+<em class="property">class </em><code class="sig-name descname">TriggerGateController</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">inst</span></em>, <em class="sig-param"><span class="n">props</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#TriggerGateController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.TriggerGateController" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sardana.pool.controller.Controller" title="sardana.pool.controller.Controller"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.pool.controller.Controller</span></code></a>, <a class="reference internal" href="#sardana.pool.controller.Synchronizer" title="sardana.pool.controller.Synchronizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.pool.controller.Synchronizer</span></code></a>, <a class="reference internal" href="#sardana.pool.controller.Stopable" title="sardana.pool.controller.Stopable"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.pool.controller.Stopable</span></code></a>, <a class="reference internal" href="#sardana.pool.controller.Startable" title="sardana.pool.controller.Startable"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.pool.controller.Startable</span></code></a></p>
+<p>Base class for a trigger/gate controller. Inherit from this class to
+implement your own trigger/gate controller for the device pool.</p>
+<dl class="py attribute">
+<dt id="sardana.pool.controller.TriggerGateController.gender">
+<code class="sig-name descname">gender</code><em class="property"> = 'Trigger/Gate controller'</em><a class="headerlink" href="#sardana.pool.controller.TriggerGateController.gender" title="Permalink to this definition">¶</a></dt>
+<dd><p>A <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> representing the controller gender</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.controller.TriggerGateController.PrepareOne">
+<code class="sig-name descname">PrepareOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nb_starts</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#TriggerGateController.PrepareOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.TriggerGateController.PrepareOne" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Controller API</strong>. Override if necessary.
+Called to prepare the trigger/gate axis with the measurement
+parameters.
+Default implementation does nothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>nb_starts</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – number of starts</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
