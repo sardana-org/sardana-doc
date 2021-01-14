@@ -208,22 +208,28 @@
 <a class="reference internal" href="../getting_started/running_server.html#sardana-getting-started-running-server"><span class="std std-ref">run as one or many Tango device servers</span></a>.
 Tango device servers listens on a TCP port for the CORBA requests. Usually
 it is fine to use the randomly assigned port (default behavior) but sometimes
-it may be necessary to use a fixed port number. For example, when the server
-needs to be accessed from another isolated network and we want to open
-connections only for the given ports.</p>
-<p>There are three possibilities to assign the port explicitly (the order
-indicates the precedence):</p>
+it may be necessary to use a fixed port number or even IP address.
+For example, when the server needs to be accessed from another isolated
+network and we want to open connections only for the given ports or IPs.</p>
+<p>There are three possibilities to assign the IP and/or port in format of the
+ORBendPoint explicitly (the order indicates the precedence):</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The ORBendPoint is in the following format: <code class="docutils literal notranslate"><span class="pre">giop:tcp:&lt;IP&gt;:&lt;port&gt;</span></code>
+and both IP and port are optional, so you could only fix the IP,
+only fix the port, fix both of them or none of them.</p>
+</div>
 <ul class="simple">
 <li><p>using OS environment variable <code class="docutils literal notranslate"><span class="pre">ORBendPoint</span></code> e.g.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">ORBendPoint</span><span class="o">=</span><span class="m">28366</span>
-$ Pool demo1 -ORBendPoint <span class="m">28366</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">ORBendPoint</span><span class="o">=</span>giop:tcp:192.168.0.100:28366
+$ Pool demo1
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>using Tango device server command line argument <code class="docutils literal notranslate"><span class="pre">-ORBendPoint</span></code></p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ Pool demo1 -ORBendPoint <span class="m">28366</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ Pool demo1 -ORBendPoint giop:tcp:192.168.0.100:28366
 </pre></div>
 </div>
 <ul class="simple">
@@ -232,7 +238,7 @@ name: <code class="docutils literal notranslate"><span class="pre">&lt;server_na
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tango</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">tango</span><span class="o">.</span><span class="n">Database</span><span class="p">()</span>
-<span class="n">db</span><span class="o">.</span><span class="n">put_property</span><span class="p">(</span><span class="s2">&quot;ORBendPoint&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Pool/demo1&quot;</span><span class="p">:</span> <span class="mi">28366</span><span class="p">})</span>
+<span class="n">db</span><span class="o">.</span><span class="n">put_property</span><span class="p">(</span><span class="s2">&quot;ORBendPoint&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;Pool/demo1&quot;</span><span class="p">:</span> <span class="s2">&quot;giop:tcp:192.168.0.100:28366&quot;</span><span class="p">})</span>
 </pre></div>
 </div>
 <div class="admonition note">
