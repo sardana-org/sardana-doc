@@ -2623,8 +2623,8 @@
 <div class="viewcode-block" id="MeasurementGroup.putIntegrationTime"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.MeasurementGroup.putIntegrationTime">[docs]</a>    <span class="k">def</span> <span class="nf">putIntegrationTime</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ctime</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_integ_time</span> <span class="o">==</span> <span class="n">ctime</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_last_integ_time</span> <span class="o">=</span> <span class="n">ctime</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">getIntegrationTimeObj</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ctime</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getIntegrationTimeObj</span><span class="p">()</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ctime</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_integ_time</span> <span class="o">=</span> <span class="n">ctime</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.getAcquisitionModeObj"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.MeasurementGroup.getAcquisitionModeObj">[docs]</a>    <span class="k">def</span> <span class="nf">getAcquisitionModeObj</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getAttrEG</span><span class="p">(</span><span class="s1">&#39;AcquisitionMode&#39;</span><span class="p">)</span></div>
