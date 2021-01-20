@@ -718,52 +718,6 @@ used.</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.tearDown">
-<code class="sig-name descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
-<dd><p>The macro_executor instance must be removed</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.macro_name">
-<code class="sig-name descname">macro_name</code><em class="property"> = None</em><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.macro_runs">
-<code class="sig-name descname">macro_runs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">macro_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">macro_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">wait_timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_runs" title="Permalink to this definition">¶</a></dt>
-<dd><p>A helper method to create tests that check if the macro can be
-successfully executed for the given input parameters. It may also
-optionally perform checks on the outputs from the execution.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>macro_name</strong> – (str) macro name (takes precedence over macro_name
-class member)</p></li>
-<li><p><strong>macro_params</strong> – (seq&lt;str&gt;): parameters for running the macro.
-If passed, they must be given as a sequence of
-their string representations.</p></li>
-<li><p><strong>wait_timeout</strong> – (float) maximum allowed time (in s) for the macro
-to finish. By default infinite timeout is
-used (None).</p></li>
-<li><p><strong>data</strong> – (obj) Optional. If passed, the macro data after the
-execution is tested to be equal to this.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.assertFinished">
-<code class="sig-name descname">assertFinished</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.assertFinished" title="Permalink to this definition">¶</a></dt>
-<dd><p>Asserts that macro has finished.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.door_name">
-<code class="sig-name descname">door_name</code><em class="property"> = 'door/demo1/1'</em><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.door_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.setUp">
 <code class="sig-name descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.setUp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Preconditions:
@@ -791,6 +745,52 @@ representations of exception objects)</p></li>
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.macro_runs">
+<code class="sig-name descname">macro_runs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">macro_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">macro_params</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">wait_timeout</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">data</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_runs" title="Permalink to this definition">¶</a></dt>
+<dd><p>A helper method to create tests that check if the macro can be
+successfully executed for the given input parameters. It may also
+optionally perform checks on the outputs from the execution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>macro_name</strong> – (str) macro name (takes precedence over macro_name
+class member)</p></li>
+<li><p><strong>macro_params</strong> – (seq&lt;str&gt;): parameters for running the macro.
+If passed, they must be given as a sequence of
+their string representations.</p></li>
+<li><p><strong>wait_timeout</strong> – (float) maximum allowed time (in s) for the macro
+to finish. By default infinite timeout is
+used (None).</p></li>
+<li><p><strong>data</strong> – (obj) Optional. If passed, the macro data after the
+execution is tested to be equal to this.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.tearDown">
+<code class="sig-name descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>The macro_executor instance must be removed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.assertFinished">
+<code class="sig-name descname">assertFinished</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.assertFinished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asserts that macro has finished.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.macro_name">
+<code class="sig-name descname">macro_name</code><em class="property"> = None</em><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.macro_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.macroserver.macros.test.RunStopMacroTestCase.door_name">
+<code class="sig-name descname">door_name</code><em class="property"> = 'door/demo1/1'</em><a class="headerlink" href="#sardana.macroserver.macros.test.RunStopMacroTestCase.door_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

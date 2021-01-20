@@ -201,6 +201,15 @@
 <span class="k">def</span> <span class="nf">expconf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter_s</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Launches a GUI for configuring the environment variables</span>
 <span class="sd">    for the experiments (scans)&quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="kn">import</span> <span class="n">Qt</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qt binding is not available. ExpConf cannot work without it.&quot;</span>
+              <span class="s2">&quot;(hint: maybe you want to use experiment configuration macros? &quot;</span>
+              <span class="s2">&quot;https://sardana-controls.org/users/standard_macro_catalog.html#experiment-configuration-macros)&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
     <span class="k">try</span><span class="p">:</span>
         <span class="kn">from</span> <span class="nn">sardana.taurus.qt.qtgui.extra_sardana</span> <span class="kn">import</span> <span class="n">ExpDescriptionEditor</span>
     <span class="k">except</span><span class="p">:</span>
@@ -242,6 +251,13 @@
 <span class="sd">    Where *online* means plot the scan as it runs and *offline* means -</span>
 <span class="sd">    extract the scan data from the file - works only with HDF5 files.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="kn">import</span> <span class="n">Qt</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qt binding is not available. Showscan cannot work without it.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
     <span class="n">params</span> <span class="o">=</span> <span class="n">parameter_s</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
     <span class="n">door</span> <span class="o">=</span> <span class="n">get_door</span><span class="p">()</span>
     <span class="n">scan_nb</span> <span class="o">=</span> <span class="kc">None</span>
@@ -282,6 +298,12 @@
 
 
 <span class="k">def</span> <span class="nf">spsplot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter_s</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="kn">import</span> <span class="n">Qt</span>
+    <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qt binding is not available. SPSplot cannot work without it.&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
     <span class="n">get_door</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 
 
