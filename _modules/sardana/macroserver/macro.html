@@ -699,6 +699,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_id</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_desc</span> <span class="o">=</span> <span class="s2">&quot;Macro &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_line</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_status</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id</span><span class="p">,</span>
+                              <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">,</span>
+                              <span class="s1">&#39;macro_line&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_line</span><span class="p">,</span>
                               <span class="s1">&#39;range&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">),</span>
                               <span class="s1">&#39;state&#39;</span><span class="p">:</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span>
                               <span class="s1">&#39;step&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">}</span>
@@ -2494,6 +2496,12 @@
 
         <span class="c1"># make sure a 0.0 progress is sent</span>
         <span class="k">yield</span> <span class="n">macro_status</span>
+
+        <span class="c1"># Avoid repeating same information on subsequent events. If, in the</span>
+        <span class="c1"># future, clients that connect in the middle of macro execution need</span>
+        <span class="c1"># this information, just simply remove the lines below</span>
+        <span class="k">del</span> <span class="n">macro_status</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">macro_status</span><span class="p">[</span><span class="s1">&#39;macro_line&#39;</span><span class="p">]</span>
 
         <span class="c1"># allow any macro to be paused at the beginning of its execution</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pausePoint</span><span class="p">()</span>
