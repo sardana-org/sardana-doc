@@ -273,9 +273,10 @@ has to be set via setModel.</p></li>
 <p>Examples:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="kn">import</span> <span class="n">Qt</span>
 <span class="kn">from</span> <span class="nn">sardana.taurus.qt.qtgui.extra_sardana.qtspock</span> <span class="kn">import</span> <span class="n">QtSpockWidget</span>
-<span class="n">app</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">QApplication</span><span class="p">([])</span>
-<span class="n">widget</span> <span class="o">=</span> <span class="n">QtSpockWidget</span><span class="p">()</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">QApplication</span><span class="p">([</span><span class="s2">&quot;qtspock&quot;</span><span class="p">])</span>
+<span class="n">widget</span> <span class="o">=</span> <span class="n">QtSpockWidget</span><span class="p">(</span><span class="n">use_model_from_profile</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">widget</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">widget</span><span class="o">.</span><span class="n">start_kernel</span><span class="p">()</span>
 <span class="n">app</span><span class="o">.</span><span class="n">aboutToQuit</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">shutdown_kernel</span><span class="p">)</span>
 <span class="n">app</span><span class="o">.</span><span class="n">exec_</span><span class="p">()</span>
 </pre></div>
