@@ -199,15 +199,39 @@
            <div itemprop="articleBody">
             
   <div class="section" id="how-to-write-a-counter-timer-controller">
-<span id="sardana-countertimercontroller-howto-basics"></span><h1>How to write a counter/timer controller<a class="headerlink" href="#how-to-write-a-counter-timer-controller" title="Permalink to this headline">¶</a></h1>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Counter/timer controller <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> was extended in <a class="reference external" href="http://www.sardana-controls.org/sep/?SEP18.md">SEP18</a> but this is
-still not documented in this chapter. Please check the said SEP for more
-information about the additional <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> or eventual changes.</p>
+<span id="sardana-countertimercontroller-howto-basics"></span><h1><a class="toc-backref" href="#id1">How to write a counter/timer controller</a><a class="headerlink" href="#how-to-write-a-counter-timer-controller" title="Permalink to this headline">¶</a></h1>
+<p>This chapter provides the necessary information to write a counter/timer
+controller in Sardana.</p>
+<div class="contents topic" id="table-of-contents">
+<p class="topic-title">Table of contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#how-to-write-a-counter-timer-controller" id="id1">How to write a counter/timer controller</a></p>
+<ul>
+<li><p><a class="reference internal" href="#the-basics" id="id2">The basics</a></p>
+<ul>
+<li><p><a class="reference internal" href="#get-counter-state" id="id3">Get counter state</a></p></li>
+<li><p><a class="reference internal" href="#load-a-counter" id="id4">Load a counter</a></p></li>
+<li><p><a class="reference internal" href="#get-counter-value" id="id5">Get counter value</a></p></li>
+<li><p><a class="reference internal" href="#start-a-counter" id="id6">Start a counter</a></p></li>
+<li><p><a class="reference internal" href="#stop-a-counter" id="id7">Stop a counter</a></p></li>
+<li><p><a class="reference internal" href="#abort-a-counter" id="id8">Abort a counter</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#advanced-topics" id="id9">Advanced topics</a></p>
+<ul>
+<li><p><a class="reference internal" href="#timer-and-monitor-roles" id="id10">Timer and monitor roles</a></p></li>
+<li><p><a class="reference internal" href="#timestamp-a-counter-value" id="id11">Timestamp a counter value</a></p></li>
+<li><p><a class="reference internal" href="#multiple-acquisition-synchronization" id="id12">Multiple acquisition synchronization</a></p></li>
+<li><p><a class="reference internal" href="#external-hardware-synchronization" id="id13">External (hardware) synchronization</a></p></li>
+<li><p><a class="reference internal" href="#per-measurement-preparation" id="id14">Per measurement preparation</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="the-basics">
-<h2>The basics<a class="headerlink" href="#the-basics" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">The basics</a><a class="headerlink" href="#the-basics" title="Permalink to this headline">¶</a></h2>
 <p>An example of a hypothetical <em>Springfield</em> counter/timer controller will be build
 incrementally from scratch to aid in the explanation.</p>
 <p>By now you should have read <a class="reference internal" href="../api/api_controller.html#sardana-controller-api"><span class="std std-ref">the general controller basics</span></a> chapter. You should
@@ -305,7 +329,7 @@ well as to start an acquisition:</p>
 </pre></div>
 </div>
 <div class="section" id="get-counter-state">
-<span id="sardana-countertimercontroller-howto-state"></span><h3>Get counter state<a class="headerlink" href="#get-counter-state" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-howto-state"></span><h3><a class="toc-backref" href="#id3">Get counter state</a><a class="headerlink" href="#get-counter-state" title="Permalink to this headline">¶</a></h3>
 <p>To get the state of a counter, sardana calls the
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.StateOne" title="sardana.pool.controller.Controller.StateOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StateOne()</span></code></a> method. This method
 receives an axis as parameter and should return either:</p>
@@ -327,7 +351,7 @@ compatibility reasons, it is also supported to return one of
 <code class="xref py py-class docutils literal notranslate"><span class="pre">PyTango.DevState</span></code>). The status could be any string.</p>
 </div>
 <div class="section" id="load-a-counter">
-<span id="sardana-countertimercontroller-howto-load"></span><h3>Load a counter<a class="headerlink" href="#load-a-counter" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-howto-load"></span><h3><a class="toc-backref" href="#id4">Load a counter</a><a class="headerlink" href="#load-a-counter" title="Permalink to this headline">¶</a></h3>
 <p>To load a counter with either the integration time or the monitor counts,
 sardana calls the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.LoadOne" title="sardana.pool.controller.Loadable.LoadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LoadOne()</span></code></a> method.
 This method receives axis, value and repetitions parameters. For the moment
@@ -342,7 +366,7 @@ let’s focus on the first two of them.</p>
 </div>
 </div>
 <div class="section" id="get-counter-value">
-<span id="sardana-countertimercontroller-howto-value"></span><h3>Get counter value<a class="headerlink" href="#get-counter-value" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-howto-value"></span><h3><a class="toc-backref" href="#id5">Get counter value</a><a class="headerlink" href="#get-counter-value" title="Permalink to this headline">¶</a></h3>
 <p>To get the counter value, sardana calls the
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Readable.ReadOne" title="sardana.pool.controller.Readable.ReadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ReadOne()</span></code></a> method. This method
 receives an axis as parameter and should return a valid counter value. Sardana
@@ -359,7 +383,7 @@ notifies the pseudo counters about the new counter value so they can be updated
 </div>
 </div>
 <div class="section" id="start-a-counter">
-<span id="sardana-countertimercontroller-howto-start"></span><h3>Start a counter<a class="headerlink" href="#start-a-counter" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-howto-start"></span><h3><a class="toc-backref" href="#id6">Start a counter</a><a class="headerlink" href="#start-a-counter" title="Permalink to this headline">¶</a></h3>
 <p>When an order comes for sardana to start a counter, sardana will call the
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Startable.StartOne" title="sardana.pool.controller.Startable.StartOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StartOne()</span></code></a> method. This method receives
 an axis as parameter. The controller code should trigger the hardware acquisition.</p>
@@ -383,7 +407,7 @@ is stopped and exit the acquisition loop.</p>
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.StateOne" title="sardana.pool.controller.Controller.StateOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StateOne()</span></code></a> responds correctly.</p>
 </div>
 <div class="section" id="stop-a-counter">
-<span id="sardana-countertimercontroller-howto-stop"></span><h3>Stop a counter<a class="headerlink" href="#stop-a-counter" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-howto-stop"></span><h3><a class="toc-backref" href="#id7">Stop a counter</a><a class="headerlink" href="#stop-a-counter" title="Permalink to this headline">¶</a></h3>
 <p>It is possible to stop a counter when it is acquiring. When sardana is ordered to
 stop a counter acquisition, it invokes the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Stopable.StopOne" title="sardana.pool.controller.Stopable.StopOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StopOne()</span></code></a>
 method. This method receives an axis parameter. The controller should make
@@ -398,7 +422,7 @@ sure the desired counter is <em>gracefully</em> stopped.</p>
 </div>
 </div>
 <div class="section" id="abort-a-counter">
-<span id="sardana-countertimercontroller-howto-abort"></span><h3>Abort a counter<a class="headerlink" href="#abort-a-counter" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-howto-abort"></span><h3><a class="toc-backref" href="#id8">Abort a counter</a><a class="headerlink" href="#abort-a-counter" title="Permalink to this headline">¶</a></h3>
 <p>In an emergency situation, it is desirable to abort an acquisition
 <em>as fast as possible</em>. When sardana is ordered to abort a counter acquisition,
 it invokes the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Stopable.AbortOne" title="sardana.pool.controller.Stopable.AbortOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">AbortOne()</span></code></a>
@@ -414,8 +438,10 @@ sure the desired counter is stopped as fast as it can be done.</p>
 </div>
 </div>
 </div>
+<div class="section" id="advanced-topics">
+<h2><a class="toc-backref" href="#id9">Advanced topics</a><a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="timer-and-monitor-roles">
-<span id="sardana-countertimercontroller-howto-timermonitor"></span><h2>Timer and monitor roles<a class="headerlink" href="#timer-and-monitor-roles" title="Permalink to this headline">¶</a></h2>
+<span id="sardana-countertimercontroller-howto-timermonitor"></span><h3><a class="toc-backref" href="#id10">Timer and monitor roles</a><a class="headerlink" href="#timer-and-monitor-roles" title="Permalink to this headline">¶</a></h3>
 <p>Usually counters can work in either of two modes: timer or monitor. In both of
 them, one counter in a group is assigned a special role to control when
 the rest of them should stop counting. The stopping condition is based on the
@@ -428,10 +454,8 @@ parameter <code class="docutils literal notranslate"><span class="pre">acquisiti
 <p>Controller may announce its default timer axis with the
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.default_timer" title="sardana.pool.controller.Loadable.default_timer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_timer</span></code></a> class attribute.</p>
 </div>
-<div class="section" id="advanced-topics">
-<span id="sardana-countertimercontroller-howto-advanced"></span><h2>Advanced topics<a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="timestamp-a-counter-value">
-<span id="sardana-countertimercontroller-howto-timestamp-value"></span><h3>Timestamp a counter value<a class="headerlink" href="#timestamp-a-counter-value" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-howto-timestamp-value"></span><span id="sardana-countertimercontroller-howto-advanced"></span><h3><a class="toc-backref" href="#id11">Timestamp a counter value</a><a class="headerlink" href="#timestamp-a-counter-value" title="Permalink to this headline">¶</a></h3>
 <p>When you read the value of a counter from the hardware sometimes it is
 necessary to associate a timestamp with that value so you can track the
 value of a counter in time.</p>
@@ -469,7 +493,7 @@ object’s value and timestamp. Example:</p>
 </div>
 </div>
 <div class="section" id="multiple-acquisition-synchronization">
-<span id="sardana-countertimercontroller-howto-mutliple-acquisition"></span><h3>Multiple acquisition synchronization<a class="headerlink" href="#multiple-acquisition-synchronization" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-howto-mutliple-acquisition"></span><h3><a class="toc-backref" href="#id12">Multiple acquisition synchronization</a><a class="headerlink" href="#multiple-acquisition-synchronization" title="Permalink to this headline">¶</a></h3>
 <p>This chapter describes an extended <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a> that allows you to better
 synchronize acquisitions involving more than one counter, as well as optimize
 hardware communication (in case the hardware interface also supports this).</p>
@@ -578,8 +602,8 @@ like a call from a different user to get counter state.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="hardware-synchronization">
-<h3>Hardware synchronization<a class="headerlink" href="#hardware-synchronization" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="external-hardware-synchronization">
+<h3><a class="toc-backref" href="#id13">External (hardware) synchronization</a><a class="headerlink" href="#external-hardware-synchronization" title="Permalink to this headline">¶</a></h3>
 <p>The synchronization achieved in <a class="reference internal" href="#sardana-countertimercontroller-howto-mutliple-acquisition"><span class="std std-ref">Multiple acquisition synchronization</span></a>
 may not be enough when it comes to acquiring with multiple controllers at the
 same time or to executing multiple acquisitions in a row.
@@ -607,8 +631,10 @@ occur.</p>
     <span class="n">SynchMap</span> <span class="o">=</span> <span class="p">{</span>
         <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span> <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareGate</span> <span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareTrigger</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-        <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareGate</span><span class="p">:</span> <span class="mi">4</span>
+        <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareStart</span> <span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+        <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareTrigger</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareGate</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">AcqSynch</span><span class="o">.</span><span class="n">HardwareStart</span><span class="p">:</span> <span class="mi">6</span>
     <span class="p">}</span>
 
     <span class="k">def</span> <span class="nf">SetCtrlPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -624,7 +650,7 @@ occur.</p>
 <p>It is a very common scenario to execute multiple hardware synchronized
 acquisitions in a row. One example of this type of measurements are the
 <a class="reference internal" href="../../users/scan.html#sardana-users-scan-continuous"><span class="std std-ref">Continuous scans</span></a>. The controller receives the number of
-acquisitions via the third argument of the
+acquisitions via the <code class="docutils literal notranslate"><span class="pre">repetitions</span></code> argument of the
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.LoadOne" title="sardana.pool.controller.Loadable.LoadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LoadOne()</span></code></a> method.</p>
 <p>Here is an example of the possible implementation of
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.LoadOne" title="sardana.pool.controller.Loadable.LoadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LoadOne()</span></code></a>:</p>
@@ -633,6 +659,51 @@ acquisitions via the third argument of the
 <span class="hll">    <span class="k">def</span> <span class="nf">LoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">):</span>
 </span>        <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">LoadChannel</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">SetRepetitions</span><span class="p">(</span><span class="n">repetitions</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>In order to make the acquisition flow smoothly the synchronizer and
+the counter/timer controllers needs to agree on the synchronization pace.
+The counter/timer controller manifest what is the maximum allowed pace for him
+by means of the <code class="docutils literal notranslate"><span class="pre">latency_time</span></code> controller parameter (in seconds). This parameter
+corresponds to the minimum time necessary by the hardware controller to re-arm
+for the next acquisition.</p>
+<p>Here is an example of the possible implementation of
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetCtrlPar" title="sardana.pool.controller.Controller.GetCtrlPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetCtrlPar()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpringfieldCounterTimerController</span><span class="p">(</span><span class="n">CounterTimerController</span><span class="p">):</span>
+
+<span class="hll">    <span class="k">def</span> <span class="nf">GetCtrlPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span>        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;latency_time&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">GetLatencyTime</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>By default, the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.CounterTimerController" title="sardana.pool.controller.CounterTimerController"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CounterTimerController</span></code></a>
+base classes return zero latency time controller parameter.
+If in your controller you override
+the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetCtrlPar" title="sardana.pool.controller.Controller.GetCtrlPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetCtrlPar()</span></code></a> method
+remember to always call the super class method as fallback:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">GetCtrlPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;some_par&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;some_val&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+<span class="hll">        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">GetCtrlPar</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div>
+<p>In the case of the <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.HardwareStart" title="sardana.pool.pooldefs.AcqSynch.HardwareStart"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HardwareStart</span></code></a> or
+<a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareStart" title="sardana.pool.pooldefs.AcqSynch.SoftwareStart"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SoftwareStart</span></code></a> synchronizations
+the counter/timer hardware <em>auto</em> triggers itself during the measurement process.
+In order to fully configure the hardware and set the re-trigger pace you can
+use the <code class="docutils literal notranslate"><span class="pre">latency</span></code> argument (in seconds)
+of the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.LoadOne" title="sardana.pool.controller.Loadable.LoadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LoadOne()</span></code></a> method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpringfieldCounterTimerController</span><span class="p">(</span><span class="n">CounterTimerController</span><span class="p">):</span>
+
+<span class="hll">    <span class="k">def</span> <span class="nf">LoadOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">):</span>
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">LoadChannel</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">SetRepetitions</span><span class="p">(</span><span class="n">repetitions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">SetLatency</span><span class="p">(</span><span class="n">latency</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">value</span>
 </pre></div>
 </div>
@@ -657,16 +728,37 @@ can be:</p>
 in case of the <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareTrigger" title="sardana.pool.pooldefs.AcqSynch.SoftwareTrigger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SoftwareTrigger</span></code></a> or
 <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareGate" title="sardana.pool.pooldefs.AcqSynch.SoftwareGate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SoftwareGate</span></code></a> synchronization</p></li>
 <li><p>a sequence of counter values: either <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue" title="sardana.sardanavalue.SardanaValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SardanaValue</span></code></a>
-in case of the <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.HardwareTrigger" title="sardana.pool.pooldefs.AcqSynch.HardwareTrigger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HardwareTrigger</span></code></a> or
-<a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.HardwareGate" title="sardana.pool.pooldefs.AcqSynch.HardwareGate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HardwareGate</span></code></a> synchronization</p></li>
+in case of the <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.HardwareTrigger" title="sardana.pool.pooldefs.AcqSynch.HardwareTrigger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HardwareTrigger</span></code></a>,
+<a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.HardwareGate" title="sardana.pool.pooldefs.AcqSynch.HardwareGate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HardwareGate</span></code></a>,
+<a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.HardwareStart" title="sardana.pool.pooldefs.AcqSynch.HardwareStart"><code class="xref py py-attr docutils literal notranslate"><span class="pre">HardwareStart</span></code></a> or
+<a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareStart" title="sardana.pool.pooldefs.AcqSynch.SoftwareStart"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SoftwareStart</span></code></a>
+synchronization</p></li>
 </ul>
 </div></blockquote>
 <p>Sardana assumes that the counter values are returned in the order of acquisition
 and that there are no gaps in between them.</p>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>document how to skip the readouts while acquiring</p>
 </div>
+</div>
+<div class="section" id="per-measurement-preparation">
+<h3><a class="toc-backref" href="#id14">Per measurement preparation</a><a class="headerlink" href="#per-measurement-preparation" title="Permalink to this headline">¶</a></h3>
+<p>Since <a class="reference external" href="http://www.sardana-controls.org/sep/?SEP18.md">SEP18</a> counter/timer controllers may take a profit from the per measurement
+preparation and reserve resources for a sequence of
+<a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareTrigger" title="sardana.pool.pooldefs.AcqSynch.SoftwareTrigger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SoftwareTrigger</span></code></a>
+or <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareGate" title="sardana.pool.pooldefs.AcqSynch.SoftwareGate"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SoftwareGate</span></code></a> acquisitions
+already in the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.PrepareOne" title="sardana.pool.controller.Loadable.PrepareOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PrepareOne()</span></code></a> method.
+This method is called only once at the beginning of the measurement e.g.
+<a class="reference internal" href="../howto_macros/scan_framework.html#sardana-macros-scanframework-determscan"><span class="std std-ref">Deterministic step scans</span></a>
+or <a class="reference internal" href="../../users/scan.html#sardana-users-scan-continuous"><span class="std std-ref">Continuous scans</span></a>.
+It enables an opportunity for significant dead time optimization thanks to the
+single per measurement configuration instead of the multiple per acquisition
+preparation using the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.LoadOne" title="sardana.pool.controller.Loadable.LoadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">LoadOne()</span></code></a>.</p>
+<p>Here is an example of the possible implementation of
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.PrepareOne" title="sardana.pool.controller.Loadable.PrepareOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PrepareOne()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpringfieldCounterTimerController</span><span class="p">(</span><span class="n">CounterTimerController</span><span class="p">):</span>
+
+<span class="hll">    <span class="k">def</span> <span class="nf">PrepareOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">repetitions</span><span class="p">,</span> <span class="n">latency</span><span class="p">,</span> <span class="n">nb_starts</span><span class="p">):</span>
+</span>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">SetNbStarts</span><span class="p">()</span>
+</pre></div>
 </div>
 </div>
 </div>
