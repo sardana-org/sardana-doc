@@ -299,13 +299,14 @@ in the <a class="reference internal" href="#sardana.pool.controller.Memorize" ti
 <p class="rubric">Interfaces</p>
 <table class="hlist"><tr><td><ul class="simple">
 <li><p><a class="reference internal" href="#sardana.pool.controller.Readable" title="sardana.pool.controller.Readable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Readable</span></code></a></p></li>
+<li><p><a class="reference internal" href="#sardana.pool.controller.Referable" title="sardana.pool.controller.Referable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Referable</span></code></a></p></li>
+</ul>
+</td><td><ul class="simple">
 <li><p><a class="reference internal" href="#sardana.pool.controller.Startable" title="sardana.pool.controller.Startable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Startable</span></code></a></p></li>
-</ul>
-</td><td><ul class="simple">
 <li><p><a class="reference internal" href="#sardana.pool.controller.Stopable" title="sardana.pool.controller.Stopable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stopable</span></code></a></p></li>
-<li><p><a class="reference internal" href="#sardana.pool.controller.Loadable" title="sardana.pool.controller.Loadable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Loadable</span></code></a></p></li>
 </ul>
 </td><td><ul class="simple">
+<li><p><a class="reference internal" href="#sardana.pool.controller.Loadable" title="sardana.pool.controller.Loadable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Loadable</span></code></a></p></li>
 <li><p><a class="reference internal" href="#sardana.pool.controller.Synchronizer" title="sardana.pool.controller.Synchronizer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Synchronizer</span></code></a></p></li>
 </ul>
 </td></tr></table>
@@ -371,6 +372,45 @@ Default implementation does nothing.</p>
 <dl class="py method">
 <dt id="sardana.pool.controller.Readable.ReadOne">
 <code class="sig-name descname">ReadOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Readable.ReadOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Readable.ReadOne" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Controller API</strong>. Override is MANDATORY!
+Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – axis number</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the axis value</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)">object</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="referable-interface">
+<h2>Referable interface<a class="headerlink" href="#referable-interface" title="Permalink to this headline">¶</a></h2>
+<div class="graphviz"><img src="../../../../_images/inheritance-b14f517d6699e14ff27a4cded601d0dcc5089392.png" alt="Inheritance diagram of Referable" usemap="#inheritance3ef499b4ff" class="inheritance graphviz" /></div>
+<map id="inheritance3ef499b4ff" name="inheritance3ef499b4ff">
+<area shape="rect" id="node1" href="#sardana.pool.controller.Referable" target="_top" title="A Referable interface. A controller for which it&#39;s axis can" alt="" coords="5,5,87,44"/>
+</map><dl class="py class">
+<dt id="sardana.pool.controller.Referable">
+<em class="property">class </em><code class="sig-name descname">Referable</code><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Referable"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Referable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A Referable interface. A controller for which it’s axis can
+report data references (like a 1D or 2D for example) should implement
+this interface</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Referable class has been included in Sardana on a provisional
+basis. Backwards incompatible changes (up to and including removal
+of the class) may occur if deemed necessary by the core developers.</p>
+</div>
+<dl class="py method">
+<dt id="sardana.pool.controller.Referable.RefOne">
+<code class="sig-name descname">RefOne</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">axis</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/controller.html#Referable.RefOne"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.controller.Referable.RefOne" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY!
 Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a></p>
 <dl class="field-list simple">
@@ -1709,7 +1749,7 @@ implement your own 1D controller for the device pool.</p>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY.
 Called to get a parameter value on the given axis.</p>
 <p><code class="docutils literal notranslate"><span class="pre">GetAxisPar</span></code> with ‘data_source’ parameter is deprecated since 2.8.0.
-Inherit from <code class="xref py py-class docutils literal notranslate"><span class="pre">Referable</span></code> class in order to report value
+Inherit from <a class="reference internal" href="#sardana.pool.controller.Referable" title="sardana.pool.controller.Referable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Referable</span></code></a> class in order to report value
 references.</p>
 <p>Default implementation calls deprecated
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code> which, by default, raises
@@ -1755,7 +1795,7 @@ implement your own 2D controller for the device pool.</p>
 <dd><p><strong>Controller API</strong>. Override is MANDATORY.
 Called to get a parameter value on the given axis.</p>
 <p><code class="docutils literal notranslate"><span class="pre">GetAxisPar</span></code> with ‘data_source’ parameter is deprecated since 2.8.0.
-Inherit from <code class="xref py py-class docutils literal notranslate"><span class="pre">Referable</span></code> class in order to report value
+Inherit from <a class="reference internal" href="#sardana.pool.controller.Referable" title="sardana.pool.controller.Referable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Referable</span></code></a> class in order to report value
 references.</p>
 <p>Default implementation calls deprecated
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">GetPar()</span></code> which, by default, raises

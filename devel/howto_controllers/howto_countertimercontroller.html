@@ -199,7 +199,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="how-to-write-a-counter-timer-controller">
-<span id="sardana-countertimercontroller-howto-basics"></span><h1><a class="toc-backref" href="#id1">How to write a counter/timer controller</a><a class="headerlink" href="#how-to-write-a-counter-timer-controller" title="Permalink to this headline">¶</a></h1>
+<span id="sardana-countertimercontroller"></span><h1><a class="toc-backref" href="#id1">How to write a counter/timer controller</a><a class="headerlink" href="#how-to-write-a-counter-timer-controller" title="Permalink to this headline">¶</a></h1>
 <p>This chapter provides the necessary information to write a counter/timer
 controller in Sardana.</p>
 <div class="contents topic" id="table-of-contents">
@@ -231,7 +231,7 @@ controller in Sardana.</p>
 </ul>
 </div>
 <div class="section" id="the-basics">
-<h2><a class="toc-backref" href="#id2">The basics</a><a class="headerlink" href="#the-basics" title="Permalink to this headline">¶</a></h2>
+<span id="sardana-countertimercontroller-howto-basics"></span><h2><a class="toc-backref" href="#id2">The basics</a><a class="headerlink" href="#the-basics" title="Permalink to this headline">¶</a></h2>
 <p>An example of a hypothetical <em>Springfield</em> counter/timer controller will be build
 incrementally from scratch to aid in the explanation.</p>
 <p>By now you should have read <a class="reference internal" href="../api/api_controller.html#sardana-controller-api"><span class="std std-ref">the general controller basics</span></a> chapter. You should
@@ -439,7 +439,7 @@ sure the desired counter is stopped as fast as it can be done.</p>
 </div>
 </div>
 <div class="section" id="advanced-topics">
-<h2><a class="toc-backref" href="#id9">Advanced topics</a><a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
+<span id="sardana-countertimercontroller-howto-advanced"></span><h2><a class="toc-backref" href="#id9">Advanced topics</a><a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="timer-and-monitor-roles">
 <span id="sardana-countertimercontroller-howto-timermonitor"></span><h3><a class="toc-backref" href="#id10">Timer and monitor roles</a><a class="headerlink" href="#timer-and-monitor-roles" title="Permalink to this headline">¶</a></h3>
 <p>Usually counters can work in either of two modes: timer or monitor. In both of
@@ -455,7 +455,7 @@ parameter <code class="docutils literal notranslate"><span class="pre">acquisiti
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Loadable.default_timer" title="sardana.pool.controller.Loadable.default_timer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">default_timer</span></code></a> class attribute.</p>
 </div>
 <div class="section" id="timestamp-a-counter-value">
-<span id="sardana-countertimercontroller-howto-timestamp-value"></span><span id="sardana-countertimercontroller-howto-advanced"></span><h3><a class="toc-backref" href="#id11">Timestamp a counter value</a><a class="headerlink" href="#timestamp-a-counter-value" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-howto-timestamp-value"></span><h3><a class="toc-backref" href="#id11">Timestamp a counter value</a><a class="headerlink" href="#timestamp-a-counter-value" title="Permalink to this headline">¶</a></h3>
 <p>When you read the value of a counter from the hardware sometimes it is
 necessary to associate a timestamp with that value so you can track the
 value of a counter in time.</p>
@@ -603,7 +603,7 @@ like a call from a different user to get counter state.</p>
 </div>
 </div>
 <div class="section" id="external-hardware-synchronization">
-<h3><a class="toc-backref" href="#id13">External (hardware) synchronization</a><a class="headerlink" href="#external-hardware-synchronization" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-howto-external-synchronization"></span><h3><a class="toc-backref" href="#id13">External (hardware) synchronization</a><a class="headerlink" href="#external-hardware-synchronization" title="Permalink to this headline">¶</a></h3>
 <p>The synchronization achieved in <a class="reference internal" href="#sardana-countertimercontroller-howto-mutliple-acquisition"><span class="std std-ref">Multiple acquisition synchronization</span></a>
 may not be enough when it comes to acquiring with multiple controllers at the
 same time or to executing multiple acquisitions in a row.
@@ -709,7 +709,7 @@ of the <a class="reference internal" href="../api/sardana/pool/controller.html#s
 </div>
 </div>
 <div class="section" id="get-counter-values">
-<h4>Get counter values<a class="headerlink" href="#get-counter-values" title="Permalink to this headline">¶</a></h4>
+<span id="sardana-countertimercontroller-howto-external-synchronization-get-values"></span><h4>Get counter values<a class="headerlink" href="#get-counter-values" title="Permalink to this headline">¶</a></h4>
 <p>During the hardware synchronized acquisitions the counter values are usually
 stored in the hardware buffers. Sardana enters a high frequency acquisition loop
 after the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Startable.StartOne" title="sardana.pool.controller.Startable.StartOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">StartOne()</span></code></a> is invoked
@@ -740,7 +740,7 @@ and that there are no gaps in between them.</p>
 </div>
 </div>
 <div class="section" id="per-measurement-preparation">
-<h3><a class="toc-backref" href="#id14">Per measurement preparation</a><a class="headerlink" href="#per-measurement-preparation" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-countertimercontroller-per-measurement-preparation"></span><h3><a class="toc-backref" href="#id14">Per measurement preparation</a><a class="headerlink" href="#per-measurement-preparation" title="Permalink to this headline">¶</a></h3>
 <p>Since <a class="reference external" href="http://www.sardana-controls.org/sep/?SEP18.md">SEP18</a> counter/timer controllers may take a profit from the per measurement
 preparation and reserve resources for a sequence of
 <a class="reference internal" href="../api/sardana/pool/pooldefs.html#sardana.pool.pooldefs.AcqSynch.SoftwareTrigger" title="sardana.pool.pooldefs.AcqSynch.SoftwareTrigger"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SoftwareTrigger</span></code></a>
