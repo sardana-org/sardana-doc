@@ -1063,7 +1063,7 @@
     <span class="k">def</span> <span class="nf">initialize_dynamic_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">attrs</span> <span class="o">=</span> <span class="n">PoolElementDevice</span><span class="o">.</span><span class="n">initialize_dynamic_attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-        <span class="n">non_detect_evts</span> <span class="o">=</span> <span class="s2">&quot;integrationtime&quot;</span><span class="p">,</span>
+        <span class="n">non_detect_evts</span> <span class="o">=</span> <span class="s2">&quot;integrationtime&quot;</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span>
 
         <span class="k">for</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">non_detect_evts</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">attr_name</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
@@ -1102,6 +1102,13 @@
 <span class="sd">        :type attr: :class:`~PyTango.Attribute`&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">integration_time</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">get_write_value</span><span class="p">()</span>
 
+    <span class="k">def</span> <span class="nf">read_Shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Reads the shape.</span>
+
+<span class="sd">        :param attr: tango attribute</span>
+<span class="sd">        :type attr: :class:`~PyTango.Attribute`&quot;&quot;&quot;</span>
+        <span class="n">attr</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">get_shape</span><span class="p">(</span><span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
+
 
 <span class="k">class</span> <span class="nc">PoolExpChannelDeviceClass</span><span class="p">(</span><span class="n">PoolElementDeviceClass</span><span class="p">):</span>
 
@@ -1116,7 +1123,14 @@
     <span class="n">attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolElementDeviceClass</span><span class="o">.</span><span class="n">attr_list</span><span class="p">)</span>
 
     <span class="n">standard_attr_list</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;ValueBuffer&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevEncoded</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ</span><span class="p">]]</span>
+        <span class="s1">&#39;ValueBuffer&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevEncoded</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ</span><span class="p">]],</span>
+        <span class="s1">&#39;Shape&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevLong64</span><span class="p">,</span> <span class="n">SPECTRUM</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+                  <span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s2">&quot;Shape (X,Y)&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;description&#39;</span><span class="p">:</span> <span class="s2">&quot;Shape of the value. It is an array with </span><span class="se">\n</span><span class="s2">&quot;</span>
+                                  <span class="s2">&quot;at most 2 elements: X and Y dimensions. </span><span class="se">\n</span><span class="s2">&quot;</span>
+                                  <span class="s2">&quot;0-element array - scalar</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                  <span class="s2">&quot;1-element array (X) - spectrum</span><span class="se">\n</span><span class="s2">&quot;</span>
+                                  <span class="s2">&quot;2-element array (X, Y) - image&quot;</span><span class="p">}],</span>
     <span class="p">}</span>
     <span class="n">standard_attr_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">PoolElementDeviceClass</span><span class="o">.</span><span class="n">standard_attr_list</span><span class="p">)</span>
 

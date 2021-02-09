@@ -260,25 +260,46 @@ Similarly behaves the horizontal pseudo counter. The total pseudo counter is
 the mean value of all the four sensors and indicates the beam intensity.</p>
 </div>
 <div class="section" id="changing-default-interface">
-<h2>Changing default interface<a class="headerlink" href="#changing-default-interface" title="Permalink to this headline">¶</a></h2>
+<span id="sardana-pseudocountercontroller-howto-changing-interface"></span><h2>Changing default interface<a class="headerlink" href="#changing-default-interface" title="Permalink to this headline">¶</a></h2>
 <p>Pseudo counters instantiated from your controller will have a default
 interface, which among others, comprises the <em>value</em> attribute. This attribute
 is feed with the result of the
 <code class="xref py py-meth docutils literal notranslate"><span class="pre">calc()</span></code> method and by
-default it expects values of <code class="docutils literal notranslate"><span class="pre">float</span></code> type and scalar shape. You can easily
+default it expects values of <code class="docutils literal notranslate"><span class="pre">float</span></code> type and scalar format. You can easily
 <a class="reference internal" href="howto_controller.html#sardana-controller-howto-change-default-interface"><span class="std std-ref">change the default interface</span></a>.
-This way you could program a pseudo counter to obtain an image <a class="reference internal" href="../../glossary.html#term-ROI"><span class="xref std std-term">ROI</span></a>
+This way you could program a pseudo counter to obtain an image <a class="reference internal" href="../../glossary.html#term-RoI"><span class="xref std std-term">RoI</span></a>
 of a <a class="reference internal" href="../overview/overview_2D.html#sardana-2d-overview"><span class="std std-ref">2D experimental channel</span></a>.</p>
-<p>Here is an example of how to change <em>value</em> attribute’s shape to an image
+<p>Here is an example of how to change <em>value</em> attribute’s format to an image
 and specify its maximum dimension of 1024 x 1024 pixels:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">GetAxisAttributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
-<span class="n">axis_attrs</span> <span class="o">=</span> <span class="n">PseudoCounterController</span><span class="o">.</span><span class="n">GetAxisAttributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
-<span class="n">axis_attrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">axis_attrs</span><span class="p">)</span>
-<span class="n">axis_attrs</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">][</span><span class="n">Type</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="nb">float</span><span class="p">,</span> <span class="p">),</span> <span class="p">)</span>
-<span class="n">axis_attrs</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">][</span><span class="n">MaxDimSize</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
-<span class="k">return</span> <span class="n">axis_attrs</span>
+    <span class="n">axis_attrs</span> <span class="o">=</span> <span class="n">PseudoCounterController</span><span class="o">.</span><span class="n">GetAxisAttributes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+    <span class="n">axis_attrs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">axis_attrs</span><span class="p">)</span>
+    <span class="n">axis_attrs</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">][</span><span class="n">Type</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="nb">float</span><span class="p">,</span> <span class="p">),</span> <span class="p">)</span>
+    <span class="n">axis_attrs</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">][</span><span class="n">MaxDimSize</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">axis_attrs</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="get-pseudo-counter-shape">
+<h2>Get pseudo counter shape<a class="headerlink" href="#get-pseudo-counter-shape" title="Permalink to this headline">¶</a></h2>
+<p>If you change the pseudo counter format to spectrum or image then you
+controller should provide the shape of the calculation result in either
+of the formats:</p>
+<ul class="simple">
+<li><p>one-element sequence with the length of the spectrum</p></li>
+<li><p>two-element sequence with the horizontal and vertical dimensions of the image</p></li>
+</ul>
+<p>using the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisPar" title="sardana.pool.controller.Controller.GetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisPar()</span></code></a> method.</p>
+<p>Here is an example of the possible implementation of
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisPar" title="sardana.pool.controller.Controller.GetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisPar()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">GetAxisPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">par</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">par</span> <span class="o">==</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>For backwards compatibility, in case of not implementing the <code class="docutils literal notranslate"><span class="pre">shape</span></code> axis
+parameter, shape will be determined from the <code class="docutils literal notranslate"><span class="pre">MaxDimSize</span></code> of the <code class="docutils literal notranslate"><span class="pre">Value</span></code>
+attribute as defined in <a class="reference internal" href="#sardana-pseudocountercontroller-howto-changing-interface"><span class="std std-ref">Changing default interface</span></a>.</p>
 </div>
 <div class="section" id="including-external-variables-in-the-calculation">
 <h2>Including external variables in the calculation<a class="headerlink" href="#including-external-variables-in-the-calculation" title="Permalink to this headline">¶</a></h2>

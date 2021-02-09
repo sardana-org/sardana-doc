@@ -244,6 +244,32 @@
     <span class="k">pass</span>
 
 
+<span class="k">def</span> <span class="nf">_get_shape</span><span class="p">(</span><span class="n">channel</span><span class="p">):</span>
+    <span class="c1"># internal Sardana channel</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DeviceProxy</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">shape</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># in PyTango empty spectrum is None</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">shape</span>
+    <span class="c1"># external channel (Tango attribute)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">AttributeProxy</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">attr_conf</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">attr_conf</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">AttrDataFormat</span><span class="o">.</span><span class="n">SCALAR</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">value</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">(</span><span class="n">attr_conf</span><span class="o">.</span><span class="n">max_dim_x</span><span class="p">,</span>
+                                <span class="n">attr_conf</span><span class="o">.</span><span class="n">max_dim_y</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+
 <span class="k">class</span> <span class="nc">ExtraData</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -836,16 +862,24 @@
         <span class="n">counters</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">ci</span> <span class="ow">in</span> <span class="n">channels_info</span><span class="p">:</span>
             <span class="n">full_name</span> <span class="o">=</span> <span class="n">ci</span><span class="o">.</span><span class="n">full_name</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">instrument</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="c1"># Use DeviceProxy instead of taurus to avoid crashes in Py3</span>
                 <span class="c1"># See: tango-controls/pytango#292</span>
                 <span class="c1"># channel = taurus.Device(full_name)</span>
                 <span class="n">channel</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DeviceProxy</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
-                <span class="n">instrument</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">instrument</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-                <span class="c1"># full_name of external channels is the name of the attribute</span>
-                <span class="c1"># external channels are not assigned to instruments</span>
-                <span class="n">instrument</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">channel</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">AttributeProxy</span><span class="p">(</span><span class="n">full_name</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="n">channel</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">channel</span><span class="p">:</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="n">_get_shape</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">instrument</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">instrument</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="n">instrument</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">instrumentFullName</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">findObjs</span><span class="p">(</span>
                     <span class="n">instrument</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">Instrument</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">getFullName</span><span class="p">()</span>
@@ -853,6 +887,10 @@
                 <span class="k">raise</span>
             <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                 <span class="n">instrumentFullName</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;unknown shape of </span><span class="si">{}</span><span class="s2">, assuming scalar&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">ci</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="c1"># substitute the axis placeholder by the corresponding moveable.</span>
             <span class="n">plotAxes</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
@@ -874,7 +912,7 @@
             <span class="n">column</span> <span class="o">=</span> <span class="n">ColumnDesc</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">full_name</span><span class="p">,</span>
                                 <span class="n">label</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
                                 <span class="n">dtype</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">data_type</span><span class="p">,</span>
-                                <span class="n">shape</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+                                <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
                                 <span class="n">instrument</span><span class="o">=</span><span class="n">instrumentFullName</span><span class="p">,</span>
                                 <span class="n">source</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">source</span><span class="p">,</span>
                                 <span class="n">output</span><span class="o">=</span><span class="n">ci</span><span class="o">.</span><span class="n">output</span><span class="p">,</span>

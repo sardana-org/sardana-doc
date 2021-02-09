@@ -207,17 +207,21 @@ experimental channel controller in Sardana.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#how-to-write-a-2d-controller" id="id1">How to write a 2D controller</a></p>
 <ul>
-<li><p><a class="reference internal" href="#general-guide" id="id2">General guide</a></p></li>
-<li><p><a class="reference internal" href="#differences-with-counter-timer-controller" id="id3">Differences with counter/timer controller</a></p>
+<li><p><a class="reference internal" href="#general-guide" id="id2">General guide</a></p>
 <ul>
-<li><p><a class="reference internal" href="#class-definition" id="id4">Class definition</a></p></li>
-<li><p><a class="reference internal" href="#get-2d-value" id="id5">Get 2D value</a></p></li>
-<li><p><a class="reference internal" href="#get-2d-values" id="id6">Get 2D values</a></p></li>
+<li><p><a class="reference internal" href="#get-2d-shape" id="id3">Get 2D shape</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="#advanced-topics" id="id7">Advanced topics</a></p>
+<li><p><a class="reference internal" href="#differences-with-counter-timer-controller" id="id4">Differences with counter/timer controller</a></p>
 <ul>
-<li><p><a class="reference internal" href="#working-with-value-referencing" id="id8">Working with value referencing</a></p></li>
+<li><p><a class="reference internal" href="#class-definition" id="id5">Class definition</a></p></li>
+<li><p><a class="reference internal" href="#get-2d-value" id="id6">Get 2D value</a></p></li>
+<li><p><a class="reference internal" href="#get-2d-values" id="id7">Get 2D values</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#advanced-topics" id="id8">Advanced topics</a></p>
+<ul>
+<li><p><a class="reference internal" href="#working-with-value-referencing" id="id9">Working with value referencing</a></p></li>
 </ul>
 </li>
 </ul>
@@ -233,11 +237,33 @@ belong to the same family of <em>timerable</em> experimental channels.</p>
 <p>To write a 2D controller class you can follow
 the <a class="reference internal" href="howto_countertimercontroller.html#sardana-countertimercontroller"><span class="std std-ref">How to write a counter/timer controller</span></a> guide keeping in mind
 differences explained in continuation.</p>
+<div class="section" id="get-2d-shape">
+<span id="sardana-2dcontroller-general-guide-shape"></span><h3><a class="toc-backref" href="#id3">Get 2D shape</a><a class="headerlink" href="#get-2d-shape" title="Permalink to this headline">¶</a></h3>
+<p>2D controller should provide a shape of the image which will be produced by
+acquisition. The shape can be either static e.g. defined by the detector’s
+sensor size or dynamic e.g. depending on the detector’s (or an intermediate
+control software layer e.g. <a class="reference external" href="https://lima1.readthedocs.io/en/latest/">LImA</a>) configuration like <a class="reference internal" href="../../glossary.html#term-RoI"><span class="xref std std-term">RoI</span></a> or binning.</p>
+<p>In any case you should provide the shape in the format of a two-element sequence
+with horizontal and vertical dimensions using
+the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisPar" title="sardana.pool.controller.Controller.GetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisPar()</span></code></a> method.</p>
+<p>Here is an example of the possible implementation of
+<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.GetAxisPar" title="sardana.pool.controller.Controller.GetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GetAxisPar()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpringfieldTwoDController</span><span class="p">(</span><span class="n">TwoDController</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">GetAxisPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">par</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">par</span> <span class="o">==</span> <span class="s2">&quot;shape&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">springfield</span><span class="o">.</span><span class="n">getShape</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For backwards compatibility, in case of not implementing the <code class="docutils literal notranslate"><span class="pre">shape</span></code> axis
+parameter, shape will be determined frm the <code class="docutils literal notranslate"><span class="pre">MaxDimSize</span></code> of the <code class="docutils literal notranslate"><span class="pre">Value</span></code>
+attribute, currently (4096, 4096).</p>
+</div>
 </div>
 <div class="section" id="differences-with-counter-timer-controller">
-<span id="sardana-2dcontroller-differences-countertimer"></span><h2><a class="toc-backref" href="#id3">Differences with counter/timer controller</a><a class="headerlink" href="#differences-with-counter-timer-controller" title="Permalink to this headline">¶</a></h2>
+<span id="sardana-2dcontroller-differences-countertimer"></span><h2><a class="toc-backref" href="#id4">Differences with counter/timer controller</a><a class="headerlink" href="#differences-with-counter-timer-controller" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="class-definition">
-<h3><a class="toc-backref" href="#id4">Class definition</a><a class="headerlink" href="#class-definition" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Class definition</a><a class="headerlink" href="#class-definition" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="howto_countertimercontroller.html#sardana-countertimercontroller-howto-basics"><span class="std std-ref">The basics of the counter/timer controller</span></a>
 chapter explains how to define the counter/timer controller class.
 Here you need to simply inherit from the
@@ -252,7 +278,7 @@ Here you need to simply inherit from the
 </div>
 </div>
 <div class="section" id="get-2d-value">
-<span id="sardana-2dcontroller-getvalue"></span><h3><a class="toc-backref" href="#id5">Get 2D value</a><a class="headerlink" href="#get-2d-value" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-2dcontroller-getvalue"></span><h3><a class="toc-backref" href="#id6">Get 2D value</a><a class="headerlink" href="#get-2d-value" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="howto_countertimercontroller.html#sardana-countertimercontroller-howto-value"><span class="std std-ref">Get counter value</span></a> chapter
 explains how to read a counter/timer value
 using the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Readable.ReadOne" title="sardana.pool.controller.Readable.ReadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ReadOne()</span></code></a> method.
@@ -262,7 +288,7 @@ a <a class="reference internal" href="../api/sardana/sardanavalue.html#sardana.s
 of a scalar value.</p>
 </div>
 <div class="section" id="get-2d-values">
-<span id="sardana-2dcontroller-getvalues"></span><h3><a class="toc-backref" href="#id6">Get 2D values</a><a class="headerlink" href="#get-2d-values" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-2dcontroller-getvalues"></span><h3><a class="toc-backref" href="#id7">Get 2D values</a><a class="headerlink" href="#get-2d-values" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="howto_countertimercontroller.html#sardana-countertimercontroller-howto-external-synchronization-get-values"><span class="std std-ref">Get counter values</span></a>
 chapter explains how to read counter/timer values
 using the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Readable.ReadOne" title="sardana.pool.controller.Readable.ReadOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">ReadOne()</span></code></a> method while
@@ -274,9 +300,9 @@ instead of a scalar values.</p>
 </div>
 </div>
 <div class="section" id="advanced-topics">
-<h2><a class="toc-backref" href="#id7">Advanced topics</a><a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Advanced topics</a><a class="headerlink" href="#advanced-topics" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="working-with-value-referencing">
-<span id="sardana-2dcontroller-valuereferencing"></span><h3><a class="toc-backref" href="#id8">Working with value referencing</a><a class="headerlink" href="#working-with-value-referencing" title="Permalink to this headline">¶</a></h3>
+<span id="sardana-2dcontroller-valuereferencing"></span><h3><a class="toc-backref" href="#id9">Working with value referencing</a><a class="headerlink" href="#working-with-value-referencing" title="Permalink to this headline">¶</a></h3>
 <p>2D experimental channels may produce big arrays of data at high
 frame rate. Reading this data and storing it using sardana
 is not always optimal. <a class="reference external" href="http://www.sardana-controls.org/sep/?SEP2.md">SEP2</a> introduced data saving duality, optionally,
@@ -324,7 +350,7 @@ pointing to the values.</p>
 <p>Two axis parameters: <code class="docutils literal notranslate"><span class="pre">value_ref_pattern</span></code> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>)
 and <code class="docutils literal notranslate"><span class="pre">value_ref_enabled</span></code> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a>) are foreseen for configuring where to store
 the values and whether to use the value referencing. Here you need to implement
-the <code class="xref py py-meth docutils literal notranslate"><span class="pre">SetAxiPar()</span></code> method.</p>
+the <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetAxisPar" title="sardana.pool.controller.Controller.SetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetAxisPar()</span></code></a> method.</p>
 <p>Here is an example of the possible implementation of
 <a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Controller.SetAxisPar" title="sardana.pool.controller.Controller.SetAxisPar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SetAxisPar()</span></code></a>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpringfieldTwoDController</span><span class="p">(</span><span class="n">TwoDController</span><span class="p">):</span>
