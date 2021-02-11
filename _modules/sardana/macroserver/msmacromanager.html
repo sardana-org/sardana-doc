@@ -1774,8 +1774,9 @@
 
     <span class="k">def</span> <span class="nf">__runXMLMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xml</span><span class="p">):</span>
         <span class="k">assert</span> <span class="n">xml</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s1">&#39;macro&#39;</span>
+        <span class="n">parent_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRunningMacro</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">macro_obj</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepareXMLMacro</span><span class="p">(</span><span class="n">xml</span><span class="p">)</span>
+            <span class="n">macro_obj</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_prepareXMLMacro</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span> <span class="n">parent_macro</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">AbortException</span> <span class="k">as</span> <span class="n">ae</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ae</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
