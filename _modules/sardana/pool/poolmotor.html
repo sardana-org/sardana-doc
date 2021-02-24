@@ -578,6 +578,8 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sign</span></div>
 
 <div class="viewcode-block" id="PoolMotor.set_sign"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmotor.html#sardana.pool.poolmotor.PoolMotor.set_sign">[docs]</a>    <span class="k">def</span> <span class="nf">set_sign</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sign</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">sign</span> <span class="ow">in</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> \
+            <span class="s2">&quot;sign must be either -1 or 1 (not </span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sign</span><span class="p">)</span>
         <span class="n">old_sign</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sign</span><span class="o">.</span><span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sign</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="n">propagate</span><span class="p">)</span>
         <span class="c1"># invert lower with upper limit switches and send event in case of</span>
