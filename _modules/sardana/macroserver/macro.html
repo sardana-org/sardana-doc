@@ -444,6 +444,8 @@
         <span class="c1"># delete _hookHintsDict to force its recreation on the next access</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_hookHintsDict&#39;</span><span class="p">):</span>
             <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
         <span class="c1"># create _hookHintsDict</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_getHookHintsDict</span><span class="p">()[</span><span class="s1">&#39;_ALL_&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">nohints</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hookHintsDict</span><span class="p">[</span><span class="s1">&#39;_NOHINTS_&#39;</span><span class="p">]</span>
