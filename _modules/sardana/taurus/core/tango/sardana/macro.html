@@ -1,0 +1,1575 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sardana.taurus.core.tango.sardana.macro &mdash; sardana 3.0.4-alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../../_static/jquery.js"></script>
+        <script src="../../../../../../_static/underscore.js"></script>
+        <script src="../../../../../../_static/doctools.js"></script>
+        <script src="../../../../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
+          
+
+          
+            
+            <img src="../../../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../../docs.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana-plugins">Plugins Catalogue</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../../index.html">sardana</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../sardana.html">sardana.taurus.core.tango.sardana</a> &raquo;</li>
+        
+      <li>sardana.taurus.core.tango.sardana.macro</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sardana.taurus.core.tango.sardana.macro</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1">##############################################################################</span>
+<span class="c1">##</span>
+<span class="c1"># This file is part of Sardana</span>
+<span class="c1">##</span>
+<span class="c1"># http://www.sardana-controls.org/</span>
+<span class="c1">##</span>
+<span class="c1"># Copyright 2011 CELLS / ALBA Synchrotron, Bellaterra, Spain</span>
+<span class="c1">##</span>
+<span class="c1"># Sardana is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU Lesser General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">##</span>
+<span class="c1"># Sardana is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU Lesser General Public License for more details.</span>
+<span class="c1">##</span>
+<span class="c1"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1"># along with Sardana.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">##</span>
+<span class="c1">##############################################################################</span>
+
+<span class="sd">&quot;&quot;&quot;The macro submodule.&quot;&quot;&quot;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;MacroInfo&quot;</span><span class="p">,</span> <span class="s2">&quot;Macro&quot;</span><span class="p">,</span> <span class="s2">&quot;MacroNode&quot;</span><span class="p">,</span> <span class="s2">&quot;ParamFactory&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;MacroRunException&quot;</span><span class="p">]</span>
+
+<span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">import</span> <span class="nn">types</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+
+<span class="kn">import</span> <span class="nn">PyTango</span>
+
+<span class="kn">from</span> <span class="nn">taurus.core.util.user</span> <span class="kn">import</span> <span class="n">USER_NAME</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
+<span class="kn">from</span> <span class="nn">sardana.util.parser</span> <span class="kn">import</span> <span class="n">ParamParser</span><span class="p">,</span> <span class="n">ParseError</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+
+<span class="k">class</span> <span class="nc">MacroRunException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="MacroInfo"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo">[docs]</a><span class="k">class</span> <span class="nc">MacroInfo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Contains all information about a macro: name, documentation, parameters,</span>
+<span class="sd">    result, etc&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_json_str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">from_json</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">from_json</span>
+        <span class="k">if</span> <span class="n">from_json_str</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">json_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fromJSON</span><span class="p">(</span><span class="n">from_json_str</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">json_obj</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">json_obj</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_buildDoc</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_fromJSON</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_str</span><span class="p">):</span>
+        <span class="n">json_codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
+        <span class="nb">format</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">json_codec</span><span class="o">.</span><span class="n">decode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">json_str</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">def</span> <span class="nf">_buildDoc</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasParams</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parameter_line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildParameterLine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parameter_description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildParameterDescription</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasResult</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_result_line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildResultLine</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_result_description</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildResultDescription</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
+
+        <span class="n">doc</span> <span class="o">=</span> <span class="s1">&#39;Syntax:</span><span class="se">\n\t</span><span class="si">%s</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">getParamStr</span><span class="p">())</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasResult</span><span class="p">():</span>
+            <span class="n">doc</span> <span class="o">+=</span> <span class="s1">&#39; -&gt; &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">getResultStr</span><span class="p">()</span>
+        <span class="n">doc</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span>
+        <span class="n">doc</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasParams</span><span class="p">():</span>
+            <span class="n">doc</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">Parameters:</span><span class="se">\n\t</span><span class="s1">&#39;</span>
+            <span class="n">doc</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getParamDescr</span><span class="p">())</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasResult</span><span class="p">():</span>
+            <span class="n">doc</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">Result:</span><span class="se">\n\t</span><span class="s1">&#39;</span>
+            <span class="n">doc</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getResultDescr</span><span class="p">())</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">allowsHooks</span><span class="p">():</span>
+            <span class="n">doc</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">Allows hooks:</span><span class="se">\n\t</span><span class="s1">&#39;</span>
+            <span class="n">doc</span> <span class="o">+=</span> <span class="s1">&#39;</span><span class="se">\n\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getAllowedHooks</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span>
+
+    <span class="k">def</span> <span class="nf">_hasParamComplex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isParamComplex</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_isParamComplex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isParamAtomic</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_isParamAtomic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">],</span> <span class="nb">str</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_buildParameterLine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="c1"># Simple parameter</span>
+                <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&lt;</span><span class="si">%s</span><span class="s1">&gt;&#39;</span> <span class="o">%</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;[ </span><span class="si">%s</span><span class="s1"> ]&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buildParameterLine</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+
+    <span class="n">_buildResultLine</span> <span class="o">=</span> <span class="n">_buildParameterLine</span>
+
+    <span class="k">def</span> <span class="nf">_buildParameterDescription</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">):</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="c1"># Simple parameter</span>
+                <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{name}</span><span class="s1"> : (</span><span class="si">{type}</span><span class="s1">) </span><span class="si">{description}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">l</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buildParameterDescription</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">l</span>
+
+    <span class="n">_buildResultDescription</span> <span class="o">=</span> <span class="n">_buildParameterDescription</span>
+
+<div class="viewcode-block" id="MacroInfo.hasParams"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.hasParams">[docs]</a>    <span class="k">def</span> <span class="nf">hasParams</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determines if the macro has parameters</span>
+
+<span class="sd">        :return: (bool) True if the macro has parameters or False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;parameters&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="MacroInfo.getParamList"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.getParamList">[docs]</a>    <span class="k">def</span> <span class="nf">getParamList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returs the list of parameters</span>
+
+<span class="sd">        :return: (sequence) a list of parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasParams</span><span class="p">():</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span></div>
+
+<div class="viewcode-block" id="MacroInfo.getParam"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.getParam">[docs]</a>    <span class="k">def</span> <span class="nf">getParam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the parameter for the given index</span>
+
+<span class="sd">        :param idx: (int) the index (default is 0)</span>
+
+<span class="sd">        :return: (object) the parameter or None if the macro does not have the</span>
+<span class="sd">                 desired parameter</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasParams</span><span class="p">():</span>
+            <span class="k">return</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="MacroInfo.getPossibleParams"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.getPossibleParams">[docs]</a>    <span class="k">def</span> <span class="nf">getPossibleParams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the possible parameters for the given index</span>
+
+<span class="sd">        :param idx: (int) parameter index</span>
+<span class="sd">        :param parameters: (sequence) sequence of parameter information</span>
+<span class="sd">                        (default is None which means use the macro parameters)</span>
+<span class="sd">        :return: (sequence) list of possible parameters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">parameters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parameters</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">idx</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hasParamComplex</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+                <span class="n">p</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getPossibleParams</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">res</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parameters</span><span class="p">):</span>
+            <span class="n">atomic</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isParamAtomic</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">idx</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">atomic</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getPossibleParams</span><span class="p">(</span><span class="n">idx</span> <span class="o">-</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]))</span>
+            <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="n">idx</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">atomic</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getPossibleParams</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">res</span></div>
+
+<div class="viewcode-block" id="MacroInfo.getParamStr"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.getParamStr">[docs]</a>    <span class="k">def</span> <span class="nf">getParamStr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the string line representing the macro parameters.</span>
+<span class="sd">           For example, if a macro has a motor parameter followed by a list of</span>
+<span class="sd">           numbers it will return:</span>
+<span class="sd">           &#39;&lt;motor&gt; [ &lt;number&gt; ]&#39;</span>
+
+<span class="sd">        :return: (str) a string representing the macro parameter line</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasParams</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter_line</span></div>
+
+<div class="viewcode-block" id="MacroInfo.getParamDescr"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.getParamDescr">[docs]</a>    <span class="k">def</span> <span class="nf">getParamDescr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the list of strings, each one documenting each macro parameter</span>
+
+<span class="sd">        :return: (sequence&lt;str&gt;) list of parameter lines</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasParams</span><span class="p">():</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parameter_description</span></div>
+
+<div class="viewcode-block" id="MacroInfo.hasResult"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.hasResult">[docs]</a>    <span class="k">def</span> <span class="nf">hasResult</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determines if the macro has a result</span>
+
+<span class="sd">        :return: (bool) True if the macro has a result or False otherwise</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span></div>
+
+<div class="viewcode-block" id="MacroInfo.getResultList"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.getResultList">[docs]</a>    <span class="k">def</span> <span class="nf">getResultList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the list of results</span>
+
+<span class="sd">        :return: (sequence) a list of results</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasResult</span><span class="p">():</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span></div>
+
+<div class="viewcode-block" id="MacroInfo.getResult"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.getResult">[docs]</a>    <span class="k">def</span> <span class="nf">getResult</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets the result for the given index</span>
+
+<span class="sd">        :param idx: (int) the index (default is 0)</span>
+
+<span class="sd">        :return: (object) the result or None if the macro does not have the</span>
+<span class="sd">                 desired result</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="MacroInfo.getResultStr"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.getResultStr">[docs]</a>    <span class="k">def</span> <span class="nf">getResultStr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the string line representing the macro results.</span>
+<span class="sd">           For example, if a macro returns a number, this method it</span>
+<span class="sd">           will return: &#39;&lt;number&gt;&#39;</span>
+
+<span class="sd">        :return: (str) a string representing the macro result line</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasResult</span><span class="p">():</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result_line</span></div>
+
+<div class="viewcode-block" id="MacroInfo.getResultDescr"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.getResultDescr">[docs]</a>    <span class="k">def</span> <span class="nf">getResultDescr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns the list of strings, each one documenting each macro result</span>
+
+<span class="sd">        :return: (sequence&lt;str&gt;) list of result lines</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasResult</span><span class="p">():</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_result_description</span></div>
+
+<div class="viewcode-block" id="MacroInfo.formatResult"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.formatResult">[docs]</a>    <span class="k">def</span> <span class="nf">formatResult</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">hasResult</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Macro </span><span class="si">%s</span><span class="s1"> does not return any result&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">result_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getResult</span><span class="p">()</span>
+        <span class="n">rtype</span> <span class="o">=</span> <span class="n">result_info</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+        <span class="c1"># TODO: formalize and document way of passing files with macro result</span>
+        <span class="k">if</span> <span class="n">rtype</span> <span class="o">==</span> <span class="s1">&#39;File&#39;</span><span class="p">:</span>
+            <span class="n">fd</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkstemp</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;spock_&#39;</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">os</span><span class="o">.</span><span class="n">fdopen</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">filename</span><span class="p">,</span> <span class="n">result</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">result</span><span class="p">):</span>
+            <span class="n">result_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getResult</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+            <span class="n">rtype</span> <span class="o">=</span> <span class="n">result_info</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">rtype</span> <span class="o">==</span> <span class="s1">&#39;Float&#39;</span><span class="p">:</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">rtype</span> <span class="o">==</span> <span class="s1">&#39;Integer&#39;</span><span class="p">:</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="n">rtype</span> <span class="o">==</span> <span class="s1">&#39;Boolean&#39;</span><span class="p">:</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">rtype</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;String&#39;</span><span class="p">,</span> <span class="s1">&#39;User&#39;</span><span class="p">,</span> <span class="s1">&#39;Filename&#39;</span><span class="p">):</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Unknown return type for macro </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="MacroInfo.allowsHooks"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.allowsHooks">[docs]</a>    <span class="k">def</span> <span class="nf">allowsHooks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Checks whether the macro allows hooks</span>
+
+<span class="sd">        :return: True or False depending if the macro allows hooks</span>
+<span class="sd">        :rtype: bool</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hints</span><span class="p">[</span><span class="s2">&quot;allowsHooks&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="MacroInfo.getAllowedHooks"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.MacroInfo.getAllowedHooks">[docs]</a>    <span class="k">def</span> <span class="nf">getAllowedHooks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Gets allowed hooks</span>
+
+<span class="sd">        :return: list with the allowed hooks or empty list if the macro</span>
+<span class="sd">            does not allow hooks</span>
+<span class="sd">        :rtype: list[str]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">allowed_hooks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hints</span><span class="p">[</span><span class="s2">&quot;allowsHooks&quot;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">return</span> <span class="n">allowed_hooks</span></div>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
+
+
+<div class="viewcode-block" id="Macro"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.Macro">[docs]</a><span class="k">class</span> <span class="nc">Macro</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="n">Ready</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">ON</span>
+    <span class="n">Init</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">INIT</span>
+    <span class="n">Running</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">RUNNING</span>
+    <span class="n">Pause</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">STANDBY</span>
+    <span class="n">Fault</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">FAULT</span>
+    <span class="n">Finished</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">ON</span>
+    <span class="n">Abort</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">ALARM</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">xml_obj</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">door</span> <span class="o">=</span> <span class="n">door</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xml_node</span> <span class="o">=</span> <span class="n">xml_obj</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="nb">id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">range</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">step</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Macro.getID"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.Macro.getID">[docs]</a>    <span class="k">def</span> <span class="nf">getID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span></div>
+
+<div class="viewcode-block" id="Macro.getRange"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.Macro.getRange">[docs]</a>    <span class="k">def</span> <span class="nf">getRange</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">range</span></div>
+
+<div class="viewcode-block" id="Macro.getStep"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.Macro.getStep">[docs]</a>    <span class="k">def</span> <span class="nf">getStep</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">step</span></div>
+
+<div class="viewcode-block" id="Macro.getInfo"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.Macro.getInfo">[docs]</a>    <span class="k">def</span> <span class="nf">getInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">getMacroInfoObj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Macro.setResult"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.Macro.setResult">[docs]</a>    <span class="k">def</span> <span class="nf">setResult</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">res</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getInfo</span><span class="p">()</span><span class="o">.</span><span class="n">formatResult</span><span class="p">(</span><span class="n">res</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Macro.getResult"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macro.html#sardana.taurus.core.tango.sardana.macro.Macro.getResult">[docs]</a>    <span class="k">def</span> <span class="nf">getResult</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">result</span></div></div>
+
+
+<span class="k">class</span> <span class="nc">BaseNode</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class defining basic interface for all type of nodes used to represent,</span>
+<span class="sd">    relationship between sequence, macros and parameters.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1">#        if parent:</span>
+        <span class="c1">#            parent = weakref.ref(parent)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">parent</span>
+
+    <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span>
+
+    <span class="k">def</span> <span class="nf">setParent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="c1">#        if parent:</span>
+        <span class="c1">#            parent = weakref.ref(parent)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">parent</span>
+
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedMoveUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedMoveDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedDelete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+
+<span class="k">class</span> <span class="nc">BranchNode</span><span class="p">(</span><span class="n">BaseNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class used to represent all types of elements which contain</span>
+<span class="sd">    a list of other elements (children)&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">BaseNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_children</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_children</span>
+
+    <span class="k">def</span> <span class="nf">child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">children</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">rowOfChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">insertChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">row</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">child</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">row</span>
+
+    <span class="k">def</span> <span class="nf">removeChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">upChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">removeChild</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">downChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">removeChild</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toRun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">alert</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="n">val</span><span class="p">,</span> <span class="n">ale</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">toRun</span><span class="p">()</span>
+            <span class="n">values</span> <span class="o">+=</span> <span class="n">val</span>
+            <span class="n">alert</span> <span class="o">+=</span> <span class="n">ale</span>
+        <span class="k">return</span> <span class="n">values</span><span class="p">,</span> <span class="n">alert</span>
+
+
+<span class="k">class</span> <span class="nc">ParamNode</span><span class="p">(</span><span class="n">BaseNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Base class for param elements: single parameters and param repeats.</span>
+<span class="sd">    It groups a common interface of them.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">BaseNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setDescription</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setMin</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setMax</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setDescription</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;description&#39;</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setMin</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;min&#39;</span><span class="p">)))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setMax</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;max&#39;</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+    <span class="k">def</span> <span class="nf">setName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_description</span>
+
+    <span class="k">def</span> <span class="nf">setDescription</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_description</span> <span class="o">=</span> <span class="n">description</span>
+
+    <span class="k">def</span> <span class="nf">min</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_min</span>
+
+    <span class="k">def</span> <span class="nf">setMin</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">min</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">min</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
+            <span class="nb">min</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="nb">min</span><span class="p">:</span>
+            <span class="nb">min</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">min</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_min</span> <span class="o">=</span> <span class="nb">min</span>
+
+    <span class="k">def</span> <span class="nf">max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max</span>
+
+    <span class="k">def</span> <span class="nf">setMax</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">max</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">max</span> <span class="o">==</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
+            <span class="nb">max</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="nb">max</span><span class="p">:</span>
+            <span class="nb">max</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max</span> <span class="o">=</span> <span class="nb">max</span>
+
+
+<span class="k">class</span> <span class="nc">SingleParamNode</span><span class="p">(</span><span class="n">ParamNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Single parameter class.</span>
+<span class="sd">    </span>
+<span class="sd">    .. todo: All the usages of setValue are converting the</span>
+<span class="sd">             values to str before calling the setter.</span>
+<span class="sd">             This most probably should not be the case - to be fixed</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">ParamNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_defValue</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setType</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setDefValue</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;default_value&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;User&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setDefValue</span><span class="p">(</span><span class="n">USER_NAME</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;None&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
+
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
+
+    <span class="k">def</span> <span class="nf">setValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">defValue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_defValue</span>
+
+    <span class="k">def</span> <span class="nf">setDefValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">defValue</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">defValue</span> <span class="o">==</span> <span class="s2">&quot;None&quot;</span><span class="p">:</span>
+            <span class="n">defValue</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_defValue</span> <span class="o">=</span> <span class="n">defValue</span>
+
+    <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type</span>
+
+    <span class="k">def</span> <span class="nf">setType</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_type</span> <span class="o">=</span> <span class="nb">type</span>
+
+    <span class="k">def</span> <span class="nf">toXml</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="n">paramElement</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;param&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+        <span class="c1"># set value attribute only if it is different than the default value</span>
+        <span class="c1"># the server will assign the default value anyway.</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;none&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">defValue</span><span class="p">()):</span>
+                <span class="n">paramElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">paramElement</span>
+
+    <span class="k">def</span> <span class="nf">fromXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmlElement</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="n">xmlElement</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">xmlElement</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">isMotorParam</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="nb">globals</span><span class="o">.</span><span class="n">PARAM_MOTOR</span>
+
+    <span class="k">def</span> <span class="nf">allMotors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isMotorParam</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">()]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span><span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">toRun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">val</span> <span class="o">==</span> <span class="s2">&quot;None&quot;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">defValue</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">alert</span> <span class="o">=</span> <span class="s2">&quot;Parameter &lt;b&gt;&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt; is missing.&lt;br&gt;&quot;</span>
+                <span class="k">return</span> <span class="p">([</span><span class="n">val</span><span class="p">],</span> <span class="n">alert</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_defValue</span> <span class="o">==</span> <span class="n">Optional</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">defValue</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">([</span><span class="n">val</span><span class="p">],</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
+
+    <span class="k">def</span> <span class="nf">fromList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;fromList method converts the parameters, into a tree of</span>
+<span class="sd">        objects. This tree represents the structure of the parameters.</span>
+<span class="sd">        In this specific case, it converts a single parameter.</span>
+<span class="sd">        :param v: (str_or_list) single parameter. Only empty list are allowed.</span>
+<span class="sd">        Empty list indicates default value.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">defValue</span><span class="p">())</span>
+            <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">RepeatNode</span><span class="p">):</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Only members of repeat parameter allow list values&quot;</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Too many elements in list value&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">RepeatParamNode</span><span class="p">(</span><span class="n">ParamNode</span><span class="p">,</span> <span class="n">BranchNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Repeat parameter class.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">ParamNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+        <span class="n">BranchNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setParamsInfo</span><span class="p">([])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setParamsInfo</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">arrangeIndexes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()):</span>
+            <span class="n">child</span><span class="o">.</span><span class="n">setIndex</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">paramsInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_paramsInfo</span>
+
+    <span class="k">def</span> <span class="nf">setParamsInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">paramsInfo</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_paramsInfo</span> <span class="o">=</span> <span class="n">paramsInfo</span>
+
+    <span class="k">def</span> <span class="nf">newRepeat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repeatNode</span> <span class="o">=</span> <span class="n">RepeatNode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">repeatParam</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">paramsInfo</span><span class="p">():</span>
+            <span class="n">repeatNode</span><span class="o">.</span><span class="n">addParam</span><span class="p">(</span><span class="n">repeatParam</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">repeatNode</span>
+
+    <span class="k">def</span> <span class="nf">addRepeat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repeat</span> <span class="o">=</span> <span class="n">RepeatNode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="n">repeat</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">repeatParam</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">paramsInfo</span><span class="p">():</span>
+            <span class="n">repeat</span><span class="o">.</span><span class="n">addParam</span><span class="p">(</span><span class="n">repeatParam</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">repeat</span>
+
+    <span class="k">def</span> <span class="nf">isReachedMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">isBelowMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">isReachedMax</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">isAboveMax</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">insertChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">row</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1"># this line was removed on purpose</span>
+        <span class="c1"># in case of importing sequences from plain text, it is possible that</span>
+        <span class="c1">#  user introduced more repetitions than allowed</span>
+        <span class="c1"># in this case later validation will inform him about exceeding a limit</span>
+        <span class="c1"># if self.isReachedMax(): return</span>
+        <span class="k">return</span> <span class="n">BranchNode</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">removeChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isReachedMin</span><span class="p">():</span>
+            <span class="k">return</span>
+        <span class="n">child</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">begin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">setIndex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">BranchNode</span><span class="o">.</span><span class="n">removeChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">upChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">child</span><span class="o">.</span><span class="n">setIndex</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">index</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">setIndex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">BranchNode</span><span class="o">.</span><span class="n">removeChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">downChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">child</span><span class="o">.</span><span class="n">setIndex</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">index</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">setIndex</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">BranchNode</span><span class="o">.</span><span class="n">removeChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toRun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">alert</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isBelowMin</span><span class="p">():</span>
+            <span class="n">alert</span> <span class="o">+=</span> <span class="s2">&quot;Parameter &lt;b&gt;&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;&lt;/b&gt; has not enough &quot;</span> \
+                                                    <span class="s2">&quot;repeats&lt;br&gt;&quot;</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="n">val</span><span class="p">,</span> <span class="n">ale</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">toRun</span><span class="p">()</span>
+            <span class="n">values</span> <span class="o">+=</span> <span class="n">val</span>
+            <span class="n">alert</span> <span class="o">+=</span> <span class="n">ale</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">alert</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toXml</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">paramElement</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;paramrepeat&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="n">paramElement</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">toXml</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">paramElement</span>
+
+    <span class="k">def</span> <span class="nf">fromXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmlElement</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="n">xmlElement</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">repeatElement</span> <span class="ow">in</span> <span class="n">xmlElement</span><span class="p">:</span>
+            <span class="n">repeat</span> <span class="o">=</span> <span class="n">RepeatNode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">repeat</span><span class="o">.</span><span class="n">fromXml</span><span class="p">(</span><span class="n">repeatElement</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="n">repeat</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">allMotors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">motors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="n">motors</span> <span class="o">+=</span> <span class="n">child</span><span class="o">.</span><span class="n">allMotors</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">motors</span>
+
+    <span class="k">def</span> <span class="nf">toList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">toList</span><span class="p">()</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()]</span>
+
+    <span class="k">def</span> <span class="nf">fromList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">repeats</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;fromList method convert the parameters, into a tree of</span>
+<span class="sd">        objects. This tree represents the structure of the parameters.</span>
+<span class="sd">        In this case case, it converts repeat parameters.</span>
+<span class="sd">        :param repeats: (list&lt;str&gt;_or_list&lt;list&gt;). Parameters.</span>
+<span class="sd">        It is a list of strings in case of repetitions of single</span>
+<span class="sd">        parameters.</span>
+<span class="sd">        It is a list of lists in case of repetitions of more than one element</span>
+<span class="sd">        for each repetition.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">repeat</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">repeats</span><span class="p">):</span>
+
+            <span class="n">repeat_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">repeat_node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">repeat_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">addRepeat</span><span class="p">()</span>
+            <span class="n">repeat_node</span><span class="o">.</span><span class="n">fromList</span><span class="p">(</span><span class="n">repeat</span><span class="p">)</span>
+
+<span class="c1">#    def isAllowedMoveUp(self):</span>
+<span class="c1">#        return self is not self.parent().child(0)</span>
+<span class="c1">#</span>
+<span class="c1">#    def isAllowedMoveDown(self):</span>
+<span class="c1">#        return self is not self.parent().child(len(self.parent()) - 1)</span>
+
+
+<span class="k">class</span> <span class="nc">RepeatNode</span><span class="p">(</span><span class="n">BranchNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class for repetition elements (group of params which were repeated in</span>
+<span class="sd">    macro)&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">BranchNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setIndex</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span>
+
+    <span class="k">def</span> <span class="nf">setIndex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="n">index</span>
+
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;#</span><span class="si">%d</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">addParam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+        <span class="n">paramNode</span> <span class="o">=</span> <span class="n">ParamFactory</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="n">paramNode</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toXml</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">repeatElement</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;repeat&quot;</span><span class="p">,</span> <span class="n">nr</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">()))</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="n">repeatElement</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">toXml</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">repeatElement</span>
+
+    <span class="k">def</span> <span class="nf">fromXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmlElement</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setIndex</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">xmlElement</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;nr&quot;</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">paramElement</span> <span class="ow">in</span> <span class="n">xmlElement</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">paramElement</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;param&quot;</span><span class="p">:</span>
+                <span class="n">param</span> <span class="o">=</span> <span class="n">SingleParamNode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">paramElement</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;paramrepeat&quot;</span><span class="p">:</span>
+                <span class="n">param</span> <span class="o">=</span> <span class="n">RepeatParamNode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">param</span><span class="o">.</span><span class="n">fromXml</span><span class="p">(</span><span class="n">paramElement</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">duplicateNode</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Method for duplicating a RepeatNode. The new node is</span>
+<span class="sd">        appended as the last element of the ParamRepeatNode containing the</span>
+<span class="sd">        RepeatNode being duplicated.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">repeat_param_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+        <span class="n">duplicated_node</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">repeat_param_node</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="n">duplicated_node</span><span class="p">)</span>
+        <span class="n">repeat_param_node</span><span class="o">.</span><span class="n">arrangeIndexes</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">allMotors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">motors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="n">motors</span> <span class="o">+=</span> <span class="n">child</span><span class="o">.</span><span class="n">allMotors</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">motors</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedDel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedMoveUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedMoveDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">())</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">())</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">toList</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">toList</span><span class="p">()</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()]</span>
+
+    <span class="k">def</span> <span class="nf">fromList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;fromList method convert the parameters, into a tree of</span>
+<span class="sd">        objects. This tree represents the structure of the parameters.</span>
+<span class="sd">        In this case case, it converts repeat parameters.</span>
+<span class="sd">        :param params: (list&lt;str&gt;_or_&lt;str&gt;). Parameters.</span>
+<span class="sd">        It is a list of strings in case of param repeat of more than one</span>
+<span class="sd">        element for each repetition.</span>
+<span class="sd">        It is a string or empty list in case of repetitions of</span>
+<span class="sd">        single elements.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">len_children</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">len_children</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fromList</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">len_children</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">member_node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">param</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                    <span class="n">param</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">member_node</span><span class="o">.</span><span class="n">fromList</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">addParam</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">MacroNode</span><span class="p">(</span><span class="n">BranchNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class to represent macro element.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">params_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">macro_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">macro_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="ow">and</span> <span class="p">(</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">params_def</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;construction arguments ambiguous&quot;</span><span class="p">)</span>
+        <span class="n">BranchNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+        <span class="n">allowed_hooks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">macro_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">params_def</span> <span class="o">=</span> <span class="n">macro_info</span><span class="o">.</span><span class="n">parameters</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">macro_info</span><span class="o">.</span><span class="n">name</span>
+            <span class="n">allowed_hooks</span> <span class="o">=</span> <span class="n">macro_info</span><span class="o">.</span><span class="n">hints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;allowsHooks&quot;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setId</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setPause</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setProgress</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setRange</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setParams</span><span class="p">([])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setHooks</span><span class="p">([])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setHookPlaces</span><span class="p">([])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setAllowedHookPlaces</span><span class="p">(</span><span class="n">allowed_hooks</span><span class="p">)</span>
+        <span class="c1"># create parameter nodes (it is recursive for repeat parameters</span>
+        <span class="c1"># containing repeat parameters)</span>
+        <span class="k">if</span> <span class="n">params_def</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">params_def</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setHasParams</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">param_info</span> <span class="ow">in</span> <span class="n">params_def</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">addParam</span><span class="p">(</span><span class="n">ParamFactory</span><span class="p">(</span><span class="n">param_info</span><span class="p">))</span>
+
+
+    <span class="k">def</span> <span class="nf">id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Getter of macro&#39;s id property</span>
+
+<span class="sd">        :return: (str)</span>
+
+<span class="sd">        .. seealso: :meth:`MacroNode.setId`, assignId</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id</span>
+
+    <span class="k">def</span> <span class="nf">setId</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Setter of macro&#39;s id property</span>
+
+<span class="sd">        :param id: (str) new macro&#39;s id</span>
+
+<span class="sd">        See Also: id, assignId</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_id</span> <span class="o">=</span> <span class="nb">id</span>
+
+    <span class="k">def</span> <span class="nf">assignId</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        If macro didn&#39;t have an assigned id it assigns it</span>
+<span class="sd">        and return macro&#39;s id.</span>
+
+<span class="sd">        :return: (str)</span>
+
+<span class="sd">        See Also: id, setId</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">id_</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid1</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setId</span><span class="p">(</span><span class="n">id_</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">id_</span>
+
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+    <span class="k">def</span> <span class="nf">setName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">isPause</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pause</span>
+
+    <span class="k">def</span> <span class="nf">setPause</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pause</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pause</span> <span class="o">=</span> <span class="n">pause</span>
+
+    <span class="k">def</span> <span class="nf">range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_range</span>
+
+    <span class="k">def</span> <span class="nf">setRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">range</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_range</span> <span class="o">=</span> <span class="nb">range</span>
+
+    <span class="k">def</span> <span class="nf">progress</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_progress</span>
+
+    <span class="k">def</span> <span class="nf">setProgress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">progress</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_progress</span> <span class="o">=</span> <span class="n">progress</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedHooks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_allowedHookPlaces</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">allowedHookPlaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_allowedHookPlaces</span>
+
+    <span class="k">def</span> <span class="nf">setAllowedHookPlaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">allowedHookPlaces</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_allowedHookPlaces</span> <span class="o">=</span> <span class="n">allowedHookPlaces</span>
+
+    <span class="k">def</span> <span class="nf">hookPlaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hookPlaces</span>
+
+    <span class="k">def</span> <span class="nf">setHookPlaces</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hookPlaces</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hookPlaces</span> <span class="o">=</span> <span class="n">hookPlaces</span>
+
+    <span class="k">def</span> <span class="nf">addHookPlace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hookPlace</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hookPlaces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hookPlace</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">removeHookPlace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hookPlace</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hookPlaces</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">hookPlace</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">hasParams</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hasParams</span>
+
+    <span class="k">def</span> <span class="nf">setHasParams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hasParams</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hasParams</span> <span class="o">=</span> <span class="n">hasParams</span>
+
+<span class="c1">#################################</span>
+    <span class="k">def</span> <span class="nf">params</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_params</span>
+
+    <span class="k">def</span> <span class="nf">setParams</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_params</span> <span class="o">=</span> <span class="n">params</span>
+
+    <span class="k">def</span> <span class="nf">addParam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="p">):</span>
+        <span class="n">param</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">popParam</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">hooks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span>
+
+    <span class="k">def</span> <span class="nf">setHooks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hooks</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span> <span class="o">=</span> <span class="n">hooks</span>
+
+    <span class="k">def</span> <span class="nf">addHook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
+        <span class="n">hook</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">removeHook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">rowOfHook</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hook</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">hook</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="c1">##################################</span>
+    <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">insertChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">,</span> <span class="n">row</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">child</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">MacroNode</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="n">row</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">ParamNode</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">row</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rowOfChild</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">removeChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">MacroNode</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hooks</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">ParamNode</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_params</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toRun</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">alert</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">ParamNode</span><span class="p">):</span>
+                <span class="n">val</span><span class="p">,</span> <span class="n">ale</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">toRun</span><span class="p">()</span>
+                <span class="n">values</span> <span class="o">+=</span> <span class="n">val</span>
+                <span class="n">alert</span> <span class="o">+=</span> <span class="n">ale</span>
+        <span class="k">return</span> <span class="n">values</span><span class="p">,</span> <span class="n">alert</span>
+
+    <span class="k">def</span> <span class="nf">toSpockCommand</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">values</span><span class="p">,</span> <span class="n">alerts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">toRun</span><span class="p">()</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="nb">str</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">values</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">values</span><span class="p">,</span> <span class="n">alerts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">toRun</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">valueString</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+            <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
+                <span class="n">valueString</span> <span class="o">+=</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s1">&#39;[</span><span class="si">%s</span><span class="s1">]&#39;</span> <span class="o">%</span> <span class="n">valueString</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="c1">#    def allMotors(self):</span>
+<span class="c1">#        motors = []</span>
+<span class="c1">#        for macro in self.allMacros():</span>
+<span class="c1">#            motors += macro.ownMotors()</span>
+<span class="c1">#        return motors</span>
+<span class="c1">#</span>
+<span class="c1">#    def ownMotors(self):</span>
+<span class="c1">#        motors = []</span>
+<span class="c1">#        for macro in self.hooks():</span>
+<span class="c1">#            motors += macro.allMotors()</span>
+<span class="c1">#        return motors</span>
+
+    <span class="k">def</span> <span class="nf">allMacros</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">macros</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">allDescendants</span><span class="p">()</span>
+        <span class="n">macros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">macros</span>
+
+    <span class="k">def</span> <span class="nf">allDescendants</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">descendantsMacros</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ownMacros</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">MacroNode</span><span class="p">):</span>
+                <span class="n">ownMacros</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+                <span class="n">descendantsMacros</span> <span class="o">+=</span> <span class="n">child</span><span class="o">.</span><span class="n">allDescendants</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">descendantsMacros</span> <span class="o">+</span> <span class="n">ownMacros</span>
+
+<span class="c1">#    def descendantFromId(self, id):</span>
+<span class="c1">#        descendant = None</span>
+<span class="c1">#        for child in self.children():</span>
+<span class="c1">#            if isinstance(child, MacroNode) and child.id() == id:</span>
+<span class="c1">#                descendant = child</span>
+<span class="c1">#                break</span>
+<span class="c1">#        else:</span>
+<span class="c1">#            for child in self.children():</span>
+<span class="c1">#                descendant = child.descendantById(id)</span>
+<span class="c1">#        return descendant</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedMoveLeft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method checks if is is allowed to move macro to grandparent&#39;s</span>
+<span class="sd">        hook list.</span>
+<span class="sd">        It is enough to check that grandparent exist, cause all parents must</span>
+<span class="sd">        allow hooks&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">moveLeft</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method moves macro to grandparent&#39;s hook list</span>
+<span class="sd">        and place it right after its ex-parent,</span>
+<span class="sd">        it also returns newRow&quot;&quot;&quot;</span>
+        <span class="n">oldParent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+        <span class="n">newParent</span> <span class="o">=</span> <span class="n">oldParent</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+        <span class="n">newRow</span> <span class="o">=</span> <span class="n">newParent</span><span class="o">.</span><span class="n">hooks</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">oldParent</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">oldParent</span><span class="o">.</span><span class="n">removeHook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="n">newParent</span><span class="p">)</span>
+        <span class="n">newParent</span><span class="o">.</span><span class="n">insertHook</span><span class="p">(</span><span class="n">newRow</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">newRow</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedMoveRight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is used to check if it is allowed to move macro</span>
+<span class="sd">        to it&#39;s first following sibling&#39;s hook list.&quot;&quot;&quot;</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">parent</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">rowOfChild</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">isAllowedHooks</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">moveRight</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is used to move selected macro (pased via index)</span>
+<span class="sd">        to it&#39;s first following sibling&#39;s hook list. In tree representation</span>
+<span class="sd">        it basically move macro to the right&quot;&quot;&quot;</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">hook</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">hooks</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="n">hook</span> <span class="ow">is</span> <span class="bp">self</span><span class="p">:</span>
+                <span class="n">newParent</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">hook</span><span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">parent</span><span class="o">.</span><span class="n">removeHook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">setParent</span><span class="p">(</span><span class="n">newParent</span><span class="p">)</span>
+                <span class="n">newParent</span><span class="o">.</span><span class="n">insertHook</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+                <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedMoveUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">SequenceNode</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">child</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">MacroNode</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span><span class="o">.</span><span class="n">_hooks</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">moveUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method moves hook up and returns newRow&quot;&quot;&quot;</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+        <span class="n">myOldRow</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">rowOfHook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">parent</span><span class="o">.</span><span class="n">removeHook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">parent</span><span class="o">.</span><span class="n">insertHook</span><span class="p">(</span><span class="n">myOldRow</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">myOldRow</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">isAllowedMoveDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">parent</span><span class="o">.</span><span class="n">rowOfChild</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">moveDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method moves hook up and returns newRow&quot;&quot;&quot;</span>
+        <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+        <span class="n">myOldRow</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">rowOfHook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">parent</span><span class="o">.</span><span class="n">removeHook</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">parent</span><span class="o">.</span><span class="n">insertHook</span><span class="p">(</span><span class="n">myOldRow</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">myOldRow</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">toXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">withId</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts MacroNode obj to etree.Element obj.</span>
+
+<span class="sd">        :param withId: (bool) if we want to export also macro id</span>
+<span class="sd">                        (default: True)</span>
+
+<span class="sd">        See Also: fromXml</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">macroElement</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;macro&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">withId</span><span class="p">:</span>
+            <span class="n">id_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">id_</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">macroElement</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">hookPlace</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hookPlaces</span><span class="p">():</span>
+            <span class="n">hookElement</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">SubElement</span><span class="p">(</span><span class="n">macroElement</span><span class="p">,</span> <span class="s2">&quot;hookPlace&quot;</span><span class="p">)</span>
+            <span class="n">hookElement</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">hookPlace</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">MacroNode</span><span class="p">):</span>
+                <span class="n">xmlElement</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">toXml</span><span class="p">(</span><span class="n">withId</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">xmlElement</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">toXml</span><span class="p">()</span>
+            <span class="n">macroElement</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xmlElement</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">macroElement</span>
+
+    <span class="k">def</span> <span class="nf">fromXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xmlElement</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fills properties of MacroNode obj from etree.Element obj passed</span>
+<span class="sd">        as a parameter</span>
+
+<span class="sd">        :param xmlElement: (etree.Element)</span>
+
+<span class="sd">        See Also: toXml</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="n">xmlElement</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">))</span>
+        <span class="n">hookPlaces</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">xmlElement</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;param&quot;</span><span class="p">:</span>
+                <span class="n">param</span> <span class="o">=</span> <span class="n">SingleParamNode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="n">param</span><span class="o">.</span><span class="n">fromXml</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">addParam</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;paramrepeat&quot;</span><span class="p">:</span>
+                <span class="n">param</span> <span class="o">=</span> <span class="n">RepeatParamNode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="n">param</span><span class="o">.</span><span class="n">fromXml</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">addParam</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;macro&quot;</span><span class="p">:</span>
+                <span class="n">macro</span> <span class="o">=</span> <span class="n">MacroNode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                <span class="n">macro</span><span class="o">.</span><span class="n">fromXml</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">addHook</span><span class="p">(</span><span class="n">macro</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">element</span><span class="o">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;hookPlace&quot;</span><span class="p">:</span>
+                <span class="n">hookPlaces</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setHookPlaces</span><span class="p">(</span><span class="n">hookPlaces</span><span class="p">)</span>
+
+    <span class="c1"># deleted to use more generic &#39;fromList&#39; method.</span>
+    <span class="c1"># def fromPlainText(self, plainText):</span>
+    <span class="c1">#     &quot;&quot;&quot;Receive a plain text with the mac&quot;&quot;&quot;</span>
+    <span class="c1">#     words = ParamParser().parse(plainText)</span>
+    <span class="c1">#     length = len(words)</span>
+    <span class="c1">#     if length == 0:</span>
+    <span class="c1">#         return</span>
+    <span class="c1">#     macro_name = words[0]</span>
+    <span class="c1">#     macro_params = words[1:]</span>
+    <span class="c1">#     self.setName(macro_name)</span>
+    <span class="c1">#     self.fromList(macro_params)</span>
+
+    <span class="k">def</span> <span class="nf">toList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Convert to list representation in format:</span>
+<span class="sd">        [macro_name, *parameter_values] where complex repeat parameters are</span>
+<span class="sd">        encapsulated in lists e.g. [&#39;mv&#39;, [[&#39;mot01&#39;, 0], [&#39;mot02&#39;, 0]]]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">list_</span> <span class="o">=</span> <span class="p">[</span><span class="n">param</span><span class="o">.</span><span class="n">toList</span><span class="p">()</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">()]</span>
+        <span class="n">list_</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">list_</span>
+
+    <span class="k">def</span> <span class="nf">fromList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;fromList method convert the parameters, into a tree of</span>
+<span class="sd">        objects. This tree represents the structure of the parameters.</span>
+<span class="sd">        This will allow to pass the parameters to the macroserver.</span>
+<span class="sd">        :param values: (list&lt;str&gt;_list&lt;list&lt;str&gt;&gt;). Parameters.</span>
+<span class="sd">        It is a list of strings in case of single parameters.</span>
+<span class="sd">        In the rest of cases, values are list of objects</span>
+<span class="sd">        where the objects can be strings or lists in a recursive mode.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+            <span class="c1"># If exist the ParamNode, complete it.</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">param</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+                <span class="n">param</span><span class="o">.</span><span class="n">fromList</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="c1"># else, create a new one with ParamFactory</span>
+                <span class="n">param</span> <span class="o">=</span> <span class="n">ParamFactory</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">addParam</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">SequenceNode</span><span class="p">(</span><span class="n">BranchNode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Class to represent sequence element.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">BranchNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">allMacros</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">macros</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">macro</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="n">macros</span> <span class="o">+=</span> <span class="n">macro</span><span class="o">.</span><span class="n">allDescendants</span><span class="p">()</span>
+        <span class="n">macros</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">macros</span>
+
+    <span class="k">def</span> <span class="nf">upMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">):</span>
+        <span class="n">BranchNode</span><span class="o">.</span><span class="n">upChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">downMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">):</span>
+        <span class="n">BranchNode</span><span class="o">.</span><span class="n">downChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">toXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">withId</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="n">sequenceElement</span> <span class="o">=</span> <span class="n">etree</span><span class="o">.</span><span class="n">Element</span><span class="p">(</span><span class="s2">&quot;sequence&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+            <span class="n">sequenceElement</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="o">.</span><span class="n">toXml</span><span class="p">(</span><span class="n">withId</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">sequenceElement</span>
+
+    <span class="k">def</span> <span class="nf">fromXml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequenceElement</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">childElement</span> <span class="ow">in</span> <span class="n">sequenceElement</span><span class="o">.</span><span class="n">iterchildren</span><span class="p">(</span><span class="s2">&quot;macro&quot;</span><span class="p">):</span>
+            <span class="n">macro</span> <span class="o">=</span> <span class="n">MacroNode</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="n">macro</span><span class="o">.</span><span class="n">fromXml</span><span class="p">(</span><span class="n">childElement</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="n">macro</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fromPlainText</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plainTextMacros</span><span class="p">,</span> <span class="n">macroInfos</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">plainTextMacro</span><span class="p">,</span> <span class="n">macroInfo</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">plainTextMacros</span><span class="p">,</span> <span class="n">macroInfos</span><span class="p">):</span>
+            <span class="n">macro</span> <span class="o">=</span> <span class="n">MacroNode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_info</span><span class="o">=</span><span class="n">macroInfo</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="n">macro</span><span class="p">)</span>
+            <span class="c1"># ignore the macro name and if there are parameters parse them</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">plainTextParams</span> <span class="o">=</span> <span class="n">plainTextMacro</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">paramsDef</span> <span class="o">=</span> <span class="n">macroInfo</span><span class="o">.</span><span class="n">parameters</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">macroParams</span> <span class="o">=</span> <span class="n">ParamParser</span><span class="p">(</span><span class="n">paramsDef</span><span class="p">)</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">plainTextParams</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">ParseError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> can not be parsed (</span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">plainTextMacro</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+                <span class="c1"># TODO: think of using `raise from` syntax</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">macro</span><span class="o">.</span><span class="n">fromList</span><span class="p">(</span><span class="n">macroParams</span><span class="p">)</span>
+
+<span class="c1">#    def descendantFromId(self, id):</span>
+<span class="c1">#        descendant = None</span>
+<span class="c1">#        for child in self.children():</span>
+<span class="c1">#            if isinstance(child, MacroNode) and child.id() == id:</span>
+<span class="c1">#                descendant = child</span>
+<span class="c1">#                break</span>
+<span class="c1">#        else:</span>
+<span class="c1">#            for child in self.children():</span>
+<span class="c1">#                descendant = child.descendantById(id)</span>
+<span class="c1">#        return descendant</span>
+
+
+<span class="k">def</span> <span class="nf">ParamFactory</span><span class="p">(</span><span class="n">paramInfo</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Factory method returning param element, depends of the paramInfo</span>
+<span class="sd">    argument.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">paramInfo</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">),</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">RepeatParamNode</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="n">paramInfo</span><span class="p">)</span>
+        <span class="n">param_min</span> <span class="o">=</span> <span class="n">param</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">param_min</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">param_min</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">param</span><span class="o">.</span><span class="n">addRepeat</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">param</span> <span class="o">=</span> <span class="n">SingleParamNode</span><span class="p">(</span><span class="n">param</span><span class="o">=</span><span class="n">paramInfo</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">param</span>
+
+
+<span class="k">def</span> <span class="nf">createMacroNode</span><span class="p">(</span><span class="n">macro_name</span><span class="p">,</span> <span class="n">params_def</span><span class="p">,</span> <span class="n">macro_params</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create of the macro node object.</span>
+
+<span class="sd">    :param macro_name: (str) macro name</span>
+<span class="sd">    :param params_def: (list&lt;dict&gt;) list of param definitions</span>
+<span class="sd">    :param macro_params: (sequence[str]) list of parameter values, if repeat</span>
+<span class="sd">        parameters are used parameter values may be sequences itself.</span>
+<span class="sd">    :return (MacroNode) macro node object</span>
+
+<span class="sd">    .. todo:: This method implements exactly the same logic as :meth:</span>
+<span class="sd">    `sardana.taurus.core.tango.sardana.macroserver.BaseDoor.</span>
+<span class="sd">    _createMacroXmlFromStr`</span>
+<span class="sd">    unify them and place in some common location.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">macro_node</span> <span class="o">=</span> <span class="n">MacroNode</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">macro_name</span><span class="p">,</span> <span class="n">params_def</span><span class="o">=</span><span class="n">params_def</span><span class="p">)</span>
+    <span class="n">macro_node</span><span class="o">.</span><span class="n">fromList</span><span class="p">(</span><span class="n">macro_params</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">macro_node</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
