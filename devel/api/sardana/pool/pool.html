@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>pool &mdash; sardana 3.0.4-alpha documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
+            <a href="../../../../index.html" class="icon icon-home"> sardana
           
 
           
@@ -175,6 +177,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -196,7 +200,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../../_sources/devel/api/sardana/pool/pool.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -247,53 +251,53 @@
 <area shape="rect" id="node13" href="../sardanabase.html#sardana.sardanabase.SardanaObjectID" target="_top" title="To be used by sardana objects which have an ID associated to them." alt="" coords="217,265,348,304"/>
 </map><dl class="py class">
 <dt id="sardana.pool.pool.Pool">
-<em class="property">class </em><code class="sig-name descname">Pool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">full_name</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">Pool</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="poolcontainer.html#sardana.pool.poolcontainer.PoolContainer" title="sardana.pool.poolcontainer.PoolContainer"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.pool.poolcontainer.PoolContainer</span></code></a>, <a class="reference internal" href="poolobject.html#sardana.pool.poolobject.PoolObject" title="sardana.pool.poolobject.PoolObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.pool.poolobject.PoolObject</span></code></a>, <a class="reference internal" href="../sardanamanager.html#sardana.sardanamanager.SardanaElementManager" title="sardana.sardanamanager.SardanaElementManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.sardanamanager.SardanaElementManager</span></code></a>, <code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.sardanamanager.SardanaIDManager</span></code></p>
 <p>The central pool class.</p>
 <dl class="py attribute">
 <dt id="sardana.pool.pool.Pool.Default_MotionLoop_StatesPerPosition">
-<code class="sig-name descname">Default_MotionLoop_StatesPerPosition</code><em class="property"> = 10</em><a class="headerlink" href="#sardana.pool.pool.Pool.Default_MotionLoop_StatesPerPosition" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">Default_MotionLoop_StatesPerPosition</span></code><em class="property"> <span class="pre">=</span> <span class="pre">10</span></em><a class="headerlink" href="#sardana.pool.pool.Pool.Default_MotionLoop_StatesPerPosition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default value representing the number of state reads per position
 read during a motion loop</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.pool.Pool.Default_MotionLoop_SleepTime">
-<code class="sig-name descname">Default_MotionLoop_SleepTime</code><em class="property"> = 0.01</em><a class="headerlink" href="#sardana.pool.pool.Pool.Default_MotionLoop_SleepTime" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">Default_MotionLoop_SleepTime</span></code><em class="property"> <span class="pre">=</span> <span class="pre">0.01</span></em><a class="headerlink" href="#sardana.pool.pool.Pool.Default_MotionLoop_SleepTime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default value representing the sleep time for each motion loop</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.pool.Pool.Default_AcqLoop_StatesPerValue">
-<code class="sig-name descname">Default_AcqLoop_StatesPerValue</code><em class="property"> = 10</em><a class="headerlink" href="#sardana.pool.pool.Pool.Default_AcqLoop_StatesPerValue" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">Default_AcqLoop_StatesPerValue</span></code><em class="property"> <span class="pre">=</span> <span class="pre">10</span></em><a class="headerlink" href="#sardana.pool.pool.Pool.Default_AcqLoop_StatesPerValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default value representing the number of state reads per value
 read during a motion loop</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.pool.Pool.Default_AcqLoop_SleepTime">
-<code class="sig-name descname">Default_AcqLoop_SleepTime</code><em class="property"> = 0.01</em><a class="headerlink" href="#sardana.pool.pool.Pool.Default_AcqLoop_SleepTime" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">Default_AcqLoop_SleepTime</span></code><em class="property"> <span class="pre">=</span> <span class="pre">0.01</span></em><a class="headerlink" href="#sardana.pool.pool.Pool.Default_AcqLoop_SleepTime" title="Permalink to this definition">¶</a></dt>
 <dd><p>Default value representing the sleep time for each acquisition loop</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.pool.pool.Pool.Default_DriftCorrection">
-<code class="sig-name descname">Default_DriftCorrection</code><em class="property"> = True</em><a class="headerlink" href="#sardana.pool.pool.Pool.Default_DriftCorrection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">Default_DriftCorrection</span></code><em class="property"> <span class="pre">=</span> <span class="pre">True</span></em><a class="headerlink" href="#sardana.pool.pool.Pool.Default_DriftCorrection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.init_local_logging">
-<code class="sig-name descname">init_local_logging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.init_local_logging"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.init_local_logging" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">init_local_logging</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.init_local_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.init_local_logging" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.clear_remote_logging">
-<code class="sig-name descname">clear_remote_logging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.clear_remote_logging"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.clear_remote_logging" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">clear_remote_logging</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.clear_remote_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.clear_remote_logging" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.init_remote_logging">
-<code class="sig-name descname">init_remote_logging</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">host</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">port</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.init_remote_logging"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.init_remote_logging" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">init_remote_logging</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.init_remote_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.init_remote_logging" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes remote logging.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -309,192 +313,192 @@ as returned by <a class="reference external" href="https://docs.python.org/3/lib
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.serialize">
-<code class="sig-name descname">serialize</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.serialize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.serialize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">serialize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.serialize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.serialize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.set_motion_loop_sleep_time">
-<code class="sig-name descname">set_motion_loop_sleep_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motion_loop_sleep_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_motion_loop_sleep_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_motion_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_motion_loop_sleep_time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">motion_loop_sleep_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_motion_loop_sleep_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_motion_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_motion_loop_sleep_time">
-<code class="sig-name descname">get_motion_loop_sleep_time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_motion_loop_sleep_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_motion_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_motion_loop_sleep_time</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_motion_loop_sleep_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_motion_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.motion_loop_sleep_time">
-<em class="property">property </em><code class="sig-name descname">motion_loop_sleep_time</code><a class="headerlink" href="#sardana.pool.pool.Pool.motion_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">motion_loop_sleep_time</span></code><a class="headerlink" href="#sardana.pool.pool.Pool.motion_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>motion sleep time (s)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.set_motion_loop_states_per_position">
-<code class="sig-name descname">set_motion_loop_states_per_position</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">motion_loop_states_per_position</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_motion_loop_states_per_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_motion_loop_states_per_position" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_motion_loop_states_per_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">motion_loop_states_per_position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_motion_loop_states_per_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_motion_loop_states_per_position" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_motion_loop_states_per_position">
-<code class="sig-name descname">get_motion_loop_states_per_position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_motion_loop_states_per_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_motion_loop_states_per_position" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_motion_loop_states_per_position</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_motion_loop_states_per_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_motion_loop_states_per_position" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.motion_loop_states_per_position">
-<em class="property">property </em><code class="sig-name descname">motion_loop_states_per_position</code><a class="headerlink" href="#sardana.pool.pool.Pool.motion_loop_states_per_position" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">motion_loop_states_per_position</span></code><a class="headerlink" href="#sardana.pool.pool.Pool.motion_loop_states_per_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of State reads done before doing a position read in the motion loop</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.set_acq_loop_sleep_time">
-<code class="sig-name descname">set_acq_loop_sleep_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">acq_loop_sleep_time</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_acq_loop_sleep_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_acq_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_acq_loop_sleep_time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acq_loop_sleep_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_acq_loop_sleep_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_acq_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_acq_loop_sleep_time">
-<code class="sig-name descname">get_acq_loop_sleep_time</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_acq_loop_sleep_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_acq_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_acq_loop_sleep_time</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_acq_loop_sleep_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_acq_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.acq_loop_sleep_time">
-<em class="property">property </em><code class="sig-name descname">acq_loop_sleep_time</code><a class="headerlink" href="#sardana.pool.pool.Pool.acq_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">acq_loop_sleep_time</span></code><a class="headerlink" href="#sardana.pool.pool.Pool.acq_loop_sleep_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>acquisition sleep time (s)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.set_acq_loop_states_per_value">
-<code class="sig-name descname">set_acq_loop_states_per_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">acq_loop_states_per_value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_acq_loop_states_per_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_acq_loop_states_per_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_acq_loop_states_per_value</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acq_loop_states_per_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_acq_loop_states_per_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_acq_loop_states_per_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_acq_loop_states_per_value">
-<code class="sig-name descname">get_acq_loop_states_per_value</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_acq_loop_states_per_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_acq_loop_states_per_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_acq_loop_states_per_value</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_acq_loop_states_per_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_acq_loop_states_per_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.acq_loop_states_per_value">
-<em class="property">property </em><code class="sig-name descname">acq_loop_states_per_value</code><a class="headerlink" href="#sardana.pool.pool.Pool.acq_loop_states_per_value" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">acq_loop_states_per_value</span></code><a class="headerlink" href="#sardana.pool.pool.Pool.acq_loop_states_per_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of State reads done before doing a value read in the acquisition loop</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.set_drift_correction">
-<code class="sig-name descname">set_drift_correction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">drift_correction</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_drift_correction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_drift_correction" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_drift_correction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">drift_correction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_drift_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_drift_correction" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_drift_correction">
-<code class="sig-name descname">get_drift_correction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_drift_correction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_drift_correction" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_drift_correction</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_drift_correction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_drift_correction" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.drift_correction">
-<em class="property">property </em><code class="sig-name descname">drift_correction</code><a class="headerlink" href="#sardana.pool.pool.Pool.drift_correction" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">drift_correction</span></code><a class="headerlink" href="#sardana.pool.pool.Pool.drift_correction" title="Permalink to this definition">¶</a></dt>
 <dd><p>drift correction</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.monitor">
-<em class="property">property </em><code class="sig-name descname">monitor</code><a class="headerlink" href="#sardana.pool.pool.Pool.monitor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">monitor</span></code><a class="headerlink" href="#sardana.pool.pool.Pool.monitor" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.ctrl_manager">
-<em class="property">property </em><code class="sig-name descname">ctrl_manager</code><a class="headerlink" href="#sardana.pool.pool.Pool.ctrl_manager" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">ctrl_manager</span></code><a class="headerlink" href="#sardana.pool.pool.Pool.ctrl_manager" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.set_python_path">
-<code class="sig-name descname">set_python_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_python_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_python_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_python_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_python_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_python_path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.set_path">
-<code class="sig-name descname">set_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.set_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.set_path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_controller_libs">
-<code class="sig-name descname">get_controller_libs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_libs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_libs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_controller_libs</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_libs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_libs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_controller_lib_names">
-<code class="sig-name descname">get_controller_lib_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_lib_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_lib_names" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_controller_lib_names</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_lib_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_lib_names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_controller_class_names">
-<code class="sig-name descname">get_controller_class_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_class_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_class_names" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_controller_class_names</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_class_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_class_names" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_controller_classes">
-<code class="sig-name descname">get_controller_classes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_classes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_classes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_controller_classes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_classes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_classes" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_controller_class_info">
-<code class="sig-name descname">get_controller_class_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_class_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_class_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_controller_class_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_class_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_class_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_controller_classes_info">
-<code class="sig-name descname">get_controller_classes_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">names</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_classes_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_classes_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_controller_classes_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_classes_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_classes_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_controller_libs_summary_info">
-<code class="sig-name descname">get_controller_libs_summary_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_libs_summary_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_libs_summary_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_controller_libs_summary_info</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_libs_summary_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_libs_summary_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_controller_classes_summary_info">
-<code class="sig-name descname">get_controller_classes_summary_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_classes_summary_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_classes_summary_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_controller_classes_summary_info</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_controller_classes_summary_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_controller_classes_summary_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_elements_str_info">
-<code class="sig-name descname">get_elements_str_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_elements_str_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_elements_str_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_elements_str_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_elements_str_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_elements_str_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_elements_info">
-<code class="sig-name descname">get_elements_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj_type</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_elements_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_elements_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_elements_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_elements_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_elements_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_acquisition_elements_info">
-<code class="sig-name descname">get_acquisition_elements_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_acquisition_elements_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_acquisition_elements_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_acquisition_elements_info</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_acquisition_elements_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_acquisition_elements_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_acquisition_elements_str_info">
-<code class="sig-name descname">get_acquisition_elements_str_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_acquisition_elements_str_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_acquisition_elements_str_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_acquisition_elements_str_info</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_acquisition_elements_str_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_acquisition_elements_str_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.create_controller">
-<code class="sig-name descname">create_controller</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.create_controller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.create_controller" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">create_controller</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.create_controller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.create_controller" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.create_element">
-<code class="sig-name descname">create_element</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.create_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.create_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">create_element</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.create_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.create_element" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.create_motor_group">
-<code class="sig-name descname">create_motor_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.create_motor_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.create_motor_group" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">create_motor_group</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.create_motor_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.create_motor_group" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.create_measurement_group">
-<code class="sig-name descname">create_measurement_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.create_measurement_group"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.create_measurement_group" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">create_measurement_group</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.create_measurement_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.create_measurement_group" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.rename_element">
-<code class="sig-name descname">rename_element</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">old_name</span></em>, <em class="sig-param"><span class="n">new_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.rename_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.rename_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">rename_element</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.rename_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.rename_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Rename an object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -508,47 +512,47 @@ as returned by <a class="reference external" href="https://docs.python.org/3/lib
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.delete_element">
-<code class="sig-name descname">delete_element</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.delete_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.delete_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">delete_element</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.delete_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.delete_element" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.create_instrument">
-<code class="sig-name descname">create_instrument</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">full_name</span></em>, <em class="sig-param"><span class="n">klass_name</span></em>, <em class="sig-param"><span class="n">id</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.create_instrument"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.create_instrument" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">create_instrument</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">full_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">klass_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.create_instrument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.create_instrument" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.stop">
-<code class="sig-name descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.stop" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">stop</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.stop" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.abort">
-<code class="sig-name descname">abort</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.abort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.abort" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">abort</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.abort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.abort" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.reload_controller_lib">
-<code class="sig-name descname">reload_controller_lib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lib_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.reload_controller_lib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.reload_controller_lib" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">reload_controller_lib</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lib_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.reload_controller_lib"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.reload_controller_lib" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.reload_controller_class">
-<code class="sig-name descname">reload_controller_class</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">class_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.reload_controller_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.reload_controller_class" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">reload_controller_class</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">class_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.reload_controller_class"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.reload_controller_class" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_element_id_graph">
-<code class="sig-name descname">get_element_id_graph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_element_id_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_element_id_graph" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_element_id_graph</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_element_id_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_element_id_graph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_moveable_id_graph">
-<code class="sig-name descname">get_moveable_id_graph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_moveable_id_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_moveable_id_graph" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_moveable_id_graph</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_moveable_id_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_moveable_id_graph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.pool.Pool.get_moveable_graph">
-<code class="sig-name descname">get_moveable_graph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_moveable_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_moveable_graph" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_moveable_graph</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/pool.html#Pool.get_moveable_graph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.pool.Pool.get_moveable_graph" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -561,38 +565,30 @@ as returned by <a class="reference external" href="https://docs.python.org/3/lib
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="poolacquisition.html" class="btn btn-neutral float-right" title="poolacquisition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="controller.html" class="btn btn-neutral float-left" title="controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="poolacquisition.html" class="btn btn-neutral float-right" title="poolacquisition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="controller.html" class="btn btn-neutral float-left" title="controller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License
+        &#169; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

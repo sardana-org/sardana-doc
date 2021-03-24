@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>poolutil &mdash; sardana 3.0.4-alpha documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
+            <a href="../../../../index.html" class="icon icon-home"> sardana
           
 
           
@@ -175,6 +177,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -196,7 +200,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../../_sources/devel/api/sardana/pool/poolutil.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -216,7 +220,7 @@
 <p class="rubric">Singletons</p>
 <dl class="py data">
 <dt id="sardana.pool.poolutil.PoolUtil">
-<code class="sig-name descname">PoolUtil</code><em class="property"> = &lt;sardana.pool.poolutil._PoolUtil object&gt;</em><a class="headerlink" href="#sardana.pool.poolutil.PoolUtil" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">PoolUtil</span></code><em class="property"> <span class="pre">=</span> <span class="pre">&lt;sardana.pool.poolutil._PoolUtil</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sardana.pool.poolutil.PoolUtil" title="Permalink to this definition">¶</a></dt>
 <dd><p>Singleton instance of the <a class="reference internal" href="#sardana.pool.poolutil._PoolUtil" title="sardana.pool.poolutil._PoolUtil"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_PoolUtil</span></code></a> class.</p>
 <p>It is a factory of <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> objects and ensures only one
 instance of such objects is created for the whole process.
@@ -229,11 +233,11 @@ methods.</p>
 <h2>_PoolUtil<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="sardana.pool.poolutil._PoolUtil">
-<em class="property">class </em><code class="sig-name descname">_PoolUtil</code><a class="reference internal" href="../../../../_modules/sardana/pool/poolutil.html#_PoolUtil"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">_PoolUtil</span></code><a class="reference internal" href="../../../../_modules/sardana/pool/poolutil.html#_PoolUtil"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_device">
-<code class="sig-name descname">get_device</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolutil.html#_PoolUtil.get_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_device" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_device</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolutil.html#_PoolUtil.get_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_device" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -254,7 +258,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_motor">
-<code class="sig-name descname">get_motor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_motor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_motor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_motor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -275,7 +279,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_phy_motor">
-<code class="sig-name descname">get_phy_motor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_phy_motor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_phy_motor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_phy_motor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -296,7 +300,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_pseudo_motor">
-<code class="sig-name descname">get_pseudo_motor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_pseudo_motor" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_pseudo_motor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_pseudo_motor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -317,7 +321,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_motor_group">
-<code class="sig-name descname">get_motor_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_motor_group" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_motor_group</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_motor_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -338,7 +342,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_exp_channel">
-<code class="sig-name descname">get_exp_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_exp_channel" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_exp_channel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_exp_channel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -359,7 +363,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_ct_channel">
-<code class="sig-name descname">get_ct_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_ct_channel" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_ct_channel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_ct_channel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -380,7 +384,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_zerod_channel">
-<code class="sig-name descname">get_zerod_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_zerod_channel" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_zerod_channel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_zerod_channel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -401,7 +405,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_oned_channel">
-<code class="sig-name descname">get_oned_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_oned_channel" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_oned_channel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_oned_channel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -422,7 +426,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_twod_channel">
-<code class="sig-name descname">get_twod_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_twod_channel" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_twod_channel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_twod_channel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -443,7 +447,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_pseudo_counter_channel">
-<code class="sig-name descname">get_pseudo_counter_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_pseudo_counter_channel" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_pseudo_counter_channel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_pseudo_counter_channel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -464,7 +468,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_measurement_group">
-<code class="sig-name descname">get_measurement_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_measurement_group" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_measurement_group</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_measurement_group" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -485,7 +489,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_com_channel">
-<code class="sig-name descname">get_com_channel</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_com_channel" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_com_channel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_com_channel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -506,7 +510,7 @@ per controller instance.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolutil._PoolUtil.get_ioregister">
-<code class="sig-name descname">get_ioregister</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_ioregister" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_ioregister</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.pool.poolutil._PoolUtil.get_ioregister" title="Permalink to this definition">¶</a></dt>
 <dd><p>Factory method to create a single <a class="reference external" href="https://pytango.readthedocs.io/en/stable/client_api/device_proxy.html#tango.DeviceProxy" title="(in PyTango v9.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">tango.DeviceProxy</span></code></a> instance
 per controller instance.</p>
 <dl class="field-list simple">
@@ -535,38 +539,30 @@ per controller instance.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="poolzerodexpchannel.html" class="btn btn-neutral float-right" title="poolzerodexpchannel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="pooltwodexpchannel.html" class="btn btn-neutral float-left" title="pooltwodexpchannel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="poolzerodexpchannel.html" class="btn btn-neutral float-right" title="poolzerodexpchannel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pooltwodexpchannel.html" class="btn btn-neutral float-left" title="pooltwodexpchannel" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License
+        &#169; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

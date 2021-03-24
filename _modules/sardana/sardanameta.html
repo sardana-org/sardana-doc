@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>sardana.sardanameta &mdash; sardana 3.0.4-alpha documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
@@ -50,7 +52,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
+            <a href="../../index.html" class="icon icon-home"> sardana
           
 
           
@@ -120,6 +122,8 @@
         <div class="rst-content">
         
           
+
+
 
 
 
@@ -247,7 +251,7 @@
 <span class="c1"># ----------------------------------------------------------------------------</span>
 
 
-<div class="viewcode-block" id="SardanaLibrary"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary">[docs]</a><span class="k">class</span> <span class="nc">SardanaLibrary</span><span class="p">(</span><span class="n">SardanaBaseObject</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary">[docs]</a><span class="k">class</span> <span class="nc">SardanaLibrary</span><span class="p">(</span><span class="n">SardanaBaseObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Object representing a python module containing sardana classes.</span>
 <span class="sd">       Public members:</span>
 
@@ -316,7 +320,7 @@
             <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;source code not available&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">code</span>
 
-<div class="viewcode-block" id="SardanaLibrary.add_meta_class"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.add_meta_class">[docs]</a>    <span class="k">def</span> <span class="nf">add_meta_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_class</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.add_meta_class"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.add_meta_class">[docs]</a>    <span class="k">def</span> <span class="nf">add_meta_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_class</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds a new :class:~`sardana.sardanameta.SardanaClass` to this</span>
 <span class="sd">        library.</span>
 
@@ -324,7 +328,7 @@
 <span class="sd">        :type meta_class: :class:~`sardana.sardanameta.SardanaClass`&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meta_classes</span><span class="p">[</span><span class="n">meta_class</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta_class</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_meta_class"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_meta_class">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_class_name</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_meta_class"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_meta_class">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_class_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a :class:~`sardana.sardanameta.SardanaClass` for the</span>
 <span class="sd">        given meta class name or None if the meta class does not exist in this</span>
 <span class="sd">        library.</span>
@@ -335,14 +339,14 @@
 <span class="sd">        :rtype: :class:~`sardana.sardanameta.SardanaClass`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_classes</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">meta_class_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_meta_classes"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_meta_classes">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_meta_classes"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_meta_classes">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta_classes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a sequence of the meta classes that belong to this library.</span>
 
 <span class="sd">        :return: a sequence of meta classes that belong to this library</span>
 <span class="sd">        :rtype: seq&lt;:class:~`sardana.sardanameta.SardanaClass`&gt;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_classes</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.has_meta_class"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.has_meta_class">[docs]</a>    <span class="k">def</span> <span class="nf">has_meta_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_class_name</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.has_meta_class"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.has_meta_class">[docs]</a>    <span class="k">def</span> <span class="nf">has_meta_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_class_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns True if the given meta class name belongs to this library</span>
 <span class="sd">        or False otherwise.</span>
 
@@ -354,7 +358,7 @@
 <span class="sd">        :rtype: bool&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">meta_class_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_classes</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.add_meta_function"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.add_meta_function">[docs]</a>    <span class="k">def</span> <span class="nf">add_meta_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_function</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.add_meta_function"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.add_meta_function">[docs]</a>    <span class="k">def</span> <span class="nf">add_meta_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_function</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Adds a new :class:~`sardana.sardanameta.SardanaFunction` to this</span>
 <span class="sd">        library.</span>
 
@@ -362,7 +366,7 @@
 <span class="sd">        :type meta_function: :class:~`sardana.sardanameta.SardanaFunction`&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">meta_functions</span><span class="p">[</span><span class="n">meta_function</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">meta_function</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_meta_function"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_meta_function">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_function_name</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_meta_function"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_meta_function">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_function_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a :class:~`sardana.sardanameta.SardanaFunction` for the</span>
 <span class="sd">        given meta function name or None if the meta function does not exist in</span>
 <span class="sd">        this library.</span>
@@ -373,14 +377,14 @@
 <span class="sd">        :rtype: :class:~`sardana.sardanameta.SardanaFunction`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_functions</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">meta_function_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_meta_functions"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_meta_functions">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_meta_functions"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_meta_functions">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a sequence of the meta functions that belong to this library.</span>
 
 <span class="sd">        :return: a sequence of meta functions that belong to this library</span>
 <span class="sd">        :rtype: seq&lt;:class:~`sardana.sardanameta.SardanaFunction`&gt;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">meta_functions</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.has_meta_function"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.has_meta_function">[docs]</a>    <span class="k">def</span> <span class="nf">has_meta_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_function_name</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.has_meta_function"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.has_meta_function">[docs]</a>    <span class="k">def</span> <span class="nf">has_meta_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_function_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns True if the given meta function name belongs to this library</span>
 <span class="sd">        or False otherwise.</span>
 
@@ -392,7 +396,7 @@
 <span class="sd">        :rtype: bool&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">meta_function_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">meta_functions</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_meta"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_meta">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_name</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_meta"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_meta">[docs]</a>    <span class="k">def</span> <span class="nf">get_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a :class:~`sardana.sardanameta.SardanaCode` for the</span>
 <span class="sd">        given meta name or None if the meta does not exist in this library.</span>
 
@@ -405,7 +409,7 @@
             <span class="n">ret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_meta_function</span><span class="p">(</span><span class="n">meta_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.has_meta"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.has_meta">[docs]</a>    <span class="k">def</span> <span class="nf">has_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_name</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.has_meta"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.has_meta">[docs]</a>    <span class="k">def</span> <span class="nf">has_meta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">meta_name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns True if the given meta name belongs to this library</span>
 <span class="sd">        or False otherwise.</span>
 
@@ -419,7 +423,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_meta_class</span><span class="p">(</span><span class="n">meta_name</span><span class="p">)</span> <span class="ow">or</span> \
             <span class="bp">self</span><span class="o">.</span><span class="n">has_meta_function</span><span class="p">(</span><span class="n">meta_name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.has_metas"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.has_metas">[docs]</a>    <span class="k">def</span> <span class="nf">has_metas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.has_metas"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.has_metas">[docs]</a>    <span class="k">def</span> <span class="nf">has_metas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns True if any meta object exists in the library</span>
 <span class="sd">        or False otherwise.</span>
 
@@ -434,7 +438,7 @@
             <span class="n">has_metas_bool</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="n">has_metas_bool</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_metas"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_metas">[docs]</a>    <span class="k">def</span> <span class="nf">get_metas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_metas"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_metas">[docs]</a>    <span class="k">def</span> <span class="nf">get_metas</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a sequence of the meta (class and functions) that belong to</span>
 <span class="sd">        this library.</span>
 
@@ -443,7 +447,7 @@
 <span class="sd">        :rtype: seq&lt;:class:~`sardana.sardanameta.SardanaCode`&gt;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_meta_classes</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_meta_functions</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_name"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_name"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the module name for this library (same as</span>
 <span class="sd">        :meth:~sardana.sardanameta.SardanaLibrary.get_module_name).</span>
 
@@ -451,7 +455,7 @@
 <span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_module_name"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_module_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_module_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_module_name"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_module_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_module_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the module name for this library (same as</span>
 <span class="sd">        :meth:~sardana.sardanameta.SardanaLibrary.get_name).</span>
 
@@ -459,14 +463,14 @@
 <span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module_name</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_module"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_module">[docs]</a>    <span class="k">def</span> <span class="nf">get_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_module"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_module">[docs]</a>    <span class="k">def</span> <span class="nf">get_module</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the python module for this library.</span>
 
 <span class="sd">        :return: the python module</span>
 <span class="sd">        :rtype: object&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">module</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_description"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_description">[docs]</a>    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_description"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_description">[docs]</a>    <span class="k">def</span> <span class="nf">get_description</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the this library documentation or &quot;&lt;Undocumented&gt;&quot; if no</span>
 <span class="sd">        documentation exists.</span>
 
@@ -474,14 +478,14 @@
 <span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">description</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_code"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_code">[docs]</a>    <span class="k">def</span> <span class="nf">get_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_code"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_code">[docs]</a>    <span class="k">def</span> <span class="nf">get_code</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a sequence of sourcelines corresponding to the module code.</span>
 
 <span class="sd">       :return: list of source code lines</span>
 <span class="sd">       :rtype: list&lt;str&gt;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">code</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_file_path"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_file_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_file_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_file_path"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_file_path">[docs]</a>    <span class="k">def</span> <span class="nf">get_file_path</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the file path for this library. On posix systems is something</span>
 <span class="sd">        like: /abs/path/filename.py</span>
 
@@ -493,7 +497,7 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_file_name"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_file_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_file_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_file_name"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_file_name">[docs]</a>    <span class="k">def</span> <span class="nf">get_file_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the file name for this library. On posix systems is something</span>
 <span class="sd">        like: filename.py</span>
 
@@ -501,14 +505,14 @@
 <span class="sd">        :rtype: :obj:`str`&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_name</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.has_errors"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.has_errors">[docs]</a>    <span class="k">def</span> <span class="nf">has_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.has_errors"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.has_errors">[docs]</a>    <span class="k">def</span> <span class="nf">has_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns True if this library has syntax errors or False otherwise.</span>
 
 <span class="sd">        :return: True if this library has syntax errors or False otherwise</span>
 <span class="sd">        :rtype: bool&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.set_error"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.set_error">[docs]</a>    <span class="k">def</span> <span class="nf">set_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_info</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.set_error"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.set_error">[docs]</a>    <span class="k">def</span> <span class="nf">set_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_info</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets the error information for this library</span>
 
 <span class="sd">        :param exc_info: error information. It must be an object similar to the</span>
@@ -519,7 +523,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">meta_classes</span> <span class="o">=</span> <span class="p">{}</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">meta_functions</span> <span class="o">=</span> <span class="p">{}</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.get_error"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.get_error">[docs]</a>    <span class="k">def</span> <span class="nf">get_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.get_error"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.get_error">[docs]</a>    <span class="k">def</span> <span class="nf">get_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Gets the error information for this library or None if no error</span>
 <span class="sd">        exists</span>
 
@@ -528,7 +532,7 @@
 <span class="sd">        :rtype: tuple&lt;type, value, traceback&gt;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exc_info</span></div>
 
-<div class="viewcode-block" id="SardanaLibrary.serialize"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaLibrary.serialize">[docs]</a>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaLibrary.serialize"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaLibrary.serialize">[docs]</a>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns a serializable object describing this object.</span>
 
 <span class="sd">        :return: a serializable dict</span>
@@ -664,7 +668,7 @@
         <span class="k">return</span> <span class="n">desc</span>
 
 
-<div class="viewcode-block" id="SardanaClass"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.macroserver.msmetamacro.SardanaClass">[docs]</a><span class="k">class</span> <span class="nc">SardanaClass</span><span class="p">(</span><span class="n">SardanaCode</span><span class="p">):</span>
+<div class="viewcode-block" id="SardanaClass"><a class="viewcode-back" href="../../devel/api/sardana/sardanameta.html#sardana.sardanameta.SardanaClass">[docs]</a><span class="k">class</span> <span class="nc">SardanaClass</span><span class="p">(</span><span class="n">SardanaCode</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Object representing a python class.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -696,29 +700,26 @@
            
           </div>
           <footer>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License
+        &#169; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

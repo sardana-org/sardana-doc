@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>PoolDevice &mdash; sardana 3.0.4-alpha documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../../_static/jquery.js"></script>
         <script src="../../../../../_static/underscore.js"></script>
         <script src="../../../../../_static/doctools.js"></script>
-        <script src="../../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../../../../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
+            <a href="../../../../../index.html" class="icon icon-home"> sardana
           
 
           
@@ -175,6 +177,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -198,7 +202,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../../../_sources/devel/api/sardana/tango/pool/PoolDevice.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -237,30 +241,30 @@
 <area shape="rect" id="node10" href="#sardana.tango.pool.PoolDevice.PoolDevice" target="_top" title="Base Tango Pool device class" alt="" coords="65,699,157,737"/>
 </map><dl class="py class">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice">
-<em class="property">class </em><code class="sig-name descname">PoolDevice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dclass</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PoolDevice</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dclass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../core/SardanaDevice.html#sardana.tango.core.SardanaDevice.SardanaDevice" title="sardana.tango.core.SardanaDevice.SardanaDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.tango.core.SardanaDevice.SardanaDevice</span></code></a></p>
 <p>Base Tango Pool device class</p>
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.ExtremeErrorStates">
-<code class="sig-name descname">ExtremeErrorStates</code><em class="property"> = (tango._tango.DevState.FAULT, tango._tango.DevState.UNKNOWN)</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.ExtremeErrorStates" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">ExtremeErrorStates</span></code><em class="property"> <span class="pre">=</span> <span class="pre">(tango._tango.DevState.FAULT,</span> <span class="pre">tango._tango.DevState.UNKNOWN)</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.ExtremeErrorStates" title="Permalink to this definition">¶</a></dt>
 <dd><p>list of extreme error states</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.BusyStates">
-<code class="sig-name descname">BusyStates</code><em class="property"> = (tango._tango.DevState.MOVING, tango._tango.DevState.RUNNING)</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.BusyStates" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">BusyStates</span></code><em class="property"> <span class="pre">=</span> <span class="pre">(tango._tango.DevState.MOVING,</span> <span class="pre">tango._tango.DevState.RUNNING)</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.BusyStates" title="Permalink to this definition">¶</a></dt>
 <dd><p>list of busy states</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.BusyRetries">
-<code class="sig-name descname">BusyRetries</code><em class="property"> = 3</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.BusyRetries" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">BusyRetries</span></code><em class="property"> <span class="pre">=</span> <span class="pre">3</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.BusyRetries" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maximum number of retries in a busy state</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.init">
-<code class="sig-name descname">init</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.init" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">init</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.init" title="Permalink to this definition">¶</a></dt>
 <dd><p>initialize the device once in the object lifetime. Override when
 necessary but <strong>always</strong> call the method from your super class</p>
 <p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> name: device name</p>
@@ -268,19 +272,19 @@ necessary but <strong>always</strong> call the method from your super class</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.pool_device">
-<em class="property">property </em><code class="sig-name descname">pool_device</code><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.pool_device" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">pool_device</span></code><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.pool_device" title="Permalink to this definition">¶</a></dt>
 <dd><p>The tango pool device</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.pool">
-<em class="property">property </em><code class="sig-name descname">pool</code><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.pool" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">pool</span></code><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.pool" title="Permalink to this definition">¶</a></dt>
 <dd><p>The sardana pool object</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.get_element">
-<code class="sig-name descname">get_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.get_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.get_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_element</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.get_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.get_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the underlying pool element object</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -294,7 +298,7 @@ necessary but <strong>always</strong> call the method from your super class</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.set_element">
-<code class="sig-name descname">set_element</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.set_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.set_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_element</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.set_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.set_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Associates this device with the sardana element</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -305,13 +309,13 @@ necessary but <strong>always</strong> call the method from your super class</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.element">
-<em class="property">property </em><code class="sig-name descname">element</code><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.element" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">element</span></code><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.element" title="Permalink to this definition">¶</a></dt>
 <dd><p>The underlying sardana element</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.init_device">
-<code class="sig-name descname">init_device</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.init_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.init_device" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">init_device</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.init_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.init_device" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the device. Called during startup after <a class="reference internal" href="#sardana.tango.pool.PoolDevice.PoolDevice.init" title="sardana.tango.pool.PoolDevice.PoolDevice.init"><code class="xref py py-meth docutils literal notranslate"><span class="pre">init()</span></code></a> and
 every time the tango <code class="docutils literal notranslate"><span class="pre">Init</span></code> command is executed.
 Override when necessary but <strong>always</strong> call the method from your super
@@ -320,7 +324,7 @@ class</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.delete_device">
-<code class="sig-name descname">delete_device</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.delete_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.delete_device" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">delete_device</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.delete_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.delete_device" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean the device. Called during shutdown and every time the tango
 <code class="docutils literal notranslate"><span class="pre">Init</span></code> command is executed.
 Override when necessary but <strong>always</strong> call the method from your super
@@ -329,13 +333,13 @@ class</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.Abort">
-<code class="sig-name descname">Abort</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.Abort"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.Abort" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">Abort</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.Abort"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.Abort" title="Permalink to this definition">¶</a></dt>
 <dd><p>The tango abort command. Aborts the active operation</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.is_Abort_allowed">
-<code class="sig-name descname">is_Abort_allowed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.is_Abort_allowed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.is_Abort_allowed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_Abort_allowed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.is_Abort_allowed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.is_Abort_allowed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if it is allowed to execute the tango abort command</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -350,13 +354,13 @@ False otherwise</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.Stop">
-<code class="sig-name descname">Stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.Stop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.Stop" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">Stop</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.Stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.Stop" title="Permalink to this definition">¶</a></dt>
 <dd><p>The tango stop command. Stops the active operation</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.is_Stop_allowed">
-<code class="sig-name descname">is_Stop_allowed</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.is_Stop_allowed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.is_Stop_allowed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_Stop_allowed</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.is_Stop_allowed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.is_Stop_allowed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns True if it is allowed to execute the tango stop command</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -371,7 +375,7 @@ False otherwise</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.get_dynamic_attributes">
-<code class="sig-name descname">get_dynamic_attributes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.get_dynamic_attributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.get_dynamic_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_dynamic_attributes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.get_dynamic_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.get_dynamic_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the standard dynamic and fully dynamic attributes for this
 device. The return is a tuple of two dictionaries:</p>
 <ul class="simple">
@@ -393,26 +397,26 @@ attribute information</p></li>
 <dd class="field-odd"><p>the standard dynamic and fully dynamic attributes</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>seq&lt; <a class="reference external" href="http://taurus-scada.org/devel/api/taurus/core/util/_CaselessDict.html#taurus.core.util.CaselessDict" title="(in taurus v4.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CaselessDict</span></code></a>, <a class="reference external" href="http://taurus-scada.org/devel/api/taurus/core/util/_CaselessDict.html#taurus.core.util.CaselessDict" title="(in taurus v4.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CaselessDict</span></code></a>&gt;</p>
+<dd class="field-even"><p>seq&lt; <a class="reference external" href="https://taurus-scada.org/devel/api/taurus/core/util/_CaselessDict.html#taurus.core.util.CaselessDict" title="(in taurus v4.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CaselessDict</span></code></a>, <a class="reference external" href="https://taurus-scada.org/devel/api/taurus/core/util/_CaselessDict.html#taurus.core.util.CaselessDict" title="(in taurus v4.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CaselessDict</span></code></a>&gt;</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.initialize_dynamic_attributes">
-<code class="sig-name descname">initialize_dynamic_attributes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.initialize_dynamic_attributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.initialize_dynamic_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">initialize_dynamic_attributes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.initialize_dynamic_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.initialize_dynamic_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes this device dynamic attributes</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.remove_unwanted_dynamic_attributes">
-<code class="sig-name descname">remove_unwanted_dynamic_attributes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_std_attrs</span></em>, <em class="sig-param"><span class="n">new_dyn_attrs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.remove_unwanted_dynamic_attributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.remove_unwanted_dynamic_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">remove_unwanted_dynamic_attributes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_std_attrs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_dyn_attrs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.remove_unwanted_dynamic_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.remove_unwanted_dynamic_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes unwanted dynamic attributes from previous device creation</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.add_dynamic_attribute">
-<code class="sig-name descname">add_dynamic_attribute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr_name</span></em>, <em class="sig-param"><span class="n">data_info</span></em>, <em class="sig-param"><span class="n">attr_info</span></em>, <em class="sig-param"><span class="n">read</span></em>, <em class="sig-param"><span class="n">write</span></em>, <em class="sig-param"><span class="n">is_allowed</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.add_dynamic_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.add_dynamic_attribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_dynamic_attribute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_allowed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.add_dynamic_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.add_dynamic_attribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a single dynamic attribute</p>
 <p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> attr_name: the attribute name
 :param data_info: tango attribute information
@@ -425,7 +429,7 @@ attribute information</p></li>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.add_standard_attribute">
-<code class="sig-name descname">add_standard_attribute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr_name</span></em>, <em class="sig-param"><span class="n">data_info</span></em>, <em class="sig-param"><span class="n">attr_info</span></em>, <em class="sig-param"><span class="n">read</span></em>, <em class="sig-param"><span class="n">write</span></em>, <em class="sig-param"><span class="n">is_allowed</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.add_standard_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.add_standard_attribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_standard_attribute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_allowed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.add_standard_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.add_standard_attribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a single standard dynamic attribute</p>
 <p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> attr_name: the attribute name
 :param data_info: tango attribute information
@@ -438,7 +442,7 @@ attribute information</p></li>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.read_DynamicAttribute">
-<code class="sig-name descname">read_DynamicAttribute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.read_DynamicAttribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.read_DynamicAttribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_DynamicAttribute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.read_DynamicAttribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.read_DynamicAttribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generic read dynamic attribute.
 Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a></p>
 <dl class="field-list simple">
@@ -453,7 +457,7 @@ Default implementation raises <a class="reference external" href="https://docs.p
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.write_DynamicAttribute">
-<code class="sig-name descname">write_DynamicAttribute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.write_DynamicAttribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.write_DynamicAttribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">write_DynamicAttribute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.write_DynamicAttribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.write_DynamicAttribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generic write dynamic attribute.
 Default implementation raises <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.9)"><code class="xref py py-exc docutils literal notranslate"><span class="pre">NotImplementedError</span></code></a></p>
 <dl class="field-list simple">
@@ -468,7 +472,7 @@ Default implementation raises <a class="reference external" href="https://docs.p
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.is_DynamicAttribute_allowed">
-<code class="sig-name descname">is_DynamicAttribute_allowed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">req_type</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.is_DynamicAttribute_allowed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.is_DynamicAttribute_allowed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_DynamicAttribute_allowed</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">req_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.is_DynamicAttribute_allowed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.is_DynamicAttribute_allowed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generic is dynamic attribute allowed.
 Default implementation calls <code class="xref py py-meth docutils literal notranslate"><span class="pre">_is_allowed()</span></code></p>
 <dl class="field-list simple">
@@ -480,7 +484,7 @@ Default implementation calls <code class="xref py py-meth docutils literal notra
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.dev_state">
-<code class="sig-name descname">dev_state</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.dev_state"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.dev_state" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">dev_state</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.dev_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.dev_state" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates and returns the device state. Called by Tango on a read
 state request.</p>
 <dl class="field-list simple">
@@ -495,7 +499,7 @@ state request.</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.dev_status">
-<code class="sig-name descname">dev_status</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.dev_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.dev_status" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">dev_status</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.dev_status"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.dev_status" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculates and returns the device status. Called by Tango on a read
 status request.</p>
 <dl class="field-list simple">
@@ -510,7 +514,7 @@ status request.</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.wait_for_operation">
-<code class="sig-name descname">wait_for_operation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.wait_for_operation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.wait_for_operation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">wait_for_operation</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.wait_for_operation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.wait_for_operation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Waits for an operation to finish. It uses the maxumum number of
 retries. Sleeps 0.01s between retries.</p>
 <dl class="field-list simple">
@@ -522,7 +526,7 @@ retries. Sleeps 0.01s between retries.</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.Restore">
-<code class="sig-name descname">Restore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.Restore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.Restore" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">Restore</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.Restore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.Restore" title="Permalink to this definition">¶</a></dt>
 <dd><p>Restore tango command. Restores the attributes to their former glory.
 This applies to memorized writable attributes which have a set point
 stored in the database</p>
@@ -530,17 +534,17 @@ stored in the database</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.get_restore_data">
-<code class="sig-name descname">get_restore_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.get_restore_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.get_restore_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_restore_data</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.get_restore_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.get_restore_data" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.get_attributes_to_restore">
-<code class="sig-name descname">get_attributes_to_restore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.get_attributes_to_restore"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.get_attributes_to_restore" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_attributes_to_restore</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.get_attributes_to_restore"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.get_attributes_to_restore" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolDevice.restore_attribute">
-<code class="sig-name descname">restore_attribute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attribute</span></em>, <em class="sig-param"><span class="n">write_meth</span></em>, <em class="sig-param"><span class="n">db_value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.restore_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.restore_attribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">restore_attribute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attribute</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write_meth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">db_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDevice.restore_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDevice.restore_attribute" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -554,12 +558,12 @@ stored in the database</p>
 <area shape="rect" id="node3" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass" target="_top" title="Base Tango Pool Device Class class" alt="" coords="19,265,145,304"/>
 </map><dl class="py class">
 <dt id="sardana.tango.pool.PoolDevice.PoolDeviceClass">
-<em class="property">class </em><code class="sig-name descname">PoolDeviceClass</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDeviceClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PoolDeviceClass</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolDeviceClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../core/SardanaDevice.html#sardana.tango.core.SardanaDevice.SardanaDeviceClass" title="sardana.tango.core.SardanaDevice.SardanaDeviceClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.tango.core.SardanaDevice.SardanaDeviceClass</span></code></a></p>
 <p>Base Tango Pool Device Class class</p>
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolDeviceClass.class_property_list">
-<code class="sig-name descname">class_property_list</code><em class="property"> = {}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.class_property_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">class_property_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.class_property_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device class properties definition</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -569,7 +573,7 @@ stored in the database</p>
 
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolDeviceClass.device_property_list">
-<code class="sig-name descname">device_property_list</code><em class="property"> = {'Force_HW_Read': [tango._tango.CmdArgType.DevBoolean, 'Force a hardware read of value even when in operation (motion/acquisition', False], 'Id': [tango._tango.CmdArgType.DevLong64, 'Internal ID', 0]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.device_property_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">device_property_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'Force_HW_Read':</span> <span class="pre">[tango._tango.CmdArgType.DevBoolean,</span> <span class="pre">'Force</span> <span class="pre">a</span> <span class="pre">hardware</span> <span class="pre">read</span> <span class="pre">of</span> <span class="pre">value</span> <span class="pre">even</span> <span class="pre">when</span> <span class="pre">in</span> <span class="pre">operation</span> <span class="pre">(motion/acquisition',</span> <span class="pre">False],</span> <span class="pre">'Id':</span> <span class="pre">[tango._tango.CmdArgType.DevLong64,</span> <span class="pre">'Internal</span> <span class="pre">ID',</span> <span class="pre">0]}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.device_property_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device properties definition</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -579,7 +583,7 @@ stored in the database</p>
 
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolDeviceClass.cmd_list">
-<code class="sig-name descname">cmd_list</code><em class="property"> = {'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">cmd_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'Abort':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'Restore':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'Stop':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']]}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device command definition</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -589,7 +593,7 @@ stored in the database</p>
 
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolDeviceClass.attr_list">
-<code class="sig-name descname">attr_list</code><em class="property"> = {}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.attr_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">attr_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.attr_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device attribute definition</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -599,7 +603,7 @@ stored in the database</p>
 
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolDeviceClass.standard_attr_list">
-<code class="sig-name descname">standard_attr_list</code><em class="property"> = {}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.standard_attr_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">standard_attr_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass.standard_attr_list" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -614,12 +618,12 @@ stored in the database</p>
 <area shape="rect" id="node12" href="#sardana.tango.pool.PoolDevice.PoolElementDevice" target="_top" title="Base Tango Pool Element Device class" alt="" coords="41,785,186,824"/>
 </map><dl class="py class">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDevice">
-<em class="property">class </em><code class="sig-name descname">PoolElementDevice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dclass</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PoolElementDevice</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dclass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sardana.tango.pool.PoolDevice.PoolDevice" title="sardana.tango.pool.PoolDevice.PoolDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.tango.pool.PoolDevice.PoolDevice</span></code></a></p>
 <p>Base Tango Pool Element Device class</p>
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDevice.init_device">
-<code class="sig-name descname">init_device</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.init_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.init_device" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">init_device</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.init_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.init_device" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initialize the device. Called during startup after <code class="xref py py-meth docutils literal notranslate"><span class="pre">init()</span></code> and
 every time the tango <code class="docutils literal notranslate"><span class="pre">Init</span></code> command is executed.
 Override when necessary but <strong>always</strong> call the method from your super
@@ -628,7 +632,7 @@ class</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDevice.delete_device">
-<code class="sig-name descname">delete_device</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.delete_device"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.delete_device" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">delete_device</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.delete_device"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.delete_device" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clean the device. Called during shutdown and every time the tango
 <code class="docutils literal notranslate"><span class="pre">Init</span></code> command is executed.
 Override when necessary but <strong>always</strong> call the method from your super
@@ -637,7 +641,7 @@ class</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDevice.read_Instrument">
-<code class="sig-name descname">read_Instrument</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.read_Instrument"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.read_Instrument" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_Instrument</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.read_Instrument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.read_Instrument" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the value of the <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> tango attribute.
 Returns the instrument full name or empty string if this element doesn’t
 belong to any instrument</p>
@@ -650,7 +654,7 @@ belong to any instrument</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDevice.write_Instrument">
-<code class="sig-name descname">write_Instrument</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.write_Instrument"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.write_Instrument" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">write_Instrument</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.write_Instrument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.write_Instrument" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write the value of the <code class="docutils literal notranslate"><span class="pre">Instrument</span></code> tango attribute.
 Sets a new instrument full name or empty string if this element doesn’t
 belong to any instrument.
@@ -664,7 +668,7 @@ The instrument <strong>must</strong> have been previously created.</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDevice.get_dynamic_attributes">
-<code class="sig-name descname">get_dynamic_attributes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.get_dynamic_attributes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.get_dynamic_attributes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_dynamic_attributes</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.get_dynamic_attributes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.get_dynamic_attributes" title="Permalink to this definition">¶</a></dt>
 <dd><p>Override of <a class="reference internal" href="#sardana.tango.pool.PoolDevice.PoolDevice.get_dynamic_attributes" title="sardana.tango.pool.PoolDevice.PoolDevice.get_dynamic_attributes"><code class="xref py py-class docutils literal notranslate"><span class="pre">PoolDevice.get_dynamic_attributes</span></code></a>.
 Returns the standard dynamic and fully dynamic attributes for this
 device. The return is a tuple of two dictionaries:</p>
@@ -687,14 +691,14 @@ attribute information</p></li>
 <dd class="field-odd"><p>the standard dynamic and fully dynamic attributes</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>seq&lt; <a class="reference external" href="http://taurus-scada.org/devel/api/taurus/core/util/_CaselessDict.html#taurus.core.util.CaselessDict" title="(in taurus v4.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CaselessDict</span></code></a>, <a class="reference external" href="http://taurus-scada.org/devel/api/taurus/core/util/_CaselessDict.html#taurus.core.util.CaselessDict" title="(in taurus v4.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CaselessDict</span></code></a>&gt;</p>
+<dd class="field-even"><p>seq&lt; <a class="reference external" href="https://taurus-scada.org/devel/api/taurus/core/util/_CaselessDict.html#taurus.core.util.CaselessDict" title="(in taurus v4.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CaselessDict</span></code></a>, <a class="reference external" href="https://taurus-scada.org/devel/api/taurus/core/util/_CaselessDict.html#taurus.core.util.CaselessDict" title="(in taurus v4.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">CaselessDict</span></code></a>&gt;</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDevice.read_DynamicAttribute">
-<code class="sig-name descname">read_DynamicAttribute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.read_DynamicAttribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.read_DynamicAttribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_DynamicAttribute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.read_DynamicAttribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.read_DynamicAttribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read a generic dynamic attribute. Calls the controller of this
 element to get the dynamic attribute value</p>
 <dl class="field-list simple">
@@ -706,7 +710,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDevice.write_DynamicAttribute">
-<code class="sig-name descname">write_DynamicAttribute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.write_DynamicAttribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.write_DynamicAttribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">write_DynamicAttribute</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.write_DynamicAttribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.write_DynamicAttribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Write a generic dynamic attribute. Calls the controller of this
 element to get the dynamic attribute value</p>
 <dl class="field-list simple">
@@ -718,7 +722,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDevice.read_SimulationMode">
-<code class="sig-name descname">read_SimulationMode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.read_SimulationMode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.read_SimulationMode" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_SimulationMode</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.read_SimulationMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.read_SimulationMode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the current simulation mode.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -729,7 +733,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDevice.write_SimulationMode">
-<code class="sig-name descname">write_SimulationMode</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.write_SimulationMode"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.write_SimulationMode" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">write_SimulationMode</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDevice.write_SimulationMode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDevice.write_SimulationMode" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the simulation mode.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -750,12 +754,12 @@ element to get the dynamic attribute value</p>
 <area shape="rect" id="node5" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass" target="_top" title="Base Tango Pool Element Device Class class" alt="" coords="5,352,184,391"/>
 </map><dl class="py class">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDeviceClass">
-<em class="property">class </em><code class="sig-name descname">PoolElementDeviceClass</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDeviceClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PoolElementDeviceClass</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDeviceClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass" title="sardana.tango.pool.PoolDevice.PoolDeviceClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.tango.pool.PoolDevice.PoolDeviceClass</span></code></a></p>
 <p>Base Tango Pool Element Device Class class</p>
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDeviceClass.device_property_list">
-<code class="sig-name descname">device_property_list</code><em class="property"> = {'Axis': [tango._tango.CmdArgType.DevLong64, 'Axis in the controller', [0]], 'Ctrl_id': [tango._tango.CmdArgType.DevLong64, 'Controller ID', [0]], 'Force_HW_Read': [tango._tango.CmdArgType.DevBoolean, 'Force a hardware read of value even when in operation (motion/acquisition', False], 'Id': [tango._tango.CmdArgType.DevLong64, 'Internal ID', 0], 'Instrument_id': [tango._tango.CmdArgType.DevLong64, 'Controller ID', [0]]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.device_property_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">device_property_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'Axis':</span> <span class="pre">[tango._tango.CmdArgType.DevLong64,</span> <span class="pre">'Axis</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">controller',</span> <span class="pre">[0]],</span> <span class="pre">'Ctrl_id':</span> <span class="pre">[tango._tango.CmdArgType.DevLong64,</span> <span class="pre">'Controller</span> <span class="pre">ID',</span> <span class="pre">[0]],</span> <span class="pre">'Force_HW_Read':</span> <span class="pre">[tango._tango.CmdArgType.DevBoolean,</span> <span class="pre">'Force</span> <span class="pre">a</span> <span class="pre">hardware</span> <span class="pre">read</span> <span class="pre">of</span> <span class="pre">value</span> <span class="pre">even</span> <span class="pre">when</span> <span class="pre">in</span> <span class="pre">operation</span> <span class="pre">(motion/acquisition',</span> <span class="pre">False],</span> <span class="pre">'Id':</span> <span class="pre">[tango._tango.CmdArgType.DevLong64,</span> <span class="pre">'Internal</span> <span class="pre">ID',</span> <span class="pre">0],</span> <span class="pre">'Instrument_id':</span> <span class="pre">[tango._tango.CmdArgType.DevLong64,</span> <span class="pre">'Controller</span> <span class="pre">ID',</span> <span class="pre">[0]]}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.device_property_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device properties definition</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -765,7 +769,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDeviceClass.attr_list">
-<code class="sig-name descname">attr_list</code><em class="property"> = {'Instrument': [[tango._tango.CmdArgType.DevString, tango._tango.AttrDataFormat.SCALAR, tango._tango.AttrWriteType.READ_WRITE], {'Display level': tango._tango.DispLevel.EXPERT, 'label': 'Instrument'}], 'SimulationMode': [[tango._tango.CmdArgType.DevBoolean, tango._tango.AttrDataFormat.SCALAR, tango._tango.AttrWriteType.READ_WRITE], {'label': 'Simulation mode'}]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.attr_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">attr_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'Instrument':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">tango._tango.AttrDataFormat.SCALAR,</span> <span class="pre">tango._tango.AttrWriteType.READ_WRITE],</span> <span class="pre">{'label':</span> <span class="pre">'Instrument',</span> <span class="pre">'Display</span> <span class="pre">level':</span> <span class="pre">tango._tango.DispLevel.EXPERT}],</span> <span class="pre">'SimulationMode':</span> <span class="pre">[[tango._tango.CmdArgType.DevBoolean,</span> <span class="pre">tango._tango.AttrDataFormat.SCALAR,</span> <span class="pre">tango._tango.AttrWriteType.READ_WRITE],</span> <span class="pre">{'label':</span> <span class="pre">'Simulation</span> <span class="pre">mode'}]}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.attr_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device attribute definition</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -775,12 +779,17 @@ element to get the dynamic attribute value</p>
 
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDeviceClass.cmd_list">
-<code class="sig-name descname">cmd_list</code><em class="property"> = {'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname"><span class="pre">cmd_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'Abort':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'Restore':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'Stop':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']]}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sardana device command definition</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://pytango.readthedocs.io/en/stable/howto.html#server" title="(in PyTango v9.3)"><span>Write a server (original API)</span></a></p>
+</div>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolElementDeviceClass.get_standard_attr_info">
-<code class="sig-name descname">get_standard_attr_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDeviceClass.get_standard_attr_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.get_standard_attr_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_standard_attr_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolElementDeviceClass.get_standard_attr_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolElementDeviceClass.get_standard_attr_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns information about the standard attribute</p>
 <p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> attr: attribute name
 :return: a sequence of tango data_type, data format</p>
@@ -798,12 +807,12 @@ element to get the dynamic attribute value</p>
 <area shape="rect" id="node12" href="#sardana.tango.pool.PoolDevice.PoolGroupDevice" target="_top" title="Base Tango Pool Group Device class" alt="" coords="47,785,177,824"/>
 </map><dl class="py class">
 <dt id="sardana.tango.pool.PoolDevice.PoolGroupDevice">
-<em class="property">class </em><code class="sig-name descname">PoolGroupDevice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dclass</span></em>, <em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolGroupDevice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDevice" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PoolGroupDevice</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dclass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolGroupDevice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDevice" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sardana.tango.pool.PoolDevice.PoolDevice" title="sardana.tango.pool.PoolDevice.PoolDevice"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.tango.pool.PoolDevice.PoolDevice</span></code></a></p>
 <p>Base Tango Pool Group Device class</p>
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolGroupDevice.read_ElementList">
-<code class="sig-name descname">read_ElementList</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolGroupDevice.read_ElementList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDevice.read_ElementList" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_ElementList</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolGroupDevice.read_ElementList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDevice.read_ElementList" title="Permalink to this definition">¶</a></dt>
 <dd><p>Read the element list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -814,7 +823,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolGroupDevice.get_element_names">
-<code class="sig-name descname">get_element_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolGroupDevice.get_element_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDevice.get_element_names" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_element_names</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolGroupDevice.get_element_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDevice.get_element_names" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the list of element names.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -825,7 +834,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="py method">
 <dt id="sardana.tango.pool.PoolDevice.PoolGroupDevice.elements_changed">
-<code class="sig-name descname">elements_changed</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">evt_src</span></em>, <em class="sig-param"><span class="n">evt_type</span></em>, <em class="sig-param"><span class="n">evt_value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolGroupDevice.elements_changed"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDevice.elements_changed" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">elements_changed</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evt_src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evt_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evt_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolGroupDevice.elements_changed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDevice.elements_changed" title="Permalink to this definition">¶</a></dt>
 <dd><p>Callback for when the elements of this group changed</p>
 </dd></dl>
 
@@ -841,12 +850,12 @@ element to get the dynamic attribute value</p>
 <area shape="rect" id="node5" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass" target="_top" title="Base Tango Pool Group Device Class class" alt="" coords="5,352,171,391"/>
 </map><dl class="py class">
 <dt id="sardana.tango.pool.PoolDevice.PoolGroupDeviceClass">
-<em class="property">class </em><code class="sig-name descname">PoolGroupDeviceClass</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolGroupDeviceClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PoolGroupDeviceClass</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/tango/pool/PoolDevice.html#PoolGroupDeviceClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#sardana.tango.pool.PoolDevice.PoolDeviceClass" title="sardana.tango.pool.PoolDevice.PoolDeviceClass"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.tango.pool.PoolDevice.PoolDeviceClass</span></code></a></p>
 <p>Base Tango Pool Group Device Class class</p>
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.device_property_list">
-<code class="sig-name descname">device_property_list</code><em class="property"> = {'Elements': [tango._tango.CmdArgType.DevVarStringArray, 'elements in the group', []], 'Force_HW_Read': [tango._tango.CmdArgType.DevBoolean, 'Force a hardware read of value even when in operation (motion/acquisition', False], 'Id': [tango._tango.CmdArgType.DevLong64, 'Internal ID', 0]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.device_property_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">device_property_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'Elements':</span> <span class="pre">[tango._tango.CmdArgType.DevVarStringArray,</span> <span class="pre">'elements</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">group',</span> <span class="pre">[]],</span> <span class="pre">'Force_HW_Read':</span> <span class="pre">[tango._tango.CmdArgType.DevBoolean,</span> <span class="pre">'Force</span> <span class="pre">a</span> <span class="pre">hardware</span> <span class="pre">read</span> <span class="pre">of</span> <span class="pre">value</span> <span class="pre">even</span> <span class="pre">when</span> <span class="pre">in</span> <span class="pre">operation</span> <span class="pre">(motion/acquisition',</span> <span class="pre">False],</span> <span class="pre">'Id':</span> <span class="pre">[tango._tango.CmdArgType.DevLong64,</span> <span class="pre">'Internal</span> <span class="pre">ID',</span> <span class="pre">0]}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.device_property_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device properties definition</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -856,7 +865,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.cmd_list">
-<code class="sig-name descname">cmd_list</code><em class="property"> = {'Abort': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Restore': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']], 'Stop': [[tango._tango.CmdArgType.DevVoid, ''], [tango._tango.CmdArgType.DevVoid, '']]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">cmd_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'Abort':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'Restore':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']],</span> <span class="pre">'Stop':</span> <span class="pre">[[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">''],</span> <span class="pre">[tango._tango.CmdArgType.DevVoid,</span> <span class="pre">'']]}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.cmd_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device command definition</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -866,7 +875,7 @@ element to get the dynamic attribute value</p>
 
 <dl class="py attribute">
 <dt id="sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.attr_list">
-<code class="sig-name descname">attr_list</code><em class="property"> = {'ElementList': [[tango._tango.CmdArgType.DevString, tango._tango.AttrDataFormat.SPECTRUM, tango._tango.AttrWriteType.READ, 4096]]}</em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.attr_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">attr_list</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'ElementList':</span> <span class="pre">[[tango._tango.CmdArgType.DevString,</span> <span class="pre">tango._tango.AttrDataFormat.SPECTRUM,</span> <span class="pre">tango._tango.AttrWriteType.READ,</span> <span class="pre">4096]]}</span></em><a class="headerlink" href="#sardana.tango.pool.PoolDevice.PoolGroupDeviceClass.attr_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sardana device attribute definition</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
@@ -884,38 +893,30 @@ element to get the dynamic attribute value</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="Controller.html" class="btn btn-neutral float-right" title="Controller" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="Pool.html" class="btn btn-neutral float-left" title="Pool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="Controller.html" class="btn btn-neutral float-right" title="Controller" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Pool.html" class="btn btn-neutral float-left" title="Pool" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License
+        &#169; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

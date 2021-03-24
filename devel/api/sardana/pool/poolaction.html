@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>poolaction &mdash; sardana 3.0.4-alpha documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
+            <a href="../../../../index.html" class="icon icon-home"> sardana
           
 
           
@@ -175,6 +177,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -196,7 +200,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../../_sources/devel/api/sardana/pool/poolaction.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -237,14 +241,14 @@ abstract action over a set of pool elements</p>
 </td></tr></table>
 <dl class="py function">
 <dt id="sardana.pool.poolaction.get_thread_pool">
-<code class="sig-name descname">get_thread_pool</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/sardanathreadpool.html#get_thread_pool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.get_thread_pool" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_thread_pool</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/sardanathreadpool.html#get_thread_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.get_thread_pool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the global pool of threads for Sardana</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>the global pool of threads object</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="http://taurus-scada.org/devel/api/taurus/core/util/_ThreadPool.html#taurus.core.util.ThreadPool" title="(in taurus v4.7)">taurus.core.util.ThreadPool</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://taurus-scada.org/devel/api/taurus/core/util/_ThreadPool.html#taurus.core.util.ThreadPool" title="(in taurus v4.7)">taurus.core.util.ThreadPool</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -256,19 +260,19 @@ abstract action over a set of pool elements</p>
 <area shape="rect" id="node3" href="#sardana.pool.poolaction.PoolAction" target="_top" title="A generic class to handle any type of operation (like motion or" alt="" coords="5,179,95,217"/>
 </map><dl class="py class">
 <dt id="sardana.pool.poolaction.PoolAction">
-<em class="property">class </em><code class="sig-name descname">PoolAction</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">main_element</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">'GlobalAction'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PoolAction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GlobalAction'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">taurus.core.util.log.Logger</span></code></p>
 <p>A generic class to handle any type of operation (like motion or
 acquisition)</p>
 <dl class="py attribute">
 <dt id="sardana.pool.poolaction.PoolAction.OperationContextClass">
-<code class="sig-name descname">OperationContextClass</code><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.OperationContextClass" title="Permalink to this definition">¶</a></dt>
-<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">OperationContext</span></code></p>
+<code class="sig-name descname"><span class="pre">OperationContextClass</span></code><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.OperationContextClass" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.pool.poolaction.OperationContext</span></code></p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.get_main_element">
-<code class="sig-name descname">get_main_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_main_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_main_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_main_element</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_main_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_main_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the main element for this action</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -279,7 +283,7 @@ acquisition)</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.main_element">
-<em class="property">property </em><code class="sig-name descname">main_element</code><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.main_element" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">main_element</span></code><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.main_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the main element for this action</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -290,7 +294,7 @@ acquisition)</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.get_pool">
-<code class="sig-name descname">get_pool</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_pool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_pool" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_pool</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_pool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the pool object for this action</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -301,7 +305,7 @@ acquisition)</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.pool">
-<em class="property">property </em><code class="sig-name descname">pool</code><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.pool" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">pool</span></code><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.pool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the pool object for this action</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -312,13 +316,13 @@ acquisition)</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.clear_elements">
-<code class="sig-name descname">clear_elements</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.clear_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.clear_elements" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">clear_elements</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.clear_elements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.clear_elements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clears all elements from this action</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.add_element">
-<code class="sig-name descname">add_element</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.add_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.add_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_element</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.add_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.add_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a new element to this action.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -329,7 +333,7 @@ acquisition)</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.remove_element">
-<code class="sig-name descname">remove_element</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.remove_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.remove_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">remove_element</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.remove_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.remove_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes an element from this action. If the element is not part of
 this action, a ValueError is raised.</p>
 <dl class="field-list simple">
@@ -344,7 +348,7 @@ this action, a ValueError is raised.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.get_elements">
-<code class="sig-name descname">get_elements</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">copy_of</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_elements"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_elements" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_elements</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">copy_of</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_elements"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_elements" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a sequence of all elements involved in this action.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -363,7 +367,7 @@ returned instead</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.get_pool_controller_list">
-<code class="sig-name descname">get_pool_controller_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_pool_controller_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_pool_controller_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_pool_controller_list</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_pool_controller_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_pool_controller_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of all controller elements involved in this action.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -377,7 +381,7 @@ returned instead</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.get_pool_controllers">
-<code class="sig-name descname">get_pool_controllers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_pool_controllers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_pool_controllers" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_pool_controllers</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_pool_controllers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_pool_controllers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a dict of all controller elements involved in this action.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -392,7 +396,7 @@ seq&lt;sardana.pool.poolelement.PoolElement&gt;&gt;</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.is_running">
-<code class="sig-name descname">is_running</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.is_running"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.is_running" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_running</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.is_running"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.is_running" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determines if this action is running or not</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -406,13 +410,13 @@ seq&lt;sardana.pool.poolelement.PoolElement&gt;&gt;</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.run" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs this action</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.start_action">
-<code class="sig-name descname">start_action</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.start_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.start_action" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">start_action</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.start_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.start_action" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start procedure for this action. Default implementation raises
 NotImplementedError</p>
 <dl class="field-list simple">
@@ -424,7 +428,7 @@ NotImplementedError</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.set_finish_hooks">
-<code class="sig-name descname">set_finish_hooks</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hooks</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.set_finish_hooks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.set_finish_hooks" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_finish_hooks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hooks</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.set_finish_hooks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.set_finish_hooks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set finish hooks for this action.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -436,7 +440,7 @@ is a flag if the hook is permanent (not removed after the execution)</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.add_finish_hook">
-<code class="sig-name descname">add_finish_hook</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hook</span></em>, <em class="sig-param"><span class="n">permanent</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.add_finish_hook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.add_finish_hook" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_finish_hook</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hook</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permanent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.add_finish_hook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.add_finish_hook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Append one finish hook to this action.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -451,38 +455,38 @@ execution)</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.remove_finish_hook">
-<code class="sig-name descname">remove_finish_hook</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hook</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.remove_finish_hook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.remove_finish_hook" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">remove_finish_hook</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hook</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.remove_finish_hook"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.remove_finish_hook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Remove finish hook.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.finish_action">
-<code class="sig-name descname">finish_action</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.finish_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.finish_action" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">finish_action</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.finish_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.finish_action" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finishes the action execution. If a finish hook is defined it safely
 executes it. Otherwise nothing happens</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.stop_action">
-<code class="sig-name descname">stop_action</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.stop_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.stop_action" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">stop_action</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.stop_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.stop_action" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop procedure for this action.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.abort_action">
-<code class="sig-name descname">abort_action</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.abort_action"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.abort_action" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">abort_action</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.abort_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.abort_action" title="Permalink to this definition">¶</a></dt>
 <dd><p>Aborts procedure for this action</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.emergency_break">
-<code class="sig-name descname">emergency_break</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.emergency_break"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.emergency_break" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">emergency_break</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.emergency_break"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.emergency_break" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tries to execute a stop. If it fails try an abort</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.was_stopped">
-<code class="sig-name descname">was_stopped</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.was_stopped"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.was_stopped" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">was_stopped</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.was_stopped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.was_stopped" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determines if the action has been stopped from outside</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -496,7 +500,7 @@ executes it. Otherwise nothing happens</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.was_aborted">
-<code class="sig-name descname">was_aborted</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.was_aborted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.was_aborted" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">was_aborted</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.was_aborted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.was_aborted" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determines if the action has been aborted from outside</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -510,7 +514,7 @@ executes it. Otherwise nothing happens</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.was_action_interrupted">
-<code class="sig-name descname">was_action_interrupted</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.was_action_interrupted"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.was_action_interrupted" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">was_action_interrupted</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.was_action_interrupted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.was_action_interrupted" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determines if the action has been interruped from outside (either
 from an abort or a stop).</p>
 <dl class="field-list simple">
@@ -526,7 +530,7 @@ otherwise</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.action_loop">
-<code class="sig-name descname">action_loop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.action_loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.action_loop" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">action_loop</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.action_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.action_loop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Action loop for this action. Default implementation raises
 NotImplementedError</p>
 <dl class="field-list simple">
@@ -538,7 +542,7 @@ NotImplementedError</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.read_state_info">
-<code class="sig-name descname">read_state_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">serial</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.read_state_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.read_state_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_state_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.read_state_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.read_state_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads state information of all elements involved in this action</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -561,7 +565,7 @@ in parallel. If True, access is serialized.</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.raw_read_state_info">
-<code class="sig-name descname">raw_read_state_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">serial</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.raw_read_state_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.raw_read_state_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">raw_read_state_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.raw_read_state_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.raw_read_state_info" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Unsafe</strong>. Reads state information of all elements involved in this
 action</p>
 <dl class="field-list simple">
@@ -585,12 +589,12 @@ in parallel. If True, access is serialized.</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.get_read_value_ctrls">
-<code class="sig-name descname">get_read_value_ctrls</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_read_value_ctrls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_read_value_ctrls" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_read_value_ctrls</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_read_value_ctrls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_read_value_ctrls" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.read_value">
-<code class="sig-name descname">read_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">serial</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.read_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.read_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_value</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.read_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.read_value" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads value information of all elements involved in this action</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -614,7 +618,7 @@ in parallel. If True, access is serialized.</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.raw_read_value">
-<code class="sig-name descname">raw_read_value</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">serial</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.raw_read_value"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.raw_read_value" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">raw_read_value</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.raw_read_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.raw_read_value" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Unsafe</strong>. Reads value information of all elements involved in this
 action</p>
 <dl class="field-list simple">
@@ -639,12 +643,12 @@ in parallel. If True, access is serialized.</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.get_read_value_loop_ctrls">
-<code class="sig-name descname">get_read_value_loop_ctrls</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_read_value_loop_ctrls"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_read_value_loop_ctrls" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_read_value_loop_ctrls</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.get_read_value_loop_ctrls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.get_read_value_loop_ctrls" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.read_value_loop">
-<code class="sig-name descname">read_value_loop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">serial</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.read_value_loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.read_value_loop" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_value_loop</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.read_value_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.read_value_loop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads value information of all elements involved in this action</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -668,7 +672,7 @@ in parallel. If True, access is serialized.</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.raw_read_value_loop">
-<code class="sig-name descname">raw_read_value_loop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ret</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">serial</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.raw_read_value_loop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.raw_read_value_loop" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">raw_read_value_loop</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ret</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">serial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.raw_read_value_loop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.raw_read_value_loop" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Unsafe</strong>. Reads value information of all elements involved in this
 action</p>
 <dl class="field-list simple">
@@ -701,36 +705,36 @@ in parallel. If True, access is serialized.</p></li>
 <area shape="rect" id="node1" href="#sardana.pool.poolaction.OperationInfo" target="_top" title="Stores synchronization data for a certain operation" alt="" coords="5,5,113,44"/>
 </map><dl class="py class">
 <dt id="sardana.pool.poolaction.OperationInfo">
-<em class="property">class </em><code class="sig-name descname">OperationInfo</code><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">OperationInfo</span></code><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Stores synchronization data for a certain operation</p>
 <dl class="py method">
 <dt id="sardana.pool.poolaction.OperationInfo.init">
-<code class="sig-name descname">init</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">count</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo.init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo.init" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">init</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo.init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo.init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes this operation with a certain count</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.OperationInfo.wait">
-<code class="sig-name descname">wait</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">timeout</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo.wait"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo.wait" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">wait</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo.wait"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo.wait" title="Permalink to this definition">¶</a></dt>
 <dd><p>waits for the operation to finish</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.OperationInfo.finish_one">
-<code class="sig-name descname">finish_one</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo.finish_one"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo.finish_one" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">finish_one</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo.finish_one"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo.finish_one" title="Permalink to this definition">¶</a></dt>
 <dd><p>Notifies this operation that one step was finished</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.OperationInfo.acquire">
-<code class="sig-name descname">acquire</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo.acquire"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo.acquire" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">acquire</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo.acquire"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo.acquire" title="Permalink to this definition">¶</a></dt>
 <dd><p>Acquires this operation lock</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.OperationInfo.release">
-<code class="sig-name descname">release</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo.release"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo.release" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">release</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#OperationInfo.release"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.OperationInfo.release" title="Permalink to this definition">¶</a></dt>
 <dd><p>Releases this operation lock</p>
 </dd></dl>
 
@@ -744,24 +748,24 @@ in parallel. If True, access is serialized.</p></li>
 <area shape="rect" id="node1" href="#sardana.pool.poolaction.PoolActionItem" target="_top" title="The base class for an atomic action item" alt="" coords="5,5,124,44"/>
 </map><dl class="py class">
 <dt id="sardana.pool.poolaction.PoolActionItem">
-<em class="property">class </em><code class="sig-name descname">PoolActionItem</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolActionItem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolActionItem" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PoolActionItem</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolActionItem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolActionItem" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>The base class for an atomic action item</p>
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolActionItem.get_element">
-<code class="sig-name descname">get_element</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolActionItem.get_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolActionItem.get_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_element</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolActionItem.get_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolActionItem.get_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the element associated with this item</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolActionItem.set_element">
-<code class="sig-name descname">set_element</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolActionItem.set_element"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolActionItem.set_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_element</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolActionItem.set_element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolActionItem.set_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the element for this item</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.PoolActionItem.element">
-<em class="property">property </em><code class="sig-name descname">element</code><a class="headerlink" href="#sardana.pool.poolaction.PoolActionItem.element" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">element</span></code><a class="headerlink" href="#sardana.pool.poolaction.PoolActionItem.element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the element associated with this item</p>
 </dd></dl>
 
@@ -775,18 +779,18 @@ in parallel. If True, access is serialized.</p></li>
 <area shape="rect" id="node1" href="#sardana.pool.poolaction.ActionContext" target="_top" title="Stores an atomic action context" alt="" coords="5,5,117,44"/>
 </map><dl class="py class">
 <dt id="sardana.pool.poolaction.ActionContext">
-<em class="property">class </em><code class="sig-name descname">ActionContext</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pool_action</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#ActionContext"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.ActionContext" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">ActionContext</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pool_action</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#ActionContext"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.ActionContext" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Stores an atomic action context</p>
 <dl class="py method">
 <dt id="sardana.pool.poolaction.ActionContext.enter">
-<code class="sig-name descname">enter</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#ActionContext.enter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.ActionContext.enter" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">enter</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#ActionContext.enter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.ActionContext.enter" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enters operation</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolaction.ActionContext.exit">
-<code class="sig-name descname">exit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#ActionContext.exit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolaction.ActionContext.exit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">exit</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#ActionContext.exit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.ActionContext.exit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Leaves operation</p>
 </dd></dl>
 
@@ -800,38 +804,30 @@ in parallel. If True, access is serialized.</p></li>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="poolbasechannel.html" class="btn btn-neutral float-right" title="poolbasechannel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="poolacquisition.html" class="btn btn-neutral float-left" title="poolacquisition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="poolbasechannel.html" class="btn btn-neutral float-right" title="poolbasechannel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="poolacquisition.html" class="btn btn-neutral float-left" title="poolacquisition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License
+        &#169; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

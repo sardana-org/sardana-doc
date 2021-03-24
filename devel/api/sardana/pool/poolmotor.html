@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>poolmotor &mdash; sardana 3.0.4-alpha documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
+            <a href="../../../../index.html" class="icon icon-home"> sardana
           
 
           
@@ -175,6 +177,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -196,7 +200,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../../_sources/devel/api/sardana/pool/poolmotor.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -237,19 +241,19 @@ for</p>
 <area shape="rect" id="node11" href="../sardanabase.html#sardana.sardanabase.SardanaObjectID" target="_top" title="To be used by sardana objects which have an ID associated to them." alt="" coords="293,265,424,304"/>
 </map><dl class="py class">
 <dt id="sardana.pool.poolmotor.PoolMotor">
-<em class="property">class </em><code class="sig-name descname">PoolMotor</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">PoolMotor</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="poolelement.html#sardana.pool.poolelement.PoolElement" title="sardana.pool.poolelement.PoolElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">sardana.pool.poolelement.PoolElement</span></code></a></p>
 <p>An internal Motor object. <strong>NOT</strong> part of the official API. Accessing
 this object from a controller plug-in may lead to undetermined behavior
 like infinite recursion.</p>
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.on_change">
-<code class="sig-name descname">on_change</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">evt_src</span></em>, <em class="sig-param"><span class="n">evt_type</span></em>, <em class="sig-param"><span class="n">evt_value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.on_change"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.on_change" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">on_change</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evt_src</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evt_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">evt_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.on_change"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.on_change" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.calculate_state_info">
-<code class="sig-name descname">calculate_state_info</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">state_info</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.calculate_state_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.calculate_state_info" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">calculate_state_info</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.calculate_state_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.calculate_state_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transforms the given state information. This specific base
 implementation transforms the given state,status tuple into a
 state, new_status tuple where new_status is “<em>self.name</em> is <em>state</em>
@@ -272,7 +276,7 @@ status.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.inspect_limit_switches">
-<code class="sig-name descname">inspect_limit_switches</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.inspect_limit_switches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.inspect_limit_switches" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">inspect_limit_switches</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.inspect_limit_switches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.inspect_limit_switches" title="Permalink to this definition">¶</a></dt>
 <dd><p>returns the current (cached value of the limit switches</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -283,7 +287,7 @@ status.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_limit_switches">
-<code class="sig-name descname">get_limit_switches</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_limit_switches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_limit_switches" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_limit_switches</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_limit_switches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_limit_switches" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the motor limit switches state.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -304,227 +308,227 @@ from hardware</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_limit_switches">
-<code class="sig-name descname">set_limit_switches</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ls</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_limit_switches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_limit_switches" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_limit_switches</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_limit_switches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_limit_switches" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.put_limit_switches">
-<code class="sig-name descname">put_limit_switches</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ls</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.put_limit_switches"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.put_limit_switches" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">put_limit_switches</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.put_limit_switches"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.put_limit_switches" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.limit_switches">
-<em class="property">property </em><code class="sig-name descname">limit_switches</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.limit_switches" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">limit_switches</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.limit_switches" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor limit switches</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.has_instability_time">
-<code class="sig-name descname">has_instability_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.has_instability_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.has_instability_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">has_instability_time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.has_instability_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.has_instability_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_instability_time">
-<code class="sig-name descname">get_instability_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_instability_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_instability_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_instability_time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_instability_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_instability_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_instability_time">
-<code class="sig-name descname">set_instability_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">instability_time</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_instability_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_instability_time" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_instability_time</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instability_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_instability_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_instability_time" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.instability_time">
-<em class="property">property </em><code class="sig-name descname">instability_time</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.instability_time" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">instability_time</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.instability_time" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor instability time</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.has_backlash">
-<code class="sig-name descname">has_backlash</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.has_backlash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.has_backlash" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">has_backlash</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.has_backlash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.has_backlash" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.is_backlash_positive">
-<code class="sig-name descname">is_backlash_positive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.is_backlash_positive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.is_backlash_positive" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_backlash_positive</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.is_backlash_positive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.is_backlash_positive" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.is_backlash_negative">
-<code class="sig-name descname">is_backlash_negative</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.is_backlash_negative"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.is_backlash_negative" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_backlash_negative</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.is_backlash_negative"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.is_backlash_negative" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_backlash">
-<code class="sig-name descname">get_backlash</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_backlash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_backlash" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_backlash</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_backlash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_backlash" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_backlash">
-<code class="sig-name descname">set_backlash</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">backlash</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_backlash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_backlash" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_backlash</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backlash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_backlash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_backlash" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.backlash">
-<em class="property">property </em><code class="sig-name descname">backlash</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.backlash" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">backlash</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.backlash" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor backlash</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_offset_attribute">
-<code class="sig-name descname">get_offset_attribute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_offset_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_offset_attribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_offset_attribute</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_offset_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_offset_attribute" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_offset">
-<code class="sig-name descname">get_offset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_offset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_offset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_offset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_offset" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_offset">
-<code class="sig-name descname">set_offset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">offset</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_offset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_offset" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_offset</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_offset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_offset" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.offset">
-<em class="property">property </em><code class="sig-name descname">offset</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.offset" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">offset</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.offset" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor offset</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_sign_attribute">
-<code class="sig-name descname">get_sign_attribute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_sign_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_sign_attribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_sign_attribute</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_sign_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_sign_attribute" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_sign">
-<code class="sig-name descname">get_sign</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_sign"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_sign" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_sign</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_sign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_sign" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_sign">
-<code class="sig-name descname">set_sign</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">sign</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_sign"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_sign" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_sign</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sign</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_sign"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_sign" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.sign">
-<em class="property">property </em><code class="sig-name descname">sign</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.sign" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">sign</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.sign" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor sign</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_step_per_unit">
-<code class="sig-name descname">get_step_per_unit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_step_per_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_step_per_unit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_step_per_unit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_step_per_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_step_per_unit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_step_per_unit">
-<code class="sig-name descname">set_step_per_unit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">step_per_unit</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_step_per_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_step_per_unit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_step_per_unit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">step_per_unit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_step_per_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_step_per_unit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.read_step_per_unit">
-<code class="sig-name descname">read_step_per_unit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_step_per_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_step_per_unit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_step_per_unit</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_step_per_unit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_step_per_unit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.step_per_unit">
-<em class="property">property </em><code class="sig-name descname">step_per_unit</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.step_per_unit" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">step_per_unit</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.step_per_unit" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor steps per unit</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_acceleration">
-<code class="sig-name descname">get_acceleration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_acceleration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_acceleration" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_acceleration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_acceleration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_acceleration" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_acceleration">
-<code class="sig-name descname">set_acceleration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">acceleration</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_acceleration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_acceleration" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_acceleration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acceleration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_acceleration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_acceleration" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.read_acceleration">
-<code class="sig-name descname">read_acceleration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_acceleration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_acceleration" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_acceleration</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_acceleration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_acceleration" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.acceleration">
-<em class="property">property </em><code class="sig-name descname">acceleration</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.acceleration" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">acceleration</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.acceleration" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor acceleration</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_deceleration">
-<code class="sig-name descname">get_deceleration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_deceleration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_deceleration" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_deceleration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_deceleration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_deceleration" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_deceleration">
-<code class="sig-name descname">set_deceleration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">deceleration</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_deceleration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_deceleration" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_deceleration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deceleration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_deceleration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_deceleration" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.read_deceleration">
-<code class="sig-name descname">read_deceleration</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_deceleration"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_deceleration" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_deceleration</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_deceleration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_deceleration" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.deceleration">
-<em class="property">property </em><code class="sig-name descname">deceleration</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.deceleration" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">deceleration</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.deceleration" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor deceleration</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_base_rate">
-<code class="sig-name descname">get_base_rate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_base_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_base_rate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_base_rate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_base_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_base_rate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_base_rate">
-<code class="sig-name descname">set_base_rate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base_rate</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_base_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_base_rate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_base_rate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_base_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_base_rate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.read_base_rate">
-<code class="sig-name descname">read_base_rate</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_base_rate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_base_rate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_base_rate</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_base_rate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_base_rate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.base_rate">
-<em class="property">property </em><code class="sig-name descname">base_rate</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.base_rate" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">base_rate</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.base_rate" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor base rate</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_velocity">
-<code class="sig-name descname">get_velocity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_velocity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_velocity" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_velocity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_velocity" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_velocity">
-<code class="sig-name descname">set_velocity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">velocity</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_velocity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_velocity" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_velocity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_velocity" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.read_velocity">
-<code class="sig-name descname">read_velocity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_velocity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_velocity" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_velocity</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_velocity" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.velocity">
-<em class="property">property </em><code class="sig-name descname">velocity</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.velocity" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">velocity</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.velocity" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor velocity</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.define_position">
-<code class="sig-name descname">define_position</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">position</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.define_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.define_position" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">define_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.define_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.define_position" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_position_attribute">
-<code class="sig-name descname">get_position_attribute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_position_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_position_attribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_position_attribute</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_position_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_position_attribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the position attribute object for this motor</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -538,7 +542,7 @@ from hardware</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_position">
-<code class="sig-name descname">get_position</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_position" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the user position.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -559,7 +563,7 @@ from hardware</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_position">
-<code class="sig-name descname">set_position</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">position</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_position" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>Moves the motor to the specified user position</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -570,7 +574,7 @@ from hardware</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.set_write_position">
-<code class="sig-name descname">set_write_position</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">w_position</span></em>, <em class="sig-param"><span class="n">timestamp</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_write_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_write_position" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_write_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">w_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.set_write_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.set_write_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets a new write value for the user position.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -584,7 +588,7 @@ from hardware</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.read_dial_position">
-<code class="sig-name descname">read_dial_position</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_dial_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_dial_position" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">read_dial_position</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.read_dial_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.read_dial_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads the dial position from hardware.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -599,7 +603,7 @@ position</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.put_dial_position">
-<code class="sig-name descname">put_dial_position</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dial_position_value</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.put_dial_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.put_dial_position" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">put_dial_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dial_position_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.put_dial_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.put_dial_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets a new dial position.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -613,7 +617,7 @@ position</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_dial_position_attribute">
-<code class="sig-name descname">get_dial_position_attribute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_dial_position_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_dial_position_attribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_dial_position_attribute</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_dial_position_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_dial_position_attribute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the dial position attribute object for this motor</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -627,7 +631,7 @@ position</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_dial_position">
-<code class="sig-name descname">get_dial_position</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cache</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">propagate</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_dial_position"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_dial_position" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_dial_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_dial_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_dial_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the dial position.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -648,35 +652,35 @@ from hardware</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.position">
-<em class="property">property </em><code class="sig-name descname">position</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.position" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">position</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.position" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor user position</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.dial_position">
-<em class="property">property </em><code class="sig-name descname">dial_position</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.dial_position" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">dial_position</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.dial_position" title="Permalink to this definition">¶</a></dt>
 <dd><p>motor dial position</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_default_attribute">
-<code class="sig-name descname">get_default_attribute</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_default_attribute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_default_attribute" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_default_attribute</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_default_attribute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_default_attribute" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.get_motion">
-<code class="sig-name descname">get_motion</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_motion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_motion" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_motion</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.get_motion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.get_motion" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.motion">
-<em class="property">property </em><code class="sig-name descname">motion</code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.motion" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">motion</span></code><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.motion" title="Permalink to this definition">¶</a></dt>
 <dd><p>motion object</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.calculate_motion">
-<code class="sig-name descname">calculate_motion</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_position</span></em>, <em class="sig-param"><span class="n">items</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">calculated</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.calculate_motion"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.calculate_motion" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">calculate_motion</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">items</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.calculate_motion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.calculate_motion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the motor position, dial position, backlash for the
 given final position. Items specifies the where to put the calculated
 values, calculated is not used by physical motors</p>
@@ -684,7 +688,7 @@ values, calculated is not used by physical motors</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolmotor.PoolMotor.start_move">
-<code class="sig-name descname">start_move</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_position</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.start_move"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.start_move" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">start_move</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmotor.html#PoolMotor.start_move"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmotor.PoolMotor.start_move" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -697,38 +701,30 @@ values, calculated is not used by physical motors</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="poolmotorgroup.html" class="btn btn-neutral float-right" title="poolmotorgroup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="poolmotion.html" class="btn btn-neutral float-left" title="poolmotion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="poolmotorgroup.html" class="btn btn-neutral float-right" title="poolmotorgroup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="poolmotion.html" class="btn btn-neutral float-left" title="poolmotion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License
+        &#169; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 

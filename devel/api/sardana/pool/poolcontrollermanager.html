@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>poolcontrollermanager &mdash; sardana 3.0.4-alpha documentation</title>
   
@@ -17,7 +17,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -30,7 +33,6 @@
         <script src="../../../../_static/jquery.js"></script>
         <script src="../../../../_static/underscore.js"></script>
         <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
     
     <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
 
@@ -52,7 +54,7 @@
           
 
           
-            <a href="../../../../index.html" class="icon icon-home" alt="Documentation Home"> sardana
+            <a href="../../../../index.html" class="icon icon-home"> sardana
           
 
           
@@ -175,6 +177,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -196,7 +200,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../../../../_sources/devel/api/sardana/pool/poolcontrollermanager.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -230,45 +234,45 @@ controls finding, loading/unloading of device pool controller plug-ins.</p>
 <area shape="rect" id="node1" href="#sardana.pool.poolcontrollermanager.ControllerManager" target="_top" title="The singleton class responsible for managing controller plug&#45;ins." alt="" coords="34,179,174,217"/>
 </map><dl class="py class">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager">
-<em class="property">class </em><code class="sig-name descname">ControllerManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">p</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">k</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">ControllerManager</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">k</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">taurus.core.util.singleton.Singleton</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">taurus.core.util.log.Logger</span></code></p>
 <p>The singleton class responsible for managing controller plug-ins.</p>
 <dl class="py attribute">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.DEFAULT_CONTROLLER_DIRECTORIES">
-<code class="sig-name descname">DEFAULT_CONTROLLER_DIRECTORIES</code><em class="property"> = ('poolcontrollers',)</em><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.DEFAULT_CONTROLLER_DIRECTORIES" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">DEFAULT_CONTROLLER_DIRECTORIES</span></code><em class="property"> <span class="pre">=</span> <span class="pre">('poolcontrollers',)</span></em><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.DEFAULT_CONTROLLER_DIRECTORIES" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.init">
-<code class="sig-name descname">init</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.init" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">init</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.init" title="Permalink to this definition">¶</a></dt>
 <dd><p>Singleton instance initialization.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.reInit">
-<code class="sig-name descname">reInit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.reInit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.reInit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">reInit</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.reInit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.reInit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Singleton re-initialization.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.cleanUp">
-<code class="sig-name descname">cleanUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.cleanUp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.cleanUp" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">cleanUp</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.cleanUp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.cleanUp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Singleton clean up.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.set_pool">
-<code class="sig-name descname">set_pool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pool</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.set_pool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.set_pool" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">set_pool</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.set_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.set_pool" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.get_pool">
-<code class="sig-name descname">get_pool</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.get_pool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.get_pool" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_pool</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.get_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.get_pool" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.setControllerPath">
-<code class="sig-name descname">setControllerPath</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">controller_path</span></em>, <em class="sig-param"><span class="n">reload</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.setControllerPath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.setControllerPath" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">setControllerPath</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.setControllerPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.setControllerPath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Registers a new list of controller directories in this manager.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -287,7 +291,7 @@ problems of type class A != class A).</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getControllerPath">
-<code class="sig-name descname">getControllerPath</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerPath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerPath" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getControllerPath</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerPath" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the current sequence of absolute paths used to look for
 controllers.</p>
 <dl class="field-list simple">
@@ -302,7 +306,7 @@ controllers.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getOrCreateControllerLib">
-<code class="sig-name descname">getOrCreateControllerLib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lib_name</span></em>, <em class="sig-param"><span class="n">controller_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getOrCreateControllerLib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getOrCreateControllerLib" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getOrCreateControllerLib</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lib_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getOrCreateControllerLib"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getOrCreateControllerLib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets the exiting controller lib or creates a new controller lib file.
 If name is not None, a controller template code for the given
 controller name is appended to the end of the file.</p>
@@ -328,7 +332,7 @@ the first line of code for the given controller name.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.setControllerLib">
-<code class="sig-name descname">setControllerLib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lib_name</span></em>, <em class="sig-param"><span class="n">code</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.setControllerLib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.setControllerLib" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">setControllerLib</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lib_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.setControllerLib"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.setControllerLib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new controller library file with the given name and code.
 The new module is imported and becomes imediately available.</p>
 <p>:param <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> lib_name: name of the new library
@@ -337,19 +341,19 @@ The new module is imported and becomes imediately available.</p>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.createControllerLib">
-<code class="sig-name descname">createControllerLib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lib_name</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.createControllerLib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.createControllerLib" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">createControllerLib</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lib_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.createControllerLib"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.createControllerLib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new empty controller library (python module)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.createController">
-<code class="sig-name descname">createController</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">lib_name</span></em>, <em class="sig-param"><span class="n">controller_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.createController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.createController" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">createController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lib_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">controller_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.createController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.createController" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a new controller</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.reloadController">
-<code class="sig-name descname">reloadController</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">controller_name</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.reloadController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.reloadController" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">reloadController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.reloadController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.reloadController" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reloads the module corresponding to the given controller name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -370,7 +374,7 @@ will be used]</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.reloadControllers">
-<code class="sig-name descname">reloadControllers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">controller_names</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.reloadControllers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.reloadControllers" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">reloadControllers</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.reloadControllers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.reloadControllers" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reloads the modules corresponding to the given controller names</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -391,7 +395,7 @@ will be used]</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.reloadControllerLibs">
-<code class="sig-name descname">reloadControllerLibs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">module_names</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">reload</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.reloadControllerLibs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.reloadControllerLibs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">reloadControllerLibs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.reloadControllerLibs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.reloadControllerLibs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reloads the given library(=module) names</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -412,7 +416,7 @@ will be used]</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.reloadControllerLib">
-<code class="sig-name descname">reloadControllerLib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">module_name</span></em>, <em class="sig-param"><span class="n">path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">reload</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.reloadControllerLib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.reloadControllerLib" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">reloadControllerLib</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reload</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.reloadControllerLib"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.reloadControllerLib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reloads the given library(=module) names</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -439,58 +443,58 @@ will be used]</p></li>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.addController">
-<code class="sig-name descname">addController</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">controller_lib</span></em>, <em class="sig-param"><span class="n">klass</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.addController"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.addController" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">addController</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_lib</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">klass</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.addController"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.addController" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a new controller class</p>
 </dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getControllerNames">
-<code class="sig-name descname">getControllerNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerNames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerNames" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getControllerNames</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerNames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerNames" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getControllerLibNames">
-<code class="sig-name descname">getControllerLibNames</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerLibNames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerLibNames" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getControllerLibNames</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerLibNames"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerLibNames" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getControllerLibs">
-<code class="sig-name descname">getControllerLibs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filter</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerLibs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerLibs" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getControllerLibs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerLibs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerLibs" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getControllers">
-<code class="sig-name descname">getControllers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filter</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllers" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getControllers</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllers" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getControllerMetaClass">
-<code class="sig-name descname">getControllerMetaClass</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">controller_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerMetaClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerMetaClass" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getControllerMetaClass</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerMetaClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerMetaClass" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getControllerMetaClasses">
-<code class="sig-name descname">getControllerMetaClasses</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">controller_names</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerMetaClasses"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerMetaClasses" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getControllerMetaClasses</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerMetaClasses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerMetaClasses" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getControllerLib">
-<code class="sig-name descname">getControllerLib</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerLib"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerLib" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getControllerLib</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerLib"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerLib" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.getControllerClass">
-<code class="sig-name descname">getControllerClass</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">controller_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerClass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerClass" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">getControllerClass</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">controller_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.getControllerClass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.getControllerClass" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.decodeControllerParameters">
-<code class="sig-name descname">decodeControllerParameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">in_par_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.decodeControllerParameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.decodeControllerParameters" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">decodeControllerParameters</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">in_par_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.decodeControllerParameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.decodeControllerParameters" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.pool.poolcontrollermanager.ControllerManager.strControllerParamValues">
-<code class="sig-name descname">strControllerParamValues</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">par_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.strControllerParamValues"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.strControllerParamValues" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">strControllerParamValues</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">par_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolcontrollermanager.html#ControllerManager.strControllerParamValues"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolcontrollermanager.ControllerManager.strControllerParamValues" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a short string representation of the parameter values list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -516,38 +520,30 @@ argument.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="poolcountertimer.html" class="btn btn-neutral float-right" title="poolcountertimer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="poolcontroller.html" class="btn btn-neutral float-left" title="poolcontroller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="poolcountertimer.html" class="btn btn-neutral float-right" title="poolcountertimer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="poolcontroller.html" class="btn btn-neutral float-left" title="poolcontroller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright Except where otherwise noted, content on this site is
-licensed under a Creative Commons Attribution 3.0 License
+        &#169; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
