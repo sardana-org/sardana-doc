@@ -1,0 +1,832 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>sardana.macroserver.recorders.h5storage &mdash; sardana 3.0.4-alpha documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../../_static/graphviz.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> sardana
+          
+
+          
+            
+            <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                3.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="http://www.sardana-controls.org">Home Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/sardana-org/sardana">Project Page</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://pypi.python.org/pypi/sardana">Download from PyPI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../docs.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana-plugins">Plugins Catalogue</a></li>
+<li class="toctree-l1"><a class="reference external" href="http://github.com/sardana-org/sardana/wiki">Wiki</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">sardana</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../../index.html">Module code</a> &raquo;</li>
+        
+      <li>sardana.macroserver.recorders.h5storage</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sardana.macroserver.recorders.h5storage</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+
+<span class="c1">#</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Sardana</span>
+<span class="c1">#</span>
+<span class="c1"># http://www.sardana-controls.org/</span>
+<span class="c1">#</span>
+<span class="c1"># Copyright 2017 CELLS / ALBA Synchrotron, Bellaterra, Spain</span>
+<span class="c1">#</span>
+<span class="c1"># Sardana is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU Lesser General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># Sardana is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU Lesser General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1"># along with Sardana.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="c1">#</span>
+<span class="c1">#</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module provides a recorder for NXscans implemented with h5py (no nxs)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;NXscanH5_FileRecorder&quot;</span><span class="p">]</span>
+
+<span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
+
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">posixpath</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">h5py</span>
+
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="kn">import</span> <span class="n">is_pure_str</span>
+<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="kn">import</span> <span class="n">PlotType</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.scan.recorder</span> <span class="kn">import</span> <span class="n">BaseFileRecorder</span><span class="p">,</span> <span class="n">SaveModes</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.recorders.h5util</span> <span class="kn">import</span> <span class="n">_h5_file_handler</span><span class="p">,</span> \
+    <span class="n">_open_h5_file</span>
+
+
+<span class="n">VDS_available</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">h5py</span><span class="o">.</span><span class="n">VirtualSource</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="n">VDS_available</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+<span class="k">def</span> <span class="nf">timedelta_total_seconds</span><span class="p">(</span><span class="n">timedelta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Equivalent to timedelta.total_seconds introduced with python 2.7.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">timedelta</span><span class="o">.</span><span class="n">microseconds</span> <span class="o">+</span> <span class="mf">0.0</span>
+        <span class="o">+</span> <span class="p">(</span><span class="n">timedelta</span><span class="o">.</span><span class="n">seconds</span> <span class="o">+</span> <span class="n">timedelta</span><span class="o">.</span><span class="n">days</span> <span class="o">*</span> <span class="mi">24</span> <span class="o">*</span> <span class="mi">3600</span><span class="p">)</span>
+        <span class="o">*</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">6</span><span class="p">)</span> <span class="o">/</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">6</span>
+
+
+<div class="viewcode-block" id="NXscanH5_FileRecorder"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/h5storage.html#sardana.macroserver.macros.h5storage.NXscanH5_FileRecorder">[docs]</a><span class="k">class</span> <span class="nc">NXscanH5_FileRecorder</span><span class="p">(</span><span class="n">BaseFileRecorder</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Saves data to a nexus file that follows the NXscan application definition</span>
+<span class="sd">    (This is a pure h5py implementation that does not depend on the nxs module)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">formats</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;h5&#39;</span><span class="p">:</span> <span class="s1">&#39;.h5&#39;</span><span class="p">}</span>
+    <span class="c1"># from http://docs.h5py.org/en/latest/strings.html</span>
+    <span class="n">str_dt</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">special_dtype</span><span class="p">(</span><span class="n">vlen</span><span class="o">=</span><span class="nb">str</span><span class="p">)</span>  <span class="c1"># Variable-length UTF-8</span>
+    <span class="n">byte_dt</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">special_dtype</span><span class="p">(</span><span class="n">vlen</span><span class="o">=</span><span class="nb">bytes</span><span class="p">)</span>  <span class="c1"># Variable-length UTF-8</span>
+    <span class="n">supported_dtypes</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">,</span> <span class="s1">&#39;float64&#39;</span><span class="p">,</span> <span class="s1">&#39;int8&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;int16&#39;</span><span class="p">,</span> <span class="s1">&#39;int32&#39;</span><span class="p">,</span> <span class="s1">&#39;int64&#39;</span><span class="p">,</span> <span class="s1">&#39;uint8&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;uint16&#39;</span><span class="p">,</span> <span class="s1">&#39;uint32&#39;</span><span class="p">,</span>
+                        <span class="s1">&#39;uint64&#39;</span><span class="p">,</span> <span class="n">str_dt</span><span class="p">,</span> <span class="n">byte_dt</span><span class="p">)</span>
+    <span class="n">_dataCompressionRank</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">pars</span><span class="p">):</span>
+        <span class="n">BaseFileRecorder</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">pars</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">macro</span> <span class="o">=</span> <span class="n">macro</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overwrite</span> <span class="o">=</span> <span class="n">overwrite</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setFileName</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">currentlist</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nxclass_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entryname</span> <span class="o">=</span> <span class="s1">&#39;entry&#39;</span>
+
+        <span class="n">scheme</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;([A-Za-z][A-Za-z0-9\.\+\-]*)&#39;</span>
+        <span class="n">authority</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;//(?P&lt;host&gt;([\w\-_]+\.)*[\w\-_]+)&#39;</span>
+                     <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;(:(?P&lt;port&gt;\d{1,5}))?&#39;</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;((?P&lt;filepath&gt;(/(//+)?([A-Za-z]:/)?([\w.\-_]+/)*&#39;</span>
+                <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;[\w.\-_]+.(h5|hdf5|\w+))))&#39;</span>
+                <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;(::(?P&lt;dataset&gt;(([\w.\-_]+/)*[\w.\-_]+)))?&#39;</span><span class="p">)</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;^(?P&lt;scheme&gt;</span><span class="si">%(scheme)s</span><span class="s1">):&#39;</span>
+                   <span class="o">+</span> <span class="s1">&#39;((?P&lt;authority&gt;</span><span class="si">%(authority)s</span><span class="s1">)&#39;</span>
+                   <span class="o">+</span> <span class="s1">&#39;($|(?=[/#?])))?(?P&lt;path&gt;</span><span class="si">%(path)s</span><span class="s1">)$&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pattern</span> <span class="o">=</span> <span class="n">pattern</span> <span class="o">%</span> <span class="nb">dict</span><span class="p">(</span><span class="n">scheme</span><span class="o">=</span><span class="n">scheme</span><span class="p">,</span> <span class="n">authority</span><span class="o">=</span><span class="n">authority</span><span class="p">,</span>
+                                      <span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_close</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">getFormat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;HDF5::NXscan&#39;</span>
+
+    <span class="k">def</span> <span class="nf">setFileName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">currentlist</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="NXscanH5_FileRecorder.sanitizeName"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/h5storage.html#sardana.macroserver.macros.h5storage.NXscanH5_FileRecorder.sanitizeName">[docs]</a>    <span class="k">def</span> <span class="nf">sanitizeName</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;It returns a version of the given name that can be used as a python</span>
+<span class="sd">        variable (and conforms to NeXus best-practices for dataset names)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># make sure the name does not start with a digit</span>
+        <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;_</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">name</span>
+        <span class="c1"># substitute whitespaces by underscores and remove other</span>
+        <span class="c1"># non-alphanumeric characters</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
+            <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">isalnum</span><span class="p">()</span> <span class="ow">or</span> <span class="n">x</span> <span class="o">==</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_openFile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Open the file with given filename (create if it does not exist)</span>
+<span class="sd">        Populate the root of the file with some metadata from the NXroot</span>
+<span class="sd">        definition&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fd</span> <span class="o">=</span> <span class="n">_h5_file_handler</span><span class="p">[</span><span class="n">fname</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">fd</span> <span class="o">=</span> <span class="n">_open_h5_file</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_close</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;NX_class&#39;</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;NX_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NXroot&#39;</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">fname</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;file_time&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;creator&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;HDF5_Version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">hdf5_version</span>
+            <span class="n">fd</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;h5py_version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">version</span>
+        <span class="k">return</span> <span class="n">fd</span>
+
+    <span class="k">def</span> <span class="nf">_startRecordList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recordlist</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">currentlist</span> <span class="o">=</span> <span class="n">recordlist</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentlist</span><span class="o">.</span><span class="n">getEnviron</span><span class="p">()</span>
+        <span class="n">serialno</span> <span class="o">=</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;serialno&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dataCompressionRank</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DataCompressionRank&#39;</span><span class="p">,</span>
+                                            <span class="bp">self</span><span class="o">.</span><span class="n">_dataCompressionRank</span><span class="p">)</span>
+
+        <span class="c1"># open/create the file and store its descriptor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_openFile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="c1"># create an entry for this scan using the scan serial number</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">entryname</span> <span class="o">=</span> <span class="s1">&#39;entry</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">serialno</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">nxentry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entryname</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="c1"># Warn and abort</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">entryname</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">{ename:s}</span><span class="s1"> already exists in </span><span class="si">{fname:s}</span><span class="s1">. &#39;</span>
+                       <span class="s1">&#39;Aborting macro to prevent data corruption.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                       <span class="s1">&#39;This is likely caused by a wrong ScanID</span><span class="se">\n</span><span class="s1">&#39;</span>
+                       <span class="s1">&#39;Possible workarounds:</span><span class="se">\n</span><span class="s1">&#39;</span>
+                       <span class="s1">&#39;  * first, try re-running this macro (the ScanID &#39;</span>
+                       <span class="s1">&#39;may be automatically corrected)</span><span class="se">\n</span><span class="s1">&#39;</span>
+                       <span class="s1">&#39;  * if not, try changing ScanID with senv, or...</span><span class="se">\n</span><span class="s1">&#39;</span>
+                       <span class="s1">&#39;  * change the file name (</span><span class="si">{ename:s}</span><span class="s1"> will be in both &#39;</span>
+                       <span class="s1">&#39;files containing different data)</span><span class="se">\n</span><span class="s1">&#39;</span>
+                       <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Please report this problem.&#39;</span>
+                       <span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">entryname</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span>
+        <span class="n">nxentry</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;NX_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NXentry&#39;</span>
+
+        <span class="c1"># adapt the datadesc to the NeXus requirements</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">datadesc</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="n">env</span><span class="p">[</span><span class="s1">&#39;datadesc&#39;</span><span class="p">]:</span>
+            <span class="n">dd</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+            <span class="n">dd</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitizeName</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="s2">&quot;value_ref_enabled&quot;</span><span class="p">):</span>
+                <span class="n">dd</span><span class="o">.</span><span class="n">value_ref_enabled</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;bool&#39;</span><span class="p">:</span>
+                <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="s1">&#39;int8&#39;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%r</span><span class="s1"> will be stored with type=</span><span class="si">%r</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
+                <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">NXscanH5_FileRecorder</span><span class="o">.</span><span class="n">str_dt</span>
+            <span class="k">if</span> <span class="n">dd</span><span class="o">.</span><span class="n">value_ref_enabled</span><span class="p">:</span>
+                <span class="c1"># substitute original data (image or spectrum) type and shape</span>
+                <span class="c1"># since we will receive references instead</span>
+                <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">NXscanH5_FileRecorder</span><span class="o">.</span><span class="n">str_dt</span>
+                <span class="n">dd</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%r</span><span class="s1"> will be stored with type=</span><span class="si">%r</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">supported_dtypes</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">datadesc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%r</span><span class="s1"> will not be stored. Reason: </span><span class="si">%r</span><span class="s1"> not supported&#39;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+        <span class="c1"># make a dictionary out of env[&#39;instrumentlist&#39;]</span>
+        <span class="c1"># (use fullnames -paths- as keys)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_nxclass_map</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">inst</span> <span class="ow">in</span> <span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;instrumentlist&#39;</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_nxclass_map</span><span class="p">[</span><span class="n">nxentry</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="n">inst</span><span class="o">.</span><span class="n">getFullName</span><span class="p">()]</span> <span class="o">=</span> <span class="n">inst</span><span class="o">.</span><span class="n">klass</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nxclass_map</span> <span class="ow">is</span> <span class="p">{}:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Missing information on NEXUS structure. &#39;</span>
+                         <span class="o">+</span> <span class="s1">&#39;Nexus Tree will not be created&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Starting new recording </span><span class="si">%d</span><span class="s1"> on file </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">serialno</span><span class="p">,</span>
+                   <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="c1"># populate the entry with some data</span>
+        <span class="n">nxentry</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;definition&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="s1">&#39;NXscan&#39;</span><span class="p">)</span>
+        <span class="kn">import</span> <span class="nn">sardana.release</span>
+        <span class="n">program_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> (</span><span class="si">%s</span><span class="s1">)&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sardana</span><span class="o">.</span><span class="n">release</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">_pname</span> <span class="o">=</span> <span class="n">nxentry</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;program_name&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">program_name</span><span class="p">)</span>
+        <span class="n">_pname</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sardana</span><span class="o">.</span><span class="n">release</span><span class="o">.</span><span class="n">version</span>
+        <span class="n">nxentry</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;start_time&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;starttime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span>
+        <span class="n">timedelta</span> <span class="o">=</span> <span class="p">(</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;starttime&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">_epoch</span> <span class="o">=</span> <span class="n">timedelta</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+            <span class="c1"># for python 2.6 compatibility</span>
+            <span class="n">_epoch</span> <span class="o">=</span> <span class="n">timedelta_total_seconds</span><span class="p">(</span><span class="n">timedelta</span><span class="p">)</span>
+        <span class="n">nxentry</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;epoch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_epoch</span>
+        <span class="n">nxentry</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+        <span class="n">nxentry</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;entry_identifier&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;serialno&#39;</span><span class="p">]))</span>
+
+        <span class="n">_usergrp</span> <span class="o">=</span> <span class="n">nxentry</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s1">&#39;user&#39;</span><span class="p">)</span>
+        <span class="n">_usergrp</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;NX_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NXuser&#39;</span>
+        <span class="n">_usergrp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">])</span>
+
+        <span class="c1"># prepare the &#39;measurement&#39; group</span>
+        <span class="n">_meas</span> <span class="o">=</span> <span class="n">nxentry</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s1">&#39;measurement&#39;</span><span class="p">)</span>
+        <span class="n">_meas</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;NX_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NXcollection&#39;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">savemode</span> <span class="o">==</span> <span class="n">SaveModes</span><span class="o">.</span><span class="n">Record</span><span class="p">:</span>
+            <span class="c1"># create extensible datasets</span>
+            <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">datadesc</span><span class="p">:</span>
+                <span class="n">shape</span> <span class="o">=</span> <span class="p">([</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+                <span class="n">_ds</span> <span class="o">=</span> <span class="n">_meas</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+                    <span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                    <span class="n">dtype</span><span class="o">=</span><span class="n">dd</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+                    <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
+                    <span class="n">maxshape</span><span class="o">=</span><span class="p">([</span><span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">shape</span><span class="p">)),</span>
+                    <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
+                    <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_compression</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="s1">&#39;data_units&#39;</span><span class="p">):</span>
+                    <span class="n">_ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">data_units</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># leave the creation of the datasets to _writeRecordList</span>
+            <span class="c1"># (when we actually know the length of the data to write)</span>
+            <span class="k">pass</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_createPreScanSnapshot</span><span class="p">(</span><span class="n">env</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_populateInstrumentInfo</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_createNXData</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_compression</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">compfilter</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns `compfilter` (the name of the compression filter) to use</span>
+<span class="sd">        (or None if no compression is recommended), based on the given shape</span>
+<span class="sd">        and the self._dataCompressionRank thresshold.</span>
+<span class="sd">        By default, `compfilter` is set to `&#39;gzip&#39;`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">min_rank</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataCompressionRank</span>
+        <span class="k">if</span> <span class="n">shape</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">min_rank</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">min_rank</span><span class="p">:</span>
+            <span class="n">compfilter</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> compression is not supported for scalar datasets&quot;</span>\
+                  <span class="s2">&quot; - these datasets will not be compressed&quot;</span> <span class="o">%</span> <span class="n">compfilter</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">compfilter</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">compfilter</span>
+
+    <span class="k">def</span> <span class="nf">_createPreScanSnapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Write the pre-scan snapshot in &quot;&lt;entry&gt;/measurement/pre_scan_snapshot&quot;.</span>
+<span class="sd">        Also link to the snapshot datasets from the &lt;entry&gt;/measurement group</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">_meas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="p">[</span><span class="n">posixpath</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entryname</span><span class="p">,</span> <span class="s1">&#39;measurement&#39;</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">preScanSnapShot</span> <span class="o">=</span> <span class="n">env</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;preScanSnapShot&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="n">_snap</span> <span class="o">=</span> <span class="n">_meas</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s1">&#39;pre_scan_snapshot&#39;</span><span class="p">)</span>
+        <span class="n">_snap</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;NX_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NXcollection&#39;</span>
+
+        <span class="n">meas_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_meas</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">preScanSnapShot</span><span class="p">:</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitizeName</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="n">pre_scan_value</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">pre_scan_value</span>
+            <span class="k">if</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;bool&#39;</span><span class="p">:</span>
+                <span class="n">dtype</span> <span class="o">=</span> <span class="s1">&#39;int8&#39;</span>
+                <span class="n">pre_scan_value</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">int8</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">pre_scan_value</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Pre-scan snapshot of </span><span class="si">%s</span><span class="s1"> will be stored as type </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
+                           <span class="n">dd</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
+                <span class="n">dtype</span> <span class="o">=</span> <span class="n">NXscanH5_FileRecorder</span><span class="o">.</span><span class="n">str_dt</span>
+                <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">NXscanH5_FileRecorder</span><span class="o">.</span><span class="n">str_dt</span>
+
+            <span class="k">if</span> <span class="n">dtype</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">supported_dtypes</span><span class="p">:</span>
+                <span class="n">_ds</span> <span class="o">=</span> <span class="n">_snap</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+                    <span class="n">label</span><span class="p">,</span>
+                    <span class="n">data</span><span class="o">=</span><span class="n">pre_scan_value</span><span class="p">,</span>
+                    <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_compression</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="c1"># link to this dataset also from the measurement group</span>
+                <span class="k">if</span> <span class="n">label</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meas_keys</span><span class="p">:</span>
+                    <span class="n">_meas</span><span class="p">[</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">_ds</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">((</span><span class="s1">&#39;Pre-scan snapshot of </span><span class="si">%s</span><span class="s1"> will not be stored. &#39;</span>
+                              <span class="o">+</span> <span class="s1">&#39;Reason: type </span><span class="si">%s</span><span class="s1"> not supported&#39;</span><span class="p">),</span>
+                             <span class="n">dd</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_writeRecord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">_meas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="p">[</span><span class="n">posixpath</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entryname</span><span class="p">,</span> <span class="s1">&#39;measurement&#39;</span><span class="p">)]</span>
+
+        <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">datadesc</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">dd</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">dd</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+                <span class="n">_ds</span> <span class="o">=</span> <span class="n">_meas</span><span class="p">[</span><span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dd</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+                <span class="c1"># skip NaN if value reference is enabled</span>
+                <span class="k">if</span> <span class="n">dd</span><span class="o">.</span><span class="n">value_ref_enabled</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">is_pure_str</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+                    <span class="k">continue</span>
+                <span class="k">elif</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;shape&#39;</span><span class="p">):</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">data</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dd</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span> <span class="o">!=</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> casted to </span><span class="si">%s</span><span class="s1"> (was </span><span class="si">%s</span><span class="s1">)&#39;</span><span class="p">,</span>
+                               <span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+                <span class="c1"># resize the dataset and add the latest chunk</span>
+                <span class="k">if</span> <span class="n">_ds</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">record</span><span class="o">.</span><span class="n">recordno</span><span class="p">:</span>
+                    <span class="n">_ds</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">recordno</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+                <span class="c1"># write the slab of data</span>
+                <span class="n">_ds</span><span class="p">[</span><span class="n">record</span><span class="o">.</span><span class="n">recordno</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;missing data for label </span><span class="si">%r</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_endRecordList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recordlist</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+
+        <span class="n">env</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">currentlist</span><span class="o">.</span><span class="n">getEnviron</span><span class="p">()</span>
+        <span class="n">nxentry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">entryname</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">dd</span><span class="p">,</span> <span class="n">dd_env</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">datadesc</span><span class="p">,</span> <span class="n">env</span><span class="p">[</span><span class="s2">&quot;datadesc&quot;</span><span class="p">]):</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">label</span>
+
+            <span class="c1"># If h5file scheme is used: Creation of a Virtual Dataset</span>
+            <span class="k">if</span> <span class="n">dd</span><span class="o">.</span><span class="n">value_ref_enabled</span><span class="p">:</span>
+                <span class="n">measurement</span> <span class="o">=</span> <span class="n">nxentry</span><span class="p">[</span><span class="s1">&#39;measurement&#39;</span><span class="p">]</span>
+                <span class="n">first_reference</span> <span class="o">=</span> <span class="n">measurement</span><span class="p">[</span><span class="n">label</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="n">group</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">first_reference</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">group</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Unsupported reference </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">first_reference</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="n">uri_groups</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">uri_groups</span><span class="p">[</span><span class="s1">&#39;scheme&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s2">&quot;h5file&quot;</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">VDS_available</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;VDS not available in this version of h5py, &quot;</span>
+                           <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2"> will be stored as string reference&quot;</span><span class="p">)</span>
+                    <span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                    <span class="k">continue</span>
+
+                <span class="n">bk_label</span> <span class="o">=</span> <span class="s2">&quot;_&quot;</span> <span class="o">+</span> <span class="n">label</span>
+                <span class="n">measurement</span><span class="p">[</span><span class="n">bk_label</span><span class="p">]</span> <span class="o">=</span> <span class="n">measurement</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+                <span class="n">nb_points</span> <span class="o">=</span> <span class="n">measurement</span><span class="p">[</span><span class="n">label</span><span class="p">]</span><span class="o">.</span><span class="n">size</span>
+
+                <span class="p">(</span><span class="n">dim_1</span><span class="p">,</span> <span class="n">dim_2</span><span class="p">)</span> <span class="o">=</span> <span class="n">dd_env</span><span class="o">.</span><span class="n">shape</span>
+                <span class="n">layout</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">VirtualLayout</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">nb_points</span><span class="p">,</span> <span class="n">dim_1</span><span class="p">,</span> <span class="n">dim_2</span><span class="p">),</span>
+                                            <span class="n">dtype</span><span class="o">=</span><span class="n">dd_env</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nb_points</span><span class="p">):</span>
+                    <span class="n">reference</span> <span class="o">=</span> <span class="n">measurement</span><span class="p">[</span><span class="n">label</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+                    <span class="n">group</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pattern</span><span class="p">,</span> <span class="n">reference</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">group</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Unsupported reference </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">first_reference</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                        <span class="k">continue</span>
+                    <span class="n">uri_groups</span> <span class="o">=</span> <span class="n">group</span><span class="o">.</span><span class="n">groupdict</span><span class="p">()</span>
+                    <span class="n">filename</span> <span class="o">=</span> <span class="n">uri_groups</span><span class="p">[</span><span class="s2">&quot;filepath&quot;</span><span class="p">]</span>
+                    <span class="n">dataset</span> <span class="o">=</span> <span class="n">uri_groups</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dataset&quot;</span><span class="p">,</span> <span class="s2">&quot;dataset&quot;</span><span class="p">)</span>
+                    <span class="n">vsource</span> <span class="o">=</span> <span class="n">h5py</span><span class="o">.</span><span class="n">VirtualSource</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span>
+                                                 <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">dim_1</span><span class="p">,</span> <span class="n">dim_2</span><span class="p">))</span>
+                    <span class="n">layout</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">vsource</span>
+
+                <span class="c1"># Substitute dataset by Virtual Dataset in output file</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="n">measurement</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+                    <span class="n">measurement</span><span class="o">.</span><span class="n">create_virtual_dataset</span><span class="p">(</span>
+                        <span class="n">label</span><span class="p">,</span> <span class="n">layout</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=-</span><span class="n">numpy</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Could not create a Virtual Dataset. Reason: </span><span class="si">%r</span><span class="s1">&#39;</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">del</span> <span class="n">measurement</span><span class="p">[</span><span class="n">bk_label</span><span class="p">]</span>
+
+        <span class="n">nxentry</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="s1">&#39;end_time&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">env</span><span class="p">[</span><span class="s1">&#39;endtime&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isoformat</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Finishing recording </span><span class="si">%d</span><span class="s1"> on file </span><span class="si">%s</span><span class="s1">:&#39;</span><span class="p">,</span>
+                   <span class="n">env</span><span class="p">[</span><span class="s1">&#39;serialno&#39;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_close</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">currentlist</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="NXscanH5_FileRecorder.writeRecordList"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/h5storage.html#sardana.macroserver.macros.h5storage.NXscanH5_FileRecorder.writeRecordList">[docs]</a>    <span class="k">def</span> <span class="nf">writeRecordList</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">recordlist</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Called when in BLOCK writing mode&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_startRecordList</span><span class="p">(</span><span class="n">recordlist</span><span class="p">)</span>
+        <span class="n">_meas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="p">[</span><span class="n">posixpath</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">entryname</span><span class="p">,</span> <span class="s1">&#39;measurement&#39;</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">datadesc</span><span class="p">:</span>
+            <span class="n">shape</span> <span class="o">=</span> <span class="p">([</span><span class="nb">len</span><span class="p">(</span><span class="n">recordlist</span><span class="o">.</span><span class="n">records</span><span class="p">)]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+            <span class="n">_ds</span> <span class="o">=</span> <span class="n">_meas</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span>
+                <span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">,</span>
+                <span class="n">dtype</span><span class="o">=</span><span class="n">dd</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span>
+                <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span>
+                <span class="n">chunks</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span>
+                <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_compression</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="s1">&#39;data_units&#39;</span><span class="p">):</span>
+                <span class="n">_ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;units&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dd</span><span class="o">.</span><span class="n">data_units</span>
+
+            <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">recordlist</span><span class="o">.</span><span class="n">records</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">dd</span><span class="o">.</span><span class="n">label</span> <span class="ow">in</span> <span class="n">record</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+                    <span class="n">_ds</span><span class="p">[</span><span class="n">record</span><span class="o">.</span><span class="n">recordno</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;missing data for label </span><span class="si">%r</span><span class="s1"> in record </span><span class="si">%i</span><span class="s1">&#39;</span><span class="p">,</span>
+                               <span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">recordno</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_endRecordList</span><span class="p">(</span><span class="n">recordlist</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_populateInstrumentInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">nxentry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">entryname</span><span class="p">]</span>
+        <span class="n">_meas</span> <span class="o">=</span> <span class="n">nxentry</span><span class="p">[</span><span class="s1">&#39;measurement&#39;</span><span class="p">]</span>
+        <span class="n">_snap</span> <span class="o">=</span> <span class="n">_meas</span><span class="p">[</span><span class="s1">&#39;pre_scan_snapshot&#39;</span><span class="p">]</span>
+        <span class="c1"># create a link for each</span>
+        <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">datadesc</span><span class="p">:</span>
+            <span class="c1"># we only link if the instrument info is available</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="s1">&#39;instrument&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">_ds</span> <span class="o">=</span> <span class="n">_meas</span><span class="p">[</span><span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">]</span>
+                    <span class="n">_instr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_createNXpath</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span>
+                                                <span class="n">prefix</span><span class="o">=</span><span class="n">nxentry</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">_instr</span><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">_ds</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">_ds</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Could not create link to </span><span class="si">%r</span><span class="s1"> in </span><span class="si">%r</span><span class="s1">. Reason: </span><span class="si">%r</span><span class="s1">&#39;</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">preScanSnapShot</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="s1">&#39;instrument&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
+                <span class="n">label</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sanitizeName</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">_ds</span> <span class="o">=</span> <span class="n">_snap</span><span class="p">[</span><span class="n">label</span><span class="p">]</span>
+                    <span class="n">_instr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_createNXpath</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span>
+                                                <span class="n">prefix</span><span class="o">=</span><span class="n">nxentry</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                    <span class="n">_instr</span><span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">_ds</span><span class="o">.</span><span class="n">name</span><span class="p">)]</span> <span class="o">=</span> <span class="n">_ds</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Could not create link to </span><span class="si">%r</span><span class="s1"> in </span><span class="si">%r</span><span class="s1">. Reason: </span><span class="si">%r</span><span class="s1">&#39;</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">dd</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_createNXData</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates groups of type NXdata by making links to the corresponding</span>
+<span class="sd">        datasets</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># classify by type of plot:</span>
+        <span class="n">plots1d</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">plots1d_names</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">dd</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">datadesc</span><span class="p">:</span>
+            <span class="n">ptype</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="s1">&#39;plot_type&#39;</span><span class="p">,</span> <span class="n">PlotType</span><span class="o">.</span><span class="n">No</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ptype</span> <span class="o">==</span> <span class="n">PlotType</span><span class="o">.</span><span class="n">No</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">elif</span> <span class="n">ptype</span> <span class="o">==</span> <span class="n">PlotType</span><span class="o">.</span><span class="n">Spectrum</span><span class="p">:</span>
+                <span class="c1"># converting the list into a colon-separated string</span>
+                <span class="n">axes</span> <span class="o">=</span> <span class="s1">&#39;:&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dd</span><span class="o">.</span><span class="n">plot_axes</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">axes</span> <span class="ow">in</span> <span class="n">plots1d</span><span class="p">:</span>
+                    <span class="n">plots1d</span><span class="p">[</span><span class="n">axes</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">plots1d</span><span class="p">[</span><span class="n">axes</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dd</span><span class="p">]</span>
+                    <span class="c1"># Note that datatesc ordering determines group name</span>
+                    <span class="c1"># indexing</span>
+                    <span class="n">plots1d_names</span><span class="p">[</span><span class="n">axes</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;plot_</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span>
+                    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">continue</span>  <span class="c1"># TODO: implement support for images and other</span>
+
+        <span class="n">nxentry</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">entryname</span><span class="p">]</span>
+        <span class="n">_meas</span> <span class="o">=</span> <span class="n">nxentry</span><span class="p">[</span><span class="s1">&#39;measurement&#39;</span><span class="p">]</span>
+
+        <span class="c1"># write the 1D NXdata group</span>
+        <span class="k">for</span> <span class="n">axes</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">plots1d</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+            <span class="n">_nxdata</span> <span class="o">=</span> <span class="n">nxentry</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="n">plots1d_names</span><span class="p">[</span><span class="n">axes</span><span class="p">])</span>
+            <span class="n">_nxdata</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;NX_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;NXdata&#39;</span>
+
+            <span class="c1"># write the signals</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">dd</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+                <span class="c1"># link the datasets</span>
+                <span class="n">_ds</span> <span class="o">=</span> <span class="n">_nxdata</span><span class="p">[</span><span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">]</span> <span class="o">=</span> <span class="n">_meas</span><span class="p">[</span><span class="n">dd</span><span class="o">.</span><span class="n">label</span><span class="p">]</span>
+                <span class="c1"># add attrs</span>
+                <span class="n">_ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;signal&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">_ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;axes&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">axes</span>
+                <span class="n">_ds</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;interpretation&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;spectrum&#39;</span>
+            <span class="c1"># write the axes</span>
+            <span class="k">for</span> <span class="n">axis</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">_nxdata</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="n">_meas</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;cannot create link for &quot;</span><span class="si">%s</span><span class="s1">&quot;. Skipping&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_createNXpath</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a path in the nexus file composed by nested data_groups</span>
+<span class="sd">        with their corresponding NXclass attributes.</span>
+
+<span class="sd">        This method creates the groups if they do not exist. If the</span>
+<span class="sd">        path is given using `name:nxclass` notation, the given nxclass is</span>
+<span class="sd">        used.</span>
+<span class="sd">        Otherwise, the class name is obtained from self._nxclass_map values</span>
+<span class="sd">        (and if not found, it defaults to NXcollection).</span>
+
+<span class="sd">        It returns the tip of the branch (the last group created)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># if prefix is None, use current entry if path is relative</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">posixpath</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;/</span><span class="si">%s</span><span class="s2">:NXentry&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">entryname</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># if prefix is given explicitly, assume that path is relative to it</span>
+            <span class="c1"># even if path is absolute</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">posixpath</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">path</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">))</span>
+
+        <span class="n">grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="p">[</span><span class="s1">&#39;/&#39;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="s1">&#39;:&#39;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">name</span><span class="p">,</span> <span class="n">nxclass</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">nxclass</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="c1"># open group (create if it does not exist)</span>
+            <span class="n">grp</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">require_group</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="s1">&#39;NX_class&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">nxclass</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">nxclass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_nxclass_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">grp</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;NXcollection&#39;</span><span class="p">)</span>
+                <span class="n">grp</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;NX_class&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">nxclass</span>
+        <span class="k">return</span> <span class="n">grp</span>
+
+    <span class="k">def</span> <span class="nf">_addCustomData</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">nxpath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Apart from value and name, this recorder can use the following optional</span>
+<span class="sd">        parameters:</span>
+
+<span class="sd">        :param nxpath: (str) a nexus path (optionally using name:nxclass</span>
+<span class="sd">                       notation for the group names). See the rules for</span>
+<span class="sd">                       automatic nxclass resolution used by</span>
+<span class="sd">                       :meth:`._createNXpath`. If None given, it defaults to</span>
+<span class="sd">                       nxpath=&#39;custom_data:NXcollection&#39;</span>
+
+<span class="sd">        :param dtype: name of data type (it is inferred from value if not</span>
+<span class="sd">                      given)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">nxpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">nxpath</span> <span class="o">=</span> <span class="s1">&#39;custom_data:NXcollection&#39;</span>
+        <span class="k">if</span> <span class="n">dtype</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+                <span class="n">dtype</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">))</span><span class="o">.</span><span class="n">name</span>
+                <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">dtype</span> <span class="o">=</span> <span class="n">NXscanH5_FileRecorder</span><span class="o">.</span><span class="n">str_dt</span>
+                <span class="k">if</span> <span class="n">dtype</span> <span class="o">==</span> <span class="s1">&#39;bool&#39;</span><span class="p">:</span>
+                    <span class="n">value</span><span class="p">,</span> <span class="n">dtype</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="s1">&#39;int8&#39;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">dtype</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="k">if</span> <span class="n">dtype</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">supported_dtypes</span> <span class="ow">and</span> <span class="n">dtype</span> <span class="o">!=</span> <span class="s1">&#39;char&#39;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s1">&#39;cannot write </span><span class="si">%r</span><span class="s1">. Reason: unsupported data type&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="k">return</span>
+
+        <span class="c1"># open the file if necessary</span>
+        <span class="n">fileClosed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fd</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">fileClosed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_openFile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+
+        <span class="c1"># create the custom data group if it does not exist</span>
+        <span class="n">grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_createNXpath</span><span class="p">(</span><span class="n">nxpath</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">grp</span><span class="o">.</span><span class="n">create_dataset</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Error writing </span><span class="si">%s</span><span class="s1">. Reason: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">macro</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+        <span class="c1"># flush</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="o">.</span><span class="n">flush</span><span class="p">()</span>
+
+        <span class="c1"># leave the file as it was</span>
+        <span class="k">if</span> <span class="n">fileClosed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fd</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright Except where otherwise noted, content on this site is
+licensed under a Creative Commons Attribution 3.0 License.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

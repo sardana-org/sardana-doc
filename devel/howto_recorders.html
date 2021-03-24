@@ -105,7 +105,6 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Writing recorders</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#what-is-a-recorder">What is a recorder?</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#type-of-recorders">Type of recorders</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#writing-a-custom-recorder">Writing a custom recorder</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
 </ul>
@@ -212,41 +211,6 @@ identified by its name, and is located in a recorder library - another Sardana
 element which is also identified by its name. Recorders are developed as
 Python classes, and recorder libraries are just Python modules aggregating these
 classes.</p>
-</div>
-<div class="section" id="type-of-recorders">
-<h2>Type of recorders<a class="headerlink" href="#type-of-recorders" title="Permalink to this headline">¶</a></h2>
-<p>Sardana defines some standard recorders e.g. the Spock output recorder or the
-SPEC file recorder. From the other hand users may define their custom recorders.
-Sardana provides the following standard recorders (grouped by types):</p>
-<ul class="simple">
-<li><dl class="simple">
-<dt>file [*]</dt><dd><ul>
-<li><p>FIO_FileRecorder</p></li>
-<li><p>NXscan_FileRecorder</p></li>
-<li><p>SPEC_FileRecorder</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>shared memory [*]</dt><dd><ul>
-<li><p>SPSRecorder</p></li>
-<li><p>ShmRecorder</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-<li><dl class="simple">
-<dt>output</dt><dd><ul>
-<li><p>JsonRecorder [*]</p></li>
-<li><p>OutputRecorder</p></li>
-</ul>
-</dd>
-</dl>
-</li>
-</ul>
-<p>[*] Scan Framework provides mechanisms to enable and select this recorders using
-the environment variables.</p>
 </div>
 <div class="section" id="writing-a-custom-recorder">
 <h2>Writing a custom recorder<a class="headerlink" href="#writing-a-custom-recorder" title="Permalink to this headline">¶</a></h2>

@@ -106,6 +106,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#step-scans">Step scans</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#continuous-scans">Continuous scans</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-storage">Data storage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#scan-snapshots">Scan snapshots</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#scan-statistics">Scan statistics</a></li>
 </ul>
@@ -361,6 +362,80 @@ the affected scan macros) if deemed necessary by the core developers.</p>
 <p>For further information about the available Sardana Environment
 Variables, check the
 <a class="reference internal" href="environment_variable_catalog.html#environment-variable-catalog"><span class="std std-ref">Environment Variable Catalog</span></a></p>
+</div>
+</div>
+<div class="section" id="data-storage">
+<span id="sardana-users-scan-data-storage"></span><h2>Data storage<a class="headerlink" href="#data-storage" title="Permalink to this headline">¶</a></h2>
+<p>Data being produced by scans can be optionally handled by <em>recorders</em> and
+sent to a variety of destinations. Typical use case is to store the scan data
+in a file.</p>
+<div class="section" id="built-in-recorders">
+<h3>Built-in recorders<a class="headerlink" href="#built-in-recorders" title="Permalink to this headline">¶</a></h3>
+<p>Sardana defines some standard recorders e.g. the Spock output recorder or the
+SPEC file recorder. From the other hand users may define their custom recorders.
+Sardana provides the following standard recorders (grouped by types):</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>file [*]</dt><dd><ul>
+<li><p>FIO_FileRecorder</p></li>
+<li><p>NXscanH5_FileRecorder</p></li>
+<li><p>SPEC_FileRecorder</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>shared memory [*]</dt><dd><ul>
+<li><p>SPSRecorder</p></li>
+<li><p>ShmRecorder</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>output</dt><dd><ul>
+<li><p>JsonRecorder [*]</p></li>
+<li><p>OutputRecorder</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>[*] Scan Framework provides mechanisms to enable and select this recorders
+using the environment variables.</p>
+<div class="section" id="nxscanh5-filerecorder">
+<span id="sardana-users-scan-data-storage-nxscanh5-filerecorder"></span><h4>NXscanH5_FileRecorder<a class="headerlink" href="#nxscanh5-filerecorder" title="Permalink to this headline">¶</a></h4>
+<p>NXscanH5_FileRecorder is a scan recorder which writes the scan data according
+to the NXscan <a class="reference external" href="http://nexusformat.org">NeXus</a> application definition
+in the <a class="reference external" href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a> file format.</p>
+<p>Sardana scan recorders are instantiated per scan execution and therefore this
+recorder opens and closes the HDF5 file for writing when the scan starts
+and ends respectively. This may cause file locking issues with reading
+applications opened in between the scans. To overcome this issue
+the <em>write session</em> concept, with optional support of SWMR mode,
+was introduced for this particular recorder.</p>
+<p>The write sessions use case scenarios:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Manual session control with macros</dt><dd><p>To start and end the session you can use
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/h5storage.html#sardana.macroserver.macros.h5storage.h5_start_session" title="sardana.macroserver.macros.h5storage.h5_start_session"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h5_start_session</span></code></a> /
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/h5storage.html#sardana.macroserver.macros.h5storage.h5_start_session_path" title="sardana.macroserver.macros.h5storage.h5_start_session_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h5_start_session_path</span></code></a> and
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/h5storage.html#sardana.macroserver.macros.h5storage.h5_end_session" title="sardana.macroserver.macros.h5storage.h5_end_session"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h5_end_session</span></code></a> /
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/h5storage.html#sardana.macroserver.macros.h5storage.h5_end_session_path" title="sardana.macroserver.macros.h5storage.h5_end_session_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h5_end_session_path</span></code></a> macros.
+You can list the active sessions with
+<a class="reference internal" href="../devel/api/sardana/macroserver/macros/h5storage.html#sardana.macroserver.macros.h5storage.h5_ls_session" title="sardana.macroserver.macros.h5storage.h5_ls_session"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h5_ls_session</span></code></a> macro.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Programmatic session control with context manager (for macro developers)</dt><dd><p>You can use the <a class="reference internal" href="../devel/api/sardana/macroserver/macros/h5storage.html#sardana.macroserver.macros.h5storage.h5_write_session" title="sardana.macroserver.macros.h5storage.h5_write_session"><code class="xref py py-obj docutils literal notranslate"><span class="pre">h5_write_session</span></code></a>
+context manager to ensure that the write session is only active over a
+specific part of your macro code.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="section" id="scan-snapshots">

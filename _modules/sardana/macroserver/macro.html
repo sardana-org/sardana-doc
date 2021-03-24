@@ -543,7 +543,7 @@
     <span class="k">return</span> <span class="n">new_fn</span>
 
 
-<div class="viewcode-block" id="macro"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.macro">[docs]</a><span class="k">class</span> <span class="nc">macro</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="macro"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/macros/h5storage.html#sardana.macroserver.macro.macro">[docs]</a><span class="k">class</span> <span class="nc">macro</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class designed to decorate a python function to transform it into a</span>
 <span class="sd">    macro. Examples::</span>
 
@@ -1947,6 +1947,13 @@
     <span class="c1"># Handle macro environment</span>
     <span class="c1">#-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>
 
+    <span class="k">def</span> <span class="nf">_getEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">door_name</span> <span class="o">=</span> <span class="n">door_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDoorName</span><span class="p">()</span>
+        <span class="n">macro_name</span> <span class="o">=</span> <span class="n">macro_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">get_env</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="n">macro_name</span><span class="p">,</span>
+                                         <span class="n">door_name</span><span class="o">=</span><span class="n">door_name</span><span class="p">)</span>
+
 <div class="viewcode-block" id="Macro.getEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getEnv">[docs]</a>    <span class="nd">@mAPI</span>
     <span class="k">def</span> <span class="nf">getEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;**Macro API**. Gets the local environment matching the given</span>
@@ -1975,11 +1982,7 @@
 
 <span class="sd">        :return: a :obj:`dict` containing the environment</span>
 <span class="sd">        :rtype: :obj:`dict`&quot;&quot;&quot;</span>
-        <span class="n">door_name</span> <span class="o">=</span> <span class="n">door_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">getDoorName</span><span class="p">()</span>
-        <span class="n">macro_name</span> <span class="o">=</span> <span class="n">macro_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">get_env</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="n">macro_name</span><span class="p">,</span>
-                                         <span class="n">door_name</span><span class="o">=</span><span class="n">door_name</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getEnv</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">macro_name</span><span class="o">=</span><span class="n">macro_name</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="n">door_name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Macro.getGlobalEnv"><a class="viewcode-back" href="../../../devel/api/api_macro.html#sardana.macroserver.macro.Macro.getGlobalEnv">[docs]</a>    <span class="nd">@mAPI</span>
     <span class="k">def</span> <span class="nf">getGlobalEnv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
