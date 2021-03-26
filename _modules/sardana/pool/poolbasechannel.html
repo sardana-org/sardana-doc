@@ -406,7 +406,7 @@
 <span class="sd">            value</span>
 <span class="sd">        :rtype:</span>
 <span class="sd">            :class:`~sardana.sardanavalue.SardanaValue`&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span><span class="o">.</span><span class="n">read_value</span><span class="p">()[</span><span class="bp">self</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">acquisition</span><span class="o">.</span><span class="n">read_value</span><span class="p">(</span><span class="n">serial</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="bp">self</span><span class="p">]</span></div>
 
 <div class="viewcode-block" id="PoolBaseChannel.put_value"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolbasechannel.html#sardana.pool.poolbasechannel.PoolBaseChannel.put_value">[docs]</a>    <span class="k">def</span> <span class="nf">put_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">AttrQuality</span><span class="o">.</span><span class="n">Valid</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Sets a value.</span>
