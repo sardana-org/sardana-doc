@@ -330,18 +330,26 @@ e.g. Output, Error, Critical</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerResult">
-<code class="sig-name descname"><span class="pre">registerResult</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register for macro result</p>
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getResult">
+<code class="sig-name descname"><span class="pre">getResult</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get macro result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(seq&lt;str&gt;) list of strings with Result messages</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterLog">
-<code class="sig-name descname"><span class="pre">unregisterLog</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterLog" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop registering log messages.</p>
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getLog">
+<code class="sig-name descname"><span class="pre">getLog</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get log messages.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>log_level</strong> – (str) string indicating the log level</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(seq&lt;str&gt;) list of strings with log messages</p>
 </dd>
 </dl>
 </dd></dl>
@@ -359,9 +367,20 @@ this method.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterResult">
-<code class="sig-name descname"><span class="pre">unregisterResult</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unregister macro result.</p>
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterLog">
+<code class="sig-name descname"><span class="pre">unregisterLog</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterLog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop registering log messages.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>log_level</strong> – (str) string indicating the log level</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerResult">
+<code class="sig-name descname"><span class="pre">registerResult</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register for macro result</p>
 </dd></dl>
 
 <dl class="py method">
@@ -377,6 +396,23 @@ infinitely</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterAll">
+<code class="sig-name descname"><span class="pre">unregisterAll</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unregister macro result, all log levels and common buffer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getState">
+<code class="sig-name descname"><span class="pre">getState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getState" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get macro execution state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>(str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerLog">
 <code class="sig-name descname"><span class="pre">registerLog</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerLog" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start registering log messages.</p>
@@ -385,6 +421,12 @@ infinitely</p>
 <dd class="field-odd"><p><strong>log_level</strong> – (str) string indicating the log level</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerAll">
+<code class="sig-name descname"><span class="pre">registerAll</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register for macro result, all log levels and common buffer.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -414,12 +456,6 @@ called.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerAll">
-<code class="sig-name descname"><span class="pre">registerAll</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.registerAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register for macro result, all log levels and common buffer.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getStateBuffer">
 <code class="sig-name descname"><span class="pre">getStateBuffer</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getStateBuffer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get buffer (history) of macro execution states.</p>
@@ -431,20 +467,27 @@ called.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.createCommonBuffer">
-<code class="sig-name descname"><span class="pre">createCommonBuffer</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.createCommonBuffer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a common buffer, where all the registered logs will be stored.</p>
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterResult">
+<code class="sig-name descname"><span class="pre">unregisterResult</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unregister macro result.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getState">
-<code class="sig-name descname"><span class="pre">getState</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getState" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get macro execution state.</p>
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getExceptionStr">
+<code class="sig-name descname"><span class="pre">getExceptionStr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getExceptionStr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get macro exception type representation (None if the macro state
+is not exception).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>(str)</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.createCommonBuffer">
+<code class="sig-name descname"><span class="pre">createCommonBuffer</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.createCommonBuffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a common buffer, where all the registered logs will be stored.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -466,53 +509,10 @@ called.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getResult">
-<code class="sig-name descname"><span class="pre">getResult</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getResult" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get macro result.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(seq&lt;str&gt;) list of strings with Result messages</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py attribute">
 <dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.log_levels">
 <code class="sig-name descname"><span class="pre">log_levels</span></code><em class="property"> <span class="pre">=</span> <span class="pre">['debug',</span> <span class="pre">'output',</span> <span class="pre">'info',</span> <span class="pre">'warning',</span> <span class="pre">'critical',</span> <span class="pre">'error']</span></em><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.log_levels" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getLog">
-<code class="sig-name descname"><span class="pre">getLog</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_level</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getLog" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get log messages.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>log_level</strong> – (str) string indicating the log level</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>(seq&lt;str&gt;) list of strings with log messages</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getExceptionStr">
-<code class="sig-name descname"><span class="pre">getExceptionStr</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.getExceptionStr" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get macro exception type representation (None if the macro state
-is not exception).</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>(str)</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterAll">
-<code class="sig-name descname"><span class="pre">unregisterAll</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.tango.macroserver.test.macroexecutor.TangoMacroExecutor.unregisterAll" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unregister macro result, all log levels and common buffer.</p>
-</dd></dl>
 
 </dd></dl>
 
