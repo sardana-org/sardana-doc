@@ -412,15 +412,17 @@
         <span class="n">is_TypeList_allowed</span> <span class="o">=</span> <span class="n">is_Elements_allowed</span>
 
 <div class="viewcode-block" id="MacroServer.GetMacroInfo"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/macroserver/MacroServer.html#sardana.tango.macroserver.MacroServer.MacroServer.GetMacroInfo">[docs]</a>    <span class="k">def</span> <span class="nf">GetMacroInfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_names</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;GetMacroInfo(list&lt;string&gt; macro_names):</span>
+        <span class="sd">&quot;&quot;&quot;Get macro information</span>
 
-<span class="sd">           Returns a list of string containing macro information.</span>
-<span class="sd">           Each string is a JSON encoded.</span>
+<span class="sd">       Returns a list of strings containing macro information.</span>
+<span class="sd">       Each string is a JSON encoded.</span>
 
-<span class="sd">           Params:</span>
-<span class="sd">               - macro_name: a list of strings with the macro(s) name(s)</span>
-<span class="sd">           Returns:</span>
-<span class="sd">               - a list of string containing macro information.</span>
+<span class="sd">       Args:</span>
+<span class="sd">           macro_names (list(str)): macro(s) name(s)</span>
+
+<span class="sd">       Returns:</span>
+<span class="sd">           list(str): macro(s) information</span>
+
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">macro_server</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span>
         <span class="n">codec</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span><span class="o">.</span><span class="n">getCodec</span><span class="p">(</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
