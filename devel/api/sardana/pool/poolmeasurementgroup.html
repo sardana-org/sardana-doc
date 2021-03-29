@@ -834,6 +834,36 @@ enabled/disabled:</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="sardana.pool.poolmeasurementgroup.MeasurementConfiguration.get_timerable_channels">
+<code class="sig-name descname"><span class="pre">get_timerable_channels</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">acq_synch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">enabled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#MeasurementConfiguration.get_timerable_channels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.get_timerable_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return timerable channels.</p>
+<p>Allow to filter channels based on acquisition synchronization or
+whether these are enabled/disabled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>acq_synch</strong> (<a class="reference internal" href="pooldefs.html#sardana.pool.pooldefs.AcqSynch" title="sardana.pool.pooldefs.AcqSynch"><code class="xref py py-class docutils literal notranslate"><span class="pre">AcqSynch</span></code></a>) – (optional) filter controller based on acquisition
+synchronization</p></li>
+<li><p><strong>enabled</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bool</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>) – <p>(optional) filter controllers whether these are
+enabled/disabled:</p>
+<ul>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> - enabled only</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#False" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">False</span></code></a> - disabled only</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a> - all</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>timerable channels that fulfils the filtering criteria</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list&lt;<a class="reference internal" href="#sardana.pool.poolmeasurementgroup.ChannelConfiguration" title="sardana.pool.poolmeasurementgroup.ChannelConfiguration"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChannelConfiguration</span></code></a>&gt;  # noqa</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="sardana.pool.poolmeasurementgroup.MeasurementConfiguration.get_zerod_ctrls">
 <code class="sig-name descname"><span class="pre">get_zerod_ctrls</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enabled</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#MeasurementConfiguration.get_zerod_ctrls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.get_zerod_ctrls" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return 0D controllers.</p>
@@ -950,8 +980,9 @@ enabled/disabled:</p>
 <code class="sig-name descname"><span class="pre">set_configuration_from_user</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cfg</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolmeasurementgroup.html#MeasurementConfiguration.set_configuration_from_user"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolmeasurementgroup.MeasurementConfiguration.set_configuration_from_user" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set measurement configuration from serializable data structure.</p>
 <p>Setting of the configuration includes the validation process. Setting
-of invalid configuration raises an exception hence it is not necessary
-that the client application does the validation.</p>
+of invalid configuration raises an exception and leaves the object
+as it was before the setting process. Thanks to that it is not
+necessary that the client application does the validation.</p>
 <p>The configuration parameters for given channels/controllers may differ
 depending on their types e.g. 0D channel does not support timer
 parameter while C/T does.</p>
