@@ -534,23 +534,23 @@ implementation of all other start methods is optional and their default
 implementation does nothing (<a class="reference internal" href="../api/sardana/pool/controller.html#sardana.pool.controller.Startable.PreStartOne" title="sardana.pool.controller.Startable.PreStartOne"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PreStartOne()</span></code></a>
 actually returns <code class="docutils literal notranslate"><span class="pre">True</span></code>).</p>
 <p>So, actually, the algorithm for counter acquisition start in sardana is:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">FOR</span><span class="o">/</span> <span class="n">Each</span> <span class="n">controller</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">implied</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">acquisition</span>
-    <span class="o">-</span> <span class="n">Call</span> <span class="n">PreStartAll</span><span class="p">()</span>
-<span class="o">/</span><span class="n">END</span> <span class="n">FOR</span><span class="o">/</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/FOR/ Each controller(s) implied in the acquisition
+    - Call PreStartAll()
+/END FOR/
 
-<span class="o">/</span><span class="n">FOR</span><span class="o">/</span> <span class="n">Each</span> <span class="n">controller</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">implied</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">acquisition</span>
-    <span class="o">/</span><span class="n">FOR</span><span class="o">/</span> <span class="n">Each</span> <span class="n">counter</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">implied</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">acquisition</span>
-        <span class="o">-</span> <span class="n">ret</span> <span class="o">=</span> <span class="n">PreStartOne</span><span class="p">(</span><span class="n">counter</span> <span class="n">to</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">new</span> <span class="n">position</span><span class="p">)</span>
-        <span class="o">-</span> <span class="o">/</span><span class="n">IF</span><span class="o">/</span> <span class="n">ret</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">true</span>
-            <span class="o">/</span><span class="n">RAISE</span><span class="o">/</span> <span class="n">Cannot</span> <span class="n">start</span><span class="o">.</span> <span class="n">Counter</span> <span class="n">PreStartOne</span> <span class="n">returns</span> <span class="kc">False</span>
-        <span class="o">-</span> <span class="o">/</span><span class="n">END</span> <span class="n">IF</span><span class="o">/</span>
-        <span class="o">-</span> <span class="n">Call</span> <span class="n">StartOne</span><span class="p">(</span><span class="n">counter</span> <span class="n">to</span> <span class="n">acquire</span><span class="p">,</span> <span class="n">new</span> <span class="n">position</span><span class="p">)</span>
-    <span class="o">/</span><span class="n">END</span> <span class="n">FOR</span><span class="o">/</span>
-<span class="o">/</span><span class="n">END</span> <span class="n">FOR</span><span class="o">/</span>
+/FOR/ Each controller(s) implied in the acquisition
+    /FOR/ Each counter(s) implied in the acquisition
+        - ret = PreStartOne(counter to acquire, new position)
+        - /IF/ ret is not true
+            /RAISE/ Cannot start. Counter PreStartOne returns False
+        - /END IF/
+        - Call StartOne(counter to acquire, new position)
+    /END FOR/
+/END FOR/
 
-<span class="o">/</span><span class="n">FOR</span><span class="o">/</span> <span class="n">Each</span> <span class="n">controller</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">implied</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">acquisition</span>
-    <span class="o">-</span> <span class="n">Call</span> <span class="n">StartAll</span><span class="p">()</span>
-<span class="o">/</span><span class="n">END</span> <span class="n">FOR</span><span class="o">/</span>
+/FOR/ Each controller(s) implied in the acquisition
+    - Call StartAll()
+/END FOR/
 </pre></div>
 </div>
 <p>The controllers over which we iterate in the above pseudo code are organized
