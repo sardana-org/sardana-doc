@@ -213,7 +213,7 @@
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="kn">import</span> <span class="n">py2_round</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">iMacro</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Hookable</span><span class="p">,</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">iMacro</span><span class="p">,</span> <span class="n">Type</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.macros.scan</span> <span class="kn">import</span> <span class="n">aNscan</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">UnknownEnv</span>
 
@@ -285,10 +285,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">v</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">angle_device_names</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">motor</span> <span class="ow">in</span> <span class="n">motor_list</span><span class="p">:</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">motor</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">motor_list</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">angle_device_names</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">angle_names</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">motor</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
 
     <span class="c1"># TODO: it should not be necessary to implement on_stop methods in the</span>
     <span class="c1"># macros in order to stop the moveables. Macro API should provide this kind</span>
@@ -362,13 +361,14 @@
         <span class="k">if</span> <span class="n">mat</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">regx</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">repl</span><span class="p">,</span> <span class="n">ch</span><span class="p">)</span>
 
-<div class="viewcode-block" id="br"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.br">[docs]</a><span class="k">class</span> <span class="nc">br</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
+<div class="viewcode-block" id="br"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.br">[docs]</a><span class="k">class</span> <span class="nc">br</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Move the diffractometer to the reciprocal space coordinates given by</span>
 <span class="sd">    H, K and L.</span>
 <span class="sd">    If a fourth parameter is given, the combination of angles to be set is</span>
 <span class="sd">    the correspondig to the given index. The index of the</span>
 <span class="sd">    angles combinations are then changed.&quot;&quot;&quot;</span>
 
+    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-move&#39;</span><span class="p">,</span> <span class="s1">&#39;post-move&#39;</span><span class="p">)}</span>
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="s1">&#39;H&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;H value&quot;</span><span class="p">],</span>
         <span class="p">[</span><span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;K value&quot;</span><span class="p">],</span>
@@ -381,7 +381,10 @@
     <span class="p">]</span>
 
 <div class="viewcode-block" id="br.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.br.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">,</span> <span class="n">FlagNotBlocking</span><span class="p">,</span> <span class="n">FlagPrinting</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">motors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">motor_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle_device_names</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">motors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getMotor</span><span class="p">(</span><span class="n">motor_name</span><span class="p">))</span>     </div>
 
 <div class="viewcode-block" id="br.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.br.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">,</span> <span class="n">FlagNotBlocking</span><span class="p">,</span> <span class="n">FlagPrinting</span><span class="p">):</span>
         <span class="n">h_idx</span> <span class="o">=</span> <span class="mi">0</span>
@@ -424,7 +427,9 @@
                 <span class="n">cmd</span> <span class="o">=</span> <span class="n">cmd</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">FlagPrinting</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">cmd</span> <span class="o">=</span> <span class="s2">&quot;u&quot;</span> <span class="o">+</span> <span class="n">cmd</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">mv</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">createMacro</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+            <span class="n">mv</span><span class="o">.</span><span class="n">_setHooks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">mv</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">angle</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">angle_names</span><span class="p">,</span> <span class="n">angles_list</span><span class="p">):</span>
                 <span class="n">angle_dev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">angle_device_names</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
@@ -434,11 +439,11 @@
                           <span class="n">hkl_values</span><span class="p">[</span><span class="n">l_idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">diffrac</span><span class="o">.</span><span class="n">WaveLength</span><span class="p">])</span></div></div>
 
 
-<div class="viewcode-block" id="ubr"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ubr">[docs]</a><span class="k">class</span> <span class="nc">ubr</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">):</span>
+<div class="viewcode-block" id="ubr"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ubr">[docs]</a><span class="k">class</span> <span class="nc">ubr</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">_diffrac</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Move the diffractometer to the reciprocal space coordinates given by</span>
 <span class="sd">    H, K and L und update.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-
+    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-move&#39;</span><span class="p">,</span> <span class="s1">&#39;post-move&#39;</span><span class="p">)}</span>
     <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">[</span><span class="s2">&quot;hh&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="s2">&quot;Not set&quot;</span><span class="p">,</span> <span class="s2">&quot;H position&quot;</span><span class="p">],</span>
         <span class="p">[</span><span class="s2">&quot;kk&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">String</span><span class="p">,</span> <span class="s2">&quot;Not set&quot;</span><span class="p">,</span> <span class="s2">&quot;K position&quot;</span><span class="p">],</span>
@@ -447,11 +452,16 @@
     <span class="p">]</span>
 
 <div class="viewcode-block" id="ubr.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ubr.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">):</span>
-        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
+        <span class="n">_diffrac</span><span class="o">.</span><span class="n">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">motors</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">motor_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle_device_names</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">motors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getMotor</span><span class="p">(</span><span class="n">motor_name</span><span class="p">))</span>            </div>
 
 <div class="viewcode-block" id="ubr.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/hkl.html#sardana.macroserver.macros.hkl.ubr.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">ll</span> <span class="o">!=</span> <span class="s2">&quot;Not set&quot;</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">execMacro</span><span class="p">(</span><span class="s2">&quot;br&quot;</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">br</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prepareMacro</span><span class="p">(</span><span class="s2">&quot;br&quot;</span><span class="p">,</span> <span class="n">hh</span><span class="p">,</span> <span class="n">kk</span><span class="p">,</span> <span class="n">ll</span><span class="p">,</span> <span class="n">AnglesIndex</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">br</span><span class="o">.</span><span class="n">_setHooks</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hooks</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runMacro</span><span class="p">(</span><span class="n">br</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="s2">&quot;usage:  ubr H K L [Trajectory]&quot;</span><span class="p">)</span></div></div>
 
