@@ -267,7 +267,7 @@
         <span class="k">if</span> <span class="n">attr_conf</span><span class="o">.</span><span class="n">data_format</span> <span class="o">==</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">AttrDataFormat</span><span class="o">.</span><span class="n">SCALAR</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[]</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">value</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">channel</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">rvalue</span><span class="o">.</span><span class="n">magnitude</span>
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="p">(</span><span class="n">attr_conf</span><span class="o">.</span><span class="n">max_dim_x</span><span class="p">,</span>
                                 <span class="n">attr_conf</span><span class="o">.</span><span class="n">max_dim_y</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
