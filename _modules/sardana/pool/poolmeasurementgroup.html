@@ -201,19 +201,19 @@
 <span class="kn">import</span> <span class="nn">weakref</span>
 
 
-<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="kn">import</span> <span class="n">TangoAttributeNameValidator</span>
+<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoAttributeNameValidator</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_EXP_CHANNEL_ELEMENTS</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="kn">import</span> <span class="n">EventType</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.pooldefs</span> <span class="kn">import</span> <span class="n">AcqMode</span><span class="p">,</span> <span class="n">SynchParam</span><span class="p">,</span> <span class="n">AcqSynch</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_EXP_CHANNEL_ELEMENTS</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="k">import</span> <span class="n">EventType</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.pooldefs</span> <span class="k">import</span> <span class="n">AcqMode</span><span class="p">,</span> <span class="n">SynchParam</span><span class="p">,</span> <span class="n">AcqSynch</span><span class="p">,</span> \
     <span class="n">SynchDomain</span><span class="p">,</span> <span class="n">AcqSynchType</span>
 
-<span class="kn">from</span> <span class="nn">sardana.pool.poolgroupelement</span> <span class="kn">import</span> <span class="n">PoolGroupElement</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolacquisition</span> <span class="kn">import</span> <span class="n">PoolAcquisition</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolsynchronization</span> <span class="kn">import</span> <span class="n">SynchDescription</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolexternal</span> <span class="kn">import</span> <span class="n">PoolExternalObject</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolgroupelement</span> <span class="k">import</span> <span class="n">PoolGroupElement</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolacquisition</span> <span class="k">import</span> <span class="n">PoolAcquisition</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolsynchronization</span> <span class="k">import</span> <span class="n">SynchDescription</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolexternal</span> <span class="k">import</span> <span class="n">PoolExternalObject</span>
 
-<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="kn">import</span> <span class="n">PlotType</span><span class="p">,</span> <span class="n">Normalization</span>
+<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="k">import</span> <span class="n">PlotType</span><span class="p">,</span> <span class="n">Normalization</span>
 
 
 <span class="c1"># ----------------------------------------------</span>
@@ -275,7 +275,7 @@
     <span class="n">full_name</span> <span class="o">=</span> <span class="n">name</span>
     <span class="c1"># try to use Taurus 4 to retrieve FQDN</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="kn">import</span> <span class="n">TangoDeviceNameValidator</span>
+        <span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoDeviceNameValidator</span>
         <span class="n">full_name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">TangoDeviceNameValidator</span><span class="p">()</span><span class="o">.</span><span class="n">getNames</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
     <span class="c1"># if Taurus3 in use just continue</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
@@ -338,7 +338,7 @@
 <span class="sd">        deemed necessary by the core developers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Construct a wrapper around the element</span>
 
 <span class="sd">        :param element: element to wrap</span>
@@ -352,7 +352,7 @@
         <span class="k">if</span> <span class="n">attrs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">attrs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ConfigurationItem.get_element"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.ConfigurationItem.get_element">[docs]</a>    <span class="k">def</span> <span class="nf">get_element</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -381,7 +381,7 @@
 <span class="sd">        deemed necessary by the core developers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">ConfigurationItem</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="p">[]</span>
@@ -512,7 +512,7 @@
 <span class="sd">        deemed necessary by the core developers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">ControllerConfiguration</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">full_name</span> <span class="o">=</span> <span class="n">element</span></div>
 
@@ -547,7 +547,7 @@
 <span class="sd">        deemed necessary by the core developers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">ConfigurationItem</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="kc">False</span></div>
 
@@ -624,7 +624,7 @@
 
     <span class="n">DFT_DESC</span> <span class="o">=</span> <span class="s1">&#39;General purpose measurement configuration&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Initialize measurement configuration object</span>
 
 <span class="sd">        :param parent: (optional) object that this measurement configuration</span>
@@ -1183,7 +1183,7 @@
 
 <div class="viewcode-block" id="PoolMeasurementGroup"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup">[docs]</a><span class="k">class</span> <span class="nc">PoolMeasurementGroup</span><span class="p">(</span><span class="n">PoolGroupElement</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_state_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_monitor_count</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_nb_starts</span> <span class="o">=</span> <span class="mi">1</span>

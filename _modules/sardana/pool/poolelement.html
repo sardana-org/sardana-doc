@@ -197,8 +197,8 @@
 
 <span class="kn">import</span> <span class="nn">weakref</span>
 
-<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="kn">import</span> <span class="n">EventType</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolbaseelement</span> <span class="kn">import</span> <span class="n">PoolBaseElement</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="k">import</span> <span class="n">EventType</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolbaseelement</span> <span class="k">import</span> <span class="n">PoolBaseElement</span>
 
 
 <div class="viewcode-block" id="PoolElement"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolElement">[docs]</a><span class="k">class</span> <span class="nc">PoolElement</span><span class="p">(</span><span class="n">PoolBaseElement</span><span class="p">):</span>
@@ -206,7 +206,7 @@
 <span class="sd">       Therefore it contains a _ctrl_id and a _axis (the id of the element in</span>
 <span class="sd">       the controller).&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">ctrl</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;ctrl&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">ctrl</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_axis</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;axis&#39;</span><span class="p">)</span>

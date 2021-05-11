@@ -200,14 +200,14 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">posixpath</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">h5py</span>
 
-<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="kn">import</span> <span class="n">is_pure_str</span>
-<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="kn">import</span> <span class="n">PlotType</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.scan.recorder</span> <span class="kn">import</span> <span class="n">BaseFileRecorder</span><span class="p">,</span> <span class="n">SaveModes</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.recorders.h5util</span> <span class="kn">import</span> <span class="n">_h5_file_handler</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">is_pure_str</span>
+<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="k">import</span> <span class="n">PlotType</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.scan.recorder</span> <span class="k">import</span> <span class="n">BaseFileRecorder</span><span class="p">,</span> <span class="n">SaveModes</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.recorders.h5util</span> <span class="k">import</span> <span class="n">_h5_file_handler</span><span class="p">,</span> \
     <span class="n">_open_h5_file</span>
 
 
@@ -242,7 +242,7 @@
                         <span class="s1">&#39;uint64&#39;</span><span class="p">,</span> <span class="n">str_dt</span><span class="p">,</span> <span class="n">byte_dt</span><span class="p">)</span>
     <span class="n">_dataCompressionRank</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">pars</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">macro</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">pars</span><span class="p">):</span>
         <span class="n">BaseFileRecorder</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">pars</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">macro</span> <span class="o">=</span> <span class="n">macro</span>

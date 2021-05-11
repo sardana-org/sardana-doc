@@ -208,31 +208,31 @@
 <span class="kn">import</span> <span class="nn">taurus</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.user</span> <span class="kn">import</span> <span class="n">USER_NAME</span>
-<span class="kn">from</span> <span class="nn">taurus.core.tango</span> <span class="kn">import</span> <span class="n">FROM_TANGO_TO_STR_TYPE</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.enumeration</span> <span class="kn">import</span> <span class="n">Enumeration</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.threadpool</span> <span class="kn">import</span> <span class="n">ThreadPool</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.event</span> <span class="kn">import</span> <span class="n">CallableRef</span>
-<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="kn">import</span> <span class="n">TangoDeviceNameValidator</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.user</span> <span class="k">import</span> <span class="n">USER_NAME</span>
+<span class="kn">from</span> <span class="nn">taurus.core.tango</span> <span class="k">import</span> <span class="n">FROM_TANGO_TO_STR_TYPE</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.enumeration</span> <span class="k">import</span> <span class="n">Enumeration</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.threadpool</span> <span class="k">import</span> <span class="n">ThreadPool</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.event</span> <span class="k">import</span> <span class="n">CallableRef</span>
+<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoDeviceNameValidator</span>
 
-<span class="kn">from</span> <span class="nn">sardana.sardanathreadpool</span> <span class="kn">import</span> <span class="n">OmniWorker</span>
-<span class="kn">from</span> <span class="nn">sardana.util.tree</span> <span class="kn">import</span> <span class="n">BranchNode</span><span class="p">,</span> <span class="n">LeafNode</span><span class="p">,</span> <span class="n">Tree</span>
-<span class="kn">from</span> <span class="nn">sardana.util.motion</span> <span class="kn">import</span> <span class="n">Motor</span> <span class="k">as</span> <span class="n">VMotor</span>
-<span class="kn">from</span> <span class="nn">sardana.util.motion</span> <span class="kn">import</span> <span class="n">MotionPath</span>
-<span class="kn">from</span> <span class="nn">sardana.util.thread</span> <span class="kn">import</span> <span class="n">CountLatch</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.pooldefs</span> <span class="kn">import</span> <span class="n">SynchDomain</span><span class="p">,</span> <span class="n">SynchParam</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">MacroServerException</span><span class="p">,</span> <span class="n">UnknownEnv</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.sardanathreadpool</span> <span class="k">import</span> <span class="n">OmniWorker</span>
+<span class="kn">from</span> <span class="nn">sardana.util.tree</span> <span class="k">import</span> <span class="n">BranchNode</span><span class="p">,</span> <span class="n">LeafNode</span><span class="p">,</span> <span class="n">Tree</span>
+<span class="kn">from</span> <span class="nn">sardana.util.motion</span> <span class="k">import</span> <span class="n">Motor</span> <span class="k">as</span> <span class="n">VMotor</span>
+<span class="kn">from</span> <span class="nn">sardana.util.motion</span> <span class="k">import</span> <span class="n">MotionPath</span>
+<span class="kn">from</span> <span class="nn">sardana.util.thread</span> <span class="k">import</span> <span class="n">CountLatch</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.pooldefs</span> <span class="k">import</span> <span class="n">SynchDomain</span><span class="p">,</span> <span class="n">SynchParam</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">MacroServerException</span><span class="p">,</span> <span class="n">UnknownEnv</span><span class="p">,</span> \
     <span class="n">InterruptException</span><span class="p">,</span> <span class="n">StopException</span><span class="p">,</span> <span class="n">AbortException</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="kn">import</span> <span class="n">Type</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.scan.scandata</span> <span class="kn">import</span> <span class="n">ColumnDesc</span><span class="p">,</span> <span class="n">MoveableDesc</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="k">import</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.scan.scandata</span> <span class="k">import</span> <span class="n">ColumnDesc</span><span class="p">,</span> <span class="n">MoveableDesc</span><span class="p">,</span> \
     <span class="n">ScanFactory</span><span class="p">,</span> <span class="n">ScanDataEnvironment</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.scan.recorder</span> <span class="kn">import</span> <span class="p">(</span><span class="n">AmbiguousRecorderError</span><span class="p">,</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.scan.recorder</span> <span class="k">import</span> <span class="p">(</span><span class="n">AmbiguousRecorderError</span><span class="p">,</span>
                                                <span class="n">SharedMemoryRecorder</span><span class="p">,</span>
                                                <span class="n">FileRecorder</span><span class="p">)</span>
-<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana.pool</span> <span class="kn">import</span> <span class="n">Ready</span><span class="p">,</span> <span class="n">TwoDExpChannel</span>
+<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana.pool</span> <span class="k">import</span> <span class="n">Ready</span><span class="p">,</span> <span class="n">TwoDExpChannel</span>
 
 
 <span class="c1"># ScanEndStatus enumeration indicates the reason of the scan end.</span>
@@ -276,7 +276,7 @@
 
 <span class="k">class</span> <span class="nc">ExtraData</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Expected keywords are:</span>
 <span class="sd">            - model (str, mandatory): represents data source (ex.: a/b/c/d)</span>
 <span class="sd">            - label (str, mandatory): column label</span>
@@ -315,7 +315,7 @@
 
 <span class="k">class</span> <span class="nc">TangoExtraData</span><span class="p">(</span><span class="n">ExtraData</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_attribute</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">ExtraData</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -444,7 +444,7 @@
     <span class="n">env</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">,</span> <span class="s1">&#39;ExtraColumns&#39;</span> <span class="s1">&#39;ScanDir&#39;</span><span class="p">,</span> <span class="s1">&#39;ScanFile&#39;</span><span class="p">,</span>
            <span class="s1">&#39;ScanRecorder&#39;</span><span class="p">,</span> <span class="s1">&#39;SharedMemory&#39;</span><span class="p">,</span> <span class="s1">&#39;OutputCols&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span> <span class="n">env</span><span class="o">=</span><span class="p">{},</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span> <span class="n">env</span><span class="o">=</span><span class="p">{},</span>
                  <span class="n">constraints</span><span class="o">=</span><span class="p">[],</span> <span class="n">extrainfodesc</span><span class="o">=</span><span class="p">[]):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">macro</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">generator</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1266,7 +1266,7 @@
 <div class="viewcode-block" id="SScan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/scan.html#sardana.macroserver.scan.SScan">[docs]</a><span class="k">class</span> <span class="nc">SScan</span><span class="p">(</span><span class="n">GScan</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Step scan&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span> <span class="n">env</span><span class="o">=</span><span class="p">{},</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span> <span class="n">env</span><span class="o">=</span><span class="p">{},</span>
                  <span class="n">constraints</span><span class="o">=</span><span class="p">[],</span> <span class="n">extrainfodesc</span><span class="o">=</span><span class="p">[]):</span>
         <span class="n">GScan</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">,</span> <span class="n">moveables</span><span class="o">=</span><span class="n">moveables</span><span class="p">,</span>
                        <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
@@ -1452,7 +1452,7 @@
 <div class="viewcode-block" id="CScan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/scan.html#sardana.macroserver.scan.CScan">[docs]</a><span class="k">class</span> <span class="nc">CScan</span><span class="p">(</span><span class="n">GScan</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Continuous scan abstract class. Implements helper methods.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span>
                  <span class="n">env</span><span class="o">=</span><span class="p">{},</span> <span class="n">constraints</span><span class="o">=</span><span class="p">[],</span> <span class="n">extrainfodesc</span><span class="o">=</span><span class="p">[]):</span>
         <span class="n">GScan</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">,</span>
                        <span class="n">moveables</span><span class="o">=</span><span class="n">moveables</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
@@ -1833,7 +1833,7 @@
 <span class="k">class</span> <span class="nc">CSScan</span><span class="p">(</span><span class="n">CScan</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Continuous scan controlled by software&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">waypointGenerator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">periodGenerator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">waypointGenerator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">periodGenerator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span> <span class="n">env</span><span class="o">=</span><span class="p">{},</span> <span class="n">constraints</span><span class="o">=</span><span class="p">[],</span> <span class="n">extrainfodesc</span><span class="o">=</span><span class="p">[]):</span>
         <span class="n">CScan</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">waypointGenerator</span><span class="p">,</span>
                        <span class="n">moveables</span><span class="o">=</span><span class="n">moveables</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
@@ -2190,7 +2190,7 @@
 
 <span class="k">class</span> <span class="nc">CAcquisition</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># protect older versions of Taurus (without the worker_cls argument)</span>
         <span class="c1"># remove it whenever we bump Taurus dependency</span>
         <span class="k">try</span><span class="p">:</span>
@@ -2395,7 +2395,7 @@
 <span class="sd">        deemed necessary by the core developers.</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span> <span class="n">env</span><span class="o">=</span><span class="p">{},</span> <span class="n">constraints</span><span class="o">=</span><span class="p">[],</span> <span class="n">extrainfodesc</span><span class="o">=</span><span class="p">[]):</span>
         <span class="n">CScan</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">,</span>
                        <span class="n">moveables</span><span class="o">=</span><span class="n">moveables</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
@@ -2935,7 +2935,7 @@
 <span class="sd">      description format of the measurement group</span>
 <span class="sd">      - integ_time, nb_points and latency_time (optional) attributes</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">moveables</span><span class="o">=</span><span class="p">[],</span> <span class="n">env</span><span class="o">=</span><span class="p">{},</span> <span class="n">constraints</span><span class="o">=</span><span class="p">[],</span> <span class="n">extrainfodesc</span><span class="o">=</span><span class="p">[]):</span>
         <span class="n">GScan</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro</span><span class="p">,</span> <span class="n">generator</span><span class="o">=</span><span class="n">generator</span><span class="p">,</span>
                        <span class="n">moveables</span><span class="o">=</span><span class="n">moveables</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">,</span> <span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>

@@ -198,17 +198,17 @@
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">ElementType</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="kn">import</span> <span class="n">SardanaAttribute</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolgroupelement</span> <span class="kn">import</span> <span class="n">PoolGroupElement</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolmotion</span> <span class="kn">import</span> <span class="n">PoolMotion</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">ElementType</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="k">import</span> <span class="n">SardanaAttribute</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolgroupelement</span> <span class="k">import</span> <span class="n">PoolGroupElement</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmotion</span> <span class="k">import</span> <span class="n">PoolMotion</span>
 
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">AttributeProxy</span>
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">AttributeProxy</span>
 
 
 <span class="k">class</span> <span class="nc">Position</span><span class="p">(</span><span class="n">SardanaAttribute</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_w_value_map</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Position</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">pos_attr</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">obj</span><span class="o">.</span><span class="n">get_physical_position_attribute_iterator</span><span class="p">():</span>
@@ -285,7 +285,7 @@
 
 <div class="viewcode-block" id="PoolMotorGroup"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmotorgroup.html#sardana.pool.poolmotorgroup.PoolMotorGroup">[docs]</a><span class="k">class</span> <span class="nc">PoolMotorGroup</span><span class="p">(</span><span class="n">PoolGroupElement</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_physical_elements</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_in_start_move</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;elem_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">MotorGroup</span>
@@ -422,7 +422,7 @@
 
             <span class="c1"># TODO: use Sardana attribute configuration and</span>
             <span class="c1">#  get rid of accessing tango - see sardana-org/sardana#663</span>
-            <span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="kn">import</span> <span class="n">_check_attr_range</span>
+            <span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">_check_attr_range</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">_check_attr_range</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="n">new_position</span><span class="p">)</span>
             <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>

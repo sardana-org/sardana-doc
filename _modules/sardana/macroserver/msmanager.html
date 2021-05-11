@@ -195,14 +195,14 @@
 
 <span class="kn">import</span> <span class="nn">weakref</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core</span> <span class="kn">import</span> <span class="n">ManagerState</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core</span> <span class="k">import</span> <span class="n">ManagerState</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
 
 
 <div class="viewcode-block" id="MacroServerManager"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/msmanager.html#sardana.macroserver.msmanager.MacroServerManager">[docs]</a><span class="k">class</span> <span class="nc">MacroServerManager</span><span class="p">(</span><span class="n">Logger</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base Class for macro server managers&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">macro_server</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="n">ManagerState</span><span class="o">.</span><span class="n">UNINITIALIZED</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">macro_server</span><span class="p">)</span>

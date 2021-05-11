@@ -192,16 +192,16 @@
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">PyTango</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="kn">import</span> <span class="n">BaseMacroExecutor</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">sardanacustomsettings</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="n">BaseMacroExecutor</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">sardanacustomsettings</span>
 
 
 <div class="viewcode-block" id="TangoAttrCb"><a class="viewcode-back" href="../../../../../devel/api/sardana/tango/macroserver/test/macroexecutor.html#sardana.tango.macroserver.test.macroexecutor.TangoAttrCb">[docs]</a><span class="k">class</span> <span class="nc">TangoAttrCb</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="sd">&#39;&#39;&#39;An abstract callback class for Tango events&#39;&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tango_macro_executor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tango_macro_executor</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tango_macro_executor</span> <span class="o">=</span> <span class="n">tango_macro_executor</span></div>
 
 
@@ -225,7 +225,7 @@
 <span class="sd">    e.g. Output, Error, Critical</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tango_macro_executor</span><span class="p">,</span> <span class="n">log_name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tango_macro_executor</span><span class="p">,</span> <span class="n">log_name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tango_macro_executor</span> <span class="o">=</span> <span class="n">tango_macro_executor</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_log_name</span> <span class="o">=</span> <span class="n">log_name</span>
 
@@ -292,7 +292,7 @@
 <span class="sd">    Macro executor implemented using Tango communication with the Door device</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">TangoMacroExecutor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">door_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">door_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sardanacustomsettings</span><span class="p">,</span> <span class="s1">&#39;UNITTEST_DOOR_NAME&#39;</span><span class="p">)</span>

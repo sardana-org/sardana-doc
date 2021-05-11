@@ -202,11 +202,11 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core</span> <span class="kn">import</span> <span class="n">ManagerState</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.singleton</span> <span class="kn">import</span> <span class="n">Singleton</span>
+<span class="kn">from</span> <span class="nn">taurus.core</span> <span class="k">import</span> <span class="n">ManagerState</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.singleton</span> <span class="k">import</span> <span class="n">Singleton</span>
 
-<span class="kn">from</span> <span class="nn">.sardanamanager</span> <span class="kn">import</span> <span class="n">SardanaIDManager</span>
+<span class="kn">from</span> <span class="nn">.sardanamanager</span> <span class="k">import</span> <span class="n">SardanaIDManager</span>
 
 <span class="n">_MINIMUM_EXCLUDE</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;sys&#39;</span><span class="p">,</span>
@@ -221,21 +221,21 @@
 
 <span class="k">class</span> <span class="nc">PathContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">path</span>
 
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">orig_path</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">sys</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">+</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span>
 
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">etype</span><span class="p">,</span> <span class="n">evalue</span><span class="p">,</span> <span class="n">etraceback</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">etype</span><span class="p">,</span> <span class="n">evalue</span><span class="p">,</span> <span class="n">etraceback</span><span class="p">):</span>
         <span class="n">sys</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">orig_path</span>
 
 
 <span class="k">class</span> <span class="nc">PathManager</span><span class="p">(</span><span class="n">SardanaIDManager</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">SardanaIDManager</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_orig_path</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_path_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
@@ -297,7 +297,7 @@
 <div class="viewcode-block" id="ModuleManager"><a class="viewcode-back" href="../../devel/api/sardana/sardanamodulemanager.html#sardana.sardanamodulemanager.ModuleManager">[docs]</a><span class="k">class</span> <span class="nc">ModuleManager</span><span class="p">(</span><span class="n">Singleton</span><span class="p">,</span> <span class="n">Logger</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This class handles python module loading/reloading and unloading.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; Initialization. Nothing to be done here for now.&quot;&quot;&quot;</span>
         <span class="k">pass</span>
 

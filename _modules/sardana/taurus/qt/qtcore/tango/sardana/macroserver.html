@@ -196,10 +196,10 @@
            <span class="s2">&quot;MacroServerMessageErrorHandler&quot;</span><span class="p">,</span> <span class="s2">&quot;registerExtensions&quot;</span><span class="p">]</span>
 
 <span class="kn">import</span> <span class="nn">copy</span>
-<span class="kn">from</span> <span class="nn">taurus.core.taurusbasetypes</span> <span class="kn">import</span> <span class="n">TaurusEventType</span>
-<span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="kn">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">compat</span>
+<span class="kn">from</span> <span class="nn">taurus.core.taurusbasetypes</span> <span class="k">import</span> <span class="n">TaurusEventType</span>
+<span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="k">import</span> <span class="n">Qt</span><span class="p">,</span> <span class="n">compat</span>
 
-<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana.macroserver</span> <span class="kn">import</span> <span class="n">BaseMacroServer</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana.macroserver</span> <span class="k">import</span> <span class="n">BaseMacroServer</span><span class="p">,</span> \
     <span class="n">BaseDoor</span>
 
 <span class="n">CHANGE_EVTS</span> <span class="o">=</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Change</span><span class="p">,</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Periodic</span>
@@ -228,7 +228,7 @@
     <span class="n">elementsChanged</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
     <span class="n">environmentChanged</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">qt_parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">qt_parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__wo_kw</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">QObject</span><span class="p">,</span> <span class="n">qt_parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">BaseDoor</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mntgrps_connected</span> <span class="o">=</span> <span class="p">[]</span>
@@ -341,7 +341,7 @@
     <span class="n">macrosUpdated</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">()</span>
     <span class="n">environmentChanged</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">pyqtSignal</span><span class="p">(</span><span class="n">compat</span><span class="o">.</span><span class="n">PY_OBJECT</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">qt_parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">qt_parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__wo_kw</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">QObject</span><span class="p">,</span> <span class="n">qt_parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">BaseMacroServer</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
 
@@ -391,7 +391,7 @@
 <span class="c1"># ugly access to qtgui level: in future find a better way to register error</span>
 <span class="c1"># handlers, maybe in TangoFactory &amp; TaurusManager</span>
 
-<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.panel</span> <span class="kn">import</span> <span class="n">TaurusMessageErrorHandler</span>
+<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.panel</span> <span class="k">import</span> <span class="n">TaurusMessageErrorHandler</span>
 
 
 <span class="k">class</span> <span class="nc">MacroServerMessageErrorHandler</span><span class="p">(</span><span class="n">TaurusMessageErrorHandler</span><span class="p">):</span>

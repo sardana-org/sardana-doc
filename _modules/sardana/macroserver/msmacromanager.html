@@ -205,39 +205,39 @@
 <span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 
-<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">etree</span>
 
 <span class="kn">import</span> <span class="nn">time</span>
 
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">DevFailed</span>
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">DevFailed</span>
 
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">OrderedDict</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
 
-<span class="kn">from</span> <span class="nn">sardana.sardanadefs</span> <span class="kn">import</span> <span class="n">ElementType</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanamodulemanager</span> <span class="kn">import</span> <span class="n">ModuleManager</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaexception</span> <span class="kn">import</span> <span class="n">format_exception_only_str</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="kn">import</span> <span class="n">is_pure_str</span><span class="p">,</span> <span class="n">is_non_str_seq</span><span class="p">,</span> <span class="n">recur_map</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanadefs</span> <span class="k">import</span> <span class="n">ElementType</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanamodulemanager</span> <span class="k">import</span> <span class="n">ModuleManager</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaexception</span> <span class="k">import</span> <span class="n">format_exception_only_str</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">is_pure_str</span><span class="p">,</span> <span class="n">is_non_str_seq</span><span class="p">,</span> <span class="n">recur_map</span>
 
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msmanager</span> <span class="kn">import</span> <span class="n">MacroServerManager</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msmetamacro</span> <span class="kn">import</span> <span class="n">MACRO_TEMPLATE</span><span class="p">,</span> <span class="n">MacroLibrary</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msmanager</span> <span class="k">import</span> <span class="n">MacroServerManager</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msmetamacro</span> <span class="k">import</span> <span class="n">MACRO_TEMPLATE</span><span class="p">,</span> <span class="n">MacroLibrary</span><span class="p">,</span> \
     <span class="n">MacroClass</span><span class="p">,</span> <span class="n">MacroFunction</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="kn">import</span> <span class="n">ParamDecoder</span><span class="p">,</span> <span class="n">FlatParamDecoder</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="k">import</span> <span class="n">ParamDecoder</span><span class="p">,</span> <span class="n">FlatParamDecoder</span><span class="p">,</span> \
     <span class="n">WrongParam</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">MacroFunc</span><span class="p">,</span> <span class="n">ExecMacroHook</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">MacroFunc</span><span class="p">,</span> <span class="n">ExecMacroHook</span><span class="p">,</span> \
     <span class="n">Hookable</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">UnknownMacroLibrary</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">UnknownMacroLibrary</span><span class="p">,</span> \
     <span class="n">LibraryError</span><span class="p">,</span> <span class="n">UnknownMacro</span><span class="p">,</span> <span class="n">MissingEnv</span><span class="p">,</span> <span class="n">AbortException</span><span class="p">,</span> <span class="n">StopException</span><span class="p">,</span> \
     <span class="n">ReleaseException</span><span class="p">,</span> <span class="n">MacroServerException</span><span class="p">,</span> <span class="n">UnknownEnv</span>
-<span class="kn">from</span> <span class="nn">sardana.util.parser</span> <span class="kn">import</span> <span class="n">ParamParser</span>
-<span class="kn">from</span> <span class="nn">sardana.util.thread</span> <span class="kn">import</span> <span class="n">raise_in_thread</span>
+<span class="kn">from</span> <span class="nn">sardana.util.parser</span> <span class="k">import</span> <span class="n">ParamParser</span>
+<span class="kn">from</span> <span class="nn">sardana.util.thread</span> <span class="k">import</span> <span class="n">raise_in_thread</span>
 
 <span class="c1"># These classes are imported from the &quot;client&quot; part of sardana, if finally</span>
 <span class="c1"># both the client and the server side needs them, place them in some</span>
 <span class="c1"># common location</span>
-<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana.macro</span> <span class="kn">import</span> <span class="n">createMacroNode</span>
+<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana.macro</span> <span class="k">import</span> <span class="n">createMacroNode</span>
 
 
 <span class="n">_BASE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
@@ -321,7 +321,7 @@
 
     <span class="n">DEFAULT_MACRO_DIRECTORIES</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_BASE_DIR</span><span class="p">,</span> <span class="s1">&#39;macros&#39;</span><span class="p">),</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">macro_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">macro_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">MacroServerManager</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">macro_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setMacroPath</span><span class="p">(</span><span class="n">macro_path</span><span class="p">)</span>
@@ -1028,7 +1028,7 @@
 
 <span class="k">class</span> <span class="nc">LogMacroFilter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Filter</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">param</span> <span class="o">=</span> <span class="n">param</span>
 
     <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
@@ -1084,7 +1084,7 @@
     <span class="n">DEFAULT_FMT</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%(message)s</span><span class="s2">&quot;</span>
     <span class="n">DEFAULT_MODE</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_obj</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_obj</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">macro_obj</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.LogMacroManager&quot;</span>
         <span class="n">Logger</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_obj</span> <span class="o">=</span> <span class="n">macro_obj</span>
@@ -1102,7 +1102,7 @@
 <span class="sd">        importable warn the user and return None (no filter will be applied).</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">filter_class</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">sardanacustomsettings</span>
+        <span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">sardanacustomsettings</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">log_macro_filter</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sardanacustomsettings</span><span class="p">,</span>
                                        <span class="s2">&quot;LOG_MACRO_FILTER&quot;</span><span class="p">)</span>
@@ -1222,14 +1222,14 @@
 
     <span class="k">class</span> <span class="nc">RunSubXMLHook</span><span class="p">:</span>
 
-        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">xml</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">me</span><span class="p">,</span> <span class="n">xml</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_me</span> <span class="o">=</span> <span class="n">me</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_xml</span> <span class="o">=</span> <span class="n">xml</span>
 
-        <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_me</span><span class="o">.</span><span class="n">_runXMLMacro</span><span class="p">(</span><span class="n">xml</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_xml</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_door</span> <span class="o">=</span> <span class="n">door</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_counter</span> <span class="o">=</span> <span class="mi">0</span>
 

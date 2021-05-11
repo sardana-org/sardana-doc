@@ -197,23 +197,23 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevDouble</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrQuality</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevDouble</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrQuality</span><span class="p">,</span> \
     <span class="n">DevString</span><span class="p">,</span> <span class="n">Except</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">READ_WRITE</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">DebugIt</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">DebugIt</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">SardanaServer</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="kn">import</span> <span class="n">SardanaAttribute</span>
-<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="kn">import</span> <span class="n">to_tango_type_format</span><span class="p">,</span> <span class="n">to_tango_quality</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">SardanaServer</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="k">import</span> <span class="n">SardanaAttribute</span>
+<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">to_tango_type_format</span><span class="p">,</span> <span class="n">to_tango_quality</span><span class="p">,</span> \
     <span class="n">exception_str</span>
 
-<span class="kn">from</span> <span class="nn">sardana.tango.pool.PoolDevice</span> <span class="kn">import</span> <span class="n">PoolTimerableDevice</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.tango.pool.PoolDevice</span> <span class="k">import</span> <span class="n">PoolTimerableDevice</span><span class="p">,</span> \
     <span class="n">PoolTimerableDeviceClass</span>
 
 
 <div class="viewcode-block" id="CTExpChannel"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/CTExpChannel.html#sardana.tango.pool.CTExpChannel.CTExpChannel">[docs]</a><span class="k">class</span> <span class="nc">CTExpChannel</span><span class="p">(</span><span class="n">PoolTimerableDevice</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">PoolTimerableDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_first_read_cache</span> <span class="o">=</span> <span class="kc">False</span>
 

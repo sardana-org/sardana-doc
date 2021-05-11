@@ -197,14 +197,14 @@
 
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">shelve</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">zip_longest</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">zip_longest</span>
 <span class="kn">import</span> <span class="nn">operator</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="kn">import</span> <span class="n">CaselessDict</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
 
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msmanager</span> <span class="kn">import</span> <span class="n">MacroServerManager</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">UnknownEnv</span>
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">sardanacustomsettings</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msmanager</span> <span class="k">import</span> <span class="n">MacroServerManager</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">UnknownEnv</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">sardanacustomsettings</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 
 
@@ -237,7 +237,7 @@
 <span class="sd">    singleton for the entire application.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">environment_db</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">environment_db</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">MacroServerManager</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">environment_db</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setEnvironmentDb</span><span class="p">(</span><span class="n">environment_db</span><span class="p">)</span>

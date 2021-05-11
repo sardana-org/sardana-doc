@@ -197,19 +197,19 @@
 <span class="kn">import</span> <span class="nn">weakref</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">ElementType</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="kn">import</span> <span class="n">EventType</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">ElementType</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="k">import</span> <span class="n">EventType</span>
 
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msbase</span> <span class="kn">import</span> <span class="n">MSObject</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="kn">import</span> <span class="n">Type</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">MacroServerException</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msbase</span> <span class="k">import</span> <span class="n">MSObject</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="k">import</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">MacroServerException</span>
 
 
 <span class="k">class</span> <span class="nc">MacroProxy</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">,</span> <span class="n">macro_meta</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">,</span> <span class="n">macro_meta</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_door</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">door</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_meta</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">macro_meta</span><span class="p">)</span>
 
@@ -221,7 +221,7 @@
     <span class="k">def</span> <span class="nf">macro_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_meta</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">door</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span>
         <span class="n">parent_macro</span> <span class="o">=</span> <span class="n">door</span><span class="o">.</span><span class="n">get_running_macro</span><span class="p">()</span>
         <span class="n">parent_macro</span><span class="o">.</span><span class="n">syncLog</span><span class="p">()</span>
@@ -235,7 +235,7 @@
 
 <span class="k">class</span> <span class="nc">MacroProxyCache</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_door</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">door</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rebuild</span><span class="p">()</span>
 
@@ -253,7 +253,7 @@
 
 <span class="k">class</span> <span class="nc">BaseInputHandler</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_input</span> <span class="o">=</span> <span class="n">raw_input</span>
         <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
@@ -272,7 +272,7 @@
 <div class="viewcode-block" id="MSDoor"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/msdoor.html#sardana.macroserver.msdoor.MSDoor">[docs]</a><span class="k">class</span> <span class="nc">MSDoor</span><span class="p">(</span><span class="n">MSObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Sardana door object&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_status</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="kc">None</span>
@@ -550,7 +550,7 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_executor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">par_str_list</span><span class="p">,</span> <span class="n">asynch</span><span class="o">=</span><span class="n">asynch</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get methods from macro server&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 </pre></div>

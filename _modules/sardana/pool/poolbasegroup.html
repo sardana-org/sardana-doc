@@ -195,16 +195,16 @@
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="kn">import</span> <span class="n">TangoAttributeNameValidator</span>
+<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoAttributeNameValidator</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_PHYSICAL_ELEMENTS</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolexternal</span> <span class="kn">import</span> <span class="n">PoolExternalObject</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolcontainer</span> <span class="kn">import</span> <span class="n">PoolContainer</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_PHYSICAL_ELEMENTS</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolexternal</span> <span class="k">import</span> <span class="n">PoolExternalObject</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolcontainer</span> <span class="k">import</span> <span class="n">PoolContainer</span>
 
 
 <div class="viewcode-block" id="PoolBaseGroup"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolgroupelement.html#sardana.pool.poolgroupelement.PoolBaseGroup">[docs]</a><span class="k">class</span> <span class="nc">PoolBaseGroup</span><span class="p">(</span><span class="n">PoolContainer</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pending</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_user_element_ids</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_user_elements</span> <span class="o">=</span> <span class="kc">None</span>

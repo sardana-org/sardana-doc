@@ -206,29 +206,29 @@
 <span class="kn">import</span> <span class="nn">os.path</span> <span class="k">as</span> <span class="nn">osp</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
-<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">etree</span>
 
 <span class="kn">import</span> <span class="nn">PyTango</span>
 
-<span class="kn">from</span> <span class="nn">taurus</span> <span class="kn">import</span> <span class="n">Device</span><span class="p">,</span> <span class="n">Factory</span>
-<span class="kn">from</span> <span class="nn">taurus.core.taurusmanager</span> <span class="kn">import</span> <span class="n">TaurusManager</span>
-<span class="kn">from</span> <span class="nn">taurus.core.taurusbasetypes</span> <span class="kn">import</span> <span class="n">TaurusEventType</span><span class="p">,</span> <span class="n">TaurusSWDevState</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">taurus</span> <span class="k">import</span> <span class="n">Device</span><span class="p">,</span> <span class="n">Factory</span>
+<span class="kn">from</span> <span class="nn">taurus.core.taurusmanager</span> <span class="k">import</span> <span class="n">TaurusManager</span>
+<span class="kn">from</span> <span class="nn">taurus.core.taurusbasetypes</span> <span class="k">import</span> <span class="n">TaurusEventType</span><span class="p">,</span> <span class="n">TaurusSWDevState</span><span class="p">,</span> \
     <span class="n">TaurusSerializationMode</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core</span> <span class="kn">import</span> <span class="n">TaurusDevState</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="kn">import</span> <span class="n">CaselessDict</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.event</span> <span class="kn">import</span> <span class="n">EventGenerator</span><span class="p">,</span> <span class="n">AttributeEventWait</span>
-<span class="kn">from</span> <span class="nn">taurus.core.tango</span> <span class="kn">import</span> <span class="n">TangoDevice</span>
+<span class="kn">from</span> <span class="nn">taurus.core</span> <span class="k">import</span> <span class="n">TaurusDevState</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.event</span> <span class="k">import</span> <span class="n">EventGenerator</span><span class="p">,</span> <span class="n">AttributeEventWait</span>
+<span class="kn">from</span> <span class="nn">taurus.core.tango</span> <span class="k">import</span> <span class="n">TangoDevice</span>
 
 
-<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="kn">import</span> <span class="n">recur_map</span>
-<span class="kn">from</span> <span class="nn">.macro</span> <span class="kn">import</span> <span class="n">MacroInfo</span><span class="p">,</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">MacroNode</span><span class="p">,</span> <span class="n">ParamFactory</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">recur_map</span>
+<span class="kn">from</span> <span class="nn">.macro</span> <span class="k">import</span> <span class="n">MacroInfo</span><span class="p">,</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">MacroNode</span><span class="p">,</span> <span class="n">ParamFactory</span><span class="p">,</span> \
     <span class="n">SingleParamNode</span><span class="p">,</span> <span class="n">ParamNode</span><span class="p">,</span> <span class="n">createMacroNode</span>
-<span class="kn">from</span> <span class="nn">.sardana</span> <span class="kn">import</span> <span class="n">BaseSardanaElementContainer</span><span class="p">,</span> <span class="n">BaseSardanaElement</span>
-<span class="kn">from</span> <span class="nn">.pool</span> <span class="kn">import</span> <span class="n">getChannelConfigs</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">zip_longest</span>
+<span class="kn">from</span> <span class="nn">.sardana</span> <span class="k">import</span> <span class="n">BaseSardanaElementContainer</span><span class="p">,</span> <span class="n">BaseSardanaElement</span>
+<span class="kn">from</span> <span class="nn">.pool</span> <span class="k">import</span> <span class="n">getChannelConfigs</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">zip_longest</span>
 
 <span class="n">CHANGE_EVT_TYPES</span> <span class="o">=</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Change</span><span class="p">,</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Periodic</span>
 
@@ -250,7 +250,7 @@
 
 <span class="k">class</span> <span class="nc">Attr</span><span class="p">(</span><span class="n">Logger</span><span class="p">,</span> <span class="n">EventGenerator</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj_class</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj_class</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_dev</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">dev</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_obj_class</span> <span class="o">=</span> <span class="n">obj_class</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_attr</span> <span class="o">=</span> <span class="n">attr</span>
@@ -272,13 +272,13 @@
     <span class="k">def</span> <span class="nf">getTaurusAttribute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attr</span>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attr</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">LogAttr</span><span class="p">(</span><span class="n">Attr</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj_class</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">max_buff_size</span><span class="o">=</span><span class="mi">4096</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj_class</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">max_buff_size</span><span class="o">=</span><span class="mi">4096</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_log_buffer</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_max_buff_size</span> <span class="o">=</span> <span class="n">max_buff_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">Attr</span><span class="p">,</span> <span class="n">dev</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">obj_class</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
@@ -303,7 +303,7 @@
 
 <span class="k">class</span> <span class="nc">BaseInputHandler</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_input</span> <span class="o">=</span> <span class="n">raw_input</span>
         <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
@@ -342,7 +342,7 @@
 
 <span class="k">class</span> <span class="nc">ExperimentConfiguration</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_door</span> <span class="o">=</span> <span class="n">door</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
@@ -385,7 +385,7 @@
                 <span class="n">mnt_grp_configs</span><span class="p">[</span><span class="n">mnt_grp</span><span class="p">]</span> <span class="o">=</span> \
                     <span class="n">codec</span><span class="o">.</span><span class="n">decode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="n">reply</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">))[</span><span class="mi">1</span><span class="p">]</span>
             <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">warning</span>
+                <span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">warning</span>
                 <span class="n">warning</span><span class="p">(</span><span class="s1">&#39;Cannot load Measurement group &quot;</span><span class="si">%s</span><span class="s1">&quot;: </span><span class="si">%s</span><span class="s1">&#39;</span><span class="p">,</span>
                         <span class="nb">repr</span><span class="p">(</span><span class="n">mnt_grp</span><span class="p">),</span> <span class="nb">repr</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">ret</span>
@@ -489,7 +489,7 @@
     <span class="c1"># 0.1 s was not enough on Windows (see sardana-ord/sardana#725)</span>
     <span class="n">InteractiveTimeout</span> <span class="o">=</span> <span class="o">.</span><span class="mi">3</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_log_attr</span> <span class="o">=</span> <span class="n">CaselessDict</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_block_lines</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_in_block</span> <span class="o">=</span> <span class="kc">False</span>
@@ -959,7 +959,7 @@
 
 <span class="k">class</span> <span class="nc">MacroPath</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ms</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ms</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ms</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">ms</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
 
@@ -972,30 +972,30 @@
 
 <span class="k">class</span> <span class="nc">Environment</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">):</span>
         <span class="nb">dict</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_macro_server_&quot;</span><span class="p">,</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">macro_server</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="n">ms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">ms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ms</span><span class="o">.</span><span class="n">putEnvironment</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="fm">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="n">ms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">ms</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">ms</span><span class="o">.</span><span class="n">removeEnvironment</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">[</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)]</span>
 
 
 <div class="viewcode-block" id="BaseMacroServer"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/macroserver.html#sardana.taurus.core.tango.sardana.macroserver.BaseMacroServer">[docs]</a><span class="k">class</span> <span class="nc">BaseMacroServer</span><span class="p">(</span><span class="n">MacroServerDevice</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class encapsulating Macro Server device functionality.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span> <span class="o">=</span> <span class="n">BaseSardanaElementContainer</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">MacroServerDevice</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>

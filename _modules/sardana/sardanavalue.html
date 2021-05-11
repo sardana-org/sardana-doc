@@ -202,7 +202,7 @@
 
 <div class="viewcode-block" id="SardanaValue"><a class="viewcode-back" href="../../devel/api/sardana/sardanavalue.html#sardana.sardanavalue.SardanaValue">[docs]</a><span class="k">class</span> <span class="nc">SardanaValue</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">timestamp</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dformat</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">error</span> <span class="o">=</span> <span class="n">exc_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -213,7 +213,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dformat</span> <span class="o">=</span> <span class="n">dformat</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">v</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">error</span><span class="p">:</span>
             <span class="n">v</span> <span class="o">=</span> <span class="s2">&quot;&lt;Error&gt;&quot;</span>
@@ -221,7 +221,7 @@
             <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">value</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{0.__class__.__name__}</span><span class="s2">(value=</span><span class="si">{1}</span><span class="s2">, timestamp=</span><span class="si">{0.timestamp}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 </pre></div>
 

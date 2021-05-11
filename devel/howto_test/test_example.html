@@ -218,7 +218,7 @@ we import testRun and testFail to be used as decorators:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for sqrt macro&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="kn">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
 </pre></div>
 </div>
 <p>Now we will write a basic test, that will check the execution of the sqrtmac for
@@ -230,7 +230,7 @@ used for executing the macro:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for a macro calculating the sqrt of an input number&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="kn">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
 
 
 <span class="k">class</span> <span class="nc">sqrtmacTest</span><span class="p">(</span><span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
@@ -265,7 +265,7 @@ the following test will be executed:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for a macro calculating the sqrt of an input number&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="kn">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
 
 
 <span class="nd">@testRun</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;9&#39;</span><span class="p">])</span>
@@ -297,7 +297,7 @@ follows:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for a macro calculating the sqrt of an input number&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">unittest</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="kn">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="n">RunMacroTestCase</span><span class="p">,</span> <span class="n">testRun</span><span class="p">,</span> <span class="n">testFail</span>
 
 <span class="nd">@testRun</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;9&#39;</span><span class="p">])</span>
 <span class="nd">@testRun</span><span class="p">(</span><span class="n">macro_params</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;2.25&#39;</span><span class="p">],</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;in&#39;</span><span class="p">:</span><span class="mf">2.25</span><span class="p">,</span><span class="s1">&#39;out&#39;</span><span class="p">:</span><span class="mf">1.5</span><span class="p">},</span> <span class="n">wait_timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
@@ -329,7 +329,7 @@ the macro and check if it is developed according to the specifications.</p>
 of an input number. Then we will execute the test and analyze the results. The
 first implementation looks like this:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="k">class</span> <span class="nc">sqrtmac</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Macro sqrtmac&quot;&quot;&quot;</span>
@@ -399,7 +399,7 @@ executed.</p>
 <p>The second step will be to set the input and output data of the macro and
 execute the test again:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="k">class</span> <span class="nc">sqrtmac</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Macro sqrtmac&quot;&quot;&quot;</span>
@@ -450,7 +450,7 @@ account the Exception that should be raised if we enter a negative number
 as input parameter. For coding this macro test-driven development has been
 used:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">Macro</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="k">class</span> <span class="nc">sqrtmac</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Macro sqrtmac&quot;&quot;&quot;</span>

@@ -195,16 +195,16 @@
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
-<span class="kn">from</span> <span class="nn">sardana.sardanadefs</span> <span class="kn">import</span> <span class="n">AttrQuality</span><span class="p">,</span> <span class="n">ElementType</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="kn">import</span> <span class="n">SardanaAttribute</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanabuffer</span> <span class="kn">import</span> <span class="n">SardanaBuffer</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolelement</span> <span class="kn">import</span> <span class="n">PoolElement</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolacquisition</span> <span class="kn">import</span> <span class="n">PoolAcquisitionSoftware</span><span class="p">,</span>\
+<span class="kn">from</span> <span class="nn">sardana.sardanadefs</span> <span class="k">import</span> <span class="n">AttrQuality</span><span class="p">,</span> <span class="n">ElementType</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="k">import</span> <span class="n">SardanaAttribute</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanabuffer</span> <span class="k">import</span> <span class="n">SardanaBuffer</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolelement</span> <span class="k">import</span> <span class="n">PoolElement</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolacquisition</span> <span class="k">import</span> <span class="n">PoolAcquisitionSoftware</span><span class="p">,</span>\
     <span class="n">get_timerable_items</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolmeasurementgroup</span> <span class="kn">import</span> <span class="n">ChannelConfiguration</span><span class="p">,</span>\
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmeasurementgroup</span> <span class="k">import</span> <span class="n">ChannelConfiguration</span><span class="p">,</span>\
     <span class="n">ControllerConfiguration</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="kn">import</span> <span class="n">EventType</span>
-<span class="kn">from</span> <span class="nn">sardana.pool</span> <span class="kn">import</span> <span class="n">AcqSynch</span><span class="p">,</span> <span class="n">AcqMode</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="k">import</span> <span class="n">EventType</span>
+<span class="kn">from</span> <span class="nn">sardana.pool</span> <span class="k">import</span> <span class="n">AcqSynch</span><span class="p">,</span> <span class="n">AcqMode</span>
 
 <span class="k">class</span> <span class="nc">ValueBuffer</span><span class="p">(</span><span class="n">SardanaBuffer</span><span class="p">):</span>
 
@@ -225,7 +225,7 @@
 
 <span class="k">class</span> <span class="nc">Value</span><span class="p">(</span><span class="n">SardanaAttribute</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Value</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cache</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">propagate</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
@@ -269,7 +269,7 @@
     <span class="n">ValueRefBufferClass</span> <span class="o">=</span> <span class="n">ValueRefBuffer</span>
     <span class="n">AcquisitionClass</span> <span class="o">=</span> <span class="n">PoolAcquisitionSoftware</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">PoolElement</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ValueAttributeClass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">listeners</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">on_change</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_value_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ValueBufferClass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
@@ -821,7 +821,7 @@
         <span class="c1"># reconsider it whenever backwards compatibility with reading the value</span>
         <span class="c1"># is about to be removed</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="kn">import</span> <span class="n">MaxDimSize</span>
+            <span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="k">import</span> <span class="n">MaxDimSize</span>
             <span class="n">controller</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">controller</span>
             <span class="n">axis_attr_info</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">get_axis_attributes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis</span><span class="p">)</span>
             <span class="n">value_info</span> <span class="o">=</span> <span class="n">axis_attr_info</span><span class="p">[</span><span class="s2">&quot;Value&quot;</span><span class="p">]</span>
@@ -895,7 +895,7 @@
 
 <span class="k">class</span> <span class="nc">PoolTimerableChannel</span><span class="p">(</span><span class="n">PoolBaseChannel</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">PoolBaseChannel</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="c1"># TODO: part of the configuration could be moved to the base class</span>
         <span class="c1"># so other experimental channels could reuse it</span>

@@ -198,9 +198,9 @@
 <span class="kn">import</span> <span class="nn">inspect</span>
 <span class="kn">import</span> <span class="nn">operator</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">InvalidId</span><span class="p">,</span> <span class="n">ElementType</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanameta</span> <span class="kn">import</span> <span class="n">SardanaLibrary</span><span class="p">,</span> <span class="n">SardanaClass</span><span class="p">,</span> <span class="n">SardanaFunction</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="kn">import</span> <span class="n">Type</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">InvalidId</span><span class="p">,</span> <span class="n">ElementType</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanameta</span> <span class="k">import</span> <span class="n">SardanaLibrary</span><span class="p">,</span> <span class="n">SardanaClass</span><span class="p">,</span> <span class="n">SardanaFunction</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="k">import</span> <span class="n">Type</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 
 <span class="n">MACRO_TEMPLATE</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;class @macro_name@(Macro):</span>
@@ -242,7 +242,7 @@
 <span class="sd">        - exc_info - exception information if an error occurred when loading</span>
 <span class="sd">                    the module&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;manager&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;macro_server&#39;</span><span class="p">)</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;elem_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">MacroLibrary</span>
         <span class="n">SardanaLibrary</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -281,7 +281,7 @@
 <span class="sd">    :class:`~sardana.macroserver.msmetamacro.MacroClass` or a</span>
 <span class="sd">    :class:`~sardana.macroserver.msmetamacro.MacroFunction`&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parameter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_parameter</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">build_result</span><span class="p">()</span>
 
@@ -400,13 +400,13 @@
 
 <div class="viewcode-block" id="MacroClass"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/msmetamacro.html#sardana.macroserver.msmetamacro.MacroClass">[docs]</a><span class="k">class</span> <span class="nc">MacroClass</span><span class="p">(</span><span class="n">SardanaClass</span><span class="p">,</span> <span class="n">Parameterizable</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;manager&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;macro_server&#39;</span><span class="p">)</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;elem_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">MacroClass</span>
         <span class="n">SardanaClass</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">Parameterizable</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">&lt;</span> <span class="n">o</span><span class="o">.</span><span class="n">name</span>
 
 <div class="viewcode-block" id="MacroClass.serialize"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/msmetamacro.html#sardana.macroserver.msmetamacro.MacroClass.serialize">[docs]</a>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -430,13 +430,13 @@
 
 <div class="viewcode-block" id="MacroFunction"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/msmetamacro.html#sardana.macroserver.msmetamacro.MacroFunction">[docs]</a><span class="k">class</span> <span class="nc">MacroFunction</span><span class="p">(</span><span class="n">SardanaFunction</span><span class="p">,</span> <span class="n">Parameterizable</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;manager&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;macro_server&#39;</span><span class="p">)</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;elem_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">MacroFunction</span>
         <span class="n">SardanaFunction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">Parameterizable</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">&lt;</span> <span class="n">o</span><span class="o">.</span><span class="n">name</span>
 
 <div class="viewcode-block" id="MacroFunction.serialize"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/msmetamacro.html#sardana.macroserver.msmetamacro.MacroFunction.serialize">[docs]</a>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>

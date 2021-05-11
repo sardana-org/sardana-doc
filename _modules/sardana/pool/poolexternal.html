@@ -197,14 +197,14 @@
 
 <span class="kn">import</span> <span class="nn">PyTango</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">ElementType</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolbaseobject</span> <span class="kn">import</span> <span class="n">PoolBaseObject</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">ElementType</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolbaseobject</span> <span class="k">import</span> <span class="n">PoolBaseObject</span>
 
 
 <div class="viewcode-block" id="PoolBaseExternalObject"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolexternal.html#sardana.pool.poolexternal.PoolBaseExternalObject">[docs]</a><span class="k">class</span> <span class="nc">PoolBaseExternalObject</span><span class="p">(</span><span class="n">PoolBaseObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;TODO&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;elem_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">External</span>
         <span class="n">PoolBaseObject</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -218,7 +218,7 @@
 <div class="viewcode-block" id="PoolTangoObject"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolexternal.html#sardana.pool.poolexternal.PoolTangoObject">[docs]</a><span class="k">class</span> <span class="nc">PoolTangoObject</span><span class="p">(</span><span class="n">PoolBaseExternalObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;TODO&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">scheme</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;scheme&#39;</span><span class="p">,</span> <span class="s1">&#39;tango&#39;</span><span class="p">)</span>
         <span class="n">attribute_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;_shortattrname&#39;</span><span class="p">)</span>
         <span class="n">host</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;port&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>

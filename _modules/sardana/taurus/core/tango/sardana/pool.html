@@ -214,32 +214,32 @@
 <span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">import</span> <span class="nn">weakref</span>
 <span class="kn">import</span> <span class="nn">json</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
 <span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">PyTango</span>
 <span class="kn">import</span> <span class="nn">collections</span>
 
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrDataFormat</span><span class="p">,</span> <span class="n">AttrQuality</span><span class="p">,</span> <span class="n">DevFailed</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrDataFormat</span><span class="p">,</span> <span class="n">AttrQuality</span><span class="p">,</span> <span class="n">DevFailed</span><span class="p">,</span> \
     <span class="n">DeviceProxy</span><span class="p">,</span> <span class="n">AttributeProxy</span>
-<span class="kn">from</span> <span class="nn">taurus</span> <span class="kn">import</span> <span class="n">Factory</span><span class="p">,</span> <span class="n">Device</span>
-<span class="kn">from</span> <span class="nn">taurus.core.taurusbasetypes</span> <span class="kn">import</span> <span class="n">TaurusEventType</span>
+<span class="kn">from</span> <span class="nn">taurus</span> <span class="k">import</span> <span class="n">Factory</span><span class="p">,</span> <span class="n">Device</span>
+<span class="kn">from</span> <span class="nn">taurus.core.taurusbasetypes</span> <span class="k">import</span> <span class="n">TaurusEventType</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="kn">import</span> <span class="n">TangoAttributeNameValidator</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoAttributeNameValidator</span><span class="p">,</span> \
     <span class="n">TangoDeviceNameValidator</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="kn">import</span> <span class="n">CaselessDict</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.event</span> <span class="kn">import</span> <span class="n">EventGenerator</span><span class="p">,</span> <span class="n">AttributeEventWait</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.event</span> <span class="k">import</span> <span class="n">EventGenerator</span><span class="p">,</span> <span class="n">AttributeEventWait</span><span class="p">,</span> \
     <span class="n">AttributeEventIterator</span>
-<span class="kn">from</span> <span class="nn">taurus.core.tango</span> <span class="kn">import</span> <span class="n">TangoDevice</span><span class="p">,</span> <span class="n">FROM_TANGO_TO_STR_TYPE</span>
+<span class="kn">from</span> <span class="nn">taurus.core.tango</span> <span class="k">import</span> <span class="n">TangoDevice</span><span class="p">,</span> <span class="n">FROM_TANGO_TO_STR_TYPE</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">sardanacustomsettings</span>
-<span class="kn">from</span> <span class="nn">.sardana</span> <span class="kn">import</span> <span class="n">BaseSardanaElementContainer</span><span class="p">,</span> <span class="n">BaseSardanaElement</span>
-<span class="kn">from</span> <span class="nn">.motion</span> <span class="kn">import</span> <span class="n">Moveable</span><span class="p">,</span> <span class="n">MoveableSource</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">sardanacustomsettings</span>
+<span class="kn">from</span> <span class="nn">.sardana</span> <span class="k">import</span> <span class="n">BaseSardanaElementContainer</span><span class="p">,</span> <span class="n">BaseSardanaElement</span>
+<span class="kn">from</span> <span class="nn">.motion</span> <span class="k">import</span> <span class="n">Moveable</span><span class="p">,</span> <span class="n">MoveableSource</span>
 
-<span class="kn">from</span> <span class="nn">sardana.pool</span> <span class="kn">import</span> <span class="n">AcqSynchType</span>
-<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="kn">import</span> <span class="n">PlotType</span>
+<span class="kn">from</span> <span class="nn">sardana.pool</span> <span class="k">import</span> <span class="n">AcqSynchType</span>
+<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="k">import</span> <span class="n">PlotType</span>
 
 <span class="n">Ready</span> <span class="o">=</span> <span class="n">Standby</span> <span class="o">=</span> <span class="n">DevState</span><span class="o">.</span><span class="n">ON</span>
 <span class="n">Counting</span> <span class="o">=</span> <span class="n">Acquiring</span> <span class="o">=</span> <span class="n">Moving</span> <span class="o">=</span> <span class="n">DevState</span><span class="o">.</span><span class="n">MOVING</span>
@@ -291,11 +291,11 @@
 <span class="sd">    indirectly)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">pd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPoolData</span><span class="p">()</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">(</span><span class="si">{1}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pd</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">],</span> <span class="n">pd</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span>
 
 <div class="viewcode-block" id="BaseElement.serialize"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.BaseElement.serialize">[docs]</a>    <span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -311,7 +311,7 @@
             <span class="k">return</span> <span class="n">CodecFactory</span><span class="o">.</span><span class="n">encode</span><span class="p">((</span><span class="s1">&#39;json&#39;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">serialize</span><span class="p">())</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_str_tuple</span><span class="p">[:</span><span class="n">n</span><span class="p">]</span></div>
 
-    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPoolData</span><span class="p">()[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">o</span><span class="o">.</span><span class="n">getPoolData</span><span class="p">()[</span><span class="s1">&#39;full_name&#39;</span><span class="p">]</span>
 
 <div class="viewcode-block" id="BaseElement.getName"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.BaseElement.getName">[docs]</a>    <span class="k">def</span> <span class="nf">getName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -327,12 +327,12 @@
 
 
 <div class="viewcode-block" id="ControllerClass"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.ControllerClass">[docs]</a><span class="k">class</span> <span class="nc">ControllerClass</span><span class="p">(</span><span class="n">BaseElement</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">f_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lib_name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">f_name</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">pd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getPoolData</span><span class="p">()</span>
         <span class="k">return</span> <span class="s2">&quot;ControllerClass(</span><span class="si">{0}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pd</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">])</span>
 
@@ -363,7 +363,7 @@
 <div class="viewcode-block" id="ControllerClass.getOrganization"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.ControllerClass.getOrganization">[docs]</a>    <span class="k">def</span> <span class="nf">getOrganization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">organization</span></div>
 
-    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getType</span><span class="p">()</span> <span class="o">!=</span> <span class="n">o</span><span class="o">.</span><span class="n">getType</span><span class="p">():</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getType</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">o</span><span class="o">.</span><span class="n">getType</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getGender</span><span class="p">()</span> <span class="o">!=</span> <span class="n">o</span><span class="o">.</span><span class="n">getGender</span><span class="p">():</span>
@@ -372,7 +372,7 @@
 
 
 <span class="k">class</span> <span class="nc">ControllerLibrary</span><span class="p">(</span><span class="n">BaseElement</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">getType</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -385,7 +385,7 @@
 <span class="k">class</span> <span class="nc">TangoAttributeEG</span><span class="p">(</span><span class="n">Logger</span><span class="p">,</span> <span class="n">EventGenerator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;An event generator for a &#39;State&#39; attribute&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_attr</span> <span class="o">=</span> <span class="n">attr</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">Logger</span><span class="p">,</span> <span class="s1">&#39;EG&#39;</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
         <span class="n">event_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> EG&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">attr</span><span class="o">.</span><span class="n">getParentObj</span><span class="p">()</span><span class="o">.</span><span class="n">getNormalName</span><span class="p">())</span>
@@ -430,7 +430,7 @@
     <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_attr</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">with_read</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_attr</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
 
@@ -464,7 +464,7 @@
 <div class="viewcode-block" id="PoolElement"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.PoolElement">[docs]</a><span class="k">class</span> <span class="nc">PoolElement</span><span class="p">(</span><span class="n">BaseElement</span><span class="p">,</span> <span class="n">TangoDevice</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for a Pool element device.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;PoolElement initialization.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_reserved</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_evt_wait</span> <span class="o">=</span> <span class="kc">None</span>
@@ -781,7 +781,7 @@
 <div class="viewcode-block" id="Controller"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.Controller">[docs]</a><span class="k">class</span> <span class="nc">Controller</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating Controller functionality.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;PoolElement initialization.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
 
@@ -853,7 +853,7 @@
             <span class="k">return</span> <span class="kc">None</span>
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">used_axes</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">o</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span></div>
 
 
@@ -865,7 +865,7 @@
 <div class="viewcode-block" id="ExpChannel"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.ExpChannel">[docs]</a><span class="k">class</span> <span class="nc">ExpChannel</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating ExpChannel functionality.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;ExpChannel initialization.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_integ_time</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1070,7 +1070,7 @@
 <div class="viewcode-block" id="Motor"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.Motor">[docs]</a><span class="k">class</span> <span class="nc">Motor</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">,</span> <span class="n">Moveable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating Motor functionality.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;PoolElement initialization.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">Moveable</span><span class="p">)</span>
@@ -1283,7 +1283,7 @@
 <div class="viewcode-block" id="PseudoMotor"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.PseudoMotor">[docs]</a><span class="k">class</span> <span class="nc">PseudoMotor</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">,</span> <span class="n">Moveable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating PseudoMotor functionality.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;PoolElement initialization.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">Moveable</span><span class="p">)</span>
@@ -1373,7 +1373,7 @@
 <div class="viewcode-block" id="MotorGroup"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.MotorGroup">[docs]</a><span class="k">class</span> <span class="nc">MotorGroup</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">,</span> <span class="n">Moveable</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating MotorGroup functionality.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;PoolElement initialization.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">Moveable</span><span class="p">)</span>
@@ -1465,7 +1465,7 @@
 
 
 <span class="k">class</span> <span class="nc">BaseChannelInfo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="c1"># dict&lt;str, obj&gt;</span>
         <span class="c1"># channel data</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">raw_data</span> <span class="o">=</span> <span class="n">data</span>
@@ -1473,7 +1473,7 @@
 
 
 <span class="k">class</span> <span class="nc">TangoChannelInfo</span><span class="p">(</span><span class="n">BaseChannelInfo</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">info</span><span class="p">):</span>
         <span class="n">BaseChannelInfo</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="c1"># PyTango.AttributeInfoEx</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_info</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
@@ -1512,7 +1512,7 @@
             <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">shape</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_info</span><span class="p">():</span>
             <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">raw_info</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">cls_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
@@ -1552,7 +1552,7 @@
 
 
 <span class="k">class</span> <span class="nc">MGConfiguration</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mg</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mg</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_mg</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">mg</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_raw_data</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pending_event_data</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2525,7 +2525,7 @@
                            <span class="s2">&quot;Global measurement group monitor does not exist&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getMonitor</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw_data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 
@@ -2550,7 +2550,7 @@
 <span class="sd">        meas_grp.setEnabled(True, &quot;ct01&quot;, &quot;ct02&quot;)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;PoolElement initialization.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_configuration</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_channels</span> <span class="o">=</span> <span class="kc">None</span>
@@ -3590,7 +3590,7 @@
 <div class="viewcode-block" id="IORegister"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.IORegister">[docs]</a><span class="k">class</span> <span class="nc">IORegister</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating IORegister functionality.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;IORegister initialization.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">PoolElement</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
 
@@ -3624,7 +3624,7 @@
 
 
 <div class="viewcode-block" id="Instrument"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.Instrument">[docs]</a><span class="k">class</span> <span class="nc">Instrument</span><span class="p">(</span><span class="n">BaseElement</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kw</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Instrument.getFullName"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.Instrument.getFullName">[docs]</a>    <span class="k">def</span> <span class="nf">getFullName</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -3651,7 +3651,7 @@
 <div class="viewcode-block" id="Pool"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.Pool">[docs]</a><span class="k">class</span> <span class="nc">Pool</span><span class="p">(</span><span class="n">TangoDevice</span><span class="p">,</span> <span class="n">MoveableSource</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot; Class encapsulating device Pool functionality.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">TangoDevice</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">call__init__</span><span class="p">(</span><span class="n">MoveableSource</span><span class="p">)</span>
 
@@ -3770,10 +3770,10 @@
             <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">elem</span></div>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNormalName</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
     <span class="c1"># -~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-</span>

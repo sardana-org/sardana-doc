@@ -196,10 +196,10 @@
            <span class="s1">&#39;post_mortem&#39;</span><span class="p">,</span> <span class="s1">&#39;macrodata&#39;</span><span class="p">,</span> <span class="s1">&#39;edmac&#39;</span><span class="p">,</span> <span class="s1">&#39;spock_late_startup_hook&#39;</span><span class="p">,</span>
            <span class="s1">&#39;spock_pre_prompt_hook&#39;</span><span class="p">]</span>
 
-<span class="kn">from</span> <span class="nn">sardana.util.whichpython</span> <span class="kn">import</span> <span class="n">which_python_executable</span>
-<span class="kn">from</span> <span class="nn">.genutils</span> <span class="kn">import</span> <span class="n">MSG_DONE</span><span class="p">,</span> <span class="n">MSG_FAILED</span>
-<span class="kn">from</span> <span class="nn">.genutils</span> <span class="kn">import</span> <span class="n">get_ipapi</span>
-<span class="kn">from</span> <span class="nn">.genutils</span> <span class="kn">import</span> <span class="n">page</span><span class="p">,</span> <span class="n">get_door</span><span class="p">,</span> <span class="n">get_macro_server</span><span class="p">,</span> <span class="n">ask_yes_no</span><span class="p">,</span> <span class="n">arg_split</span>
+<span class="kn">from</span> <span class="nn">sardana.util.whichpython</span> <span class="k">import</span> <span class="n">which_python_executable</span>
+<span class="kn">from</span> <span class="nn">.genutils</span> <span class="k">import</span> <span class="n">MSG_DONE</span><span class="p">,</span> <span class="n">MSG_FAILED</span>
+<span class="kn">from</span> <span class="nn">.genutils</span> <span class="k">import</span> <span class="n">get_ipapi</span>
+<span class="kn">from</span> <span class="nn">.genutils</span> <span class="k">import</span> <span class="n">page</span><span class="p">,</span> <span class="n">get_door</span><span class="p">,</span> <span class="n">get_macro_server</span><span class="p">,</span> <span class="n">ask_yes_no</span><span class="p">,</span> <span class="n">arg_split</span>
 
 
 <span class="k">def</span> <span class="nf">expconf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter_s</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
@@ -207,7 +207,7 @@
 <span class="sd">    for the experiments (scans)&quot;&quot;&quot;</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="kn">import</span> <span class="n">Qt</span>
+        <span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="k">import</span> <span class="n">Qt</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qt binding is not available. ExpConf cannot work without it.&quot;</span>
               <span class="s2">&quot;(hint: maybe you want to use experiment configuration macros? &quot;</span>
@@ -215,7 +215,7 @@
         <span class="k">return</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">sardana.taurus.qt.qtgui.extra_sardana</span> <span class="kn">import</span> <span class="n">ExpDescriptionEditor</span>
+        <span class="kn">from</span> <span class="nn">sardana.taurus.qt.qtgui.extra_sardana</span> <span class="k">import</span> <span class="n">ExpDescriptionEditor</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error importing ExpDescriptionEditor &quot;</span>
               <span class="s2">&quot;(hint: is taurus extra_sardana installed?)&quot;</span><span class="p">)</span>
@@ -257,7 +257,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="kn">import</span> <span class="n">Qt</span>
+        <span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="k">import</span> <span class="n">Qt</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qt binding is not available. Showscan cannot work without it.&quot;</span><span class="p">)</span>
         <span class="k">return</span>
@@ -278,7 +278,7 @@
 
 <span class="k">def</span> <span class="nf">spsplot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameter_s</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="kn">import</span> <span class="n">Qt</span>
+        <span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="k">import</span> <span class="n">Qt</span>
     <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Qt binding is not available. SPSplot cannot work without it.&quot;</span><span class="p">)</span>
         <span class="k">return</span>
@@ -373,7 +373,7 @@
     <span class="n">door</span> <span class="o">=</span> <span class="n">get_door</span><span class="p">()</span>
     <span class="n">macro_data</span> <span class="o">=</span> <span class="n">door</span><span class="o">.</span><span class="n">read_attribute</span><span class="p">(</span><span class="s2">&quot;RecordData&quot;</span><span class="p">)</span>
 
-    <span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
+    <span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
 
     <span class="n">factory</span> <span class="o">=</span> <span class="n">CodecFactory</span><span class="p">()</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">macro_data</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>

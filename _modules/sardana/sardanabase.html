@@ -200,10 +200,10 @@
 
 <span class="kn">import</span> <span class="nn">weakref</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
 
-<span class="kn">from</span> <span class="nn">sardana.sardanadefs</span> <span class="kn">import</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">Interface</span><span class="p">,</span> <span class="n">InterfacesExpanded</span><span class="p">,</span> <span class="n">InvalidId</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="kn">import</span> <span class="n">EventGenerator</span><span class="p">,</span> <span class="n">EventReceiver</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanadefs</span> <span class="k">import</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">Interface</span><span class="p">,</span> <span class="n">InterfacesExpanded</span><span class="p">,</span> <span class="n">InvalidId</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="k">import</span> <span class="n">EventGenerator</span><span class="p">,</span> <span class="n">EventReceiver</span>
 
 
 <div class="viewcode-block" id="SardanaBaseObject"><a class="viewcode-back" href="../../devel/api/sardana/sardanabase.html#sardana.sardanabase.SardanaBaseObject">[docs]</a><span class="k">class</span> <span class="nc">SardanaBaseObject</span><span class="p">(</span><span class="n">EventGenerator</span><span class="p">,</span> <span class="n">EventReceiver</span><span class="p">,</span> <span class="n">Logger</span><span class="p">):</span>
@@ -215,7 +215,7 @@
 <span class="sd">       - _full_name : the name (usually a tango device name, but can be</span>
 <span class="sd">         anything else.)&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">EventGenerator</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">EventReceiver</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_type</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;elem_type&#39;</span><span class="p">)</span>
@@ -345,10 +345,10 @@
 <div class="viewcode-block" id="SardanaBaseObject.str"><a class="viewcode-back" href="../../devel/api/sardana/sardanabase.html#sardana.sardanabase.SardanaBaseObject.str">[docs]</a>    <span class="k">def</span> <span class="nf">str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">manager</span><span class="o">.</span><span class="n">str_element</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span><span class="p">)</span>
 
     <span class="n">manager</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_manager</span><span class="p">,</span>
@@ -361,7 +361,7 @@
 <div class="viewcode-block" id="SardanaObjectID"><a class="viewcode-back" href="../../devel/api/sardana/sardanabase.html#sardana.sardanabase.SardanaObjectID">[docs]</a><span class="k">class</span> <span class="nc">SardanaObjectID</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;To be used by sardana objects which have an ID associated to them.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">InvalidId</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">InvalidId</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_id</span> <span class="o">=</span> <span class="nb">id</span>
 
 <div class="viewcode-block" id="SardanaObjectID.get_id"><a class="viewcode-back" href="../../devel/api/sardana/sardanabase.html#sardana.sardanabase.SardanaObjectID.get_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

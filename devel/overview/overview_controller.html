@@ -286,7 +286,7 @@ Each controller code is basically a <a class="reference external" href="http://w
 specific <a class="reference internal" href="../../glossary.html#term-API"><span class="xref std std-term">API</span></a>.</p>
 <p>Here is an a extract of the pertinent part of a <a class="reference external" href="http://www.python.org/">Python</a> motor controller code
 that is able to talk to a Newport motor controller:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="kn">import</span> <span class="n">MotorController</span><span class="p">,</span> \
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="k">import</span> <span class="n">MotorController</span><span class="p">,</span> \
     <span class="n">Type</span><span class="p">,</span> <span class="n">Description</span><span class="p">,</span> <span class="n">DefaultValue</span>
 
 <span class="k">class</span> <span class="nc">NSC200Controller</span><span class="p">(</span><span class="n">MotorController</span><span class="p">):</span>
@@ -305,7 +305,7 @@ that is able to talk to a Newport motor controller:</p>
                                  <span class="n">Description</span> <span class="p">:</span> <span class="s1">&#39;Controller number&#39;</span><span class="p">,</span>
                                  <span class="n">DefaultValue</span> <span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">MotorController</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">serial</span> <span class="o">=</span> <span class="kc">None</span>

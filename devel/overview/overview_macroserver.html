@@ -232,8 +232,8 @@ Doors at the same time but a Door can only run one macro at a time.
 Each Door is exposed on the sardana server as a <a class="reference external" href="http://www.tango-controls.org/">Tango</a> device.</p>
 <p>You are not in any way restricted to the standard macros provided by the sardana
 system. You can write as many macros as you need. Writing your own macros is
-easy. The macro equivalent of <a class="reference external" href="http://www.python.org/">Python</a>'s <em>Hello, World!</em> example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">macro</span>
+easy. The macro equivalent of <a class="reference external" href="http://www.python.org/">Python</a>’s <em>Hello, World!</em> example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">macro</span>
 
 <span class="nd">@macro</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -242,7 +242,7 @@ easy. The macro equivalent of <a class="reference external" href="http://www.pyt
 </div>
 <p>Here is a simple example of a macro to move any moveable element to a certain
 value:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="kn">import</span> <span class="n">macro</span><span class="p">,</span> <span class="n">Type</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sardana.macroserver.macro</span> <span class="k">import</span> <span class="n">macro</span><span class="p">,</span> <span class="n">Type</span>
 
 <span class="nd">@macro</span><span class="p">([</span> <span class="p">[</span><span class="s2">&quot;moveable&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;moveable to move&quot;</span><span class="p">],</span>
          <span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;absolute position&quot;</span><span class="p">]</span> <span class="p">])</span>

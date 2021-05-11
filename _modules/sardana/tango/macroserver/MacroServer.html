@@ -193,16 +193,16 @@
 <span class="kn">import</span> <span class="nn">os.path</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">Util</span><span class="p">,</span> <span class="n">Except</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevLong</span><span class="p">,</span> <span class="n">DevString</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">Util</span><span class="p">,</span> <span class="n">Except</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevLong</span><span class="p">,</span> <span class="n">DevString</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> \
     <span class="n">DevEncoded</span><span class="p">,</span> <span class="n">DevVarStringArray</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">SPECTRUM</span><span class="p">,</span> <span class="n">DebugIt</span>
 
 <span class="kn">import</span> <span class="nn">taurus</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">SardanaServer</span>
-<span class="kn">from</span> <span class="nn">sardana.tango.core.SardanaDevice</span> <span class="kn">import</span> <span class="n">SardanaDevice</span><span class="p">,</span> <span class="n">SardanaDeviceClass</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">MacroServerException</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.macroserver</span> <span class="kn">import</span> <span class="n">MacroServer</span> <span class="k">as</span> <span class="n">MS</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">SardanaServer</span>
+<span class="kn">from</span> <span class="nn">sardana.tango.core.SardanaDevice</span> <span class="k">import</span> <span class="n">SardanaDevice</span><span class="p">,</span> <span class="n">SardanaDeviceClass</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">MacroServerException</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.macroserver</span> <span class="k">import</span> <span class="n">MacroServer</span> <span class="k">as</span> <span class="n">MS</span>
 
 
 <div class="viewcode-block" id="MacroServer"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/macroserver/MacroServer.html#sardana.tango.macroserver.MacroServer.MacroServer">[docs]</a><span class="k">class</span> <span class="nc">MacroServer</span><span class="p">(</span><span class="n">SardanaDevice</span><span class="p">):</span>
@@ -211,7 +211,7 @@
     <span class="n">ElementsCache</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">EnvironmentCache</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">SardanaDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cl</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 

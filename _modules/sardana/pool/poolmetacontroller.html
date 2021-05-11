@@ -200,31 +200,31 @@
 <span class="kn">import</span> <span class="nn">types</span>
 <span class="kn">import</span> <span class="nn">inspect</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="kn">import</span> <span class="n">CaselessDict</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">DataType</span><span class="p">,</span> <span class="n">DataFormat</span><span class="p">,</span> <span class="n">DataAccess</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">DataType</span><span class="p">,</span> <span class="n">DataFormat</span><span class="p">,</span> <span class="n">DataAccess</span><span class="p">,</span> \
     <span class="n">to_dtype_dformat</span><span class="p">,</span> <span class="n">to_daccess</span><span class="p">,</span> \
     <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_ELEMENTS</span><span class="p">,</span> <span class="n">InvalidId</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanameta</span> <span class="kn">import</span> <span class="n">SardanaLibrary</span><span class="p">,</span> <span class="n">SardanaClass</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolmotor</span> <span class="kn">import</span> <span class="n">PoolMotor</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolpseudomotor</span> <span class="kn">import</span> <span class="n">PoolPseudoMotor</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolmotorgroup</span> <span class="kn">import</span> <span class="n">PoolMotorGroup</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolmeasurementgroup</span> <span class="kn">import</span> <span class="n">PoolMeasurementGroup</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolcountertimer</span> <span class="kn">import</span> <span class="n">PoolCounterTimer</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.pooltriggergate</span> <span class="kn">import</span> <span class="n">PoolTriggerGate</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolzerodexpchannel</span> <span class="kn">import</span> <span class="n">Pool0DExpChannel</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolonedexpchannel</span> <span class="kn">import</span> <span class="n">Pool1DExpChannel</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.pooltwodexpchannel</span> <span class="kn">import</span> <span class="n">Pool2DExpChannel</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolpseudocounter</span> <span class="kn">import</span> <span class="n">PoolPseudoCounter</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolinstrument</span> <span class="kn">import</span> <span class="n">PoolInstrument</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolioregister</span> <span class="kn">import</span> <span class="n">PoolIORegister</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolcontroller</span> <span class="kn">import</span> <span class="n">PoolController</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.sardanameta</span> <span class="k">import</span> <span class="n">SardanaLibrary</span><span class="p">,</span> <span class="n">SardanaClass</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmotor</span> <span class="k">import</span> <span class="n">PoolMotor</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolpseudomotor</span> <span class="k">import</span> <span class="n">PoolPseudoMotor</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmotorgroup</span> <span class="k">import</span> <span class="n">PoolMotorGroup</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmeasurementgroup</span> <span class="k">import</span> <span class="n">PoolMeasurementGroup</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolcountertimer</span> <span class="k">import</span> <span class="n">PoolCounterTimer</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.pooltriggergate</span> <span class="k">import</span> <span class="n">PoolTriggerGate</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolzerodexpchannel</span> <span class="k">import</span> <span class="n">Pool0DExpChannel</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolonedexpchannel</span> <span class="k">import</span> <span class="n">Pool1DExpChannel</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.pooltwodexpchannel</span> <span class="k">import</span> <span class="n">Pool2DExpChannel</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolpseudocounter</span> <span class="k">import</span> <span class="n">PoolPseudoCounter</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolinstrument</span> <span class="k">import</span> <span class="n">PoolInstrument</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolioregister</span> <span class="k">import</span> <span class="n">PoolIORegister</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolcontroller</span> <span class="k">import</span> <span class="n">PoolController</span><span class="p">,</span> \
     <span class="n">PoolPseudoMotorController</span><span class="p">,</span> <span class="n">PoolPseudoCounterController</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="kn">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">MotorController</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="k">import</span> <span class="n">Controller</span><span class="p">,</span> <span class="n">MotorController</span><span class="p">,</span> \
     <span class="n">CounterTimerController</span><span class="p">,</span> <span class="n">ZeroDController</span><span class="p">,</span> <span class="n">OneDController</span><span class="p">,</span> <span class="n">TwoDController</span><span class="p">,</span> \
     <span class="n">PseudoMotorController</span><span class="p">,</span> <span class="n">PseudoCounterController</span><span class="p">,</span> <span class="n">IORegisterController</span><span class="p">,</span> \
     <span class="n">TriggerGateController</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="kn">import</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Access</span><span class="p">,</span> <span class="n">Description</span><span class="p">,</span> <span class="n">DefaultValue</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="k">import</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Access</span><span class="p">,</span> <span class="n">Description</span><span class="p">,</span> <span class="n">DefaultValue</span><span class="p">,</span> \
     <span class="n">FGet</span><span class="p">,</span> <span class="n">FSet</span><span class="p">,</span> <span class="n">Memorize</span><span class="p">,</span> <span class="n">Memorized</span><span class="p">,</span> <span class="n">MaxDimSize</span>
 
 
@@ -278,7 +278,7 @@
 <div class="viewcode-block" id="TypeData"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmetacontroller.html#sardana.pool.poolmetacontroller.TypeData">[docs]</a><span class="k">class</span> <span class="nc">TypeData</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Information for a specific Element type&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 <span class="c1">#: dictionary</span>
@@ -304,7 +304,7 @@
 <span class="sd">                     the module</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;manager&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;pool&#39;</span><span class="p">)</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;elem_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">ControllerLibrary</span>
         <span class="n">SardanaLibrary</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -327,7 +327,7 @@
 
 <div class="viewcode-block" id="DataInfo"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmetacontroller.html#sardana.pool.poolmetacontroller.DataInfo">[docs]</a><span class="k">class</span> <span class="nc">DataInfo</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">dformat</span><span class="o">=</span><span class="n">DataFormat</span><span class="o">.</span><span class="n">Scalar</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">dformat</span><span class="o">=</span><span class="n">DataFormat</span><span class="o">.</span><span class="n">Scalar</span><span class="p">,</span>
                  <span class="n">access</span><span class="o">=</span><span class="n">DataAccess</span><span class="o">.</span><span class="n">ReadWrite</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
                  <span class="n">default_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">memorized</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">,</span>
                  <span class="n">fget</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">fset</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">maxdimsize</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -391,7 +391,7 @@
         <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toDict</span><span class="p">())</span>
         <span class="k">return</span> <span class="n">kwargs</span></div>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s2">&quot;</span><span class="si">{0}</span><span class="s2">(name=</span><span class="si">{1}</span><span class="s2">, type=</span><span class="si">{2}</span><span class="s2">, format=</span><span class="si">{3}</span><span class="s2">, access=</span><span class="si">{4}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">DataType</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dtype</span><span class="p">],</span>
             <span class="n">DataFormat</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dformat</span><span class="p">],</span> <span class="n">DataAccess</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">access</span><span class="p">])</span></div>
@@ -420,7 +420,7 @@
 <span class="sd">           - lib - ControllerLibrary object representing the module where the</span>
 <span class="sd">             controller is.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;manager&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;pool&#39;</span><span class="p">)</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;elem_type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ElementType</span><span class="o">.</span><span class="n">ControllerClass</span>
         <span class="n">SardanaClass</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -473,7 +473,7 @@
         <span class="k">if</span> <span class="n">init_args</span><span class="o">.</span><span class="n">varargs</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">init_args</span><span class="o">.</span><span class="n">keywords</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">o</span><span class="p">):</span>
         <span class="n">main_type</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">o_main_type</span> <span class="o">=</span> <span class="n">o</span><span class="o">.</span><span class="n">types</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">main_type</span> <span class="o">!=</span> <span class="n">o_main_type</span><span class="p">:</span>

@@ -198,11 +198,11 @@
 <span class="kn">import</span> <span class="nn">weakref</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.lock</span> <span class="kn">import</span> <span class="n">TaurusLock</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.lock</span> <span class="k">import</span> <span class="n">TaurusLock</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">State</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="kn">import</span> <span class="n">EventType</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolobject</span> <span class="kn">import</span> <span class="n">PoolObject</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="k">import</span> <span class="n">EventType</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolobject</span> <span class="k">import</span> <span class="n">PoolObject</span>
 
 
 <div class="viewcode-block" id="PoolBaseElement"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolBaseElement">[docs]</a><span class="k">class</span> <span class="nc">PoolBaseElement</span><span class="p">(</span><span class="n">PoolObject</span><span class="p">):</span>
@@ -213,7 +213,7 @@
 <span class="sd">       - _state : element state</span>
 <span class="sd">       - _status : element status&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_simulation_mode</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_state_event</span> <span class="o">=</span> <span class="kc">None</span>
@@ -236,10 +236,10 @@
 
         <span class="nb">super</span><span class="p">(</span><span class="n">PoolBaseElement</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
         <span class="k">return</span> <span class="kc">False</span>
 

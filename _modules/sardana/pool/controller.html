@@ -204,12 +204,12 @@
 
 <span class="kn">import</span> <span class="nn">copy</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.taurushelper</span> <span class="kn">import</span> <span class="n">getLogLevel</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.taurushelper</span> <span class="k">import</span> <span class="n">getLogLevel</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">DataAccess</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanavalue</span> <span class="kn">import</span> <span class="n">SardanaValue</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.pooldefs</span> <span class="kn">import</span> <span class="n">ControllerAPI</span><span class="p">,</span> <span class="n">AcqSynch</span><span class="p">,</span> <span class="n">AcqMode</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">DataAccess</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanavalue</span> <span class="k">import</span> <span class="n">SardanaValue</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.pooldefs</span> <span class="k">import</span> <span class="n">ControllerAPI</span><span class="p">,</span> <span class="n">AcqSynch</span><span class="p">,</span> <span class="n">AcqMode</span>
 
 
 <span class="c1">#: Constant data type (to be used as a *key* in the definition of</span>
@@ -458,7 +458,7 @@
     <span class="c1">#: A :obj:`str` containning the path to the image logo file</span>
     <span class="n">logo</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_inst_name</span> <span class="o">=</span> <span class="n">inst</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_log</span> <span class="o">=</span> <span class="n">Logger</span><span class="p">(</span><span class="s2">&quot;Controller.</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">inst</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="o">.</span><span class="n">log_obj</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">getLogLevel</span><span class="p">())</span>
@@ -1051,7 +1051,7 @@
     <span class="c1">#: A :obj:`str` representing the controller gender</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="s1">&#39;Counter/Timer controller&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_timer</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_monitor</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1076,7 +1076,7 @@
     <span class="c1">#: A :obj:`str` representing the controller gender</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="s1">&#39;Trigger/Gate controller&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="c1"># TODO: Implement a Preparable interface and move this method</span>
@@ -1151,7 +1151,7 @@
     <span class="c1">#: A :obj:`str` representing the controller gender</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="s1">&#39;1D controller&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_latency_time</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_synchronization</span> <span class="o">=</span> <span class="n">AcqSynch</span><span class="o">.</span><span class="n">SoftwareTrigger</span>
@@ -1199,7 +1199,7 @@
     <span class="c1">#: A :obj:`str` representing the controller gender</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="s1">&#39;2D controller&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_latency_time</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -1279,7 +1279,7 @@
     <span class="c1">#: A :obj:`str` representing the controller gender</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="s1">&#39;Pseudo motor controller&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__motor_role_elements</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__pseudo_motor_role_elements</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">PseudoController</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1493,7 +1493,7 @@
     <span class="c1">#: A :obj:`str` representing the controller gender</span>
     <span class="n">gender</span> <span class="o">=</span> <span class="s1">&#39;I/O register controller&#39;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">Controller</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="IORegisterController.WriteOne"><a class="viewcode-back" href="../../../devel/api/sardana/pool/controller.html#sardana.pool.controller.IORegisterController.WriteOne">[docs]</a>    <span class="k">def</span> <span class="nf">WriteOne</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>

@@ -197,14 +197,14 @@
 
 <span class="kn">import</span> <span class="nn">weakref</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">ElementType</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">ElementType</span>
 
-<span class="kn">from</span> <span class="nn">sardana.pool.poolobject</span> <span class="kn">import</span> <span class="n">PoolObject</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolobject</span> <span class="k">import</span> <span class="n">PoolObject</span>
 
 
 <div class="viewcode-block" id="PoolInstrument"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolinstrument.html#sardana.pool.poolinstrument.PoolInstrument">[docs]</a><span class="k">class</span> <span class="nc">PoolInstrument</span><span class="p">(</span><span class="n">PoolObject</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent_instrument</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;parent&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_instrument_class</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;klass&quot;</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent_instrument</span><span class="p">:</span>

@@ -197,19 +197,19 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">time</span>
 
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">Except</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevShort</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">Except</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevShort</span><span class="p">,</span> \
     <span class="n">DevLong</span><span class="p">,</span> <span class="n">DevDouble</span><span class="p">,</span> <span class="n">DevBoolean</span><span class="p">,</span> <span class="n">DispLevel</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrQuality</span><span class="p">,</span> \
     <span class="n">READ</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">SPECTRUM</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">DebugIt</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">DebugIt</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">SardanaServer</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="kn">import</span> <span class="n">str_to_value</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="kn">import</span> <span class="n">SardanaAttribute</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolexception</span> <span class="kn">import</span> <span class="n">PoolException</span>
-<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="kn">import</span> <span class="n">memorize_write_attribute</span><span class="p">,</span> <span class="n">exception_str</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">SardanaServer</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">str_to_value</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="k">import</span> <span class="n">SardanaAttribute</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolexception</span> <span class="k">import</span> <span class="n">PoolException</span>
+<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">memorize_write_attribute</span><span class="p">,</span> <span class="n">exception_str</span><span class="p">,</span> \
     <span class="n">to_tango_type_format</span><span class="p">,</span> <span class="n">throw_sardana_exception</span>
-<span class="kn">from</span> <span class="nn">sardana.tango.pool.PoolDevice</span> <span class="kn">import</span> <span class="n">PoolElementDevice</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana.tango.pool.PoolDevice</span> <span class="k">import</span> <span class="n">PoolElementDevice</span><span class="p">,</span> \
     <span class="n">PoolElementDeviceClass</span>
 
 
@@ -438,7 +438,7 @@
 <span class="sd">with this value is sent to clients using events.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">in_write_position</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">PoolElementDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>

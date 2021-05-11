@@ -192,11 +192,11 @@
            <span class="s2">&quot;getPseudoMotors&quot;</span><span class="p">,</span> <span class="s2">&quot;getMoveables&quot;</span><span class="p">,</span> <span class="s2">&quot;getCTs&quot;</span><span class="p">,</span> <span class="s2">&quot;getZerods&quot;</span><span class="p">,</span>
            <span class="s2">&quot;getOneds&quot;</span><span class="p">,</span> <span class="s2">&quot;getTwods&quot;</span><span class="p">,</span> <span class="s2">&quot;getIORs&quot;</span><span class="p">)</span>
 
-<span class="kn">from</span> <span class="nn">taurus</span> <span class="kn">import</span> <span class="n">Device</span>
-<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="kn">import</span> <span class="n">registerExtensions</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.singleton</span> <span class="kn">import</span> <span class="n">Singleton</span>
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">sardanacustomsettings</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="kn">import</span> <span class="n">is_number</span>
+<span class="kn">from</span> <span class="nn">taurus</span> <span class="k">import</span> <span class="n">Device</span>
+<span class="kn">from</span> <span class="nn">sardana.taurus.core.tango.sardana</span> <span class="k">import</span> <span class="n">registerExtensions</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.singleton</span> <span class="k">import</span> <span class="n">Singleton</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">sardanacustomsettings</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">is_number</span>
 
 
 <div class="viewcode-block" id="SarDemoEnv"><a class="viewcode-back" href="../../../../../devel/api/api_test.html#sardana.macroserver.macros.test.SarDemoEnv">[docs]</a><span class="k">class</span> <span class="nc">SarDemoEnv</span><span class="p">(</span><span class="n">Singleton</span><span class="p">):</span>
@@ -347,7 +347,7 @@
         <span class="n">elements</span> <span class="o">=</span> <span class="n">SarDemoEnv</span><span class="p">()</span><span class="o">.</span><span class="n">getElements</span><span class="p">(</span><span class="n">elem_type</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
         <span class="kn">import</span> <span class="nn">taurus</span>
-        <span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">sardanacustomsettings</span>
+        <span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">sardanacustomsettings</span>
         <span class="n">door_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sardanacustomsettings</span><span class="p">,</span> <span class="s1">&#39;UNITTEST_DOOR_NAME&#39;</span><span class="p">,</span>
                             <span class="s1">&#39;UNDEFINED&#39;</span><span class="p">)</span>
         <span class="n">taurus</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;The door </span><span class="si">%s</span><span class="s2"> is not running. &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">door_name</span><span class="p">)</span> <span class="o">+</span>

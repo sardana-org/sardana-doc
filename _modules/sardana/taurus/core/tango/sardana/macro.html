@@ -203,14 +203,14 @@
 <span class="kn">import</span> <span class="nn">types</span>
 <span class="kn">import</span> <span class="nn">tempfile</span>
 
-<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">etree</span>
 
 <span class="kn">import</span> <span class="nn">PyTango</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.user</span> <span class="kn">import</span> <span class="n">USER_NAME</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
-<span class="kn">from</span> <span class="nn">sardana.util.parser</span> <span class="kn">import</span> <span class="n">ParamParser</span><span class="p">,</span> <span class="n">ParseError</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="kn">import</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.user</span> <span class="k">import</span> <span class="n">USER_NAME</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
+<span class="kn">from</span> <span class="nn">sardana.util.parser</span> <span class="k">import</span> <span class="n">ParamParser</span><span class="p">,</span> <span class="n">ParseError</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msparameter</span> <span class="k">import</span> <span class="n">Optional</span>
 
 
 <span class="k">class</span> <span class="nc">MacroRunException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
@@ -221,7 +221,7 @@
     <span class="sd">&quot;&quot;&quot;Contains all information about a macro: name, documentation, parameters,</span>
 <span class="sd">    result, etc&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_json_str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">from_json</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_json_str</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">from_json</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">json_obj</span> <span class="o">=</span> <span class="n">from_json</span>
         <span class="k">if</span> <span class="n">from_json_str</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">json_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fromJSON</span><span class="p">(</span><span class="n">from_json_str</span><span class="p">)</span>
@@ -494,7 +494,7 @@
             <span class="k">return</span> <span class="p">[]</span>
         <span class="k">return</span> <span class="n">allowed_hooks</span></div>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span></div>
 
 
@@ -508,7 +508,7 @@
     <span class="n">Finished</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">ON</span>
     <span class="n">Abort</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DevState</span><span class="o">.</span><span class="n">ALARM</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">xml_obj</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">id</span><span class="p">,</span> <span class="n">xml_obj</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">door</span> <span class="o">=</span> <span class="n">door</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">xml_node</span> <span class="o">=</span> <span class="n">xml_obj</span>
@@ -540,7 +540,7 @@
     <span class="sd">&quot;&quot;&quot;Base class defining basic interface for all type of nodes used to represent,</span>
 <span class="sd">    relationship between sequence, macros and parameters.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1">#        if parent:</span>
         <span class="c1">#            parent = weakref.ref(parent)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span> <span class="o">=</span> <span class="n">parent</span>
@@ -570,11 +570,11 @@
     <span class="sd">&quot;&quot;&quot;Class used to represent all types of elements which contain</span>
 <span class="sd">    a list of other elements (children)&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">BaseNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_children</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="nf">children</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -631,7 +631,7 @@
     <span class="sd">&quot;&quot;&quot;Base class for param elements: single parameters and param repeats.</span>
 <span class="sd">    It groups a common interface of them.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">BaseNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -686,7 +686,7 @@
 <span class="sd">             This most probably should not be the case - to be fixed</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">ParamNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_defValue</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -697,10 +697,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">setDefValue</span><span class="p">(</span><span class="n">USER_NAME</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">&quot;None&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_value</span>
@@ -783,7 +783,7 @@
 <span class="k">class</span> <span class="nc">RepeatParamNode</span><span class="p">(</span><span class="n">ParamNode</span><span class="p">,</span> <span class="n">BranchNode</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Repeat parameter class.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">param</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">ParamNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
         <span class="n">BranchNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">param</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -791,7 +791,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">setParamsInfo</span><span class="p">(</span><span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;type&#39;</span><span class="p">)))</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="nf">arrangeIndexes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -934,13 +934,13 @@
     <span class="sd">&quot;&quot;&quot;Class for repetition elements (group of params which were repeated in</span>
 <span class="sd">    macro)&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">BranchNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setIndex</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1030,7 +1030,7 @@
 <span class="k">class</span> <span class="nc">MacroNode</span><span class="p">(</span><span class="n">BranchNode</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class to represent macro element.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">params_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">params_def</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">macro_info</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">macro_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
                 <span class="ow">and</span> <span class="p">(</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">params_def</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)):</span>
@@ -1438,7 +1438,7 @@
 <span class="k">class</span> <span class="nc">SequenceNode</span><span class="p">(</span><span class="n">BranchNode</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class to represent sequence element.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">BranchNode</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">allMacros</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

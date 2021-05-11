@@ -199,19 +199,19 @@
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
-<span class="kn">from</span> <span class="nn">lxml</span> <span class="kn">import</span> <span class="n">etree</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="kn">import</span> <span class="n">CaselessDict</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">lxml</span> <span class="k">import</span> <span class="n">etree</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">INTERFACES_EXPANDED</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="kn">import</span> <span class="n">is_non_str_seq</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msbase</span> <span class="kn">import</span> <span class="n">MSBaseObject</span>
-<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="kn">import</span> <span class="n">MacroServerException</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">INTERFACES_EXPANDED</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">is_non_str_seq</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msbase</span> <span class="k">import</span> <span class="n">MSBaseObject</span>
+<span class="kn">from</span> <span class="nn">sardana.macroserver.msexception</span> <span class="k">import</span> <span class="n">MacroServerException</span><span class="p">,</span> \
     <span class="n">UnknownMacro</span><span class="p">,</span> <span class="n">UnknownMacroLibrary</span>
 
 
 <span class="k">class</span> <span class="nc">OptionalParamClass</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">obj</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">OptionalParamClass</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
         <span class="n">attributes</span> <span class="o">=</span> <span class="nb">dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -223,7 +223,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="n">attr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">raise_error</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">raise_error</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="s1">&#39;Optional&#39;</span>
 
     <span class="k">def</span> <span class="nf">raise_error</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
@@ -235,49 +235,49 @@
 
 <span class="k">class</span> <span class="nc">WrongParam</span><span class="p">(</span><span class="n">MacroServerException</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="n">MacroServerException</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;Wrong parameter&#39;</span>
 
 
 <span class="k">class</span> <span class="nc">MissingParam</span><span class="p">(</span><span class="n">WrongParam</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="n">WrongParam</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;Missing parameter&#39;</span>
 
 
 <span class="k">class</span> <span class="nc">SupernumeraryParam</span><span class="p">(</span><span class="n">WrongParam</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="n">WrongParam</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;Supernumerary parameter&#39;</span>
 
 
 <span class="k">class</span> <span class="nc">UnknownParamObj</span><span class="p">(</span><span class="n">WrongParam</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="n">WrongParam</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;Unknown parameter&#39;</span>
 
 
 <span class="k">class</span> <span class="nc">WrongParamType</span><span class="p">(</span><span class="n">WrongParam</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="n">WrongParam</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;Unknown parameter type&#39;</span>
 
 
 <span class="k">class</span> <span class="nc">MissingRepeat</span><span class="p">(</span><span class="n">WrongParam</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="n">WrongParam</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;Missing repeat&#39;</span>
 
 
 <span class="k">class</span> <span class="nc">SupernumeraryRepeat</span><span class="p">(</span><span class="n">WrongParam</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
         <span class="n">WrongParam</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">=</span> <span class="s1">&#39;Supernumerary repeat&#39;</span>
 
@@ -285,7 +285,7 @@
 <span class="k">class</span> <span class="nc">TypeNames</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Class that holds the list of registered macro parameter types&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_type_names</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pending_type_names</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -304,7 +304,7 @@
         <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
             <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_type_names</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
 
 <span class="c1">#    def __getattr__(self, name):</span>
@@ -330,7 +330,7 @@
 
     <span class="n">type_class</span> <span class="o">=</span> <span class="nb">str</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">MSBaseObject</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">full_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
                               <span class="n">macro_server</span><span class="o">=</span><span class="n">macro_server</span><span class="p">,</span>
                               <span class="n">elem_type</span><span class="o">=</span><span class="n">ElementType</span><span class="o">.</span><span class="n">ParameterType</span><span class="p">)</span>
@@ -355,7 +355,7 @@
 
     <span class="n">capabilities</span> <span class="o">=</span> <span class="n">ParamType</span><span class="o">.</span><span class="n">ItemList</span><span class="p">,</span> <span class="n">ParamType</span><span class="o">.</span><span class="n">ItemListEvents</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">ParamType</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">accepts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
@@ -423,7 +423,7 @@
 
 <span class="k">class</span> <span class="nc">ElementParamInterface</span><span class="p">(</span><span class="n">ElementParamType</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">ElementParamType</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">macro_server</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">bases</span><span class="p">,</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">INTERFACES_EXPANDED</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_interfaces</span> <span class="o">=</span> <span class="n">bases</span>
@@ -495,7 +495,7 @@
 
 <span class="k">class</span> <span class="nc">ParamDecoder</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_manager</span><span class="p">,</span> <span class="n">params_def</span><span class="p">,</span> <span class="n">raw_params</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_manager</span><span class="p">,</span> <span class="n">params_def</span><span class="p">,</span> <span class="n">raw_params</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Create ParamDecorder object and decode macro parameters</span>
 
 <span class="sd">        :param type_manager: (sardana.macroserver.mstypemanager.TypeManager)</span>
@@ -653,10 +653,10 @@
     <span class="k">def</span> <span class="nf">getParamList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span>
 
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
 
@@ -666,7 +666,7 @@
 <span class="sd">    passed as a flat list of strings.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_manager</span><span class="p">,</span> <span class="n">params_def</span><span class="p">,</span> <span class="n">raw_params</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">type_manager</span><span class="p">,</span> <span class="n">params_def</span><span class="p">,</span> <span class="n">raw_params</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type_manager</span> <span class="o">=</span> <span class="n">type_manager</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">params_def</span> <span class="o">=</span> <span class="n">params_def</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">raw_params</span> <span class="o">=</span> <span class="n">raw_params</span>
@@ -774,10 +774,10 @@
     <span class="k">def</span> <span class="nf">getParamList</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">params</span>
 
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">params</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 </pre></div>
 

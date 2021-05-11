@@ -767,7 +767,7 @@ brackets for the repetition <strong>must</strong> be skipped.</p>
 </div>
 <p>Must use the square brackets for the <code class="docutils literal notranslate"><span class="pre">motor_list</span></code> parameter but not for
 its repeats:</p>
-<div class="highlight-spock notranslate"><div class="highlight"><pre><span></span><span class="gp">Door_1 [1]: </span><span class="n">power_motor</span> <span class="p">[</span><span class="n">th</span> <span class="n">tth</span><span class="p">]</span> <span class="kc">True</span>
+<div class="highlight-spock notranslate"><div class="highlight"><pre><span></span><span class="gp">Door_1 [1]: </span><span class="n">power_motor</span> <span class="p">[</span><span class="n">th</span> <span class="n">tth</span><span class="p">]</span> <span class="bp">True</span>
 </pre></div>
 </div>
 </div>
@@ -779,8 +779,8 @@ the repeat parameter may be skipped as well resulting in no square brackets
 being used.</p>
 <p>This assumes the <code class="docutils literal notranslate"><span class="pre">power_motor</span></code> macro from the previous example.
 The following two macro executions are equivalent:</p>
-<div class="highlight-spock notranslate"><div class="highlight"><pre><span></span><span class="gp">Door_1 [1]: </span><span class="n">power_motor</span> <span class="n">th</span> <span class="kc">True</span>
-<span class="gp">Door_1 [2]: </span><span class="n">power_motor</span> <span class="p">[</span><span class="n">th</span><span class="p">]</span> <span class="kc">True</span>
+<div class="highlight-spock notranslate"><div class="highlight"><pre><span></span><span class="gp">Door_1 [1]: </span><span class="n">power_motor</span> <span class="n">th</span> <span class="bp">True</span>
+<span class="gp">Door_1 [2]: </span><span class="n">power_motor</span> <span class="p">[</span><span class="n">th</span><span class="p">]</span> <span class="bp">True</span>
 </pre></div>
 </div>
 <p>A set of macro examples defining complex repeat parameters can be found in
@@ -812,7 +812,7 @@ creating a <a class="reference external" href="https://pytango.readthedocs.io/en
 console:</p>
 <div class="highlight-spock notranslate"><div class="highlight"><pre><span></span><span class="gp">LAB-01-D01 [1]: </span><span class="n">tgtest</span> <span class="o">=</span> <span class="n">Device</span><span class="p">(</span><span class="s2">&quot;sys/tg_test/1&quot;</span><span class="p">)</span>
 
-<span class="gp">LAB-01-D01 [2]: </span><span class="nb">print</span><span class="p">(</span><span class="n">tgtest</span><span class="o">.</span><span class="n">state</span><span class="p">())</span>
+<span class="gp">LAB-01-D01 [2]: </span><span class="k">print</span><span class="p">(</span><span class="n">tgtest</span><span class="o">.</span><span class="n">state</span><span class="p">())</span>
 <span class="go">RUNNING</span>
 </pre></div>
 </div>

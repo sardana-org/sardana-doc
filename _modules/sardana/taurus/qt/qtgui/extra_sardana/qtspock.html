@@ -201,22 +201,22 @@
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">ast</span>
 
-<span class="kn">from</span> <span class="nn">IPython.core.profiledir</span> <span class="kn">import</span> <span class="n">ProfileDirError</span><span class="p">,</span> <span class="n">ProfileDir</span>
+<span class="kn">from</span> <span class="nn">IPython.core.profiledir</span> <span class="k">import</span> <span class="n">ProfileDirError</span><span class="p">,</span> <span class="n">ProfileDir</span>
 
-<span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="kn">import</span> <span class="n">Qt</span>
-<span class="kn">from</span> <span class="nn">taurus</span> <span class="kn">import</span> <span class="n">info</span><span class="p">,</span> <span class="n">error</span>
+<span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="k">import</span> <span class="n">Qt</span>
+<span class="kn">from</span> <span class="nn">taurus</span> <span class="k">import</span> <span class="n">info</span><span class="p">,</span> <span class="n">error</span>
 
-<span class="kn">from</span> <span class="nn">qtconsole.rich_jupyter_widget</span> <span class="kn">import</span> <span class="n">RichJupyterWidget</span>
-<span class="kn">from</span> <span class="nn">qtconsole.manager</span> <span class="kn">import</span> <span class="n">QtKernelManager</span>
+<span class="kn">from</span> <span class="nn">qtconsole.rich_jupyter_widget</span> <span class="k">import</span> <span class="n">RichJupyterWidget</span>
+<span class="kn">from</span> <span class="nn">qtconsole.manager</span> <span class="k">import</span> <span class="n">QtKernelManager</span>
 
-<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.base</span> <span class="kn">import</span> <span class="n">TaurusBaseWidget</span>
-<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.container</span> <span class="kn">import</span> <span class="n">TaurusMainWindow</span>
-<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.resource</span> <span class="kn">import</span> <span class="n">getThemeIcon</span>
+<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.base</span> <span class="k">import</span> <span class="n">TaurusBaseWidget</span>
+<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.container</span> <span class="k">import</span> <span class="n">TaurusMainWindow</span>
+<span class="kn">from</span> <span class="nn">taurus.qt.qtgui.resource</span> <span class="k">import</span> <span class="n">getThemeIcon</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">release</span>
-<span class="kn">from</span> <span class="nn">sardana.spock.ipython_01_00.genutils</span> <span class="kn">import</span> <span class="n">get_profile_metadata</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">release</span>
+<span class="kn">from</span> <span class="nn">sardana.spock.ipython_01_00.genutils</span> <span class="k">import</span> <span class="n">get_profile_metadata</span><span class="p">,</span> \
     <span class="n">get_ipython_dir</span><span class="p">,</span> <span class="n">from_name_to_tango</span><span class="p">,</span> <span class="n">get_macroserver_for_door</span>
-<span class="kn">from</span> <span class="nn">sardana.taurus.qt.qtgui.extra_macroexecutor</span> <span class="kn">import</span> \
+<span class="kn">from</span> <span class="nn">sardana.taurus.qt.qtgui.extra_macroexecutor</span> <span class="k">import</span> \
     <span class="n">TaurusMacroConfigurationDialog</span>
 
 
@@ -317,7 +317,7 @@
 <span class="sd">        app.aboutToQuit.connect(widget.shutdown_kernel)</span>
 <span class="sd">        app.exec_()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
             <span class="n">profile</span><span class="o">=</span><span class="s1">&#39;spockdoor&#39;</span><span class="p">,</span>
@@ -545,7 +545,7 @@
 <span class="sd">        (up to and including its removal) may occur if</span>
 <span class="sd">        deemed necessary by the core developers.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">designMode</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">designMode</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">designMode</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">spockWidget</span> <span class="o">=</span> <span class="n">QtSpockWidget</span><span class="p">(</span><span class="n">parent</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">registerConfigDelegate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">spockWidget</span><span class="p">)</span>
@@ -578,7 +578,7 @@
 
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">taurus.qt.qtgui.application</span> <span class="kn">import</span> <span class="n">TaurusApplication</span>
+    <span class="kn">from</span> <span class="nn">taurus.qt.qtgui.application</span> <span class="k">import</span> <span class="n">TaurusApplication</span>
     <span class="n">app</span> <span class="o">=</span> <span class="n">TaurusApplication</span><span class="p">()</span>
     <span class="n">app</span><span class="o">.</span><span class="n">setOrganizationName</span><span class="p">(</span><span class="s2">&quot;Taurus&quot;</span><span class="p">)</span>
     <span class="n">app</span><span class="o">.</span><span class="n">setApplicationName</span><span class="p">(</span><span class="s2">&quot;QtSpock&quot;</span><span class="p">)</span>

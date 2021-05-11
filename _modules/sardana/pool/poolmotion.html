@@ -198,11 +198,11 @@
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">functools</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">DebugIt</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.enumeration</span> <span class="kn">import</span> <span class="n">Enumeration</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">DebugIt</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.enumeration</span> <span class="k">import</span> <span class="n">Enumeration</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">State</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolaction</span> <span class="kn">import</span> <span class="n">ActionContext</span><span class="p">,</span> <span class="n">PoolActionItem</span><span class="p">,</span> <span class="n">PoolAction</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolaction</span> <span class="k">import</span> <span class="n">ActionContext</span><span class="p">,</span> <span class="n">PoolActionItem</span><span class="p">,</span> <span class="n">PoolAction</span>
 
 <span class="c1">#: enumeration representing possible motion states</span>
 <span class="n">MotionState</span> <span class="o">=</span> <span class="n">Enumeration</span><span class="p">(</span><span class="s2">&quot;MotionSate&quot;</span><span class="p">,</span> <span class="p">(</span>
@@ -239,7 +239,7 @@
 <div class="viewcode-block" id="PoolMotionItem"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmotion.html#sardana.pool.poolmotion.PoolMotionItem">[docs]</a><span class="k">class</span> <span class="nc">PoolMotionItem</span><span class="p">(</span><span class="n">PoolActionItem</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;An item involved in the motion. Maps directly to a motor object&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">moveable</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">dial_position</span><span class="p">,</span> <span class="n">do_backlash</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">moveable</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">dial_position</span><span class="p">,</span> <span class="n">do_backlash</span><span class="p">,</span>
                  <span class="n">backlash</span><span class="p">,</span> <span class="n">instability_time</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">PoolActionItem</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">moveable</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">position</span>
@@ -335,7 +335,7 @@
 <div class="viewcode-block" id="PoolMotion"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmotion.html#sardana.pool.poolmotion.PoolMotion">[docs]</a><span class="k">class</span> <span class="nc">PoolMotion</span><span class="p">(</span><span class="n">PoolAction</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;This class manages motion actions&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;GlobalMotion&quot;</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;GlobalMotion&quot;</span><span class="p">):</span>
         <span class="n">PoolAction</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">main_element</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_motion_info</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_motion_sleep_time</span> <span class="o">=</span> <span class="kc">None</span>

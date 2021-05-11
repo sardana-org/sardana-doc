@@ -196,22 +196,22 @@
 
 <span class="kn">import</span> <span class="nn">time</span>
 
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">Util</span><span class="p">,</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">Except</span>
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevLong</span><span class="p">,</span> <span class="n">DevString</span>
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">DevVarStringArray</span><span class="p">,</span> <span class="n">DevVarLongArray</span>
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">DispLevel</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrQuality</span>
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">SPECTRUM</span>
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">READ_WRITE</span><span class="p">,</span> <span class="n">READ</span>
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">Util</span><span class="p">,</span> <span class="n">DevFailed</span><span class="p">,</span> <span class="n">Except</span>
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevLong</span><span class="p">,</span> <span class="n">DevString</span>
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">DevVarStringArray</span><span class="p">,</span> <span class="n">DevVarLongArray</span>
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">DispLevel</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">AttrQuality</span>
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">SCALAR</span><span class="p">,</span> <span class="n">SPECTRUM</span>
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">READ_WRITE</span><span class="p">,</span> <span class="n">READ</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">DebugIt</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="kn">import</span> <span class="n">CaselessDict</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">DebugIt</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">DataType</span><span class="p">,</span> <span class="n">DataFormat</span>
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">SardanaServer</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="kn">import</span> <span class="n">SardanaAttribute</span>
-<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="kn">import</span> <span class="n">to_tango_attr_info</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">DataType</span><span class="p">,</span> <span class="n">DataFormat</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">SardanaServer</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaattribute</span> <span class="k">import</span> <span class="n">SardanaAttribute</span>
+<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">to_tango_attr_info</span>
 
-<span class="kn">from</span> <span class="nn">.PoolDevice</span> <span class="kn">import</span> <span class="n">PoolDevice</span><span class="p">,</span> <span class="n">PoolDeviceClass</span>
+<span class="kn">from</span> <span class="nn">.PoolDevice</span> <span class="k">import</span> <span class="n">PoolDevice</span><span class="p">,</span> <span class="n">PoolDeviceClass</span>
 
 
 <span class="k">def</span> <span class="nf">to_bool</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
@@ -220,7 +220,7 @@
 
 <div class="viewcode-block" id="Controller"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Controller.html#sardana.tango.pool.Controller.Controller">[docs]</a><span class="k">class</span> <span class="nc">Controller</span><span class="p">(</span><span class="n">PoolDevice</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">PoolDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Controller.init"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/Controller.html#sardana.tango.pool.Controller.Controller.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>

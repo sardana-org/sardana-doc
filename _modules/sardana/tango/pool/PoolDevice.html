@@ -198,21 +198,21 @@
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
 <span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
 
-<span class="kn">from</span> <span class="nn">PyTango</span> <span class="kn">import</span> <span class="n">Util</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevLong64</span><span class="p">,</span> <span class="n">DevBoolean</span><span class="p">,</span> <span class="n">DevString</span><span class="p">,</span>\
+<span class="kn">from</span> <span class="nn">PyTango</span> <span class="k">import</span> <span class="n">Util</span><span class="p">,</span> <span class="n">DevVoid</span><span class="p">,</span> <span class="n">DevLong64</span><span class="p">,</span> <span class="n">DevBoolean</span><span class="p">,</span> <span class="n">DevString</span><span class="p">,</span>\
     <span class="n">DevDouble</span><span class="p">,</span> <span class="n">DevEncoded</span><span class="p">,</span> <span class="n">DevVarStringArray</span><span class="p">,</span> <span class="n">DispLevel</span><span class="p">,</span> <span class="n">DevState</span><span class="p">,</span> <span class="n">SCALAR</span><span class="p">,</span> \
     <span class="n">SPECTRUM</span><span class="p">,</span> <span class="n">IMAGE</span><span class="p">,</span> <span class="n">READ_WRITE</span><span class="p">,</span> <span class="n">READ</span><span class="p">,</span> <span class="n">AttrData</span><span class="p">,</span> <span class="n">CmdArgType</span><span class="p">,</span> <span class="n">DevFailed</span><span class="p">,</span>\
     <span class="n">seqStr_2_obj</span><span class="p">,</span> <span class="n">Except</span><span class="p">,</span> <span class="n">ErrSeverity</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="kn">import</span> <span class="n">CaselessDict</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="kn">import</span> <span class="n">CodecFactory</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.codecs</span> <span class="k">import</span> <span class="n">CodecFactory</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">InvalidId</span><span class="p">,</span> <span class="n">InvalidAxis</span><span class="p">,</span> <span class="n">ElementType</span>
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">sardanacustomsettings</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolmetacontroller</span> <span class="kn">import</span> <span class="n">DataInfo</span>
-<span class="kn">from</span> <span class="nn">sardana.tango.core.SardanaDevice</span> <span class="kn">import</span> <span class="n">SardanaDevice</span><span class="p">,</span> <span class="n">SardanaDeviceClass</span>
-<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="kn">import</span> <span class="n">GenericScalarAttr</span><span class="p">,</span> <span class="n">GenericSpectrumAttr</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">InvalidId</span><span class="p">,</span> <span class="n">InvalidAxis</span><span class="p">,</span> <span class="n">ElementType</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">sardanacustomsettings</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmetacontroller</span> <span class="k">import</span> <span class="n">DataInfo</span>
+<span class="kn">from</span> <span class="nn">sardana.tango.core.SardanaDevice</span> <span class="k">import</span> <span class="n">SardanaDevice</span><span class="p">,</span> <span class="n">SardanaDeviceClass</span>
+<span class="kn">from</span> <span class="nn">sardana.tango.core.util</span> <span class="k">import</span> <span class="n">GenericScalarAttr</span><span class="p">,</span> <span class="n">GenericSpectrumAttr</span><span class="p">,</span> \
     <span class="n">GenericImageAttr</span><span class="p">,</span> <span class="n">to_tango_attr_info</span>
 
 
@@ -228,7 +228,7 @@
     <span class="c1">#: Maximum number of retries in a busy state</span>
     <span class="n">BusyRetries</span> <span class="o">=</span> <span class="mi">3</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="n">SardanaDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 
@@ -1021,7 +1021,7 @@
 
 <span class="k">class</span> <span class="nc">PoolExpChannelDevice</span><span class="p">(</span><span class="n">PoolElementDevice</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="n">PoolElementDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">codec_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">sardanacustomsettings</span><span class="p">,</span> <span class="s2">&quot;VALUE_BUFFER_CODEC&quot;</span><span class="p">)</span>
@@ -1141,7 +1141,7 @@
 
 <span class="k">class</span> <span class="nc">PoolTimerableDevice</span><span class="p">(</span><span class="n">PoolExpChannelDevice</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="n">PoolExpChannelDevice</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dclass</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
 

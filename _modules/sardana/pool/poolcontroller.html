@@ -202,24 +202,24 @@
 <span class="kn">import</span> <span class="nn">traceback</span>
 <span class="kn">import</span> <span class="nn">functools</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="kn">import</span> <span class="n">CaselessDict</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_TIMERABLE_ELEMENTS</span><span class="p">,</span>\
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">State</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_TIMERABLE_ELEMENTS</span><span class="p">,</span>\
     <span class="n">TYPE_PSEUDO_ELEMENTS</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="kn">import</span> <span class="n">EventType</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanavalue</span> <span class="kn">import</span> <span class="n">SardanaValue</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="kn">import</span> <span class="n">is_non_str_seq</span><span class="p">,</span> <span class="n">is_number</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="k">import</span> <span class="n">EventType</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanavalue</span> <span class="k">import</span> <span class="n">SardanaValue</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanautils</span> <span class="k">import</span> <span class="n">is_non_str_seq</span><span class="p">,</span> <span class="n">is_number</span>
 
-<span class="kn">from</span> <span class="nn">sardana.pool.poolextension</span> <span class="kn">import</span> <span class="n">translate_ctrl_value</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolbaseelement</span> <span class="kn">import</span> <span class="n">PoolBaseElement</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="kn">import</span> <span class="n">Referable</span><span class="p">,</span> <span class="n">Access</span><span class="p">,</span> <span class="n">DataAccess</span><span class="p">,</span>\
+<span class="kn">from</span> <span class="nn">sardana.pool.poolextension</span> <span class="k">import</span> <span class="n">translate_ctrl_value</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolbaseelement</span> <span class="k">import</span> <span class="n">PoolBaseElement</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.controller</span> <span class="k">import</span> <span class="n">Referable</span><span class="p">,</span> <span class="n">Access</span><span class="p">,</span> <span class="n">DataAccess</span><span class="p">,</span>\
     <span class="n">Description</span><span class="p">,</span> <span class="n">Type</span>
 
 
 <span class="k">class</span> <span class="nc">PoolBaseController</span><span class="p">(</span><span class="n">PoolBaseElement</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Base class for all controllers&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_error</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_element_ids</span> <span class="o">=</span> <span class="p">{}</span>
@@ -452,7 +452,7 @@
 <div class="viewcode-block" id="PoolController"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolController">[docs]</a><span class="k">class</span> <span class="nc">PoolController</span><span class="p">(</span><span class="n">PoolBaseController</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Controller class mediator for sardana controller plugins&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lib_info</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;lib_info&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ctrl_info</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;class_info&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_lib_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;library&#39;</span><span class="p">)</span>
@@ -1198,7 +1198,7 @@
 
 <div class="viewcode-block" id="PoolPseudoMotorController"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolPseudoMotorController">[docs]</a><span class="k">class</span> <span class="nc">PoolPseudoMotorController</span><span class="p">(</span><span class="n">PoolController</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_motor_ids</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;role_ids&#39;</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">PoolPseudoMotorController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -1285,7 +1285,7 @@
 
 <div class="viewcode-block" id="PoolPseudoCounterController"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolcontroller.html#sardana.pool.poolcontroller.PoolPseudoCounterController">[docs]</a><span class="k">class</span> <span class="nc">PoolPseudoCounterController</span><span class="p">(</span><span class="n">PoolController</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_counter_ids</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;role_ids&#39;</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">PoolPseudoCounterController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 

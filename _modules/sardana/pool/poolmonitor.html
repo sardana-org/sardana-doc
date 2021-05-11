@@ -197,11 +197,11 @@
 <span class="kn">import</span> <span class="nn">time</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="kn">import</span> <span class="n">Logger</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.log</span> <span class="k">import</span> <span class="n">Logger</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_PSEUDO_ELEMENTS</span>
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_PSEUDO_ELEMENTS</span>
 
-<span class="kn">from</span> <span class="nn">sardana.pool.poolobject</span> <span class="kn">import</span> <span class="n">PoolObject</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolobject</span> <span class="k">import</span> <span class="n">PoolObject</span>
 
 
 <div class="viewcode-block" id="PoolMonitor"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolmonitor.html#sardana.pool.poolmonitor.PoolMonitor">[docs]</a><span class="k">class</span> <span class="nc">PoolMonitor</span><span class="p">(</span><span class="n">Logger</span><span class="p">,</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">):</span>
@@ -209,7 +209,7 @@
     <span class="n">MIN_THREADS</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">MAX_THREADS</span> <span class="o">=</span> <span class="mi">10</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pool</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;PoolMonitor&#39;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">min_sleep</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pool</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;PoolMonitor&#39;</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">min_sleep</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
                  <span class="n">auto_start</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="n">Logger</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
         <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>

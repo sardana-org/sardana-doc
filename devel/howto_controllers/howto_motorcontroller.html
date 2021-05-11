@@ -226,7 +226,7 @@ now have a MotorController with a proper constructor, add and delete axis method
         <span class="bp">self</span><span class="o">.</span><span class="n">_motors</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">def</span> <span class="nf">AddDevice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_motors</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_motors</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
 
     <span class="k">def</span> <span class="nf">DeleteDevice</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">):</span>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_motor</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
@@ -253,7 +253,7 @@ a motor to the desired position:</p>
 
     <span class="n">MaxDevice</span> <span class="o">=</span> <span class="mi">128</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Constructor&quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">SpringfieldBaseMotorController</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">inst</span><span class="p">,</span> <span class="n">props</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>

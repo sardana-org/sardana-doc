@@ -200,21 +200,21 @@
 <span class="kn">import</span> <span class="nn">os.path</span>
 <span class="kn">import</span> <span class="nn">logging.handlers</span>
 
-<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="kn">import</span> <span class="n">TangoAttributeNameValidator</span>
-<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="kn">import</span> <span class="n">CaselessDict</span>
+<span class="kn">from</span> <span class="nn">taurus.core.tango.tangovalidator</span> <span class="k">import</span> <span class="n">TangoAttributeNameValidator</span>
+<span class="kn">from</span> <span class="nn">taurus.core.util.containers</span> <span class="k">import</span> <span class="n">CaselessDict</span>
 
-<span class="kn">from</span> <span class="nn">sardana</span> <span class="kn">import</span> <span class="n">InvalidId</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_ACQUIRABLE_ELEMENTS</span><span class="p">,</span> \
+<span class="kn">from</span> <span class="nn">sardana</span> <span class="k">import</span> <span class="n">InvalidId</span><span class="p">,</span> <span class="n">ElementType</span><span class="p">,</span> <span class="n">TYPE_ACQUIRABLE_ELEMENTS</span><span class="p">,</span> \
     <span class="n">TYPE_PSEUDO_ELEMENTS</span><span class="p">,</span> <span class="n">TYPE_PHYSICAL_ELEMENTS</span><span class="p">,</span> <span class="n">TYPE_MOVEABLE_ELEMENTS</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanamanager</span> <span class="kn">import</span> <span class="n">SardanaElementManager</span><span class="p">,</span> <span class="n">SardanaIDManager</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanamodulemanager</span> <span class="kn">import</span> <span class="n">ModuleManager</span>
-<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="kn">import</span> <span class="n">EventType</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolobject</span> <span class="kn">import</span> <span class="n">PoolObject</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolcontainer</span> <span class="kn">import</span> <span class="n">PoolContainer</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolcontroller</span> <span class="kn">import</span> <span class="n">PoolController</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolmonitor</span> <span class="kn">import</span> <span class="n">PoolMonitor</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolmetacontroller</span> <span class="kn">import</span> <span class="n">TYPE_MAP_OBJ</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolcontrollermanager</span> <span class="kn">import</span> <span class="n">ControllerManager</span>
-<span class="kn">from</span> <span class="nn">sardana.pool.poolmeasurementgroup</span> <span class="kn">import</span> <span class="n">PoolMeasurementGroup</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanamanager</span> <span class="k">import</span> <span class="n">SardanaElementManager</span><span class="p">,</span> <span class="n">SardanaIDManager</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanamodulemanager</span> <span class="k">import</span> <span class="n">ModuleManager</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanaevent</span> <span class="k">import</span> <span class="n">EventType</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolobject</span> <span class="k">import</span> <span class="n">PoolObject</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolcontainer</span> <span class="k">import</span> <span class="n">PoolContainer</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolcontroller</span> <span class="k">import</span> <span class="n">PoolController</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmonitor</span> <span class="k">import</span> <span class="n">PoolMonitor</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmetacontroller</span> <span class="k">import</span> <span class="n">TYPE_MAP_OBJ</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolcontrollermanager</span> <span class="k">import</span> <span class="n">ControllerManager</span>
+<span class="kn">from</span> <span class="nn">sardana.pool.poolmeasurementgroup</span> <span class="k">import</span> <span class="n">PoolMeasurementGroup</span>
 
 
 <span class="k">class</span> <span class="nc">Graph</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
@@ -281,7 +281,7 @@
 
     <span class="n">Default_DriftCorrection</span> <span class="o">=</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">full_name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">full_name</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_path_id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_motion_loop_states_per_position</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Default_MotionLoop_StatesPerPosition</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_motion_loop_sleep_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Default_MotionLoop_SleepTime</span>

@@ -195,13 +195,13 @@
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
-<span class="kn">from</span> <span class="nn">sardana.sardanabase</span> <span class="kn">import</span> <span class="n">SardanaBaseObject</span><span class="p">,</span> <span class="n">SardanaObjectID</span>
+<span class="kn">from</span> <span class="nn">sardana.sardanabase</span> <span class="k">import</span> <span class="n">SardanaBaseObject</span><span class="p">,</span> <span class="n">SardanaObjectID</span>
 
 
 <div class="viewcode-block" id="MSBaseObject"><a class="viewcode-back" href="../../../devel/api/sardana/macroserver/msbase.html#sardana.macroserver.msbase.MSBaseObject">[docs]</a><span class="k">class</span> <span class="nc">MSBaseObject</span><span class="p">(</span><span class="n">SardanaBaseObject</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;The MacroServer most abstract object.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;manager&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;macro_server&#39;</span><span class="p">)</span>
         <span class="n">SardanaBaseObject</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -228,7 +228,7 @@
 
 <span class="sd">           - _id : the internal identifier&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="n">SardanaObjectID</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span>
         <span class="n">MSBaseObject</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
