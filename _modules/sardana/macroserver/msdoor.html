@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.macroserver.msdoor &mdash; sardana 3.0.4-alpha documentation</title>
+  <title>sardana.macroserver.msdoor &mdash; sardana 3.1.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -294,8 +294,15 @@
 
     <span class="n">running_macro</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_running_macro</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="nf">get_last_macro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_executor</span><span class="o">.</span><span class="n">getLastMacro</span><span class="p">()</span>
+
+    <span class="n">last_macro</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_last_macro</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">get_macro_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_macro</span>
+        <span class="k">if</span> <span class="n">macro</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_macro</span>
         <span class="k">if</span> <span class="n">macro</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">MacroServerException</span><span class="p">(</span><span class="s2">&quot;No macro has run so far &quot;</span> <span class="o">+</span>
                                        <span class="s2">&quot;or the macro data was not preserved.&quot;</span><span class="p">)</span>

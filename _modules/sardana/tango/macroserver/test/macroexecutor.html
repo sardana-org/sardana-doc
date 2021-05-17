@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.tango.macroserver.test.macroexecutor &mdash; sardana 3.0.4-alpha documentation</title>
+  <title>sardana.tango.macroserver.test.macroexecutor &mdash; sardana 3.1.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -190,6 +190,7 @@
 
 <span class="kn">import</span> <span class="nn">copy</span>
 <span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">atexit</span>
 <span class="kn">import</span> <span class="nn">threading</span>
 <span class="kn">import</span> <span class="nn">PyTango</span>
 <span class="kn">from</span> <span class="nn">sardana.macroserver.macros.test</span> <span class="k">import</span> <span class="n">BaseMacroExecutor</span>
@@ -292,6 +293,8 @@
 <span class="sd">    Macro executor implemented using Tango communication with the Door device</span>
 <span class="sd">    &#39;&#39;&#39;</span>
 
+    <span class="n">_api_util_cleanup_registered</span> <span class="o">=</span> <span class="kc">False</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">door_name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">TangoMacroExecutor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">door_name</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -299,6 +302,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_door</span> <span class="o">=</span> <span class="n">PyTango</span><span class="o">.</span><span class="n">DeviceProxy</span><span class="p">(</span><span class="n">door_name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_done_event</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_started_event</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">TangoMacroExecutor</span><span class="o">.</span><span class="n">_api_util_cleanup_registered</span><span class="p">:</span>
+            <span class="c1"># remove whenever PyTango#390 gets fixed</span>
+            <span class="n">atexit</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">PyTango</span><span class="o">.</span><span class="n">ApiUtil</span><span class="o">.</span><span class="n">cleanup</span><span class="p">)</span>
+            <span class="n">TangoMacroExecutor</span><span class="o">.</span><span class="n">_api_util_cleanup_registered</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span> <span class="nf">_clean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&#39;&#39;&#39;Recreates threading Events in case the macro executor is reused.&#39;&#39;&#39;</span>

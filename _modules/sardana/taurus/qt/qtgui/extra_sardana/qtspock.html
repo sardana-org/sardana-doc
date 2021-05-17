@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.taurus.qt.qtgui.extra_sardana.qtspock &mdash; sardana 3.0.4-alpha documentation</title>
+  <title>sardana.taurus.qt.qtgui.extra_sardana.qtspock &mdash; sardana 3.1.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -201,6 +201,7 @@
 <span class="kn">import</span> <span class="nn">pickle</span>
 <span class="kn">import</span> <span class="nn">ast</span>
 
+<span class="kn">import</span> <span class="nn">traitlets</span>
 <span class="kn">from</span> <span class="nn">IPython.core.profiledir</span> <span class="k">import</span> <span class="n">ProfileDirError</span><span class="p">,</span> <span class="n">ProfileDir</span>
 
 <span class="kn">from</span> <span class="nn">taurus.external.qt</span> <span class="k">import</span> <span class="n">Qt</span>
@@ -345,6 +346,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_alias</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_door_name</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_door_alias</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_config_passed_as_extra_arguments</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">append_stream</span><span class="p">(</span><span class="s2">&quot;Waiting for kernel to start&quot;</span><span class="p">)</span>
 
@@ -372,6 +374,7 @@
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_model_from_profile</span><span class="p">:</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_name</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_door_name</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_config_passed_as_extra_arguments</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="n">extra_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--Spock.macro_server=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_name</span><span class="p">))</span>
                 <span class="n">extra_arguments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;--Spock.macro_server_alias=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
@@ -438,7 +441,15 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_macro_server_alias</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span> <span class="nf">_set_prompts</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">var</span> <span class="o">=</span> <span class="s2">&quot;get_ipython().config.Spock.door_alias&quot;</span>
+        <span class="c1"># If traitlets &gt;= 5.0.0 then DeferredConfigString is used for values</span>
+        <span class="c1"># that are not listed in the configurable classes. Get its value.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">traitlets</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config_passed_as_extra_arguments</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">kernel_client</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+                <span class="s2">&quot;from sardana.spock.config import Spock&quot;</span><span class="p">,</span> <span class="n">silent</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">var</span> <span class="o">=</span> <span class="s2">&quot;get_ipython().config.Spock.door_alias.get_value(Spock.door_alias)&quot;</span>  <span class="c1"># noqa</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">var</span> <span class="o">=</span> <span class="s2">&quot;get_ipython().config.Spock.door_alias&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_silent_exec_callback</span><span class="p">(</span>
             <span class="n">var</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_set_prompts_callback</span><span class="p">)</span>
 

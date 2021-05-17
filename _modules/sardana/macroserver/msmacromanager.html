@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.macroserver.msmacromanager &mdash; sardana 3.0.4-alpha documentation</title>
+  <title>sardana.macroserver.msmacromanager &mdash; sardana 3.1.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -1254,6 +1254,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_xml_stack</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_last_macro</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_abort_thread</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stop_thread</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1563,6 +1564,9 @@
 
     <span class="k">def</span> <span class="nf">getRunningMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span>
+
+    <span class="k">def</span> <span class="nf">getLastMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_macro</span>
 
     <span class="k">def</span> <span class="nf">clearRunningMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Clear pointer to the running macro.</span>
@@ -1891,11 +1895,13 @@
             <span class="n">preserve_macro_data</span> <span class="o">=</span> <span class="n">macro_obj</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="n">env_var_name</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">UnknownEnv</span><span class="p">:</span>
             <span class="n">preserve_macro_data</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">preserve_macro_data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">preserve_macro_data</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_last_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span>
+        <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Macro data will not be preserved. &#39;</span> <span class="o">+</span>
                        <span class="s1">&#39;Set &quot;</span><span class="si">%s</span><span class="s1">&quot; environment variable &#39;</span> <span class="o">%</span> <span class="n">env_var_name</span> <span class="o">+</span>
                        <span class="s1">&#39;to True in order to change it.&#39;</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">log_macro_manager</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
 

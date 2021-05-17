@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.macroserver.macros.standard &mdash; sardana 3.0.4-alpha documentation</title>
+  <title>sardana.macroserver.macros.standard &mdash; sardana 3.1.0 documentation</title>
   
 
   
@@ -65,7 +65,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -754,8 +754,12 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">printAllPos</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">printAllPos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">motor_width</span> <span class="o">=</span> <span class="mi">10</span>
-        <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_pos</span><span class="p">,</span> <span class="n">elem_fmt</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;</span><span class="si">%*.4f</span><span class="s1">&#39;</span><span class="p">],</span>
+        <span class="n">motor_width</span> <span class="o">=</span> <span class="mi">10</span>      
+        <span class="n">pos_format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getViewOption</span><span class="p">(</span><span class="n">ViewOption</span><span class="o">.</span><span class="n">PosFormat</span><span class="p">)</span>
+        <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%*.4f</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">pos_format</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">fmt</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%c</span><span class="s1">*.</span><span class="si">%d</span><span class="s1">f&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;%&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">pos_format</span><span class="p">))</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_pos</span><span class="p">,</span> <span class="n">elem_fmt</span><span class="o">=</span><span class="p">[</span><span class="n">fmt</span><span class="p">],</span>
                       <span class="n">col_head_str</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">all_names</span><span class="p">,</span> <span class="n">col_head_width</span><span class="o">=</span><span class="n">motor_width</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">outputBlock</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">genOutput</span><span class="p">())</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">flushOutput</span><span class="p">()</span></div>

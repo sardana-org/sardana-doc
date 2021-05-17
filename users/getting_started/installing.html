@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Installing &mdash; sardana 3.0.4-alpha documentation</title>
+  <title>Installing &mdash; sardana 3.1.0 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                3.0
+                3.1
               </div>
             
           
@@ -101,7 +101,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Getting started</a><ul class="current">
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Installing</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#working-directly-from-git">Working directly from Git</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dependencies">Dependencies</a></li>
 <li class="toctree-l4"><a class="reference internal" href="running_server.html">Running the server</a></li>
 <li class="toctree-l4"><a class="reference internal" href="running_cli.html">Running the client</a></li>
@@ -127,6 +126,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../devel/index.html">Developer’s Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../sep/index.html">Sardana Enhancement Proposals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../news.html">What's new?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_versions.html">Docs for other Sardana versions</a></li>
 </ul>
@@ -181,7 +181,7 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="../../docs.html">Sardana 3.0 Documentation</a> &raquo;</li>
+          <li><a href="../../docs.html">Sardana 3.1 Documentation</a> &raquo;</li>
         
           <li><a href="../index.html">User’s Guide</a> &raquo;</li>
         
@@ -208,8 +208,8 @@
             
   <div class="section" id="installing">
 <span id="sardana-installing"></span><h1>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="installing-with-pip-1-platform-independent">
-<h2>Installing with pip <a class="footnote-reference brackets" href="#id5" id="id1">1</a> (platform-independent)<a class="headerlink" href="#installing-with-pip-1-platform-independent" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="installing-with-pip-platform-independent">
+<h2>Installing with pip (platform-independent)<a class="headerlink" href="#installing-with-pip-platform-independent" title="Permalink to this headline">¶</a></h2>
 <p>Sardana can be installed using pip. The following command will
 automatically download and install the latest release of Sardana (see
 pip3 –help for options):</p>
@@ -220,138 +220,65 @@ pip3 –help for options):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print(sardana.Release.version)&quot;</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="installing-from-pypi-manually-2-platform-independent">
-<h2>Installing from PyPI manually <a class="footnote-reference brackets" href="#id6" id="id2">2</a> (platform-independent)<a class="headerlink" href="#installing-from-pypi-manually-2-platform-independent" title="Permalink to this headline">¶</a></h2>
-<p>You may alternatively install from a downloaded release package:</p>
-<ol class="arabic">
-<li><p>Download the latest release of Sardana from <a class="reference external" href="http://pypi.python.org/pypi/sardana">http://pypi.python.org/pypi/sardana</a></p></li>
-<li><p>Extract the downloaded source into a temporary directory and change to it</p></li>
-<li><p>run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
-</pre></div>
-</div>
-</li>
-</ol>
-<p>You can test the installation by running:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print(sardana.Release.version)&quot;</span>
+<p>Note: Installing sardana with pip3 on Linux requires building PyTango (one of
+the sardana’s dependencies). You could use <a class="reference internal" href="#sardana-getting-started-installing-in-conda"><span class="std std-ref">Installing in a conda environment (platform-independent)</span></a>
+to avoid this. If you decide to continue with pip3, please refer to
+<a class="reference external" href="https://pytango.readthedocs.io/en/stable/start.html#pypi">PyTango’s installation guide</a>.
+On Debian this should work to prepare the build environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="n">libboost</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">dev</span> <span class="n">libtango</span><span class="o">-</span><span class="n">dev</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="linux-debian-based">
 <h2>Linux (Debian-based)<a class="headerlink" href="#linux-debian-based" title="Permalink to this headline">¶</a></h2>
-<p>Since v1.4, Sardana is part of the official repositories of Debian (and Ubuntu
+<p>Sardana is part of the official repositories of Debian (and Ubuntu
 and other Debian-based distros). You can install it and all its dependencies by
 doing (as root):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">aptitude</span> <span class="n">install</span> <span class="n">python</span><span class="o">-</span><span class="n">sardana</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="n">python3</span><span class="o">-</span><span class="n">sardana</span>
 </pre></div>
 </div>
-<p>You can test the installation by running:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print(sardana.Release.version)&quot;</span>
+<p>Note: <code class="xref py py-obj docutils literal notranslate"><span class="pre">python3-sardana</span></code> package is available starting from the Debian 11
+(Bullseye) release. For previous releases you can use <code class="xref py py-obj docutils literal notranslate"><span class="pre">python-sardana</span></code>
+(compatible with Python 2 only).</p>
+</div>
+<div class="section" id="installing-in-a-conda-environment-platform-independent">
+<span id="sardana-getting-started-installing-in-conda"></span><h2>Installing in a conda environment (platform-independent)<a class="headerlink" href="#installing-in-a-conda-environment-platform-independent" title="Permalink to this headline">¶</a></h2>
+<p>In a conda environment (we recommend creating one specifically for sardana):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">sardana</span>
 </pre></div>
 </div>
-<p>(see more detailed instructions in <a class="reference external" href="https://sourceforge.net/p/sardana/wiki/Howto-Sardana-on-Debian8/">this step-by-step howto</a>)</p>
+<p>Note: for Windows, until PyTango is available on conda-forge, you may need to use
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">install</span> <span class="pre">pytango</span></code> for installing it.</p>
 </div>
-<div class="section" id="windows">
-<h2>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic">
-<li><p>Download the latest windows binary from <a class="reference external" href="https://github.com/sardana-org/sardana/releases">https://github.com/sardana-org/sardana/releases</a></p></li>
-<li><p>Run the installation executable</p></li>
-<li><p>test the installation:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Python35</span>\<span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;import sardana; print(sardana.Release.version)&quot;</span>
-</pre></div>
-</div>
-</li>
-</ol>
-<div class="section" id="windows-installation-shortcut">
-<h3>Windows installation shortcut<a class="headerlink" href="#windows-installation-shortcut" title="Permalink to this headline">¶</a></h3>
-<p>This chapter provides a quick shortcut to all windows packages which are
-necessary to run Sardana on your windows machine</p>
-<ol class="arabic">
-<li><p>Install all dependencies:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Download and install latest <a class="reference external" href="http://pytango.readthedocs.io/">PyTango</a> from <a class="reference external" href="http://pypi.python.org/pypi/PyTango">PyTango downdoad page</a></p></li>
-<li><p>Download and install latest <a class="reference external" href="http://www.taurus-scada.org/">Taurus</a> from <a class="reference external" href="http://pypi.python.org/pypi/taurus">Taurus downdoad page</a></p></li>
-<li><p>Download and install latest <a class="reference external" href="http://lxml.de">lxml</a> from <a class="reference external" href="http://pypi.python.org/pypi/lxml">lxml downdoad page</a></p></li>
-<li><p>Download and install latest itango from <a class="reference external" href="http://pypi.python.org/pypi/itango">itango download page</a></p></li>
-</ol>
-</div></blockquote>
-</li>
-<li><p>Finally download and install latest Sardana from <a class="reference external" href="http://pypi.python.org/pypi/sardana">Sardana downdoad page</a></p></li>
-</ol>
-</div>
-</div>
-</div>
-<div class="section" id="working-directly-from-git">
-<h1>Working directly from Git<a class="headerlink" href="#working-directly-from-git" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="working-from-git-source-directly-in-develop-mode">
+<h2>Working from Git source directly (in develop mode)<a class="headerlink" href="#working-from-git-source-directly-in-develop-mode" title="Permalink to this headline">¶</a></h2>
 <p>If you intend to do changes to Sardana itself, or want to try the latest
 developments, it is convenient to work directly from the git source in
 “develop” (aka “editable”) mode, so that you do not need to re-install
-on each change.</p>
-<p>You can clone sardana from the main git repository:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sardana</span><span class="o">-</span><span class="n">org</span><span class="o">/</span><span class="n">sardana</span><span class="o">.</span><span class="n">git</span> <span class="n">sardana</span>
+on each change:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># optional: if using a conda environment, pre-install dependencies with:</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">--</span><span class="n">only</span><span class="o">-</span><span class="n">deps</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">sardana</span>
+
+<span class="c1"># install sardana in develop mode</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">sardana</span><span class="o">-</span><span class="n">org</span><span class="o">/</span><span class="n">sardana</span><span class="o">.</span><span class="n">git</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">sardana</span>  <span class="c1"># &lt;-- Note the -e !!</span>
 </pre></div>
 </div>
-<p>Then, to work in editable mode, just do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">./</span><span class="n">sardana</span>
-</pre></div>
 </div>
-<p>Note that you can also fork the git repository in github to get your own
-github-hosted clone of the sardana repository to which you will have full
-access. This will create a new git repository associated to your personal account in
-github, so that your changes can be easily shared and eventually merged
-into the official repository.</p>
 </div>
 <div class="section" id="dependencies">
-<span id="id3"></span><h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
-<p>Sardana has dependencies on some python libraries:</p>
-<ul>
-<li><p>Sardana uses Tango as the middleware so you need <a class="reference external" href="http://pytango.readthedocs.io/">PyTango</a> 9.2.5 or later
-installed. You can check it by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import tango; print(tango.__version__)&#39;</span>
-</pre></div>
-</div>
-</li>
-<li><p>Sardana clients are developed with Taurus so you need <a class="reference external" href="http://www.taurus-scada.org/">Taurus</a> 4.5.4 or later
-installed. You can check it by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import taurus; print(taurus.Release.version)&#39;</span>
-</pre></div>
-</div>
-</li>
-<li><p>Sardana operate some data in the XML format and requires <a class="reference external" href="http://lxml.de">lxml</a> library 2.3 or
-later. You can check it by doing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python3</span> <span class="o">-</span><span class="n">c</span> <span class="s1">&#39;import lxml.etree; print(lxml.etree.LXML_VERSION)&#39;</span>
-</pre></div>
-</div>
-</li>
-<li><p>spock (Sardana CLI) requires itango 0.1.6 or later <a class="footnote-reference brackets" href="#id7" id="id4">3</a>.</p></li>
+<span id="id1"></span><h1>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h1>
+<p>Sardana depends on <a class="reference external" href="http://pytango.readthedocs.io/">PyTango</a>, <a class="reference external" href="http://www.taurus-scada.org/">Taurus</a>, <a class="reference external" href="http://lxml.de">lxml</a>, <a class="reference external" href="https://pytango.readthedocs.io/en/stable/itango.html">itango</a> and <a class="reference external" href="https://pypi.org/project/click/">click</a>.
+However some Sardana features require additional dependencies. For example:</p>
+<ul class="simple">
+<li><p>Using the Sardana <a class="reference external" href="http://qt.nokia.com/products/">Qt</a> widgets, requires either <a class="reference external" href="http://www.riverbankcomputing.co.uk/software/pyqt/">PyQt</a> (v4 or v5)
+or <a class="reference external" href="https://wiki.qt.io/Qt_for_Python/">PySide</a> (v1 or v2).</p></li>
+<li><p>The macro plotting feature requires <a class="reference external" href="https://matplotlib.org/">matplotlib</a></p></li>
+<li><p>The showscan online widget requires <a class="reference external" href="http://www.pyqtgraph.org/">pyqtgraph</a></p></li>
+<li><p>The showscan offline widget requires <a class="reference external" href="http://pymca.sourceforge.net/">PyMca5</a>.</p></li>
+<li><p>The HDF5 NeXus recorder requires <a class="reference external" href="https://www.h5py.org/">h5py</a></p></li>
+<li><p>The sardana editor widget requires <a class="reference external" href="http://pythonhosted.org/spyder/">spyder</a>.</p></li>
 </ul>
-<p class="rubric">Footnotes</p>
-<dl class="footnote brackets">
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>This command requires super user previledges on linux systems. If your
-user has them you can usually prefix the command with <em>sudo</em>:
-<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">pip3</span> <span class="pre">-U</span> <span class="pre">sardana</span></code>. Alternatively, if you don’t have
-administrator previledges, you can install locally in your user
-directory with: <code class="docutils literal notranslate"><span class="pre">pip3</span> <span class="pre">--user</span> <span class="pre">sardana</span></code>
-In this case the executables are located at &lt;HOME_DIR&gt;/.local/bin. Make
-sure the PATH is pointing there or you execute from there.</p>
-</dd>
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p><em>setup.py install</em> requires user previledges on linux systems. If your
-user has them you can usually prefix the command with <em>sudo</em>:
-<code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">python3</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>. Alternatively, if you don’t have
-administrator previledges, you can install locally in your user directory
-with: <code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">setup.py</span> <span class="pre">install</span> <span class="pre">--user</span></code>
-In this case the executables are located at &lt;HOME_DIR&gt;/.local/bin. Make
-sure the PATH is pointing there or you execute from there.</p>
-</dd>
-<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
-<dd><p>PyTango &lt; 9 is compatible with itango &gt;= 0.0.1 and &lt; 0.1.0,
-while higher versions with itango &gt;= 0.1.6.</p>
-</dd>
-</dl>
 </div>
 
 
