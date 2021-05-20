@@ -469,6 +469,8 @@
 <span class="sd">                     seq&lt;sardana.pool.poolelement.PoolElement&gt;&gt;&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span></div>
 
+    <span class="n">pool_controllers</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">get_pool_controllers</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">_is_in_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines if the given state is a busy state (Moving or Running) or</span>
 <span class="sd">        not.</span>
@@ -574,19 +576,19 @@
 <div class="viewcode-block" id="PoolAction.stop_action"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.stop_action">[docs]</a>    <span class="k">def</span> <span class="nf">stop_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stop procedure for this action.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">for</span> <span class="n">pool_ctrl</span><span class="p">,</span> <span class="n">elements</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">for</span> <span class="n">pool_ctrl</span><span class="p">,</span> <span class="n">elements</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">stop_elements</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PoolAction.abort_action"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.abort_action">[docs]</a>    <span class="k">def</span> <span class="nf">abort_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Aborts procedure for this action&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">for</span> <span class="n">pool_ctrl</span><span class="p">,</span> <span class="n">elements</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">for</span> <span class="n">pool_ctrl</span><span class="p">,</span> <span class="n">elements</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">abort_elements</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PoolAction.emergency_break"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.emergency_break">[docs]</a>    <span class="k">def</span> <span class="nf">emergency_break</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Tries to execute a stop. If it fails try an abort&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="k">for</span> <span class="n">pool_ctrl</span><span class="p">,</span> <span class="n">elements</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">for</span> <span class="n">pool_ctrl</span><span class="p">,</span> <span class="n">elements</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">emergency_break</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PoolAction.was_stopped"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.was_stopped">[docs]</a>    <span class="k">def</span> <span class="nf">was_stopped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -664,21 +666,21 @@
         <span class="n">state_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state_info</span>
 
         <span class="k">with</span> <span class="n">state_info</span><span class="p">:</span>
-            <span class="n">state_info</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span><span class="p">))</span>
+            <span class="n">state_info</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span><span class="p">))</span>
             <span class="n">read</span><span class="p">(</span><span class="n">ret</span><span class="p">)</span>
             <span class="n">state_info</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 
     <span class="k">def</span> <span class="nf">_raw_read_state_info_serial</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Internal method. Read state in a serial mode&quot;&quot;&quot;</span>
-        <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_raw_read_ctrl_state_info</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">pool_ctrl</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span>
 
     <span class="k">def</span> <span class="nf">_raw_read_state_info_concurrent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Internal method. Read state in a concurrent mode&quot;&quot;&quot;</span>
         <span class="n">th_pool</span> <span class="o">=</span> <span class="n">get_thread_pool</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">pool_ctrl</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span><span class="p">:</span>
             <span class="n">th_pool</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_raw_read_ctrl_state_info</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">ret</span><span class="p">,</span> <span class="n">pool_ctrl</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span>
 
@@ -700,7 +702,7 @@
         <span class="sd">&quot;&quot;&quot;Internal method. Read controller information and store it in ret</span>
 <span class="sd">        parameter&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">axis</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]]</span>
+            <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">axis</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]]</span>
             <span class="n">state_infos</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">raw_read_axis_states</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">error</span><span class="p">:</span>
                 <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Read state error&quot;</span><span class="p">)</span>
@@ -714,14 +716,13 @@
                        <span class="s2">&quot;by ctrl.read_axis_states&quot;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Details: &quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="n">state_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_ctrl_error_state_info</span><span class="p">(</span><span class="n">pool_ctrl</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]:</span>
                 <span class="n">ret</span><span class="p">[</span><span class="n">elem</span><span class="p">]</span> <span class="o">=</span> <span class="n">state_info</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_state_info</span><span class="o">.</span><span class="n">finish_one</span><span class="p">()</span>
 
 <div class="viewcode-block" id="PoolAction.get_read_value_ctrls"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.get_read_value_ctrls">[docs]</a>    <span class="k">def</span> <span class="nf">get_read_value_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span></div>
-
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span></div>
 <div class="viewcode-block" id="PoolAction.read_value"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.read_value">[docs]</a>    <span class="k">def</span> <span class="nf">read_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">serial</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reads value information of all elements involved in this action</span>
 
@@ -785,14 +786,14 @@
         <span class="sd">&quot;&quot;&quot;Internal method. Read controller value information and store it in</span>
 <span class="sd">        ret parameter&quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">axis</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]]</span>
+            <span class="n">axes</span> <span class="o">=</span> <span class="p">[</span><span class="n">elem</span><span class="o">.</span><span class="n">axis</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span><span class="p">[</span><span class="n">pool_ctrl</span><span class="p">]]</span>
             <span class="n">value_infos</span> <span class="o">=</span> <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">raw_read_axis_values</span><span class="p">(</span><span class="n">axes</span><span class="p">)</span>
             <span class="n">ret</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">value_infos</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_value_info</span><span class="o">.</span><span class="n">finish_one</span><span class="p">()</span>
 
 <div class="viewcode-block" id="PoolAction.get_read_value_loop_ctrls"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.get_read_value_loop_ctrls">[docs]</a>    <span class="k">def</span> <span class="nf">get_read_value_loop_ctrls</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span></div>
 
 <div class="viewcode-block" id="PoolAction.read_value_loop"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.read_value_loop">[docs]</a>    <span class="k">def</span> <span class="nf">read_value_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ret</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">serial</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Reads value information of all elements involved in this action</span>
