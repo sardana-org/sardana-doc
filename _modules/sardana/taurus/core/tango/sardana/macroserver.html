@@ -641,8 +641,9 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s2">&quot;AbortMacro&quot;</span><span class="p">)</span>
-            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">after</span><span class="o">=</span><span class="n">time_stamp</span><span class="p">,</span>
-                               <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">InteractiveTimeout</span><span class="p">)</span>
+            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitForEvent</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="p">),</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                  <span class="n">after</span><span class="o">=</span><span class="n">time_stamp</span><span class="p">,</span>
+                                  <span class="n">reactivity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">InteractiveTimeout</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span></div>
@@ -667,9 +668,9 @@
                 <span class="c1"># Macro already finished - no need to release</span>
                 <span class="k">if</span> <span class="n">df</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="s2">&quot;API_CommandNotAllowed&quot;</span><span class="p">:</span>
                     <span class="k">return</span>
-            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                               <span class="n">after</span><span class="o">=</span><span class="n">time_stamp</span><span class="p">,</span>
-                               <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">InteractiveTimeout</span><span class="p">)</span>
+            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitForEvent</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="p">),</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                  <span class="n">after</span><span class="o">=</span><span class="n">time_stamp</span><span class="p">,</span>
+                                  <span class="n">reactivity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">InteractiveTimeout</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span></div>
@@ -684,8 +685,9 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">time_stamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s2">&quot;StopMacro&quot;</span><span class="p">)</span>
-            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">after</span><span class="o">=</span><span class="n">time_stamp</span><span class="p">,</span>
-                               <span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">InteractiveTimeout</span><span class="p">)</span>
+            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitForEvent</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="p">),</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                  <span class="n">after</span><span class="o">=</span><span class="n">time_stamp</span><span class="p">,</span>
+                                  <span class="n">reactivity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">InteractiveTimeout</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span></div>
@@ -765,7 +767,8 @@
         <span class="n">evt_wait</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">getAttribute</span><span class="p">(</span><span class="s2">&quot;state&quot;</span><span class="p">))</span>
         <span class="n">evt_wait</span><span class="o">.</span><span class="n">lock</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitForEvent</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="p">),</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                  <span class="n">reactivity</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
             <span class="c1"># Clear event set to not confuse the value coming from the</span>
             <span class="c1"># connection with the event of of end of the macro execution</span>
             <span class="c1"># in the next wait event. This was observed on Windows where</span>
@@ -775,10 +778,11 @@
             <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s2">&quot;RunMacro&quot;</span><span class="p">,</span>
                                         <span class="p">[</span><span class="n">etree</span><span class="o">.</span><span class="n">tostring</span><span class="p">(</span><span class="n">xml</span><span class="p">,</span>
                                                         <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;unicode&#39;</span><span class="p">)])</span>
-            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="n">after</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitForEvent</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="p">),</span> <span class="n">after</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span>
+                                  <span class="n">reactivity</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">synch</span><span class="p">:</span>
-                <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitEvent</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">after</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span>
-                                   <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+                <span class="n">evt_wait</span><span class="o">.</span><span class="n">waitForEvent</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">Running</span><span class="p">,</span> <span class="p">),</span> <span class="n">equal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">after</span><span class="o">=</span><span class="n">ts</span><span class="p">,</span>
+                                      <span class="n">reactivity</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_clearRunMacro</span><span class="p">()</span>
             <span class="n">evt_wait</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span>
