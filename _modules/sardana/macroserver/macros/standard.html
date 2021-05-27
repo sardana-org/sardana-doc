@@ -915,11 +915,9 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getEnv</span><span class="p">(</span><span class="s1">&#39;ActiveMntGrp&#39;</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">UnknownEnv</span><span class="p">:</span>
                 <span class="k">return</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span><span class="p">,</span> <span class="n">type_class</span><span class="o">=</span><span class="n">Type</span><span class="o">.</span><span class="n">MeasurementGroup</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span> <span class="o">=</span> <span class="n">countable_elem</span><span class="o">.</span><span class="n">name</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="o">=</span> <span class="n">countable_elem</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getObj</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">countable_elem_name</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="ct.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/standard.html#sardana.macroserver.macros.standard.ct.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="n">countable_elem</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">countable_elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
