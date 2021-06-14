@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.macroserver.msmacromanager &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>sardana.macroserver.msmacromanager &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -1253,7 +1253,6 @@
 <span class="c1">#        self._xml_stack = None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_xml_stack</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_last_macro</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_abort_thread</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1284,6 +1283,13 @@
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">macro_manager</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_server</span><span class="o">.</span><span class="n">macro_manager</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">macro_pointer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">macro_stack</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">macro_stack</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">macro_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">getGeneralHooks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Get data structure containing definition of the general hooks.</span>
@@ -1563,7 +1569,7 @@
         <span class="k">return</span> <span class="n">macro_obj</span><span class="p">,</span> <span class="n">prepare_result</span>
 
     <span class="k">def</span> <span class="nf">getRunningMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_pointer</span>
 
     <span class="k">def</span> <span class="nf">getLastMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_last_macro</span>
@@ -1572,8 +1578,18 @@
         <span class="sd">&quot;&quot;&quot;Clear pointer to the running macro.</span>
 
 <span class="sd">        ..warning:: Do not call it while the macro is running.</span>
+
+<span class="sd">        .. deprecated: Use clearMacroStack() instead.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Deprecated since 3.1.1. Use clearMacroStack() instead.&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">clearMacroStack</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Clear macro stack</span>
+
+<span class="sd">        ..warning:: Do not call it while the macro is running.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span> <span class="nf">__stopObjects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Stops all the reserved objects in the executor&quot;&quot;&quot;</span>
@@ -1610,6 +1626,10 @@
                     <span class="n">obj</span><span class="o">.</span><span class="n">abort</span><span class="p">()</span>
                 <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
                     <span class="k">pass</span>
+                <span class="k">except</span> <span class="n">ReleaseException</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Unable to abort </span><span class="si">{}</span><span class="s2"> - it may be hung. &quot;</span>
+                                 <span class="s2">&quot;Releasing it.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">obj</span><span class="p">))</span>
+                    <span class="n">obj</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
                 <span class="k">except</span><span class="p">:</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Unable to abort </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">obj</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Details:&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1733,7 +1753,6 @@
         <span class="c1"># reset the stacks</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_xml_stack</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stop_done</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_abort_done</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1751,7 +1770,6 @@
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xml</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__runXML</span><span class="p">()</span>
-            <span class="c1"># return self._macro_pointer.getResult()</span>
 
     <span class="k">def</span> <span class="nf">_jobEnded</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Job ended (stopped=</span><span class="si">%s</span><span class="s2">, aborted=</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span>
@@ -1767,8 +1785,8 @@
         <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">sendState</span><span class="p">(</span><span class="n">Macro</span><span class="o">.</span><span class="n">Exception</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span> <span class="o">=</span> <span class="kc">None</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_xml_stack</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_xml_stack</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span> <span class="nf">__runStatelessXML</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xml</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">xml</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1819,7 +1837,6 @@
         <span class="n">macro_exp</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">result</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;[START] runMacro </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">desc</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span> <span class="o">=</span> <span class="n">macro_obj</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">macro_obj</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">macro_obj</span><span class="o">.</span><span class="n">exec_</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">sendMacroStatus</span><span class="p">((</span><span class="n">step</span><span class="p">,))</span>
@@ -1866,7 +1883,7 @@
             <span class="n">macro_obj</span><span class="o">.</span><span class="n">_stopOnError</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">sendMacroStatusStop</span><span class="p">()</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">returnObjs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">returnObjs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">macro_pointer</span><span class="p">)</span>
 
         <span class="c1"># From this point on don&#39;t call any method of macro_obj which is part</span>
         <span class="c1"># of the mAPI (methods decorated with @mAPI) to avoid throwing an</span>
@@ -1887,7 +1904,6 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_popMacro</span><span class="p">()</span>
             <span class="k">raise</span> <span class="n">macro_exp</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;[ END ] runMacro </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">desc</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_popMacro</span><span class="p">()</span>
 
         <span class="c1"># decide whether to preserve the macro data</span>
         <span class="n">env_var_name</span> <span class="o">=</span> <span class="s1">&#39;PreserveMacroData&#39;</span>
@@ -1896,12 +1912,13 @@
         <span class="k">except</span> <span class="n">UnknownEnv</span><span class="p">:</span>
             <span class="n">preserve_macro_data</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">if</span> <span class="n">preserve_macro_data</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_last_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_last_macro</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_pointer</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">&#39;Macro data will not be preserved. &#39;</span> <span class="o">+</span>
                        <span class="s1">&#39;Set &quot;</span><span class="si">%s</span><span class="s1">&quot; environment variable &#39;</span> <span class="o">%</span> <span class="n">env_var_name</span> <span class="o">+</span>
                        <span class="s1">&#39;to True in order to change it.&#39;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_last_macro</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_popMacro</span><span class="p">()</span>
 
         <span class="n">log_macro_manager</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
 
@@ -1909,9 +1926,6 @@
 
     <span class="k">def</span> <span class="nf">_popMacro</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
-        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">sendState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
@@ -1923,7 +1937,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">door</span><span class="o">.</span><span class="n">set_result</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">getLastMacroStatus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_macro_pointer</span><span class="o">.</span><span class="n">_getMacroStatus</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">macro_pointer</span><span class="o">.</span><span class="n">_getMacroStatus</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">sendMacroStatusFinish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">ms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getLastMacroStatus</span><span class="p">()</span>

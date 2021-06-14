@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>What’s new? &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>What’s new? &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -101,10 +101,14 @@
 <li class="toctree-l2"><a class="reference internal" href="devel/index.html">Developer’s Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sep/index.html">Sardana Enhancement Proposals</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">What's new?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-s-new-in-sardana-3-1-1">What’s new in Sardana 3.1.1?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fixed">Fixed</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#what-s-new-in-sardana-3-1">What’s new in Sardana 3.1?</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#added">Added</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#changed">Changed</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#fixed">Fixed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Fixed</a></li>
 </ul>
 </li>
 </ul>
@@ -188,6 +192,19 @@
 <h1>What’s new?<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h1>
 <p>Below you will find the most relevant news that brings the Sardana releases.
 For a complete list of changes consult the Sardana <a class="reference external" href="https://github.com/sardana-org/sardana/blob/develop/CHANGELOG.md">CHANGELOG.md </a> file.</p>
+<div class="section" id="what-s-new-in-sardana-3-1-1">
+<h2>What’s new in Sardana 3.1.1?<a class="headerlink" href="#what-s-new-in-sardana-3-1-1" title="Permalink to this headline">¶</a></h2>
+<p>Date: 2021-06-11</p>
+<p>Type: hotfix release</p>
+<div class="section" id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Correctly handle stop/abort of macros e.g. <code class="docutils literal notranslate"><span class="pre">Ctrl+c</span></code> in Spock in case
+the macro was executing another hooked macros e.g. a scan executing a general
+hook.</p></li>
+</ul>
+</div>
+</div>
 <div class="section" id="what-s-new-in-sardana-3-1">
 <h2>What’s new in Sardana 3.1?<a class="headerlink" href="#what-s-new-in-sardana-3-1" title="Permalink to this headline">¶</a></h2>
 <p>Date: 2021-05-17 (<em>Jan21</em> milestone)</p>
@@ -256,8 +273,8 @@ in <a class="reference internal" href="users/taurus/experimentconfiguration.html
 </li>
 </ul>
 </div>
-<div class="section" id="fixed">
-<h3>Fixed<a class="headerlink" href="#fixed" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Fixed<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>Sardana server (standalone) startup is more robust.</p></li>
 <li><p>Storing string values in <em>datasets</em>, <em>pre-scan snapshot</em> and <em>custom data</em>

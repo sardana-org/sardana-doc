@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Measurement group API reference &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>Measurement group API reference &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -276,6 +276,13 @@ may occur if deemed necessary by the core developers.</p>
 <dl>
 <dt>start acquisition()</dt><dd><p>Starts to acquire the measurement group.</p>
 <p><a class="reference internal" href="sardana/pool/poolmeasurementgroup.html#sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.start_acquisition" title="sardana.pool.poolmeasurementgroup.PoolMeasurementGroup.start_acquisition"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start_acquisition()</span></code></a></p>
+</dd>
+<dt>stop()</dt><dd><p>stops the acquisition in an orderly fashion</p>
+</dd>
+<dt>abort()</dt><dd><p>stops the acquisition as fast as possible</p>
+</dd>
+<dt>release()</dt><dd><p>Release hung acquisition e.g. due to the hardware controller that
+got hung. You should first try stop/abort.</p>
 </dd>
 </dl>
 <div class="admonition seealso">

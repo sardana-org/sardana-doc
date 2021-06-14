@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.pool.poolaction &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>sardana.pool.poolaction &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -368,6 +368,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_main_element</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">(</span><span class="n">main_element</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_released</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_elements</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pool_ctrl_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -585,6 +586,9 @@
         <span class="k">for</span> <span class="n">pool_ctrl</span><span class="p">,</span> <span class="n">elements</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool_controllers</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>
             <span class="n">pool_ctrl</span><span class="o">.</span><span class="n">abort_elements</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="PoolAction.release_action"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.release_action">[docs]</a>    <span class="k">def</span> <span class="nf">release_action</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_released</span> <span class="o">=</span> <span class="kc">True</span></div>
+
 <div class="viewcode-block" id="PoolAction.emergency_break"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.emergency_break">[docs]</a>    <span class="k">def</span> <span class="nf">emergency_break</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Tries to execute a stop. If it fails try an abort&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">True</span>
@@ -604,6 +608,14 @@
 <span class="sd">        :return: True if action has been aborted from outside or False otherwise</span>
 <span class="sd">        :rtype: bool&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span></div>
+
+<div class="viewcode-block" id="PoolAction.was_released"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.was_released">[docs]</a>    <span class="k">def</span> <span class="nf">was_released</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Determines if the action has been released from outside</span>
+
+<span class="sd">        :return: True if action has been released from outside or False</span>
+<span class="sd">            otherwise</span>
+<span class="sd">        :rtype: bool&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_released</span></div>
 
 <div class="viewcode-block" id="PoolAction.was_action_interrupted"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolaction.html#sardana.pool.poolaction.PoolAction.was_action_interrupted">[docs]</a>    <span class="k">def</span> <span class="nf">was_action_interrupted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Determines if the action has been interruped from outside (either</span>

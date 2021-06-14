@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>controller &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>controller &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -986,12 +986,12 @@ set when the axis is first created.</p></li>
                             <span class="n">Description</span> <span class="p">:</span> <span class="s1">&#39;motor encoder source&#39;</span><span class="p">,</span> <span class="p">},</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">getAxisPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">getAxisExtraPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;encodersource&#39;</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encodersource</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">setAxisPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setAxisExtraPar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;encodersource&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_encodersource</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>

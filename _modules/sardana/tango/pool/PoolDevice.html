@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.tango.pool.PoolDevice &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>sardana.tango.pool.PoolDevice &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -311,6 +311,18 @@
         <span class="sd">&quot;&quot;&quot;Returns True if it is allowed to execute the tango stop command</span>
 
 <span class="sd">        :return: True if it is allowed to execute the tango stop command or</span>
+<span class="sd">                 False otherwise</span>
+<span class="sd">        :rtype: bool&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="o">!=</span> <span class="n">DevState</span><span class="o">.</span><span class="n">UNKNOWN</span></div>
+
+<div class="viewcode-block" id="PoolDevice.Release"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/PoolDevice.html#sardana.tango.pool.PoolDevice.PoolDevice.Release">[docs]</a>    <span class="k">def</span> <span class="nf">Release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The tango release command. Release the active operation&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">release</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="PoolDevice.is_Release_allowed"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/PoolDevice.html#sardana.tango.pool.PoolDevice.PoolDevice.is_Release_allowed">[docs]</a>    <span class="k">def</span> <span class="nf">is_Release_allowed</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Returns True if it is allowed to execute the tango release command</span>
+
+<span class="sd">        :return: True if it is allowed to execute the tango release command or</span>
 <span class="sd">                 False otherwise</span>
 <span class="sd">        :rtype: bool&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span> <span class="o">!=</span> <span class="n">DevState</span><span class="o">.</span><span class="n">UNKNOWN</span></div>
@@ -710,6 +722,7 @@
     <span class="n">cmd_list</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;Stop&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]],</span>
         <span class="s1">&#39;Abort&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]],</span>
+        <span class="s1">&#39;Release&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]],</span>
         <span class="s1">&#39;Restore&#39;</span><span class="p">:</span> <span class="p">[[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">],</span> <span class="p">[</span><span class="n">DevVoid</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">]],</span>
     <span class="p">}</span>
     <span class="n">cmd_list</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">SardanaDeviceClass</span><span class="o">.</span><span class="n">cmd_list</span><span class="p">)</span>

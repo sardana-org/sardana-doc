@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.macroserver.macros.scan &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>sardana.macroserver.macros.scan &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -193,7 +193,7 @@
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;a2scan&quot;</span><span class="p">,</span> <span class="s2">&quot;a3scan&quot;</span><span class="p">,</span> <span class="s2">&quot;a4scan&quot;</span><span class="p">,</span> <span class="s2">&quot;amultiscan&quot;</span><span class="p">,</span> <span class="s2">&quot;aNscan&quot;</span><span class="p">,</span> <span class="s2">&quot;ascan&quot;</span><span class="p">,</span>
            <span class="s2">&quot;d2scan&quot;</span><span class="p">,</span> <span class="s2">&quot;d3scan&quot;</span><span class="p">,</span> <span class="s2">&quot;d4scan&quot;</span><span class="p">,</span> <span class="s2">&quot;dmultiscan&quot;</span><span class="p">,</span> <span class="s2">&quot;dNscan&quot;</span><span class="p">,</span> <span class="s2">&quot;dscan&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;fscan&quot;</span><span class="p">,</span> <span class="s2">&quot;mesh&quot;</span><span class="p">,</span> <span class="s2">&quot;timescan&quot;</span><span class="p">,</span>
+           <span class="s2">&quot;fscan&quot;</span><span class="p">,</span> <span class="s2">&quot;mesh&quot;</span><span class="p">,</span> <span class="s2">&quot;timescan&quot;</span><span class="p">,</span> <span class="s2">&quot;rscan&quot;</span><span class="p">,</span> <span class="s2">&quot;r2scan&quot;</span><span class="p">,</span> <span class="s2">&quot;r3scan&quot;</span><span class="p">,</span>
            <span class="s2">&quot;a2scanc&quot;</span><span class="p">,</span> <span class="s2">&quot;a3scanc&quot;</span><span class="p">,</span> <span class="s2">&quot;a4scanc&quot;</span><span class="p">,</span> <span class="s2">&quot;ascanc&quot;</span><span class="p">,</span>
            <span class="s2">&quot;d2scanc&quot;</span><span class="p">,</span> <span class="s2">&quot;d3scanc&quot;</span><span class="p">,</span> <span class="s2">&quot;d4scanc&quot;</span><span class="p">,</span> <span class="s2">&quot;dscanc&quot;</span><span class="p">,</span>
            <span class="s2">&quot;meshc&quot;</span><span class="p">,</span>
@@ -1160,6 +1160,224 @@
                 <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_prepare</span><span class="p">([</span><span class="n">motor</span><span class="p">],</span> <span class="p">[</span><span class="n">start_pos</span><span class="p">],</span> <span class="p">[</span><span class="n">final_pos</span><span class="p">],</span> <span class="n">nr_interv</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span>
                       <span class="n">mode</span><span class="o">=</span><span class="n">HybridMode</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="rscan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.rscan">[docs]</a><span class="k">class</span> <span class="nc">rscan</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;rscan.</span>
+<span class="sd">    Do an absolute scan of the specified motor with different number of intervals for each region.</span>
+<span class="sd">    It uses the gscan framework.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;rscan&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-scan&#39;</span><span class="p">,</span> <span class="s1">&#39;pre-move&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;post-move&#39;</span><span class="p">,</span> <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span> <span class="s1">&#39;post-step&#39;</span><span class="p">,</span>
+                                              <span class="s1">&#39;post-scan&#39;</span><span class="p">)}</span>
+    <span class="c1"># env = (&#39;ActiveMntGrp&#39;,)</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;motor&#39;</span><span class="p">,</span>      <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Motor to move&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;start_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Start position&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;regions&#39;</span><span class="p">,</span>
+         <span class="p">[[</span><span class="s1">&#39;next_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;next position&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;region_nr_intervals&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span>
+           <span class="s1">&#39;Region number of intervals&#39;</span><span class="p">]],</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of tuples: (next_pos, region_nr_intervals&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">]</span>
+    <span class="p">]</span>
+
+<div class="viewcode-block" id="rscan.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.rscan.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">regions</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;rscan&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">=</span> <span class="n">start_pos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regions</span> <span class="o">=</span> <span class="n">regions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regions_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+        <span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">motors</span> <span class="o">=</span> <span class="p">[</span><span class="n">motor</span><span class="p">]</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;env&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">constrains</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span> <span class="o">=</span> <span class="n">SScan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">motors</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">constrains</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">data</span></div>
+
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;integ_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;pre-move-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-move&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-move-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-move&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;pre-acq-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-acq&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-acq-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-acq&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span>
+            <span class="s1">&#39;_NOHINTS_&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-step-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-step&#39;</span><span class="p">)</span>
+
+        <span class="n">point_id</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">region_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)):</span>
+            <span class="n">region_stop</span><span class="p">,</span> <span class="n">region_nr_intervals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">[</span>
+                <span class="n">r</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">positions</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
+                <span class="n">region_start</span><span class="p">,</span> <span class="n">region_stop</span><span class="p">,</span> <span class="n">region_nr_intervals</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">point_id</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># positions must be calculated from the start to the end of the region</span>
+                <span class="c1"># but after the first region, the &#39;start&#39; point must not be</span>
+                <span class="c1"># repeated</span>
+                <span class="n">positions</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+                <span class="n">step</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">]</span>
+                <span class="n">step</span><span class="p">[</span><span class="s1">&#39;point_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_id</span>
+                <span class="n">point_id</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">yield</span> <span class="n">step</span>
+            <span class="n">region_start</span> <span class="o">=</span> <span class="n">region_stop</span>
+
+<div class="viewcode-block" id="rscan.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.rscan.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">step_scan</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">step</span></div></div>
+
+
+<div class="viewcode-block" id="r2scan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.r2scan">[docs]</a><span class="k">class</span> <span class="nc">r2scan</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;r2scan.</span>
+<span class="sd">    Do an absolute scan of the specified motors with different number of intervals for each region.</span>
+<span class="sd">    It uses the gscan framework. All the motors will be drived to the same position in each step</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;r2scan&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-scan&#39;</span><span class="p">,</span> <span class="s1">&#39;pre-move&#39;</span><span class="p">,</span>
+                                               <span class="s1">&#39;post-move&#39;</span><span class="p">,</span> <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
+                                               <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span> <span class="s1">&#39;post-step&#39;</span><span class="p">,</span>
+                                               <span class="s1">&#39;post-scan&#39;</span><span class="p">)}</span>
+    <span class="c1"># env = (&#39;ActiveMntGrp&#39;,)</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;motor1&#39;</span><span class="p">,</span>     <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Motor to move&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;motor2&#39;</span><span class="p">,</span>     <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Motor to move&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;start_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Start position&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;regions&#39;</span><span class="p">,</span>
+         <span class="p">[[</span><span class="s1">&#39;next_pos&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;next position&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;region_nr_intervals&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+           <span class="s1">&#39;Region number of intervals&#39;</span><span class="p">]],</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of tuples: (next_pos, region_nr_intervals&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+
+<div class="viewcode-block" id="r2scan.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.r2scan.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor1</span><span class="p">,</span> <span class="n">motor2</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">regions</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;r2scan&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">=</span> <span class="n">start_pos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regions</span> <span class="o">=</span> <span class="n">regions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regions_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+        <span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">motors</span> <span class="o">=</span> <span class="p">[</span><span class="n">motor1</span><span class="p">,</span> <span class="n">motor2</span><span class="p">]</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;env&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">constrains</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span> <span class="o">=</span> <span class="n">SScan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">motors</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">constrains</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">data</span></div>
+
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;integ_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;pre-move-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-move&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-move-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-move&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;pre-acq-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-acq&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-acq-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-acq&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span>
+            <span class="s1">&#39;_NOHINTS_&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-step-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-step&#39;</span><span class="p">)</span>
+
+        <span class="n">point_id</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">region_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)):</span>
+            <span class="n">region_stop</span><span class="p">,</span> <span class="n">region_nr_intervals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">[</span>
+                <span class="n">r</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">positions</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
+                <span class="n">region_start</span><span class="p">,</span> <span class="n">region_stop</span><span class="p">,</span> <span class="n">region_nr_intervals</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">point_id</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># positions must be calculated from the start to the end of the region</span>
+                <span class="c1"># but after the first region, the &#39;start&#39; point must not be</span>
+                <span class="c1"># repeated</span>
+                <span class="n">positions</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+                <span class="n">step</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span>
+                <span class="n">step</span><span class="p">[</span><span class="s1">&#39;point_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_id</span>
+                <span class="n">point_id</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">yield</span> <span class="n">step</span>
+            <span class="n">region_start</span> <span class="o">=</span> <span class="n">region_stop</span>
+
+<div class="viewcode-block" id="r2scan.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.r2scan.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">step_scan</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">step</span></div></div>
+
+
+<div class="viewcode-block" id="r3scan"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.r3scan">[docs]</a><span class="k">class</span> <span class="nc">r3scan</span><span class="p">(</span><span class="n">Macro</span><span class="p">,</span> <span class="n">Hookable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;r3scan.</span>
+<span class="sd">    Do an absolute scan of the specified motors with different number of</span>
+<span class="sd">    intervals for each region. It uses the gscan framework.</span>
+<span class="sd">    All the motors will be drived to the same position in each step</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">hints</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;scan&#39;</span><span class="p">:</span> <span class="s1">&#39;r3scan&#39;</span><span class="p">,</span> <span class="s1">&#39;allowsHooks&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;pre-scan&#39;</span><span class="p">,</span> <span class="s1">&#39;pre-move&#39;</span><span class="p">,</span>
+                                               <span class="s1">&#39;post-move&#39;</span><span class="p">,</span> <span class="s1">&#39;pre-acq&#39;</span><span class="p">,</span>
+                                               <span class="s1">&#39;post-acq&#39;</span><span class="p">,</span> <span class="s1">&#39;post-step&#39;</span><span class="p">,</span>
+                                               <span class="s1">&#39;post-scan&#39;</span><span class="p">)}</span>
+    <span class="c1"># env = (&#39;ActiveMntGrp&#39;,)</span>
+
+    <span class="n">param_def</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">[</span><span class="s1">&#39;motor1&#39;</span><span class="p">,</span>     <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Motor to move&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;motor2&#39;</span><span class="p">,</span>     <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Motor to move&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;motor3&#39;</span><span class="p">,</span>     <span class="n">Type</span><span class="o">.</span><span class="n">Moveable</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Motor to move&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;start_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Start position&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;regions&#39;</span><span class="p">,</span>
+         <span class="p">[[</span><span class="s1">&#39;next_pos&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;next position&#39;</span><span class="p">],</span>
+          <span class="p">[</span><span class="s1">&#39;region_nr_intervals&#39;</span><span class="p">,</span>  <span class="n">Type</span><span class="o">.</span><span class="n">Integer</span><span class="p">,</span>   <span class="kc">None</span><span class="p">,</span>
+           <span class="s1">&#39;Region number of intervals&#39;</span><span class="p">]],</span>
+         <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;List of tuples: (next_pos, region_nr_intervals&#39;</span><span class="p">],</span>
+        <span class="p">[</span><span class="s1">&#39;integ_time&#39;</span><span class="p">,</span> <span class="n">Type</span><span class="o">.</span><span class="n">Float</span><span class="p">,</span>    <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;Integration time&#39;</span><span class="p">],</span>
+    <span class="p">]</span>
+
+<div class="viewcode-block" id="r3scan.prepare"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.r3scan.prepare">[docs]</a>    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">motor1</span><span class="p">,</span> <span class="n">motor2</span><span class="p">,</span> <span class="n">motor3</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">regions</span><span class="p">,</span> <span class="n">integ_time</span><span class="p">,</span> <span class="o">**</span><span class="n">opts</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;r3scan&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span> <span class="o">=</span> <span class="n">integ_time</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span> <span class="o">=</span> <span class="n">start_pos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regions</span> <span class="o">=</span> <span class="n">regions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regions_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+        <span class="n">generator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_generator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">motors</span> <span class="o">=</span> <span class="p">[</span><span class="n">motor1</span><span class="p">,</span> <span class="n">motor2</span><span class="p">,</span> <span class="n">motor3</span><span class="p">]</span>
+        <span class="n">env</span> <span class="o">=</span> <span class="n">opts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;env&#39;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">constrains</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span> <span class="o">=</span> <span class="n">SScan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generator</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">motors</span><span class="p">,</span> <span class="n">env</span><span class="p">,</span> <span class="n">constrains</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">data</span></div>
+
+    <span class="k">def</span> <span class="nf">_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;integ_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">integ_time</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;pre-move-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-move&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-move-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-move&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;pre-acq-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;pre-acq&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-acq-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-acq&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span>
+            <span class="s1">&#39;_NOHINTS_&#39;</span><span class="p">)</span>
+        <span class="n">step</span><span class="p">[</span><span class="s2">&quot;post-step-hooks&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getHooks</span><span class="p">(</span><span class="s1">&#39;post-step&#39;</span><span class="p">)</span>
+
+        <span class="n">point_id</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">region_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_pos</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">)):</span>
+            <span class="n">region_stop</span><span class="p">,</span> <span class="n">region_nr_intervals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">[</span>
+                <span class="n">r</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">regions</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">positions</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span>
+                <span class="n">region_start</span><span class="p">,</span> <span class="n">region_stop</span><span class="p">,</span> <span class="n">region_nr_intervals</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">point_id</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="c1"># positions must be calculated from the start to the end of the region</span>
+                <span class="c1"># but after the first region, the &#39;start&#39; point must not be</span>
+                <span class="c1"># repeated</span>
+                <span class="n">positions</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">positions</span><span class="p">:</span>
+                <span class="n">step</span><span class="p">[</span><span class="s1">&#39;positions&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span><span class="p">]</span>
+                <span class="n">step</span><span class="p">[</span><span class="s1">&#39;point_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">point_id</span>
+                <span class="n">point_id</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">yield</span> <span class="n">step</span>
+            <span class="n">region_start</span> <span class="o">=</span> <span class="n">region_stop</span>
+
+<div class="viewcode-block" id="r3scan.run"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.r3scan.run">[docs]</a>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gScan</span><span class="o">.</span><span class="n">step_scan</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">step</span></div></div>
 
 
 <div class="viewcode-block" id="scanhist"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/scan.html#sardana.macroserver.macros.scan.scanhist">[docs]</a><span class="k">class</span> <span class="nc">scanhist</span><span class="p">(</span><span class="n">Macro</span><span class="p">):</span>

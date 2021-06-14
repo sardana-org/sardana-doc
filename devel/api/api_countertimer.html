@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Counter/Timer API reference &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>Counter/Timer API reference &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -241,6 +241,9 @@ independently</p>
 <dt>stop</dt><dd><p>stops the counter/timer acquisition in an orderly fashion</p>
 </dd>
 <dt>abort</dt><dd><p>stops the counter/timer acquisition as fast as possible</p>
+</dd>
+<dt>release</dt><dd><p>Release hung acquisition e.g. due to the hardware controller that
+got hung. You should first try stop/abort.</p>
 </dd>
 </dl>
 <div class="admonition seealso">

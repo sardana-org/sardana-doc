@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.macroserver.macros.lists &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>sardana.macroserver.macros.lists &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -193,7 +193,7 @@
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ls0d&quot;</span><span class="p">,</span> <span class="s2">&quot;ls1d&quot;</span><span class="p">,</span> <span class="s2">&quot;ls2d&quot;</span><span class="p">,</span> <span class="s2">&quot;lsa&quot;</span><span class="p">,</span> <span class="s2">&quot;lscom&quot;</span><span class="p">,</span> <span class="s2">&quot;lsct&quot;</span><span class="p">,</span> <span class="s2">&quot;lsctrl&quot;</span><span class="p">,</span>
            <span class="s2">&quot;lsctrllib&quot;</span><span class="p">,</span> <span class="s2">&quot;lsdef&quot;</span><span class="p">,</span> <span class="s2">&quot;lsexp&quot;</span><span class="p">,</span> <span class="s2">&quot;lsi&quot;</span><span class="p">,</span> <span class="s2">&quot;lsior&quot;</span><span class="p">,</span> <span class="s2">&quot;lsm&quot;</span><span class="p">,</span> <span class="s2">&quot;lsmeas&quot;</span><span class="p">,</span>
-           <span class="s2">&quot;lspc&quot;</span><span class="p">,</span> <span class="s2">&quot;lspm&quot;</span><span class="p">,</span> <span class="s2">&quot;lsmac&quot;</span><span class="p">,</span> <span class="s2">&quot;lsmaclib&quot;</span><span class="p">,</span> <span class="s2">&quot;lstg&quot;</span><span class="p">]</span>
+           <span class="s2">&quot;lsp&quot;</span><span class="p">,</span> <span class="s2">&quot;lspc&quot;</span><span class="p">,</span> <span class="s2">&quot;lspm&quot;</span><span class="p">,</span> <span class="s2">&quot;lsmac&quot;</span><span class="p">,</span> <span class="s2">&quot;lsmaclib&quot;</span><span class="p">,</span> <span class="s2">&quot;lstg&quot;</span><span class="p">]</span>
 
 <span class="n">__docformat__</span> <span class="o">=</span> <span class="s1">&#39;restructuredtext&#39;</span>
 
@@ -335,6 +335,15 @@
         <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">show_overwritten_msg</span> <span class="ow">is</span> <span class="kc">True</span>
             <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;overwritten_msg&quot;</span><span class="p">)):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">overwritten_msg</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="lsp"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsp">[docs]</a><span class="k">class</span> <span class="nc">lsp</span><span class="p">(</span><span class="n">_lsobj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Lists all pools&quot;&quot;&quot;</span>
+
+    <span class="n">cols</span> <span class="o">=</span> <span class="s1">&#39;Name&#39;</span><span class="p">,</span>
+    <span class="n">width</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">align</span> <span class="o">=</span> <span class="n">Right</span><span class="p">,</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="n">Type</span><span class="o">.</span><span class="n">Pool</span></div>
 
 
 <div class="viewcode-block" id="lsm"><a class="viewcode-back" href="../../../../devel/api/sardana/macroserver/macros/lists.html#sardana.macroserver.macros.lists.lsm">[docs]</a><span class="k">class</span> <span class="nc">lsm</span><span class="p">(</span><span class="n">_lsobj</span><span class="p">):</span>

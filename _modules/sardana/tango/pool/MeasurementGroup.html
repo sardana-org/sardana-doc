@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.tango.pool.MeasurementGroup &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>sardana.tango.pool.MeasurementGroup &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -407,7 +407,11 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">_value_ref_compat</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">_value_ref_compat</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">set_configuration_from_user</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">set_configuration_from_user</span><span class="p">(</span><span class="n">cfg</span><span class="p">)</span>
+        <span class="n">db</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">get_database</span><span class="p">()</span>
+        <span class="n">elem_ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">user_element_ids</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;elements&quot;</span><span class="p">:</span> <span class="n">elem_ids</span><span class="p">}</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">put_device_property</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_name</span><span class="p">(),</span> <span class="n">data</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="MeasurementGroup.read_NbStarts"><a class="viewcode-back" href="../../../../devel/api/sardana/tango/pool/MeasurementGroup.html#sardana.tango.pool.MeasurementGroup.MeasurementGroup.read_NbStarts">[docs]</a>    <span class="k">def</span> <span class="nf">read_NbStarts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
         <span class="n">nb_starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">measurement_group</span><span class="o">.</span><span class="n">nb_starts</span>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Motor API reference &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>Motor API reference &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -305,6 +305,9 @@ that move mechanics which have an instability time after each motion.</p>
 </dd>
 <dt>abort</dt><dd><p>stops the motor motion as fast as possible (possibly without
 deceleration time and loss of position)</p>
+</dd>
+<dt>release</dt><dd><p>Release hung motion e.g. due to the hardware controller that
+got hung. You should first try stop/abort.</p>
 </dd>
 </dl>
 <div class="section" id="motor-state">

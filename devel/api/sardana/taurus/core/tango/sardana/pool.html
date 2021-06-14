@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Taurus Extensions &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>Taurus Extensions &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -121,7 +121,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../../api_measurementgroup.html">Measurement group API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../api_macroserver.html">MacroServer API</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../api_pool.html">Pool API</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../sardana.html">Library</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../../../../sardana.html">Library</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../../api_test.html">Test API</a></li>
 </ul>
 </li>
@@ -2405,6 +2405,12 @@ Overwrite when necessary</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="sardana.taurus.core.tango.sardana.pool.PoolElement.removeAttrEG">
+<code class="sig-name descname"><span class="pre">removeAttrEG</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#PoolElement.removeAttrEG"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.PoolElement.removeAttrEG" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the TangoAttributeEG object</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.PoolElement.getAttrObj">
 <code class="sig-name descname"><span class="pre">getAttrObj</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#PoolElement.getAttrObj"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.PoolElement.getAttrObj" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the taurus.core.tangoattribute.TangoAttribute object</p>
@@ -2476,6 +2482,13 @@ to prepare, wait for events, etc</p>
 <dt id="sardana.taurus.core.tango.sardana.pool.PoolElement.stop">
 <code class="sig-name descname"><span class="pre">stop</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wait_ready</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#PoolElement.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.PoolElement.stop" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt id="sardana.taurus.core.tango.sardana.pool.PoolElement.release">
+<code class="sig-name descname"><span class="pre">release</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../../../../_modules/sardana/taurus/core/tango/sardana/pool.html#PoolElement.release"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.taurus.core.tango.sardana.pool.PoolElement.release" title="Permalink to this definition">¶</a></dt>
+<dd><p>Release hung element from its operation and make cleanup.</p>
+<p>Before releasing you should try stopping/aborting the element.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt id="sardana.taurus.core.tango.sardana.pool.PoolElement.information">

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.taurus.core.tango.sardana.pool &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>sardana.taurus.core.tango.sardana.pool &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -614,6 +614,10 @@
         <span class="sd">&quot;&quot;&quot;Returns the TangoAttributeEG object&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attrEG</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
 
+<div class="viewcode-block" id="PoolElement.removeAttrEG"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.PoolElement.removeAttrEG">[docs]</a>    <span class="k">def</span> <span class="nf">removeAttrEG</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove the TangoAttributeEG object&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_attrEG</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></div>
+
 <div class="viewcode-block" id="PoolElement.getAttrObj"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.PoolElement.getAttrObj">[docs]</a>    <span class="k">def</span> <span class="nf">getAttrObj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Returns the taurus.core.tangoattribute.TangoAttribute object&quot;&quot;&quot;</span>
         <span class="n">attrEG</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_attrEG</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
@@ -721,6 +725,18 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">waitReady</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
             <span class="n">state</span><span class="o">.</span><span class="n">unlock</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="PoolElement.release"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.PoolElement.release">[docs]</a>    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Release hung element from its operation and make cleanup.</span>
+
+<span class="sd">        Before releasing you should try stopping/aborting the element.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Remove state event generator to force subscription</span>
+        <span class="c1"># and synchronous state readout on the next start.</span>
+        <span class="c1"># This allows to reuse the element if the cause of the hung</span>
+        <span class="c1"># was fixed.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">removeAttrEG</span><span class="p">(</span><span class="s2">&quot;State&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_inout</span><span class="p">(</span><span class="s2">&quot;Release&quot;</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="PoolElement.information"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.PoolElement.information">[docs]</a>    <span class="k">def</span> <span class="nf">information</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tab</span><span class="o">=</span><span class="s1">&#39;    &#39;</span><span class="p">):</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_information</span><span class="p">(</span><span class="n">tab</span><span class="o">=</span><span class="n">tab</span><span class="p">)</span>

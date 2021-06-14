@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.pool.poolmotorgroup &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>sardana.pool.poolmotorgroup &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -448,7 +448,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_in_start_move</span> <span class="o">=</span> <span class="kc">False</span></div>
 
     <span class="k">def</span> <span class="nf">_start_move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_positions</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_released</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">items</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_motion</span><span class="p">(</span><span class="n">new_positions</span><span class="p">)</span>
         <span class="n">timestamp</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">item</span><span class="p">,</span> <span class="n">position_info</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">items</span><span class="p">()):</span>

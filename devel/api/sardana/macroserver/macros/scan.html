@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>scan &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>scan &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -537,6 +537,88 @@ Default implementation does nothing</p>
 <dl class="py method">
 <dt id="sardana.macroserver.macros.scan.timescan.run">
 <code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#timescan.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.timescan.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.scan.rscan">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">rscan</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#rscan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.rscan" title="Permalink to this definition">¶</a></dt>
+<dd><p>rscan.
+Do an absolute scan of the specified motor with different number of intervals for each region.
+It uses the gscan framework.</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.scan.rscan.prepare">
+<code class="sig-name descname"><span class="pre">prepare</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">motor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integ_time</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">opts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#rscan.prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.rscan.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.scan.rscan.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#rscan.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.rscan.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.scan.r2scan">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">r2scan</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#r2scan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.r2scan" title="Permalink to this definition">¶</a></dt>
+<dd><p>r2scan.
+Do an absolute scan of the specified motors with different number of intervals for each region.
+It uses the gscan framework. All the motors will be drived to the same position in each step</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.scan.r2scan.prepare">
+<code class="sig-name descname"><span class="pre">prepare</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">motor1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motor2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integ_time</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">opts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#r2scan.prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.r2scan.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.scan.r2scan.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#r2scan.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.r2scan.run" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
+raises RuntimeError.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p>RuntimeError</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="sardana.macroserver.macros.scan.r3scan">
+<em class="property"><span class="pre">class</span> </em><code class="sig-name descname"><span class="pre">r3scan</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#r3scan"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.r3scan" title="Permalink to this definition">¶</a></dt>
+<dd><p>r3scan.
+Do an absolute scan of the specified motors with different number of
+intervals for each region. It uses the gscan framework.
+All the motors will be drived to the same position in each step</p>
+<dl class="py method">
+<dt id="sardana.macroserver.macros.scan.r3scan.prepare">
+<code class="sig-name descname"><span class="pre">prepare</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">motor1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motor2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">motor3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integ_time</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">opts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#r3scan.prepare"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.r3scan.prepare" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>Macro API</strong>. Prepare phase. Overwrite as necessary.
+Default implementation does nothing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.scan.r3scan.run">
+<code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../../_modules/sardana/macroserver/macros/scan.html#r3scan.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.macroserver.macros.scan.r3scan.run" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>Macro API</strong>. Runs the macro. <strong>Overwrite MANDATORY!</strong> Default implementation
 raises RuntimeError.</p>
 <dl class="field-list simple">

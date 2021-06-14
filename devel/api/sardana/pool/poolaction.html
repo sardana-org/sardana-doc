@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>poolaction &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>poolaction &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -495,6 +495,11 @@ executes it. Otherwise nothing happens</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="sardana.pool.poolaction.PoolAction.release_action">
+<code class="sig-name descname"><span class="pre">release_action</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.release_action"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.release_action" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="sardana.pool.poolaction.PoolAction.emergency_break">
 <code class="sig-name descname"><span class="pre">emergency_break</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.emergency_break"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.emergency_break" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tries to execute a stop. If it fails try an abort</p>
@@ -521,6 +526,21 @@ executes it. Otherwise nothing happens</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>True if action has been aborted from outside or False otherwise</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.pool.poolaction.PoolAction.was_released">
+<code class="sig-name descname"><span class="pre">was_released</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/sardana/pool/poolaction.html#PoolAction.was_released"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#sardana.pool.poolaction.PoolAction.was_released" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determines if the action has been released from outside</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if action has been released from outside or False
+otherwise</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>

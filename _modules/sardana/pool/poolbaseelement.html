@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>sardana.pool.poolbaseelement &mdash; sardana 3.1.1-alpha documentation</title>
+  <title>sardana.pool.poolbaseelement &mdash; sardana 3.1.2-alpha documentation</title>
   
 
   
@@ -222,6 +222,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_action_cache</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_released</span> <span class="o">=</span> <span class="kc">False</span>
 
         <span class="n">lock_name</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;Lock&quot;</span>
 
@@ -490,6 +491,26 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span></div>
 
     <span class="c1"># --------------------------------------------------------------------------</span>
+    <span class="c1"># release</span>
+    <span class="c1"># --------------------------------------------------------------------------</span>
+
+<div class="viewcode-block" id="PoolBaseElement.release"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolBaseElement.release">[docs]</a>    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_in_local_operation</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Not in local operation, can not release&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">operation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_operation</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">operation</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Operation is not running, can not release&quot;</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_released</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_state_event</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Release!&quot;</span><span class="p">)</span>
+        <span class="n">operation</span><span class="o">.</span><span class="n">release_action</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="PoolBaseElement.was_released"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolBaseElement.was_released">[docs]</a>    <span class="k">def</span> <span class="nf">was_released</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_released</span></div>
+
+    <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="c1"># interrupted</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
 
@@ -522,6 +543,7 @@
         <span class="k">if</span> <span class="n">operation</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_aborted</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_stopped</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_released</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_operation</span> <span class="o">=</span> <span class="n">operation</span></div>
 
 <div class="viewcode-block" id="PoolBaseElement.clear_operation"><a class="viewcode-back" href="../../../devel/api/sardana/pool/poolelement.html#sardana.pool.poolelement.PoolBaseElement.clear_operation">[docs]</a>    <span class="k">def</span> <span class="nf">clear_operation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
