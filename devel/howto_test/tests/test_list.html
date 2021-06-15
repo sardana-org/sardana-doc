@@ -266,11 +266,6 @@ macro executor log output are in the correspondent
 list (elem_type) of SardanaEnv.</p>
 </dd></dl>
 
-<dl class="py attribute">
-<dt id="sardana.macroserver.macros.test.test_list.LsTest.macro_name">
-<code class="sig-name descname"><span class="pre">macro_name</span></code><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsTest.macro_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="py method">
 <dt id="sardana.macroserver.macros.test.test_list.LsTest.tearDown">
 <code class="sig-name descname"><span class="pre">tearDown</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsTest.tearDown" title="Permalink to this definition">¶</a></dt>
@@ -278,15 +273,12 @@ list (elem_type) of SardanaEnv.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.macroserver.macros.test.test_list.LsTest.assertFinished">
-<code class="sig-name descname"><span class="pre">assertFinished</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsTest.assertFinished" title="Permalink to this definition">¶</a></dt>
-<dd><p>Asserts that macro has finished.</p>
+<dt id="sardana.macroserver.macros.test.test_list.LsTest.setUp">
+<code class="sig-name descname"><span class="pre">setUp</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Preconditions:
+- Those from <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMacroTestCase</span></code>
+- the macro executor registers to all the log levels</p>
 </dd></dl>
-
-<dl class="py attribute">
-<dt id="sardana.macroserver.macros.test.test_list.LsTest.door_name">
-<code class="sig-name descname"><span class="pre">door_name</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'door/demo1/1'</span></em><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsTest.door_name" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="py method">
 <dt id="sardana.macroserver.macros.test.test_list.LsTest.macro_fails">
@@ -310,12 +302,20 @@ representations of exception objects)</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="sardana.macroserver.macros.test.test_list.LsTest.setUp">
-<code class="sig-name descname"><span class="pre">setUp</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsTest.setUp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Preconditions:
-- Those from <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMacroTestCase</span></code>
-- the macro executor registers to all the log levels</p>
+<dt id="sardana.macroserver.macros.test.test_list.LsTest.assertFinished">
+<code class="sig-name descname"><span class="pre">assertFinished</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsTest.assertFinished" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asserts that macro has finished.</p>
 </dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.macroserver.macros.test.test_list.LsTest.macro_name">
+<code class="sig-name descname"><span class="pre">macro_name</span></code><em class="property"> <span class="pre">=</span> <span class="pre">None</span></em><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsTest.macro_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="sardana.macroserver.macros.test.test_list.LsTest.door_name">
+<code class="sig-name descname"><span class="pre">door_name</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'door/demo1/1'</span></em><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsTest.door_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
@@ -343,15 +343,15 @@ execution of the macro ‘lsm’.</p>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="sardana.macroserver.macros.test.test_list.LsmTest.test_lsm_macro_runs">
-<code class="sig-name descname"><span class="pre">test_lsm_macro_runs</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsmTest.test_lsm_macro_runs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Testing lsm with macro_runs()</p>
-</dd></dl>
-
-<dl class="py method">
 <dt id="sardana.macroserver.macros.test.test_list.LsmTest.test_lsm_macro_runs_2">
 <code class="sig-name descname"><span class="pre">test_lsm_macro_runs_2</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsmTest.test_lsm_macro_runs_2" title="Permalink to this definition">¶</a></dt>
 <dd><p>Testing lsm with macro_runs(macro_params=[‘l.*’])</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sardana.macroserver.macros.test.test_list.LsmTest.test_lsm_macro_runs">
+<code class="sig-name descname"><span class="pre">test_lsm_macro_runs</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sardana.macroserver.macros.test.test_list.LsmTest.test_lsm_macro_runs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Testing lsm with macro_runs()</p>
 </dd></dl>
 
 </dd></dl>

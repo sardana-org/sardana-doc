@@ -3686,6 +3686,13 @@
                                   <span class="n">_pool_data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">obj</span></div>
 
+    <span class="k">def</span> <span class="nf">_delObject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+        <span class="n">elem_type</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">getType</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">elem_type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;ControllerClass&#39;</span><span class="p">,</span> <span class="s1">&#39;ControllerLibrary&#39;</span><span class="p">,</span> <span class="s1">&#39;Instrument&#39;</span><span class="p">):</span>
+            <span class="k">return</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="n">element</span><span class="o">.</span><span class="n">getObj</span><span class="p">()</span>
+        <span class="n">obj</span><span class="o">.</span><span class="n">factory</span><span class="p">()</span><span class="o">.</span><span class="n">removeExistingDevice</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+
 <div class="viewcode-block" id="Pool.on_elements_changed"><a class="viewcode-back" href="../../../../../../devel/api/sardana/taurus/core/tango/sardana/pool.html#sardana.macroserver.macro.Pool.on_elements_changed">[docs]</a>    <span class="k">def</span> <span class="nf">on_elements_changed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt_src</span><span class="p">,</span> <span class="n">evt_type</span><span class="p">,</span> <span class="n">evt_value</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">evt_type</span> <span class="o">==</span> <span class="n">TaurusEventType</span><span class="o">.</span><span class="n">Error</span><span class="p">:</span>
             <span class="n">msg</span> <span class="o">=</span> <span class="n">evt_value</span>
@@ -3720,6 +3727,15 @@
             <span class="n">element</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getElementInfo</span><span class="p">(</span><span class="n">element_data</span><span class="p">[</span><span class="s1">&#39;full_name&#39;</span><span class="p">])</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="n">elements</span><span class="o">.</span><span class="n">removeElement</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+                <span class="c1"># Ideally this object should disappear without the need to</span>
+                <span class="c1"># call _delObject() - there should be no references to it.</span>
+                <span class="c1"># Most probably due to the complex circular references</span>
+                <span class="c1"># between the element and its attributes, as it is in the case</span>
+                <span class="c1"># of the measurement group, we need to explicitly remove the</span>
+                <span class="c1"># object so it does not remain on the client side (Taurus</span>
+                <span class="c1"># factory)</span>
+                <span class="c1"># See more details in #145, #1528.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_delObject</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
             <span class="k">except</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Failed to remove </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">element_data</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">element_data</span> <span class="ow">in</span> <span class="n">elems</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="p">()):</span>

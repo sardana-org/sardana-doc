@@ -814,6 +814,13 @@
 <span class="sd">            Raise exceptions when setting _Synchronization_ parameter for</span>
 <span class="sd">            external channels, 0D and PSeudoCounters.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_is_online</span><span class="p">(</span><span class="n">cfg</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Some controllers of this measurement group are offline!&quot;</span><span class="p">)</span>
+            <span class="c1"># Return because it won&#39;t be possible to know the controller types.</span>
+            <span class="c1"># Before returning, assign &quot;user configuration&quot; to at least be able to</span>
+            <span class="c1"># read it from the client (spock etc.).</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_user_config</span> <span class="o">=</span> <span class="n">cfg</span>
+            <span class="k">return</span>
 
         <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">pool</span>
 
@@ -1552,6 +1559,19 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_pending_starts</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">PoolGroupElement</span><span class="o">.</span><span class="n">abort</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></div>
 
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># utils</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+
+    <span class="k">def</span> <span class="nf">_is_online</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">):</span>
+        <span class="n">pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pool</span>
+        <span class="k">for</span> <span class="n">ctrl_name</span> <span class="ow">in</span> <span class="n">cfg</span><span class="p">[</span><span class="s1">&#39;controllers&#39;</span><span class="p">]:</span>
+            <span class="n">external</span> <span class="o">=</span> <span class="n">ctrl_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;__tango__&#39;</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">external</span><span class="p">:</span>
+                <span class="n">ctrl</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_element_by_full_name</span><span class="p">(</span><span class="n">ctrl_name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">ctrl</span><span class="o">.</span><span class="n">is_online</span><span class="p">():</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
     <span class="c1"># release</span>
     <span class="c1"># --------------------------------------------------------------------------</span>
